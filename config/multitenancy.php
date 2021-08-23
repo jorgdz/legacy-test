@@ -2,6 +2,7 @@
 
 use App\Models\CustomTenant;
 use Illuminate\Mail\SendQueuedMailable;
+use App\Finder\CustomDomainTenantFinder;
 use Illuminate\Events\CallQueuedListener;
 use Illuminate\Broadcasting\BroadcastEvent;
 use Spatie\Multitenancy\Actions\MigrateTenantAction;
@@ -25,7 +26,7 @@ return [
      * This class should extend `Spatie\Multitenancy\TenantFinder\TenantFinder`
      *
      */
-    'tenant_finder' => Spatie\Multitenancy\TenantFinder\DomainTenantFinder::class,
+    'tenant_finder' => CustomDomainTenantFinder::class,
 
     /*
      * These fields are used by tenant:artisan command to match one or more tenant
