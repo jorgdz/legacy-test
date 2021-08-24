@@ -13,4 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*============================ Tenants routes========================*/
+/*============================ Landlord routes========================*/
+Route::get('/', function () {
+    return redirect('/api/documentation');
+});

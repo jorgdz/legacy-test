@@ -48,6 +48,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/landlord/api.php'));
 
+            Route::domain($domain)
+                ->middleware($web)
+                ->namespace($this->namespace)
+                ->group(base_path('routes/landlord/web.php'));
+
             if (config('multitenancy.enabled') == true) {
                 array_push($api, 'tenant.api');
                 array_push($web, 'tenant.web');

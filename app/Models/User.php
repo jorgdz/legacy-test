@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Laravel\Passport\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -20,9 +20,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'us_identification',
+        'us_firstname',
+        'us_secondname',
+        'us_first_lastname',
+        'us_second_lastname',
+        'us_date_birth',
+        'us_gender',
+        'us_username',
         'email',
         'password',
+        'type_identification_id',
     ];
 
     protected $guard_name = 'api';

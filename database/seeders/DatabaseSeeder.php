@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         if (CustomTenant::checkCurrent()) {
-            $this->call(PassportSeeder::class);
+            $this->call([
+                TypeIdentification::class,
+            ]);
         }
     }
 }

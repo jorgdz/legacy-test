@@ -5,11 +5,8 @@ use App\Mail\EmailInvitation;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\FileController;
-use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\PermissionController;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +26,9 @@ use App\Models\User;
 
 /**
  *
- * Files
+ * Login
  */
-Route::apiResource('files', FileController::class)
-    ->middleware(['auth:api', 'permission:upload_files']);
+Route::post('/login', [AuthController::class, 'login']);
 
 /**
  *
@@ -58,7 +54,7 @@ Route::get('/whoami', function (Request $request) {
     return Cache::remember($key, now()->addMinutes(150), function () use ($request) {
         return $request->user();
     });
-})->middleware('auth:api');
+})->middleware('auth:sanctum');
 
 /**
  *
@@ -69,30 +65,18 @@ Route::post('/logout', function (Request $request) {
 
     $request->user()->token()->revoke();
     return response()->json(['message' => 'Good by user.']);
-})->middleware('auth:api');
+})->middleware('auth:sanctum');
 
 /**
  * Users
  */
-Route::get('/users', [UserController::class, 'index'])->middleware(['auth:api', 'permission:list_users']);
-Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth:api']);
-Route::post('/users', [UserController::class, 'store'])->middleware(['auth:api']);
-
-/**
- *
- * Roles
- */
-Route::apiResource('roles', RoleController::class)->middleware('auth:api');
-
-/**
- *
- * Permissions
- */
-Route::apiResource('permissions', PermissionController::class)->middleware('auth:api');
+Route::get('/users', [UserController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth:sanctum']);
+Route::post('/users', [UserController::class, 'store'])->middleware(['auth:sanctum']);
 
 Route::post('/send-mail', function (Request $request) {
     Mail::to($request->email)->send(new EmailInvitation());
     return response()->json([
         'info' => "Invitación enviada a {$request->email}"
     ]);
-})->middleware(['auth:api', 'permission:send_mail']);
+})->middleware(['auth:sanctum']);
