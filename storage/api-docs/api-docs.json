@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Service Rest-Full",
-        "description": "Documentación Legacy ERP.",
+        "description": "Documentation Legacy ERP.",
         "contact": {
             "email": "jdiaz@redlinks.com.ec"
         },
@@ -19,6 +19,118 @@
         }
     ],
     "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Iniciar sesion",
+                "description": "Crear token para usuario autenticado",
+                "operationId": "addSessionUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "us_username": {
+                                        "description": "Nombre de usuario",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Contrasena del usuario",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/whoami": {
+            "get": {
+                "tags": [
+                    "Autenticado"
+                ],
+                "summary": "Obtener el usuario autenticado",
+                "description": "Muestra información de un usuario autenticado.",
+                "operationId": "getUserAuth",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Autenticado"
+                ],
+                "summary": "Remover token del usuario autenticado",
+                "description": "Remover token",
+                "operationId": "f5314d2d9606a855d583dbf0bcffa1be",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
         "/api/tenants": {
             "get": {
                 "tags": [
@@ -62,26 +174,28 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                }
+                },
+                "security": []
             },
             "post": {
                 "tags": [
                     "Inquilinos"
                 ],
                 "summary": "Crear inquilino",
-                "description": "Crear un nuevo nuevo inquilino y lanzar sus migraciones.",
+                "description": "Crear un nuevo inquilino.",
                 "operationId": "addTenant",
                 "requestBody": {
-                    "description": "Nuevo inquilino",
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "properties": {
                                     "name": {
+                                        "description": "Nombre del inquilino",
                                         "type": "string"
                                     },
                                     "domain": {
+                                        "description": "Dominio del inquilino",
                                         "type": "string"
                                     }
                                 },
@@ -92,12 +206,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Creado con exito",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
+                        "description": "Se ha creado correctamente"
                     },
                     "400": {
                         "description": "No se cumple todos los requisitos"
@@ -107,6 +216,267 @@
                     },
                     "403": {
                         "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/tenants/{tenant}": {
+            "get": {
+                "tags": [
+                    "Inquilinos"
+                ],
+                "summary": "Obtener un inquilino",
+                "description": "Muestra información específica de un inquilino.",
+                "operationId": "getTenant",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "description": "Id del inquilino",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "3"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Inquilinos"
+                ],
+                "summary": "Actualizar un inquilino",
+                "description": "Actulizar un inquilino específico por Id",
+                "operationId": "editTenant",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "3"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre del inquilino",
+                                        "type": "string"
+                                    },
+                                    "domain": {
+                                        "description": "Dominio del inquilino",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Inquilinos"
+                ],
+                "summary": "Eliminar un inquilino",
+                "description": "Eliminar un inquilino específico por Id",
+                "operationId": "deleteTenant",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "3"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Listar los usuarios",
+                "description": "Muestra todos los usuarios paginados en formato JSON",
+                "operationId": "getAllUsers",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numero de la paginación",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Numero de elementos por pagina",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Ordenar por columna",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "id"
+                        }
+                    },
+                    {
+                        "name": "type_sort",
+                        "in": "query",
+                        "description": "Sentido del Orden",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "desc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{user}": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Obtener un usuario",
+                "description": "Muestra información específica de un usuario.",
+                "operationId": "getUser",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "5"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
                     },
                     "500": {
                         "description": "Error interno del servidor"

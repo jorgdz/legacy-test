@@ -48,24 +48,13 @@ Route::get('/as-tenant', function () {
 /**
  * User auth "whoami"
  */
-Route::get('/whoami', function (Request $request) {
-    $key = request()->url();
-
-    return Cache::remember($key, now()->addMinutes(150), function () use ($request) {
-        return $request->user();
-    });
-})->middleware('auth:sanctum');
+Route::get('/whoami', [AuthController::class, 'whoami'])->middleware('auth:sanctum');
 
 /**
  *
  * Logout
  */
-Route::post('/logout', function (Request $request) {
-    Cache::flush();
-
-    $request->user()->token()->revoke();
-    return response()->json(['message' => 'Good by user.']);
-})->middleware('auth:sanctum');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 /**
  * Users

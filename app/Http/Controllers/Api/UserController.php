@@ -63,7 +63,7 @@ class UserController extends Controller implements IUserController
     public function store (StoreUserRequest $request) {
         $user = new User($request->all());
         $user = $this->repoUser->save($user);
-        $user->syncRoles($request->roles);
+        //$user->syncRoles($request->roles);
         return $this->success($user, Response::HTTP_CREATED);
     }
 

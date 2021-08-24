@@ -7,6 +7,8 @@ use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\UserFormRequest;
 use Illuminate\Auth\AuthenticationException;
 use App\Http\Controllers\Api\Contracts\IAuthController;
 
@@ -24,7 +26,7 @@ class AuthController extends Controller implements IAuthController
      * @param  mixed $request
      * @return void
      */
-    public function login(Request $request)
+    public function login(UserFormRequest $request)
     {
         if (!Auth::attempt($request->only('us_username', 'password')))
             throw new AuthenticationException();
@@ -38,5 +40,29 @@ class AuthController extends Controller implements IAuthController
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
+    }
+
+    /**
+     * whoami
+     *
+     * @return void
+     */
+    public function whoami (Request $request) {
+        $key = request()->url();
+        return $request->user();
+    }
+
+    /**
+     * logout
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function logout (Request $request) {
+        Cache::flush();
+
+        $request->user()->tokens()->delete();
+
+        return $this->success(['message' => 'Good by user.']);
     }
 }

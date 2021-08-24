@@ -160,6 +160,7 @@ return [
         'author_id' => 'autor',
         'category_id' => 'categoria',
         'domain' => 'dominio',
+        'us_username' => 'nombre de usuario',
         'password' => 'contraseña',
         'email' => 'correo',
         'remember_token' => 'recordar token',

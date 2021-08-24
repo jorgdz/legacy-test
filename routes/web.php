@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*============================ Tenants routes========================*/
+Route::get('/', function () {
+    return redirect(config('app.url'));
+});

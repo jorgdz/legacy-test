@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
  * @OA\Info(
  *    title="Service Rest-Full",
  *    version="1.0.1",
- *    description="Documentación Legacy ERP.",
+ *    description="Documentation Legacy ERP.",
  *   @OA\Contact(
  *       email="jdiaz@redlinks.com.ec"
  *   ),
