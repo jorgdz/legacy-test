@@ -197,6 +197,10 @@
                                     "domain": {
                                         "description": "Dominio del inquilino",
                                         "type": "string"
+                                    },
+                                    "database": {
+                                        "description": "Base de datos del inquilino",
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"

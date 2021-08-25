@@ -16,8 +16,15 @@ class CreateTableAction extends Migration
         Schema::create('action_directories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('actd_name')->nullable();
+            $table->string('actd_description')->nullable();
+            $table->string('actd_route')->nullable();
+            $table->string('actd_initial', 3)->unique();
             $table->integer('directory_id')->unsigned();
             $table->foreign('directory_id')->references('id')->on('directories');
+
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+            
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +37,6 @@ class CreateTableAction extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actions');
+        Schema::dropIfExists('action_directories');
     }
 }

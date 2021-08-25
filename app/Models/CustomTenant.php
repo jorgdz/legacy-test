@@ -20,7 +20,7 @@ class CustomTenant extends Tenant
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['name', 'domain'];
+    protected $fillable = ['name', 'domain', 'database'];
 
     protected $hidden = ['deleted_at'];
 
@@ -59,14 +59,12 @@ class CustomTenant extends Tenant
      * @return void
      */
     public function createDatabase($customTenant) {
-        $database_name = parse_url($customTenant->domain)['path'] . '_' . Str::random(6);
-        $database = Str::of($database_name)->replace('.', '_')->lower()->__toString();
+        $database = $customTenant->database;
         $query = "SELECT name FROM SYS.DATABASES WHERE name = ?";
         $db = DB::select($query, [$database]);
 
         if (empty($db)) {
             DB::connection('tenant')->statement("CREATE DATABASE {$database};");
-            $customTenant->database = $database;
         }
 
         return $database;

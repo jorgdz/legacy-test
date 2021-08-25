@@ -70,6 +70,11 @@ interface ITenantController
      *           description="Dominio del inquilino",
      *           type="string",
      *         ),
+     *         @OA\Property(
+     *           property="database",
+     *           description="Base de datos del inquilino",
+     *           type="string",
+     *         ),
      *       ),
      *     ),
      *   ),

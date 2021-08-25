@@ -17,12 +17,21 @@ class CreateTableCompany extends Migration
             $table->increments('id');
             $table->string('co_name', 255)->nullable();
             $table->string('co_description', 255)->nullable();
-            $table->string('co_sitio', 255)->nullable();
+            $table->string('co_website', 255)->nullable();
+            $table->string('co_assigned_site', 255)->nullable();
             $table->string('co_facebook', 255)->nullable();
             $table->string('co_instagram', 255)->nullable();
             $table->string('co_linkedin', 255)->nullable();
             $table->string('co_youtube', 255)->nullable();
-            $table->string('co_estado', 50)->nullable();
+            $table->string('co_info_mail', 255)->nullable();
+            $table->string('co_matrix', 255)->nullable();
+            $table->string('co_logo', 255)->nullable();
+            $table->string('co_color', 255)->nullable();
+            $table->string('co_pay_notification', 255)->nullable();
+            
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+            
             $table->timestamps();
             $table->softDeletes();
         });

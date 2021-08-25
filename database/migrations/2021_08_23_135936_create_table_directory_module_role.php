@@ -20,6 +20,10 @@ class CreateTableDirectoryModuleRole extends Migration
 
             $table->integer('module_role_id')->unsigned();
             $table->foreign('module_role_id')->references('id')->on('module_roles');
+
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+            
             $table->timestamps();
             $table->softDeletes();
         });

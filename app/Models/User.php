@@ -12,7 +12,7 @@ use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasApiTokens, Notifiable, HasRoles, UsesTenantConnection;
+    use HasFactory, HasRoles, HasApiTokens, Notifiable, UsesTenantConnection;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +31,7 @@ class User extends Authenticatable
         'email',
         'password',
         'type_identification_id',
+        'status_id',
     ];
 
     protected $guard_name = 'api';
@@ -53,4 +54,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * userProfiles
+     *
+     * @return void
+     */
+    public function userProfiles ()
+    {
+    	return $this->hasMany(UserProfile::class);
+    }
+
+    /**
+     * status
+     *
+     * @return void
+     */
+    public function status ()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
 }

@@ -14,10 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         if (CustomTenant::checkCurrent()) {
             $this->call([
-                TypeIdentification::class,
+                StatusSeeder::class,
+                ProfileSeeder::class,
+                RoleSeeder::class,
+                ModuleSeeder::class,
+                DirectorySeeder::class,
+                ActionSeeder::class,
+                TypeIdentificationSeeder::class,
+            ]);
+
+            \App\Models\User::factory(1)->create();
+
+            $this->call([
+                UserProfileSeeder::class,
+                RoleUserProfileSeeder::class,
             ]);
         }
     }

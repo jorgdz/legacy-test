@@ -17,7 +17,10 @@ class CreateTableModule extends Migration
             $table->increments('id');
             $table->string('mo_name', 255)->nullable();
             $table->string('mo_description', 255)->nullable();
-            $table->string('mo_status', 50)->nullable();
+
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+            
             $table->timestamps();
             $table->softDeletes();
         });

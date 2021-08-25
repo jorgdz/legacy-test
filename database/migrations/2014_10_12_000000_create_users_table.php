@@ -30,6 +30,9 @@ class CreateUsersTable extends Migration
             $table->integer('type_identification_id')->unsigned();
             $table->foreign('type_identification_id')->references('id')->on('type_identifications');
 
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

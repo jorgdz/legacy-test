@@ -21,18 +21,12 @@ DB_DATABASE=
 DB_USERNAME=
 DB_PASSWORD=
 
-DB_LAND=landlord_db
-
-PASSPORT_PERSONAL_ACCESS_CLIENT_ID=
-PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET=
+DB_LAND=legacy_landlord
+L5_SWAGGER_CONST_HOST="${APP_URL}"
+REDIS_CLIENT=phpredis
 ```
 
 Como notaran, no necesitamos que la variable *DB_DATABASE* tenga el nombre de la base de datos, puesto que el cambio de base de datos es dinamico de acuerdo a la instancia de nuestra aplicación, pero es importante que DB_CONNECTION sea = *tenant*
-
-Tambien observamos la aparación de 2 variables nuevas: *passport_personal_access_client_id*
-*passport_personal_access_client_secret*
-
-Que mas adelante veremos que valor tendrán.
 
 Una vez preparado esto, ejecutamos:
 
@@ -40,26 +34,12 @@ Una vez preparado esto, ejecutamos:
     php artisan tenants:artisan migrate
 ```
 
-Una vez ejecutadas las migraciones, necesitaremos generar unas llaves públicas y privadas necesarias para la autenticación con oauth2.
-
-Esto lo podemos lograr ejecutando el comando de passport:
-```sh
-    php artisan passport:keys
-```
-
-Finalmente lo que debemos hacer es generar el secret client para nuestra aplicación, con el comando:
-
-**Para esto es importante tomar en cuenta un detalle, resulta que para generar el client Secret de nuestra aplicación, passport no sabe a que base de datos apuntar al tener configurado tenant en su variable *DB_CONNECTION*, es por esto que debemos configurar momentaneamente la variable con el driver de nuestra base de datos principal, que en nuestro caso es db_main, cambiamos el DB_CONNECTION, y la variable DB_DATABASE con el nombre de nuestra base de datos principal, una vez hecho esto, no olvidar actualizar el caché de laravel y luego correr el siguiente comando.**
+## **Generar documentación**
+Como último paso debemos generar la documentación de swagger:
 
 ```sh
-    php artisan passport:client --password
+    php artisan l5-swagger:generate
 ```
-
-Esto nos generará el client Id y el client Secret que debemos colocar en las variables de entorno adicionales que agregamos en el **.env**
-
-Luego ya podemos dejar las variables de entorno **DB_CONNECTION** y **DB_DATABASE**, como estaban anteriormente.
-
-Posterior a esto podemos acceder a la vista **/register** y crear un usuario a manera de ejemplo con el formulario por defecto de laravel, y con las credenciales de ese usuario podemos efectuar una autenticación para obtener el token con el que podemos acceder a nuestros recursos protegidos.
 
 ## **Autenticando al usuario dueño de la aplicación**
 ![login](docs/1.png)

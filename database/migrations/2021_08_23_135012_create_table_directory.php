@@ -16,11 +16,17 @@ class CreateTableDirectory extends Migration
         Schema::create('directories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('di_name')->nullable();
-            $table->string('di_description')->nullable();
-            $table->integer('di_principal')->nullable();
+            $table->enum('di_type_directory', ['Principal', 'Secundario']);
+            $table->string('di_route', 255)->nullable();
+            $table->string('di_icon')->nullable();
+            $table->integer('di_order')->nullable();
 
             $table->integer('module_id')->unsigned();
             $table->foreign('module_id')->references('id')->on('modules');
+
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+            
             $table->timestamps();
             $table->softDeletes();
         });

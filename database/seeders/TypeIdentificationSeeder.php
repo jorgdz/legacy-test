@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TypeIdentification extends Seeder
+class TypeIdentificationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class TypeIdentification extends Seeder
      */
     public function run()
     {
-        DB::table('type_identifications')->insert([
+        DB::connection('tenant')->table('type_identifications')->insert([
             ['ti_name' => 'Cédula'],
             ['ti_name' => 'RUC'],
             ['ti_name' => 'DNI'],

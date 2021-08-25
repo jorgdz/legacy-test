@@ -40,12 +40,6 @@ class BaseRepository implements IBaseRepository
      */
     public function save (Model $model) {
         $model->save();
-
-        /*$tenant = CustomTenant::current();
-        $tenant->execute(function (CustomTenant $customTenant) {
-            return cache()->flush();
-        });*/
-
         return $model;
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableModuleRole extends Migration
+class CreateTableCampus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateTableModuleRole extends Migration
      */
     public function up()
     {
-        Schema::create('module_roles', function (Blueprint $table) {
+        Schema::create('campus', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('role_id')->unsigned();
-            $table->foreign('role_id')->references('id')->on('roles');
-
-            $table->integer('module_id')->unsigned();
-            $table->foreign('module_id')->references('id')->on('modules');
-
+            $table->string('cam_name', 255)->nullable();
+            $table->string('cam_description', 255)->nullable();
+            $table->string('cam_direction', 255)->nullable();
+            
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
+            
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies');
             
             $table->timestamps();
             $table->softDeletes();
@@ -32,10 +33,11 @@ class CreateTableModuleRole extends Migration
     /**
      * Reverse the migrations.
      *
+     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('module_roles');
+        Schema::dropIfExists('campus');
     }
 }

@@ -17,7 +17,12 @@ class CreateTableConfiguration extends Migration
             $table->increments('id');
             $table->string('co_name', 255)->nullable();
             $table->string('co_description', 255)->nullable();
+
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
