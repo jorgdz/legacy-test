@@ -5,15 +5,18 @@ namespace App\Models;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class UserProfile extends Model
 {
-    use HasFactory, HasRoles, UsesTenantConnection;
+    use HasFactory, HasRoles, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
 
     protected $table = 'user_profiles';
     protected $fillable = ['user_id', 'profile_id', 'status_id'];
 
+    protected $dates = ['deleted_at'];
     
     /**
      * user

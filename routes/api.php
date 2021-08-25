@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,13 @@ Route::post('/send-mail', function (Request $request) {
         'info' => "Invitación enviada a {$request->email}"
     ]);
 })->middleware(['auth:sanctum']);
+
+
+/**
+ * Profiles
+ */
+Route::get('/profiles', [ProfileController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middleware(['auth:sanctum']);
+Route::post('/profiles', [ProfileController::class, 'store'])->middleware(['auth:sanctum']);
+Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->middleware(['auth:sanctum']);
+Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->middleware(['auth:sanctum']);
