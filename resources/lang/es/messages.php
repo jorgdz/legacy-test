@@ -9,5 +9,6 @@ return [
     'not-found' => 'No se encontró la URL especificada.',
     'no-content' => 'No hay contenido.',
     'no-current-tenant' => 'Actualmente no hay un inquilino.',
+    'bad-request' => 'Petición o solicitud Incorrecta.'
 ];
 ?>

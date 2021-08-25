@@ -9,5 +9,6 @@ return [
     'not-found' => 'The specified URL was not found. ',
     'no-content' => 'No content.',
     'no-current-tenant' => 'No current tenant.',
+    'bad-request' => 'Wrong petition or request.'
 ];
 ?>

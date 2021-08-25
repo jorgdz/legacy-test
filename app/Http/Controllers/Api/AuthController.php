@@ -26,12 +26,13 @@ class AuthController extends Controller implements IAuthController
      * @param  mixed $request
      * @return void
      */
-    public function login(UserFormRequest $request)
-    {
+    public function login(UserFormRequest $request) {
         if (!Auth::attempt($request->only('us_username', 'password')))
             throw new AuthenticationException();
 
-        $user = User::where('us_username', $request['us_username'])->firstOrFail();
+        $user = User::where('us_username', $request['us_username'])->with(['userProfiles' => function($query) {
+            $query->with('profile');
+        }])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 

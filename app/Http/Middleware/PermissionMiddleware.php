@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\Access\AuthorizationException;
+use App\Exceptions\Custom\BadRequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\AuthenticationException;
@@ -24,9 +25,22 @@ class PermissionMiddleware
             throw new AuthenticationException();
         }
 
-        if (!$request->user()->can($permission)) {
+        if (!isset($request['user_profile_id'])) throw new BadRequestException(__("messages.bad-request"));
+
+        $conditions = [
+            ['id', $request['user_profile_id']]
+        ];
+        $response = \App\Models\UserProfile::where($conditions)
+            ->with('roles.permissions')
+            ->whereHas('roles.permissions', function ($query) use ($permission) {
+                $query->where('name', $permission);
+            })->first();
+
+        if (!$response) throw new AuthorizationException();
+
+        /* if (!$request->user()->can($permission)) {
             throw new AuthorizationException();
-        }
+        } */
 
         return $next($request);
     }

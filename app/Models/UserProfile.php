@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class UserProfile extends Model
 {
-    use HasFactory, UsesTenantConnection;
+    use HasFactory, HasRoles, UsesTenantConnection;
 
     protected $table = 'user_profiles';
     protected $fillable = ['user_id', 'profile_id', 'status_id'];
