@@ -10,6 +10,10 @@ use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProfileController;
 
+/* import routes */
+require __DIR__ . "/channels/roles.php";
+require __DIR__ . "/channels/permissions.php";
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

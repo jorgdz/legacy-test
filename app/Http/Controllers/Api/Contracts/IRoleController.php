@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 
 interface IRoleController
 {
@@ -20,7 +22,7 @@ interface IRoleController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request);
+    public function store(StoreRoleRequest $request);
 
     /**
      * show
@@ -28,7 +30,7 @@ interface IRoleController
      * @param  mixed $role
      * @return void
      */
-    public function show(Role $role);
+    public function show($id);
 
     /**
      * update
@@ -37,7 +39,7 @@ interface IRoleController
      * @param  mixed $role
      * @return void
      */
-    public function update(Request $request, Role $role);
+    public function update(UpdateRoleRequest $request, Role $role);
 
     /**
      * destroy

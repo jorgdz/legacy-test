@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
         ]);
         
         DB::connection('tenant')->table('permissions')->insert([
-            ['name' => 'list_modules', 'guard_name' => 'api'],
+            ['name' => 'list_modules', 'description' => 'Lorem ipsum dolor sit amet.', 'guard_name' => 'api', 'status_id' => 1],
         ]);
         
         DB::connection('tenant')->table('role_has_permissions')->insert([

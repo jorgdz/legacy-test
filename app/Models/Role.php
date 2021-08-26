@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Models\Role as RolePersonalized;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Role extends RolePersonalized
 {
-    use HasFactory, UsesTenantConnection;
+    use HasFactory, UsesTenantConnection, SoftDeletes;
 
     protected $table = 'role';
 
@@ -19,4 +20,6 @@ class Role extends RolePersonalized
      * @var array
      */
     protected $fillable = ['name', 'description', 'guard_name', 'status_id'];
+
+    protected $dates = ['deleted_at'];
 }

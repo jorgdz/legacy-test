@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Models\Permission;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
+use App\Http\Requests\StorePermissionRequest;
+use App\Http\Requests\UpdatePermissionRequest;
 
 interface IPermissionController
 {
@@ -20,15 +22,15 @@ interface IPermissionController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request);
+    public function store(StorePermissionRequest $request);
 
     /**
      * show
      *
-     * @param  mixed $permission
+     * @param  int $id
      * @return void
      */
-    public function show(Permission $permission);
+    public function show($id);
 
     /**
      * update
@@ -37,7 +39,7 @@ interface IPermissionController
      * @param  mixed $permission
      * @return void
      */
-    public function update(Request $request, Permission $permission);
+    public function update(UpdatePermissionRequest $request, Permission $permission);
 
     /**
      * destroy

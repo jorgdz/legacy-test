@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Permission extends Model
 {
-    use HasFactory, UsesTenantConnection;
+    use HasFactory, SoftDeletes, UsesTenantConnection;
 
     protected $table = 'permissions';
 
@@ -17,5 +18,7 @@ class Permission extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'guard_name'];
+    protected $fillable = ['name', 'description', 'guard_name', 'status_id'];
+
+    protected $dates = ['deleted_at'];
 }
