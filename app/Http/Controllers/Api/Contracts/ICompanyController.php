@@ -240,7 +240,7 @@ interface ICompanyController
      */
     public function show($id);
 
-        /**
+    /**
      * @OA\Put(
      *   path="/api/companies/{company}",
      *   tags={"Compañias"},
@@ -250,10 +250,20 @@ interface ICompanyController
      *   summary="Actualizar compañia",
      *   description="Actualizar una nueva compañia.",
      *   operationId="updateCompany",
+     *   @OA\Parameter(
+     *     name="company",
+     *     description="Id de la compañia",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="co_name",
@@ -410,5 +420,5 @@ interface ICompanyController
      * )
      *
      */
-    public function delete (Company $company);
+    public function destroy (Company $company);
 }

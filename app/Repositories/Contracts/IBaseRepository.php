@@ -21,4 +21,20 @@ interface IBaseRepository
      * @return void
      */
     public function save(Model $model);
+
+    /**
+     * find
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function find($id);
+
+    /**
+     * destroy
+     *
+     * @param  mixed $model
+     * @return void
+     */
+    public function destroy (Model $model);
 }

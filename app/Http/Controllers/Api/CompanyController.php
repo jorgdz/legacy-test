@@ -62,8 +62,7 @@ class CompanyController extends Controller implements ICompanyController
      */
     public function show($id)
     {
-        $company = Company::findOrFail($id);
-        return $this->success($company, Response::HTTP_FOUND);
+        return $this->success($this->companyCache->find($id), Response::HTTP_FOUND);
     }
 
     /**
@@ -76,10 +75,10 @@ class CompanyController extends Controller implements ICompanyController
     public function update(Request $request, Company $company)
     {
         $company->fill($request->all());
-        
+
         if ($company->isClean())
             throw new UnprocessableException(__('messages.nochange'));
-        
+
         return $this->success($this->companyCache->save($company));
     }
 
@@ -89,7 +88,7 @@ class CompanyController extends Controller implements ICompanyController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete (Company $company)
+    public function destroy (Company $company)
     {
         return $this->success($this->companyCache->destroy($company));
     }

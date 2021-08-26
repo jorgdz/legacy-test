@@ -388,10 +388,22 @@
                 "summary": "Actualizar compañia",
                 "description": "Actualizar una nueva compañia.",
                 "operationId": "updateCompany",
+                "parameters": [
+                    {
+                        "name": "company",
+                        "in": "path",
+                        "description": "Id de la compañia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "3"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
                                 "properties": {
                                     "co_name": {

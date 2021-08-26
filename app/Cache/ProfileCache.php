@@ -30,6 +30,18 @@ class ProfileCache extends BaseCache {
     }
 
     /**
+     * find
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function find ($id) {
+        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($id) {
+            return $this->repository->find($id);
+        });
+    }
+
+    /**
      * save
      *
      * @param  mixed $model
@@ -39,5 +51,15 @@ class ProfileCache extends BaseCache {
     {
         $this->cache::flush();
         return $this->repository->save($model);
+    }
+
+    /**
+     * destroy
+     *
+     * @return void
+     */
+    public function destroy (Model $model) {
+        $this->cache::flush();
+        return $this->repository->destroy($model);
     }
 }
