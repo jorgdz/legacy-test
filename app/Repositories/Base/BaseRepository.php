@@ -10,6 +10,8 @@ class BaseRepository implements IBaseRepository
 
     protected $model;
 
+    protected $relations = [];
+
     /**
      * __construct
      *
@@ -25,10 +27,23 @@ class BaseRepository implements IBaseRepository
      * @return void
      */
     public function all ($request) {
+        $query = $this->model;
+
+        if (!empty($this->relations)) {
+            $query = $query->with($this->relations);
+        }
+        
+        $collectQueryString = collect($request->all())
+            ->except(['page', 'size', 'sort', 'type_sort'])->all();
+        
+        if (!empty($collectQueryString)) {
+            $query = $query->where($collectQueryString);
+        }
+
         $sort = $request->sort ?: 'id';
         $type_sort = $request->type_sort ?: 'desc';
 
-        return $this->model::orderBy($sort, $type_sort)
+        return $query->orderBy($sort, $type_sort)
             ->simplePaginate($request->size ?: 100);
     }
 

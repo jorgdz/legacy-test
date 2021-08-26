@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProfileController;
 
@@ -80,3 +81,5 @@ Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middlewar
 Route::post('/profiles', [ProfileController::class, 'store'])->middleware(['auth:sanctum']);
 Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->middleware(['auth:sanctum']);
 Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->middleware(['auth:sanctum']);
+
+Route::apiResource('companies', CompanyController::class)->middleware(['auth:sanctum']);

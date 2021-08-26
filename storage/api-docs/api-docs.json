@@ -131,6 +131,673 @@
                 ]
             }
         },
+        "/api/companies": {
+            "get": {
+                "tags": [
+                    "Compañias"
+                ],
+                "summary": "Listar las compañias",
+                "description": "Muestra todas las compañias en formato JSON",
+                "operationId": "getAllCompanies",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numero de la paginación",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Numero de elementos por pagina",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Ordenar por el campo",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "id"
+                        }
+                    },
+                    {
+                        "name": "type_sort",
+                        "in": "query",
+                        "description": "Tipo de orden",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "asc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Compañias"
+                ],
+                "summary": "Crear compañia",
+                "description": "Crear una nueva compañia.",
+                "operationId": "addCompany",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "co_name": {
+                                        "description": "Nombre de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_description": {
+                                        "description": "Descripcion de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_website": {
+                                        "description": "Sitio web de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_assigned_site": {
+                                        "description": "Sitio asignado de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_facebook": {
+                                        "description": "Facebook de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_instagram": {
+                                        "description": "Instagram de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_linkedin": {
+                                        "description": "Linkedin de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_youtube": {
+                                        "description": "Youtube de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_info_mail": {
+                                        "description": "Correo de información de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_matrix": {
+                                        "description": "Matriz de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_logo": {
+                                        "description": "Logo de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_color": {
+                                        "description": "Color de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_pay_notification": {
+                                        "description": "Pago de notificación de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_ruc": {
+                                        "description": "Ruc de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_business_name": {
+                                        "description": "Razon social de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_comercial_name": {
+                                        "description": "Nombre comercial de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_legal_identification": {
+                                        "description": "Identificación legal de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_agent_legal": {
+                                        "description": "Representante legal de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_person_type": {
+                                        "description": "Tipo de persona de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_direction": {
+                                        "description": "Dirección de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_phone": {
+                                        "description": "Teléfono de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_email": {
+                                        "description": "Correo de la compañia",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado de la compañia",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/companies/{id}": {
+            "get": {
+                "tags": [
+                    "Compañias"
+                ],
+                "summary": "Obtener una compañia",
+                "description": "Muestra información específica de una compañia.",
+                "operationId": "getCompany",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la compañia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "3"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/companies/{company}": {
+            "put": {
+                "tags": [
+                    "Compañias"
+                ],
+                "summary": "Actualizar compañia",
+                "description": "Actualizar una nueva compañia.",
+                "operationId": "updateCompany",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "co_name": {
+                                        "description": "Nombre de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_description": {
+                                        "description": "Descripcion de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_website": {
+                                        "description": "Sitio web de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_assigned_site": {
+                                        "description": "Sitio asignado de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_facebook": {
+                                        "description": "Facebook de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_instagram": {
+                                        "description": "Instagram de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_linkedin": {
+                                        "description": "Linkedin de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_youtube": {
+                                        "description": "Youtube de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_info_mail": {
+                                        "description": "Correo de información de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_matrix": {
+                                        "description": "Matriz de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_logo": {
+                                        "description": "Logo de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_color": {
+                                        "description": "Color de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_pay_notification": {
+                                        "description": "Pago de notificación de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_ruc": {
+                                        "description": "Ruc de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_business_name": {
+                                        "description": "Razon social de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_comercial_name": {
+                                        "description": "Nombre comercial de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_legal_identification": {
+                                        "description": "Identificación legal de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_agent_legal": {
+                                        "description": "Representante legal de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_person_type": {
+                                        "description": "Tipo de persona de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_direction": {
+                                        "description": "Dirección de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_phone": {
+                                        "description": "Teléfono de la compañia",
+                                        "type": "string"
+                                    },
+                                    "co_email": {
+                                        "description": "Correo de la compañia",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado de la compañia",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Compañias"
+                ],
+                "summary": "Eliminar una compañia",
+                "description": "Eliminar una compañia por Id",
+                "operationId": "deleteCompania",
+                "parameters": [
+                    {
+                        "name": "company",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "3"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/profiles": {
+            "get": {
+                "tags": [
+                    "Perfiles"
+                ],
+                "summary": "Listar los perfiles",
+                "description": "Muestra todos los perfiles paginados en formato JSON",
+                "operationId": "getAllProfiles",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numero de la paginación",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Numero de elementos por pagina",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Ordenar por columna",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "id"
+                        }
+                    },
+                    {
+                        "name": "type_sort",
+                        "in": "query",
+                        "description": "Sentido del Orden",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "desc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/profiles/{profile}": {
+            "get": {
+                "tags": [
+                    "Perfiles"
+                ],
+                "summary": "Obtener un perfil",
+                "description": "Muestra información específica de un perfil.",
+                "operationId": "showProfile",
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "path",
+                        "description": "Id del perfil",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "5"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Perfiles"
+                ],
+                "summary": "Editar perfil",
+                "description": "Edita la información de un perfil usando el ID.",
+                "operationId": "editProfile",
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "path",
+                        "description": "Id del perfil",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "5"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Perfiles"
+                ],
+                "summary": "Guarda un perfil",
+                "description": "Guarda la eliminación de un perfil.",
+                "operationId": "saveProfile",
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "path",
+                        "description": "Id del perfil",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "5"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Perfiles"
+                ],
+                "summary": "Elimina un perfil",
+                "description": "Actualiza la fecha de eliminación de un perfil.",
+                "operationId": "removeProfile",
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "path",
+                        "description": "Id del perfil",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "5"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
         "/api/tenants": {
             "get": {
                 "tags": [

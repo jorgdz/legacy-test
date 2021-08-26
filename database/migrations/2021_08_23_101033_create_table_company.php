@@ -28,10 +28,19 @@ class CreateTableCompany extends Migration
             $table->string('co_logo', 255)->nullable();
             $table->string('co_color', 255)->nullable();
             $table->string('co_pay_notification', 255)->nullable();
-            
+            $table->string('co_ruc', 20)->nullable();
+            $table->string('co_business_name', 255)->nullable();
+            $table->string('co_comercial_name', 255)->nullable();
+            $table->string('co_legal_identification', 255)->nullable();
+            $table->string('co_agent_legal', 255)->nullable();
+            $table->string('co_person_type', 255)->nullable();
+            $table->string('co_direction', 255)->nullable();
+            $table->string('co_phone', 255)->nullable();
+            $table->string('co_email', 255)->nullable();
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

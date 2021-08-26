@@ -68,7 +68,7 @@ interface IProfileController
     public function index(Request $request);
 
     /**
-     * @OA\Get(
+     * @OA\Post(
      *   path="/api/profiles/{profile}",
      *   tags={"Perfiles"},
      *   security={
@@ -128,7 +128,7 @@ interface IProfileController
     public function show(Profile $profile);
 
     /**
-     * @OA\Get(
+     * @OA\Put(
      *   path="/api/profiles/{profile}",
      *   tags={"Perfiles"},
      *   security={
@@ -158,7 +158,7 @@ interface IProfileController
     public function update(StoreProfileRequest $request, Profile $profile);
 
     /**
-     * @OA\Get(
+     * @OA\Delete(
      *   path="/api/profiles/{profile}",
      *   tags={"Perfiles"},
      *   security={
