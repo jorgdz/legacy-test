@@ -2,34 +2,28 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Company;
-use App\Cache\CompanyCache;
+use App\Models\Campus;
+use App\Cache\CampusCache;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CompanyFormRequest;
+use App\Http\Requests\CampusFormRequest;
 use App\Exceptions\Custom\UnprocessableException;
-use App\Http\Controllers\Api\Contracts\ICompanyController;
+use App\Http\Controllers\Api\Contracts\ICampusController;
 
 /**
- * CompanyController
+ * CampusController maintenance
  */
-class CompanyController extends Controller implements ICompanyController
+class CampusController extends Controller implements ICampusController
 {
     use RestResponse;
 
-    private $companyCache;
+    private $campusCache;
 
-    /**
-     * __construct
-     *
-     * @param  mixed $companyCache
-     * @return void
-     */
-    public function __construct(CompanyCache $companyCache)
+    public function __construct(CampusCache $campusCache)
     {
-        $this->companyCache = $companyCache;
+        $this->campusCache = $campusCache;
     }
 
     /**
@@ -39,7 +33,7 @@ class CompanyController extends Controller implements ICompanyController
      */
     public function index(Request $request)
     {
-        return $this->success($this->companyCache->all($request));
+        return $this->success($this->campusCache->all($request));
     }
 
     /**
@@ -48,11 +42,11 @@ class CompanyController extends Controller implements ICompanyController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CompanyFormRequest $request)
+    public function store(CampusFormRequest $request)
     {
-        $company = new Company($request->all());
-        $company = $this->companyCache->save($company);
-        return $this->success($company, Response::HTTP_CREATED);
+        $campus = new Campus($request->all());
+        $campus = $this->campusCache->save($campus);
+        return $this->success($campus, Response::HTTP_CREATED);
     }
 
     /**
@@ -63,7 +57,7 @@ class CompanyController extends Controller implements ICompanyController
      */
     public function show($id)
     {
-        return $this->success($this->companyCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->campusCache->find($id), Response::HTTP_FOUND);
     }
 
     /**
@@ -73,14 +67,14 @@ class CompanyController extends Controller implements ICompanyController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Campus $campus)
     {
-        $company->fill($request->all());
+        $campus->fill($request->all());
 
-        if ($company->isClean())
+        if ($campus->isClean())
             throw new UnprocessableException(__('messages.nochange'));
 
-        return $this->success($this->companyCache->save($company));
+        return $this->success($this->campusCache->save($campus));
     }
 
     /**
@@ -89,8 +83,8 @@ class CompanyController extends Controller implements ICompanyController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy (Company $company)
+    public function destroy(Campus $campus)
     {
-        return $this->success($this->companyCache->destroy($company));
+        return $this->success($this->campusCache->destroy($campus));
     }
 }

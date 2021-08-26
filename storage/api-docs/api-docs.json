@@ -19,6 +19,34 @@
         }
     ],
     "paths": {
+        "/api/as-tenant": {
+            "get": {
+                "tags": [
+                    "Inquilino actual"
+                ],
+                "summary": "Inquilino actual",
+                "description": "Mostrar el inquilino actual",
+                "operationId": "getCurrentTenant",
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": []
+            }
+        },
         "/api/login": {
             "post": {
                 "tags": [
@@ -107,6 +135,300 @@
                 "summary": "Remover token del usuario autenticado",
                 "description": "Remover token",
                 "operationId": "f5314d2d9606a855d583dbf0bcffa1be",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/campus": {
+            "get": {
+                "tags": [
+                    "Sedes"
+                ],
+                "summary": "Listar las sedes",
+                "description": "Muestra todas las sedes en formato JSON",
+                "operationId": "getAllCampus",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numero de la paginación",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Numero de elementos por pagina",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Ordenar por el campo",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "id"
+                        }
+                    },
+                    {
+                        "name": "type_sort",
+                        "in": "query",
+                        "description": "Tipo de orden",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "asc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Sedes"
+                ],
+                "summary": "Crear sede",
+                "description": "Crear una nueva sede.",
+                "operationId": "addCampus",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "cam_name": {
+                                        "description": "Nombre de la sede",
+                                        "type": "string"
+                                    },
+                                    "cam_description": {
+                                        "description": "Descripcion de la sede",
+                                        "type": "string"
+                                    },
+                                    "cam_direction": {
+                                        "description": "Direccion de la sede",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado de la sede",
+                                        "type": "integer"
+                                    },
+                                    "company_id": {
+                                        "description": "Compañia",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/campus/{id}": {
+            "get": {
+                "tags": [
+                    "Sedes"
+                ],
+                "summary": "Obtener una sede",
+                "description": "Muestra información específica de una sede por Id.",
+                "operationId": "getCampus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la sede",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/campus/{campus}": {
+            "put": {
+                "tags": [
+                    "Sedes"
+                ],
+                "summary": "Actualizar sede",
+                "description": "Actualizar una sede.",
+                "operationId": "updateCampus",
+                "parameters": [
+                    {
+                        "name": "campus",
+                        "in": "path",
+                        "description": "Id de la sede",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "cam_name": {
+                                        "description": "Nombre de la sede",
+                                        "type": "string"
+                                    },
+                                    "cam_description": {
+                                        "description": "Descripcion de la sede",
+                                        "type": "string"
+                                    },
+                                    "cam_direction": {
+                                        "description": "Direccion de la sede",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado de la sede",
+                                        "type": "integer"
+                                    },
+                                    "company_id": {
+                                        "description": "Compañia de la sede",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Sedes"
+                ],
+                "summary": "Eliminar una sede",
+                "description": "Eliminar una sede por Id",
+                "operationId": "deleteCampus",
+                "parameters": [
+                    {
+                        "name": "campus",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success"
@@ -386,7 +708,7 @@
                     "Compañias"
                 ],
                 "summary": "Actualizar compañia",
-                "description": "Actualizar una nueva compañia.",
+                "description": "Actualizar una compañia.",
                 "operationId": "updateCompany",
                 "parameters": [
                     {
@@ -638,6 +960,56 @@
                         "api_key_security": []
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "Perfiles"
+                ],
+                "summary": "Crear perfil",
+                "description": "Crear un nuevo perfil.",
+                "operationId": "addProfile",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "pro_name": {
+                                        "description": "Nombre del perfil",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado del perfil",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
             }
         },
         "/api/profiles/{profile}": {
@@ -687,9 +1059,9 @@
                 "tags": [
                     "Perfiles"
                 ],
-                "summary": "Editar perfil",
-                "description": "Edita la información de un perfil usando el ID.",
-                "operationId": "editProfile",
+                "summary": "Actualizar perfil",
+                "description": "Actualizar un perfil.",
+                "operationId": "updateProfile",
                 "parameters": [
                     {
                         "name": "profile",
@@ -698,64 +1070,42 @@
                         "required": true,
                         "schema": {
                             "type": "integer",
-                            "example": "5"
+                            "example": "3"
                         }
                     }
                 ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    },
-                    "401": {
-                        "description": "No autenticado"
-                    },
-                    "403": {
-                        "description": "No autorizado"
-                    },
-                    "404": {
-                        "description": "No encontrado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "pro_name": {
+                                        "description": "Nombre del perfil",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado del perfil",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
                     }
                 },
-                "security": [
-                    {
-                        "api_key_security": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Perfiles"
-                ],
-                "summary": "Guarda un perfil",
-                "description": "Guarda la eliminación de un perfil.",
-                "operationId": "saveProfile",
-                "parameters": [
-                    {
-                        "name": "profile",
-                        "in": "path",
-                        "description": "Id del perfil",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": "5"
-                        }
-                    }
-                ],
                 "responses": {
-                    "200": {
-                        "description": "Success"
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
                     },
                     "401": {
                         "description": "No autenticado"
                     },
                     "403": {
                         "description": "No autorizado"
-                    },
-                    "404": {
-                        "description": "No encontrado"
                     },
                     "500": {
                         "description": "Error interno del servidor"
@@ -771,18 +1121,17 @@
                 "tags": [
                     "Perfiles"
                 ],
-                "summary": "Elimina un perfil",
-                "description": "Actualiza la fecha de eliminación de un perfil.",
-                "operationId": "removeProfile",
+                "summary": "Eliminar un perfil",
+                "description": "Eliminar un perfil por Id",
+                "operationId": "deleteProfile",
                 "parameters": [
                     {
                         "name": "profile",
                         "in": "path",
-                        "description": "Id del perfil",
                         "required": true,
                         "schema": {
                             "type": "integer",
-                            "example": "5"
+                            "example": "3"
                         }
                     }
                 ],
@@ -790,14 +1139,14 @@
                     "200": {
                         "description": "Success"
                     },
-                    "401": {
-                        "description": "No autenticado"
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
                     },
                     "403": {
                         "description": "No autorizado"
                     },
-                    "404": {
-                        "description": "No encontrado"
+                    "401": {
+                        "description": "No autenticado"
                     },
                     "500": {
                         "description": "Error interno del servidor"

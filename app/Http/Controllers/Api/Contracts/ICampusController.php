@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Models\Profile;
+use App\Models\Campus;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\CampusFormRequest;
 
-interface IProfileController
+interface ICampusController
 {
+
     /**
      * @OA\Get(
-     *   path="/api/profiles",
-     *   tags={"Perfiles"},
+     *   path="/api/campus",
+     *   tags={"Sedes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar los perfiles",
-     *   description="Muestra todos los perfiles paginados en formato JSON",
-     *   operationId="getAllProfiles",
+     *   summary="Listar las sedes",
+     *   description="Muestra todas las sedes en formato JSON",
+     *   operationId="getAllCampus",
      *   @OA\Parameter(
      *     name="page",
      *     description="Numero de la paginación",
@@ -40,7 +41,7 @@ interface IProfileController
      *   ),
      *   @OA\Parameter(
      *     name="sort",
-     *     description="Ordenar por columna",
+     *     description="Ordenar por el campo",
      *     in="query",
      *     required=false,
      *     @OA\Schema(
@@ -50,12 +51,12 @@ interface IProfileController
      *   ),
      *   @OA\Parameter(
      *     name="type_sort",
-     *     description="Sentido del Orden",
+     *     description="Tipo de orden",
      *     in="query",
      *     required=false,
      *     @OA\Schema(
      *       type="string",
-     *       example="desc"
+     *       example="asc"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -69,27 +70,42 @@ interface IProfileController
 
     /**
      * @OA\Post(
-     *   path="/api/profiles",
-     *   tags={"Perfiles"},
+     *   path="/api/campus",
+     *   tags={"Sedes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear perfil",
-     *   description="Crear un nuevo perfil.",
-     *   operationId="addProfile",
+     *   summary="Crear sede",
+     *   description="Crear una nueva sede.",
+     *   operationId="addCampus",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
      *       @OA\Schema(
      *         @OA\Property(
-     *           property="pro_name",
-     *           description="Nombre del perfil",
+     *           property="cam_name",
+     *           description="Nombre de la sede",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="cam_description",
+     *           description="Descripcion de la sede",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="cam_direction",
+     *           description="Direccion de la sede",
      *           type="string",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del perfil",
+     *           description="Estado de la sede",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="company_id",
+     *           description="Compañia",
      *           type="integer",
      *         ),
      *       ),
@@ -103,26 +119,26 @@ interface IProfileController
      * )
      *
      */
-    public function store (StoreProfileRequest $request);
+    public function store(CampusFormRequest $request);
 
     /**
      * @OA\Get(
-     *   path="/api/profiles/{profile}",
-     *   tags={"Perfiles"},
+     *   path="/api/campus/{id}",
+     *   tags={"Sedes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener un perfil",
-     *   description="Muestra información específica de un perfil.",
-     *   operationId="showProfile",
+     *   summary="Obtener una sede",
+     *   description="Muestra información específica de una sede por Id.",
+     *   operationId="getCampus",
      *   @OA\Parameter(
-     *     name="profile",
-     *     description="Id del perfil",
+     *     name="id",
+     *     description="Id de la sede",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="5"
+     *       example="2"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -133,26 +149,26 @@ interface IProfileController
      * )
      *
      */
-    public function show(Profile $profile);
+    public function show($id);
 
     /**
      * @OA\Put(
-     *   path="/api/profiles/{profile}",
-     *   tags={"Perfiles"},
+     *   path="/api/campus/{campus}",
+     *   tags={"Sedes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar perfil",
-     *   description="Actualizar un perfil.",
-     *   operationId="updateProfile",
+     *   summary="Actualizar sede",
+     *   description="Actualizar una sede.",
+     *   operationId="updateCampus",
      *   @OA\Parameter(
-     *     name="profile",
-     *     description="Id del perfil",
+     *     name="campus",
+     *     description="Id de la sede",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="3"
+     *       example="2"
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -161,13 +177,28 @@ interface IProfileController
      *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
-     *           property="pro_name",
-     *           description="Nombre del perfil",
+     *           property="cam_name",
+     *           description="Nombre de la sede",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="cam_description",
+     *           description="Descripcion de la sede",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="cam_direction",
+     *           description="Direccion de la sede",
      *           type="string",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del perfil",
+     *           description="Estado de la sede",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="company_id",
+     *           description="Compañia de la sede",
      *           type="integer",
      *         ),
      *       ),
@@ -181,25 +212,25 @@ interface IProfileController
      * )
      *
      */
-    public function update(StoreProfileRequest $request, Profile $profile);
+    public function update(Request $request, Campus $campus);
 
-     /**
+    /**
      * @OA\Delete(
-     *   path="/api/profiles/{profile}",
-     *   tags={"Perfiles"},
+     *   path="/api/campus/{campus}",
+     *   tags={"Sedes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un perfil",
-     *   description="Eliminar un perfil por Id",
-     *   operationId="deleteProfile",
+     *   summary="Eliminar una sede",
+     *   description="Eliminar una sede por Id",
+     *   operationId="deleteCampus",
      *   @OA\Parameter(
-     *     name="profile",
+     *     name="campus",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="3"
+     *       example="2"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -210,5 +241,5 @@ interface IProfileController
      * )
      *
      */
-    public function destroy(Profile $profile);
+    public function destroy (Campus $company);
 }

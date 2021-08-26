@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Contracts;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Requests\CompanyFormRequest;
 
 interface ICompanyController
 {
@@ -208,7 +209,7 @@ interface ICompanyController
      * )
      *
      */
-    public function store(Request $request);
+    public function store(CompanyFormRequest $request);
 
     /**
      * @OA\Get(
@@ -248,7 +249,7 @@ interface ICompanyController
      *      {"api_key_security": {}},
      *   },
      *   summary="Actualizar compañia",
-     *   description="Actualizar una nueva compañia.",
+     *   description="Actualizar una compañia.",
      *   operationId="updateCompany",
      *   @OA\Parameter(
      *     name="company",
