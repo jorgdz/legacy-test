@@ -11,7 +11,7 @@ interface ITenantController
     /**
      * @OA\Get(
      *   path="/api/tenants",
-     *   tags={"Inquilinos"},
+     *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
      *   security={},
      *   summary="Listar los inquilinos",
      *   description="Muestra todos los inquilinos paginados en formato JSON",
@@ -48,7 +48,7 @@ interface ITenantController
     /**
      * @OA\Post(
      *   path="/api/tenants",
-     *   tags={"Inquilinos"},
+     *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
      *   security={
      *      {"api_key_security": {}},
      *   },
@@ -91,7 +91,7 @@ interface ITenantController
     /**
      * @OA\Get(
      *   path="/api/tenants/{tenant}",
-     *   tags={"Inquilinos"},
+     *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
      *   security={
      *      {"api_key_security": {}},
      *   },
@@ -121,7 +121,7 @@ interface ITenantController
     /**
      * @OA\Put(
      *   path="/api/tenants/{tenant}",
-     *   tags={"Inquilinos"},
+     *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
      *   security={
      *      {"api_key_security": {}},
      *   },
@@ -168,7 +168,7 @@ interface ITenantController
     /**
      * @OA\Delete(
      *   path="/api/tenants/{tenant}",
-     *   tags={"Inquilinos"},
+     *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
      *   security={
      *      {"api_key_security": {}},
      *   },

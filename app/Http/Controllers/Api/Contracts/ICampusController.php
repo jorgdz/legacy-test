@@ -20,6 +20,16 @@ interface ICampusController
      *   description="Muestra todas las sedes en formato JSON",
      *   operationId="getAllCampus",
      *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="page",
      *     description="Numero de la paginación",
      *     in="query",
@@ -84,6 +94,11 @@ interface ICampusController
      *       mediaType="multipart/form-data",
      *       @OA\Schema(
      *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="cam_name",
      *           description="Nombre de la sede",
      *           type="string",
@@ -132,6 +147,16 @@ interface ICampusController
      *   description="Muestra información específica de una sede por Id.",
      *   operationId="getCampus",
      *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="id",
      *     description="Id de la sede",
      *     in="path",
@@ -176,6 +201,11 @@ interface ICampusController
      *     @OA\MediaType(
      *       mediaType="application/json",
      *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
      *         @OA\Property(
      *           property="cam_name",
      *           description="Nombre de la sede",
@@ -231,6 +261,19 @@ interface ICampusController
      *     @OA\Schema(
      *       type="integer",
      *       example="2"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),

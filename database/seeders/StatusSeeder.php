@@ -17,6 +17,7 @@ class StatusSeeder extends Seeder
         DB::connection('tenant')->table('status')->insert([
             ['st_name' => 'Activo'],
             ['st_name' => 'Inactivo'],
+            ['st_name' => 'Activado'],
             ['st_name' => 'Desactivado']
         ]);
     }

@@ -35,7 +35,7 @@ class BaseRepository implements IBaseRepository
         }
 
         $collectQueryString = collect($request->all())
-            ->except(['page', 'size', 'sort', 'type_sort'])->all();
+            ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id'])->all();
 
         if (!empty($collectQueryString)) {
             $query = $query->where($collectQueryString);

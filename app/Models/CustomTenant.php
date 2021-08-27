@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Spatie\Multitenancy\Models\Tenant;
 use Illuminate\Support\Facades\Artisan;
@@ -36,18 +35,29 @@ class CustomTenant extends Tenant
         });
 
         static::created (function (CustomTenant $tenant) {
-            $mail = new Mail();
-            $mail->setConnection('landlord');
-            $mail->transport = config('mail.mailers.smtp.transport');
-            $mail->host = config('mail.mailers.smtp.host');
-            $mail->port = config('mail.mailers.smtp.port');
-            $mail->encryption = config('mail.mailers.smtp.encryption');
-            $mail->username = config('mail.mailers.smtp.username');
-            $mail->password = config('mail.mailers.smtp.password');
-            $mail->tenant_id = $tenant->id;
-            $mail->save();
-
-            $tenant->runMigrationsSeeders($tenant);
+            DB::beginTransaction();
+            try {
+                $mail = new Mail();
+                $mail->setConnection('landlord');
+                $mail->transport = config('mail.mailers.smtp.transport');
+                $mail->host = config('mail.mailers.smtp.host');
+                $mail->port = config('mail.mailers.smtp.port');
+                $mail->encryption = config('mail.mailers.smtp.encryption');
+                $mail->username = config('mail.mailers.smtp.username');
+                $mail->password = config('mail.mailers.smtp.password');
+                $mail->tenant_id = $tenant->id;
+                $mail->save();
+    
+                $customTenantDatabaseCount = CustomTenant::where('database', $tenant->database)->count();
+                
+                if ($customTenantDatabaseCount == 1) {
+                    $tenant->runMigrationsSeeders($tenant);
+                }
+    
+                DB::commit();
+            } catch (\Exception $ex) {
+                DB::rollBack();
+            }
         });
     }
 

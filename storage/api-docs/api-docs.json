@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Service Rest-Full",
+        "title": "Legacy Rest-Full",
         "description": "Documentation Legacy ERP.",
         "contact": {
             "email": "jdiaz@redlinks.com.ec"
@@ -169,6 +169,16 @@
                 "operationId": "getAllCampus",
                 "parameters": [
                     {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
                         "name": "page",
                         "in": "query",
                         "description": "Numero de la paginación",
@@ -242,6 +252,10 @@
                         "multipart/form-data": {
                             "schema": {
                                 "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
                                     "cam_name": {
                                         "description": "Nombre de la sede",
                                         "type": "string"
@@ -301,6 +315,16 @@
                 "description": "Muestra información específica de una sede por Id.",
                 "operationId": "getCampus",
                 "parameters": [
+                    {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -362,6 +386,10 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
                                     "cam_name": {
                                         "description": "Nombre de la sede",
                                         "type": "string"
@@ -429,6 +457,22 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success"
@@ -462,6 +506,16 @@
                 "description": "Muestra todas las compañias en formato JSON",
                 "operationId": "getAllCompanies",
                 "parameters": [
+                    {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
                     {
                         "name": "page",
                         "in": "query",
@@ -536,6 +590,10 @@
                         "multipart/form-data": {
                             "schema": {
                                 "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
                                     "co_name": {
                                         "description": "Nombre de la compañia",
                                         "type": "string"
@@ -668,6 +726,16 @@
                 "operationId": "getCompany",
                 "parameters": [
                     {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "Id de la compañia",
@@ -728,6 +796,10 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
                                     "co_name": {
                                         "description": "Nombre de la compañia",
                                         "type": "string"
@@ -867,6 +939,22 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success"
@@ -900,6 +988,16 @@
                 "description": "Muestra todos los perfiles paginados en formato JSON",
                 "operationId": "getAllProfiles",
                 "parameters": [
+                    {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
                     {
                         "name": "page",
                         "in": "query",
@@ -974,6 +1072,10 @@
                         "multipart/form-data": {
                             "schema": {
                                 "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
                                     "pro_name": {
                                         "description": "Nombre del perfil",
                                         "type": "string"
@@ -1021,6 +1123,16 @@
                 "description": "Muestra información específica de un perfil.",
                 "operationId": "showProfile",
                 "parameters": [
+                    {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
                     {
                         "name": "profile",
                         "in": "path",
@@ -1080,6 +1192,10 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
                                     "pro_name": {
                                         "description": "Nombre del perfil",
                                         "type": "string"
@@ -1135,6 +1251,22 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success"
@@ -1162,7 +1294,7 @@
         "/api/tenants": {
             "get": {
                 "tags": [
-                    "Inquilinos"
+                    "Inquilinos (Endpoints del dueño de la aplicación)"
                 ],
                 "summary": "Listar los inquilinos",
                 "description": "Muestra todos los inquilinos paginados en formato JSON",
@@ -1207,7 +1339,7 @@
             },
             "post": {
                 "tags": [
-                    "Inquilinos"
+                    "Inquilinos (Endpoints del dueño de la aplicación)"
                 ],
                 "summary": "Crear inquilino",
                 "description": "Crear un nuevo inquilino.",
@@ -1263,7 +1395,7 @@
         "/api/tenants/{tenant}": {
             "get": {
                 "tags": [
-                    "Inquilinos"
+                    "Inquilinos (Endpoints del dueño de la aplicación)"
                 ],
                 "summary": "Obtener un inquilino",
                 "description": "Muestra información específica de un inquilino.",
@@ -1305,7 +1437,7 @@
             },
             "put": {
                 "tags": [
-                    "Inquilinos"
+                    "Inquilinos (Endpoints del dueño de la aplicación)"
                 ],
                 "summary": "Actualizar un inquilino",
                 "description": "Actulizar un inquilino específico por Id",
@@ -1366,7 +1498,7 @@
             },
             "delete": {
                 "tags": [
-                    "Inquilinos"
+                    "Inquilinos (Endpoints del dueño de la aplicación)"
                 ],
                 "summary": "Eliminar un inquilino",
                 "description": "Eliminar un inquilino específico por Id",

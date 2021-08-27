@@ -19,9 +19,6 @@ class DatabaseSeeder extends Seeder
                 StatusSeeder::class,
                 ProfileSeeder::class,
                 RoleSeeder::class,
-                ModuleSeeder::class,
-                DirectorySeeder::class,
-                ActionSeeder::class,
                 TypeIdentificationSeeder::class,
             ]);
 

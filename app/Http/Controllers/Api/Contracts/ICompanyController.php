@@ -20,6 +20,16 @@ interface ICompanyController
      *   description="Muestra todas las compañias en formato JSON",
      *   operationId="getAllCompanies",
      *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="page",
      *     description="Numero de la paginación",
      *     in="query",
@@ -83,6 +93,11 @@ interface ICompanyController
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
      *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
      *         @OA\Property(
      *           property="co_name",
      *           description="Nombre de la compañia",
@@ -222,6 +237,16 @@ interface ICompanyController
      *   description="Muestra información específica de una compañia.",
      *   operationId="getCompany",
      *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="id",
      *     description="Id de la compañia",
      *     in="path",
@@ -266,6 +291,11 @@ interface ICompanyController
      *     @OA\MediaType(
      *       mediaType="application/json",
      *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
      *         @OA\Property(
      *           property="co_name",
      *           description="Nombre de la compañia",
@@ -411,6 +441,19 @@ interface ICompanyController
      *     @OA\Schema(
      *       type="integer",
      *       example="3"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),

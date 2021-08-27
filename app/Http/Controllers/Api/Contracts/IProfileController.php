@@ -19,6 +19,16 @@ interface IProfileController
      *   description="Muestra todos los perfiles paginados en formato JSON",
      *   operationId="getAllProfiles",
      *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="page",
      *     description="Numero de la paginación",
      *     in="query",
@@ -83,6 +93,11 @@ interface IProfileController
      *       mediaType="multipart/form-data",
      *       @OA\Schema(
      *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="pro_name",
      *           description="Nombre del perfil",
      *           type="string",
@@ -115,6 +130,16 @@ interface IProfileController
      *   summary="Obtener un perfil",
      *   description="Muestra información específica de un perfil.",
      *   operationId="showProfile",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
      *   @OA\Parameter(
      *     name="profile",
      *     description="Id del perfil",
@@ -161,6 +186,11 @@ interface IProfileController
      *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="pro_name",
      *           description="Nombre del perfil",
      *           type="string",
@@ -200,6 +230,19 @@ interface IProfileController
      *     @OA\Schema(
      *       type="integer",
      *       example="3"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),

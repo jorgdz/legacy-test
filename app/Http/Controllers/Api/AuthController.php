@@ -30,9 +30,8 @@ class AuthController extends Controller implements IAuthController
         if (!Auth::attempt($request->only('us_username', 'password')))
             throw new AuthenticationException();
 
-        $user = User::where('us_username', $request['us_username'])->with(['userProfiles' => function($query) {
-            $query->with('profile');
-        }])->firstOrFail();
+        $user = User::where('us_username', $request['us_username'])
+            ->with(['userProfiles.profile', 'userProfiles.roles.permissions'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -49,8 +48,10 @@ class AuthController extends Controller implements IAuthController
      * @return void
      */
     public function whoami (Request $request) {
-        $key = request()->url();
-        return $request->user();
+        $user = User::with(['userProfiles.profile', 'userProfiles.roles.permissions'])
+            ->findOrFail ($request->user()->id);
+        
+        return $this->success($user);
     }
 
     /**
