@@ -62,4 +62,16 @@ class ProfileCache extends BaseCache {
         $this->cache::flush();
         return $this->repository->destroy($model);
     }
+
+    /**
+     * find
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function showUsers ($profile_id) {
+        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($profile_id) {
+            return $this->repository->showUsers($profile_id);
+        });
+    }
 }

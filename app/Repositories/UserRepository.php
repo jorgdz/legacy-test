@@ -28,4 +28,28 @@ class UserRepository extends BaseRepository
         $user->save();
         return $user;
     }
+
+    /**
+     * find information by conditionals
+     *
+     * @return void
+     *
+     */
+    public function showProfiles ($user_id) {
+        return $this->model->with(['userProfiles' => function($query) {
+            $query->with('profile');
+        }])->findOrFail($user_id);
+    }
+
+    /**
+     * find information by conditionals
+     *
+     * @return void
+     *
+     */
+    public function showProfilesById ( $user_id , $profile_id ) {
+        return $this->model->with(['userProfiles' => function($query) use($profile_id) {
+            $query->with('profile')->where('profile_id',$profile_id);
+        }])->findOrFail($user_id);
+    }
 }

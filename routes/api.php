@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\CampusController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\UserProfileController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -62,6 +63,15 @@ Route::get('/users', [UserController::class, 'index'])->middleware(['auth:sanctu
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth:sanctum']);
 Route::post('/users', [UserController::class, 'store'])->middleware(['auth:sanctum']);
 
+/**
+ * UserProfiles
+ */
+Route::get('/users/{user}/profiles', [UserController::class, 'showProfiles'])->middleware(['auth:sanctum' , 'permission:Listar perfiles por usuario']);
+Route::get('/users/{user}/profiles/{profile}', [UserController::class, 'showProfilesById'])->middleware(['auth:sanctum' , 'permission:Mostrar perfil específico por usuario']);
+Route::post('/users/{user}/profiles', [UserController::class, 'saveProfiles'])->middleware(['auth:sanctum' , 'permission:Guardar perfil por usuario']);
+Route::put('/users/{user}/profiles/{profile}', [UserController::class, 'updateProfileById'])->middleware(['auth:sanctum', 'permission:Actualizar perfil por usuario']);
+Route::delete('/users/{user}/profiles/{profile}', [UserController::class, 'destroyProfilesById'])->middleware(['auth:sanctum' , 'permission:Borrar perfiles por usuario']);
+Route::delete('/users/{user}/profiles', [UserController::class, 'destroyProfiles'])->middleware(['auth:sanctum' , 'permission:Borrar perfil específico por usuario']);
 
 /**
  * Profiles
@@ -71,7 +81,7 @@ Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middlewar
 Route::post('/profiles', [ProfileController::class, 'store'])->middleware(['auth:sanctum', 'permission:Crear perfil']);
 Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->middleware(['auth:sanctum', 'permission:Actualizar perfil']);
 Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:Borrar un perfil']);
-
+Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])->middleware(['auth:sanctum', 'permission:Listar usuarios por perfil']);
 /**
  *
  * Companies

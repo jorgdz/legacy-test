@@ -27,4 +27,16 @@ class ProfileRepository extends BaseRepository
         $profile->save();
         return $profile;
     }
+
+    /**
+     * find information by conditionals
+     *
+     * @return void
+     *
+     */
+    public function showUsers ($profile_id) {
+        return $this->model->with(['userProfiles' => function($query) use($profile_id) {
+            $query->with('user')->where('profile_id',$profile_id);
+        }])->findOrFail($profile_id);
+    }
 }

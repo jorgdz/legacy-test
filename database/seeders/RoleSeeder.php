@@ -39,6 +39,13 @@ class RoleSeeder extends Seeder
             
             ['name' => 'Mantenimiento de compañias', 'description' => 'Mantenimiento completo de compañias (Crear, borrar, listar, editar, buscar)', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'Mantenimiento de sedes', 'description' => 'Mantenimiento completo de sedes (Crear, borrar, listar, editar, buscar)', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Listar perfiles por usuario', 'description' => 'Listar todos los perfiles por el identificador único del usuario', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Mostrar perfil específico por usuario', 'description' => 'Mostrar en detalle los datos de un perfil por el identificador único del usuario y del perfil', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Guardar perfil por usuario', 'description' => 'Guardar perfil por el identificador único del usuario', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Actualizar perfil por usuario', 'description' => 'Cambiar un perfil existente usando el identificador único del usuario por el identificador de perfil a asociar', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Borrar perfiles por usuario', 'description' => 'Borrar todos los perfiles asociados a un usuario por el identificador único', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Borrar perfil específico por usuario', 'description' => 'Borrar un perfil asociados a un usuario por el identificador único del usuario y del perfil', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Listar usuarios por perfil', 'description' => 'Listar todos los usuarios por el identificador único del perfil', 'guard_name' => 'api', 'status_id' => 1],
         ]);
         
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -62,6 +69,15 @@ class RoleSeeder extends Seeder
 
             ['permission_id' => 16, 'role_id' => 1],
             ['permission_id' => 17, 'role_id' => 1],
+            //['permission_id' => 18, 'role_id' => 1],
+            ['permission_id' => 19, 'role_id' => 1],
+            ['permission_id' => 20, 'role_id' => 1],
+            ['permission_id' => 21, 'role_id' => 1],
+            ['permission_id' => 22, 'role_id' => 1],
+
+            ['permission_id' => 23, 'role_id' => 1],
+            ['permission_id' => 24, 'role_id' => 1],
+            ['permission_id' => 25, 'role_id' => 1],
         ]);
     }
 }

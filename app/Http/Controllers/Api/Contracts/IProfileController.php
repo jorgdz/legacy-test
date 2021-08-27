@@ -254,4 +254,34 @@ interface IProfileController
      *
      */
     public function destroy(Profile $profile);
+
+    /**
+     * @OA\Get(
+     *   path="/profiles/{profile}/users",
+     *   tags={"Usuarios"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener usuarios",
+     *   description="Muestra los usuarios que existen vinculados a un perfil.",
+     *   operationId="getUsersbyProfile",
+     *   @OA\Parameter(
+     *     name="profile_id",
+     *     description="Id del perfil",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showUsers ( Profile $profile);
 }

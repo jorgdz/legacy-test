@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\Contracts;
 
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\StoreUserProfileRequest;
 
 interface IUserController
 {
@@ -114,4 +116,250 @@ interface IUserController
      * @return void
      */
     public function update (Request $request, User $user);
+
+    /**
+     * @OA\Get(
+     *   path="/users/{user}/profiles",
+     *   tags={"Perfiles de usuario"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener perfiles",
+     *   description="Muestra los perfiles por usuario.",
+     *   operationId="getProfilebyUser",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showProfiles ( User $user);
+
+    /**
+     * @OA\Get(
+     *   path="/users/{user}/profiles/{profile}",
+     *   tags={"Perfiles de usuario"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener perfil",
+     *   description="Muestra un perfil por usuario.",
+     *   operationId="getProfilebyUser",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="profile",
+     *     description="Id del perfil",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showProfilesById ( User $user,Profile $profile);
+
+    /**
+     * @OA\Post(
+     *   path="/api/users/{user}/profiles",
+     *   tags={"Perfiles de usuario"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Guardar perfil",
+     *   description="Asociar perfil a un usuario por su identificador.",
+     *   operationId="addUserProfiles",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="profile_id",
+     *           description="Identificación del perfil",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Identificación del estado actual",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function saveProfiles(StoreUserProfileRequest $request, User $user);
+
+    /**
+     * @OA\Put(
+     *   path="/api/users/{user}/profiles/{profile}",
+     *   tags={"Perfiles de usuario"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Actualizar la información de un perfil de usuario",
+     *   description="Actulizar la información de un perfil de usuario específico por Id de usuario y perfil",
+     *   operationId="editUserProfile",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="profile",
+     *     description="Id del perfil",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="profile_id",
+     *           description="id del Perfil",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="id del Estado",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updateProfileById(StoreUserProfileRequest $request, User $user, Profile $profile);
+
+    /**
+     * @OA\Delete(
+     *   path="/api/users/{user}/profiles/{profile}",
+     *   tags={"Perfiles de usuario"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Elimina un perfil de usuario",
+     *   description="Eliminado lógico de un perfil de usuario específico por Id de usuario y perfil.",
+     *   operationId="removeUserProfile",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="profile",
+     *     description="Id del perfil",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroyProfilesById(User $user, Profile $profile);
+
+    /**
+     * @OA\Delete(
+     *   path="/api/users/{user}/profiles",
+     *   tags={"Perfiles de usuario"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Elimina perfiles de usuario",
+     *   description="Eliminado lógico de perfiles de usuario específico por Id de usuario.",
+     *   operationId="removeUserProfile",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroyProfiles(User $user);
 }

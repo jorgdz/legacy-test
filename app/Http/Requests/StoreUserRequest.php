@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class StoreUserRequest extends FormRequest
 {
@@ -23,10 +24,18 @@ class StoreUserRequest extends FormRequest
      */
     public function rules()
     {
+        Validator::extend('numericarray', function($attribute, $value, $parameters)
+        {
+            foreach($value as $v) {
+                if(!is_int($v)) return false;
+            }
+            return true;
+        });
         return [
             'name' => 'required',
             'email' => 'required|unique:tenant.users|email',
             'password' => 'required',
+            'profiles' => 'numericarray',
         ];
     }
 }

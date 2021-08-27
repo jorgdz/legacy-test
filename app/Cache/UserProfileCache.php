@@ -2,21 +2,21 @@
 
 namespace App\Cache;
 
-use App\Repositories\UserRepository;
+use App\Repositories\UserProfileRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class UserCache extends BaseCache {
+class UserProfileCache extends BaseCache {
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct(UserRepository $userRepository) {
-        parent::__construct($userRepository);
+    public function __construct(UserProfileRepository $userProfileRepository) {
+        parent::__construct($userProfileRepository);
     }
 
-     /**
+    /**
      * all
      *
      * @param  mixed $request
@@ -40,7 +40,7 @@ class UserCache extends BaseCache {
             return $this->repository->find($id);
         });
     }
-
+    
     /**
      * save
      *
@@ -62,29 +62,4 @@ class UserCache extends BaseCache {
         $this->cache::flush();
         return $this->repository->destroy($model);
     }
-
-    /**
-     * find
-     *
-     * @param  mixed $id
-     * @return void
-     */
-    public function showProfiles ($user_id) {
-        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($user_id) {
-            return $this->repository->showProfiles($user_id);
-        });
-    }
-
-    /**
-     * find
-     *
-     * @param  mixed $id
-     * @return void
-     */
-    public function showProfilesById ( $user_id , $profile_id ) {
-        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ( $user_id , $profile_id ) {
-            return $this->repository->showProfilesById( $user_id , $profile_id );
-        });
-    }
-    
 }

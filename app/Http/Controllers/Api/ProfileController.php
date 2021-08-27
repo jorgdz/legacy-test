@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
 use App\Models\Profile;
 use App\Cache\ProfileCache;
+use App\Models\UserProfile;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\StoreProfileRequest;
+use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IProfileController;
 
@@ -41,8 +44,7 @@ class ProfileController extends Controller implements IProfileController
      * @return void
      */
     public function index (Request $request) {
-        $profiles = $this->repoProfile->all($request);
-        return $this->success($profiles);
+        return $this->success($this->repoProfile->all($request));
     }
 
     /**
@@ -52,8 +54,8 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $profile
      * @return void
      */
-    public function show (Profile $profile) {
-        return $this->success($profile, Response::HTTP_FOUND);
+    public function show ($id) {
+        return $this->success($this->repoProfile->find($id), Response::HTTP_FOUND);
     }
 
     /**
@@ -64,9 +66,13 @@ class ProfileController extends Controller implements IProfileController
      * @return void
      */
     public function store (StoreProfileRequest $request) {
-        $profile = new Profile($request->all());
-        $profile = $this->repoProfile->save($profile);
-        return $this->success($profile, Response::HTTP_CREATED);
+        $profileRequest = $request->all();
+        $profilePreview = Profile::where('pro_name','=',$profileRequest['pro_name'])->get();
+        if ($profilePreview->isNotEmpty())
+            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Profile::class)]));
+        
+        $profile = new Profile($profileRequest);
+        return $this->success($this->repoProfile->save($profile));
     }
 
     /**
@@ -77,12 +83,16 @@ class ProfileController extends Controller implements IProfileController
      * @return void
      */
     public function update (StoreProfileRequest $request, Profile $profile) {
-        $profile->fill($request->all());
+        $profileRequest = $request->all();
+        $profilePreview = Profile::where('pro_name','=',$profileRequest['pro_name'])->get();
+        if ($profilePreview->isNotEmpty())
+            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Profile::class)]));
+
+        $profile->fill($profileRequest);
         if ($profile->isClean())
             throw new UnprocessableException(__('messages.nochange'));
 
-        $profile->save();
-        return $this->success($profile);
+        return $this->success($this->repoProfile->save($profile));
     }
 
     /**
@@ -92,8 +102,17 @@ class ProfileController extends Controller implements IProfileController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Profile $profile) {
-        Cache::flush();
-        $profile->delete();
-        return $this->success($profile);
+        return $this->success($this->repoProfile->destroy($profile));
+    }
+
+    /**
+     * showUser
+     *
+     * @param  mixed $request
+     * @param  mixed $user
+     * @return void
+     */
+    public function showUsers ($profile_id) {
+        return $this->success($this->repoProfile->showUsers($profile_id));
     }
 }
