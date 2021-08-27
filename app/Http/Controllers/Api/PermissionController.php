@@ -108,6 +108,7 @@ class PermissionController extends Controller implements IPermissionController
     public function destroy(Permission $permission) {
         DB::beginTransaction();
         try {
+            $this->repository->deleteRoleHasPermission($permission->id);
             $response = $this->repository->destroy($permission);
             DB::commit();
             return $response;

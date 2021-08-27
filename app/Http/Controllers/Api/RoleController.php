@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Exceptions\Custom\UnprocessableException;
 use App\Models\Role;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
@@ -12,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\RoleRepository;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IRoleController;
 
 class RoleController extends Controller implements IRoleController
@@ -84,11 +84,13 @@ class RoleController extends Controller implements IRoleController
         DB::beginTransaction();
         try {
             $role->fill($request->all());
-            
-            if ($role->isClean())
+
+            if ($role->isClean() && !isset($request['permissions']))
                 throw new UnprocessableException(__('messages.nochange'));
-            
+
             $response = $this->repository->save($role);
+
+            if (isset($request['permissions'])) $role->syncPermissions($request['permissions']);
 
             DB::commit();
             return $this->success($response);
@@ -108,6 +110,7 @@ class RoleController extends Controller implements IRoleController
     public function destroy(Role $role) {
         DB::beginTransaction();
         try {
+            $role->revokePermissionTo($role->getAllPermissions()->pluck('name')->toArray());
             $response = $this->repository->destroy($role);
             DB::commit();
             return $response;

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Models\Role as RolePersonalized;
@@ -12,7 +11,7 @@ class Role extends RolePersonalized
 {
     use HasFactory, UsesTenantConnection, SoftDeletes;
 
-    protected $table = 'role';
+    /* protected $table = 'roles'; */
 
     /**
      * The attributes that are mass assignable.
@@ -22,4 +21,14 @@ class Role extends RolePersonalized
     protected $fillable = ['name', 'description', 'guard_name', 'status_id'];
 
     protected $dates = ['deleted_at'];
+
+    /**
+     * status
+     *
+     * @return void
+     */
+    public function status ()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
 }

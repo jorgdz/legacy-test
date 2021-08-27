@@ -979,6 +979,328 @@
                 ]
             }
         },
+        "/api/permissions": {
+            "get": {
+                "tags": [
+                    "Permisos"
+                ],
+                "summary": "Listar los permisos",
+                "description": "Muestra todas los permisos en formato JSON",
+                "operationId": "getAllPermissions",
+                "parameters": [
+                    {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numero de la paginación",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Numero de elementos por pagina",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Ordenar por el campo",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "id"
+                        }
+                    },
+                    {
+                        "name": "type_sort",
+                        "in": "query",
+                        "description": "Tipo de orden",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "asc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Permisos"
+                ],
+                "summary": "Crear permiso",
+                "description": "Crear un nuevo permiso.",
+                "operationId": "addPermission",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "Nombre del permiso",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del permiso",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado del permiso",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/permissions/{id}": {
+            "get": {
+                "tags": [
+                    "Permisos"
+                ],
+                "summary": "Obtener un permiso",
+                "description": "Muestra información específica de un permiso por Id.",
+                "operationId": "getPermissions",
+                "parameters": [
+                    {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del permiso",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/permissions/{permission}": {
+            "put": {
+                "tags": [
+                    "Permisos"
+                ],
+                "summary": "Actualizar permiso",
+                "description": "Actualizar un permiso.",
+                "operationId": "updatePermissions",
+                "parameters": [
+                    {
+                        "name": "permission",
+                        "in": "path",
+                        "description": "Id del permiso",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "Nombre del permiso",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del permiso",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado del permiso",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Permisos"
+                ],
+                "summary": "Eliminar un permiso",
+                "description": "Eliminar una permiso por Id",
+                "operationId": "deletePermissions",
+                "parameters": [
+                    {
+                        "name": "permission",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
         "/api/profiles": {
             "get": {
                 "tags": [
@@ -1248,6 +1570,336 @@
                         "schema": {
                             "type": "integer",
                             "example": "3"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/roles": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Listar los roles",
+                "description": "Muestra todas los roles en formato JSON",
+                "operationId": "getAllRoles",
+                "parameters": [
+                    {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numero de la paginación",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Numero de elementos por pagina",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Ordenar por el campo",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "id"
+                        }
+                    },
+                    {
+                        "name": "type_sort",
+                        "in": "query",
+                        "description": "Tipo de orden",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "asc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Crear rol",
+                "description": "Crear un nuevo rol.",
+                "operationId": "addRole",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "Nombre del rol",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del rol",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado del rol",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/roles/{id}": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Obtener un rol",
+                "description": "Muestra información específica de un rol por Id.",
+                "operationId": "getRoles",
+                "parameters": [
+                    {
+                        "name": "user_profile_id",
+                        "in": "query",
+                        "description": "Id del perfil de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del rol",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            }
+        },
+        "/api/roles/{role}": {
+            "put": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Actualizar rol",
+                "description": "Actualizar un rol.",
+                "operationId": "updateRoles",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "description": "Id del rol",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_profile_id": {
+                                        "description": "Id del perfil de usuario",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "Nombre del rol",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del rol",
+                                        "type": "string"
+                                    },
+                                    "status_id": {
+                                        "description": "Estado del rol",
+                                        "type": "integer"
+                                    },
+                                    "permissions": {
+                                        "description": "Asignar los permisos al rol",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "Mantenimiento de xyz"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Eliminar un rol",
+                "description": "Eliminar una rol por Id",
+                "operationId": "deleteRoles",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
                         }
                     }
                 ],
