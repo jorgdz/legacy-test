@@ -18,13 +18,14 @@ class CreateTableCampus extends Migration
             $table->string('cam_name', 255)->nullable();
             $table->string('cam_description', 255)->nullable();
             $table->string('cam_direction', 255)->nullable();
-            
+            $table->string('cam_initials', 255)->nullable();
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

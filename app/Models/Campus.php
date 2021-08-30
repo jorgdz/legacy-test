@@ -23,6 +23,7 @@ class Campus extends Model
         'cam_name',
         'cam_description',
         'cam_direction',
+        'cam_initials',
         'status_id',
         'company_id',
     ];

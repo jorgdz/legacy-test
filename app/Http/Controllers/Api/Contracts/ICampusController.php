@@ -114,6 +114,11 @@ interface ICampusController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="cam_initials",
+     *           description="Siglas de la sede",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado de la sede",
      *           type="integer",
@@ -219,6 +224,11 @@ interface ICampusController
      *         @OA\Property(
      *           property="cam_direction",
      *           description="Direccion de la sede",
+     *           type="string",
+     *         ),
+     *          @OA\Property(
+     *           property="cam_initials",
+     *           description="Siglas de la sede",
      *           type="string",
      *         ),
      *         @OA\Property(
