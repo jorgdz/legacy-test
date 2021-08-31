@@ -99,7 +99,7 @@ class RoleSeeder extends Seeder
             ],
 
             [
-                'name' => 'roles-listar-permisos',
+                'name' => 'permissions-listar-permisos',
                 'alias' => 'Listar permisos',
                 'description' => 'Listar todos los permisos',
                 'guard_name' => 'api',

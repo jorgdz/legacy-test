@@ -15,7 +15,7 @@ class UserProfileSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('user_profiles')->insert([
-            ['user_id' => 1, 'profile_id' => 1, 'status_id' => 1]
+            ['user_id' => 1, 'profile_id' => 2, 'status_id' => 1]
         ]);
     }
 }
