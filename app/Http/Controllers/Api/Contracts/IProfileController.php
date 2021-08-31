@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\ShowByUserProfileIdRequest;
 
 interface IProfileController
 {
@@ -90,7 +91,7 @@ interface IProfileController
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
@@ -158,7 +159,7 @@ interface IProfileController
      * )
      *
      */
-    public function show(Profile $profile);
+    public function show(ShowByUserProfileIdRequest $request,$profile);
 
     /**
      * @OA\Put(
@@ -257,7 +258,7 @@ interface IProfileController
 
     /**
      * @OA\Get(
-     *   path="/profiles/{profile}/users",
+     *   path="/api/profiles/{profile}/users",
      *   tags={"Usuarios"},
      *   security={
      *      {"api_key_security": {}},
@@ -266,7 +267,17 @@ interface IProfileController
      *   description="Muestra los usuarios que existen vinculados a un perfil.",
      *   operationId="getUsersbyProfile",
      *   @OA\Parameter(
-     *     name="profile_id",
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="profile",
      *     description="Id del perfil",
      *     in="path",
      *     required=true,
@@ -283,5 +294,5 @@ interface IProfileController
      * )
      *
      */
-    public function showUsers ( Profile $profile);
+    public function showUsers ( ShowByUserProfileIdRequest $request,Profile $profile);
 }

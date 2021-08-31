@@ -17,6 +17,10 @@ class UserProfile extends Model
     protected $fillable = ['user_id', 'profile_id', 'status_id'];
 
     protected $dates = ['deleted_at'];
+
+    protected $guard_name = 'api';
+
+    protected $hidden = ['created_at','updated_at','deleted_at'];
     
     /**
      * user

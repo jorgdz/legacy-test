@@ -13,6 +13,8 @@ class Mail extends Model
 
     protected $fillable = ['transport', 'host', 'port', 'encryption', 'username', 'password'];
 
+    protected $hidden = ['created_at','updated_at','deleted_at'];
+
     /**
      * tenant
      *

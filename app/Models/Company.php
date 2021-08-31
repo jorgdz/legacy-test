@@ -44,6 +44,8 @@ class Company extends Model
         ,'status_id'
     ];
 
+    protected $hidden = ['created_at','updated_at','deleted_at'];
+    
     /**
      * campus
      *

@@ -10,6 +10,8 @@ use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Cache\UserProfileCache;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\StoreUserRequest;
@@ -17,7 +19,10 @@ use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotFoundException;
 use App\Http\Requests\StoreUserProfileRequest;
 use App\Exceptions\Custom\UnprocessableException;
+use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Controllers\Api\Contracts\IUserController;
+use App\Models\Role as ModelsRole;
+use Spatie\Permission\Exceptions\RoleDoesNotExist;
 
 class UserController extends Controller implements IUserController
 {
@@ -94,7 +99,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $user
      * @return void
      */
-    public function showProfiles ( $user_id ) {
+    public function showProfiles ( Request $request,$user_id ) {
         return $this->success($this->repoUser->showProfiles($user_id));
     }
 
@@ -105,8 +110,8 @@ class UserController extends Controller implements IUserController
      * @param  mixed $profile
      * @return void
      */
-    public function showProfilesById ($user_id, $profile_id) {
-        return $this->repoUser->showProfilesById($user_id,$profile_id);
+    public function showProfilesById (Request $request,$user_id, $profile_id) {
+        return $this->success($this->repoUser->showProfilesById($user_id,$profile_id));
     }
 
     /**
@@ -164,7 +169,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $profile
      * @return void
      */
-    public function destroyProfilesById ( User $user, Profile $profile) {
+    public function destroyProfilesById ( Request $request,User $user, Profile $profile) {
         $matchThese = [['user_id','=',$user['id']],['profile_id','=',$profile['id']]];
         $userProfile = UserProfile::where($matchThese)->first();
         $userProfile=$this->repoUserProfile->destroy($userProfile);
@@ -177,12 +182,49 @@ class UserController extends Controller implements IUserController
      * @param  mixed $user
      * @return void
      */
-    public function destroyProfiles ( User $user) {
+    public function destroyProfiles ( Request $request,User $user) {
         $userProfiles = UserProfile::where('user_id',$user['id'])->get();
         // iterate through the Collection
         foreach ($userProfiles as $userProfile) {
             $userProfile = $this->repoUserProfile->destroy($userProfile);
         }
         return $this->success($userProfiles);
+    }
+
+    /**
+     * index
+     *
+     * List all roles by userProfile
+     * @return void
+     */
+    public function showRolesbyUser (Request $request,$user_id) {
+        return $this->success($this->repoUser->showRolesbyUser($user_id));
+    }
+    
+    /**
+     * index
+     *
+     * List all roles by userProfile
+     * @return void
+     */
+    public function showRolesbyUserProfile (Request $request, $user_id, $profile_id) {
+        return $this->success($this->repoUser->showRolesbyUserProfile($user_id,$profile_id));
+    }
+
+    /**
+     * index
+     *
+     * List all roles by userProfile
+     * @return void
+     */
+    public function saveRolesbyUserProfile (StoreRoleUserProfileRequest $request, $user_id, $profile_id) {
+        
+        $matchTheseNew = [['user_id','=',$user_id],['profile_id','=',$profile_id]];
+        $userProfile = UserProfile::where($matchTheseNew)->first();
+        if ($userProfile == null) 
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+        
+        $array_roles = $request['roles'];
+        return $this->success($this->repoUser->saveRolesbyUserProfile($array_roles,$userProfile));
     }
 }

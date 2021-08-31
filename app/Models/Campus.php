@@ -28,6 +28,8 @@ class Campus extends Model
         'company_id',
     ];
 
+    protected $hidden = ['created_at','updated_at','deleted_at'];
+
     /**
      * company
      *

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Http\Requests\ShowByUserProfileIdRequest;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StoreUserProfileRequest;
+use App\Http\Requests\StoreRoleUserProfileRequest;
 
 interface IUserController
 {
@@ -119,7 +121,7 @@ interface IUserController
 
     /**
      * @OA\Get(
-     *   path="/users/{user}/profiles",
+     *   path="/api/users/{user}/profiles",
      *   tags={"Perfiles de usuario"},
      *   security={
      *      {"api_key_security": {}},
@@ -127,6 +129,16 @@ interface IUserController
      *   summary="Obtener perfiles",
      *   description="Muestra los perfiles por usuario.",
      *   operationId="getProfilebyUser",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
      *   @OA\Parameter(
      *     name="user",
      *     description="Id del usuario",
@@ -145,11 +157,11 @@ interface IUserController
      * )
      *
      */
-    public function showProfiles ( User $user);
+    public function showProfiles (ShowByUserProfileIdRequest $request, User $user);
 
     /**
      * @OA\Get(
-     *   path="/users/{user}/profiles/{profile}",
+     *   path="/api/users/{user}/profiles/{profile}",
      *   tags={"Perfiles de usuario"},
      *   security={
      *      {"api_key_security": {}},
@@ -157,6 +169,16 @@ interface IUserController
      *   summary="Obtener perfil",
      *   description="Muestra un perfil por usuario.",
      *   operationId="getProfilebyUser",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
      *   @OA\Parameter(
      *     name="user",
      *     description="Id del usuario",
@@ -185,7 +207,7 @@ interface IUserController
      * )
      *
      */
-    public function showProfilesById ( User $user,Profile $profile);
+    public function showProfilesById (ShowByUserProfileIdRequest $request, User $user,Profile $profile);
 
     /**
      * @OA\Post(
@@ -210,8 +232,13 @@ interface IUserController
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
      *         @OA\Property(
      *           property="profile_id",
      *           description="Identificación del perfil",
@@ -271,6 +298,11 @@ interface IUserController
      *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="profile_id",
      *           description="id del Perfil",
      *           type="integer",
@@ -304,6 +336,16 @@ interface IUserController
      *   description="Eliminado lógico de un perfil de usuario específico por Id de usuario y perfil.",
      *   operationId="removeUserProfile",
      *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="user",
      *     description="Id del usuario",
      *     in="path",
@@ -331,7 +373,7 @@ interface IUserController
      * )
      *
      */
-    public function destroyProfilesById(User $user, Profile $profile);
+    public function destroyProfilesById(ShowByUserProfileIdRequest $request,User $user, Profile $profile);
 
     /**
      * @OA\Delete(
@@ -343,6 +385,16 @@ interface IUserController
      *   summary="Elimina perfiles de usuario",
      *   description="Eliminado lógico de perfiles de usuario específico por Id de usuario.",
      *   operationId="removeUserProfile",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
      *   @OA\Parameter(
      *     name="user",
      *     description="Id del usuario",
@@ -361,5 +413,157 @@ interface IUserController
      * )
      *
      */
-    public function destroyProfiles(User $user);
+    public function destroyProfiles(ShowByUserProfileIdRequest $request,User $user);
+
+    /**
+     * @OA\Get(
+     *   path="/api/users/{user}/roles",
+     *   tags={"Roles por UserProfile"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener roles por usuario",
+     *   description="Muestra los roles por usuario en todos sus perfiles.",
+     *   operationId="getRolesbyUser",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showRolesbyUser (ShowByUserProfileIdRequest $request, User $user);
+
+    /**
+     * @OA\Get(
+     *   path="/api/users/{user}/profiles/{profile}/roles",
+     *   tags={"Roles por UserProfile"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener roles por usuario y perfil",
+     *   description="Muestra los roles por usuario dado en un perfil especifico.",
+     *   operationId="getRolesbyUserProfile",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="profile",
+     *     description="Id del perfil",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showRolesbyUserProfile ( ShowByUserProfileIdRequest $request, User $user,Profile $profile);
+
+    /**
+     * @OA\Post(
+     *   path="/api/users/{user}/profiles/{profile}/roles",
+     *   tags={"Roles por UserProfile"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Guardar rol por UserProfile",
+     *   description="Asociar un rol a un UserProfile.",
+     *   operationId="addRoleByUserProfiles",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="profile",
+     *     description="Id del perfil",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="roles",
+     *           description="Identificación de los roles",
+     *           type="array",
+     *           @OA\Items(
+     *             type="integer",
+     *             example="1"
+     *           ),
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function saveRolesbyUserProfile(StoreRoleUserProfileRequest $request, User $user,Profile $profile);
 }

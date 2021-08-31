@@ -54,8 +54,9 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $profile
      * @return void
      */
-    public function show ($id) {
-        return $this->success($this->repoProfile->find($id), Response::HTTP_FOUND);
+    public function show (Request $request,$id) {
+        //dd($request->all());
+        return $this->success($this->repoProfile->find($id));
     }
 
     /**
@@ -85,7 +86,7 @@ class ProfileController extends Controller implements IProfileController
     public function update (StoreProfileRequest $request, Profile $profile) {
         $profileRequest = $request->all();
         $profilePreview = Profile::where('pro_name','=',$profileRequest['pro_name'])->get();
-        if ($profilePreview->isNotEmpty())
+        if ($profilePreview->isNotEmpty() && $profileRequest['pro_name'] != $profile['pro_name'] )
             throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Profile::class)]));
 
         $profile->fill($profileRequest);
@@ -112,7 +113,7 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $user
      * @return void
      */
-    public function showUsers ($profile_id) {
+    public function showUsers (Request $request,$profile_id) {
         return $this->success($this->repoProfile->showUsers($profile_id));
     }
 }

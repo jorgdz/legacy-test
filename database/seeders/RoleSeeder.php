@@ -46,6 +46,9 @@ class RoleSeeder extends Seeder
             ['name' => 'Borrar perfiles por usuario', 'description' => 'Borrar todos los perfiles asociados a un usuario por el identificador único', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'Borrar perfil específico por usuario', 'description' => 'Borrar un perfil asociados a un usuario por el identificador único del usuario y del perfil', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'Listar usuarios por perfil', 'description' => 'Listar todos los usuarios por el identificador único del perfil', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Listar roles por usuario', 'description' => 'Listar todos los roles por el identificador único del usuario', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Listar roles por usuario y perfil', 'description' => 'Listar roles por el identificador único del usuario y del perfil', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Sincronizar roles por usuario y perfil', 'description' => 'Sincronizar roles por el identificador único del usuario y del perfil', 'guard_name' => 'api', 'status_id' => 1],
         ]);
         
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -78,6 +81,9 @@ class RoleSeeder extends Seeder
             ['permission_id' => 23, 'role_id' => 1],
             ['permission_id' => 24, 'role_id' => 1],
             ['permission_id' => 25, 'role_id' => 1],
+            ['permission_id' => 27, 'role_id' => 1],
+            ['permission_id' => 28, 'role_id' => 1],
+            ['permission_id' => 29, 'role_id' => 1],
         ]);
     }
 }
