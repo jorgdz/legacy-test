@@ -49,7 +49,7 @@ class UserProfileCache extends BaseCache {
      */
     public function save(Model $model)
     {
-        $this->cache::flush();
+        $this->forgetCache('users');
         return $this->repository->save($model);
     }
 
@@ -59,7 +59,7 @@ class UserProfileCache extends BaseCache {
      * @return void
      */
     public function destroy (Model $model) {
-        $this->cache::flush();
+        $this->forgetCache('users');
         return $this->repository->destroy($model);
     }
 }

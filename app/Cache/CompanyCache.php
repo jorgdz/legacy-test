@@ -49,7 +49,7 @@ class CompanyCache extends BaseCache {
      */
     public function save(Model $model)
     {
-        $this->cache::flush();
+        $this->forgetCache('companies');
         return $this->repository->save($model);
     }
 
@@ -59,7 +59,7 @@ class CompanyCache extends BaseCache {
      * @return void
      */
     public function destroy (Model $model) {
-        $this->cache::flush();
+        $this->forgetCache('companies');
         return $this->repository->destroy($model);
     }
 }
