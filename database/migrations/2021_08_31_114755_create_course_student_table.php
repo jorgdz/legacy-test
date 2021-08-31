@@ -14,20 +14,20 @@ class CreateCourseStudentTable extends Migration
     public function up()
     {
         Schema::create('course_student', function (Blueprint $table) {
-            $table->increments('id'); //PK
-            $table->integer('course_id')->unsigned(); //FK
+            $table->increments('id');
+
+            $table->integer('course_id')->unsigned();
             $table->float('final_note', 8, 4);
             $table->string('observation', 255)->nullable();
             $table->integer('num_fouls')->unsigned();
-            $table->integer('matter_status_id')->unsigned(); //FK
-            $table->integer('status_id')->unsigned(); //FK
-            // $table->foreign('status_id')->references('id')->on('status');
-            // $table->foreign('course_id')->references('id')->on('courses');// EC
-            // $table->foreign('matter_status_id')->references('id')->on('matter_status');//education_levels  JS        
+            $table->integer('matter_status_id')->unsigned();
+            $table->integer('status_id')->unsigned();
 
+            $table->foreign('status_id')->references('id')->on('status');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('matter_status_id')->references('id')->on('matter_status');        
 
             $table->timestamps();
-
             $table->softDeletes();
         });
     }

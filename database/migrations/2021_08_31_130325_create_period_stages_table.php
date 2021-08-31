@@ -16,8 +16,8 @@ class CreatePeriodStagesTable extends Migration
         Schema::create('period_stages', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->date('start_date');//->nullable()
-            $table->date('end_date');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
 
             $table->integer('stage_id')->unsigned();
             $table->foreign('stage_id')->references('id')->on('stages');
@@ -27,7 +27,7 @@ class CreatePeriodStagesTable extends Migration
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

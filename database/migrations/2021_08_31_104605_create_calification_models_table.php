@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePensumsTable extends Migration
+class CreateCalificationModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreatePensumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pensums', function (Blueprint $table) {
+        Schema::create('calification_models', function (Blueprint $table) {
             $table->increments('id');
-            
-            $table->integer('anio');
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,6 +31,6 @@ class CreatePensumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pensums');
+        Schema::dropIfExists('calification_models');
     }
 }

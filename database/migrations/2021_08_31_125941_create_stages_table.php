@@ -16,12 +16,12 @@ class CreateStagesTable extends Migration
         Schema::create('stages', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->string('stg_name', 255);
-            $table->string('stg_description', 255);
+            $table->string('stg_name', 255)->nullable();
+            $table->string('stg_description', 255)->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

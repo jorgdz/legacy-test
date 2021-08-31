@@ -15,13 +15,13 @@ class CreateTypeStudentsTable extends Migration
     {
         Schema::create('type_students', function (Blueprint $table) {
             $table->increments('id');
-            
-            $table->string('te_name', 255);
-            $table->string('te_description', 255);
+
+            $table->string('te_name', 255)->nullable();
+            $table->string('te_description', 255)->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

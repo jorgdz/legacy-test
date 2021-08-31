@@ -15,19 +15,20 @@ class CreateMatterMeshTable extends Migration
     {
         Schema::create('matter_mesh', function (Blueprint $table) {
             $table->increments('id');
+
             $table->integer('matter_id')->unsigned();
             $table->integer('mesh_id')->unsigned();
-
             $table->string('calification_type', 255)->nullable();
             $table->float('min_calification', 8, 4);
             $table->integer('num_fouls')->unsigned();
             $table->string('matter_rename', 255)->nullable();
             $table->integer('status_id')->unsigned();
-            // $table->foreign('status_id')->references('id')->on('status');
-            // $table->foreign('matter_id')->references('id')->on('matters');// JS
-            // $table->foreign('mesh_id')->references('id')->on('meshs');// JS
-            $table->timestamps();
 
+            $table->foreign('status_id')->references('id')->on('status');
+            $table->foreign('matter_id')->references('id')->on('matters');
+            $table->foreign('mesh_id')->references('id')->on('meshs');
+
+            $table->timestamps();
             $table->softDeletes();
         });
     }

@@ -15,9 +15,9 @@ class CreateTypePeriodsTable extends Migration
     {
         Schema::create('type_periods', function (Blueprint $table) {
             $table->increments('id');
-            
-            $table->string('tp_name', 255);
-            $table->string('tp_description', 255);
+
+            $table->string('tp_name', 255)->nullable();
+            $table->string('tp_description', 255)->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

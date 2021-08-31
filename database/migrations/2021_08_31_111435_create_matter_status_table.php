@@ -15,6 +15,7 @@ class CreateMatterStatusTable extends Migration
     {
         Schema::create('matter_status', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('name', 255)->nullable();
             $table->string('description', 255)->nullable();
             $table->string('type', 255)->nullable();
@@ -23,7 +24,6 @@ class CreateMatterStatusTable extends Migration
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();
-
             $table->softDeletes();
         });
     }

@@ -19,16 +19,16 @@ class CreateCoursesTable extends Migration
             $table->integer('max_capacity');
 
             $table->integer('matter_id')->unsigned();
-            //$table->foreign('matter_id')->references('id')->on('matters');
+            $table->foreign('matter_id')->references('id')->on('matters');
 
             $table->integer('parallel_id')->unsigned();
-            //$table->foreign('parallel_id')->references('id')->on('parallels');
+            $table->foreign('parallel_id')->references('id')->on('parallels');
 
             $table->integer('classroom_id')->unsigned();
-            //$table->foreign('classroom_id')->references('id')->on('classrooms');
-            
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
+
             $table->integer('modality_id')->unsigned();
-            //$table->foreign('modality_id')->references('id')->on('modalities');
+            $table->foreign('modality_id')->references('id')->on('modalities');
 
             $table->integer('hourhand_id')->unsigned();
             $table->foreign('hourhand_id')->references('id')->on('hourhands');
@@ -36,15 +36,12 @@ class CreateCoursesTable extends Migration
             $table->integer('calification_model_id')->unsigned();
             $table->foreign('calification_model_id')->references('id')->on('calification_models');
 
-            $table->integer('course_student_id')->unsigned();
-            //$table->foreign('course_student_id')->references('id')->on('course_student');
-
             $table->integer('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
-            
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

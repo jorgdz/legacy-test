@@ -15,18 +15,17 @@ class CreateTypeMattersTable extends Migration
     {
         Schema::create('type_matters', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('tm_name', 255)->nullable();
             $table->string('tm_description', 255)->nullable();
             $table->string('tm_order', 255)->nullable();
+            $table->boolean('mt_cobro')->nullable();
+            $table->boolean('mt_matter_count')->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
-            $table->boolean('tm_order');
-            $table->boolean('mt_matter_count');
-
             $table->timestamps();
-
             $table->softDeletes();
         });
     }

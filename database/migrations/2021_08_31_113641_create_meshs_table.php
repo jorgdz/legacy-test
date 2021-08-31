@@ -15,16 +15,16 @@ class CreateMeshsTable extends Migration
     {
         Schema::create('meshs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pensum_id')->unsigned();//FK
-            $table->integer('level_edu_id')->unsigned();//FK
+
+            $table->integer('pensum_id')->unsigned();
+            $table->integer('level_edu_id')->unsigned();
             $table->integer('status_id')->unsigned();
-            
-            // $table->foreign('pensum_id')->references('id')->on('pensums');// EC
-            // $table->foreign('level_edu_id')->references('id')->on('pensums');//education_levels  EC
-            // $table->foreign('status_id')->references('id')->on('status');
+
+            $table->foreign('pensum_id')->references('id')->on('pensums');
+            $table->foreign('level_edu_id')->references('id')->on('education_levels');
+            $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();
-
             $table->softDeletes();
         });
     }
