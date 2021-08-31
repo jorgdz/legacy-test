@@ -104,6 +104,11 @@ interface IPermissionController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="alias",
+     *           description="Alias del permiso",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="description",
      *           description="Descripcion del permiso",
      *           type="string",
@@ -199,6 +204,11 @@ interface IPermissionController
      *         @OA\Property(
      *           property="name",
      *           description="Nombre del permiso",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="alias",
+     *           description="Alias del permiso",
      *           type="string",
      *         ),
      *         @OA\Property(

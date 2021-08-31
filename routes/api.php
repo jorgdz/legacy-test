@@ -66,37 +66,33 @@ Route::post('/users', [UserController::class, 'store'])->middleware(['auth:sanct
 /**
  * UserProfiles
  */
-Route::get('/users/{user}/profiles', [UserController::class, 'showProfiles'])->middleware(['auth:sanctum' , 'permission:Listar perfiles por usuario']);
-Route::get('/users/{user}/profiles/{profile}', [UserController::class, 'showProfilesById'])->middleware(['auth:sanctum' , 'permission:Mostrar perfil específico por usuario']);
-Route::post('/users/{user}/profiles', [UserController::class, 'saveProfiles'])->middleware(['auth:sanctum' , 'permission:Guardar perfil por usuario']);
-Route::put('/users/{user}/profiles/{profile}', [UserController::class, 'updateProfileById'])->middleware(['auth:sanctum', 'permission:Actualizar perfil por usuario']);
-Route::delete('/users/{user}/profiles/{profile}', [UserController::class, 'destroyProfilesById'])->middleware(['auth:sanctum' , 'permission:Borrar perfiles por usuario']);
-Route::delete('/users/{user}/profiles', [UserController::class, 'destroyProfiles'])->middleware(['auth:sanctum' , 'permission:Borrar perfil específico por usuario']);
-
-/**
- * UserProfiles
- */
-Route::get('/users/{user}/roles', [UserController::class, 'showRolesbyUser'])->middleware(['auth:sanctum' , 'permission:Listar roles por usuario']);
-Route::get('/users/{user}/profiles/{profile}/roles', [UserController::class, 'showRolesbyUserProfile'])->middleware(['auth:sanctum' , 'permission:Listar roles por usuario y perfil']);
-Route::post('/users/{user}/profiles/{profile}/roles', [UserController::class, 'saveRolesbyUserProfile'])->middleware(['auth:sanctum' , 'permission:Sincronizar roles por usuario y perfil']);
+Route::get('/users/{user}/profiles', [UserController::class, 'showProfiles'])->middleware(['auth:sanctum' , 'permission:users-listar-perfiles-usuario']);
+Route::get('/users/{user}/profiles/{profile}', [UserController::class, 'showProfilesById'])->middleware(['auth:sanctum' , 'permission:users-mostrar-perfil-especifico-por-usuario']);
+Route::post('/users/{user}/profiles', [UserController::class, 'saveProfiles'])->middleware(['auth:sanctum' , 'permission:users-guardar-perfil-por-usuario']);
+Route::put('/users/{user}/profiles/{profile}', [UserController::class, 'updateProfileById'])->middleware(['auth:sanctum', 'permission:users-actualizar-perfil-por-usuario']);
+Route::delete('/users/{user}/profiles/{profile}', [UserController::class, 'destroyProfilesById'])->middleware(['auth:sanctum' , 'permission:users-borrar-perfiles-por-usuario']);
+Route::delete('/users/{user}/profiles', [UserController::class, 'destroyProfiles'])->middleware(['auth:sanctum' , 'permission:users-borrar-perfil-especifico-por-usuario']);
+Route::get('/users/{user}/roles', [UserController::class, 'showRolesbyUser'])->middleware(['auth:sanctum' , 'permission:users-listar-roles-por-usuario']);
+Route::get('/users/{user}/profiles/{profile}/roles', [UserController::class, 'showRolesbyUserProfile'])->middleware(['auth:sanctum' , 'permission:users-listar-roles-por-usuario-y-perfil']);
+Route::post('/users/{user}/profiles/{profile}/roles', [UserController::class, 'saveRolesbyUserProfile'])->middleware(['auth:sanctum' , 'permission:users-sincronizar-roles-por-usuario-y-perfil']);
 
 /**
  * Profiles
  */
-Route::get('/profiles', [ProfileController::class, 'index'])->middleware(['auth:sanctum', 'permission:Listar perfil']);
-Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middleware(['auth:sanctum']);
-Route::post('/profiles', [ProfileController::class, 'store'])->middleware(['auth:sanctum', 'permission:Crear perfil']);
-Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->middleware(['auth:sanctum', 'permission:Actualizar perfil']);
-Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:Borrar un perfil']);
-Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])->middleware(['auth:sanctum', 'permission:Listar usuarios por perfil']);
+Route::get('/profiles', [ProfileController::class, 'index'])->middleware(['auth:sanctum', 'permission:profiles-listar-perfil']);
+Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->middleware(['auth:sanctum', 'permission:profiles-obtener-perfil']);
+Route::post('/profiles', [ProfileController::class, 'store'])->middleware(['auth:sanctum', 'permission:profiles-crear-perfil']);
+Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->middleware(['auth:sanctum', 'permission:profiles-actualizar-perfil']);
+Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:profiles-borrar-un-perfil']);
+Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])->middleware(['auth:sanctum', 'permission:profiles-listar-usuarios-por-perfil']);
 /**
  *
  * Companies
  */
-Route::apiResource('companies', CompanyController::class)->middleware(['auth:sanctum', 'permission:Mantenimiento de compañias']);
+Route::apiResource('companies', CompanyController::class)->middleware(['auth:sanctum', 'permission:companies-mantenimiento-de-companias']);
 
 /**
  *
  * Campus
  */
-Route::apiResource('campus', CampusController::class)->middleware(['auth:sanctum', 'permission:Mantenimiento de sedes']);
+Route::apiResource('campus', CampusController::class)->middleware(['auth:sanctum', 'permission:campus-mantenimiento-de-sedes']);

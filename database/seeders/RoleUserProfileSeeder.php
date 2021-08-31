@@ -15,7 +15,7 @@ class RoleUserProfileSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('model_has_roles')->insert([
-            ['role_id' => 1, 'model_type' => 'App\Models\UserProfile', 'model_id' => 1],
+            ['role_id' => 1, 'model_type' => 'App\Models\UserProfile', 'model_id' => 2],
         ]);
     }
 }

@@ -23,6 +23,7 @@ class CreatePermissionTables extends Migration
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
+            $table->string('alias', 255)->nullable();
             $table->string('description')->nullable();
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->integer('status_id')->unsigned();
@@ -40,7 +41,7 @@ class CreatePermissionTables extends Migration
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
 

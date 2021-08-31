@@ -25,6 +25,7 @@ class StorePermissionRequest extends FormRequest
     {
         return [
             'name'          => 'required|unique:tenant.permissions,name',
+            'alias'          => 'required|unique:tenant.permissions.alias',
             'description'   => 'string',
             'status_id'     => 'required|integer|exists:tenant.permissions,id',
         ];

@@ -20,6 +20,6 @@ class PermissionRepository extends BaseRepository
     }
 
     public function deleteRoleHasPermission($id) {
-        DB::table('role_has_permissions')->where('permission_id', $id)->delete();
+        DB::connection('tenant')->table('role_has_permissions')->where('permission_id', $id)->delete();
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use Spatie\Permission\Models\Permission as PermissionPersonalized;
+use Illuminate\Support\Str;
 
 class Permission extends PermissionPersonalized
 {
@@ -18,7 +19,7 @@ class Permission extends PermissionPersonalized
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'guard_name', 'status_id'];
+    protected $fillable = ['name', 'alias' ,'description', 'guard_name', 'status_id'];
 
     protected $dates = ['deleted_at'];
 
