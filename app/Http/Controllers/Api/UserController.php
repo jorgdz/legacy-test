@@ -198,7 +198,7 @@ class UserController extends Controller implements IUserController
      * @return void
      */
     public function showRolesbyUser (Request $request,$user_id) {
-        return $this->success($this->repoUser->showRolesbyUser($user_id));
+        return $this->success($this->repoUserProfile->showRolesbyUser($user_id));
     }
     
     /**
@@ -208,7 +208,7 @@ class UserController extends Controller implements IUserController
      * @return void
      */
     public function showRolesbyUserProfile (Request $request, $user_id, $profile_id) {
-        return $this->success($this->repoUser->showRolesbyUserProfile($user_id,$profile_id));
+        return $this->success($this->repoUserProfile->showRolesbyUserProfile($user_id,$profile_id));
     }
 
     /**
