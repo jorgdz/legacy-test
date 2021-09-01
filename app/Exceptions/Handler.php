@@ -90,7 +90,7 @@ class Handler extends ExceptionHandler
 
                 if ($exception instanceof AuthenticationException) {
                     return $this->error($request->getPathInfo(), $exception,
-                        __('messages.no-authorize'), Response::HTTP_UNAUTHORIZED);
+                        $exception->getMessage(), Response::HTTP_UNAUTHORIZED);
                 }
 
                 if ($exception instanceof AuthorizationException) {

@@ -221,6 +221,14 @@ class RoleSeeder extends Seeder
                 'description' => 'Mantenimiento completo de paralelos (Crear, borrar, listar, editar, buscar)',
                 'guard_name' => 'api',
                 'status_id' => 1
+            ],
+
+            [
+                'name' => 'classrooms-mantenimiento-de-aulas',
+                'alias' => 'Mantenimiento de aulas',
+                'description' => 'Mantenimiento completo de aulas (Crear, borrar, listar, editar, buscar)',
+                'guard_name' => 'api',
+                'status_id' => 1
             ]
         ]);
 
@@ -257,6 +265,7 @@ class RoleSeeder extends Seeder
             ['permission_id' => 26, 'role_id' => 1],
             ['permission_id' => 27, 'role_id' => 1],
             ['permission_id' => 28, 'role_id' => 1],
+            ['permission_id' => 29, 'role_id' => 1],
         ]);
     }
 }

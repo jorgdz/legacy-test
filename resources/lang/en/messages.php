@@ -1,5 +1,6 @@
 <?php
 return [
+    'no-credentials' => 'There was a problem with your credentials are incorrect',
     'nochange' => 'At least one value must change!',
     'method-not-allowed' => 'Method Not Allowed.',
     'no-exist-instance' => "Does not exist any instance of ':model' with the given id",

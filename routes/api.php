@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CampusController;
+use App\Http\Controllers\Api\ClassRoomController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\UserController;
@@ -102,3 +103,5 @@ Route::apiResource('campus', CampusController::class)->middleware(['auth:sanctum
  * Parallels
  */
 Route::apiResource('parallels', ParallelController::class)->middleware('auth:sanctum', 'permissions:parallels-mantenimiento-de-paralelos');
+
+Route::apiResource('classrooms', ClassRoomController::class)->middleware('auth:sanctum', 'permissions:classrooms-mantenimiento-de-aulas');

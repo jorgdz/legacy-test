@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Http\Requests\ParallelFormRequest;
-use App\Models\Parallel;
+use App\Http\Requests\ClassRoomFormRequest;
+use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 
-interface IParallelController
+interface IClassRoomController
 {
-
     /**
      * @OA\Get(
-     *   path="/api/parallels",
-     *   tags={"Paralelos"},
+     *   path="/api/classrooms",
+     *   tags={"Aulas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar los paralelos",
-     *   description="Muestra todos los paralelos en formato JSON",
-     *   operationId="getAllParallels",
+     *   summary="Listar las aulas",
+     *   description="Muestra todas las aulas en formato JSON",
+     *   operationId="getAllClassrooms",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -80,14 +79,14 @@ interface IParallelController
 
     /**
      * @OA\Post(
-     *   path="/api/parallels",
-     *   tags={"Paralelos"},
+     *   path="/api/classrooms",
+     *   tags={"Aulas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear paralelo",
-     *   description="Crear un nuevo paralelo.",
-     *   operationId="addParallel",
+     *   summary="Crear aula",
+     *   description="Crear una nueva aula.",
+     *   operationId="addClassRoom",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -99,18 +98,18 @@ interface IParallelController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="par_name",
-     *           description="Nombre del paralelo",
+     *           property="cl_name",
+     *           description="Nombre del aula",
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="par_description",
-     *           description="Descripcion del paralelo",
+     *           property="cl_description",
+     *           description="Descripcion del aula",
      *           type="string",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del paralelo",
+     *           description="Estado del aula",
      *           type="integer",
      *         ),
      *       ),
@@ -125,18 +124,18 @@ interface IParallelController
      *
      */
 
-    public function store(ParallelFormRequest $request);
+    public function store(ClassRoomFormRequest $request);
 
     /**
      * @OA\Get(
-     *   path="/api/parallels/{id}",
-     *   tags={"Paralelos"},
+     *   path="/api/classrooms/{id}",
+     *   tags={"Aulas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener un paralelo",
-     *   description="Muestra información específica de un paralelo por Id.",
-     *   operationId="getParallels",
+     *   summary="Obtener un aula",
+     *   description="Muestra información específica de un aula por Id.",
+     *   operationId="getClassroom",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -149,7 +148,7 @@ interface IParallelController
      *   ),
      *   @OA\Parameter(
      *     name="id",
-     *     description="Id del paralelo",
+     *     description="Id del aula",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -169,17 +168,17 @@ interface IParallelController
 
     /**
      * @OA\Put(
-     *   path="/api/parallels/{parallel}",
-     *   tags={"Paralelos"},
+     *   path="/api/classrooms/{classroom}",
+     *   tags={"Aulas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar paralelo",
-     *   description="Actualizar un paralelo.",
-     *   operationId="updateParallels",
+     *   summary="Actualizar aula",
+     *   description="Actualizar una aula.",
+     *   operationId="updateClassrooms",
      *   @OA\Parameter(
-     *     name="parallel",
-     *     description="Id del paralelo",
+     *     name="classroom",
+     *     description="Id del aula",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -198,18 +197,18 @@ interface IParallelController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="par_name",
-     *           description="Nombre del paralelo",
+     *           property="cl_name",
+     *           description="Nombre del aula",
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="par_description",
-     *           description="Descripcion del paralelo",
+     *           property="cl_description",
+     *           description="Descripcion del aula",
      *           type="string",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del paralelo",
+     *           description="Estado del aula",
      *           type="integer",
      *         ),
      *       ),
@@ -223,20 +222,20 @@ interface IParallelController
      * )
      *
      */
-    public function update(Request $request, Parallel $parallel);
+    public function update(Request $request, ClassRoom $classroom);
 
     /**
      * @OA\Delete(
-     *   path="/api/parallels/{parallel}",
-     *   tags={"Paralelos"},
+     *   path="/api/classrooms/{classroom}",
+     *   tags={"Aulas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un paralelo",
-     *   description="Eliminar un paralelo por Id",
-     *   operationId="deleteParallels",
+     *   summary="Eliminar un aula",
+     *   description="Eliminar un aula por Id",
+     *   operationId="deleteClassrooms",
      *   @OA\Parameter(
-     *     name="parallel",
+     *     name="classroom",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -265,6 +264,5 @@ interface IParallelController
      * )
      *
      */
-    public function destroy(Parallel $parallel);
-
+    public function destroy(ClassRoom $classroom);
 }

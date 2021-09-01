@@ -28,7 +28,7 @@ class AuthController extends Controller implements IAuthController
      */
     public function login(UserFormRequest $request) {
         if (!Auth::attempt($request->only('us_username', 'password')))
-            throw new AuthenticationException();
+            throw new AuthenticationException(__('messages.no-credentials'));
 
         $user = User::where('us_username', $request['us_username'])
             ->with(['userProfiles.profile', 'userProfiles.roles.permissions'])->firstOrFail();
@@ -50,7 +50,7 @@ class AuthController extends Controller implements IAuthController
     public function whoami (Request $request) {
         $user = User::with(['userProfiles.profile', 'userProfiles.roles.permissions'])
             ->findOrFail ($request->user()->id);
-        
+
         return $this->success($user);
     }
 
