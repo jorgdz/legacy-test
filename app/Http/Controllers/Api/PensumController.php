@@ -2,31 +2,27 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Permission;
+use App\Models\Pensum;
+use App\Cache\PensumCache;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Repositories\PermissionRepository;
-use App\Http\Requests\StorePermissionRequest;
-use App\Http\Requests\UpdatePermissionRequest;
+use App\Http\Requests\StorePensumRequest;
+use App\Http\Requests\UpdatePensumRequest;
+use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\UnprocessableException;
-use App\Http\Controllers\Api\Contracts\IPermissionController;
+use App\Http\Controllers\Api\Contracts\IPensumController;
 
-class PermissionController extends Controller implements IPermissionController
+class PensumController extends Controller implements IPensumController
 {
     use RestResponse;
 
-    private $repository;
+    private $pensumCache;
 
-    /**
-     * __construct
-     *
-     * @return void
-     */
-    public function __construct (PermissionRepository $repository) {
-        $this->repository = $repository;
+    public function __construct(PensumCache $pensumCache) {
+        $this->pensumCache = $pensumCache;
     }
 
     /**
@@ -35,8 +31,7 @@ class PermissionController extends Controller implements IPermissionController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $permissions = $this->repository->all($request);
-        return $this->success($permissions);
+        return $this->success($this->pensumCache->all($request));
     }
 
     /**
@@ -45,16 +40,14 @@ class PermissionController extends Controller implements IPermissionController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePermissionRequest $request) {
+    public function store(StorePensumRequest $request) {
         DB::beginTransaction();
         try {
-            $request['guard_name'] = 'api';
-
-            $permission = new Permission($request->all());
-            $permission = $this->repository->save($permission);
+            $pensum = new Pensum($request->all());
+            $pensum = $this->pensumCache->save($pensum);
 
             DB::commit();
-            return $this->success($permission, Response::HTTP_CREATED);
+            return $this->success($pensum, Response::HTTP_CREATED);
         } catch (\Exception $ex) {
             DB::rollBack();
             return $this->error($request->getPathInfo(), $ex,
@@ -69,26 +62,25 @@ class PermissionController extends Controller implements IPermissionController
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $permission = $this->repository->find($id);
-        return $this->success($permission);
+        return $this->success($this->pensumCache->find($id), Response::HTTP_FOUND);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePermissionRequest $request, Permission $permission) {
+    public function update(UpdatePensumRequest $request, Pensum $pensum) {
         DB::beginTransaction();
         try {
-            $permission->fill($request->all());
-            
-            if ($permission->isClean())
+            $pensum->fill($request->all());
+
+            if ($pensum->isClean())
                 throw new UnprocessableException(__('messages.nochange'));
-            
-            $response = $this->repository->save($permission);
+
+            $response = $this->pensumCache->save($pensum);
 
             DB::commit();
             return $this->success($response);
@@ -105,15 +97,13 @@ class PermissionController extends Controller implements IPermissionController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission) {
+    public function destroy(Pensum $pensum) {
         DB::beginTransaction();
         try {
-            $this->repository->deleteRoleHasPermission($permission->id);
-            $response = $this->repository->destroy($permission);
-
+            $response = $this->pensumCache->destroy($pensum);
             DB::commit();
-            return $response;
-        } catch (\Exception $ex) {
+            return $this->success($response);
+        } catch (ConflictException $ex) {
             DB::rollBack();
             return $this->error(request()->path(), $ex,
                     __('messages.internal-server-error'), Response::HTTP_CONFLICT);

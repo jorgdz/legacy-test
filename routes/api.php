@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\UserProfileController;
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
 require __DIR__ . "/channels/permissions.php";
+require __DIR__ . "/channels/pensums.php";
 
 /*
 |--------------------------------------------------------------------------

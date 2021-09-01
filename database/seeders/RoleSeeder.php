@@ -97,7 +97,6 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-
             [
                 'name' => 'permissions-listar-permisos',
                 'alias' => 'Listar permisos',
@@ -105,7 +104,6 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-
             [
                 'name' => 'permissions-obtener-permiso',
                 'alias' => 'Obtener un permiso',
@@ -134,7 +132,6 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-
             [
                 'name' => 'companies-mantenimiento-de-companias',
                 'alias' => 'Mantenimiento de compañias',
@@ -142,15 +139,13 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-
             [
-                'name' => 'campus-mantenimiento-sedes',
+                'name' => 'campus-mantenimiento-de-sedes',
                 'alias' => 'Mantenimiento de sedes',
                 'description' => 'Mantenimiento completo de sedes (Crear, borrar, listar, editar, buscar)',
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-
             [
                 'name' => 'users-listar-perfiles-usuario',
                 'alias' => 'Listar perfiles por usuario',
@@ -214,7 +209,6 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-
             [
                 'name' => 'parallels-mantenimiento-de-paralelos',
                 'alias' => 'Mantenimiento de paralelos',
@@ -222,14 +216,48 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-
             [
                 'name' => 'classrooms-mantenimiento-de-aulas',
                 'alias' => 'Mantenimiento de aulas',
                 'description' => 'Mantenimiento completo de aulas (Crear, borrar, listar, editar, buscar)',
                 'guard_name' => 'api',
                 'status_id' => 1
-            ]
+            ],
+            [
+                'name' => 'pensums-listar-pensums',
+                'alias' => 'Listar pensums',
+                'description' => 'Listar todos los pensums',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'pensums-obtener-pensum',
+                'alias' => 'Obtener un pemsun',
+                'description' => 'Obtener un pemsun por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'pensums-crear-pensum',
+                'alias' => 'Crear un pensum',
+                'description' => 'Agregar un nuevo pensum',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'pensums-actualizar-pensum',
+                'alias' => 'Actualizar un pensum',
+                'description' => 'Actualizar un pensum por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'pensums-borrar-pensum',
+                'alias' => 'Borrar un pensum',
+                'description' => 'Borrar un pensum por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -264,8 +292,15 @@ class RoleSeeder extends Seeder
             ['permission_id' => 25, 'role_id' => 1],
             ['permission_id' => 26, 'role_id' => 1],
             ['permission_id' => 27, 'role_id' => 1],
+
             ['permission_id' => 28, 'role_id' => 1],
             ['permission_id' => 29, 'role_id' => 1],
+
+            ['permission_id' => 30, 'role_id' => 1],
+            ['permission_id' => 31, 'role_id' => 1],
+            ['permission_id' => 32, 'role_id' => 1],
+            ['permission_id' => 33, 'role_id' => 1],
+            ['permission_id' => 34, 'role_id' => 1],
         ]);
     }
 }

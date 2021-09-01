@@ -116,6 +116,8 @@ class RoleController extends Controller implements IRoleController
             return $response;
         } catch (\Exception $ex) {
             DB::rollBack();
+            return $this->error(request()->path(), $ex,
+                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
         }
     }
 }
