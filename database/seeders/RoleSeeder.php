@@ -214,6 +214,14 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+
+            [
+                'name' => 'parallels-mantenimiento-de-paralelos',
+                'alias' => 'Mantenimiento de paralelos',
+                'description' => 'Mantenimiento completo de paralelos (Crear, borrar, listar, editar, buscar)',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ]
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -248,6 +256,7 @@ class RoleSeeder extends Seeder
             ['permission_id' => 25, 'role_id' => 1],
             ['permission_id' => 26, 'role_id' => 1],
             ['permission_id' => 27, 'role_id' => 1],
+            ['permission_id' => 28, 'role_id' => 1],
         ]);
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CampusController;
 use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserProfileController;
@@ -96,3 +97,8 @@ Route::apiResource('companies', CompanyController::class)->middleware(['auth:san
  * Campus
  */
 Route::apiResource('campus', CampusController::class)->middleware(['auth:sanctum', 'permission:campus-mantenimiento-de-sedes']);
+
+/**
+ * Parallels
+ */
+Route::apiResource('parallels', ParallelController::class)->middleware('auth:sanctum', 'permissions:parallels-mantenimiento-de-paralelos');
