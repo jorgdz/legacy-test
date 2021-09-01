@@ -55,7 +55,6 @@ class ProfileController extends Controller implements IProfileController
      * @return void
      */
     public function show (Request $request,$id) {
-        //dd($request->all());
         return $this->success($this->repoProfile->find($id));
     }
 

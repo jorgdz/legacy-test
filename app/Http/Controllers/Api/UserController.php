@@ -10,10 +10,7 @@ use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Cache\UserProfileCache;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\StoreUserRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotFoundException;
@@ -21,8 +18,6 @@ use App\Http\Requests\StoreUserProfileRequest;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Controllers\Api\Contracts\IUserController;
-use App\Models\Role as ModelsRole;
-use Spatie\Permission\Exceptions\RoleDoesNotExist;
 
 class UserController extends Controller implements IUserController
 {

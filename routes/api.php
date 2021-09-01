@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\StageController;
 use App\Http\Controllers\Api\UserProfileController;
 
 /* Import routes */
@@ -105,4 +106,12 @@ Route::apiResource('campus', CampusController::class)->middleware(['auth:sanctum
  */
 Route::apiResource('parallels', ParallelController::class)->middleware('auth:sanctum', 'permissions:parallels-mantenimiento-de-paralelos');
 
-Route::apiResource('classrooms', ClassRoomController::class)->middleware('auth:sanctum', 'permissions:classrooms-mantenimiento-de-aulas');
+/**
+ *
+ * Etapas
+ */
+Route::get('/stages', [StageController::class, 'index'])->middleware(['auth:sanctum', 'permission:stages-listar-etapas']);
+Route::get('/stages/{stage}', [StageController::class, 'show'])->middleware(['auth:sanctum', 'permission:stages-obtener-etapa']);
+Route::post('/stages', [StageController::class, 'store'])->middleware(['auth:sanctum', 'permission:stages-crear-etapa']);
+Route::put('/stages/{stage}', [StageController::class, 'update'])->middleware(['auth:sanctum', 'permission:stages-actualizar-etapa']);
+Route::delete('/stages/{stage}', [StageController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:stages-borrar-etapa']);
