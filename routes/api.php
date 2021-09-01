@@ -126,3 +126,13 @@ Route::get('/stages/{stage}', [StageController::class, 'show'])->middleware(['au
 Route::post('/stages', [StageController::class, 'store'])->middleware(['auth:sanctum', 'permission:stages-crear-etapa']);
 Route::put('/stages/{stage}', [StageController::class, 'update'])->middleware(['auth:sanctum', 'permission:stages-actualizar-etapa']);
 Route::delete('/stages/{stage}', [StageController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:stages-borrar-etapa']);
+
+/**
+ *
+ * Aulas
+ */
+Route::get('/classrooms', [ClassRoomController::class, 'index'])->middleware(['auth:sanctum', 'permission:classrooms-listar-aulas']);
+Route::get('/classrooms/{classroom}', [ClassRoomController::class, 'show'])->middleware(['auth:sanctum', 'permission:classrooms-obtener-aula']);
+Route::post('/classrooms', [ClassRoomController::class, 'store'])->middleware(['auth:sanctum', 'permission:classrooms-crear-aula']);
+Route::put('/classrooms/{classroom}', [ClassRoomController::class, 'update'])->middleware(['auth:sanctum', 'permission:classrooms-actualizar-aula']);
+Route::delete('/classrooms/{classroom}', [ClassRoomController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classrooms-borrar-aula']);
