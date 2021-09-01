@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\Api\AsTenantController;
 use Illuminate\Http\Request;
 use App\Mail\EmailInvitation;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\CampusController;
-use App\Http\Controllers\Api\ClassRoomController;
-use App\Http\Controllers\Api\CompanyController;
-use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\CampusController;
+use App\Http\Controllers\Api\TypePeriodController;
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\StageController;
+use App\Http\Controllers\Api\AsTenantController;
+use App\Http\Controllers\Api\ParallelController;
+use App\Http\Controllers\Api\ClassRoomController;
 use App\Http\Controllers\Api\UserProfileController;
 
 /* Import routes */
@@ -136,3 +137,12 @@ Route::get('/classrooms/{classroom}', [ClassRoomController::class, 'show'])->mid
 Route::post('/classrooms', [ClassRoomController::class, 'store'])->middleware(['auth:sanctum', 'permission:classrooms-crear-aula']);
 Route::put('/classrooms/{classroom}', [ClassRoomController::class, 'update'])->middleware(['auth:sanctum', 'permission:classrooms-actualizar-aula']);
 Route::delete('/classrooms/{classroom}', [ClassRoomController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classrooms-borrar-aula']);
+
+/**
+ * TypePeriods
+ */
+Route::get('/typePeriods', [TypePeriodController::class, 'index'])->middleware(['auth:sanctum', 'permission:typePeriods-listar-tiposPeriodos']);
+Route::get('/typePeriods/{typePeriod}', [TypePeriodController::class, 'show'])->middleware(['auth:sanctum', 'permission:typePeriods-obtener-tipoPeriodo']);
+Route::post('/typePeriods', [TypePeriodController::class, 'store'])->middleware(['auth:sanctum', 'permission:typePeriods-crear-tipoPeriodo']);
+Route::put('/typePeriods/{typePeriod}', [TypePeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:typePeriods-actualizar-tipoPeriodo']);
+Route::delete('/typePeriods/{typePeriod}', [TypePeriodController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:typePeriods-borrar-tipoPeriodo']);

@@ -434,6 +434,44 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+            /**
+             * Tipos de Periodos
+             */
+            [
+                'name' => 'typePeriods-listar-tiposPeriodos',
+                'alias' => 'Listar tipos de periodos',
+                'description' => 'Listar todos los tipos de periodos',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'typePeriods-obtener-tipoPeriodo',
+                'alias' => 'Obtener un tipo de periodo',
+                'description' => 'Obtener un tipo de periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'typePeriods-crear-tipoPeriodo',
+                'alias' => 'Crear un tipo de periodo',
+                'description' => 'Agregar un tipo de periodo',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'typePeriods-actualizar-tipoPeriodo',
+                'alias' => 'Actualizar un tipo de periodo',
+                'description' => 'Actualizar un tipo de periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'typePeriods-borrar-tipoPeriodo',
+                'alias' => 'Borrar un tipo de periodo',
+                'description' => 'Borrar un tipo de periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -522,6 +560,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 53, 'role_id' => 1],
             ['permission_id' => 54, 'role_id' => 1],
             ['permission_id' => 55, 'role_id' => 1],
+            /**
+             * Tipos de Periodos
+             */
+            ['permission_id' => 56, 'role_id' => 1],
+            ['permission_id' => 57, 'role_id' => 1],
+            ['permission_id' => 58, 'role_id' => 1],
+            ['permission_id' => 59, 'role_id' => 1],
+            ['permission_id' => 60, 'role_id' => 1],
         ]);
     }
 }
