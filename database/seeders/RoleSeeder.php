@@ -19,6 +19,9 @@ class RoleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('permissions')->insert([
+            /**
+             * Perfiles
+             */
             [
                 'name' => 'profiles-listar-perfil',
                 'alias' => 'Listar perfil',
@@ -61,7 +64,9 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-
+            /**
+             * Roles
+             */
             [
                 'name' => 'roles-listar-roles',
                 'alias' => 'Listar roles',
@@ -97,6 +102,9 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+            /**
+             * Permisos
+             */
             [
                 'name' => 'permissions-listar-permisos',
                 'alias' => 'Listar permisos',
@@ -132,20 +140,85 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+            /**
+             * Compañias
+             */
             [
-                'name' => 'companies-mantenimiento-de-companias',
-                'alias' => 'Mantenimiento de compañias',
-                'description' => 'Mantenimiento completo de compañias (Crear, borrar, listar, editar, buscar)',
+                'name' => 'companies-listar-companias',
+                'alias' => 'Listar compañias',
+                'description' => 'Listar todas las compañias',
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
             [
-                'name' => 'campus-mantenimiento-de-sedes',
-                'alias' => 'Mantenimiento de sedes',
-                'description' => 'Mantenimiento completo de sedes (Crear, borrar, listar, editar, buscar)',
+                'name' => 'companies-obtener-compania',
+                'alias' => 'Obtener una compañia',
+                'description' => 'Obtener una compañia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+            [
+                'name' => 'companies-crear-compania',
+                'alias' => 'Crear una compañia',
+                'description' => 'Agregar una nueva compañia',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'companies-actualizar-compania',
+                'alias' => 'Actualizar una compañia',
+                'description' => 'Actualizar una compañia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'companies-borrar-compania',
+                'alias' => 'Borrar una compañia',
+                'description' => 'Borrar una compañia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            /**
+             * Sedes
+             */
+            [
+                'name' => 'campus-listar-sedes',
+                'alias' => 'Listar sedes',
+                'description' => 'Listar todas las sedes',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'campus-obtener-sede',
+                'alias' => 'Obtener una sede',
+                'description' => 'Obtener una sede por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'campus-crear-sede',
+                'alias' => 'Crear una sede',
+                'description' => 'Agregar una nueva sede',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'campus-actualizar-sede',
+                'alias' => 'Actualizar una sede',
+                'description' => 'Actualizar una sede por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'campus-borrar-sede',
+                'alias' => 'Borrar una sede',
+                'description' => 'Borrar una sede por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            /**
+             * Usuarios
+             */
             [
                 'name' => 'users-listar-perfiles-usuario',
                 'alias' => 'Listar perfiles por usuario',
@@ -209,20 +282,85 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+            /**
+             * Paralelos
+             */
             [
-                'name' => 'parallels-mantenimiento-de-paralelos',
-                'alias' => 'Mantenimiento de paralelos',
-                'description' => 'Mantenimiento completo de paralelos (Crear, borrar, listar, editar, buscar)',
+                'name' => 'parallels-listar-paralelos',
+                'alias' => 'Listar paralelos',
+                'description' => 'Listar todas las paralelos',
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
             [
-                'name' => 'classrooms-mantenimiento-de-aulas',
-                'alias' => 'Mantenimiento de aulas',
-                'description' => 'Mantenimiento completo de aulas (Crear, borrar, listar, editar, buscar)',
+                'name' => 'parallels-obtener-paralelo',
+                'alias' => 'Obtener un paralelo',
+                'description' => 'Obtener un paralelo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+            [
+                'name' => 'parallels-crear-paralelo',
+                'alias' => 'Crear un paralelo',
+                'description' => 'Agregar un nuevo paralelo',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'parallels-actualizar-paralelo',
+                'alias' => 'Actualizar un paralelo',
+                'description' => 'Actualizar un paralelo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'parallels-borrar-paralelo',
+                'alias' => 'Borrar un paralelo',
+                'description' => 'Borrar un paralelo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            /**
+             * Aulas
+             */
+            [
+                'name' => 'classrooms-listar-aulas',
+                'alias' => 'Listar aulas',
+                'description' => 'Listar todas las aulas',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'classrooms-obtener-aula',
+                'alias' => 'Obtener un aula',
+                'description' => 'Obtener una aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'classrooms-crear-aula',
+                'alias' => 'Crear un aula',
+                'description' => 'Agregar una nueva aula',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'classrooms-actualizar-aula',
+                'alias' => 'Actualizar un aula',
+                'description' => 'Actualizar una aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'classrooms-borrar-aula',
+                'alias' => 'Borrar un aula',
+                'description' => 'Borrar una aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            /**
+             * Pensum
+             */
             [
                 'name' => 'pensums-listar-pensums',
                 'alias' => 'Listar pensums',
@@ -258,49 +396,132 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+            /**
+             * Etapas
+             */
+            [
+                'name' => 'stages-listar-etapas',
+                'alias' => 'Listar etapas',
+                'description' => 'Listar todas las etapas',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'stages-obtener-etapa',
+                'alias' => 'Obtener una etapa',
+                'description' => 'Obtener un pemsun por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'stages-crear-etapa',
+                'alias' => 'Crear una etapa',
+                'description' => 'Agregar una nueva etapa',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'stages-actualizar-etapa',
+                'alias' => 'Actualizar una etapa',
+                'description' => 'Actualizar una etapa por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'stages-borrar-etapa',
+                'alias' => 'Borrar una etapa',
+                'description' => 'Borrar una etapa por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
+            /**
+             * Perfiles
+             */
             ['permission_id' => 1, 'role_id' => 1],
             ['permission_id' => 2, 'role_id' => 1],
             ['permission_id' => 3, 'role_id' => 1],
             ['permission_id' => 4, 'role_id' => 1],
             ['permission_id' => 5, 'role_id' => 1],
-
             ['permission_id' => 6, 'role_id' => 1],
+            /**
+             * Roles
+             */
             ['permission_id' => 7, 'role_id' => 1],
             ['permission_id' => 8, 'role_id' => 1],
             ['permission_id' => 9, 'role_id' => 1],
             ['permission_id' => 10, 'role_id' => 1],
-
             ['permission_id' => 11, 'role_id' => 1],
+            /**
+             * Permisos
+             */
             ['permission_id' => 12, 'role_id' => 1],
             ['permission_id' => 13, 'role_id' => 1],
             ['permission_id' => 14, 'role_id' => 1],
             ['permission_id' => 15, 'role_id' => 1],
-
             ['permission_id' => 16, 'role_id' => 1],
+            /**
+             * Compañias
+             */
             ['permission_id' => 17, 'role_id' => 1],
             ['permission_id' => 18, 'role_id' => 1],
             ['permission_id' => 19, 'role_id' => 1],
             ['permission_id' => 20, 'role_id' => 1],
             ['permission_id' => 21, 'role_id' => 1],
+            /**
+             * Sedes
+             */
             ['permission_id' => 22, 'role_id' => 1],
-
             ['permission_id' => 23, 'role_id' => 1],
             ['permission_id' => 24, 'role_id' => 1],
             ['permission_id' => 25, 'role_id' => 1],
             ['permission_id' => 26, 'role_id' => 1],
+            /**
+             * Usuarios
+             */
             ['permission_id' => 27, 'role_id' => 1],
-
             ['permission_id' => 28, 'role_id' => 1],
             ['permission_id' => 29, 'role_id' => 1],
-
             ['permission_id' => 30, 'role_id' => 1],
             ['permission_id' => 31, 'role_id' => 1],
             ['permission_id' => 32, 'role_id' => 1],
             ['permission_id' => 33, 'role_id' => 1],
             ['permission_id' => 34, 'role_id' => 1],
+            ['permission_id' => 35, 'role_id' => 1],
+            /**
+             * Paralelos
+             */
+            ['permission_id' => 36, 'role_id' => 1],
+            ['permission_id' => 37, 'role_id' => 1],
+            ['permission_id' => 38, 'role_id' => 1],
+            ['permission_id' => 39, 'role_id' => 1],
+            ['permission_id' => 40, 'role_id' => 1],
+            /**
+             * Aulas
+             */
+            ['permission_id' => 41, 'role_id' => 1],
+            ['permission_id' => 42, 'role_id' => 1],
+            ['permission_id' => 43, 'role_id' => 1],
+            ['permission_id' => 44, 'role_id' => 1],
+            ['permission_id' => 45, 'role_id' => 1],
+            /**
+             * Pensum
+             */
+            ['permission_id' => 46, 'role_id' => 1],
+            ['permission_id' => 47, 'role_id' => 1],
+            ['permission_id' => 48, 'role_id' => 1],
+            ['permission_id' => 49, 'role_id' => 1],
+            ['permission_id' => 50, 'role_id' => 1],
+            /**
+             * Etapas
+             */
+            ['permission_id' => 51, 'role_id' => 1],
+            ['permission_id' => 52, 'role_id' => 1],
+            ['permission_id' => 53, 'role_id' => 1],
+            ['permission_id' => 54, 'role_id' => 1],
+            ['permission_id' => 55, 'role_id' => 1],
         ]);
     }
 }

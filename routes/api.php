@@ -93,18 +93,29 @@ Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])
  *
  * Companies
  */
-Route::apiResource('companies', CompanyController::class)->middleware(['auth:sanctum', 'permission:companies-mantenimiento-de-companias']);
-
+Route::get('/companies', [CompanyController::class, 'index'])->middleware(['auth:sanctum', 'permission:companies-listar-companias']);
+Route::get('/companies/{company}', [CompanyController::class, 'show'])->middleware(['auth:sanctum', 'permission:companies-obtener-compania']);
+Route::post('/companies', [CompanyController::class, 'store'])->middleware(['auth:sanctum', 'permission:companies-crear-compania']);
+Route::put('/companies/{company}', [CompanyController::class, 'update'])->middleware(['auth:sanctum', 'permission:companies-actualizar-compania']);
+Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:companies-borrar-compania']);
 /**
  *
  * Campus
  */
-Route::apiResource('campus', CampusController::class)->middleware(['auth:sanctum', 'permission:campus-mantenimiento-de-sedes']);
+Route::get('/campus', [CampusController::class, 'index'])->middleware(['auth:sanctum', 'permission:campus-listar-sedes']);
+Route::get('/campus/{campus}', [CampusController::class, 'show'])->middleware(['auth:sanctum', 'permission:campus-obtener-sede']);
+Route::post('/campus', [CampusController::class, 'store'])->middleware(['auth:sanctum', 'permission:campus-crear-sede']);
+Route::put('/campus/{campus}', [CampusController::class, 'update'])->middleware(['auth:sanctum', 'permission:campus-actualizar-sede']);
+Route::delete('/campus/{campus}', [CampusController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:campus-borrar-sede']);
 
 /**
  * Parallels
  */
-Route::apiResource('parallels', ParallelController::class)->middleware('auth:sanctum', 'permissions:parallels-mantenimiento-de-paralelos');
+Route::get('/parallels', [ParallelsController::class, 'index'])->middleware(['auth:sanctum', 'permission:parallels-listar-paralelos']);
+Route::get('/parallels/{parallel}', [ParallelsController::class, 'show'])->middleware(['auth:sanctum', 'permission:parallels-obtener-paralelo']);
+Route::post('/parallels', [ParallelsController::class, 'store'])->middleware(['auth:sanctum', 'permission:parallels-crear-paralelo']);
+Route::put('/parallels/{parallel}', [ParallelsController::class, 'update'])->middleware(['auth:sanctum', 'permission:parallels-actualizar-paralelo']);
+Route::delete('/parallels/{parallel}', [ParallelController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:campus-borrar-paralelo']);
 
 /**
  *
