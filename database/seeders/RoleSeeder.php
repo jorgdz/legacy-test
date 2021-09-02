@@ -615,6 +615,7 @@ class RoleSeeder extends Seeder
                 'alias' => 'Borrar un tipo calificacion',
                 'description' => 'Borrar un tipo calificacion por su identificador',
                 'guard_name' => 'api',
+                'status_id' => 1,
                 'parent_name' => 'typeCalifications'
             ],
             /**
