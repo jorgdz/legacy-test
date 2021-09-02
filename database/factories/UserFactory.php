@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'us_first_lastname' => $this->faker->name(),
             'us_date_birth' => '1994-10-31',
             'us_gender' => $this->faker->randomElement(['Masculino', 'Femenino']),
-            'us_username' => $this->faker->unique()->userName,
+            'us_username' => 'phoppe',
             'email' => $this->faker->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
             'type_identification_id' => 1,
