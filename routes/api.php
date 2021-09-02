@@ -22,6 +22,8 @@ use App\Http\Controllers\Api\UserProfileController;
 require __DIR__ . "/channels/roles.php";
 require __DIR__ . "/channels/permissions.php";
 require __DIR__ . "/channels/pensums.php";
+require __DIR__ . "/channels/type-califications.php";
+require __DIR__ . "/channels/type-matters.php";
 require __DIR__ . "/channels/meshs.php";
 
 /*

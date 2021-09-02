@@ -435,7 +435,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1
             ],
             /**
-             * Tipos de Periodos
+             * Tipos de Periodos
              */
             [
                 'name' => 'typePeriods-listar-tiposPeriodos',
@@ -472,7 +472,7 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
-             /**
+            /**
              *  Mallas academicas [Meshs] JS
              */
             [
@@ -507,6 +507,81 @@ class RoleSeeder extends Seeder
                 'name' => 'meshs-borrar-malla',
                 'alias' => 'Borrar una malla',
                 'description' => 'Borrar una malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            /**
+             * Tipo Calificaciones
+             */
+            [
+                'name' => 'type-califications-listar-type-califications',
+                'alias' => 'Listar tipos de calificaciones',
+                'description' => 'Listar todos los tipo de calificaciones',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'type-califications-obtener-type-calification',
+                'alias' => 'Obtener un tipo de calificacion',
+                'description' => 'Obtener un tipo de calificacion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'type-califications-crear-type-calification',
+                'alias' => 'Crear un tipo calificacion',
+                'description' => 'Agregar un nuevo tipo calificacion',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'type-califications-actualizar-type-calification',
+                'alias' => 'Actualizar un tipo calificacion',
+                'description' => 'Actualizar un tipo calificacion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'type-califications-borrar-type-calification',
+                'alias' => 'Borrar un tipo calificacion',
+                'description' => 'Borrar un tipo calificacion por su identificador',
+                'guard_name' => 'api',
+            ],
+            /**
+             * Tipos de Materias
+             */
+            [
+                'name' => 'type-matters-listar-type-matters',
+                'alias' => 'Listar tipos de materias',
+                'description' => 'Listar todos los tipo de materias',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'type-matters-obtener-type-matter',
+                'alias' => 'Obtener un tipo de materia',
+                'description' => 'Obtener un tipo de materia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'type-matters-crear-type-matter',
+                'alias' => 'Crear un tipo materia',
+                'description' => 'Agregar un nuevo tipo materia',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'type-matters-actualizar-type-matter',
+                'alias' => 'Actualizar un tipo materia',
+                'description' => 'Actualizar un tipo materia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'type-matters-borrar-type-matter',
+                'alias' => 'Borrar un tipo materia',
+                'description' => 'Borrar un tipo materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
@@ -614,6 +689,22 @@ class RoleSeeder extends Seeder
             ['permission_id' => 63, 'role_id' => 1],
             ['permission_id' => 64, 'role_id' => 1],
             ['permission_id' => 65, 'role_id' => 1],
+            /**
+             * Tipo Calificaciones
+             */
+            ['permission_id' => 66, 'role_id' => 1],
+            ['permission_id' => 67, 'role_id' => 1],
+            ['permission_id' => 68, 'role_id' => 1],
+            ['permission_id' => 69, 'role_id' => 1],
+            ['permission_id' => 70, 'role_id' => 1],
+            /**
+             * Tipos de Materias
+             */
+            ['permission_id' => 71, 'role_id' => 1],
+            ['permission_id' => 72, 'role_id' => 1],
+            ['permission_id' => 73, 'role_id' => 1],
+            ['permission_id' => 74, 'role_id' => 1],
+            ['permission_id' => 75, 'role_id' => 1],
         ]);
     }
 }
