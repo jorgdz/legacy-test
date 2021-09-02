@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\TypePeriod;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTypePeriodRequest;
-use App\Http\Requests\ShowByUserProfileIdRequest;
 
 interface ITypePeriodController
 {
@@ -164,7 +163,7 @@ interface ITypePeriodController
      * )
      *
      */
-    public function show(ShowByUserProfileIdRequest $request,$typePeriod);
+    public function show(Request $request,$typePeriod);
 
     /**
      * @OA\Put(

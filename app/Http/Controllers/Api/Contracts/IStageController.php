@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Stage;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreStageRequest;
-use App\Http\Requests\ShowByUserProfileIdRequest;
 
 interface IStageController
 {
@@ -164,7 +163,7 @@ interface IStageController
      * )
      *
      */
-    public function show(ShowByUserProfileIdRequest $request,$stage);
+    public function show(Request $request,$stage);
 
     /**
      * @OA\Put(

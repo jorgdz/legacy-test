@@ -88,6 +88,31 @@ class UserCache extends BaseCache {
     }
 
     /**
+     * find
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function showRolesbyUser ($user_id) {
+        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($user_id) {
+            return $this->repository->showRolesbyUser($user_id);
+        });
+    }
+
+    /**
+     * find
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function showRolesbyUserProfile ( $user_id , $profile_id ) {
+        //dd($user_id);
+        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ( $user_id , $profile_id ) {
+            return $this->repository->showRolesbyUserProfile( $user_id , $profile_id );
+        });
+    }
+
+    /**
      * save
      *
      * @param  mixed $model

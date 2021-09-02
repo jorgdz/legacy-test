@@ -2,18 +2,18 @@
 
 namespace App\Cache;
 
-use App\Repositories\UserProfileRepository;
+use App\Repositories\PeriodRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class UserProfileCache extends BaseCache {
+class PeriodCache extends BaseCache {
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct(UserProfileRepository $userProfileRepository) {
-        parent::__construct($userProfileRepository);
+    public function __construct(PeriodRepository $periodRepository) {
+        parent::__construct($periodRepository);
     }
 
     /**
@@ -40,7 +40,7 @@ class UserProfileCache extends BaseCache {
             return $this->repository->find($id);
         });
     }
-    
+
     /**
      * save
      *
@@ -49,7 +49,7 @@ class UserProfileCache extends BaseCache {
      */
     public function save(Model $model)
     {
-        $this->forgetCache('users');
+        $this->forgetCache('periods');
         return $this->repository->save($model);
     }
 
@@ -59,7 +59,7 @@ class UserProfileCache extends BaseCache {
      * @return void
      */
     public function destroy (Model $model) {
-        $this->forgetCache('users');
+        $this->forgetCache('periods');
         return $this->repository->destroy($model);
     }
 }

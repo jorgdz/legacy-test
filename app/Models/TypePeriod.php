@@ -34,6 +34,18 @@ class TypePeriod extends Model
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
+    protected $softCascade = ['periods'];
+
+    /**
+     * userProfiles
+     *
+     * @return void
+     */
+    public function periods ()
+    {
+    	return $this->hasMany(Periods::class);
+    }
+    
     /**
      * status
      *

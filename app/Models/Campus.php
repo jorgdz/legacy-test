@@ -31,6 +31,16 @@ class Campus extends Model
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
     /**
+     * periods
+     *
+     * @return void
+     */
+    public function periods ()
+    {
+        return $this->hasMany(Period::class);
+    }
+
+    /**
      * company
      *
      * @return void

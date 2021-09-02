@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Models\Profile;
+use App\Models\Period;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\StorePeriodRequest;
 
-interface IProfileController
+interface IPeriodController
 {
     /**
      * @OA\Get(
-     *   path="/api/profiles",
-     *   tags={"Perfiles"},
+     *   path="/api/periods",
+     *   tags={"Periodos"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar los perfiles",
-     *   description="Muestra todos los perfiles paginados en formato JSON",
-     *   operationId="getAllProfiles",
+     *   summary="Listar las periodos",
+     *   description="Muestra todos los periodos paginadas en formato JSON",
+     *   operationId="getAllPeriods",
      *   @OA\Parameter(
      *     name="user_profile_id",
-     *     description="Id del perfil de usuario",
+     *     description="Perfil de usuario",
      *     in="query",
      *     required=true,
      *     @OA\Schema(
@@ -79,14 +79,14 @@ interface IProfileController
 
     /**
      * @OA\Post(
-     *   path="/api/profiles",
-     *   tags={"Perfiles"},
+     *   path="/api/periods",
+     *   tags={"Periodos"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear perfil",
-     *   description="Crear un nuevo perfil.",
-     *   operationId="addProfile",
+     *   summary="Crear periodo",
+     *   description="Crear un nuevo periodo.",
+     *   operationId="addPeriod",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -94,17 +94,22 @@ interface IProfileController
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
-     *           description="Id del perfil de usuario",
+     *           description="Perfil de usuario",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="pro_name",
-     *           description="Nombre del perfil",
-     *           type="string",
+     *           property="campus_id",
+     *           description="Campus del periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_period_id",
+     *           description="Tipo de Periodo asociado",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del perfil",
+     *           description="Estado del periodo",
      *           type="integer",
      *         ),
      *       ),
@@ -118,18 +123,18 @@ interface IProfileController
      * )
      *
      */
-    public function store (StoreProfileRequest $request);
+    public function store (StorePeriodRequest $request);
 
     /**
      * @OA\Get(
-     *   path="/api/profiles/{profile}",
-     *   tags={"Perfiles"},
+     *   path="/api/periods/{period}",
+     *   tags={"Periodos"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener un perfil",
-     *   description="Muestra información específica de un perfil.",
-     *   operationId="showProfile",
+     *   summary="Obtener información de un periodo",
+     *   description="Muestra información específica de un periodo.",
+     *   operationId="showPeriod",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -141,8 +146,8 @@ interface IProfileController
      *     ),
      *   ),
      *   @OA\Parameter(
-     *     name="profile",
-     *     description="Id del perfil",
+     *     name="period",
+     *     description="Periodo",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -158,21 +163,21 @@ interface IProfileController
      * )
      *
      */
-    public function show(Request $request,$profile);
+    public function show(Request $request,$period);
 
     /**
      * @OA\Put(
-     *   path="/api/profiles/{profile}",
-     *   tags={"Perfiles"},
+     *   path="/api/periods/{period}",
+     *   tags={"Periodos"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar perfil",
-     *   description="Actualizar un perfil.",
-     *   operationId="updateProfile",
+     *   summary="Actualizar información de un periodo",
+     *   description="Actualizar información de un periodo.",
+     *   operationId="updatePeriod",
      *   @OA\Parameter(
-     *     name="profile",
-     *     description="Id del perfil",
+     *     name="period",
+     *     description="Periodo",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -187,17 +192,22 @@ interface IProfileController
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
-     *           description="Id del perfil de usuario",
+     *           description="Perfil de usuario",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="pro_name",
-     *           description="Nombre del perfil",
-     *           type="string",
+     *           property="campus_id",
+     *           description="Campus del periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_period_id",
+     *           description="Tipo de Periodo asociado",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del perfil",
+     *           description="Estado del periodo",
      *           type="integer",
      *         ),
      *       ),
@@ -211,20 +221,20 @@ interface IProfileController
      * )
      *
      */
-    public function update(StoreProfileRequest $request, Profile $profile);
+    public function update(StorePeriodRequest $request, Period $period);
 
      /**
      * @OA\Delete(
-     *   path="/api/profiles/{profile}",
-     *   tags={"Perfiles"},
+     *   path="/api/periods/{period}",
+     *   tags={"Periodos"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un perfil",
-     *   description="Eliminar un perfil por Id",
-     *   operationId="deleteProfile",
+     *   summary="Eliminar un periodo",
+     *   description="Eliminar un periodo por Id",
+     *   operationId="deletePeriod",
      *   @OA\Parameter(
-     *     name="profile",
+     *     name="period",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -253,45 +263,5 @@ interface IProfileController
      * )
      *
      */
-    public function destroy(Profile $profile);
-
-    /**
-     * @OA\Get(
-     *   path="/api/profiles/{profile}/users",
-     *   tags={"Usuarios"},
-     *   security={
-     *      {"api_key_security": {}},
-     *   },
-     *   summary="Obtener usuarios",
-     *   description="Muestra los usuarios que existen vinculados a un perfil.",
-     *   operationId="getUsersbyProfile",
-     *   @OA\Parameter(
-     *     name="user_profile_id",
-     *     description="Id del perfil de usuario",
-     *     in="query",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="1"
-     *     ),
-     *   ),
-     *   @OA\Parameter(
-     *     name="profile",
-     *     description="Id del perfil",
-     *     in="path",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="5"
-     *     ),
-     *   ),
-     *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=401, description="No autenticado"),
-     *   @OA\Response(response=403, description="No autorizado"),
-     *   @OA\Response(response=404, description="No encontrado"),
-     *   @OA\Response(response=500, description="Error interno del servidor")
-     * )
-     *
-     */
-    public function showUsers ( Request $request,Profile $profile);
+    public function destroy(Period $period);
 }

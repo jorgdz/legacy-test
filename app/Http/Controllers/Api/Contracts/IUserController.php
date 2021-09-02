@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Http\Requests\ShowByUserProfileIdRequest;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -157,7 +156,7 @@ interface IUserController
      * )
      *
      */
-    public function showProfiles (ShowByUserProfileIdRequest $request, User $user);
+    public function showProfiles (Request $request, $user);
 
     /**
      * @OA\Get(
@@ -168,7 +167,7 @@ interface IUserController
      *   },
      *   summary="Obtener perfil",
      *   description="Muestra un perfil por usuario.",
-     *   operationId="getProfilebyUser",
+     *   operationId="getProfilebyUserProfile",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -207,7 +206,7 @@ interface IUserController
      * )
      *
      */
-    public function showProfilesById (ShowByUserProfileIdRequest $request, User $user,Profile $profile);
+    public function showProfilesById (Request $request, $user, $profile);
 
     /**
      * @OA\Post(
@@ -373,7 +372,7 @@ interface IUserController
      * )
      *
      */
-    public function destroyProfilesById(ShowByUserProfileIdRequest $request,User $user, Profile $profile);
+    public function destroyProfilesById(Request $request,User $user, Profile $profile);
 
     /**
      * @OA\Delete(
@@ -413,7 +412,7 @@ interface IUserController
      * )
      *
      */
-    public function destroyProfiles(ShowByUserProfileIdRequest $request,User $user);
+    public function destroyProfiles(Request $request,User $user);
 
     /**
      * @OA\Get(
@@ -453,7 +452,7 @@ interface IUserController
      * )
      *
      */
-    public function showRolesbyUser (ShowByUserProfileIdRequest $request, User $user);
+    public function showRolesbyUser (Request $request, $user);
 
     /**
      * @OA\Get(
@@ -503,7 +502,7 @@ interface IUserController
      * )
      *
      */
-    public function showRolesbyUserProfile ( ShowByUserProfileIdRequest $request, User $user,Profile $profile);
+    public function showRolesbyUserProfile ( Request $request, $user, $profile);
 
     /**
      * @OA\Post(
