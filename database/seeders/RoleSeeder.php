@@ -472,6 +472,44 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1
             ],
+             /**
+             *  Mallas academicas [Meshs] JS
+             */
+            [
+                'name' => 'meshs-listar-mallas',
+                'alias' => 'Listar mallas',
+                'description' => 'Listar todas las mallas',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'meshs-obtener-malla',
+                'alias' => 'Obtener una malla',
+                'description' => 'Obtener una malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'meshs-crear-mallas',
+                'alias' => 'Crear una malla',
+                'description' => 'Agregar una nueva malla',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'meshs-actualizar-mallas',
+                'alias' => 'Actualizar una malla',
+                'description' => 'Actualizar una malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
+            [
+                'name' => 'meshs-borrar-malla',
+                'alias' => 'Borrar una malla',
+                'description' => 'Borrar una malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -568,6 +606,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 58, 'role_id' => 1],
             ['permission_id' => 59, 'role_id' => 1],
             ['permission_id' => 60, 'role_id' => 1],
+            /**
+             * Mallas Academicas [Meshs] JS
+             */
+            ['permission_id' => 61, 'role_id' => 1],
+            ['permission_id' => 62, 'role_id' => 1],
+            ['permission_id' => 63, 'role_id' => 1],
+            ['permission_id' => 64, 'role_id' => 1],
+            ['permission_id' => 65, 'role_id' => 1],
         ]);
     }
 }
