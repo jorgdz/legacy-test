@@ -19,7 +19,7 @@ class Permission extends PermissionPersonalized
      *
      * @var array
      */
-    protected $fillable = ['name', 'alias' ,'description', 'guard_name', 'status_id'];
+    protected $fillable = ['name', 'alias' ,'description', 'guard_name', 'parent_name', 'status_id'];
 
     protected $dates = ['deleted_at'];
 
