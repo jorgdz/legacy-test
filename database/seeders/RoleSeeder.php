@@ -27,42 +27,48 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar perfil',
                 'description' => 'Listar todos los perfiles',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'profiles'
             ],
             [
                 'name' => 'profiles-obtener-perfil',
                 'alias' => 'Obtener perfil',
                 'description' => 'Obtener un perfil por su identificador único',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'profiles'
             ],
             [
                 'name' => 'profiles-crear-perfil',
                 'alias' => 'Crear perfil',
                 'description' => 'Agregar un nuevo perfil',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'profiles'
             ],
             [
                 'name' => 'profiles-actualizar-perfil',
                 'alias' => 'Actualizar perfil',
                 'description' => 'Actualizar un perfil por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'profiles'
             ],
             [
                 'name' => 'profiles-borrar-un-perfil',
                 'alias' => 'Borrar un perfil',
                 'description' => 'Borrar un perfil por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'profiles'
             ],
             [
                 'name' => 'profiles-listar-usuarios-por-perfil',
                 'alias' => 'Listar usuarios por perfil',
                 'description' => 'Listar todos los usuarios por el identificador único del perfil',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'profiles'
             ],
             /**
              * Roles
@@ -72,35 +78,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar roles',
                 'description' => 'Listar todos los roles',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'roles'
             ],
             [
                 'name' => 'roles-obtener-rol',
                 'alias' => 'Obtener un rol',
                 'description' => 'Obtener un rol por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'roles'
             ],
             [
                 'name' => 'roles-crear-rol',
                 'alias' => 'Crear un rol',
                 'description' => 'Agregar un nuevo rol',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'roles'
             ],
             [
                 'name' => 'roles-actualizar-rol',
                 'alias' => 'Actualizar un rol',
                 'description' => 'Actualizar un rol por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'roles'
             ],
             [
                 'name' => 'roles-borrar-rol',
                 'alias' => 'Borrar un rol',
                 'description' => 'Borrar un rol por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'roles'
             ],
             /**
              * Permisos
@@ -110,35 +121,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar permisos',
                 'description' => 'Listar todos los permisos',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'permissions'
             ],
             [
                 'name' => 'permissions-obtener-permiso',
                 'alias' => 'Obtener un permiso',
                 'description' => 'Obtener un permiso por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'permissions'
             ],
             [
                 'name' => 'permissions-crear-permiso',
                 'alias' => 'Crear un permiso',
                 'description' => 'Agregar un nuevo permiso',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'permissions'
             ],
             [
                 'name' => 'permissions-actualizar-permiso',
                 'alias' => 'Actualizar un permiso',
                 'description' => 'Actualizar un permiso por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'permissions'
             ],
             [
                 'name' => 'permissions-borrar-permiso',
                 'alias' => 'Borrar un permiso',
                 'description' => 'Borrar un permiso por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'permissions'
             ],
             /**
              * Compañias
@@ -148,35 +164,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar compañias',
                 'description' => 'Listar todas las compañias',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'companies'
             ],
             [
                 'name' => 'companies-obtener-compania',
                 'alias' => 'Obtener una compañia',
                 'description' => 'Obtener una compañia por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'companies'
             ],
             [
                 'name' => 'companies-crear-compania',
                 'alias' => 'Crear una compañia',
                 'description' => 'Agregar una nueva compañia',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'companies'
             ],
             [
                 'name' => 'companies-actualizar-compania',
                 'alias' => 'Actualizar una compañia',
                 'description' => 'Actualizar una compañia por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'companies'
             ],
             [
                 'name' => 'companies-borrar-compania',
                 'alias' => 'Borrar una compañia',
                 'description' => 'Borrar una compañia por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'companies'
             ],
             /**
              * Sedes
@@ -186,35 +207,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar sedes',
                 'description' => 'Listar todas las sedes',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'campus'
             ],
             [
                 'name' => 'campus-obtener-sede',
                 'alias' => 'Obtener una sede',
                 'description' => 'Obtener una sede por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'campus'
             ],
             [
                 'name' => 'campus-crear-sede',
                 'alias' => 'Crear una sede',
                 'description' => 'Agregar una nueva sede',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'campus'
             ],
             [
                 'name' => 'campus-actualizar-sede',
                 'alias' => 'Actualizar una sede',
                 'description' => 'Actualizar una sede por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'campus'
             ],
             [
                 'name' => 'campus-borrar-sede',
                 'alias' => 'Borrar una sede',
                 'description' => 'Borrar una sede por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'campus'
             ],
             /**
              * Usuarios
@@ -224,63 +250,72 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar perfiles por usuario',
                 'description' => 'Listar todos los perfiles por el identificador único del usuario',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             [
                 'name' => 'users-mostrar-perfil-especifico-por-usuario',
                 'alias' => 'Mostrar perfil específico por usuario',
                 'description' => 'Mostrar en detalle los datos de un perfil por el identificador único del usuario y del perfil',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             [
                 'name' => 'users-guardar-perfil-por-usuario',
                 'alias' => 'Guardar perfil por usuario',
                 'description' => 'Guardar perfil por el identificador único del usuario',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             [
                 'name' => 'users-actualizar-perfil-por-usuario',
                 'alias' => 'Actualizar perfil por usuario',
                 'description' => 'Cambiar un perfil existente usando el identificador único del usuario por el identificador de perfil a asociar',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             [
                 'name' => 'users-borrar-perfiles-por-usuario',
                 'alias' => 'Borrar perfiles por usuario',
                 'description' => 'Borrar todos los perfiles asociados a un usuario por el identificador único',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             [
                 'name' => 'users-borrar-perfil-especifico-por-usuario',
                 'alias' => 'Borrar perfil específico por usuario',
                 'description' => 'Borrar un perfil asociados a un usuario por el identificador único del usuario y del perfil',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             [
                 'name' => 'users-listar-roles-por-usuario',
                 'alias' => 'Listar roles por usuario',
                 'description' => 'Listar todos los roles por el identificador único del usuario',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             [
                 'name' => 'users-listar-roles-por-usuario-y-perfil',
                 'alias' => 'Listar roles por usuario y perfil',
                 'description' => 'Listar roles por el identificador único del usuario y del perfil',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             [
                 'name' => 'users-sincronizar-roles-por-usuario-y-perfil',
                 'alias' => 'Sincronizar roles por usuario y perfil',
                 'description' => 'Sincronizar roles por el identificador único del usuario y del perfil',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'users'
             ],
             /**
              * Paralelos
@@ -290,35 +325,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar paralelos',
                 'description' => 'Listar todas las paralelos',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'parallels'
             ],
             [
                 'name' => 'parallels-obtener-paralelo',
                 'alias' => 'Obtener un paralelo',
                 'description' => 'Obtener un paralelo por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'parallels'
             ],
             [
                 'name' => 'parallels-crear-paralelo',
                 'alias' => 'Crear un paralelo',
                 'description' => 'Agregar un nuevo paralelo',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'parallels'
             ],
             [
                 'name' => 'parallels-actualizar-paralelo',
                 'alias' => 'Actualizar un paralelo',
                 'description' => 'Actualizar un paralelo por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'parallels'
             ],
             [
                 'name' => 'parallels-borrar-paralelo',
                 'alias' => 'Borrar un paralelo',
                 'description' => 'Borrar un paralelo por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'parallels'
             ],
             /**
              * Aulas
@@ -328,35 +368,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar aulas',
                 'description' => 'Listar todas las aulas',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'classrooms'
             ],
             [
                 'name' => 'classrooms-obtener-aula',
                 'alias' => 'Obtener un aula',
                 'description' => 'Obtener una aula por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'classrooms'
             ],
             [
                 'name' => 'classrooms-crear-aula',
                 'alias' => 'Crear un aula',
                 'description' => 'Agregar una nueva aula',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'classrooms'
             ],
             [
                 'name' => 'classrooms-actualizar-aula',
                 'alias' => 'Actualizar un aula',
                 'description' => 'Actualizar una aula por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'classrooms'
             ],
             [
                 'name' => 'classrooms-borrar-aula',
                 'alias' => 'Borrar un aula',
                 'description' => 'Borrar una aula por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'classrooms'
             ],
             /**
              * Pensum
@@ -366,35 +411,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar pensums',
                 'description' => 'Listar todos los pensums',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'pensums'
             ],
             [
                 'name' => 'pensums-obtener-pensum',
                 'alias' => 'Obtener un pemsun',
                 'description' => 'Obtener un pemsun por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'pensums'
             ],
             [
                 'name' => 'pensums-crear-pensum',
                 'alias' => 'Crear un pensum',
                 'description' => 'Agregar un nuevo pensum',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'pensums'
             ],
             [
                 'name' => 'pensums-actualizar-pensum',
                 'alias' => 'Actualizar un pensum',
                 'description' => 'Actualizar un pensum por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'pensums'
             ],
             [
                 'name' => 'pensums-borrar-pensum',
                 'alias' => 'Borrar un pensum',
                 'description' => 'Borrar un pensum por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'pensums'
             ],
             /**
              * Etapas
@@ -404,35 +454,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar etapas',
                 'description' => 'Listar todas las etapas',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'stages'
             ],
             [
                 'name' => 'stages-obtener-etapa',
                 'alias' => 'Obtener una etapa',
                 'description' => 'Obtener un pemsun por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'stages'
             ],
             [
                 'name' => 'stages-crear-etapa',
                 'alias' => 'Crear una etapa',
                 'description' => 'Agregar una nueva etapa',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'stages'
             ],
             [
                 'name' => 'stages-actualizar-etapa',
                 'alias' => 'Actualizar una etapa',
                 'description' => 'Actualizar una etapa por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'stages'
             ],
             [
                 'name' => 'stages-borrar-etapa',
                 'alias' => 'Borrar una etapa',
                 'description' => 'Borrar una etapa por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'stages'
             ],
             /**
              * Tipos de Periodos
@@ -442,35 +497,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar tipos de periodos',
                 'description' => 'Listar todos los tipos de periodos',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typePeriods'
             ],
             [
                 'name' => 'typePeriods-obtener-tipoPeriodo',
                 'alias' => 'Obtener un tipo de periodo',
                 'description' => 'Obtener un tipo de periodo por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typePeriods'
             ],
             [
                 'name' => 'typePeriods-crear-tipoPeriodo',
                 'alias' => 'Crear un tipo de periodo',
                 'description' => 'Agregar un tipo de periodo',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typePeriods'
             ],
             [
                 'name' => 'typePeriods-actualizar-tipoPeriodo',
                 'alias' => 'Actualizar un tipo de periodo',
                 'description' => 'Actualizar un tipo de periodo por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typePeriods'
             ],
             [
                 'name' => 'typePeriods-borrar-tipoPeriodo',
                 'alias' => 'Borrar un tipo de periodo',
                 'description' => 'Borrar un tipo de periodo por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typePeriods'
             ],
             /**
              *  Mallas academicas [Meshs] JS
@@ -480,35 +540,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar mallas',
                 'description' => 'Listar todas las mallas',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'meshs'
             ],
             [
                 'name' => 'meshs-obtener-malla',
                 'alias' => 'Obtener una malla',
                 'description' => 'Obtener una malla por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'meshs'
             ],
             [
                 'name' => 'meshs-crear-mallas',
                 'alias' => 'Crear una malla',
                 'description' => 'Agregar una nueva malla',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'meshs'
             ],
             [
                 'name' => 'meshs-actualizar-mallas',
                 'alias' => 'Actualizar una malla',
                 'description' => 'Actualizar una malla por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'meshs'
             ],
             [
                 'name' => 'meshs-borrar-malla',
                 'alias' => 'Borrar una malla',
                 'description' => 'Borrar una malla por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'meshs'
             ],
             /**
              * Tipo Calificaciones
@@ -518,34 +583,39 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar tipos de calificaciones',
                 'description' => 'Listar todos los tipo de calificaciones',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeCalifications'
             ],
             [
                 'name' => 'type-califications-obtener-type-calification',
                 'alias' => 'Obtener un tipo de calificacion',
                 'description' => 'Obtener un tipo de calificacion por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeCalifications'
             ],
             [
                 'name' => 'type-califications-crear-type-calification',
                 'alias' => 'Crear un tipo calificacion',
                 'description' => 'Agregar un nuevo tipo calificacion',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeCalifications'
             ],
             [
                 'name' => 'type-califications-actualizar-type-calification',
                 'alias' => 'Actualizar un tipo calificacion',
                 'description' => 'Actualizar un tipo calificacion por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeCalifications'
             ],
             [
                 'name' => 'type-califications-borrar-type-calification',
                 'alias' => 'Borrar un tipo calificacion',
                 'description' => 'Borrar un tipo calificacion por su identificador',
                 'guard_name' => 'api',
+                'parent_name' => 'typeCalifications'
             ],
             /**
              * Tipos de Materias
@@ -555,35 +625,40 @@ class RoleSeeder extends Seeder
                 'alias' => 'Listar tipos de materias',
                 'description' => 'Listar todos los tipo de materias',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeMatters'
             ],
             [
                 'name' => 'type-matters-obtener-type-matter',
                 'alias' => 'Obtener un tipo de materia',
                 'description' => 'Obtener un tipo de materia por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeMatters'
             ],
             [
                 'name' => 'type-matters-crear-type-matter',
                 'alias' => 'Crear un tipo materia',
                 'description' => 'Agregar un nuevo tipo materia',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeMatters'
             ],
             [
                 'name' => 'type-matters-actualizar-type-matter',
                 'alias' => 'Actualizar un tipo materia',
                 'description' => 'Actualizar un tipo materia por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeMatters'
             ],
             [
                 'name' => 'type-matters-borrar-type-matter',
                 'alias' => 'Borrar un tipo materia',
                 'description' => 'Borrar un tipo materia por su identificador',
                 'guard_name' => 'api',
-                'status_id' => 1
+                'status_id' => 1,
+                'parent_name' => 'typeMatters'
             ],
         ]);
 

@@ -27,6 +27,7 @@ class CreatePermissionTables extends Migration
             $table->string('description')->nullable();
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->integer('status_id')->unsigned();
+            $table->string('parent_name')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

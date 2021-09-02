@@ -77,4 +77,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+    /**
+     * typeIdentifications
+     *
+     * @return void
+     */
+    public function identifications ()
+    {
+    	return $this->hasMany(Identification::class , 'id');
+    }
+    
 }
