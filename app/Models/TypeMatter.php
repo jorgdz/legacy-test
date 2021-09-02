@@ -20,11 +20,19 @@ class TypeMatter extends Model
      * @var array
      */
     protected $fillable = ['tm_name', 'tm_description', 'tm_order', 'mt_cobro', 'mt_matter_count', 'status_id'];
+
     protected $hidden = [];
+
     protected $dates = ['deleted_at'];
+
+    protected $softCascade = ['matters'];
 
     /* Relationship */
     public function status() {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    public function matters() {
+        return $this->hasMany(Matter::class, 'type_matter_id');
     }
 }

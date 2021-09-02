@@ -8,31 +8,35 @@ use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
-class TypeCalification extends Model
+class Matter extends Model
 {
     use HasFactory, SoftDeletes, SoftCascadeTrait, UsesTenantConnection;
 
-    protected $table = 'type_califications';
+    protected $table = 'matters';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['tc_name', 'status_id'];
-
+    protected $fillable = [
+        'cod_mate_migration', 'cod_old_migration', 'des_matter', 
+        'type_matter_id', 'type_calification_id', 'min_note', 'status_id'
+    ];
     protected $hidden = [];
-
     protected $dates = ['deleted_at'];
 
-    protected $softCascade = ['matters'];
-
+    
     /* Relationship */
     public function status() {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    public function matters() {
-        return $this->hasMany(Matter::class, 'type_calification_id');
+    public function typeMatter() {
+        return $this->belongsTo(TypeMatter::class, 'type_matter_id');
+    }
+
+    public function typeCalification() {
+        return $this->belongsTo(TypeCalification::class, 'type_calification_id');
     }
 }

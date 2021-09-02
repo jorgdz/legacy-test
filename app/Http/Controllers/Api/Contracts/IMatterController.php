@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Models\Matter;
 use Illuminate\Http\Request;
-use App\Models\TypeCalification;
-use App\Http\Requests\StoreTypeCalificationRequest;
-use App\Http\Requests\UpdateTypeCalificationRequest;
+use App\Http\Requests\StoreMatterRequest;
 
-interface ITypeCalificationController {
+interface IMatterController {
 
     /**
      * @OA\Get(
-     *   path="/api/type-califications",
-     *   tags={"Tipo de Calificaciones"},
+     *   path="/api/matters",
+     *   tags={"Materias"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar los tipos de calificaciones",
-     *   description="Muestra todos los tipos de calificaciones en formato JSON",
-     *   operationId="getAllTypeCalifications",
+     *   summary="Listar las materias",
+     *   description="Muestra todos las materias en formato JSON",
+     *   operationId="getAllMatters",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -80,14 +79,14 @@ interface ITypeCalificationController {
 
     /**
      * @OA\Post(
-     *   path="/api/type-califications",
-     *   tags={"Tipo de Calificaciones"},
+     *   path="/api/matters",
+     *   tags={"Materias"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear un tipo de calificación",
-     *   description="Crear un nuevo tipo de calificación.",
-     *   operationId="addTypeCalification",
+     *   summary="Crear una materia",
+     *   description="Crear una nueva materia.",
+     *   operationId="addMatter",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -99,13 +98,38 @@ interface ITypeCalificationController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="tc_name",
-     *           description="Nombre del tipo de calificación",
+     *           property="cod_mate_migration",
+     *           description="Código de la materia",
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="cod_old_migration",
+     *           description="Código anterior de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="des_matter",
+     *           description="Descripción de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="type_matter_id",
+     *           description="Tipo de materia",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_calification_id",
+     *           description="Tipo de calificación",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="min_note",
+     *           description="Nota mínima de la materia",
+     *           type="number",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del tipo de calificación",
+     *           description="Estado de la materia",
      *           type="integer",
      *         ),
      *       ),
@@ -119,18 +143,18 @@ interface ITypeCalificationController {
      * )
      *
      */
-    public function store(StoreTypeCalificationRequest $request);
+    public function store(StoreMatterRequest $request);
 
     /**
      * @OA\Get(
-     *   path="/api/type-califications/{id}",
-     *   tags={"Tipo de Calificaciones"},
+     *   path="/api/matters/{id}",
+     *   tags={"Materias"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener un tipo de calificación",
-     *   description="Muestra información específica de un tipo de calificación por Id.",
-     *   operationId="getTypeCalifications",
+     *   summary="Obtener una materia",
+     *   description="Muestra información específica de una materia por Id.",
+     *   operationId="getMatters",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -143,7 +167,7 @@ interface ITypeCalificationController {
      *   ),
      *   @OA\Parameter(
      *     name="id",
-     *     description="Id del tipo de calificación",
+     *     description="Id de la materia",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -163,17 +187,17 @@ interface ITypeCalificationController {
 
     /**
      * @OA\Put(
-     *   path="/api/type-califications/{typeCalification}",
-     *   tags={"Tipo de Calificaciones"},
+     *   path="/api/matters/{matter}",
+     *   tags={"Materias"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar tipo de calificación",
-     *   description="Actualizar un tipo de calificación.",
-     *   operationId="updateTypeCalifications",
+     *   summary="Actualizar la materia",
+     *   description="Actualizar una materia.",
+     *   operationId="updateMatters",
      *   @OA\Parameter(
-     *     name="typeCalification",
-     *     description="Id del tipo de calificación",
+     *     name="matter",
+     *     description="Id de la materia",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -192,9 +216,34 @@ interface ITypeCalificationController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="tc_name",
-     *           description="Nombre del tipo de calificación",
+     *           property="cod_mate_migration",
+     *           description="Código de la materia",
      *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="cod_old_migration",
+     *           description="Código anterior de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="des_matter",
+     *           description="Descripción de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="type_matter_id",
+     *           description="Tipo de materia",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_calification_id",
+     *           description="Tipo de calificación",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="min_note",
+     *           description="Nota mínima de la materia",
+     *           type="number",
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -212,20 +261,20 @@ interface ITypeCalificationController {
      * )
      *
      */
-    public function update(UpdateTypeCalificationRequest $request, TypeCalification $typeCalification);
+    public function update(Request $request, Matter $matter);
 
     /**
      * @OA\Delete(
-     *   path="/api/type-califications/{typeCalification}",
-     *   tags={"Tipo de Calificaciones"},
+     *   path="/api/matters/{matter}",
+     *   tags={"Materias"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un tipo de calificación",
-     *   description="Eliminar un tipo de calificación por Id",
-     *   operationId="deleteTypeCalifications",
+     *   summary="Eliminar una materia",
+     *   description="Eliminar una materia por Id",
+     *   operationId="deleteMatters",
      *   @OA\Parameter(
-     *     name="typeCalification",
+     *     name="matter",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -254,5 +303,5 @@ interface ITypeCalificationController {
      * )
      *
      */
-    public function destroy(TypeCalification $typeCalification);
+    public function destroy(Matter $matter);
 }

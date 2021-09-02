@@ -24,7 +24,7 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|string|unique:tenant.roles',
+            'name'      => 'required|string|unique:tenant.roles,name',
             'status_id' => 'required|integer',
         ];
     }

@@ -661,6 +661,49 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'typeMatters'
             ],
+            /**
+             * Materias
+             */
+            [
+                'name' => 'matters-listar-matters',
+                'alias' => 'Listar materias',
+                'description' => 'Listar todas las materias',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matters'
+            ],
+            [
+                'name' => 'matters-obtener-matter',
+                'alias' => 'Obtener una materia',
+                'description' => 'Obtener una materia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matters'
+            ],
+            [
+                'name' => 'matters-crear-matter',
+                'alias' => 'Crear una materia',
+                'description' => 'Agregar una nueva materia',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matters'
+            ],
+            [
+                'name' => 'matters-actualizar-matter',
+                'alias' => 'Actualizar una materia',
+                'description' => 'Actualizar una materia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matters'
+            ],
+            [
+                'name' => 'matters-borrar-matter',
+                'alias' => 'Borrar una materia',
+                'description' => 'Borrar una materia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matters'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -781,6 +824,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 73, 'role_id' => 1],
             ['permission_id' => 74, 'role_id' => 1],
             ['permission_id' => 75, 'role_id' => 1],
+            /**
+             * Materias
+             */
+            ['permission_id' => 76, 'role_id' => 1],
+            ['permission_id' => 77, 'role_id' => 1],
+            ['permission_id' => 78, 'role_id' => 1],
+            ['permission_id' => 79, 'role_id' => 1],
+            ['permission_id' => 80, 'role_id' => 1],
         ]);
     }
 }

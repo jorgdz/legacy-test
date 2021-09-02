@@ -23,14 +23,19 @@ class Pensum extends Model
 
     protected $dates = ['deleted_at'];
 
-    /* protected $softCascade = ['meshs']; */
+    protected $softCascade = ['meshs'];
 
     /* Relationship */
     public function status() {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    /* public function meshs() {
+    public function meshs() {
         return $this->hasMany(Mesh::class);
+    }
+
+    /* TODO: Add softCascade */
+    /* public function student_records() {
+        return $this->hasMany(StudentRecord::class);
     } */
 }
