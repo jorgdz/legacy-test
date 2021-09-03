@@ -275,4 +275,8 @@ interface IPermissionController
      *
      */
     public function destroy(Permission $permission);
+
+
+    //show lists of permissions grouped by parent name
+    public function showPermissionsGrouped(Request $request);
 }

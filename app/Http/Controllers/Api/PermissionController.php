@@ -13,6 +13,7 @@ use App\Http\Requests\StorePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IPermissionController;
+use App\Http\Resources\PermissionResource as PermissionResource;
 
 class PermissionController extends Controller implements IPermissionController
 {
@@ -36,6 +37,11 @@ class PermissionController extends Controller implements IPermissionController
      */
     public function index(Request $request) {
         $permissions = $this->repository->all($request);
+        return $this->success($permissions);
+    }
+
+    public function showPermissionsGrouped(Request $request){
+        $permissions = $this->repository->all($request)->groupBy('parent_name');
         return $this->success($permissions);
     }
 
