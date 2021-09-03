@@ -15,8 +15,9 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\AsTenantController;
 use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\ClassRoomController;
-use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\PeriodStageController;
+use App\Http\Controllers\Api\MeshsController;
+use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\UserProfileController;
 use App\Http\Controllers\Api\OfferController;
@@ -175,7 +176,8 @@ Route::post('/mattermeshs', [MatterMeshController::class, 'store'])->middleware(
 Route::put('/mattermeshs/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum']); //permission:mattermesh-actualizar-materias-mallas
 Route::delete('/mattermeshs/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum']); //permission:mattermesh-borrar-materias-mallas
 
-/**
+/*
+ *
  * PeriodStages
  */
 Route::get('/periodstages', [PeriodStageController::class, 'index'])->middleware(['auth:sanctum']);//, 'permission:periodStages-listar-periodoEtapa'
@@ -192,3 +194,4 @@ Route::get('/offers/{offer}', [OfferController::class, 'show'])->middleware(['au
 Route::post('/offers', [OfferController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:offers-crear-oferta'
 Route::put('/offers/{offer}', [OfferController::class, 'update'])->middleware(['auth:sanctum']);//, 'permission:offers-actualizar-oferta'
 Route::delete('/offers/{offer}', [OfferController::class, 'destroy'])->middleware(['auth:sanctum']);//, 'permission:offers-borrar-oferta'
+

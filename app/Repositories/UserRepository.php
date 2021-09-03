@@ -15,7 +15,8 @@ use Spatie\Permission\Exceptions\RoleDoesNotExist;
 
 class UserRepository extends BaseRepository
 {
-    use RestResponse;
+    protected $fields = ['us_identification', 'us_username', 'us_firstname', 'us_first_lastname'];
+
     /**
      * __construct
      *

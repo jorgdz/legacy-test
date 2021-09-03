@@ -12,6 +12,8 @@ class BaseRepository implements IBaseRepository
 
     protected $relations = [];
 
+    protected $fields = [];
+
     /**
      * __construct
      *
@@ -29,16 +31,25 @@ class BaseRepository implements IBaseRepository
      */
     public function all ($request) {
         $query = $this->model;
-
+        
         if (!empty($this->relations)) {
             $query = $query->with($this->relations);
         }
-
+        
         $collectQueryString = collect($request->all())
-            ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id'])->all();
-
+        ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search'])->all();
+        
         if (!empty($collectQueryString)) {
             $query = $query->where($collectQueryString);
+        }
+        
+        if ($request->search) {
+            $fields = $this->fields;
+            $query= $query->where(function ($query) use($fields, $request) {
+                for ($i = 0; $i < count($fields); $i++){
+                    $query->orwhere($fields[$i], 'like',  '%' . $request->search .'%');
+                }      
+            });
         }
 
         $sort = $request->sort ?: 'id';

@@ -9,6 +9,7 @@ use App\Repositories\Base\BaseRepository;
 class PermissionRepository extends BaseRepository
 {
     protected $relations = ['status'];
+    protected $fields = ['name', 'alias'];
 
     /**
      * __construct
