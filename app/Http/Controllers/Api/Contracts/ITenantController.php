@@ -71,6 +71,11 @@ interface ITenantController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="domain_client",
+     *           description="Dominio cliente del inquilino",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="database",
      *           description="Base de datos del inquilino",
      *           type="string",
@@ -150,6 +155,11 @@ interface ITenantController
      *         @OA\Property(
      *           property="domain",
      *           description="Dominio del inquilino",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="domain_client",
+     *           description="Dominio cliente del inquilino",
      *           type="string",
      *         ),
      *       ),

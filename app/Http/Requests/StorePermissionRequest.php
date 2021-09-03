@@ -27,7 +27,7 @@ class StorePermissionRequest extends FormRequest
             'name'          => 'required|unique:tenant.permissions,name',
             'alias'          => 'required|unique:tenant.permissions.alias',
             'description'   => 'string',
-            'status_id'     => 'required|integer|exists:tenant.permissions,id',
+            'status_id'     => 'required|integer|exists:tenant.status,id',
         ];
     }
 }

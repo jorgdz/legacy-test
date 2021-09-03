@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use Spatie\Permission\Models\Permission as PermissionPersonalized;
-use Illuminate\Support\Str;
 
 class Permission extends PermissionPersonalized
 {
@@ -21,16 +20,12 @@ class Permission extends PermissionPersonalized
      */
     protected $fillable = ['name', 'alias' ,'description', 'guard_name', 'parent_name', 'status_id'];
 
+    protected $hidden = ['created_at','updated_at','deleted_at'];
+
     protected $dates = ['deleted_at'];
 
-    protected $hidden = ['created_at','updated_at','deleted_at'];
-    /**
-     * status
-     *
-     * @return void
-     */
-    public function status ()
-    {
+    /* Relationships */
+    public function status () {
         return $this->belongsTo(Status::class, 'status_id');
     }
 }

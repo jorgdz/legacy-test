@@ -20,17 +20,12 @@ class Role extends RolePersonalized
      */
     protected $fillable = ['name', 'description', 'guard_name', 'status_id'];
 
-    protected $dates = ['deleted_at'];
-
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
-    /**
-     * status
-     *
-     * @return void
-     */
-    public function status ()
-    {
+    protected $dates = ['deleted_at'];
+
+    /* Relationships */
+    public function status () {
         return $this->belongsTo(Status::class, 'status_id');
     }
 }

@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Multitenancy\Models\Tenant;
 use Illuminate\Database\Eloquent\Model;
 
-class Mail extends Model
+class Mail extends Tenant
 {
     use HasFactory;
 

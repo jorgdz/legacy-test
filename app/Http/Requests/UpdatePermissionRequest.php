@@ -25,7 +25,7 @@ class UpdatePermissionRequest extends FormRequest
     {
         return [
             'name'        => 'required|string',
-            'status_id'   => 'required|integer',
+            'status_id'   => 'required|integer|exists:tenant.status,id',
         ];
     }
 }

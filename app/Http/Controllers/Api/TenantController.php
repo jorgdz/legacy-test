@@ -55,6 +55,7 @@ class TenantController extends Controller implements ITenantController
         $rules = [
             'name' => ['required', 'alpha_dash', 'unique:landlord.tenants', 'max:255'],
             'domain' => ['required', 'unique:landlord.tenants', 'max:255'],
+            'domain_client' => ['required', 'unique:landlord.tenants', 'max:255'],
             'database' => ['required', 'max:255'],
         ];
 
@@ -91,6 +92,7 @@ class TenantController extends Controller implements ITenantController
         $rules = [
             'name' => 'alpha_dash|unique:landlord.tenants,name,'.$tenant,
             'domain' => 'unique:landlord.tenants,domain,'.$tenant,
+            'domain_client' => 'unique:landlord.tenants,domain_client,'.$tenant,
         ];
 
         $this->validate($request, $rules);

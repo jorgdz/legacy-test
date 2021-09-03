@@ -4,15 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRoleRequest extends FormRequest
+class StoreMatterStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,11 +20,11 @@ class UpdateRoleRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'name'      => 'required|string',
-            'status_id' => 'required|integer|exists:tenant.status,id',
+            'name' => 'required|string',
+            'type' => 'required|string',
+            'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }
 }
