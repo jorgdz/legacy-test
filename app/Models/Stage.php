@@ -36,15 +36,18 @@ class Stage extends Model
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
+    protected $softCascade = ['periodStages'];
+
     /**
      * period_stages
      *
      * @return void
      */
-    /*public function periodStages ()
+    
+    public function periodStages ()
     {
-    	return $this->hasMany(PeriodStages::class);
-    }*/
+    	return $this->hasMany(PeriodStage::class, 'stage_id');
+    }
 
     /**
      * status

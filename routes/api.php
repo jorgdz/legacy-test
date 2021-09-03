@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\AsTenantController;
 use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\ClassRoomController;
+use App\Http\Controllers\Api\PeriodStageController;
 use App\Http\Controllers\Api\MeshsController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\UserProfileController;
@@ -161,3 +162,12 @@ Route::get('/periods/{period}', [PeriodController::class, 'show'])->middleware([
 Route::post('/periods', [PeriodController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:periods-crear-periodo'
 Route::put('/periods/{period}', [PeriodController::class, 'update'])->middleware(['auth:sanctum']);//, 'permission:periods-actualizar-periodo'
 Route::delete('/periods/{period}', [PeriodController::class, 'destroy'])->middleware(['auth:sanctum']);//, 'permission:periods-borrar-periodo'
+
+/**
+ * PeriodStages
+ */
+Route::get('/periodstages', [PeriodStageController::class, 'index'])->middleware(['auth:sanctum']);//, 'permission:periodStages-listar-periodoEtapa'
+Route::get('/periodstages/{periodstage}', [PeriodStageController::class, 'show'])->middleware(['auth:sanctum']);//, 'permission:periodStages-obtener-periodoEtapa'
+Route::post('/periodstages', [PeriodStageController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:periodStages-crear-periodoEtapa'
+Route::put('/periodstages/{periodstage}', [PeriodStageController::class, 'update'])->middleware(['auth:sanctum']);//, 'permission:periodStages-actualizar-periodoEtapa'
+Route::delete('/periodstages/{periodstage}', [PeriodStageController::class, 'destroy'])->middleware(['auth:sanctum']);//, 'permission:periodStages-borrar-periodoEtapa'

@@ -704,6 +704,49 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'matters'
             ],
+            /**
+             * Periodos por etapas
+             */
+            [
+                'name' => 'periodStages-listar-periodoEtapa',
+                'alias' => 'Listar los periodos por etapas',
+                'description' => 'Listar todos los periodos por etapas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periodStages'
+            ],
+            [
+                'name' => 'periodStages-obtener-periodoEtapa',
+                'alias' => 'Obtener un registro asociado periodo_etapa',
+                'description' => 'Obtener una relacion periodo_etapa por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periodStages'
+            ],
+            [
+                'name' => 'periodStages-crear-periodoEtapa',
+                'alias' => 'Crear un registro asociado periodo_etapa',
+                'description' => 'Agregar un registro asociado de periodo_etapa',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periodStages'
+            ],
+            [
+                'name' => 'periodStages-actualizar-periodoEtapa',
+                'alias' => 'Actualizar un registro asociado periodo_etapa',
+                'description' => 'Actualizar un registro asociado de periodo_etapa por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periodStages'
+            ],
+            [
+                'name' => 'periodStages-borrar-periodoEtapa',
+                'alias' => 'Borrar un registro asociado de periodo_etapa',
+                'description' => 'Borrar un registro asociado de periodo_etapa por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periodStages'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -832,6 +875,15 @@ class RoleSeeder extends Seeder
             ['permission_id' => 78, 'role_id' => 1],
             ['permission_id' => 79, 'role_id' => 1],
             ['permission_id' => 80, 'role_id' => 1],
+            /**
+             * Periodos por Etapas
+             */
+            ['permission_id' => 81, 'role_id' => 1],
+            ['permission_id' => 82, 'role_id' => 1],
+            ['permission_id' => 83, 'role_id' => 1],
+            ['permission_id' => 84, 'role_id' => 1],
+            ['permission_id' => 85, 'role_id' => 1],
+            ['permission_id' => 86, 'role_id' => 1],
         ]);
     }
 }
