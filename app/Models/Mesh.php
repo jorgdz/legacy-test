@@ -10,7 +10,7 @@ use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Mesh extends Model
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes;//, SoftCascadeTrait;
+    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
 
     protected $table = 'meshs';
 
@@ -22,7 +22,7 @@ class Mesh extends Model
         'status_id'
     ];
 
-    // protected $softCascade = ['matterMesh'];
+    protected $softCascade = ['matterMesh'];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
@@ -57,13 +57,13 @@ class Mesh extends Model
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    // /**
-    //  * matterMesh
-    //  *
-    //  * @return void
-    //  */
-    // public function matterMesh()
-    // {
-    //     return $this->hasMany(MatterMesh::class);
-    // }
+    /**
+     * matterMesh
+     *
+     * @return void
+     */
+    public function matterMesh()
+    {
+        return $this->hasMany(MatterMesh::class, 'mesh_id');
+    }
 }

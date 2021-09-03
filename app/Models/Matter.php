@@ -14,19 +14,21 @@ class Matter extends Model
 
     protected $table = 'matters';
 
+    protected $softCascade = ['matterMesh'];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'cod_mate_migration', 'cod_old_migration', 'des_matter', 
+        'cod_mate_migration', 'cod_old_migration', 'des_matter',
         'type_matter_id', 'type_calification_id', 'min_note', 'status_id'
     ];
     protected $hidden = [];
     protected $dates = ['deleted_at'];
 
-    
+
     /* Relationship */
     public function status() {
         return $this->belongsTo(Status::class, 'status_id');
@@ -39,4 +41,24 @@ class Matter extends Model
     public function typeCalification() {
         return $this->belongsTo(TypeCalification::class, 'type_calification_id');
     }
+
+    /**
+     * matterMesh
+     *
+     * @return void
+     */
+    public function matterMesh()
+    {
+        return $this->hasMany(MatterMesh::class, 'matter_id');
+    }
+
+    /**
+     * courses
+     *
+     * @return void
+     */
+    // public function courses()
+    // {
+    //     return $this->hasMany(Course::class, 'matter_id');
+    // }
 }

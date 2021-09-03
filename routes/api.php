@@ -15,10 +15,9 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\AsTenantController;
 use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\ClassRoomController;
+use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\PeriodStageController;
-use App\Http\Controllers\Api\MeshsController;
 use App\Http\Controllers\Api\TypePeriodController;
-use App\Http\Controllers\Api\UserProfileController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -162,6 +161,15 @@ Route::get('/periods/{period}', [PeriodController::class, 'show'])->middleware([
 Route::post('/periods', [PeriodController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:periods-crear-periodo'
 Route::put('/periods/{period}', [PeriodController::class, 'update'])->middleware(['auth:sanctum']);//, 'permission:periods-actualizar-periodo'
 Route::delete('/periods/{period}', [PeriodController::class, 'destroy'])->middleware(['auth:sanctum']);//, 'permission:periods-borrar-periodo'
+
+/**
+ * MatterMesh
+ */
+Route::get('/mattermeshs', [MatterMeshController::class, 'index'])->middleware(['auth:sanctum']); //permission:mattermesh-listar-materias-mallas
+Route::get('/mattermeshs/{mattermesh}', [MatterMeshController::class, 'show'])->middleware(['auth:sanctum']); //permission:mattermesh-obtener-materias-mallas
+Route::post('/mattermeshs', [MatterMeshController::class, 'store'])->middleware(['auth:sanctum']); //permission:mattermesh-crear-materias-mallas
+Route::put('/mattermeshs/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum']); //permission:mattermesh-actualizar-materias-mallas
+Route::delete('/mattermeshs/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum']); //permission:mattermesh-borrar-materias-mallas
 
 /**
  * PeriodStages

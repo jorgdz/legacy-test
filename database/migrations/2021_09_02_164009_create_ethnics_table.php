@@ -17,7 +17,6 @@ class CreateEthnicsTable extends Migration
             $table->increments('id');
             $table->string('eth_name')->nullable();
             $table->string('eth_description')->nullable();
-            $table->string('eth_description')->nullable();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();

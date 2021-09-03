@@ -20,9 +20,8 @@ class DatabaseSeeder extends Seeder
                 ProfileSeeder::class,
                 RoleSeeder::class,
                 TypeIdentificationSeeder::class,
+                UserSeeder::class
             ]);
-
-            \App\Models\User::factory(1)->create();
 
             $this->call([
                 UserProfileSeeder::class,

@@ -16,6 +16,7 @@ class RoleSeeder extends Seeder
     {
         DB::connection('tenant')->table('roles')->insert([
             ['name' => 'Sistemas', 'description' => 'Usuario superadministrador', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Colaborador', 'description' => 'Usuario administrador', 'guard_name' => 'api', 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('permissions')->insert([
@@ -883,7 +884,6 @@ class RoleSeeder extends Seeder
             ['permission_id' => 83, 'role_id' => 1],
             ['permission_id' => 84, 'role_id' => 1],
             ['permission_id' => 85, 'role_id' => 1],
-            ['permission_id' => 86, 'role_id' => 1],
         ]);
     }
 }
