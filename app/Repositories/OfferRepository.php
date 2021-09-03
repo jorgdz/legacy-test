@@ -2,12 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Models\Stage;
+use App\Models\Offer;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
-use App\Exceptions\Custom\NotFoundException;
 
-class StageRepository extends BaseRepository
+class OfferRepository extends BaseRepository
 {
     protected $relations = ['status'];
     /**
@@ -15,8 +14,8 @@ class StageRepository extends BaseRepository
      *
      * @return void
      */
-    public function __construct (Stage $stage) {
-        parent::__construct($stage);
+    public function __construct (Offer $offer) {
+        parent::__construct($offer);
     }
 
     /**
@@ -24,8 +23,8 @@ class StageRepository extends BaseRepository
      *
      * @return void
      */
-    public function save (Model $stage) {
-        $stage->save();
-        return $stage;
+    public function save (Model $offer) {
+        $offer->save();
+        return $offer;
     }
 }

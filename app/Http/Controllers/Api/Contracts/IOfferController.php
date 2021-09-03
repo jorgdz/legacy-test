@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Models\Stage;
+use App\Models\Offer;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreStageRequest;
+use App\Http\Requests\StoreOfferRequest;
 
-interface IStageController
+interface IOfferController
 {
     /**
      * @OA\Get(
-     *   path="/api/stages",
-     *   tags={"Etapas"},
+     *   path="/api/offers",
+     *   tags={"Ofertas Académicas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar las etapas",
-     *   description="Muestra todas las etapas paginadas en formato JSON",
-     *   operationId="getAllStages",
+     *   summary="Listar las ofertas académicas",
+     *   description="Muestra todas las ofertas académicas paginadas en formato JSON",
+     *   operationId="getAllOffers",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -79,14 +79,14 @@ interface IStageController
 
     /**
      * @OA\Post(
-     *   path="/api/stages",
-     *   tags={"Etapas"},
+     *   path="/api/offers",
+     *   tags={"Ofertas Académicas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear etapa",
-     *   description="Crear una nueva etapa.",
-     *   operationId="addStage",
+     *   summary="Crear oferta académica",
+     *   description="Crear una nueva oferta académica.",
+     *   operationId="addOffer",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -98,18 +98,8 @@ interface IStageController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="stg_name",
-     *           description="Nombre de la etapa",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="stg_description",
-     *           description="Descripción asociada a la etapa",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
      *           property="status_id",
-     *           description="Estado de la etapa",
+     *           description="Estado de la oferta",
      *           type="integer",
      *         ),
      *       ),
@@ -123,18 +113,18 @@ interface IStageController
      * )
      *
      */
-    public function store (StoreStageRequest $request);
+    public function store (StoreOfferRequest $request);
 
     /**
      * @OA\Get(
-     *   path="/api/stages/{stage}",
-     *   tags={"Etapas"},
+     *   path="/api/offers/{offer}",
+     *   tags={"Ofertas Académicas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener información de una etapa",
-     *   description="Muestra información específica de una etapa.",
-     *   operationId="showStage",
+     *   summary="Obtener información de una oferta académica",
+     *   description="Muestra información específica de una oferta académica.",
+     *   operationId="showOffer",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -146,8 +136,8 @@ interface IStageController
      *     ),
      *   ),
      *   @OA\Parameter(
-     *     name="stage",
-     *     description="Id de la etapa",
+     *     name="offer",
+     *     description="Id de la oferta",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -163,21 +153,21 @@ interface IStageController
      * )
      *
      */
-    public function show(Request $request,Stage $stage);
+    public function show(Request $request,Offer $offer);
 
     /**
      * @OA\Put(
-     *   path="/api/stages/{stage}",
-     *   tags={"Etapas"},
+     *   path="/api/offers/{offer}",
+     *   tags={"Ofertas Académicas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar información de una etapa",
-     *   description="Actualizar información de una etapa.",
-     *   operationId="updateStage",
+     *   summary="Actualizar información de una oferta académica",
+     *   description="Actualizar información de una oferta académica.",
+     *   operationId="updateOffer",
      *   @OA\Parameter(
-     *     name="stage",
-     *     description="Id de la etapa",
+     *     name="offer",
+     *     description="Id de la oferta",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -196,18 +186,8 @@ interface IStageController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="stg_name",
-     *           description="Nombre de la etapa",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="stg_description",
-     *           description="Descripción de la etapa",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
      *           property="status_id",
-     *           description="Estado de la etapa",
+     *           description="Estado de la oferta",
      *           type="integer",
      *         ),
      *       ),
@@ -221,20 +201,20 @@ interface IStageController
      * )
      *
      */
-    public function update(StoreStageRequest $request, Stage $stage);
+    public function update(StoreOfferRequest $request, Offer $offer);
 
      /**
      * @OA\Delete(
-     *   path="/api/stages/{stage}",
-     *   tags={"Etapas"},
+     *   path="/api/offers/{offer}",
+     *   tags={"Ofertas Académicas"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar una etapa",
-     *   description="Eliminar una etapa por Id",
+     *   summary="Eliminar una oferta académica",
+     *   description="Eliminar una oferta académica por Id",
      *   operationId="deleteStage",
      *   @OA\Parameter(
-     *     name="stage",
+     *     name="offer",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -263,5 +243,5 @@ interface IStageController
      * )
      *
      */
-    public function destroy(Stage $stage);
+    public function destroy(Offer $offer);
 }

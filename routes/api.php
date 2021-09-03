@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\ClassRoomController;
 use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\PeriodStageController;
 use App\Http\Controllers\Api\TypePeriodController;
+use App\Http\Controllers\Api\UserProfileController;
+use App\Http\Controllers\Api\OfferController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -181,3 +183,12 @@ Route::get('/periodstages/{periodstage}', [PeriodStageController::class, 'show']
 Route::post('/periodstages', [PeriodStageController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:periodStages-crear-periodoEtapa'
 Route::put('/periodstages/{periodstage}', [PeriodStageController::class, 'update'])->middleware(['auth:sanctum']);//, 'permission:periodStages-actualizar-periodoEtapa'
 Route::delete('/periodstages/{periodstage}', [PeriodStageController::class, 'destroy'])->middleware(['auth:sanctum']);//, 'permission:periodStages-borrar-periodoEtapa'
+
+/*
+ * Offers
+ */
+Route::get('/offers', [OfferController::class, 'index'])->middleware(['auth:sanctum']);//, 'permission:offers-listar-ofertas'
+Route::get('/offers/{offer}', [OfferController::class, 'show'])->middleware(['auth:sanctum']);//, 'permission:offers-obtener-oferta'
+Route::post('/offers', [OfferController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:offers-crear-oferta'
+Route::put('/offers/{offer}', [OfferController::class, 'update'])->middleware(['auth:sanctum']);//, 'permission:offers-actualizar-oferta'
+Route::delete('/offers/{offer}', [OfferController::class, 'destroy'])->middleware(['auth:sanctum']);//, 'permission:offers-borrar-oferta'

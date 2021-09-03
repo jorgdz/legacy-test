@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 use App\Exceptions\Custom\NotFoundException;
+use App\Models\UserProfile;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 
 class UserRepository extends BaseRepository
@@ -82,6 +83,12 @@ class UserRepository extends BaseRepository
         if ($query == null) 
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
 
+        if ($query->userProfiles->count()==0)
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+        
+        if ($query->userProfiles[0]->roles->count()==0)
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
+
         $query->userProfiles[0]->roles->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
         $query->userProfiles[0]->roles[0]->permissions->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
         //unset($array2['pivot']['created_at']);
@@ -100,6 +107,12 @@ class UserRepository extends BaseRepository
         }])->find($user_id);
         if ($query == null) 
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
+        
+        if ($query->userProfiles->count()==0)
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+        
+        if ($query->userProfiles[0]->roles->count()==0)
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
 
         $query->userProfiles[0]->roles->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
         $query->userProfiles[0]->roles[0]->permissions->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
@@ -113,6 +126,10 @@ class UserRepository extends BaseRepository
      */
     public function saveRolesbyUserProfile ($array_roles,$userProfile) {
         $userProfile->syncRoles($array_roles);
-        return $array_roles;
+        if($userProfile->roles->count()==0)
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
+        $userProfile->with('roles.permissions')->get();
+        //$userProfile->roles->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
+        return $userProfile;
     }
 }

@@ -63,10 +63,6 @@ class StageController extends Controller implements IStageController
      */
     public function store (StoreStageRequest $request) {
         $stageRequest = $request->all();
-        $stagePreview = Stage::where('stg_name','=',$stageRequest['stg_name'])->get();
-        if ($stagePreview->isNotEmpty())
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Stage::class)]));
-        
         $stage = new Stage($stageRequest);
         return $this->success($this->stageCache->save($stage));
     }
@@ -80,10 +76,6 @@ class StageController extends Controller implements IStageController
      */
     public function update (StoreStageRequest $request, Stage $stage) {
         $stageRequest = $request->all();
-        $stagePreview = Stage::where('stg_name','=',$stageRequest['stg_name'])->get();
-        if ($stagePreview->isNotEmpty() && $stageRequest['stg_name'] != $stage['stg_name'] )
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Stage::class)]));
-
         $stage->fill($stageRequest);
         if ($stage->isClean())
             throw new UnprocessableException(__('messages.nochange'));
