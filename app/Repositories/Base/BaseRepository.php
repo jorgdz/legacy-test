@@ -56,7 +56,7 @@ class BaseRepository implements IBaseRepository
         $type_sort = $request->type_sort ?: 'desc';
 
         return $query->orderBy($sort, $type_sort)
-            ->simplePaginate($request->size ?: 100);
+            ->paginate($request->size ?: 100);
     }
 
     /**
