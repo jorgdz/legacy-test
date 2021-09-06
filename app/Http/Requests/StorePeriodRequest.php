@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePeriodRequest extends FormRequest
@@ -23,10 +24,11 @@ class StorePeriodRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'campus_id' => 'required',
-            'type_period_id' => 'required',
-            'status_id' => 'required'
+        $rules = [
+            'campus_id' => 'required|integer|exists:tenant.campus,id',
+            'type_period_id' => 'required|integer|exists:tenant.type_periods,id',
+            'status_id' => 'required|integer|exists:tenant.status,id'
         ];
+        return $rules;
     }
 }

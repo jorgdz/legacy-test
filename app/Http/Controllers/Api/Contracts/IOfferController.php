@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\Contracts;
 
 use App\Models\Offer;
+use App\Models\Period;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOfferRequest;
+use App\Http\Requests\StoreOfferPeriodRequest;
 
 interface IOfferController
 {
@@ -212,7 +214,7 @@ interface IOfferController
      *   },
      *   summary="Eliminar una oferta académica",
      *   description="Eliminar una oferta académica por Id",
-     *   operationId="deleteStage",
+     *   operationId="deleteOffer",
      *   @OA\Parameter(
      *     name="offer",
      *     in="path",
@@ -244,4 +246,300 @@ interface IOfferController
      *
      */
     public function destroy(Offer $offer);
+
+    /**
+     * @OA\Get(
+     *   path="/api/offers/{offer}/periods",
+     *   tags={"Periodos por oferta académica"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener periodos a partir de oferta académica",
+     *   description="Muestra los periodos asociados a la oferta académica.",
+     *   operationId="getPeriodsByOffer",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="offer",
+     *     description="Oferta",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showPeriodsByOffer (Request $request, Offer $offer);
+
+    /**
+     * @OA\Get(
+     *   path="/api/offers/{offer}/periods/{period}",
+     *   tags={"Periodos por oferta académica"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener periodo a partir de oferta académica",
+     *   description="Muestra el periodo asociado a la oferta académica.",
+     *   operationId="getPeriodByOffer",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="offer",
+     *     description="Oferta",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="period",
+     *     description="Periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showPeriodByOffer (Request $request, Offer $offer, Period $period);
+
+    /**
+     * @OA\Post(
+     *   path="/api/offers/{offer}/periods",
+     *   tags={"Periodos por oferta académica"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Asigna un periodo a una oferta académica.",
+     *   description="Asigna un periodo a una oferta académica.",
+     *   operationId="addOfferPeriod",
+     *   @OA\Parameter(
+     *     name="offer",
+     *     description="Oferta",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="period_id",
+     *           description="Periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Estado de la oferta",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function saveOfferPeriod (StoreOfferPeriodRequest $request, Offer $offer);
+    
+    /**
+     * @OA\Put(
+     *   path="/api/offers/{offer}/periods/{period}",
+     *   tags={"Periodos por oferta académica"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Cambiar un periodo a una oferta académica y periodo previo.",
+     *   description="Cambiar un periodo a una oferta académica y periodo previo.",
+     *   operationId="updateOfferPeriod",
+     *   @OA\Parameter(
+     *     name="offer",
+     *     description="Oferta",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     * @OA\Parameter(
+     *     name="period",
+     *     description="Periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="period_id",
+     *           description="Periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Estado de la oferta",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updateOfferPeriod (StoreOfferPeriodRequest $request, Offer $offer,Period $period);
+
+    /**
+     * @OA\Delete(
+     *   path="/api/offers/{offer}/periods/{period}",
+     *   tags={"Periodos por oferta académica"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Eliminar un periodo por oferta académica",
+     *   description="Eliminar un periodo por oferta académica",
+     *   operationId="deleteOfferPeriod",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="offer",
+     *     in="path",
+     *     description="Oferta",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="period",
+     *     description="Periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroyOfferPeriod(Request $request, Offer $offer,Period $period);
+
+    /**
+     * @OA\Delete(
+     *   path="/api/offers/{offer}/periods",
+     *   tags={"Periodos por oferta académica"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Eliminar una oferta académica",
+     *   description="Eliminar una oferta académica por Id",
+     *   operationId="deleteOfferPeriods",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="offer",
+     *     in="path",
+     *     description="Oferta",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroyOfferPeriods(Request $request, Offer $offer);
 }

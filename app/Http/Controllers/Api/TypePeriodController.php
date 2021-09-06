@@ -63,9 +63,6 @@ class TypePeriodController extends Controller implements ITypePeriodController
      */
     public function store (StoreTypePeriodRequest $request) {
         $typePeriodRequest = $request->all();
-        $typePeriodPreview = TypePeriod::where('tp_name','=',$typePeriodRequest['tp_name'])->get();
-        if ($typePeriodPreview->isNotEmpty())
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(TypePeriod::class)]));
         
         $typePeriod = new TypePeriod($typePeriodRequest);
         return $this->success($this->typePeriodCache->save($typePeriod));
@@ -80,9 +77,6 @@ class TypePeriodController extends Controller implements ITypePeriodController
      */
     public function update (StoreTypePeriodRequest $request, TypePeriod $typePeriod) {
         $typePeriodRequest = $request->all();
-        $typePeriodPreview = TypePeriod::where('tp_name','=',$typePeriodRequest['tp_name'])->get();
-        if ($typePeriodPreview->isNotEmpty() && $typePeriodRequest['tp_name'] != $typePeriod['tp_name'] )
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(TypePeriod::class)]));
 
         $typePeriod->fill($typePeriodRequest);
         if ($typePeriod->isClean())

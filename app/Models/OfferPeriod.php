@@ -3,22 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
-class Offer extends Model
+class OfferPeriod extends Model
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
+    use HasFactory, UsesTenantConnection;
 
+    public $timestamps = false;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'status_id',
+        'offer_id',
+        'period_id'
     ];
 
     /**
@@ -26,24 +27,29 @@ class Offer extends Model
      *
      * @var string
      */
-    protected $table = 'offers';
+    protected $table = 'offer_period';
 
-    protected $dates = ['deleted_at'];
-
-    protected $hidden = ['created_at','updated_at','deleted_at'];
-
-    //protected $softCascade = ['periodsOffer'];
 
     /**
-     * offer_period
+     * offers
      *
      * @return void
      */
-    public function offerPeriods ()
+    public function offers ()
     {
-    	return $this->hasMany(OfferPeriod::class);
+        return $this->belongsTo(Offer::class, 'offer_id');
     }
 
+    /**
+     * offers
+     *
+     * @return void
+     */
+    public function periods ()
+    {
+        return $this->belongsTo(Period::class, 'period_id');
+    }
+    
     /**
      * status
      *

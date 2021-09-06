@@ -34,7 +34,7 @@ class Period extends Model
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
-    // protected $softCascade = ['periodStages', 'courses', 'hourhandPeriod', 'offerPeriod', 'studentRecords'];
+     protected $softCascade = ['offerPeriod'];//, 'periodStages', 'courses', 'hourhandPeriod', 'studentRecords'];
 
     /**
      * hourhandPeriod
@@ -51,10 +51,10 @@ class Period extends Model
      *
      * @return void
      */
-    /*public function offerPeriod ()
+    public function offerPeriod ()
     {
         return $this->hasMany(OfferPeriod::class);
-    }*/
+    }
 
     /**
      * periodStages

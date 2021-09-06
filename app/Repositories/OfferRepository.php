@@ -27,4 +27,17 @@ class OfferRepository extends BaseRepository
         $offer->save();
         return $offer;
     }
+
+    /**
+     * delete a information
+     * @param array $condition
+     *
+     * @return model
+     *
+     */
+    public function destroy (Model $model) {
+        $model->offerPeriods()->delete();
+        $model->delete();
+        return $model;
+    }
 }

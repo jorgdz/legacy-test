@@ -251,7 +251,7 @@ interface IPeriodController
      *           property="user_profile_id",
      *           description="Id del perfil de usuario",
      *           type="integer",
-     *         ),
+     *         ), 
      *       ),
      *     ),
      *   ),
@@ -264,4 +264,84 @@ interface IPeriodController
      *
      */
     public function destroy(Period $period);
+
+    /**
+     * @OA\Get(
+     *   path="/api/periods/{period}/offers",
+     *   tags={"Oferta académica por periodo"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener ofertas académicas a partir del periodo",
+     *   description="Muestra los ofertas académicas asociados a un periodo.",
+     *   operationId="getPeriodOffer",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="period",
+     *     description="Id del periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showOffersByPeriod (Request $request, Period $period);
+
+    /**
+     * @OA\Delete(
+     *   path="/api/periods/{period}/offers",
+     *   tags={"Oferta académica por periodo"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Eliminar ofertas académicas a partir del periodo",
+     *   description="Eliminar ofertas académicas a partir del periodo",
+     *   operationId="deletePeriodOffer",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="period",
+     *     in="path",
+     *     description="Periodo",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroyOffersByPeriod(Request $request, Period $period);
 }

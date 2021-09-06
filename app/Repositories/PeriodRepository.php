@@ -28,4 +28,17 @@ class PeriodRepository extends BaseRepository
         $period->save();
         return $period;
     }
+
+    /**
+     * delete a information
+     * @param array $condition
+     *
+     * @return model
+     *
+     */
+    public function destroy (Model $model) {
+        $model->offerPeriod()->delete();
+        $model->delete();
+        return $model;
+    }
 }
