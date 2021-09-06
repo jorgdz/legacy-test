@@ -13,6 +13,8 @@ use App\Http\Controllers\Api\PeriodController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\AsTenantController;
+use App\Http\Controllers\Api\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\ClassRoomController;
 use App\Http\Controllers\Api\PeriodStageController;
@@ -55,6 +57,12 @@ require __DIR__ . "/channels/matter-status.php";
  */
 Route::post('/login', [AuthController::class, 'login']);
 
+/**
+ * Reset Password
+ */
+Route::post('/olvidar-clave', [ForgotPasswordController::class, 'sendResetLinkResponse'])->name('passwords.send');
+Route::get('/restablecer-clave/{token}', [ResetPasswordController::class, 'verifyToken'])->name('passwords.verify');
+Route::post('/restablecer-clave', [ResetPasswordController::class, 'sendResetResponse'])->name('passwords.reset');
 /**
  *
  * Current tenant
@@ -127,10 +135,10 @@ Route::delete('/campus/{campus}', [CampusController::class, 'destroy'])->middlew
 /**
  * Parallels
  */
-Route::get('/parallels', [ParallelsController::class, 'index'])->middleware(['auth:sanctum', 'permission:parallels-listar-paralelos']);
-Route::get('/parallels/{parallel}', [ParallelsController::class, 'show'])->middleware(['auth:sanctum', 'permission:parallels-obtener-paralelo']);
-Route::post('/parallels', [ParallelsController::class, 'store'])->middleware(['auth:sanctum', 'permission:parallels-crear-paralelo']);
-Route::put('/parallels/{parallel}', [ParallelsController::class, 'update'])->middleware(['auth:sanctum', 'permission:parallels-actualizar-paralelo']);
+Route::get('/parallels', [ParallelController::class, 'index'])->middleware(['auth:sanctum', 'permission:parallels-listar-paralelos']);
+Route::get('/parallels/{parallel}', [ParallelController::class, 'show'])->middleware(['auth:sanctum', 'permission:parallels-obtener-paralelo']);
+Route::post('/parallels', [ParallelController::class, 'store'])->middleware(['auth:sanctum', 'permission:parallels-crear-paralelo']);
+Route::put('/parallels/{parallel}', [ParallelController::class, 'update'])->middleware(['auth:sanctum', 'permission:parallels-actualizar-paralelo']);
 Route::delete('/parallels/{parallel}', [ParallelController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:campus-borrar-paralelo']);
 
 /**
@@ -201,4 +209,3 @@ Route::post('/offers', [OfferController::class, 'store'])->middleware(['auth:san
 Route::patch('/offers/{offer}', [OfferController::class, 'update'])->middleware(['auth:sanctum', 'permission:offers-actualizar-oferta']);
 Route::put('/offers/{offer}', [OfferController::class, 'update'])->middleware(['auth:sanctum', 'permission:offers-actualizar-oferta']);
 Route::delete('/offers/{offer}', [OfferController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:offers-borrar-oferta']);
-

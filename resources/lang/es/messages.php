@@ -11,6 +11,7 @@ return [
     'not-found' => 'No se encontró la URL especificada.',
     'no-content' => 'No hay contenido.',
     'no-current-tenant' => 'Actualmente no hay un inquilino.',
-    'bad-request' => 'Petición o solicitud Incorrecta.'
+    'bad-request' => 'Petición o solicitud Incorrecta.',
+    'not-email' => 'No se pudo enviar el correo electrónico a este nombre de usuario'
 ];
 ?>

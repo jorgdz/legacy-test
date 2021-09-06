@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\MailResetPasswordNotification;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -59,6 +60,18 @@ class User extends Authenticatable
     ];
 
     /**
+     * sendPasswordResetNotification
+     *
+     * @param  mixed $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $url = app('currentTenant')->domain_client.'/'.'restablecer-clave'.'/'.$token;
+        $this->notify(new MailResetPasswordNotification($url));
+    }
+
+    /**
      * userProfiles
      *
      * @return void
@@ -98,4 +111,5 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Collaborator::class, 'id', 'user_id');
     }
+
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\TenantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect(config('app.url'));
 });
+
+Route::get('/restore', [ForgotPasswordController::class, 'reset']);
 
