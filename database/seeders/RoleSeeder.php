@@ -21,7 +21,7 @@ class RoleSeeder extends Seeder
 
         DB::connection('tenant')->table('permissions')->insert([
             /**
-             * Perfiles
+             * Perfiles 1-6
              */
             [
                 'name' => 'profiles-listar-perfil',
@@ -72,7 +72,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'profiles'
             ],
             /**
-             * Roles
+             * Roles 7-11
              */
             [
                 'name' => 'roles-listar-roles',
@@ -115,7 +115,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'roles'
             ],
             /**
-             * Permisos
+             * Permisos 12-16
              */
             [
                 'name' => 'permissions-listar-permisos',
@@ -158,7 +158,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'permissions'
             ],
             /**
-             * Compañias
+             * Compañias 17-21
              */
             [
                 'name' => 'companies-listar-companias',
@@ -201,7 +201,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'companies'
             ],
             /**
-             * Sedes
+             * Sedes 22-26
              */
             [
                 'name' => 'campus-listar-sedes',
@@ -244,7 +244,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'campus'
             ],
             /**
-             * Usuarios
+             * Usuarios 27-35
              */
             [
                 'name' => 'users-listar-perfiles-usuario',
@@ -319,7 +319,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'users'
             ],
             /**
-             * Paralelos
+             * Paralelos 36-40
              */
             [
                 'name' => 'parallels-listar-paralelos',
@@ -362,7 +362,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'parallels'
             ],
             /**
-             * Aulas
+             * Aulas 41-45
              */
             [
                 'name' => 'classrooms-listar-aulas',
@@ -405,7 +405,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'classrooms'
             ],
             /**
-             * Pensum
+             * Pensum 46-50
              */
             [
                 'name' => 'pensums-listar-pensums',
@@ -448,7 +448,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'pensums'
             ],
             /**
-             * Etapas
+             * Etapas 51-55
              */
             [
                 'name' => 'stages-listar-etapas',
@@ -491,7 +491,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'stages'
             ],
             /**
-             * Tipos de Periodos
+             * Tipos de Periodos 56-60
              */
             [
                 'name' => 'typePeriods-listar-tiposPeriodos',
@@ -534,7 +534,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typePeriods'
             ],
             /**
-             *  Mallas academicas [Meshs] JS
+             *  Mallas academicas [Meshs] JS 61-65
              */
             [
                 'name' => 'meshs-listar-mallas',
@@ -577,7 +577,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'meshs'
             ],
             /**
-             * Tipo Calificaciones
+             * Tipo Calificaciones 66-70
              */
             [
                 'name' => 'type-califications-listar-type-califications',
@@ -620,7 +620,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typeCalifications'
             ],
             /**
-             * Tipos de Materias
+             * Tipos de Materias 71-75
              */
             [
                 'name' => 'type-matters-listar-type-matters',
@@ -663,7 +663,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typeMatters'
             ],
             /**
-             * Materias
+             * Materias 76-80
              */
             [
                 'name' => 'matters-listar-matters',
@@ -706,7 +706,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'matters'
             ],
             /**
-             * Periodos por etapas
+             * Periodos por etapas 81-85
              */
             [
                 'name' => 'periodStages-listar-periodoEtapa',
@@ -749,7 +749,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'periodStages'
             ],
             /**
-             * User Colaboradores
+             * User Colaboradores 86-87
              */
             [
                 'name' => 'users-lista-usuario-diferente-colaborador',
@@ -766,6 +766,135 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1,
                 'parent_name' => 'users'
+            ],
+            /**
+             * Periodos 88-92
+             */
+            [
+                'name' => 'periods-listar-periodos',
+                'alias' => 'Listar periodos',
+                'description' => 'Listar todos los periodos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periods'
+            ],
+            [
+                'name' => 'periods-obtener-periodo',
+                'alias' => 'Obtener periodo',
+                'description' => 'Obtener un periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periods'
+            ],
+            [
+                'name' => 'periods-crear-periodo',
+                'alias' => 'Crear periodo',
+                'description' => 'Agregar un periodo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periods'
+            ],
+            [
+                'name' => 'periods-actualizar-periodo',
+                'alias' => 'Actualizar periodo',
+                'description' => 'Actualizar un periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periods'
+            ],
+            [
+                'name' => 'periods-borrar-periodo',
+                'alias' => 'Borrar periodo',
+                'description' => 'Borrar un periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periods'
+            ],
+            /**
+             * Materias por Malla 93-97
+             */
+            [
+                'name' => 'mattermesh-listar-materias-mallas',
+                'alias' => 'Listar materias por malla',
+                'description' => 'Listar todas las materias por malla',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mattermesh'
+            ],
+            [
+                'name' => 'mattermesh-obtener-materias-mallas',
+                'alias' => 'Obtener un registro relacionado matter_mesh',
+                'description' => 'Obtener materias relacionadas con el identificador de una malla',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mattermesh'
+            ],
+            [
+                'name' => 'mattermesh-crear-materias-mallas',
+                'alias' => 'Crear un registro relacionado matter_mesh',
+                'description' => 'Agregar un registro relacional entre materia y malla',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mattermesh'
+            ],
+            [
+                'name' => 'mattermesh-actualizar-materias-mallas',
+                'alias' => 'Actualizar un registro relacionado matter_mesh',
+                'description' => 'Actualizar un registro relacional entre materia y malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mattermesh'
+            ],
+            [
+                'name' => 'mattermesh-borrar-materias-mallas',
+                'alias' => 'Borrar un registro relacionado matter_mesh',
+                'description' => 'Borrar un registro relacional entre materia y malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mattermesh'
+            ],
+            /**
+             * Ofertas 97-101
+             */
+            [
+                'name' => 'offers-listar-ofertas',
+                'alias' => 'Listar ofertas',
+                'description' => 'Listar todaslas ofertas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offers'
+            ],
+            [
+                'name' => 'offers-obtener-oferta',
+                'alias' => 'Obtener oferta',
+                'description' => 'Obtener una oferta por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offers'
+            ],
+            [
+                'name' => 'offers-crear-oferta',
+                'alias' => 'Crear oferta',
+                'description' => 'Agregar una oferta',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offers'
+            ],
+            [
+                'name' => 'offers-actualizar-oferta',
+                'alias' => 'Actualizar oferta',
+                'description' => 'Actualizar una oferta por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offers'
+            ],
+            [
+                'name' => 'offers-borrar-oferta',
+                'alias' => 'Borrar oferta',
+                'description' => 'Borrar una oferta por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offers'
             ],
         ]);
 
@@ -908,6 +1037,35 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 86, 'role_id' => 1],
             ['permission_id' => 87, 'role_id' => 1],
+            /**
+             * Periodos
+             */
+            ['permission_id' => 88, 'role_id' => 1],
+            ['permission_id' => 89, 'role_id' => 1],
+            ['permission_id' => 90, 'role_id' => 1],
+            ['permission_id' => 91, 'role_id' => 1],
+            ['permission_id' => 92, 'role_id' => 1],
+            /**
+             * Materias por Malla
+             */
+            ['permission_id' => 93, 'role_id' => 1],
+            ['permission_id' => 94, 'role_id' => 1],
+            ['permission_id' => 95, 'role_id' => 1],
+            ['permission_id' => 96, 'role_id' => 1],
+            ['permission_id' => 97, 'role_id' => 1],
+            /**
+             * Ofertas
+             */
+            ['permission_id' => 98, 'role_id' => 1],
+            ['permission_id' => 99, 'role_id' => 1],
+            ['permission_id' => 100, 'role_id' => 1],
+            ['permission_id' => 101, 'role_id' => 1],
+            ['permission_id' => 102, 'role_id' => 1],
+            /**
+             * 
+             * Permisos de Administrador
+             * 
+             */
         ]);
     }
 }
