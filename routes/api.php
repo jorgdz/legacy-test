@@ -75,10 +75,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 /**
  * Users
  */
+Route::get('/users/uncollaborator', [UserController::class, 'showUsersUnCollaborator'])->middleware(['auth:sanctum',  'permission:users-lista-usuario-diferente-colaborador']);
 Route::get('/users', [UserController::class, 'index'])->middleware(['auth:sanctum']);
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth:sanctum']);
 Route::post('/users', [UserController::class, 'store'])->middleware(['auth:sanctum']);
-
+Route::post('/users/change/password', [UserController::class, 'changePassword'])->middleware(['auth:sanctum',  'permission:users-change-password']);
 /**
  * UserProfiles
  */
@@ -91,6 +92,7 @@ Route::delete('/users/{user}/profiles', [UserController::class, 'destroyProfiles
 Route::get('/users/{user}/roles', [UserController::class, 'showRolesbyUser'])->middleware(['auth:sanctum' , 'permission:users-listar-roles-por-usuario']);
 Route::get('/users/{user}/profiles/{profile}/roles', [UserController::class, 'showRolesbyUserProfile'])->middleware(['auth:sanctum' , 'permission:users-listar-roles-por-usuario-y-perfil']);
 Route::post('/users/{user}/profiles/{profile}/roles', [UserController::class, 'saveRolesbyUserProfile'])->middleware(['auth:sanctum' , 'permission:users-sincronizar-roles-por-usuario-y-perfil']);
+
 
 /**
  * Profiles

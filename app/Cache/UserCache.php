@@ -123,4 +123,18 @@ class UserCache extends BaseCache {
         $this->forgetCache('users');
         return $this->repository->saveRolesbyUserProfile($array_roles,$userProfile);
     }
+
+
+     /**
+     * allUserNotCollaborator
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function allUserNotCollaborator($request)
+    {
+        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
+            return $this->repository->showNotColaborador($request);
+        });
+    }
 }

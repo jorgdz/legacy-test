@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\Custom\NotContentException;
 use App\Models\User;
 use App\Traits\RestResponse;
 use Illuminate\Http\Response;
@@ -12,6 +13,7 @@ use App\Repositories\Base\BaseRepository;
 use App\Exceptions\Custom\NotFoundException;
 use App\Models\UserProfile;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
+use Illuminate\Http\Request;
 
 class UserRepository extends BaseRepository
 {
@@ -133,4 +135,20 @@ class UserRepository extends BaseRepository
         //$userProfile->roles->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
         return $userProfile;
     }
+
+
+
+      /**
+     * find information by conditionals
+     *
+     * @return void
+     *
+     */
+    public function showNotColaborador (Request $request) {
+        $response =  collect($this->model::with('collaborators')->get())
+            ->whereNull('collaborators')->values()->all();
+
+        return $response;
+    }
+
 }

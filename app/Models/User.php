@@ -57,15 +57,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     /**
      * userProfiles
      *
      * @return void
      */
-    public function userProfiles ()
+    public function userProfiles()
     {
-    	return $this->hasMany(UserProfile::class);
+        return $this->hasMany(UserProfile::class);
     }
 
     /**
@@ -73,7 +73,7 @@ class User extends Authenticatable
      *
      * @return void
      */
-    public function status ()
+    public function status()
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
@@ -83,9 +83,19 @@ class User extends Authenticatable
      *
      * @return void
      */
-    public function identifications ()
+    public function identifications()
     {
-    	return $this->hasMany(Identification::class , 'id');
+        return $this->hasMany(Identification::class, 'id');
     }
-    
+
+
+    /**
+     * collaborators
+     *
+     * @return void
+     */
+    public function collaborators()
+    {
+        return $this->belongsTo(Collaborator::class, 'id', 'user_id');
+    }
 }

@@ -748,6 +748,25 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'periodStages'
             ],
+            /**
+             * User Colaboradores
+             */
+            [
+                'name' => 'users-lista-usuario-diferente-colaborador',
+                'alias' => 'Listar usuario que no sean colaborador',
+                'description' => 'Listar usuario que no sean colaborador desde el usuario administrador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'users'
+            ],
+            [
+                'name' => 'users-change-password',
+                'alias' => 'Cambiar la contraseña del perfil',
+                'description' => 'Cambiar la contraseña de un usuario',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'users'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -884,6 +903,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 83, 'role_id' => 1],
             ['permission_id' => 84, 'role_id' => 1],
             ['permission_id' => 85, 'role_id' => 1],
+            /**
+             * User por Etapas
+             */
+            ['permission_id' => 86, 'role_id' => 1],
+            ['permission_id' => 87, 'role_id' => 1],
         ]);
     }
 }

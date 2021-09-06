@@ -10,6 +10,7 @@ use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotFoundException;
 use Illuminate\Auth\AuthenticationException;
 use App\Exceptions\Custom\BadRequestException;
+use App\Exceptions\Custom\NotContentException;
 use Illuminate\Validation\ValidationException;
 use App\Exceptions\Custom\UnprocessableException;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -108,6 +109,7 @@ class Handler extends ExceptionHandler
                 if ($exception instanceof UnprocessableException
                     || $exception instanceof ConflictException
                     || $exception instanceof BadRequestException
+                    || $exception instanceof NotContentException
                     || $exception instanceof NotFoundException
                     ) {
 

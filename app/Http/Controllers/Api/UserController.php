@@ -13,6 +13,7 @@ use App\Cache\UserProfileCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Exceptions\Custom\ConflictException;
+use App\Exceptions\Custom\NotContentException;
 use App\Exceptions\Custom\NotFoundException;
 use App\Http\Requests\StoreUserProfileRequest;
 use App\Exceptions\Custom\UnprocessableException;
@@ -221,5 +222,21 @@ class UserController extends Controller implements IUserController
         
         $array_roles = $request['roles'];
         return $this->success($this->repoUser->saveRolesbyUserProfile($array_roles,$userProfile));
+    }
+
+    /**
+     * showUsersUnCollaborator
+     *
+     * @param  mixed $request
+     * @param  mixed $user
+     * @return void
+     */
+    public function showUsersUnCollaborator ( Request $request ) {
+        $users = $this->repoUser->allUserNotCollaborator($request);
+
+        if(!$users)
+            throw new NotContentException(__("messages.no-content"));
+
+        return $this->success($users);
     }
 }
