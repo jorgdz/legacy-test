@@ -8,6 +8,8 @@ use App\Repositories\Base\BaseRepository;
 
 class PeriodRepository extends BaseRepository
 {
+    protected $relations = ['campus', 'typePeriods', 'status'];
+
     /**
      * __construct
      *

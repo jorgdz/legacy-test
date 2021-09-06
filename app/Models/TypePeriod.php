@@ -43,7 +43,7 @@ class TypePeriod extends Model
      */
     public function periods ()
     {
-    	return $this->hasMany(Periods::class);
+    	return $this->hasMany(Period::class);
     }
     
     /**

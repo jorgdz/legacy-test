@@ -110,6 +110,7 @@ Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])
 Route::get('/companies', [CompanyController::class, 'index'])->middleware(['auth:sanctum', 'permission:companies-listar-companias']);
 Route::get('/companies/{company}', [CompanyController::class, 'show'])->middleware(['auth:sanctum', 'permission:companies-obtener-compania']);
 Route::post('/companies', [CompanyController::class, 'store'])->middleware(['auth:sanctum', 'permission:companies-crear-compania']);
+Route::patch('/companies/{company}', [CompanyController::class, 'update'])->middleware(['auth:sanctum', 'permission:companies-actualizar-compania']);
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->middleware(['auth:sanctum', 'permission:companies-actualizar-compania']);
 Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:companies-borrar-compania']);
 /**
@@ -119,6 +120,7 @@ Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->mi
 Route::get('/campus', [CampusController::class, 'index'])->middleware(['auth:sanctum', 'permission:campus-listar-sedes']);
 Route::get('/campus/{campus}', [CampusController::class, 'show'])->middleware(['auth:sanctum', 'permission:campus-obtener-sede']);
 Route::post('/campus', [CampusController::class, 'store'])->middleware(['auth:sanctum', 'permission:campus-crear-sede']);
+Route::patch('/campus/{campus}', [CampusController::class, 'update'])->middleware(['auth:sanctum', 'permission:campus-actualizar-sede']);
 Route::put('/campus/{campus}', [CampusController::class, 'update'])->middleware(['auth:sanctum', 'permission:campus-actualizar-sede']);
 Route::delete('/campus/{campus}', [CampusController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:campus-borrar-sede']);
 
@@ -157,6 +159,7 @@ Route::delete('/classrooms/{classroom}', [ClassRoomController::class, 'destroy']
 Route::get('/typePeriods', [TypePeriodController::class, 'index'])->middleware(['auth:sanctum', 'permission:typePeriods-listar-tiposPeriodos']);
 Route::get('/typePeriods/{typePeriod}', [TypePeriodController::class, 'show'])->middleware(['auth:sanctum', 'permission:typePeriods-obtener-tipoPeriodo']);
 Route::post('/typePeriods', [TypePeriodController::class, 'store'])->middleware(['auth:sanctum', 'permission:typePeriods-crear-tipoPeriodo']);
+Route::patch('/typePeriods/{typePeriod}', [TypePeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:typePeriods-actualizar-tipoPeriodo']);
 Route::put('/typePeriods/{typePeriod}', [TypePeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:typePeriods-actualizar-tipoPeriodo']);
 Route::delete('/typePeriods/{typePeriod}', [TypePeriodController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:typePeriods-borrar-tipoPeriodo']);
 
@@ -166,6 +169,7 @@ Route::delete('/typePeriods/{typePeriod}', [TypePeriodController::class, 'destro
 Route::get('/periods', [PeriodController::class, 'index'])->middleware(['auth:sanctum', 'permission:periods-listar-periodos']);
 Route::get('/periods/{period}', [PeriodController::class, 'show'])->middleware(['auth:sanctum', 'permission:periods-obtener-periodo']);
 Route::post('/periods', [PeriodController::class, 'store'])->middleware(['auth:sanctum', 'permission:periods-crear-periodo']);
+Route::patch('/periods/{period}', [PeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:periods-actualizar-periodo']);
 Route::put('/periods/{period}', [PeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:periods-actualizar-periodo']);
 Route::delete('/periods/{period}', [PeriodController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:periods-borrar-periodo']);
 
@@ -194,6 +198,7 @@ Route::delete('/periodstages/{periodstage}', [PeriodStageController::class, 'des
 Route::get('/offers', [OfferController::class, 'index'])->middleware(['auth:sanctum', 'permission:offers-listar-ofertas']);
 Route::get('/offers/{offer}', [OfferController::class, 'show'])->middleware(['auth:sanctum', 'permission:offers-obtener-oferta']);
 Route::post('/offers', [OfferController::class, 'store'])->middleware(['auth:sanctum', 'permission:offers-crear-oferta']);
+Route::patch('/offers/{offer}', [OfferController::class, 'update'])->middleware(['auth:sanctum', 'permission:offers-actualizar-oferta']);
 Route::put('/offers/{offer}', [OfferController::class, 'update'])->middleware(['auth:sanctum', 'permission:offers-actualizar-oferta']);
 Route::delete('/offers/{offer}', [OfferController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:offers-borrar-oferta']);
 
