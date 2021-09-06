@@ -854,7 +854,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'mattermesh'
             ],
             /**
-             * Ofertas 97-101
+             * Ofertas 98-102
              */
             [
                 'name' => 'offers-listar-ofertas',
@@ -895,6 +895,73 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1,
                 'parent_name' => 'offers'
+            ],
+            /**
+             * Oferta periodo 103-110
+             */
+            [
+                'name' => 'offerPeriod-listar-periodos-por-oferta',
+                'alias' => 'Listar periodos por oferta',
+                'description' => 'Listar todos los periodos por oferta',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerperiod'
+            ],
+            [
+                'name' => 'PeriodOffer-listar-ofertas-por-periodo',
+                'alias' => 'Listar oferta por periodo',
+                'description' => 'Listar todas las ofertas por periodo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerperiod'
+            ],
+            [
+                'name' => 'offerPeriod-obtener-periodo-por-oferta',
+                'alias' => 'Obtener un registro relacionado offer_period',
+                'description' => 'Obtener ofertas relacionadas con el identificador de un periodo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerperiod'
+            ],
+            [
+                'name' => 'offerPeriod-crear-periodo-por-oferta',
+                'alias' => 'Crear un registro relacionado offer_period',
+                'description' => 'Agregar un registro relacional entre oferta y periodo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerperiod'
+            ],
+            [
+                'name' => 'offerPeriod-actualizar-periodo-por-oferta',
+                'alias' => 'Actualizar un registro relacionado offer_period',
+                'description' => 'Actualizar un registro relacional entre oferta y periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerperiod'
+            ],
+            [
+                'name' => 'offerPeriod-borrar-periodo-por-oferta',
+                'alias' => 'Borrar un registro relacionado de offer_period',
+                'description' => 'Borrar un registro de oferta especifico relacionado con periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerperiod'
+            ],
+            [
+                'name' => 'offerPeriod-borrar-periodos-por-oferta',
+                'alias' => 'Borrar un registro relacionado offer_period',
+                'description' => 'Borrar los registro relacionados entre oferta y periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerperiod'
+            ],
+            [
+                'name' => 'PeriodOffer-borrar-ofertas-por-periodo',
+                'alias' => 'Borrar un registro relacionado entre offer_period',
+                'description' => 'Borrar los registro relacionados entre periodo y oferta por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerperiod'
             ],
         ]);
 
@@ -1062,10 +1129,37 @@ class RoleSeeder extends Seeder
             ['permission_id' => 101, 'role_id' => 1],
             ['permission_id' => 102, 'role_id' => 1],
             /**
+             * Oferta periodo 103-110
+             */
+            ['permission_id' => 103, 'role_id' => 1],
+            ['permission_id' => 104, 'role_id' => 1],
+            ['permission_id' => 105, 'role_id' => 1],
+            ['permission_id' => 106, 'role_id' => 1],
+            ['permission_id' => 107, 'role_id' => 1],
+            ['permission_id' => 108, 'role_id' => 1],
+            ['permission_id' => 109, 'role_id' => 1],
+            ['permission_id' => 110, 'role_id' => 1],
+            /**
              * 
              * Permisos de Administrador
              * 
              */
+            /**
+             * Tipos de Periodos
+             */
+            ['permission_id' => 56, 'role_id' => 2],
+            ['permission_id' => 57, 'role_id' => 2],
+            ['permission_id' => 58, 'role_id' => 2],
+            ['permission_id' => 59, 'role_id' => 2],
+            ['permission_id' => 60, 'role_id' => 2],
+            /**
+             * Periodos
+             */
+            ['permission_id' => 88, 'role_id' => 2],
+            ['permission_id' => 89, 'role_id' => 2],
+            ['permission_id' => 90, 'role_id' => 2],
+            ['permission_id' => 91, 'role_id' => 2],
+            ['permission_id' => 92, 'role_id' => 2],
         ]);
     }
 }

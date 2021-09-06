@@ -213,14 +213,14 @@ Route::delete('/offers/{offer}', [OfferController::class, 'destroy'])->middlewar
 /**
  * Periodo Oferta
  */
-Route::get('/offers/{offer}/periods', [OfferController::class, 'showPeriodsByOffer'])->middleware(['auth:sanctum']);//, 'permission:offerPeriod-listar-periodos-por-oferta'
-Route::get('/offers/{offer}/periods/{period}', [OfferController::class, 'showPeriodByOffer'])->middleware(['auth:sanctum']);//, 'permission:offerPeriod-obtener-periodo-por-oferta'
-Route::post('/offers/{offer}/periods', [OfferController::class, 'saveOfferPeriod'])->middleware(['auth:sanctum']);//, 'permission:offerPeriod-crear-periodo-por-oferta'
-Route::put('/offers/{offer}/periods/{period}', [OfferController::class, 'updateOfferPeriod'])->middleware(['auth:sanctum']);//, 'permission:offerPeriod-actualizar-periodo-por-oferta'
-Route::delete('/offers/{offer}/periods/{period}', [OfferController::class, 'destroyOfferPeriod'])->middleware(['auth:sanctum']);//, 'permission:offerPeriod-borrar-periodo-por-oferta'
-Route::delete('/offers/{offer}/periods', [OfferController::class, 'destroyOfferPeriods'])->middleware(['auth:sanctum']);//, 'permission:offerPeriod-borrar-periodos-por-oferta'
+Route::get('/offers/{offer}/periods', [OfferController::class, 'showPeriodsByOffer'])->middleware(['auth:sanctum', 'permission:offerPeriod-listar-periodos-por-oferta']);
+Route::get('/offers/{offer}/periods/{period}', [OfferController::class, 'showPeriodByOffer'])->middleware(['auth:sanctum', 'permission:offerPeriod-obtener-periodo-por-oferta']);
+Route::post('/offers/{offer}/periods', [OfferController::class, 'saveOfferPeriod'])->middleware(['auth:sanctum', 'permission:offerPeriod-crear-periodo-por-oferta']);
+Route::put('/offers/{offer}/periods/{period}', [OfferController::class, 'updateOfferPeriod'])->middleware(['auth:sanctum', 'permission:offerPeriod-actualizar-periodo-por-oferta']);
+Route::delete('/offers/{offer}/periods/{period}', [OfferController::class, 'destroyOfferPeriod'])->middleware(['auth:sanctum', 'permission:offerPeriod-borrar-periodo-por-oferta']);
+Route::delete('/offers/{offer}/periods', [OfferController::class, 'destroyOfferPeriods'])->middleware(['auth:sanctum', 'permission:offerPeriod-borrar-periodos-por-oferta']);
 /**
  * Oferta Periodo
  */
-Route::get('/periods/{period}/offers', [PeriodController::class, 'showOffersByPeriod'])->middleware(['auth:sanctum']);//, 'permission:PeriodOffer-listar-ofertas-por-periodo'
-Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffersByPeriod'])->middleware(['auth:sanctum']);//, 'permission:PeriodOffer-borrar-ofertas-por-periodo'
+Route::get('/periods/{period}/offers', [PeriodController::class, 'showOffersByPeriod'])->middleware(['auth:sanctum', 'permission:PeriodOffer-listar-ofertas-por-periodo']);
+Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffersByPeriod'])->middleware(['auth:sanctum', 'permission:PeriodOffer-borrar-ofertas-por-periodo']);
