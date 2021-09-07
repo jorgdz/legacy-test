@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StoreUserProfileRequest;
 use App\Http\Requests\StoreRoleUserProfileRequest;
+use App\Http\Requests\UserChangePasswordFormRequest;
 
 interface IUserController
 {
@@ -636,4 +637,54 @@ interface IUserController
      */
     public function showUsersUnCollaborator (Request $request);
 
+
+     /**
+     * @OA\Put(
+     *   path="/api/users/{user}/change/password",
+     *   tags={"Usuarios"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Cambiar la contraseña del usuario",
+     *   description="Cambiar contraseña de un usuario específico por Id de usuario. Retorna una contraseña randon de 10 caracteres en el parametro {'new_password'}",
+     *   operationId="changePassword",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario que se cambiara la contraseña.",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="0"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario.",
+     *           type="integer",
+     *           example="0"
+     *         ),
+     *          @OA\Property(
+     *           property="status_id",
+     *           description="Estado del tipo de periodo",
+     *           type="integer",
+     *          example="0"
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function changePassword(UserChangePasswordFormRequest $request, User $user);
 }

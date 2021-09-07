@@ -78,11 +78,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 /**
  * Users
  */
+Route::put('/users/{user}/change/password', [UserController::class, 'changePassword'])->middleware(['auth:sanctum',  'permission:users-change-password']);
 Route::get('/users/uncollaborator', [UserController::class, 'showUsersUnCollaborator'])->middleware(['auth:sanctum',  'permission:users-lista-usuario-diferente-colaborador']);
 Route::get('/users', [UserController::class, 'index'])->middleware(['auth:sanctum']);
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth:sanctum']);
 Route::post('/users', [UserController::class, 'store'])->middleware(['auth:sanctum']);
-Route::post('/users/change/password', [UserController::class, 'changePassword'])->middleware(['auth:sanctum',  'permission:users-change-password']);
 /**
  * UserProfiles
  */

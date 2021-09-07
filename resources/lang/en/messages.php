@@ -15,5 +15,7 @@ return [
     'not-email' => 'Email could not be sent to this username',
     'is-active' => 'This :model already is active',
     'is-inactive' => 'This :model already is inactive',
+    'error-comparing-password' => 'Error. Generated password does not match the verification of the generated hash.',
+    'error-parameter-id-required' => 'The id parameter is required.',
 ];
 ?>

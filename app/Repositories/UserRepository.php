@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotContentException;
 use App\Models\User;
 use App\Traits\RestResponse;
@@ -14,6 +15,7 @@ use App\Exceptions\Custom\NotFoundException;
 use App\Models\UserProfile;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\This;
 
 class UserRepository extends BaseRepository
 {
@@ -151,4 +153,61 @@ class UserRepository extends BaseRepository
         return $response;
     }
 
+
+    /**
+     * changePasswordUser
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function changePasswordUserRepository( $user){
+       
+        
+        $id_user=$user->id;
+       
+  
+        //Si el id de usuario es 0
+        if($id_user==0)
+            throw new ConflictException(__('error-parameter-id-required'));
+        
+       
+        $user = User::where('id', $id_user)->count();
+
+        //Si el usuario no existe en BD
+        if($user==0 || $user=='')
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
+        
+        //generar nueva password
+        $passwordNew = $this->generatePasswordAlert(10);
+        $passwordNewHash = Hash::make($passwordNew);
+
+        //si falla la compracion de la nueva clave y la encriptacion
+        if (!Hash::check($passwordNew, $passwordNewHash)) 
+            throw new ConflictException(__('messages.error-comparing-password'));
+
+        //guardar la nueva password generada
+        User::where("id", $id_user)->update(["password" => $passwordNewHash]);
+
+        //Retornar el usuario con la nueva password
+        $user = User::where("id", $id_user)->first();
+        $user['new_password']=$passwordNew;
+        return $user;
+        
+    }
+    
+    /**
+     * generatePasswordAlert
+     *
+     * @param  mixed $length //longitud de la cadena aleatoria
+     * @return $passwordNew 
+     */
+    public function generatePasswordAlert($length){
+        
+        $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890');//!$%^&!$%^&');
+        $passwordNew = substr($random, 0, 10);
+        
+        return $passwordNew;
+    }
+    
+   
 }

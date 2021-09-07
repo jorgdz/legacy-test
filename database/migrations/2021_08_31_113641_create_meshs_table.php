@@ -15,7 +15,9 @@ class CreateMeshsTable extends Migration
     {
         Schema::create('meshs', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->string('mes_name', 255)->nullable();
+            $table->string('mes_description', 255)->nullable();
+            $table->char('mes_acronym', 3)->nullable();
             $table->integer('pensum_id')->unsigned();
             $table->integer('level_edu_id')->unsigned();
             $table->integer('status_id')->unsigned();
@@ -27,6 +29,9 @@ class CreateMeshsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+      
+       
     }
 
     /**

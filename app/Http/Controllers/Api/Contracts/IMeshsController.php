@@ -101,6 +101,21 @@ interface IMeshsController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="mes_name",
+     *           description="Nombre de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_description",
+     *           description="Descripcion de malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_acronym",
+     *           description="Acronimo(Siglas) de malla",
+     *           type="string"
+     *         ),
+     *         @OA\Property(
      *           property="pensum_id",
      *           description="Id del pensum",
      *           type="integer",
@@ -168,7 +183,7 @@ interface IMeshsController
      * )
      *
      */
-    public function show(ShowByUserProfileIdRequest $request,$id);
+    public function show(ShowByUserProfileIdRequest $request, $id);
 
 
     /**
@@ -200,6 +215,21 @@ interface IMeshsController
      *           property="user_profile_id",
      *           description="Id del perfil de usuario",
      *           type="integer",
+     *         ),
+     *        @OA\Property(
+     *           property="mes_name",
+     *           description="Nombre de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_description",
+     *           description="Descripcion de malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_acronym",
+     *           description="Acronimo(Siglas) de malla",
+     *           type="string"
      *         ),
      *         @OA\Property(
      *           property="pensum_id",

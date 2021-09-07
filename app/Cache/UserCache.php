@@ -137,4 +137,15 @@ class UserCache extends BaseCache {
             return $this->repository->showNotColaborador($request);
         });
     }
+
+    /**
+     * changePasswordUser
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function changePasswordUser( $user)
+    {
+        return $this->repository->changePasswordUserRepository($user);
+    }
 }

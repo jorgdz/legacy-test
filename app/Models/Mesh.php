@@ -17,6 +17,9 @@ class Mesh extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
+        'mes_name',
+        'mes_description',
+        'mes_acronym',
         'pensum_id',
         'level_edu_id',
         'status_id'
@@ -27,12 +30,12 @@ class Mesh extends Model
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
 
-   /**
+    /**
      * pensum
      *
      * @return void
      */
-    public function pensum ()
+    public function pensum()
     {
         return $this->belongsTo(Pensum::class, 'pensum_id');
     }

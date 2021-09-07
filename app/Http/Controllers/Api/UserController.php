@@ -19,6 +19,8 @@ use App\Http\Requests\StoreUserProfileRequest;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Controllers\Api\Contracts\IUserController;
+use App\Http\Requests\UserChangePasswordFormRequest;
+use App\Repositories\UserRepository;
 
 class UserController extends Controller implements IUserController
 {
@@ -239,4 +241,19 @@ class UserController extends Controller implements IUserController
 
         return $this->success($users);
     }
+
+
+    // 
+     /**
+     * changePassword
+     *
+     *  Change Password user
+     * @param  mixed $request
+     * @return void
+     */
+    public function changePassword(UserChangePasswordFormRequest $request, User $user)
+    {
+        return $this->success($this->repoUser->changePasswordUser( $user));
+    }
+
 }

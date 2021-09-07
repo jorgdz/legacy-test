@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class MeshRequest extends FormRequest
 {
@@ -23,10 +24,46 @@ class MeshRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'pensum_id' => 'required|integer',
-            'level_edu_id' => 'required|integer',
-            'status_id' => 'required|integer'
-        ];
+
+
+        switch ($this->method()) {
+            case 'POST':
+                return [
+                    'mes_name' => 'required|max:255|unique:tenant.meshs,mes_name',
+                    'mes_description' => 'required|max:255',
+                    'mes_acronym' => 'required|max:3',
+                    'pensum_id' => 'required|integer',
+                    'level_edu_id' => 'required|integer',
+                    'status_id' => 'required|integer'
+                ];
+                break;
+            case 'PUT':
+                return [
+
+                    'mes_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
+                    'mes_description' => 'required|max:255',
+                    'mes_acronym' => 'required|max:3',
+                    'pensum_id' => 'required|integer',
+                    'level_edu_id' => 'required|integer',
+                    'status_id' => 'required|integer'
+                ];
+                break;
+
+            case 'PATCH':
+                return [
+
+                    'mes_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
+                    'mes_description' => 'required|max:255',
+                    'mes_acronym' => 'required|max:3',
+                    'pensum_id' => 'required|integer',
+                    'level_edu_id' => 'required|integer',
+                    'status_id' => 'required|integer'
+                ];
+                break;
+
+                // default:
+                //     $this->reglas();
+
+        }
     }
 }
