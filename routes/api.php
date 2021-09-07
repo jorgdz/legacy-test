@@ -134,8 +134,8 @@ Route::get('/parallels', [ParallelController::class, 'index'])->middleware(['aut
 Route::get('/parallels/{parallel}', [ParallelController::class, 'show'])->middleware(['auth:sanctum', 'permission:parallels-obtener-paralelo']);
 Route::post('/parallels', [ParallelController::class, 'store'])->middleware(['auth:sanctum', 'permission:parallels-crear-paralelo']);
 Route::put('/parallels/{parallel}', [ParallelController::class, 'update'])->middleware(['auth:sanctum', 'permission:parallels-actualizar-paralelo']);
-Route::post('/parallels/{parallel}/enabled', [ParallelController::class, 'enabled'])->middleware(['auth:sanctum']); // permission:parallels-activar-paralelo
-Route::post('/parallels/{parallel}/disabled', [ParallelController::class, 'disabled'])->middleware(['auth:sanctum']); // permission:parallels-desactivar-paralelo
+Route::post('/parallels/{parallel}/enabled', [ParallelController::class, 'enabled'])->middleware(['auth:sanctum', 'permission:parallels-activar-paralelo']);
+Route::post('/parallels/{parallel}/disabled', [ParallelController::class, 'disabled'])->middleware(['auth:sanctum', 'permission:parallels-desactivar-paralelo']);
 Route::delete('/parallels/{parallel}', [ParallelController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:parallels-borrar-paralelo']);
 
 /**
@@ -157,8 +157,8 @@ Route::get('/classrooms/{classroom}', [ClassRoomController::class, 'show'])->mid
 Route::post('/classrooms', [ClassRoomController::class, 'store'])->middleware(['auth:sanctum', 'permission:classrooms-crear-aula']);
 Route::put('/classrooms/{classroom}', [ClassRoomController::class, 'update'])->middleware(['auth:sanctum', 'permission:classrooms-actualizar-aula']);
 Route::delete('/classrooms/{classroom}', [ClassRoomController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classrooms-borrar-aula']);
-Route::post('/classrooms/{classroom}/enabled', [ClassRoomController::class, 'enabled'])->middleware(['auth:sanctum']); // permission:classrooms-activar-aula
-Route::post('/classrooms/{classroom}/disabled', [ClassRoomController::class, 'disabled'])->middleware(['auth:sanctum']); // permission:classrooms-desactivar-aula
+Route::post('/classrooms/{classroom}/enabled', [ClassRoomController::class, 'enabled'])->middleware(['auth:sanctum', 'permission:classrooms-activar-aula']);
+Route::post('/classrooms/{classroom}/disabled', [ClassRoomController::class, 'disabled'])->middleware(['auth:sanctum', 'permission:classrooms-desactivar-aula']);
 
 /**
  * TypePeriods
@@ -227,8 +227,8 @@ Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffe
 /*
  * Hourhand
  */
-Route::get('/hourhands', [HourhandController::class, 'index'])->middleware(['auth:sanctum']);//, 'permission:hourhands-listar-horarios'
-Route::get('/hourhands/{hourhand}', [HourhandController::class, 'show'])->middleware(['auth:sanctum']);//, 'permission:hourhands-obtener-horario'
-Route::post('/hourhands', [HourhandController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:hourhands-crear-horario'
-Route::put('/hourhands/{hourhand}', [HourhandController::class, 'update'])->middleware(['auth:sanctum']);//, 'permission:hourhands-actualizar-horario'
-Route::delete('/hourhands/{hourhand}', [HourhandController::class, 'destroy'])->middleware(['auth:sanctum']);//, 'permission:hourhands-borrar-horario'
+Route::get('/hourhands', [HourhandController::class, 'index'])->middleware(['auth:sanctum', 'permission:hourhands-listar-horarios']);
+Route::get('/hourhands/{hourhand}', [HourhandController::class, 'show'])->middleware(['auth:sanctum', 'permission:hourhands-obtener-horario']);
+Route::post('/hourhands', [HourhandController::class, 'store'])->middleware(['auth:sanctum', 'permission:hourhands-crear-horario']);
+Route::put('/hourhands/{hourhand}', [HourhandController::class, 'update'])->middleware(['auth:sanctum', 'permission:hourhands-actualizar-horario']);
+Route::delete('/hourhands/{hourhand}', [HourhandController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:hourhands-borrar-horario']);

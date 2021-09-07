@@ -319,7 +319,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'users'
             ],
             /**
-             * Paralelos 36-40
+             * Paralelos 36-42
              */
             [
                 'name' => 'parallels-listar-paralelos',
@@ -361,8 +361,24 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'parallels'
             ],
+            [
+                'name' => 'parallels-activar-paralelo',
+                'alias' => 'Activar un paralelo',
+                'description' => 'Activa un paralelo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'parallels'
+            ],
+            [
+                'name' => 'parallels-desactivar-paralelo',
+                'alias' => 'Desactivar un paralelo',
+                'description' => 'Desactiva un paralelo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'parallels'
+            ],
             /**
-             * Aulas 41-45
+             * Aulas 43-49
              */
             [
                 'name' => 'classrooms-listar-aulas',
@@ -404,8 +420,24 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'classrooms'
             ],
+            [
+                'name' => 'classrooms-activar-aula',
+                'alias' => 'Activar un aula',
+                'description' => 'Activa un aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classrooms'
+            ],
+            [
+                'name' => 'classrooms-desactivar-aula',
+                'alias' => 'Desactivar un aula',
+                'description' => 'Desactiva un aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classrooms'
+            ],
             /**
-             * Pensum 46-50
+             * Pensum 50-54
              */
             [
                 'name' => 'pensums-listar-pensums',
@@ -448,7 +480,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'pensums'
             ],
             /**
-             * Etapas 51-55
+             * Etapas 55-59
              */
             [
                 'name' => 'stages-listar-etapas',
@@ -491,7 +523,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'stages'
             ],
             /**
-             * Tipos de Periodos 56-60
+             * Tipos de Periodos 60-64
              */
             [
                 'name' => 'typePeriods-listar-tiposPeriodos',
@@ -534,7 +566,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typePeriods'
             ],
             /**
-             *  Mallas academicas [Meshs] JS 61-65
+             *  Mallas academicas [Meshs] JS 65-69
              */
             [
                 'name' => 'meshs-listar-mallas',
@@ -577,7 +609,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'meshs'
             ],
             /**
-             * Tipo Calificaciones 66-70
+             * Tipo Calificaciones 70-74
              */
             [
                 'name' => 'type-califications-listar-type-califications',
@@ -620,7 +652,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typeCalifications'
             ],
             /**
-             * Tipos de Materias 71-75
+             * Tipos de Materias 75-79
              */
             [
                 'name' => 'type-matters-listar-type-matters',
@@ -663,7 +695,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typeMatters'
             ],
             /**
-             * Materias 76-80
+             * Materias 80-84
              */
             [
                 'name' => 'matters-listar-matters',
@@ -706,7 +738,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'matters'
             ],
             /**
-             * Periodos por etapas 81-85
+             * Periodos por etapas 85-89
              */
             [
                 'name' => 'periodStages-listar-periodoEtapa',
@@ -749,7 +781,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'periodStages'
             ],
             /**
-             * User Colaboradores 86-87
+             * User Colaboradores 90-91
              */
             [
                 'name' => 'users-lista-usuario-diferente-colaborador',
@@ -768,7 +800,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'users'
             ],
             /**
-             * Periodos 88-92
+             * Periodos 92-96
              */
             [
                 'name' => 'periods-listar-periodos',
@@ -811,7 +843,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'periods'
             ],
             /**
-             * Materias por Malla 93-97
+             * Materias por Malla 97-101
              */
             [
                 'name' => 'mattermesh-listar-materias-mallas',
@@ -854,12 +886,12 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'mattermesh'
             ],
             /**
-             * Ofertas 98-102
+             * Ofertas 102-106
              */
             [
                 'name' => 'offers-listar-ofertas',
                 'alias' => 'Listar ofertas',
-                'description' => 'Listar todaslas ofertas',
+                'description' => 'Listar todas las ofertas',
                 'guard_name' => 'api',
                 'status_id' => 1,
                 'parent_name' => 'offers'
@@ -897,7 +929,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'offers'
             ],
             /**
-             * Oferta periodo 103-110
+             * Oferta periodo 107-114
              */
             [
                 'name' => 'offerPeriod-listar-periodos-por-oferta',
@@ -963,6 +995,49 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'offerperiod'
             ],
+            /**
+             * Horarios 115-119
+             */
+            [
+                'name' => 'hourhands-listar-horarios',
+                'alias' => 'Listar horarios',
+                'description' => 'Listar todos los horarios',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourhand'
+            ],
+            [
+                'name' => 'hourhands-obtener-horario',
+                'alias' => 'Obtener horario',
+                'description' => 'Obtener un horario por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourhand'
+            ],
+            [
+                'name' => 'hourhands-crear-horario',
+                'alias' => 'Crear horario',
+                'description' => 'Agregar un horario',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourhand'
+            ],
+            [
+                'name' => 'hourhands-actualizar-horario',
+                'alias' => 'Actualizar horario',
+                'description' => 'Actualizar un horario por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourhand'
+            ],
+            [
+                'name' => 'hourhands-borrar-horario',
+                'alias' => 'Borrar horario',
+                'description' => 'Borrar un horario por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourhand'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1027,118 +1102,130 @@ class RoleSeeder extends Seeder
             ['permission_id' => 38, 'role_id' => 1],
             ['permission_id' => 39, 'role_id' => 1],
             ['permission_id' => 40, 'role_id' => 1],
+            ['permission_id' => 41, 'role_id' => 1],
+            ['permission_id' => 42, 'role_id' => 1],
             /**
              * Aulas
              */
-            ['permission_id' => 41, 'role_id' => 1],
-            ['permission_id' => 42, 'role_id' => 1],
             ['permission_id' => 43, 'role_id' => 1],
             ['permission_id' => 44, 'role_id' => 1],
             ['permission_id' => 45, 'role_id' => 1],
-            /**
-             * Pensum
-             */
             ['permission_id' => 46, 'role_id' => 1],
             ['permission_id' => 47, 'role_id' => 1],
             ['permission_id' => 48, 'role_id' => 1],
             ['permission_id' => 49, 'role_id' => 1],
-            ['permission_id' => 50, 'role_id' => 1],
             /**
-             * Etapas
+             * Pensum
              */
+            ['permission_id' => 50, 'role_id' => 1],
             ['permission_id' => 51, 'role_id' => 1],
             ['permission_id' => 52, 'role_id' => 1],
             ['permission_id' => 53, 'role_id' => 1],
             ['permission_id' => 54, 'role_id' => 1],
-            ['permission_id' => 55, 'role_id' => 1],
             /**
-             * Tipos de Periodos
+             * Etapas
              */
+            ['permission_id' => 55, 'role_id' => 1],
             ['permission_id' => 56, 'role_id' => 1],
             ['permission_id' => 57, 'role_id' => 1],
             ['permission_id' => 58, 'role_id' => 1],
             ['permission_id' => 59, 'role_id' => 1],
-            ['permission_id' => 60, 'role_id' => 1],
             /**
-             * Mallas Academicas [Meshs] JS
+             * Tipos de Periodos
              */
+            ['permission_id' => 60, 'role_id' => 1],
             ['permission_id' => 61, 'role_id' => 1],
             ['permission_id' => 62, 'role_id' => 1],
             ['permission_id' => 63, 'role_id' => 1],
             ['permission_id' => 64, 'role_id' => 1],
-            ['permission_id' => 65, 'role_id' => 1],
             /**
-             * Tipo Calificaciones
+             * Mallas Academicas [Meshs] JS
              */
+            ['permission_id' => 65, 'role_id' => 1],
             ['permission_id' => 66, 'role_id' => 1],
             ['permission_id' => 67, 'role_id' => 1],
             ['permission_id' => 68, 'role_id' => 1],
             ['permission_id' => 69, 'role_id' => 1],
-            ['permission_id' => 70, 'role_id' => 1],
             /**
-             * Tipos de Materias
+             * Tipo Calificaciones
              */
+            ['permission_id' => 70, 'role_id' => 1],
             ['permission_id' => 71, 'role_id' => 1],
             ['permission_id' => 72, 'role_id' => 1],
             ['permission_id' => 73, 'role_id' => 1],
             ['permission_id' => 74, 'role_id' => 1],
-            ['permission_id' => 75, 'role_id' => 1],
             /**
-             * Materias
+             * Tipos de Materias
              */
+            ['permission_id' => 75, 'role_id' => 1],
             ['permission_id' => 76, 'role_id' => 1],
             ['permission_id' => 77, 'role_id' => 1],
             ['permission_id' => 78, 'role_id' => 1],
             ['permission_id' => 79, 'role_id' => 1],
-            ['permission_id' => 80, 'role_id' => 1],
             /**
-             * Periodos por Etapas
+             * Materias
              */
+            ['permission_id' => 80, 'role_id' => 1],
             ['permission_id' => 81, 'role_id' => 1],
             ['permission_id' => 82, 'role_id' => 1],
             ['permission_id' => 83, 'role_id' => 1],
             ['permission_id' => 84, 'role_id' => 1],
-            ['permission_id' => 85, 'role_id' => 1],
             /**
-             * User por Etapas
+             * Periodos por Etapas
              */
+            ['permission_id' => 85, 'role_id' => 1],
             ['permission_id' => 86, 'role_id' => 1],
             ['permission_id' => 87, 'role_id' => 1],
+            ['permission_id' => 88, 'role_id' => 1],
+            ['permission_id' => 89, 'role_id' => 1],
+            /**
+             * User Colaboradores
+             */
+            ['permission_id' => 90, 'role_id' => 1],
+            ['permission_id' => 91, 'role_id' => 1],
             /**
              * Periodos
              */
-            ['permission_id' => 88, 'role_id' => 1],
-            ['permission_id' => 89, 'role_id' => 1],
-            ['permission_id' => 90, 'role_id' => 1],
-            ['permission_id' => 91, 'role_id' => 1],
             ['permission_id' => 92, 'role_id' => 1],
-            /**
-             * Materias por Malla
-             */
             ['permission_id' => 93, 'role_id' => 1],
             ['permission_id' => 94, 'role_id' => 1],
             ['permission_id' => 95, 'role_id' => 1],
             ['permission_id' => 96, 'role_id' => 1],
-            ['permission_id' => 97, 'role_id' => 1],
             /**
-             * Ofertas
+             * Materias por Malla
              */
+            ['permission_id' => 97, 'role_id' => 1],
             ['permission_id' => 98, 'role_id' => 1],
             ['permission_id' => 99, 'role_id' => 1],
             ['permission_id' => 100, 'role_id' => 1],
             ['permission_id' => 101, 'role_id' => 1],
-            ['permission_id' => 102, 'role_id' => 1],
             /**
-             * Oferta periodo 103-110
+             * Ofertas
              */
+            ['permission_id' => 102, 'role_id' => 1],
             ['permission_id' => 103, 'role_id' => 1],
             ['permission_id' => 104, 'role_id' => 1],
             ['permission_id' => 105, 'role_id' => 1],
             ['permission_id' => 106, 'role_id' => 1],
+            /**
+             * Oferta periodo
+             */
             ['permission_id' => 107, 'role_id' => 1],
             ['permission_id' => 108, 'role_id' => 1],
             ['permission_id' => 109, 'role_id' => 1],
             ['permission_id' => 110, 'role_id' => 1],
+            ['permission_id' => 111, 'role_id' => 1],
+            ['permission_id' => 112, 'role_id' => 1],
+            ['permission_id' => 113, 'role_id' => 1],
+            ['permission_id' => 114, 'role_id' => 1],
+            /**
+             * Horarios
+             */
+            ['permission_id' => 115, 'role_id' => 1],
+            ['permission_id' => 116, 'role_id' => 1],
+            ['permission_id' => 117, 'role_id' => 1],
+            ['permission_id' => 118, 'role_id' => 1],
+            ['permission_id' => 119, 'role_id' => 1],
             /**
              * 
              * Permisos de Administrador
@@ -1147,19 +1234,19 @@ class RoleSeeder extends Seeder
             /**
              * Tipos de Periodos
              */
-            ['permission_id' => 56, 'role_id' => 2],
-            ['permission_id' => 57, 'role_id' => 2],
-            ['permission_id' => 58, 'role_id' => 2],
-            ['permission_id' => 59, 'role_id' => 2],
             ['permission_id' => 60, 'role_id' => 2],
+            ['permission_id' => 61, 'role_id' => 2],
+            ['permission_id' => 62, 'role_id' => 2],
+            ['permission_id' => 63, 'role_id' => 2],
+            ['permission_id' => 64, 'role_id' => 2],
             /**
              * Periodos
              */
-            ['permission_id' => 88, 'role_id' => 2],
-            ['permission_id' => 89, 'role_id' => 2],
-            ['permission_id' => 90, 'role_id' => 2],
-            ['permission_id' => 91, 'role_id' => 2],
             ['permission_id' => 92, 'role_id' => 2],
+            ['permission_id' => 93, 'role_id' => 2],
+            ['permission_id' => 94, 'role_id' => 2],
+            ['permission_id' => 95, 'role_id' => 2],
+            ['permission_id' => 96, 'role_id' => 2],
         ]);
     }
 }
