@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
                 ProfileSeeder::class,
                 RoleSeeder::class,
                 TypeIdentificationSeeder::class,
-                UserSeeder::class
+                UserSeeder::class,
+                TypePeriodSeeder::class
             ]);
 
             $this->call([
