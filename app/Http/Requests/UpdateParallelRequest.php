@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 
-class ClassRoomFormRequest extends FormRequest
+class UpdateParallelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +25,8 @@ class ClassRoomFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'cl_name' => 'required|unique:tenant.classrooms,cl_name',
-            'cl_description' => 'required',
-            'cl_acronym' => 'max:4',
+            'par_name' => 'required|unique:tenant.parallels,par_name,'.$this->route('parallel')->id,
+            'par_acronym' => 'max:3'
         ];
     }
 }

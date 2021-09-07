@@ -7,6 +7,7 @@ use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IParallelController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ParallelFormRequest;
+use App\Http\Requests\UpdateParallelRequest;
 use App\Models\Parallel;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
@@ -60,7 +61,7 @@ class ParallelController extends Controller implements IParallelController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Parallel $parallel)
+    public function update(UpdateParallelRequest $request, Parallel $parallel)
     {
         $parallel->fill($request->all());
 
@@ -80,6 +81,38 @@ class ParallelController extends Controller implements IParallelController
     public function destroy(Parallel $parallel)
     {
         return $this->success($this->parallelCache->destroy($parallel));
+    }
+
+    /**
+     * enabled
+     *
+     * @param  mixed $parallel
+     * @return void
+     */
+    public function enabled(Parallel $parallel)
+    {
+        if($parallel->status_id == 1)
+            throw new UnprocessableException(__('messages.is-active', ['model' => class_basename(Parallel::class)]));
+
+        $parallel->status_id = 1;
+
+        return $this->success($this->parallelCache->save($parallel));
+    }
+
+    /**
+     * disabled
+     *
+     * @param  mixed $parallel
+     * @return void
+     */
+    public function disabled(Parallel $parallel)
+    {
+        if($parallel->status_id == 2)
+            throw new UnprocessableException(__('messages.is-inactive', ['model' => class_basename(Parallel::class)]));
+
+        $parallel->status_id = 2;
+
+        return $this->success($this->parallelCache->save($parallel));
     }
 
 

@@ -21,6 +21,7 @@ class ClassRoom extends Model
     protected $fillable = [
         'cl_name',
         'cl_description',
+        'cl_acronym',
         'status_id',
     ];
 

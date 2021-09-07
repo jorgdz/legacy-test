@@ -7,6 +7,7 @@ use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IClassRoomController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassRoomFormRequest;
+use App\Http\Requests\UpdateClassRoomRequest;
 use App\Models\ClassRoom;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
@@ -59,7 +60,7 @@ class ClassRoomController extends Controller implements IClassRoomController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClassRoom $classroom)
+    public function update(UpdateClassRoomRequest $request, ClassRoom $classroom)
     {
         $classroom->fill($request->all());
 
@@ -79,5 +80,25 @@ class ClassRoomController extends Controller implements IClassRoomController
     public function destroy(ClassRoom $classroom)
     {
         return $this->success($this->classRoomCache->destroy($classroom));
+    }
+
+    public function enabled(Classroom $classroom)
+    {
+        if($classroom->status_id == 1)
+            throw new UnprocessableException(__('messages.is-active', ['model' => class_basename(ClassRoom::class)]));
+
+        $classroom->status_id = 1;
+
+        return $this->success($this->classRoomCache->save($classroom));
+    }
+
+    public function disabled(ClassRoom $classroom)
+    {
+        if($classroom->status_id == 2)
+            throw new UnprocessableException(__('messages.is-inactive', ['model' => class_basename(ClassRoom::class)]));
+
+        $classroom->status_id = 2;
+
+        return $this->success($this->classRoomCache->save($classroom));
     }
 }

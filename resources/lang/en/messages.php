@@ -12,6 +12,8 @@ return [
     'no-content' => 'No content.',
     'no-current-tenant' => 'No current tenant.',
     'bad-request' => 'Wrong petition or request.',
-    'not-email' => 'Email could not be sent to this username'
+    'not-email' => 'Email could not be sent to this username',
+    'is-active' => 'This :model already is active',
+    'is-inactive' => 'This :model already is inactive',
 ];
 ?>

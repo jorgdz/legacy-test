@@ -17,6 +17,7 @@ class CreateTableParallels extends Migration
             $table->increments('id');
             $table->string('par_name', 255);
             $table->string('par_description', 255)->nullable();
+            $table->string('par_acronym', 3)->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

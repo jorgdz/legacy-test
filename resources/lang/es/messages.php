@@ -12,6 +12,8 @@ return [
     'no-content' => 'No hay contenido.',
     'no-current-tenant' => 'Actualmente no hay un inquilino.',
     'bad-request' => 'Petición o solicitud Incorrecta.',
-    'not-email' => 'No se pudo enviar el correo electrónico a este nombre de usuario'
+    'not-email' => 'No se pudo enviar el correo electrónico a este nombre de usuario',
+    'is-active' => 'Este :model ya esta activo',
+    'is-inactive' => 'Este :model ya esta inactivo',
 ];
 ?>

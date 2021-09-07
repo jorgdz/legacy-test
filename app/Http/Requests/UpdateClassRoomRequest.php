@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClassRoomFormRequest extends FormRequest
+class UpdateClassRoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class ClassRoomFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'cl_name' => 'required|unique:tenant.classrooms,cl_name',
-            'cl_description' => 'required',
-            'cl_acronym' => 'max:4',
+            'cl_name' => 'required|unique:tenant.classrooms,cl_name,'.$this->route('classroom')->id,
+            'cl_acronym' => 'max:4'
         ];
     }
 }

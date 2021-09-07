@@ -1,9 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use App\Mail\EmailInvitation;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
@@ -19,12 +15,9 @@ use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\ClassRoomController;
 use App\Http\Controllers\Api\HourhandController;
 use App\Http\Controllers\Api\PeriodStageController;
-use App\Http\Controllers\Api\MeshsController;
 use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\TypePeriodController;
-use App\Http\Controllers\Api\UserProfileController;
 use App\Http\Controllers\Api\OfferController;
-use App\Models\Hourhand;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -141,6 +134,8 @@ Route::get('/parallels', [ParallelController::class, 'index'])->middleware(['aut
 Route::get('/parallels/{parallel}', [ParallelController::class, 'show'])->middleware(['auth:sanctum', 'permission:parallels-obtener-paralelo']);
 Route::post('/parallels', [ParallelController::class, 'store'])->middleware(['auth:sanctum', 'permission:parallels-crear-paralelo']);
 Route::put('/parallels/{parallel}', [ParallelController::class, 'update'])->middleware(['auth:sanctum', 'permission:parallels-actualizar-paralelo']);
+Route::post('/parallels/{parallel}/enabled', [ParallelController::class, 'enabled'])->middleware(['auth:sanctum']); // permission:parallels-activar-paralelo
+Route::post('/parallels/{parallel}/disabled', [ParallelController::class, 'disabled'])->middleware(['auth:sanctum']); // permission:parallels-desactivar-paralelo
 Route::delete('/parallels/{parallel}', [ParallelController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:parallels-borrar-paralelo']);
 
 /**
@@ -162,6 +157,8 @@ Route::get('/classrooms/{classroom}', [ClassRoomController::class, 'show'])->mid
 Route::post('/classrooms', [ClassRoomController::class, 'store'])->middleware(['auth:sanctum', 'permission:classrooms-crear-aula']);
 Route::put('/classrooms/{classroom}', [ClassRoomController::class, 'update'])->middleware(['auth:sanctum', 'permission:classrooms-actualizar-aula']);
 Route::delete('/classrooms/{classroom}', [ClassRoomController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classrooms-borrar-aula']);
+Route::post('/classrooms/{classroom}/enabled', [ClassRoomController::class, 'enabled'])->middleware(['auth:sanctum']); // permission:classrooms-activar-aula
+Route::post('/classrooms/{classroom}/disabled', [ClassRoomController::class, 'disabled'])->middleware(['auth:sanctum']); // permission:classrooms-desactivar-aula
 
 /**
  * TypePeriods

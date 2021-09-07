@@ -17,6 +17,7 @@ class CreateTableClassrooms extends Migration
             $table->increments('id');
             $table->string('cl_name', 255);
             $table->string('cl_description', 255)->nullable();
+            $table->string('cl_acronym', 4)->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

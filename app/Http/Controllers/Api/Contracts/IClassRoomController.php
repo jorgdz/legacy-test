@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Contracts;
 
 use App\Http\Requests\ClassRoomFormRequest;
+use App\Http\Requests\UpdateClassRoomRequest;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 
@@ -222,7 +223,7 @@ interface IClassRoomController
      * )
      *
      */
-    public function update(Request $request, ClassRoom $classroom);
+    public function update(UpdateClassRoomRequest $request, ClassRoom $classroom);
 
     /**
      * @OA\Delete(
@@ -265,4 +266,89 @@ interface IClassRoomController
      *
      */
     public function destroy(ClassRoom $classroom);
+
+    /**
+     * @OA\Post(
+     *   path="/api/classrooms/{classroom}/enabled",
+     *   tags={"Aulas"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Activar un aula",
+     *   description="Activa un aula por Id",
+     *   operationId="enabledClassRooms",
+     *   @OA\Parameter(
+     *     name="classroom",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function enabled(ClassRoom $classroom);
+
+
+    /**
+     * @OA\Post(
+     *   path="/api/classrooms/{classroom}/disabled",
+     *   tags={"Aulas"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Desactivar un aula",
+     *   description="Desactiva un aula por Id",
+     *   operationId="disabledClassRooms",
+     *   @OA\Parameter(
+     *     name="classroom",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function disabled(ClassRoom $classroom);
 }

@@ -19,6 +19,7 @@ class Parallel extends Model
     protected $fillable = [
         'par_name',
         'par_description',
+        'par_acronym',
         'status_id',
     ];
 

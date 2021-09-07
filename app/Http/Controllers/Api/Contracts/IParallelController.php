@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Contracts;
 
 use App\Http\Requests\ParallelFormRequest;
+use App\Http\Requests\UpdateParallelRequest;
 use App\Models\Parallel;
 use Illuminate\Http\Request;
 
@@ -109,6 +110,11 @@ interface IParallelController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="par_acronym",
+     *           description="Siglas del paralelo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del paralelo",
      *           type="integer",
@@ -208,6 +214,11 @@ interface IParallelController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="par_acronym",
+     *           description="Siglas del paralelo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del paralelo",
      *           type="integer",
@@ -223,7 +234,7 @@ interface IParallelController
      * )
      *
      */
-    public function update(Request $request, Parallel $parallel);
+    public function update(UpdateParallelRequest $request, Parallel $parallel);
 
     /**
      * @OA\Delete(
@@ -266,5 +277,90 @@ interface IParallelController
      *
      */
     public function destroy(Parallel $parallel);
+
+    /**
+     * @OA\Post(
+     *   path="/api/parallels/{parallel}/enabled",
+     *   tags={"Paralelos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Activar un paralelo",
+     *   description="Activa un paralelo por Id",
+     *   operationId="enabledParallels",
+     *   @OA\Parameter(
+     *     name="parallel",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function enabled(Parallel $parallel);
+
+
+    /**
+     * @OA\Post(
+     *   path="/api/parallels/{parallel}/disabled",
+     *   tags={"Paralelos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Desactivar un paralelo",
+     *   description="Desactiva un paralelo por Id",
+     *   operationId="disabledParallels",
+     *   @OA\Parameter(
+     *     name="parallel",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function disabled(Parallel $parallel);
 
 }
