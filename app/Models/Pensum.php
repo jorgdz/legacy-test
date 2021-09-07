@@ -19,7 +19,7 @@ class Pensum extends Model
      *
      * @var array
      */
-    protected $fillable = ['anio', 'status_id'];
+    protected $fillable = ['pen_name', 'pen_description', 'pen_acronym', 'anio', 'status_id'];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 

@@ -98,18 +98,28 @@ interface IMatterController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="cod_mate_migration",
+     *           property="mat_name",
+     *           description="Nombre de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mat_description",
+     *           description="Descripción de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mat_acronym",
+     *           description="Siglas de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="cod_matter_migration",
      *           description="Código de la materia",
      *           type="string",
      *         ),
      *         @OA\Property(
      *           property="cod_old_migration",
      *           description="Código anterior de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="des_matter",
-     *           description="Descripción de la materia",
      *           type="string",
      *         ),
      *         @OA\Property(
@@ -216,18 +226,28 @@ interface IMatterController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="cod_mate_migration",
+     *           property="mat_name",
+     *           description="Nombre de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mat_description",
+     *           description="Descripción de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mat_acronym",
+     *           description="Siglas de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="cod_matter_migration",
      *           description="Código de la materia",
      *           type="string",
      *         ),
      *         @OA\Property(
      *           property="cod_old_migration",
      *           description="Código anterior de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="des_matter",
-     *           description="Descripción de la materia",
      *           type="string",
      *         ),
      *         @OA\Property(
@@ -261,7 +281,7 @@ interface IMatterController {
      * )
      *
      */
-    public function update(Request $request, Matter $matter);
+    public function update(StoreMatterRequest $request, Matter $matter);
 
     /**
      * @OA\Delete(

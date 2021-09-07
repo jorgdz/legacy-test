@@ -48,8 +48,7 @@ class TypeMatterController extends Controller implements ITypeMatterController
             return $this->success($tm, Response::HTTP_CREATED);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -70,7 +69,7 @@ class TypeMatterController extends Controller implements ITypeMatterController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TypeMatter $typeMatter) {
+    public function update(StoreTypeMatterRequest $request, TypeMatter $typeMatter) {
         DB::beginTransaction();
         try {
             $typeMatter->fill($request->all());
@@ -84,8 +83,7 @@ class TypeMatterController extends Controller implements ITypeMatterController
             return $this->success($response);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -101,10 +99,9 @@ class TypeMatterController extends Controller implements ITypeMatterController
             $response = $this->typeMatterCache->destroy($typeMatter);
             DB::commit();
             return $this->success($response);
-        } catch (ConflictException $ex) {
+        } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error(request()->path(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 }

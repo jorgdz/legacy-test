@@ -21,13 +21,22 @@ class StoreMatterRequest extends FormRequest
      * @return array
      */
     public function rules() {
-        return [
-            'cod_mate_migration' => 'required|string',
-            'cod_old_migration' => 'required|string',
+        $rules = [
+            'mat_name' => 'required|string|unique:tenant.matters,mat_name',
+            'mat_acronym' => 'required|string|between:2,3',
+            'cod_matter_migration' => 'required|string',
             'type_matter_id' => 'required|integer|exists:tenant.type_matters,id',
             'type_calification_id' => 'required|integer|exists:tenant.type_califications,id',
             'min_note' => 'required|numeric',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
+        if (in_array($this->method(), ['PUT', 'PATCH'])) {
+            $rules['mat_name'] = [
+                'required',
+                'string',
+                'unique:tenant.matters,mat_name,' . $this->matter->id
+            ];
+        }
+        return $rules;
     }
 }

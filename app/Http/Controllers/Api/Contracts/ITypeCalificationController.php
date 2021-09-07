@@ -104,6 +104,11 @@ interface ITypeCalificationController {
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="tc_description",
+     *           description="Descripción del tipo de calificación",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del tipo de calificación",
      *           type="integer",
@@ -194,6 +199,11 @@ interface ITypeCalificationController {
      *         @OA\Property(
      *           property="tc_name",
      *           description="Nombre del tipo de calificación",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="tc_description",
+     *           description="Descripción del tipo de calificación",
      *           type="string",
      *         ),
      *         @OA\Property(

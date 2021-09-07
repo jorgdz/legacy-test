@@ -16,9 +16,11 @@ class CreateMattersTable extends Migration
         Schema::create('matters', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('cod_mate_migration', 255)->nullable();
+            $table->string('mat_name', 255)->nullable();
+            $table->string('mat_description', 255)->nullable();
+            $table->char('mat_acronym', 3)->nullable();
+            $table->string('cod_matter_migration', 255)->nullable();
             $table->string('cod_old_migration', 255)->nullable();
-            $table->string('des_matter', 255)->nullable();
             $table->integer('type_matter_id')->unsigned();
             $table->integer('type_calification_id')->unsigned();
             $table->float('min_note', 8, 4)->unsigned();

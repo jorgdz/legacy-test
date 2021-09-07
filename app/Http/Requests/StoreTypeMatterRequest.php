@@ -23,12 +23,21 @@ class StoreTypeMatterRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'tm_name' => 'required|string',
+        $rules = [
+            'tm_name' => 'required|string|unique:tenant.type_matters,tm_name',
+            'tm_acronym' => 'required|string|between:2,3',
             'tm_order' => 'required|integer',
-            'mt_cobro' => 'required|boolean',
-            'mt_matter_count' => 'required|boolean',
+            'tm_cobro' => 'required|boolean',
+            'tm_matter_count' => 'required|boolean',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
+        if (in_array($this->method(), ['PUT', 'PATCH'])) {
+            $rules['tm_name'] = [
+                'required',
+                'string',
+                'unique:tenant.type_matters,tm_name,' . $this->typeMatter->id
+            ];
+        }
+        return $rules;
     }
 }

@@ -11,7 +11,8 @@ class UpdatePensumRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize()
+    {
         return true;
     }
 
@@ -20,9 +21,11 @@ class UpdatePensumRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            'anio'      => 'required',
+            'pen_name' => 'unique:tenant.pensums,pen_name,' . $this->pensum->id,
+            'pen_acronym' => 'between:2,3',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }

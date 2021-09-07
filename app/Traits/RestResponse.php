@@ -17,6 +17,22 @@ trait RestResponse
 	public function success ($data, $code = Response::HTTP_OK) {
         return response()->json($data, $code);
 	}
+	
+	/**
+	 * information
+	 *
+	 * @param  mixed $data
+	 * @param  mixed $code
+	 * @return void
+	 */
+	public function information ($message, $code = Response::HTTP_OK) {
+        return response()->json([
+            'timestamps' => date('Y-m-d H:i:s'),
+            'path' => request()->path(),
+            'detail' => $message,
+            'code' => $code
+        ], $code);
+	}
 
 	/**
 	 * error

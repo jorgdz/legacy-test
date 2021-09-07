@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Exceptions\Custom\NotFoundException;
-use App\Http\Controllers\Api\Contracts\IForgorPasswordController;
+use App\Http\Controllers\Api\Contracts\IForgotPasswordController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Models\User;
 use App\Traits\RestResponse;
 use Illuminate\Support\Facades\Password;
 
-class ForgotPasswordController extends Controller implements IForgorPasswordController
+class ForgotPasswordController extends Controller implements IForgotPasswordController
 {
     use RestResponse;
 

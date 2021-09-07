@@ -17,6 +17,7 @@ class CreateTypeCalificationsTable extends Migration
             $table->increments('id');
 
             $table->string('tc_name', 255)->nullable();
+            $table->string('tc_description', 255)->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

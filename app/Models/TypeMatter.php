@@ -19,9 +19,9 @@ class TypeMatter extends Model
      *
      * @var array
      */
-    protected $fillable = ['tm_name', 'tm_description', 'tm_order', 'mt_cobro', 'mt_matter_count', 'status_id'];
+    protected $fillable = ['tm_name', 'tm_acronym', 'tm_description', 'tm_order', 'tm_cobro', 'tm_matter_count', 'status_id'];
 
-    protected $hidden = [];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $dates = ['deleted_at'];
 

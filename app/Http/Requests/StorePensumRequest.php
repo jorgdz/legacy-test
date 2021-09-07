@@ -22,6 +22,8 @@ class StorePensumRequest extends FormRequest
      */
     public function rules() {
         return [
+            'pen_name' => 'required|unique:tenant.pensums,pen_name',
+            'pen_acronym' => 'required|string|between:2,3',
             'anio' => 'required',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];

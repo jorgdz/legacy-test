@@ -15,6 +15,9 @@ class CreatePensumsTable extends Migration
     {
         Schema::create('pensums', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('pen_name', 255)->nullable();
+            $table->string('pen_description', 255)->nullable();
+            $table->char('pen_acronym', 3)->nullable();
             $table->integer('anio');
 
             $table->integer('status_id')->unsigned();

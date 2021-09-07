@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Repositories\PermissionRepository;
 use App\Http\Requests\StorePermissionRequest;
-use App\Http\Requests\UpdatePermissionRequest;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IPermissionController;
 use App\Http\Resources\PermissionResource as PermissionResource;
@@ -40,6 +39,11 @@ class PermissionController extends Controller implements IPermissionController
         return $this->success($permissions);
     }
 
+    /**
+     * Display a listing of the resource grouped.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showPermissionsGrouped(Request $request){
         $permissions = $this->repository->all($request)->groupBy('parent_name');
         return $this->success($permissions);
@@ -63,8 +67,7 @@ class PermissionController extends Controller implements IPermissionController
             return $this->success($permission, Response::HTTP_CREATED);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -86,7 +89,7 @@ class PermissionController extends Controller implements IPermissionController
      * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePermissionRequest $request, Permission $permission) {
+    public function update(Request $request, Permission $permission) {
         DB::beginTransaction();
         try {
             $permission->fill($request->all());
@@ -100,8 +103,7 @@ class PermissionController extends Controller implements IPermissionController
             return $this->success($response);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -121,8 +123,7 @@ class PermissionController extends Controller implements IPermissionController
             return $response;
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error(request()->path(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 }

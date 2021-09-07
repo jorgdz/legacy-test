@@ -13,6 +13,7 @@ use App\Http\Requests\StoreMatterRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IMatterController;
+use Exception;
 
 class MatterController extends Controller implements IMatterController
 {
@@ -49,8 +50,7 @@ class MatterController extends Controller implements IMatterController
             return $this->success($matter, Response::HTTP_CREATED);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -71,7 +71,7 @@ class MatterController extends Controller implements IMatterController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Matter $matter) {
+    public function update(StoreMatterRequest $request, Matter $matter) {
         DB::beginTransaction();
         try {
             $matter->fill($request->all());
@@ -85,8 +85,7 @@ class MatterController extends Controller implements IMatterController
             return $this->success($response);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -102,10 +101,9 @@ class MatterController extends Controller implements IMatterController
             $response = $this->matterCache->destroy($matter);
             DB::commit();
             return $this->success($response);
-        } catch (ConflictException $ex) {
+        } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error(request()->path(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 }

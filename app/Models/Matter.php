@@ -22,7 +22,7 @@ class Matter extends Model
      * @var array
      */
     protected $fillable = [
-        'cod_mate_migration', 'cod_old_migration', 'des_matter',
+        'mat_name', 'mat_description', 'mat_acronym', 'cod_matter_migration', 'cod_old_migration',
         'type_matter_id', 'type_calification_id', 'min_note', 'status_id'
     ];
     protected $hidden = [];

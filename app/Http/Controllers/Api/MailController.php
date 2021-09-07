@@ -69,8 +69,7 @@ class MailController extends Controller implements IMailController
             return $this->success($response);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 }

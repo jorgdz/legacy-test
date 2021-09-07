@@ -78,7 +78,6 @@ interface IPensumController {
      */
     public function index(Request $request);
 
-
     /**
      * @OA\Post(
      *   path="/api/pensums",
@@ -98,6 +97,21 @@ interface IPensumController {
      *           property="user_profile_id",
      *           description="Id del perfil de usuario",
      *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pen_name",
+     *           description="Nombre del pensum",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="pen_acronym",
+     *           description="Siglas del pensum",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="pen_description",
+     *           description="Descripción del pensum",
+     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="anio",
@@ -191,6 +205,21 @@ interface IPensumController {
      *           property="user_profile_id",
      *           description="Id del perfil de usuario",
      *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pen_name",
+     *           description="Nombre del pensum",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="pen_acronym",
+     *           description="Siglas del pensum",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="pen_description",
+     *           description="Descripción del pensum",
+     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="anio",

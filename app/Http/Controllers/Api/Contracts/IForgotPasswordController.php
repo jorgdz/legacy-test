@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Contracts;
 
 use App\Http\Requests\ForgotPasswordRequest;
 
-interface IForgorPasswordController
+interface IForgotPasswordController
 {
     /**
      * @OA\Post(

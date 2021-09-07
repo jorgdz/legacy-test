@@ -24,7 +24,7 @@ class UpdateTypeCalificationRequest extends FormRequest
     public function rules()
     {
         return [
-            'tc_name' => 'required|string',
+            'tc_name' => 'unique:tenant.type_califications,tc_name,' . $this->typeCalification->id,
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }

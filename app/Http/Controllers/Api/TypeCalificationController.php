@@ -50,8 +50,7 @@ class TypeCalificationController extends Controller implements ITypeCalification
             return $this->success($tc, Response::HTTP_CREATED);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -86,8 +85,7 @@ class TypeCalificationController extends Controller implements ITypeCalification
             return $this->success($response);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -103,10 +101,9 @@ class TypeCalificationController extends Controller implements ITypeCalification
             $response = $this->typeCalificationCache->destroy($typeCalification);
             DB::commit();
             return $this->success($response);
-        } catch (ConflictException $ex) {
+        } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error(request()->path(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 }

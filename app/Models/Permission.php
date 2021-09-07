@@ -20,7 +20,7 @@ class Permission extends PermissionPersonalized
      */
     protected $fillable = ['name', 'alias' ,'description', 'guard_name', 'parent_name', 'status_id'];
 
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $dates = ['deleted_at'];
 

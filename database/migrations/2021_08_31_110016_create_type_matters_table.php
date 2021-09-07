@@ -17,10 +17,11 @@ class CreateTypeMattersTable extends Migration
             $table->increments('id');
 
             $table->string('tm_name', 255)->nullable();
+            $table->char('tm_acronym', 3)->nullable();
             $table->string('tm_description', 255)->nullable();
             $table->string('tm_order', 255)->nullable();
-            $table->boolean('mt_cobro')->nullable();
-            $table->boolean('mt_matter_count')->nullable();
+            $table->boolean('tm_cobro')->nullable();
+            $table->boolean('tm_matter_count')->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

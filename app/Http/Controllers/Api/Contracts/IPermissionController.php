@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePermissionRequest;
-use App\Http\Requests\UpdatePermissionRequest;
 
 interface IPermissionController
 {
@@ -109,6 +108,11 @@ interface IPermissionController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="parent_name",
+     *           description="Grupo al que pertenece el permiso",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="description",
      *           description="Descripcion del permiso",
      *           type="string",
@@ -202,13 +206,8 @@ interface IPermissionController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="name",
-     *           description="Nombre del permiso",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="alias",
-     *           description="Alias del permiso",
+     *           property="parent_name",
+     *           description="Grupo al que pertenece el permiso",
      *           type="string",
      *         ),
      *         @OA\Property(
@@ -232,7 +231,7 @@ interface IPermissionController
      * )
      *
      */
-    public function update(UpdatePermissionRequest $request, Permission $permission);
+    public function update(Request $request, Permission $permission);
 
     /**
      * @OA\Delete(
@@ -276,7 +275,72 @@ interface IPermissionController
      */
     public function destroy(Permission $permission);
 
-
-    //show lists of permissions grouped by parent name
+    /**
+     * @OA\Get(
+     *   path="/api/permissions-grouped",
+     *   tags={"Permisos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Listar los permisos por grupos",
+     *   description="Muestra todas los permisos por grupos en formato JSON",
+     *   operationId="getAllGroupPermissions",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="size",
+     *     description="Numero de elementos por pagina",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="10"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="sort",
+     *     description="Ordenar por el campo",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="id"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_sort",
+     *     description="Tipo de orden",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="asc"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
     public function showPermissionsGrouped(Request $request);
 }

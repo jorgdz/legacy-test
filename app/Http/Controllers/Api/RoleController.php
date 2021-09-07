@@ -57,8 +57,7 @@ class RoleController extends Controller implements IRoleController
             return $this->success($role, Response::HTTP_CREATED);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -96,8 +95,7 @@ class RoleController extends Controller implements IRoleController
             return $this->success($response);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -110,14 +108,14 @@ class RoleController extends Controller implements IRoleController
     public function destroy(Role $role) {
         DB::beginTransaction();
         try {
+            $this->repository->deleteModelHasRole($role->id);
             $role->revokePermissionTo($role->getAllPermissions()->pluck('name')->toArray());
             $response = $this->repository->destroy($role);
             DB::commit();
             return $response;
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error(request()->path(), $ex,
-                    __('messages.internal-server-error'), Response::HTTP_CONFLICT);
+            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 }

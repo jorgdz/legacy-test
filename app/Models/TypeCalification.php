@@ -19,9 +19,9 @@ class TypeCalification extends Model
      *
      * @var array
      */
-    protected $fillable = ['tc_name', 'status_id'];
+    protected $fillable = ['tc_name', 'tc_description', 'status_id'];
 
-    protected $hidden = [];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $dates = ['deleted_at'];
 

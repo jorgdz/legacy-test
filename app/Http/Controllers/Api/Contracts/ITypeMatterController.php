@@ -103,6 +103,11 @@ interface ITypeMatterController {
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="tm_acronym",
+     *           description="Siglas del tipo de materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="tm_description",
      *           description="Descripcion del tipo de materia",
      *           type="string",
@@ -113,12 +118,12 @@ interface ITypeMatterController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="mt_cobro",
+     *           property="tm_cobro",
      *           description="Verificar si aplica cobro el tipo de materia",
      *           type="boolean",
      *         ),
      *         @OA\Property(
-     *           property="mt_matter_count",
+     *           property="tm_matter_count",
      *           description="Verificar si se cuenta el tipo de materia",
      *           type="boolean",
      *         ),
@@ -216,6 +221,11 @@ interface ITypeMatterController {
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="tm_acronym",
+     *           description="Siglas del tipo de materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="tm_description",
      *           description="Descripción del tipo de materia",
      *           type="string",
@@ -226,12 +236,12 @@ interface ITypeMatterController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="mt_cobro",
+     *           property="tm_cobro",
      *           description="Verificar si aplica cobro el tipo de materia",
      *           type="boolean",
      *         ),
      *         @OA\Property(
-     *           property="mt_matter_count",
+     *           property="tm_matter_count",
      *           description="Verificar si se cuenta el tipo de materia",
      *           type="boolean",
      *         ),
@@ -251,7 +261,7 @@ interface ITypeMatterController {
      * )
      *
      */
-    public function update(Request $request, TypeMatter $typeMatter);
+    public function update(StoreTypeMatterRequest $request, TypeMatter $typeMatter);
 
     /**
      * @OA\Delete(

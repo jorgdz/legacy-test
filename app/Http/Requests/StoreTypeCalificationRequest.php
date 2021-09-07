@@ -24,7 +24,7 @@ class StoreTypeCalificationRequest extends FormRequest
     public function rules()
     {
         return [
-            'tc_name' => 'required|string',
+            'tc_name' => 'required|string|unique:tenant.type_califications,tc_name',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }
