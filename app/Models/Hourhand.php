@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Askedio\SoftCascade\Traits\SoftCascadeTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Stage extends Model
+class Hourhand extends Model
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,8 +16,6 @@ class Stage extends Model
      * @var array
      */
     protected $fillable = [
-        'stg_name',
-        'stg_description',
         'status_id',
     ];
 
@@ -28,24 +24,31 @@ class Stage extends Model
      *
      * @var string
      */
-    protected $table = 'stages';
+    protected $table = 'hourhands';
 
     protected $dates = ['deleted_at'];
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
-    protected $softCascade = ['periodStages'];
-
     /**
-     * period_stages
+     * hourhandPeriod
      *
      * @return void
      */
-    
-    public function periodStages ()
+    /*public function hourhandPeriod ()
     {
-    	return $this->hasMany(PeriodStage::class, 'stage_id');
-    }
+        return $this->hasMany(HourhandPeriod::class);
+    }*/
+
+    /**
+     * courses
+     *
+     * @return void
+     */
+    /*public function courses ()
+    {
+        return $this->hasMany(Course::class);
+    }*/
 
     /**
      * status

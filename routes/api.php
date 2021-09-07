@@ -17,12 +17,14 @@ use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\ClassRoomController;
+use App\Http\Controllers\Api\HourhandController;
 use App\Http\Controllers\Api\PeriodStageController;
 use App\Http\Controllers\Api\MeshsController;
 use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\UserProfileController;
 use App\Http\Controllers\Api\OfferController;
+use App\Models\Hourhand;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -224,3 +226,12 @@ Route::delete('/offers/{offer}/periods', [OfferController::class, 'destroyOfferP
  */
 Route::get('/periods/{period}/offers', [PeriodController::class, 'showOffersByPeriod'])->middleware(['auth:sanctum', 'permission:PeriodOffer-listar-ofertas-por-periodo']);
 Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffersByPeriod'])->middleware(['auth:sanctum', 'permission:PeriodOffer-borrar-ofertas-por-periodo']);
+
+/*
+ * Hourhand
+ */
+Route::get('/hourhands', [HourhandController::class, 'index'])->middleware(['auth:sanctum']);//, 'permission:hourhands-listar-horarios'
+Route::get('/hourhands/{hourhand}', [HourhandController::class, 'show'])->middleware(['auth:sanctum']);//, 'permission:hourhands-obtener-horario'
+Route::post('/hourhands', [HourhandController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:hourhands-crear-horario'
+Route::put('/hourhands/{hourhand}', [HourhandController::class, 'update'])->middleware(['auth:sanctum']);//, 'permission:hourhands-actualizar-horario'
+Route::delete('/hourhands/{hourhand}', [HourhandController::class, 'destroy'])->middleware(['auth:sanctum']);//, 'permission:hourhands-borrar-horario'

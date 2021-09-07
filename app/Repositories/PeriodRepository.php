@@ -8,7 +8,7 @@ use App\Repositories\Base\BaseRepository;
 
 class PeriodRepository extends BaseRepository
 {
-    protected $relations = ['campus', 'typePeriods', 'status'];
+    protected $relations = ['campus', 'typePeriods', 'status','offerPeriod','periodStages']; //,'hourhandPeriod', 'studentRecords', 'courses'
 
     /**
      * __construct
@@ -25,7 +25,7 @@ class PeriodRepository extends BaseRepository
      * @return void
      */
     public function save (Model $period) {
-        $period->save();
+        $period->save(); 
         return $period;
     }
 

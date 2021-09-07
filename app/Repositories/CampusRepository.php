@@ -11,7 +11,7 @@ use App\Repositories\Base\BaseRepository;
 class CampusRepository extends BaseRepository
 {
 
-    protected $relations = ['company', 'status'];
+    protected $relations = ['company', 'status','periods'];
 
     /**
      * __construct
