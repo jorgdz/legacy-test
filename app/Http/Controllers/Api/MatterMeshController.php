@@ -71,7 +71,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      */
     public function show($id)
     {
-        return $this->success($this->matterMeshCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->matterMeshCache->find($id));
     }
 
     /**
