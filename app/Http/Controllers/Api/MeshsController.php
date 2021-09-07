@@ -54,12 +54,7 @@ class MeshsController extends Controller implements IMeshsController
             return $this->success($mesh, Response::HTTP_CREATED);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error(
-                $request->getPathInfo(),
-                $ex,
-                __('messages.internal-server-error'),
-                Response::HTTP_CONFLICT
-            );
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -100,12 +95,7 @@ class MeshsController extends Controller implements IMeshsController
             return $this->success($response);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error(
-                $request->getPathInfo(),
-                $ex,
-                __('messages.internal-server-error'),
-                Response::HTTP_CONFLICT
-            );
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -123,14 +113,10 @@ class MeshsController extends Controller implements IMeshsController
             $response = $this->meshCache->destroy($mesh);
             DB::commit();
             return $this->success($response);
-        } catch (ConflictException $ex) {
+        } catch (\Exception $ex) {
             DB::rollBack();
-            return $this->error(
-                request()->path(),
-                $ex,
-                __('messages.internal-server-error'),
-                Response::HTTP_CONFLICT
-            );
+            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
+          
         }
     }
 
