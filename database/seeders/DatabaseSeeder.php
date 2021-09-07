@@ -21,7 +21,13 @@ class DatabaseSeeder extends Seeder
                 RoleSeeder::class,
                 TypeIdentificationSeeder::class,
                 UserSeeder::class,
-                TypePeriodSeeder::class
+                TypePeriodSeeder::class,
+                TypeDaytripSeeder::class,
+                TypeReligionSeeder::class,
+                EthnicSeeder::class,
+                BloodTypeSeeder::class,
+                CitySeeder::class,
+                TypeInstituteSeeder::class
             ]);
 
             $this->call([
