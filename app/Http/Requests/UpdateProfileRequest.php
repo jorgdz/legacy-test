@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserProfileRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +23,10 @@ class StoreUserProfileRequest extends FormRequest
      */
     public function rules()
     {
-        $user = $this->route()->parameter('user');
+        $profile = $this->route()->parameter('profile');
         return [
-            'profile_id' => 'required|integer|exists:tenant.profiles,id|'.Rule::unique('user_profiles')->where(function ($query) use ($user) {
-                return $query->where('user_id', $user->id);
-            }),
-            'status_id' => 'required|integer|exists:tenant.status,id',
+            'pro_name' => 'required|string|unique:tenant.profiles,pro_name,'.$profile->id.'|max:255',
+            'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }
 }

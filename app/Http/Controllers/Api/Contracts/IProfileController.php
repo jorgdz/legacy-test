@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\UpdateProfileRequest;
 
 interface IProfileController
 {
@@ -158,7 +159,7 @@ interface IProfileController
      * )
      *
      */
-    public function show(Request $request,$profile);
+    public function show(Request $request,Profile $profile);
 
     /**
      * @OA\Put(
@@ -211,7 +212,7 @@ interface IProfileController
      * )
      *
      */
-    public function update(StoreProfileRequest $request, Profile $profile);
+    public function update(UpdateProfileRequest $request, Profile $profile);
 
      /**
      * @OA\Delete(

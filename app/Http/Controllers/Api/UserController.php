@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Models\Profile;
+use App\Traits\Auditor;
 use App\Cache\UserCache;
 use App\Models\UserProfile;
 use App\Traits\RestResponse;
@@ -12,15 +13,16 @@ use Illuminate\Http\Response;
 use App\Cache\UserProfileCache;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 use App\Http\Requests\StoreUserRequest;
 use App\Exceptions\Custom\ConflictException;
-use App\Exceptions\Custom\NotContentException;
 use App\Exceptions\Custom\NotFoundException;
+use App\Exceptions\Custom\NotContentException;
 use App\Http\Requests\StoreUserProfileRequest;
+use App\Http\Requests\UpdateUserProfileRequest;
 use App\Http\Requests\StoreRoleUserProfileRequest;
-use App\Http\Controllers\Api\Contracts\IUserController;
 use App\Http\Requests\UserChangePasswordFormRequest;
-use App\Traits\Auditor;
+use App\Http\Controllers\Api\Contracts\IUserController;
 
 class UserController extends Controller implements IUserController
 {
@@ -168,11 +170,6 @@ class UserController extends Controller implements IUserController
      */
     public function saveProfiles (StoreUserProfileRequest $request, User $user) {
         $userProfileRequest = array_merge(['user_id' => "".$user['id']],$request->all());
-        $matchThese = [['user_id','=',$userProfileRequest['user_id']],['profile_id','=',$userProfileRequest['profile_id']]];
-        $userProfilePreview = UserProfile::where($matchThese)->get();
-        if ($userProfilePreview->isNotEmpty())
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(UserProfile::class)]));
-        
 
         $userProfile = new UserProfile($userProfileRequest);
         $userProfile = $this->repoUserProfile->save($userProfile);
@@ -187,19 +184,15 @@ class UserController extends Controller implements IUserController
      * @param  mixed $profile
      * @return void
      */
-    public function updateProfileById (StoreUserProfileRequest $request, User $user, Profile $profile) {
+    public function updateProfileById ( UpdateUserProfileRequest $request, User $user, Profile $profile) {
         $matchTheseNew = [['user_id','=',$user['id']],['profile_id','=',$profile['id']]];
         $userProfile = UserProfile::where($matchTheseNew)->first();
         if ($userProfile == null)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
 
         $userProfileRequest = array_merge(['user_id' => "".$user['id']],$request->all());
-        $matchThese = [['user_id','=',$userProfileRequest['user_id']],['profile_id','=',$userProfileRequest['profile_id']]];
-        $userProfilePreview = UserProfile::where($matchThese)->get();
-        if ($userProfilePreview->isNotEmpty())
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(UserProfile::class)]));
-
-        $userProfile->fill(array_merge(['user_id' => "".$user['id']],$request->all()));
+        
+        $userProfile->fill($userProfileRequest);
 
         if ($userProfile->isClean())
             return $this->information(__('messages.nochange'));
@@ -218,6 +211,10 @@ class UserController extends Controller implements IUserController
     public function destroyProfilesById (Request $request, User $user, Profile $profile) {
         $matchThese = [['user_id','=',$user['id']],['profile_id','=',$profile['id']]];
         $userProfile = UserProfile::where($matchThese)->first();
+        if ($userProfile == null)
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+
+
         $userProfile=$this->repoUserProfile->destroy($userProfile);
         return $this->success($userProfile);
     }
@@ -230,6 +227,9 @@ class UserController extends Controller implements IUserController
      */
     public function destroyProfiles (Request $request, User $user) {
         $userProfiles = UserProfile::where('user_id',$user['id'])->get();
+        if ($userProfiles->count() == 0)
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+
         // iterate through the Collection
         foreach ($userProfiles as $userProfile) {
             $userProfile = $this->repoUserProfile->destroy($userProfile);

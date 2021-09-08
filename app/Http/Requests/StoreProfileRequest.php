@@ -24,8 +24,8 @@ class StoreProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'pro_name' => 'required',
-            'status_id' => 'required'
+            'pro_name' => 'required|string|unique:tenant.profiles,pro_name|max:255',
+            'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }
 }

@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IProfileController;
@@ -54,8 +55,8 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $profile
      * @return void
      */
-    public function show (Request $request,$id) {
-        return $this->success($this->repoProfile->find($id));
+    public function show (Request $request,Profile $profile) {
+        return $this->success($this->repoProfile->find($profile->id));
     }
 
     /**
@@ -67,9 +68,6 @@ class ProfileController extends Controller implements IProfileController
      */
     public function store (StoreProfileRequest $request) {
         $profileRequest = $request->all();
-        $profilePreview = Profile::where('pro_name','=',$profileRequest['pro_name'])->get();
-        if ($profilePreview->isNotEmpty())
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Profile::class)]));
 
         $profile = new Profile($profileRequest);
         return $this->success($this->repoProfile->save($profile));
@@ -82,11 +80,8 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $profile
      * @return void
      */
-    public function update (StoreProfileRequest $request, Profile $profile) {
+    public function update (UpdateProfileRequest $request, Profile $profile) {
         $profileRequest = $request->all();
-        $profilePreview = Profile::where('pro_name','=',$profileRequest['pro_name'])->get();
-        if ($profilePreview->isNotEmpty() && $profileRequest['pro_name'] != $profile['pro_name'] )
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Profile::class)]));
 
         $profile->fill($profileRequest);
         if ($profile->isClean())

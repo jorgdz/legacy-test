@@ -7,6 +7,7 @@ use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StoreUserProfileRequest;
+use App\Http\Requests\UpdateUserProfileRequest;
 use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Requests\UserChangePasswordFormRequest;
 
@@ -537,7 +538,7 @@ interface IUserController
      * )
      *
      */
-    public function updateProfileById(StoreUserProfileRequest $request, User $user, Profile $profile);
+    public function updateProfileById(UpdateUserProfileRequest $request, User $user, Profile $profile);
 
     /**
      * @OA\Delete(
@@ -598,7 +599,7 @@ interface IUserController
      *   },
      *   summary="Elimina perfiles de usuario",
      *   description="Eliminado lógico de perfiles de usuario específico por Id de usuario.",
-     *   operationId="removeUserProfile",
+     *   operationId="removeUserProfiles",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
