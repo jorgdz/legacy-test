@@ -20,6 +20,8 @@ class Offer extends Model implements AuditableContract
      * @var array
      */
     protected $fillable = [
+        'off_name',
+        'off_description',
         'status_id',
     ];
 

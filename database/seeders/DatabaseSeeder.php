@@ -27,7 +27,11 @@ class DatabaseSeeder extends Seeder
                 EthnicSeeder::class,
                 BloodTypeSeeder::class,
                 CitySeeder::class,
-                TypeInstituteSeeder::class
+                TypeInstituteSeeder::class,
+                OfferSeeder::class,
+                TypeMatterSeeder::class,
+                TypeKinshipSeeder::class,
+                TypeEducationSeeder::class
             ]);
 
             $this->call([

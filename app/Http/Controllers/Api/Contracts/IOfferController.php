@@ -100,6 +100,16 @@ interface IOfferController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="off_name",
+     *           description="Nombre de la oferta",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="off_description",
+     *           description="Descripcion de la oferta",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado de la oferta",
      *           type="integer",
@@ -186,6 +196,16 @@ interface IOfferController
      *           property="user_profile_id",
      *           description="Id del perfil de usuario",
      *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="off_name",
+     *           description="Nombre de la oferta",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="off_description",
+     *           description="Descripcion de la oferta",
+     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="status_id",

@@ -16,6 +16,9 @@ class CreateOffersTable extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('off_name', 255)->nullable();
+            $table->string('off_description', 255)->nullable();
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
