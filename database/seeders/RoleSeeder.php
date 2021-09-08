@@ -1124,6 +1124,76 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'instituteType'
             ],
+            /**
+             * Mail 130-132
+             */
+            [
+                'name' => 'mails-listar-mails',
+                'alias' => 'Listar mails',
+                'description' => 'Listar todos los mails',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mail'
+            ],
+            [
+                'name' => 'mails-obtener-mail',
+                'alias' => 'Obtener mail',
+                'description' => 'Obtener un mail por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mail'
+            ],
+            [
+                'name' => 'mails-actualizar-mail',
+                'alias' => 'Actualizar mail',
+                'description' => 'Actualizar un mail por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mail'
+            ],
+            /**
+             * Estado Materia 133-137
+             */
+            [
+                'name' => 'matter-status-listar-matter-status',
+                'alias' => 'Listar matter_status',
+                'description' => 'Listar todos los estados materias',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matterStatus'
+            ],
+            [
+                'name' => 'matter-status-obtener-matter-status',
+                'alias' => 'Obtener matter_status',
+                'description' => 'Obtener un estado materia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matterStatus'
+            ],
+            [
+                'name' => 'matter-status-crear-matter-status',
+                'alias' => 'Crear matter_status',
+                'description' => 'Agregar un estado materia',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matterStatus'
+            ],
+            [
+                'name' => 'matter-status-actualizar-matter-status',
+                'alias' => 'Actualizar matter_status',
+                'description' => 'Actualizar un estado materia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matterStatus'
+            ],
+            [
+                'name' => 'matter-status-borrar-matter-status',
+                'alias' => 'Borrar matter_status',
+                'description' => 'Borrar un estado materia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matterStatus'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1328,6 +1398,20 @@ class RoleSeeder extends Seeder
             ['permission_id' => 127, 'role_id' => 1],
             ['permission_id' => 128, 'role_id' => 1],
             ['permission_id' => 129, 'role_id' => 1],
+            /**
+             * Mail
+             */
+            ['permission_id' => 130, 'role_id' => 1],
+            ['permission_id' => 131, 'role_id' => 1],
+            ['permission_id' => 132, 'role_id' => 1],
+            /**
+             * Estado materia
+             */
+            ['permission_id' => 133, 'role_id' => 1],
+            ['permission_id' => 134, 'role_id' => 1],
+            ['permission_id' => 135, 'role_id' => 1],
+            ['permission_id' => 136, 'role_id' => 1],
+            ['permission_id' => 137, 'role_id' => 1],
             /**
              * 
              * Permisos de Administrador

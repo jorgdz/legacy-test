@@ -11,7 +11,7 @@ use App\Models\Offer;
 class OfferPeriodRepository extends BaseRepository 
 {
 
-    protected $relations = ['status,periods,offers'];
+    protected $relations = ['status', 'periods', 'offers'];
 
     /**
      * __construct
