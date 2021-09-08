@@ -34,9 +34,6 @@ class AuthController extends Controller implements IAuthController
         if (!Auth::attempt($request->only('us_username', 'password')))
             throw new AuthenticationException(__('messages.no-credentials'));
 
-        // $user = User::where('us_username', $request['us_username'])
-        //     ->with(['userProfiles.profile', 'userProfiles.roles.permissions'])->firstOrFail();
-
         $user = new UserResource(User::where('us_username', $request['us_username'])->firstOrFail());
         $token = $user->createToken('auth_token')->plainTextToken;
         $this->setAudit($this->formatToAudit(__FUNCTION__,class_basename(User::class)));
@@ -54,8 +51,7 @@ class AuthController extends Controller implements IAuthController
      * @return void
      */
     public function whoami (Request $request) {
-        $user = User::findOrFail($request->user()->id);
-        //$this->setAudit($this->formatToAudit(__FUNCTION__,class_basename(User::class)));
+        $user = User::findOrFail($request->user()->id);       
         return new UserResource($user);
     }
 
@@ -67,9 +63,7 @@ class AuthController extends Controller implements IAuthController
      */
     public function logout (Request $request) {
         Cache::flush();
-
         $request->user()->tokens()->delete();
-
         return $this->success(['message' => 'Good by user.']);
     }
 

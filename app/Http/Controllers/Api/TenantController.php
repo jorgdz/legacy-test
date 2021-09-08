@@ -6,6 +6,7 @@ use App\Models\CustomTenant;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use App\Exceptions\Custom\UnprocessableException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,11 +16,39 @@ class TenantController extends Controller implements ITenantController
 {
 
     use RestResponse;
-
     private $domain;
+    protected $key;
+    protected $cache;
+
 
     public function __construct() {
         $this->domain = \parse_url(config('app.url'), PHP_URL_HOST);
+        $key = request()->url();
+        $queryParams = request()->query();
+        ksort($queryParams);
+        $queryString = http_build_query($queryParams);
+        $fullUrl = "{$key}?{$queryString}";
+        $this->key = $fullUrl;
+        $this->cache = new Cache();
+    }
+
+    private function getTenantCached(Request $request, $search){//page,size,search
+        if($search == ''){
+            $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {          
+                return CustomTenant::where('domain', '<>', $this->domain)
+                    ->orderBy('id', 'desc')
+                    ->paginate($request->size ?: 10);
+            });
+        }else{
+            $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
+                return CustomTenant::where('domain', '<>', $this->domain)
+                    ->where('name', $this->search)
+                    ->orWhere('domain', $this->search )
+                    ->orWhere('domain_client', $this->search)
+                    ->first();
+            });
+        }
+        return $tenant;
     }
 
     /**
@@ -29,20 +58,7 @@ class TenantController extends Controller implements ITenantController
      */
     public function index(Request $request) {
         $search = $request->search ?: '';
-        $tenant = null;
-
-        if ($search == '') {
-            $tenant = CustomTenant::where('domain', '<>', $this->domain)
-                ->orderBy('id', 'desc')
-                ->simplePaginate($request->size ?: 10);
-        } else {
-            $tenant = CustomTenant::with('mail')->where('domain', '<>', $this->domain)
-                ->where('name', $search)
-                ->orWhere('domain', $search)
-                ->orWhere('domain_client', $search)
-                ->first();
-        }
-
+        $tenant = $this->getTenantCached($request,$search);
         return $this->success($tenant);
     }
 
