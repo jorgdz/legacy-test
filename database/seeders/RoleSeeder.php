@@ -1038,6 +1038,92 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'hourhand'
             ],
+            /**
+             * Institutos 120-124
+             */
+            [
+                'name' => 'institutes-listar-institutos',
+                'alias' => 'Listar institutos',
+                'description' => 'Listar todos los institutos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutes'
+            ],
+            [
+                'name' => 'institutes-obtener-instituto',
+                'alias' => 'Obtener instituto',
+                'description' => 'Obtener un instituto por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutes'
+            ],
+            [
+                'name' => 'institutes-crear-instituto',
+                'alias' => 'Crear instituto',
+                'description' => 'Agregar un instituto',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutes'
+            ],
+            [
+                'name' => 'institutes-actualizar-instituto',
+                'alias' => 'Actualizar instituto',
+                'description' => 'Actualizar un instituto por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutes'
+            ],
+            [
+                'name' => 'institutes-eliminar-instituto',
+                'alias' => 'Borrar instituto',
+                'description' => 'Borrar un instituto por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutes'
+            ],
+            /**
+             * Tipo Institutos 125-129
+             */
+            [
+                'name' => 'institutetype-listar-tipos-de-institutos',
+                'alias' => 'Listar tipos de institutos',
+                'description' => 'Listar todos los tipos institutos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'instituteType'
+            ],
+            [
+                'name' => 'institutetype-obtener-tipo-de-instituto',
+                'alias' => 'Obtener tipo instituto',
+                'description' => 'Obtener un tipo de instituto por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'instituteType'
+            ],
+            [
+                'name' => 'institutetype-crear-tipo-de-instituto',
+                'alias' => 'Crear tipo instituto',
+                'description' => 'Agregar un tipo de instituto',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'instituteType'
+            ],
+            [
+                'name' => 'institutetype-actualizar-tipo-de-instituto',
+                'alias' => 'Actualizar tipo instituto',
+                'description' => 'Actualizar un tipo de instituto por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'instituteType'
+            ],
+            [
+                'name' => 'institutetype-eliminar-tipo-de-instituto',
+                'alias' => 'Borrar tipo instituto',
+                'description' => 'Borrar un tipo de instituto por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'instituteType'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1226,6 +1312,22 @@ class RoleSeeder extends Seeder
             ['permission_id' => 117, 'role_id' => 1],
             ['permission_id' => 118, 'role_id' => 1],
             ['permission_id' => 119, 'role_id' => 1],
+            /**
+             * Institutos
+             */
+            ['permission_id' => 120, 'role_id' => 1],
+            ['permission_id' => 121, 'role_id' => 1],
+            ['permission_id' => 122, 'role_id' => 1],
+            ['permission_id' => 123, 'role_id' => 1],
+            ['permission_id' => 124, 'role_id' => 1],
+            /**
+             * Tipo Institutos
+             */
+            ['permission_id' => 125, 'role_id' => 1],
+            ['permission_id' => 126, 'role_id' => 1],
+            ['permission_id' => 127, 'role_id' => 1],
+            ['permission_id' => 128, 'role_id' => 1],
+            ['permission_id' => 129, 'role_id' => 1],
             /**
              * 
              * Permisos de Administrador

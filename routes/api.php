@@ -237,16 +237,16 @@ Route::delete('/hourhands/{hourhand}', [HourhandController::class, 'destroy'])->
 /**
  * Tipos de Instituto
  */
-Route::get('institutetypes', [InstituteTypeController::class, 'index'])->middleware(['auth:sanctum']); // permission:institutetype-listar-tipos-de-institutos
-Route::post('institutetypes', [InstituteTypeController::class, 'store'])->middleware(['auth:sanctum']); // permission:institutetype-crear-tipo-de-instituto
-Route::get('institutetypes/{institutetype}', [InstituteTypeController::class, 'show'])->middleware(['auth:sanctum']); // permission:institutetype-obtener-tipo-de-instituto
-Route::put('institutetypes/{institutetype}', [InstituteTypeController::class, 'update'])->middleware(['auth:sanctum']); // permission:institutetype-actualizar-tipo-de-instituto
-Route::delete('institutetypes/{institutetype}', [InstituteTypeController::class, 'destroy'])->middleware(['auth:sanctum']); // permission:institutetype-eliminar-tipo-de-instituto
+Route::get('institutetypes', [InstituteTypeController::class, 'index'])->middleware(['auth:sanctum', 'permission:institutetype-listar-tipos-de-institutos']);
+Route::post('institutetypes', [InstituteTypeController::class, 'store'])->middleware(['auth:sanctum', 'permission:institutetype-crear-tipo-de-instituto']);
+Route::get('institutetypes/{institutetype}', [InstituteTypeController::class, 'show'])->middleware(['auth:sanctum', 'permission:institutetype-obtener-tipo-de-instituto']);
+Route::put('institutetypes/{institutetype}', [InstituteTypeController::class, 'update'])->middleware(['auth:sanctum', 'permission:institutetype-actualizar-tipo-de-instituto']);
+Route::delete('institutetypes/{institutetype}', [InstituteTypeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:institutetype-eliminar-tipo-de-instituto']);
 /**
  * Institutos
  */
-Route::get('institutes', [InstituteController::class, 'index'])->middleware(['auth:sanctum']); // permission:institutes-listar-institutos
-Route::post('institutes', [InstituteController::class, 'store'])->middleware(['auth:sanctum']); // permission:institutes-crear-instituto
-Route::get('institutes/{institute}', [InstituteController::class, 'show'])->middleware(['auth:sanctum']); // permission:institutes-obtener-instituto
-Route::put('institutes/{institute}', [InstituteController::class, 'update'])->middleware(['auth:sanctum']); // permission:institutes-actualizar-instituto
-Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])->middleware(['auth:sanctum']); // permission:institutes-eliminar-instituto
+Route::get('institutes', [InstituteController::class, 'index'])->middleware(['auth:sanctum', 'permission:institutes-listar-institutos']);
+Route::post('institutes', [InstituteController::class, 'store'])->middleware(['auth:sanctum', 'permission:institutes-crear-instituto']);
+Route::get('institutes/{institute}', [InstituteController::class, 'show'])->middleware(['auth:sanctum', 'permission:institutes-obtener-instituto']);
+Route::put('institutes/{institute}', [InstituteController::class, 'update'])->middleware(['auth:sanctum', 'permission:institutes-actualizar-instituto']);
+Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:institutes-eliminar-instituto']);
