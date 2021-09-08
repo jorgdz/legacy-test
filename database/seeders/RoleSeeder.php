@@ -1194,6 +1194,33 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'matterStatus'
             ],
+            /**
+             * Usuario 138-140
+             */
+            [
+                'name' => 'users-crear-usuario',
+                'alias' => 'Crear usuario',
+                'description' => 'Agregar un usuario',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'users'
+            ],
+            [
+                'name' => 'users-actualizar-usuario',
+                'alias' => 'Actualizar usuario',
+                'description' => 'Actualizar un usuario por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'users'
+            ],
+            [
+                'name' => 'users-borrar-usuario',
+                'alias' => 'Borrar usuario',
+                'description' => 'Borrar un usuario por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'users'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1412,6 +1439,12 @@ class RoleSeeder extends Seeder
             ['permission_id' => 135, 'role_id' => 1],
             ['permission_id' => 136, 'role_id' => 1],
             ['permission_id' => 137, 'role_id' => 1],
+            /**
+             * Usuario
+             */
+            ['permission_id' => 138, 'role_id' => 1],
+            ['permission_id' => 139, 'role_id' => 1],
+            ['permission_id' => 140, 'role_id' => 1],
             /**
              * 
              * Permisos de Administrador
