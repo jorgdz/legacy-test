@@ -22,6 +22,7 @@ class Stage extends Model implements AuditableContract
     protected $fillable = [
         'stg_name',
         'stg_description',
+        'stg_acronym',
         'status_id',
     ];
 

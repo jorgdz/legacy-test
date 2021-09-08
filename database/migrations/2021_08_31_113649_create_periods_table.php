@@ -16,6 +16,13 @@ class CreatePeriodsTable extends Migration
         Schema::create('periods', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('per_name', 255)->nullable();
+            $table->string('per_reference', 100)->nullable();
+            $table->integer('per_current_year')->nullable();
+            $table->string('per_due_year')->nullable();
+            $table->integer('per_min_matter_enrollment')->unsigned();
+            $table->integer('per_max_matter_enrollment')->unsigned();
+
             $table->integer('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus');
 

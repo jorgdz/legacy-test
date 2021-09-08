@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Stage;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreStageRequest;
+use App\Http\Requests\UpdateStageRequest;
 
 interface IStageController
 {
@@ -108,6 +109,11 @@ interface IStageController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="stg_acronym",
+     *           description="Siglas de la etapa",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado de la etapa",
      *           type="integer",
@@ -206,6 +212,11 @@ interface IStageController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="stg_acronym",
+     *           description="Siglas de la etapa",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado de la etapa",
      *           type="integer",
@@ -221,7 +232,7 @@ interface IStageController
      * )
      *
      */
-    public function update(StoreStageRequest $request, Stage $stage);
+    public function update(UpdateStageRequest $request, Stage $stage);
 
      /**
      * @OA\Delete(

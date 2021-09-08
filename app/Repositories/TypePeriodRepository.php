@@ -10,6 +10,8 @@ class TypePeriodRepository extends BaseRepository
 {
     protected $relations = ['status','periods'];
 
+    protected $fields = ['tp_name','tp_description'];
+
     /**
      * __construct
      *

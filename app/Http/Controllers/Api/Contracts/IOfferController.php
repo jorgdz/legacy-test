@@ -7,6 +7,7 @@ use App\Models\Period;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\StoreOfferPeriodRequest;
+use App\Http\Requests\UpdateOfferPeriodRequest;
 
 interface IOfferController
 {
@@ -471,7 +472,7 @@ interface IOfferController
      * )
      *
      */
-    public function updateOfferPeriod (StoreOfferPeriodRequest $request, Offer $offer,Period $period);
+    public function updateOfferPeriod (UpdateOfferPeriodRequest $request, Offer $offer,Period $period);
 
     /**
      * @OA\Delete(

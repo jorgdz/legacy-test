@@ -19,6 +19,9 @@ class CreateTypePeriodsTable extends Migration
             $table->string('tp_name', 255)->nullable();
             $table->string('tp_description', 255)->nullable();
 
+            $table->integer('tp_min_matter_enrollment')->unsigned();
+            $table->integer('tp_max_matter_enrollment')->unsigned();
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

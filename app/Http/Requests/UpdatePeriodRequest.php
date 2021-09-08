@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePeriodRequest extends FormRequest
+class UpdatePeriodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +23,11 @@ class StorePeriodRequest extends FormRequest
      */
     public function rules()
     {
+        $period = $this->route()->parameter('period');
+        
         return [
-            'per_name' => 'required|string|unique:tenant.periods,per_name|max:255',
-            'per_reference' => 'required|string|unique:tenant.periods,per_reference|max:100',
+            'per_name' => 'required|string|unique:tenant.periods,per_name,'.$period->id.'|max:255',
+            'per_reference' => 'required|string|unique:tenant.periods,per_reference,'.$period->id.'|max:100',
             'per_min_matter_enrollment' => 'required|integer',
             'per_max_matter_enrollment' => 'required|integer',
             'campus_id' => 'required|integer|exists:tenant.campus,id',

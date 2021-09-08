@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Stage;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreStageRequest extends FormRequest
+class UpdateTypePeriodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +23,13 @@ class StoreStageRequest extends FormRequest
      */
     public function rules()
     {
-        return  [
-            'stg_name' => 'required|string|unique:tenant.stages,stg_name|max:255',
-            'stg_description' => 'required|string|unique:tenant.stages,stg_description|max:255',
-            'stg_acronym' => 'required|string|unique:tenant.stages,stg_acronym|between:2,4',
+        $typePeriod = $this->route()->parameter('typePeriod');
+        return [
+            'tp_name' => 'required|string|unique:tenant.type_periods,tp_name,'.$typePeriod->id.'|max:255',
+            'tp_description' => 'required|string|unique:tenant.type_periods,tp_description,'.$typePeriod->id.'|max:255',
+            'tp_min_matter_enrollment' => 'required|integer',
+            'tp_max_matter_enrollment' => 'required|integer',
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];
-
     }
 }

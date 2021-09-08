@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Cache\OfferPeriodCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePeriodRequest;
+use App\Http\Requests\UpdatePeriodRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotFoundException;
 use App\Exceptions\Custom\UnprocessableException;
@@ -68,13 +69,13 @@ class PeriodController extends Controller
      * @return void
      */
     public function store (StorePeriodRequest $request) {
-        $periodRequest = $request->all();
-
+        $periodRequest = array_merge(['per_current_year' => (int)date("Y")],['per_due_year' => date("Y")+1],$request->all());
+            
+        //No debe haber otro registro con el mismo campus y Tipo de periodo
         $periodPreview = Period::where([['campus_id','=',$periodRequest['campus_id']],['type_period_id','=',$periodRequest['type_period_id']]])->get();
         if ($periodPreview->isNotEmpty())
             throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(period::class)]));
-
-
+        
         $period = new Period($periodRequest);
         return $this->success($this->periodCache->save($period));
     }
@@ -86,12 +87,12 @@ class PeriodController extends Controller
      * @param  mixed $period
      * @return void
      */
-    public function update (StorePeriodRequest $request, Period $period) {
-        $periodRequest = $request->all();
+    public function update (UpdatePeriodRequest $request, Period $period) {
+        $periodRequest = array_merge(['per_current_year' => (int)date("Y")],['per_due_year' => date("Y")+1],$request->all());
 
-        $periodPreview = Period::where([['campus_id','=',$periodRequest['campus_id']],['type_period_id','=',$periodRequest['type_period_id']],['status_id','=',$periodRequest['status_id']]])->get();
+        $periodPreview = Period::where([['campus_id','=',$periodRequest['campus_id']],['type_period_id','=',$periodRequest['type_period_id']],['status_id','=',$periodRequest['status_id']],['id','!=',$period['id']]])->get();
         if ($periodPreview->isNotEmpty())
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Period::class)]));
+            throw new ConflictException(__('messages.exist-instance-custom', ['model' => class_basename(Period::class),'modelA' => class_basename(Campus::class),'modelB' => class_basename(TypePeriod::class)]));
 
         $period->fill($periodRequest);
         if ($period->isClean())

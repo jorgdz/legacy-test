@@ -9,6 +9,7 @@ use App\Cache\TypePeriodCache;
 use App\Http\Controllers\Controller;
 use App\Exceptions\Custom\ConflictException;
 use App\Http\Requests\StoreTypePeriodRequest;
+use App\Http\Requests\UpdateTypePeriodRequest;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\ITypePeriodController;
 
@@ -75,7 +76,7 @@ class TypePeriodController extends Controller implements ITypePeriodController
      * @param  mixed $profile
      * @return void
      */
-    public function update (StoreTypePeriodRequest $request, TypePeriod $typePeriod) {
+    public function update (UpdateTypePeriodRequest $request, TypePeriod $typePeriod) {
         $typePeriodRequest = $request->all();
 
         $typePeriod->fill($typePeriodRequest);

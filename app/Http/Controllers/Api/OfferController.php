@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOfferRequest;
 use App\Exceptions\Custom\NotFoundException;
 use App\Http\Requests\StoreOfferPeriodRequest;
+use App\Http\Requests\UpdateOfferPeriodRequest;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IOfferController;
 
@@ -140,15 +141,14 @@ class OfferController extends Controller implements IOfferController
      * @param  mixed $offerPeriod
      * @return void
      */
-    public function updateOfferPeriod (StoreOfferPeriodRequest $request, Offer $offer,Period $period) {
+    public function updateOfferPeriod (UpdateOfferPeriodRequest $request, Offer $offer,Period $period) {
         $offerPeriodRequest = array_merge(['offer_id' => $offer['id']],$request->all());
         $offerPeriod = OfferPeriod::where([['offer_id' , $offer['id']],['period_id' , $period['id']]])->first();
 
         $offerPeriod->fill($offerPeriodRequest);
         if ($offerPeriod->isClean())
             return $this->information(__('messages.nochange'));
-
-        return $this->success($this->offerPeriodCache->save($offerPeriod));
+        return $this->success($this->offerPeriodCache->update($offerPeriod));
     }
 
     /**

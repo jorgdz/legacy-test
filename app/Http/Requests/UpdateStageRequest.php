@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Stage;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreStageRequest extends FormRequest
+class UpdateStageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +23,12 @@ class StoreStageRequest extends FormRequest
      */
     public function rules()
     {
+        $stage = $this->route()->parameter('stage');
         return  [
-            'stg_name' => 'required|string|unique:tenant.stages,stg_name|max:255',
-            'stg_description' => 'required|string|unique:tenant.stages,stg_description|max:255',
-            'stg_acronym' => 'required|string|unique:tenant.stages,stg_acronym|between:2,4',
+            'stg_name' => 'required|string|unique:tenant.stages,stg_name,'.$stage->id.'|max:255',
+            'stg_description' => 'required|string|unique:tenant.stages,stg_description,'.$stage->id.'|max:255',
+            'stg_acronym' => 'required|string|unique:tenant.stages,stg_acronym,'.$stage->id.'|between:2,4',
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];
-
     }
 }

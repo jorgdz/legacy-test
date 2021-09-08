@@ -24,26 +24,12 @@ class StoreTypePeriodRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'tp_name' => 'required|string|unique:tenant.type_periods,tp_name|max:255',
             'tp_description' => 'required|string|unique:tenant.type_periods,tp_description|max:255',
+            'tp_min_matter_enrollment' => 'required|integer',
+            'tp_max_matter_enrollment' => 'required|integer',
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];
-        if (in_array($this->method(), ['PUT', 'PATCH'])) {
-            $typePeriod = $this->route()->parameter('typePeriod');
-            $rules['tp_name'] = [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('type_periods')->ignore($typePeriod),
-            ];
-            $rules['tp_description'] = [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('type_periods')->ignore($typePeriod),
-            ];
-        }
-        return $rules;
     }
 }

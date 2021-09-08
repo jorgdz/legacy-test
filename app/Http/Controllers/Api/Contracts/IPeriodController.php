@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Period;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePeriodRequest;
+use App\Http\Requests\UpdatePeriodRequest;
 
 interface IPeriodController
 {
@@ -98,6 +99,26 @@ interface IPeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="per_name",
+     *           description="Nombre del periodo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="per_reference",
+     *           description="Referencia del periodo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="per_min_matter_enrollment",
+     *           description="Mínimo numero de materias a matricular",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="per_max_matter_enrollment",
+     *           description="Máximo numero de materias a matricular",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="campus_id",
      *           description="Campus del periodo",
      *           type="integer",
@@ -163,7 +184,7 @@ interface IPeriodController
      * )
      *
      */
-    public function show(Request $request,$period);
+    public function show(Request $request,Period $period);
 
     /**
      * @OA\Put(
@@ -196,6 +217,26 @@ interface IPeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="per_name",
+     *           description="Nombre del periodo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="per_reference",
+     *           description="Referencia del periodo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="per_min_matter_enrollment",
+     *           description="Mínimo numero de materias a matricular",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="per_max_matter_enrollment",
+     *           description="Máximo numero de materias a matricular",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="campus_id",
      *           description="Campus del periodo",
      *           type="integer",
@@ -221,7 +262,7 @@ interface IPeriodController
      * )
      *
      */
-    public function update(StorePeriodRequest $request, Period $period);
+    public function update(UpdatePeriodRequest $request, Period $period);
 
      /**
      * @OA\Delete(

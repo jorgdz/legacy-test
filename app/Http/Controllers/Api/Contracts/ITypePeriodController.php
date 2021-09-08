@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\TypePeriod;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTypePeriodRequest;
+use App\Http\Requests\UpdateTypePeriodRequest;
 
 interface ITypePeriodController
 {
@@ -108,6 +109,16 @@ interface ITypePeriodController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="tp_min_matter_enrollment",
+     *           description="Mínimo numero de materias a matricular",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="tp_max_matter_enrollment",
+     *           description="Máximo numero de materias a matricular",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del tipo de periodo",
      *           type="integer",
@@ -163,7 +174,7 @@ interface ITypePeriodController
      * )
      *
      */
-    public function show(Request $request,$typePeriod);
+    public function show(Request $request,TypePeriod $typePeriod);
 
     /**
      * @OA\Put(
@@ -206,6 +217,16 @@ interface ITypePeriodController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="tp_min_matter_enrollment",
+     *           description="Mínimo numero de materias a matricular",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="tp_max_matter_enrollment",
+     *           description="Máximo numero de materias a matricular",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del tipo de periodo",
      *           type="integer",
@@ -221,7 +242,7 @@ interface ITypePeriodController
      * )
      *
      */
-    public function update(StoreTypePeriodRequest $request, TypePeriod $typePeriod);
+    public function update(UpdateTypePeriodRequest $request, TypePeriod $typePeriod);
 
      /**
      * @OA\Delete(

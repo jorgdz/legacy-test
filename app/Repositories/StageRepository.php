@@ -10,6 +10,8 @@ use App\Exceptions\Custom\NotFoundException;
 class StageRepository extends BaseRepository
 {
     protected $relations = ['status','periodStages'];
+
+    protected $fields = ['stg_name','stg_description','stg_acronym'];
     /**
      * __construct
      *

@@ -178,7 +178,7 @@ Route::delete('/typePeriods/{typePeriod}', [TypePeriodController::class, 'destro
 Route::get('/periods', [PeriodController::class, 'index'])->middleware(['auth:sanctum', 'permission:periods-listar-periodos']);
 Route::get('/periods/{period}', [PeriodController::class, 'show'])->middleware(['auth:sanctum', 'permission:periods-obtener-periodo']);
 Route::post('/periods', [PeriodController::class, 'store'])->middleware(['auth:sanctum', 'permission:periods-crear-periodo']);
-Route::patch('/periods/{period}', [PeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:periods-actualizar-periodo']);
+//Route::patch('/periods/{period}', [PeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:periods-actualizar-periodo']);
 Route::put('/periods/{period}', [PeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:periods-actualizar-periodo']);
 Route::delete('/periods/{period}', [PeriodController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:periods-borrar-periodo']);
 

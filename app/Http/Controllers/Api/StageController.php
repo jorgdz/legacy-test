@@ -11,6 +11,7 @@ use App\Http\Requests\StoreStageRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IStageController;
+use App\Http\Requests\UpdateStageRequest;
 
 class StageController extends Controller implements IStageController
 {
@@ -74,7 +75,7 @@ class StageController extends Controller implements IStageController
      * @param  mixed $stage
      * @return void
      */
-    public function update (StoreStageRequest $request, Stage $stage) {
+    public function update (UpdateStageRequest $request, Stage $stage) {
         $stageRequest = $request->all();
         $stage->fill($stageRequest);
         if ($stage->isClean())

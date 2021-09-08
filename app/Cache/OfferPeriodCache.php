@@ -53,6 +53,18 @@ class OfferPeriodCache extends BaseCache {
     }
 
     /**
+     * update
+     *
+     * @param  mixed $model
+     * @return void
+     */
+    public function update(Model $model)
+    {
+        $this->forgetCache('offersPeriod');
+        return $this->repository->update($model);
+    }
+
+    /**
      * destroy
      *
      * @return void

@@ -33,6 +33,16 @@ class OfferPeriodRepository extends BaseRepository
     }
 
     /**
+     * update
+     *
+     * @return void
+     */
+    public function update (Model $offerPeriod) {
+        OfferPeriod::where('offer_id', $offerPeriod['offer_id'])->update(['period_id' => $offerPeriod['period_id']]);//$model->delete();
+        return $offerPeriod;
+    }
+
+    /**
      * find information by conditionals
      *
      * @return void

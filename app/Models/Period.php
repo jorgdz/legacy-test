@@ -20,6 +20,12 @@ class Period extends Model implements AuditableContract
      * @var array
      */
     protected $fillable = [
+        'per_name',
+        'per_reference',
+        'per_current_year',
+        'per_due_year',
+        'per_min_matter_enrollment',
+        'per_max_matter_enrollment',
         'campus_id',
         'type_period_id',
         'status_id',

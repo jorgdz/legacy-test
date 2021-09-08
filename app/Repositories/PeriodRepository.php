@@ -10,6 +10,8 @@ class PeriodRepository extends BaseRepository
 {
     protected $relations = ['campus', 'typePeriods', 'status','offerPeriod','periodStages']; //,'hourhandPeriod', 'studentRecords', 'courses'
 
+    protected $fields = ['per_name','per_reference'];
+
     /**
      * __construct
      *
