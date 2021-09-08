@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use Spatie\Permission\Models\Permission as PermissionPersonalized;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Permission extends PermissionPersonalized
+class Permission extends PermissionPersonalized implements AuditableContract
 {
-    use HasFactory, SoftDeletes, UsesTenantConnection;
+    use HasFactory, SoftDeletes, UsesTenantConnection,Auditable;
 
     protected $table = 'permissions';
 

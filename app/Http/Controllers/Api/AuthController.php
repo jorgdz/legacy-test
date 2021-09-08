@@ -13,6 +13,7 @@ use Illuminate\Auth\AuthenticationException;
 use App\Http\Controllers\Api\Contracts\IAuthController;
 use PhpParser\ErrorHandler\Collecting;
 use App\Http\Resources\UserResource as UserResource;
+use App\Traits\Auditor;
 
 /**
  * AuthController
@@ -21,6 +22,7 @@ class AuthController extends Controller implements IAuthController
 {
 
     use RestResponse;
+    use Auditor;
 
     /**
      * login
@@ -37,6 +39,7 @@ class AuthController extends Controller implements IAuthController
 
         $user = new UserResource(User::where('us_username', $request['us_username'])->firstOrFail());
         $token = $user->createToken('auth_token')->plainTextToken;
+        $this->setAudit($this->formatToAudit(__FUNCTION__,class_basename(User::class)));
 
         return $this->success([
             'user' => $user,
@@ -52,6 +55,7 @@ class AuthController extends Controller implements IAuthController
      */
     public function whoami (Request $request) {
         $user = User::findOrFail($request->user()->id);
+        //$this->setAudit($this->formatToAudit(__FUNCTION__,class_basename(User::class)));
         return new UserResource($user);
     }
 
@@ -68,4 +72,5 @@ class AuthController extends Controller implements IAuthController
 
         return $this->success(['message' => 'Good by user.']);
     }
+
 }

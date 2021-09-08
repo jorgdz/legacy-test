@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Offer extends Model
+class Offer extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
+    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait,Auditable;
 
     /**
      * The attributes that are mass assignable.

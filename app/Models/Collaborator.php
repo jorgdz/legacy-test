@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-
-class Collaborator extends Model
+class Collaborator extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection;
+    use HasFactory, UsesTenantConnection,Auditable;
 
     protected $table = 'collaborators';
 

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Tenant;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Mail extends Tenant
+class Mail extends Tenant implements AuditableContract
 {
-    use HasFactory;
+    use HasFactory,Auditable;
 
     protected $table = 'mails';
 

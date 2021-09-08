@@ -10,9 +10,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class User extends Authenticatable
+class User extends Authenticatable implements AuditableContract
 {
+    use Auditable;
     use HasFactory, HasRoles, HasApiTokens, Notifiable, UsesTenantConnection;
 
     /**
@@ -34,6 +37,8 @@ class User extends Authenticatable
         'type_identification_id',
         'status_id',
     ];
+
+    protected $auiditInclude = ['us_identification', 'us_firstname'];
 
     protected $guard_name = 'api';
 

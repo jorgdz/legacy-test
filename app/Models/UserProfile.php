@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class UserProfile extends Model
-{
-    use HasFactory, HasRoles, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
+class UserProfile extends Model implements AuditableContract
+{ 
+    use HasFactory, HasRoles, UsesTenantConnection, SoftDeletes, SoftCascadeTrait,Auditable;
 
     protected $table = 'user_profiles';
     protected $fillable = ['user_id', 'profile_id', 'status_id'];

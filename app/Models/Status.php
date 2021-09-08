@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Status extends Model
+class Status extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection;
+    use HasFactory, UsesTenantConnection, Auditable;
 
     protected $table = 'status';
 

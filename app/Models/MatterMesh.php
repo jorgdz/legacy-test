@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class MatterMesh extends Model
+class MatterMesh extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes;
+    use HasFactory, UsesTenantConnection, SoftDeletes,Auditable;
 
     protected $table = 'matter_mesh';
 

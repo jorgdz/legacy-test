@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class PeriodStage extends Model
+class PeriodStage extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
+    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait,Auditable;
 
     protected $table = 'period_stages';
     protected $fillable = ['stage_id', 'period_id', 'start_date', 'end_date', 'status_id'];

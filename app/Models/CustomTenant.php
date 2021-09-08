@@ -7,13 +7,14 @@ use Spatie\Multitenancy\Models\Tenant;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 /**
  * CustomTenant
  */
-class CustomTenant extends Tenant
+class CustomTenant extends Tenant implements AuditableContract
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes,Auditable;
 
     protected $table = 'tenants';
 

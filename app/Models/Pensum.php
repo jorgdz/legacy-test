@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Pensum extends Model
+class Pensum extends Model implements AuditableContract
 {
-    use HasFactory, SoftDeletes, SoftCascadeTrait, UsesTenantConnection;
+    use HasFactory, SoftDeletes, SoftCascadeTrait, UsesTenantConnection,Auditable;
 
     protected $table = 'pensums';
 

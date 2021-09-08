@@ -20,10 +20,11 @@ use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Controllers\Api\Contracts\IUserController;
 use App\Http\Requests\UserChangePasswordFormRequest;
 use App\Repositories\UserRepository;
+use App\Traits\Auditor;
 
 class UserController extends Controller implements IUserController
 {
-    use RestResponse;
+    use RestResponse,Auditor;
 
     /**
      * repoUser
@@ -124,6 +125,7 @@ class UserController extends Controller implements IUserController
         $userProfilePreview = UserProfile::where($matchThese)->get();
         if ($userProfilePreview->isNotEmpty())
             throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(UserProfile::class)]));
+        
 
         $userProfile = new UserProfile($userProfileRequest);
         $userProfile = $this->repoUserProfile->save($userProfile);
@@ -220,7 +222,8 @@ class UserController extends Controller implements IUserController
         $userProfile = UserProfile::where($matchTheseNew)->first();
         if ($userProfile == null)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
-
+        
+        $this->setAudit($this->formatToAudit(__FUNCTION__,class_basename(UserProfile::class)));
         $array_roles = $request['roles'];
         return $this->success($this->repoUser->saveRolesbyUserProfile($array_roles,$userProfile));
     }

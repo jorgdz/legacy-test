@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class ClassRoom extends Model
+class ClassRoom extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes;
+    use HasFactory, UsesTenantConnection, SoftDeletes,Auditable;
 
     protected $table = 'classrooms';
 
