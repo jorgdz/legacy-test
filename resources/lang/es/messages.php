@@ -17,5 +17,6 @@ return [
     'is-inactive' => 'Este :model ya esta inactivo',
     'error-comparing-password' => 'Error. Contraseña generada no coincide con la verificación del hash generado.',
     'error-parameter-id-required' => 'El praremtro id es requerido.',
+    'no-auth' => 'No estás autenticado.',
 ];
 ?>

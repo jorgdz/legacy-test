@@ -85,7 +85,7 @@ class RoleController extends Controller implements IRoleController
             $role->fill($request->all());
 
             if ($role->isClean() && !isset($request['permissions']))
-                throw new UnprocessableException(__('messages.nochange'));
+                return $this->information(__('messages.nochange'));
 
             $response = $this->repository->save($role);
 

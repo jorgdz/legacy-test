@@ -75,7 +75,7 @@ class InstituteController extends Controller
         $institute->fill($request->all());
 
         if($institute->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->instituteCache->save($institute));
     }

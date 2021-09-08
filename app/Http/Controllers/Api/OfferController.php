@@ -20,7 +20,7 @@ class OfferController extends Controller implements IOfferController
 {
     //
     use RestResponse;
-    
+
     /**
      * offerCache
      *
@@ -83,7 +83,7 @@ class OfferController extends Controller implements IOfferController
         $offerRequest = $request->all();
         $offer->fill($offerRequest);
         if ($offer->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->offerCache->save($offer));
     }
@@ -143,10 +143,10 @@ class OfferController extends Controller implements IOfferController
     public function updateOfferPeriod (StoreOfferPeriodRequest $request, Offer $offer,Period $period) {
         $offerPeriodRequest = array_merge(['offer_id' => $offer['id']],$request->all());
         $offerPeriod = OfferPeriod::where([['offer_id' , $offer['id']],['period_id' , $period['id']]])->first();
-        
+
         $offerPeriod->fill($offerPeriodRequest);
         if ($offerPeriod->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->offerPeriodCache->save($offerPeriod));
     }
@@ -173,10 +173,10 @@ class OfferController extends Controller implements IOfferController
         $offerPeriods = OfferPeriod::where('offer_id',$offer->id)->get();
         if ($offerPeriods->isEmpty())
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(OfferPeriod::class)]));
-       
+
         foreach ($offerPeriods as $offerPeriod) {
             $offerPeriod = $this->offerPeriodCache->destroy($offerPeriod);
         }
         return $this->success($offerPeriods);
     }
-} 
+}

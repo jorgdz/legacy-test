@@ -70,7 +70,7 @@ class ProfileController extends Controller implements IProfileController
         $profilePreview = Profile::where('pro_name','=',$profileRequest['pro_name'])->get();
         if ($profilePreview->isNotEmpty())
             throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Profile::class)]));
-        
+
         $profile = new Profile($profileRequest);
         return $this->success($this->repoProfile->save($profile));
     }
@@ -90,7 +90,7 @@ class ProfileController extends Controller implements IProfileController
 
         $profile->fill($profileRequest);
         if ($profile->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->repoProfile->save($profile));
     }

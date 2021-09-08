@@ -16,7 +16,6 @@ use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotContentException;
 use App\Exceptions\Custom\NotFoundException;
 use App\Http\Requests\StoreUserProfileRequest;
-use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Controllers\Api\Contracts\IUserController;
 use App\Http\Requests\UserChangePasswordFormRequest;
@@ -125,7 +124,7 @@ class UserController extends Controller implements IUserController
         $userProfilePreview = UserProfile::where($matchThese)->get();
         if ($userProfilePreview->isNotEmpty())
             throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(UserProfile::class)]));
-            
+
         $userProfile = new UserProfile($userProfileRequest);
         $userProfile = $this->repoUserProfile->save($userProfile);
         return $this->success($userProfile);
@@ -142,7 +141,7 @@ class UserController extends Controller implements IUserController
     public function updateProfileById ( StoreUserProfileRequest $request, User $user, Profile $profile) {
         $matchTheseNew = [['user_id','=',$user['id']],['profile_id','=',$profile['id']]];
         $userProfile = UserProfile::where($matchTheseNew)->first();
-        if ($userProfile == null) 
+        if ($userProfile == null)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
 
         $userProfileRequest = array_merge(['user_id' => "".$user['id']],$request->all());
@@ -150,11 +149,11 @@ class UserController extends Controller implements IUserController
         $userProfilePreview = UserProfile::where($matchThese)->get();
         if ($userProfilePreview->isNotEmpty())
             throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(UserProfile::class)]));
-        
+
         $userProfile->fill(array_merge(['user_id' => "".$user['id']],$request->all()));
 
         if ($userProfile->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         $userProfile = $this->repoUserProfile->save($userProfile);
         return $this->success($userProfile);
@@ -198,7 +197,7 @@ class UserController extends Controller implements IUserController
     public function showRolesbyUser (Request $request,$user_id) {
         return $this->success($this->repoUser->showRolesbyUser($user_id));
     }
-    
+
     /**
      * index
      *
@@ -216,12 +215,12 @@ class UserController extends Controller implements IUserController
      * @return void
      */
     public function saveRolesbyUserProfile (StoreRoleUserProfileRequest $request, $user_id, $profile_id) {
-        
+
         $matchTheseNew = [['user_id','=',$user_id],['profile_id','=',$profile_id]];
         $userProfile = UserProfile::where($matchTheseNew)->first();
-        if ($userProfile == null) 
+        if ($userProfile == null)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
-        
+
         $array_roles = $request['roles'];
         return $this->success($this->repoUser->saveRolesbyUserProfile($array_roles,$userProfile));
     }
@@ -243,7 +242,7 @@ class UserController extends Controller implements IUserController
     }
 
 
-    // 
+    //
      /**
      * changePassword
      *

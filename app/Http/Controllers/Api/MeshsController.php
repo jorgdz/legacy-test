@@ -36,7 +36,7 @@ class MeshsController extends Controller implements IMeshsController
         return $this->success($this->meshCache->all($request));
     }
 
-  
+
     /**
      * Store a newly created resource in storage.
      *
@@ -67,9 +67,9 @@ class MeshsController extends Controller implements IMeshsController
      */
     public function show(Request $request,$id)
     {
-      
+
         return $this->success($this->meshCache->find($id));
-       
+
     }
 
 
@@ -87,7 +87,7 @@ class MeshsController extends Controller implements IMeshsController
             $mesh->fill($request->all());
 
             if ($mesh->isClean())
-                throw new UnprocessableException(__('messages.nochange'));
+                return $this->information(__('messages.nochange'));
 
             $response = $this->meshCache->save($mesh);
 
@@ -116,7 +116,7 @@ class MeshsController extends Controller implements IMeshsController
         } catch (\Exception $ex) {
             DB::rollBack();
             return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
-          
+
         }
     }
 

@@ -61,7 +61,7 @@ class MailController extends Controller implements IMailController
             $mail->fill($request->all());
 
             if ($mail->isClean())
-                throw new UnprocessableException(__('messages.nochange'));
+                return $this->information(__('messages.nochange'));
 
             $response = $this->repository->save($mail);
 

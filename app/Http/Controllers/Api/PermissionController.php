@@ -93,10 +93,10 @@ class PermissionController extends Controller implements IPermissionController
         DB::beginTransaction();
         try {
             $permission->fill($request->all());
-            
+
             if ($permission->isClean())
-                throw new UnprocessableException(__('messages.nochange'));
-            
+                return $this->information(__('messages.nochange'));
+
             $response = $this->repository->save($permission);
 
             DB::commit();

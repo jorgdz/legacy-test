@@ -77,7 +77,7 @@ class PensumController extends Controller implements IPensumController
             $pensum->fill($request->all());
 
             if ($pensum->isClean())
-                throw new UnprocessableException(__('messages.nochange'));
+                return $this->information(__('messages.nochange'));
 
             $response = $this->pensumCache->save($pensum);
 

@@ -75,7 +75,7 @@ class HourhandController extends Controller
         $hourhandRequest = $request->all();
         $hourhand->fill($hourhandRequest);
         if ($hourhand->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->hourhandCache->save($hourhand));
     }
@@ -88,5 +88,5 @@ class HourhandController extends Controller
      */
     public function destroy(Hourhand $hourhand) {
         return $this->success($this->hourhandCache->destroy($hourhand));
-    } 
+    }
 }

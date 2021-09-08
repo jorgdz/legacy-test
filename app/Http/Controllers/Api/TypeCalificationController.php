@@ -77,7 +77,7 @@ class TypeCalificationController extends Controller implements ITypeCalification
             $typeCalification->fill($request->all());
 
             if ($typeCalification->isClean())
-                throw new UnprocessableException(__('messages.nochange'));
+                return $this->information(__('messages.nochange'));
 
             $response = $this->typeCalificationCache->save($typeCalification);
 

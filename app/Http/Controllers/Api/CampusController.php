@@ -72,7 +72,7 @@ class CampusController extends Controller implements ICampusController
         $campus->fill($request->all());
 
         if ($campus->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->campusCache->save($campus));
     }

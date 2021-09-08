@@ -86,7 +86,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
         $mattermesh->fill($request->all());
 
         if ($mattermesh->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->matterMeshCache->save($mattermesh));
     }

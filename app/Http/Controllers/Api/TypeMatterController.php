@@ -14,7 +14,7 @@ use App\Http\Requests\StoreTypeMatterRequest;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\ITypeMatterController;
 
-class TypeMatterController extends Controller implements ITypeMatterController 
+class TypeMatterController extends Controller implements ITypeMatterController
 {
     use RestResponse;
 
@@ -75,7 +75,7 @@ class TypeMatterController extends Controller implements ITypeMatterController
             $typeMatter->fill($request->all());
 
             if ($typeMatter->isClean())
-                throw new UnprocessableException(__('messages.nochange'));
+                return $this->information(__('messages.nochange'));
 
             $response = $this->typeMatterCache->save($typeMatter);
 

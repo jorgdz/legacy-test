@@ -45,7 +45,7 @@ class PeriodStageController extends Controller implements IPeriodStageController
     {
         return $this->success($this->periodStageCache->all($request));
     }
-    
+
     /**
      * store
      *
@@ -60,10 +60,10 @@ class PeriodStageController extends Controller implements IPeriodStageController
             throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(PeriodStage::class)]));
 
         $periodStage = new PeriodStage($request->all());
-        
+
         return $this->success($this->periodStageCache->save($periodStage), Response::HTTP_CREATED);
     }
-        
+
     /**
      * show
      *
@@ -74,7 +74,7 @@ class PeriodStageController extends Controller implements IPeriodStageController
     {
         return $this->success($this->periodStageCache->find(intval($id)));
     }
-        
+
     /**
      * update
      *
@@ -85,13 +85,13 @@ class PeriodStageController extends Controller implements IPeriodStageController
     public function update(PeriodStageRequest $request, PeriodStage $periodstage)
     {
         $periodstage->fill($request->all());
- 
+
         if ($periodstage->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->periodStageCache->save($periodstage));
     }
-    
+
     /**
      * destroy
      *

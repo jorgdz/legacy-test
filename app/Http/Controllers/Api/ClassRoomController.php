@@ -65,7 +65,7 @@ class ClassRoomController extends Controller implements IClassRoomController
         $classroom->fill($request->all());
 
         if ($classroom->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->classRoomCache->save($classroom));
     }

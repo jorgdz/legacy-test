@@ -42,7 +42,7 @@ class PeriodController extends Controller
     /**
      * index
      *
-     * List all periods 
+     * List all periods
      * @return void
      */
     public function index (Request $request) {
@@ -69,12 +69,12 @@ class PeriodController extends Controller
      */
     public function store (StorePeriodRequest $request) {
         $periodRequest = $request->all();
-        
+
         $periodPreview = Period::where([['campus_id','=',$periodRequest['campus_id']],['type_period_id','=',$periodRequest['type_period_id']]])->get();
         if ($periodPreview->isNotEmpty())
             throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(period::class)]));
-        
-        
+
+
         $period = new Period($periodRequest);
         return $this->success($this->periodCache->save($period));
     }
@@ -95,8 +95,8 @@ class PeriodController extends Controller
 
         $period->fill($periodRequest);
         if ($period->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
-            
+            return $this->information(__('messages.nochange'));
+
         return $this->success($this->periodCache->save($period));
     }
 
@@ -131,7 +131,7 @@ class PeriodController extends Controller
         $offerPeriods = OfferPeriod::where('period_id',$period->id)->get();
         if ($offerPeriods->isEmpty())
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(OfferPeriod::class)]));
-       
+
         foreach ($offerPeriods as $offerPeriod) {
             $offerPeriod = $this->offerPeriodCache->destroy($offerPeriod);
         }

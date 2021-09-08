@@ -77,7 +77,7 @@ class MatterController extends Controller implements IMatterController
             $matter->fill($request->all());
 
             if ($matter->isClean())
-                throw new UnprocessableException(__('messages.nochange'));
+                return $this->information(__('messages.nochange'));
 
             $response = $this->matterCache->save($matter);
 

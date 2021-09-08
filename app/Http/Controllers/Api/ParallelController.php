@@ -66,7 +66,7 @@ class ParallelController extends Controller implements IParallelController
         $parallel->fill($request->all());
 
         if ($parallel->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->parallelCache->save($parallel));
     }

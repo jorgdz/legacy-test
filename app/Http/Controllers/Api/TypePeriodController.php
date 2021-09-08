@@ -63,7 +63,7 @@ class TypePeriodController extends Controller implements ITypePeriodController
      */
     public function store (StoreTypePeriodRequest $request) {
         $typePeriodRequest = $request->all();
-        
+
         $typePeriod = new TypePeriod($typePeriodRequest);
         return $this->success($this->typePeriodCache->save($typePeriod));
     }
@@ -80,7 +80,7 @@ class TypePeriodController extends Controller implements ITypePeriodController
 
         $typePeriod->fill($typePeriodRequest);
         if ($typePeriod->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->typePeriodCache->save($typePeriod));
     }

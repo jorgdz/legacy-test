@@ -77,7 +77,7 @@ class MatterStatusController extends Controller implements IMatterStatusControll
             $matterStatus->fill($request->all());
 
             if ($matterStatus->isClean())
-                throw new UnprocessableException(__('messages.nochange'));
+                return $this->information(__('messages.nochange'));
 
             $response = $this->matterStatusCache->save($matterStatus);
 

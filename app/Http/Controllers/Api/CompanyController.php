@@ -78,7 +78,7 @@ class CompanyController extends Controller implements ICompanyController
         $company->fill($request->all());
 
         if ($company->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->companyCache->save($company));
     }

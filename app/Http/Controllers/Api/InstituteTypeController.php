@@ -77,7 +77,7 @@ class InstituteTypeController extends Controller implements ITypeInstitute
         $institutetype->fill($request->all());
 
         if($institutetype->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->instituteTypeCache->save($institutetype));
     }

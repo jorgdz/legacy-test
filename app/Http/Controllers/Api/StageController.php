@@ -78,7 +78,7 @@ class StageController extends Controller implements IStageController
         $stageRequest = $request->all();
         $stage->fill($stageRequest);
         if ($stage->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            return $this->information(__('messages.nochange'));
 
         return $this->success($this->stageCache->save($stage));
     }

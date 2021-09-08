@@ -39,6 +39,7 @@ class TenantController extends Controller implements ITenantController
             $tenant = CustomTenant::with('mail')->where('domain', '<>', $this->domain)
                 ->where('name', $search)
                 ->orWhere('domain', $search)
+                ->orWhere('domain_client', $search)
                 ->first();
         }
 
@@ -102,7 +103,7 @@ class TenantController extends Controller implements ITenantController
         $tenant->fill($request->all());
 
         if ($tenant->isClean())
-            throw new UnprocessableException(__('messages.nochange'));
+            $this->information(__('messages.nochange'));
 
         $tenant->save();
 
