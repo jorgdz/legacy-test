@@ -39,13 +39,35 @@ class Offer extends Model implements AuditableContract
     //protected $softCascade = ['periodsOffer'];
 
     /**
-     * offer_period
+     * type_students
      *
      * @return void
      */
     public function offerPeriods ()
     {
-    	return $this->hasMany(OfferPeriod::class);
+    	return $this->hasMany(TypeStudent::class);
+    }
+
+    /**
+     * matterMesh
+     *
+     * @return void
+     */
+    public function matterMesh()
+    {
+        return $this->hasMany(MatterMesh::class, 'mesh_id');
+    }
+
+
+    /**
+     * educationLevels
+     *
+     * @return void
+     */
+    public function educationLevels()
+    {
+        return $this->hasMany(
+            EducationLevel::class, 'offer_id');
     }
 
     /**

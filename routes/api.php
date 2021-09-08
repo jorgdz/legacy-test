@@ -31,6 +31,7 @@ require __DIR__ . "/channels/meshs.php";
 require __DIR__ . "/channels/matters.php";
 require __DIR__ . "/channels/mails.php";
 require __DIR__ . "/channels/matter-status.php";
+require __DIR__ . "/channels/education-levels.php";
 
 /*
 |--------------------------------------------------------------------------

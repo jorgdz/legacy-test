@@ -299,6 +299,7 @@ class UserController extends Controller implements IUserController
      * @return void
      */
     public function changePassword(UserChangePasswordFormRequest $request, User $user) {
+        $this->setAudit($this->formatToAudit(__FUNCTION__,class_basename(User::class)));
         return $this->success($this->repoUser->changePasswordUser( $user));
     }
 }

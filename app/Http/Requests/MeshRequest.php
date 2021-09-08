@@ -34,7 +34,7 @@ class MeshRequest extends FormRequest
                     'mes_acronym' => 'required|max:3',
                     'pensum_id' => 'required|integer',
                     'level_edu_id' => 'required|integer',
-                    'status_id' => 'required|integer'
+                    'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
                 break;
             case 'PUT':
