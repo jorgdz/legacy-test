@@ -3,22 +3,18 @@
 namespace App\Repositories;
 
 use App\Exceptions\Custom\ConflictException;
-use App\Exceptions\Custom\NotContentException;
 use App\Models\User;
-use App\Traits\RestResponse;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 use App\Exceptions\Custom\NotFoundException;
 use App\Models\UserProfile;
-use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\This;
 
 class UserRepository extends BaseRepository
 {
+    protected $relations = ['status', 'identifications'];
     protected $fields = ['us_identification', 'us_username', 'us_firstname', 'us_first_lastname'];
 
     /**
@@ -106,7 +102,7 @@ class UserRepository extends BaseRepository
      * @return void
      *
      */
-    public function showRolesbyUserProfile ( $user_id , $profile_id ) {
+    public function showRolesbyUserProfile ($user_id, $profile_id) {
         $query = $this->model->with(['userProfiles' => function($query) use ($profile_id) {
             $query->with('roles.permissions')->where('profile_id',$profile_id);
         }])->find($user_id);
@@ -139,8 +135,7 @@ class UserRepository extends BaseRepository
     }
 
 
-
-      /**
+    /**
      * find information by conditionals
      *
      * @return void
@@ -153,19 +148,15 @@ class UserRepository extends BaseRepository
         return $response;
     }
 
-
     /**
      * changePasswordUser
      *
      * @param  mixed $request
      * @return void
      */
-    public function changePasswordUserRepository( $user){
-       
-        
-        $id_user=$user->id;
-       
-  
+    public function changePasswordUserRepository($user) {
+        $id_user = $user->id;
+
         //Si el id de usuario es 0
         if($id_user==0)
             throw new ConflictException(__('error-parameter-id-required'));
@@ -192,7 +183,6 @@ class UserRepository extends BaseRepository
         $user = User::where("id", $id_user)->first();
         $user['new_password']=$passwordNew;
         return $user;
-        
     }
     
     /**
@@ -208,6 +198,4 @@ class UserRepository extends BaseRepository
         
         return $passwordNew;
     }
-    
-   
 }

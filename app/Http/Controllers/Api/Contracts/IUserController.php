@@ -102,22 +102,236 @@ interface IUserController
     public function show (User $user);
 
     /**
-     * store
+     * @OA\Post(
+     *   path="/api/users",
+     *   tags={"Usuarios"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Crear un usuario",
+     *   description="Crear un nuevo usuario.",
+     *   operationId="addUser",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_identification_id",
+     *           description="Id del tipo de identificación",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="us_identification",
+     *           description="Número de identificación",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_firstname",
+     *           description="Primer nombre del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_secondname",
+     *           description="Segundo nombre del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_first_lastname",
+     *           description="Primer apellido del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_second_lastname",
+     *           description="Segundo apellido del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_date_birth",
+     *           description="Fecha de nacimiento del usuario",
+     *           type="string",
+     *           example="1995-07-21"
+     *         ),
+     *         @OA\Property(
+     *           property="us_gender",
+     *           description="Género del usuario",
+     *           type="string",
+     *           example="Masculino/Femenino"
+     *         ),
+     *         @OA\Property(
+     *           property="us_username",
+     *           description="Nickname del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="email",
+     *           description="Correo electrónico del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Estado del usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
      *
-     * Create a new user
-     * @param  mixed $request
-     * @return void
      */
     public function store (StoreUserRequest $request);
 
     /**
-     * update
+     * @OA\Put(
+     *   path="/api/users/{user}",
+     *   tags={"Usuarios"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Actualizar usuario",
+     *   description="Actualizar un usuario.",
+     *   operationId="updateUsers",
+     *   @OA\Parameter(
+     *     name="user",
+     *     description="Id del usuario",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_identification_id",
+     *           description="Id del tipo de identificación",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="us_identification",
+     *           description="Número de identificación",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_firstname",
+     *           description="Primer nombre del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_secondname",
+     *           description="Segundo nombre del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_first_lastname",
+     *           description="Primer apellido del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_second_lastname",
+     *           description="Segundo apellido del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="us_date_birth",
+     *           description="Fecha de nacimiento del usuario",
+     *           type="string",
+     *           example="1995-07-21"
+     *         ),
+     *         @OA\Property(
+     *           property="us_gender",
+     *           description="Género del usuario",
+     *           type="string",
+     *           example="Masculino/Femenino"
+     *         ),
+     *         @OA\Property(
+     *           property="us_username",
+     *           description="Nickname del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="email",
+     *           description="Correo electrónico del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Estado del usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
      *
-     * @param  mixed $request
-     * @param  mixed $user
-     * @return void
      */
-    public function update (Request $request, User $user);
+    public function update (StoreUserRequest $request, User $user);
+
+    /**
+     * @OA\Delete(
+     *   path="/api/users/{user}",
+     *   tags={"Usuarios"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Eliminar un usuario",
+     *   description="Eliminar una usuario por Id",
+     *   operationId="deleteUsers",
+     *   @OA\Parameter(
+     *     name="user",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroy(User $user);
 
     /**
      * @OA\Get(
@@ -567,7 +781,6 @@ interface IUserController
      */
     public function saveRolesbyUserProfile(StoreRoleUserProfileRequest $request, User $user,Profile $profile);
 
-
      /**
      * @OA\Get(
      *   path="/api/users/uncollaborator",
@@ -636,7 +849,6 @@ interface IUserController
      *
      */
     public function showUsersUnCollaborator (Request $request);
-
 
      /**
      * @OA\Put(

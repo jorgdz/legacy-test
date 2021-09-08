@@ -75,6 +75,23 @@ class BaseRepository implements IBaseRepository
         return $query->findOrFail($id);
     }
 
+     /**
+     * find the specified resource.
+     *
+     * @param array $conditionals
+     * @return Illuminate\Database\Eloquent\Model
+     * 
+     */
+    public function findByConditionals($conditionals) {
+        $query = $this->model;
+
+        if (!empty($this->relations)) {
+            $query = $query->with($this->relations);
+        }
+
+        return $query->where($conditionals)->firstOrFail();
+    }
+
     /**
      * add/set register
      *

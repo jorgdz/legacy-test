@@ -10,6 +10,7 @@ use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Cache\UserProfileCache;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Exceptions\Custom\ConflictException;
@@ -19,7 +20,6 @@ use App\Http\Requests\StoreUserProfileRequest;
 use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Controllers\Api\Contracts\IUserController;
 use App\Http\Requests\UserChangePasswordFormRequest;
-use App\Repositories\UserRepository;
 use App\Traits\Auditor;
 
 class UserController extends Controller implements IUserController
@@ -31,14 +31,14 @@ class UserController extends Controller implements IUserController
      *
      * @var mixed
      */
-    private $repoUser,$repoUserProfile;
+    private $repoUser, $repoUserProfile;
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct (UserCache $repoUser,UserProfileCache $repoUserProfile) {
+    public function __construct (UserCache $repoUser, UserProfileCache $repoUserProfile) {
         $this->repoUser = $repoUser;
         $this->repoUserProfile = $repoUserProfile;
     }
@@ -62,32 +62,79 @@ class UserController extends Controller implements IUserController
      * @return void
      */
     public function show (User $user) {
-        return $this->success($user, Response::HTTP_FOUND);
+        return $this->success($this->repoUser->find($user->id), Response::HTTP_FOUND);
     }
 
     /**
-     * store
+     * Store a newly created resource in storage.
      *
-     * Add new user
-     * @param  mixed $request
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store (StoreUserRequest $request) {
-        $user = new User($request->all());
-        $user = $this->repoUser->save($user);
-        //$user->syncRoles($request->roles);
-        return $this->success($user, Response::HTTP_CREATED);
+        DB::beginTransaction();
+        try {
+            $user = new User($request->all());
+            $user = $this->repoUser->save($user);
+
+            DB::commit();
+            return $this->success($user, Response::HTTP_CREATED);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
+        }
     }
 
     /**
-     * update
+     * Update the specified resource in storage.
      *
-     * @param  mixed $request
-     * @param  mixed $user
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
      */
-    public function update (Request $request, User $user) {
+    public function update (StoreUserRequest $request, User $user) {
+        DB::beginTransaction();
+        try {
+            $user->fill($request->all());
 
+            if ($user->isClean())
+                return $this->information(__('messages.nochange'));
+
+            $response = $this->repoUser->save($user);
+
+            DB::commit();
+            return $this->success($response);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user){
+        DB::beginTransaction();
+        try {
+            $response = $this->repoUser->destroy($user);
+
+            $conditionals = [
+                ['user_id', $user->id]
+            ];
+            $usr_profiles = $this->repoUserProfile->findByConditionals($conditionals);
+
+            if ($usr_profiles->all()) 
+                $this->repoUserProfile->deleteModelHasRole(collect($usr_profiles)->pluck('id')->toArray());
+
+            DB::commit();
+            return $this->success($response);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
+        }
     }
 
     /**
@@ -97,7 +144,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $user
      * @return void
      */
-    public function showProfiles ( Request $request,$user_id ) {
+    public function showProfiles (Request $request, $user_id ) {
         return $this->success($this->repoUser->showProfiles($user_id));
     }
 
@@ -108,7 +155,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $profile
      * @return void
      */
-    public function showProfilesById (Request $request,$user_id, $profile_id) {
+    public function showProfilesById (Request $request, $user_id, $profile_id) {
         return $this->success($this->repoUser->showProfilesById($user_id,$profile_id));
     }
 
@@ -119,7 +166,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $user
      * @return void
      */
-    public function saveProfiles ( StoreUserProfileRequest $request, User $user) {
+    public function saveProfiles (StoreUserProfileRequest $request, User $user) {
         $userProfileRequest = array_merge(['user_id' => "".$user['id']],$request->all());
         $matchThese = [['user_id','=',$userProfileRequest['user_id']],['profile_id','=',$userProfileRequest['profile_id']]];
         $userProfilePreview = UserProfile::where($matchThese)->get();
@@ -140,7 +187,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $profile
      * @return void
      */
-    public function updateProfileById ( StoreUserProfileRequest $request, User $user, Profile $profile) {
+    public function updateProfileById (StoreUserProfileRequest $request, User $user, Profile $profile) {
         $matchTheseNew = [['user_id','=',$user['id']],['profile_id','=',$profile['id']]];
         $userProfile = UserProfile::where($matchTheseNew)->first();
         if ($userProfile == null)
@@ -168,7 +215,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $profile
      * @return void
      */
-    public function destroyProfilesById ( Request $request,User $user, Profile $profile) {
+    public function destroyProfilesById (Request $request, User $user, Profile $profile) {
         $matchThese = [['user_id','=',$user['id']],['profile_id','=',$profile['id']]];
         $userProfile = UserProfile::where($matchThese)->first();
         $userProfile=$this->repoUserProfile->destroy($userProfile);
@@ -181,7 +228,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $user
      * @return void
      */
-    public function destroyProfiles ( Request $request,User $user) {
+    public function destroyProfiles (Request $request, User $user) {
         $userProfiles = UserProfile::where('user_id',$user['id'])->get();
         // iterate through the Collection
         foreach ($userProfiles as $userProfile) {
@@ -196,7 +243,7 @@ class UserController extends Controller implements IUserController
      * List all roles by userProfile
      * @return void
      */
-    public function showRolesbyUser (Request $request,$user_id) {
+    public function showRolesbyUser (Request $request, $user_id) {
         return $this->success($this->repoUser->showRolesbyUser($user_id));
     }
 
@@ -235,7 +282,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $user
      * @return void
      */
-    public function showUsersUnCollaborator ( Request $request ) {
+    public function showUsersUnCollaborator (Request $request ) {
         $users = $this->repoUser->allUserNotCollaborator($request);
 
         if(!$users)
@@ -244,8 +291,6 @@ class UserController extends Controller implements IUserController
         return $this->success($users);
     }
 
-
-    //
      /**
      * changePassword
      *
@@ -253,9 +298,7 @@ class UserController extends Controller implements IUserController
      * @param  mixed $request
      * @return void
      */
-    public function changePassword(UserChangePasswordFormRequest $request, User $user)
-    {
+    public function changePassword(UserChangePasswordFormRequest $request, User $user) {
         return $this->success($this->repoUser->changePasswordUser( $user));
     }
-
 }

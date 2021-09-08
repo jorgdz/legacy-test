@@ -3,13 +3,14 @@
 namespace App\Repositories;
 
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
-use App\Exceptions\Custom\NotFoundException;
 
 class UserProfileRepository extends BaseRepository
 {
-    protected $relations = ['users', 'profiles'];
+    protected $relations = ['user', 'profile'];
+
     /**
      * __construct
      *
@@ -29,4 +30,30 @@ class UserProfileRepository extends BaseRepository
         return $userProfile;
     }
 
+    /**
+     * find the specified resource.
+     *
+     * @param array $conditionals
+     * @return Illuminate\Database\Eloquent\Model
+     * 
+     */
+    public function findByConditionals($conditionals) {
+        $query = $this->model;
+
+        if (!empty($this->relations)) {
+            $query = $query->with($this->relations);
+        }
+
+        return $query->where($conditionals)->get();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param array $models
+     * 
+     */
+    public function deleteModelHasRole($models) {
+        DB::connection('tenant')->table('model_has_roles')->whereIn('model_id', $models)->delete();
+    }
 }

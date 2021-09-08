@@ -6,7 +6,9 @@ use App\Notifications\MailResetPasswordNotification;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
@@ -16,14 +18,15 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 class User extends Authenticatable implements AuditableContract
 {
     use Auditable;
-    use HasFactory, HasRoles, HasApiTokens, Notifiable, UsesTenantConnection;
-
+    use HasFactory, HasRoles, HasApiTokens, Notifiable, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'type_identification_id',
         'us_identification',
         'us_firstname',
         'us_secondname',
@@ -34,7 +37,6 @@ class User extends Authenticatable implements AuditableContract
         'us_username',
         'email',
         'password',
-        'type_identification_id',
         'status_id',
     ];
 
@@ -64,14 +66,17 @@ class User extends Authenticatable implements AuditableContract
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ['deleted_at'];
+
+    protected $softCascade = ['userProfiles'];
+
     /**
      * sendPasswordResetNotification
      *
      * @param  mixed $token
      * @return void
      */
-    public function sendPasswordResetNotification($token)
-    {
+    public function sendPasswordResetNotification($token) {
         $url = app('currentTenant')->domain_client.'/'.'restablecer-clave'.'/'.$token;
         $this->notify(new MailResetPasswordNotification($url));
     }
@@ -81,8 +86,7 @@ class User extends Authenticatable implements AuditableContract
      *
      * @return void
      */
-    public function userProfiles()
-    {
+    public function userProfiles() {
         return $this->hasMany(UserProfile::class);
     }
 
@@ -91,8 +95,7 @@ class User extends Authenticatable implements AuditableContract
      *
      * @return void
      */
-    public function status()
-    {
+    public function status() {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
@@ -101,9 +104,8 @@ class User extends Authenticatable implements AuditableContract
      *
      * @return void
      */
-    public function identifications()
-    {
-        return $this->hasMany(Identification::class, 'id');
+    public function identifications() {
+        return $this->belongsTo(Identification::class, 'type_identification_id', 'id');
     }
 
 
@@ -112,8 +114,7 @@ class User extends Authenticatable implements AuditableContract
      *
      * @return void
      */
-    public function collaborators()
-    {
+    public function collaborators() {
         return $this->belongsTo(Collaborator::class, 'id', 'user_id');
     }
 

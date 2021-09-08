@@ -22,8 +22,7 @@ class UserCache extends BaseCache {
      * @param  mixed $request
      * @return void
      */
-    public function all($request)
-    {
+    public function all($request) {
         return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
             return $this->repository->all($request);
         });
@@ -47,8 +46,7 @@ class UserCache extends BaseCache {
      * @param  mixed $model
      * @return void
      */
-    public function save(Model $model)
-    {
+    public function save(Model $model) {
         $this->forgetCache('users');
         return $this->repository->save($model);
     }
@@ -105,8 +103,7 @@ class UserCache extends BaseCache {
      * @param  mixed $id
      * @return void
      */
-    public function showRolesbyUserProfile ( $user_id , $profile_id ) {
-        //dd($user_id);
+    public function showRolesbyUserProfile ($user_id, $profile_id) {
         return $this->cache::remember($this->key, now()->addMinutes(120), function () use ( $user_id , $profile_id ) {
             return $this->repository->showRolesbyUserProfile( $user_id , $profile_id );
         });
@@ -118,8 +115,7 @@ class UserCache extends BaseCache {
      * @param  mixed $model
      * @return void
      */
-    public function saveRolesbyUserProfile($array_roles,$userProfile)
-    {
+    public function saveRolesbyUserProfile($array_roles, $userProfile) {
         $this->forgetCache('users');
         return $this->repository->saveRolesbyUserProfile($array_roles,$userProfile);
     }
@@ -131,8 +127,7 @@ class UserCache extends BaseCache {
      * @param  mixed $request
      * @return void
      */
-    public function allUserNotCollaborator($request)
-    {
+    public function allUserNotCollaborator($request) {
         return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
             return $this->repository->showNotColaborador($request);
         });
@@ -144,8 +139,7 @@ class UserCache extends BaseCache {
      * @param  mixed $request
      * @return void
      */
-    public function changePasswordUser( $user)
-    {
+    public function changePasswordUser($user) {
         return $this->repository->changePasswordUserRepository($user);
     }
 }
