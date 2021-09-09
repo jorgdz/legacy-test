@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Exceptions\Custom\UnprocessableException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Api\Contracts\ITenantController;
+use App\Jobs\ProcessTenant;
+use Illuminate\Support\Facades\Artisan;
 
 class TenantController extends Controller implements ITenantController
 {
@@ -34,7 +36,7 @@ class TenantController extends Controller implements ITenantController
 
     private function getTenantCached(Request $request, $search){//page,size,search
         if($search == ''){
-            $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {          
+            $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
                 return CustomTenant::where('domain', '<>', $this->domain)
                     ->orderBy('id', 'desc')
                     ->paginate($request->size ?: 10);
@@ -81,6 +83,8 @@ class TenantController extends Controller implements ITenantController
         $request->validate($rules);
 
         $tenant = CustomTenant::create($request->all());
+
+        ProcessTenant::dispatch($tenant)->onConnection('landlord');
 
         return $this->success($tenant, Response::HTTP_CREATED);
     }

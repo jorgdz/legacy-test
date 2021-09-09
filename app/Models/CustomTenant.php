@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
 use Spatie\Multitenancy\Models\Tenant;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use OwenIt\Auditing\Auditable;
@@ -23,78 +21,6 @@ class CustomTenant extends Tenant implements AuditableContract
     protected $fillable = ['name', 'domain', 'domain_client', 'database'];
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
-
-    /**
-     * boot
-     *
-     * Creating a database and migrations
-     * @return void
-     */
-    public static function booted () {
-        static::creating (function (CustomTenant $tenant) {
-            return $tenant->createDatabase($tenant);
-        });
-
-        static::created (function (CustomTenant $tenant) {
-            DB::beginTransaction();
-            try {
-                $mail = new Mail();
-                $mail->setConnection('landlord');
-                $mail->transport = config('mail.mailers.smtp.transport');
-                $mail->host = config('mail.mailers.smtp.host');
-                $mail->port = config('mail.mailers.smtp.port');
-                $mail->encryption = config('mail.mailers.smtp.encryption');
-                $mail->username = config('mail.mailers.smtp.username');
-                $mail->password = config('mail.mailers.smtp.password');
-                $mail->tenant_id = $tenant->id;
-                $mail->save();
-    
-                $customTenantDatabaseCount = CustomTenant::where('database', $tenant->database)->count();
-                
-                if ($customTenantDatabaseCount == 1) {
-                    $tenant->runMigrationsSeeders($tenant);
-                }
-    
-                DB::commit();
-            } catch (\Exception $ex) {
-                DB::rollBack();
-            }
-        });
-    }
-
-    /**
-     * createDatabase
-     *
-     * Create a database for tenant
-     * @param  mixed $tenant
-     * @return void
-     */
-    public function createDatabase($customTenant) {
-        $database = $customTenant->database;
-        $query = "SELECT name FROM SYS.DATABASES WHERE name = ?";
-        $db = DB::select($query, [$database]);
-
-        if (empty($db)) {
-            DB::connection('tenant')->statement("CREATE DATABASE {$database};");
-        }
-
-        return $database;
-    }
-
-    /**
-     * runMigrationsSeeders
-     *
-     * Running migrations
-     * @param  mixed $tenant
-     * @return void
-     */
-    public function runMigrationsSeeders($customTenant) {
-        $customTenant->refresh();
-        Artisan::call('tenants:artisan', [
-            'artisanCommand' => 'migrate --database=tenant --seed --force',
-            '--tenant' => "{$customTenant->id}",
-        ]);
-    }
 
      /**
       * setNameAttribute
