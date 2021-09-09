@@ -52,7 +52,7 @@ class EducationLevel extends Model implements AuditableContract
      */
     public function offers()
     {
-        return $this->hasMany(Offer::class,'id');
+        return $this->belongsTo(Offer::class,'offer_id');
     }
 
     /**

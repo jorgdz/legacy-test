@@ -17,6 +17,8 @@ class TypeStudent extends Model
      * @var array
      */
     protected $fillable = [
+        'te_name',
+        'te_description',
         'status_id',
     ];
 
@@ -31,16 +33,6 @@ class TypeStudent extends Model
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-
-    /**
-     * offers
-     *
-     * @return void
-     */
-    public function offers()
-    {
-        return $this->belongsTo(Offer::class, 'id');
-    }
 
 
     /**

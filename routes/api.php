@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\PeriodStageController;
 use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\OfferController;
+use App\Http\Controllers\Api\TypeStudentController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -255,3 +256,8 @@ Route::post('institutes', [InstituteController::class, 'store'])->middleware(['a
 Route::get('institutes/{institute}', [InstituteController::class, 'show'])->middleware(['auth:sanctum', 'permission:institutes-obtener-instituto']);
 Route::put('institutes/{institute}', [InstituteController::class, 'update'])->middleware(['auth:sanctum', 'permission:institutes-actualizar-instituto']);
 Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:institutes-eliminar-instituto']);
+/**
+ * TypeStudent
+ */
+Route::get('typeStudents', [TypeStudentController::class, 'index'])->middleware(['auth:sanctum']);//, 'permission:type_students-listar-tipos-estudiantes'
+Route::get('typeStudents/{typeStudent}', [TypeStudentController::class, 'show'])->middleware(['auth:sanctum']);//, 'permission:type_students-obtener-tipo-estudiante'

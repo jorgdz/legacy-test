@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
                 BloodTypeSeeder::class,
                 CitySeeder::class,
                 TypeInstituteSeeder::class,
+                TypeStudentSeeder::class,
                 OfferSeeder::class,
                 TypeMatterSeeder::class,
                 TypeKinshipSeeder::class,

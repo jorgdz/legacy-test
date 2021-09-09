@@ -8,7 +8,7 @@ use App\Repositories\Base\BaseRepository;
 
 class OfferRepository extends BaseRepository
 {
-    protected $relations = ['status','offerPeriods'];
+    protected $relations = ['status','offerPeriods','educationLevels'];
     /**
      * __construct
      *

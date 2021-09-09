@@ -51,14 +51,4 @@ class OfferPeriod extends Model implements AuditableContract
     {
         return $this->belongsTo(Period::class, 'period_id');
     }
-    
-    /**
-     * status
-     *
-     * @return void
-     */
-    public function status ()
-    {
-        return $this->belongsTo(Status::class, 'status_id');
-    }
 }

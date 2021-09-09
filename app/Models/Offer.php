@@ -36,7 +36,7 @@ class Offer extends Model implements AuditableContract
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
-    //protected $softCascade = ['periodsOffer'];
+    protected $softCascade = ['educationLevels'];
 
     /**
      * type_students
@@ -45,17 +45,7 @@ class Offer extends Model implements AuditableContract
      */
     public function offerPeriods ()
     {
-    	return $this->hasMany(TypeStudent::class);
-    }
-
-    /**
-     * matterMesh
-     *
-     * @return void
-     */
-    public function matterMesh()
-    {
-        return $this->hasMany(MatterMesh::class, 'mesh_id');
+    	return $this->hasMany(OfferPeriod::class);
     }
 
 
@@ -67,7 +57,7 @@ class Offer extends Model implements AuditableContract
     public function educationLevels()
     {
         return $this->hasMany(
-            EducationLevel::class, 'offer_id');
+            EducationLevel::class);
     }
 
     /**
