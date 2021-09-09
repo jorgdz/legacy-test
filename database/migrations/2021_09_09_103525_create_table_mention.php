@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeStudentProgramsTable extends Migration
+class CreateTableMention extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateTypeStudentProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_student_programs', function (Blueprint $table) {
+        Schema::create('mentions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('typ_stu_pro_name')->nullable();
-            $table->string('typ_stu_pro_description')->nullable();
-            $table->string('typ_stu_pro_acronym', 10)->nullable();
+            $table->string('ment_name')->nullable();
+            $table->string('ment_description')->nullable();
+            $table->string('ment_acronym', 10)->nullable();
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +34,6 @@ class CreateTypeStudentProgramsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_student_programs');
+        Schema::dropIfExists('mentions');
     }
 }
