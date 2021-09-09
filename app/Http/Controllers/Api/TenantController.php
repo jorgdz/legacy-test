@@ -40,11 +40,11 @@ class TenantController extends Controller implements ITenantController
                     ->paginate($request->size ?: 10);
             });
         }else{
-            $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
+            $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($search) {
                 return CustomTenant::where('domain', '<>', $this->domain)
-                    ->where('name', $this->search)
-                    ->orWhere('domain', $this->search )
-                    ->orWhere('domain_client', $this->search)
+                    ->where('name', $search)
+                    ->orWhere('domain', $search )
+                    ->orWhere('domain_client', $search)
                     ->first();
             });
         }
@@ -58,7 +58,9 @@ class TenantController extends Controller implements ITenantController
      */
     public function index(Request $request) {
         $search = $request->search ?: '';
+        
         $tenant = $this->getTenantCached($request,$search);
+       
         return $this->success($tenant);
     }
 
