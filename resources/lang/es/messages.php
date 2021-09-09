@@ -19,5 +19,6 @@ return [
     'error-comparing-password' => 'Error. Contraseña generada no coincide con la verificación del hash generado.',
     'error-parameter-id-required' => 'El praremtro id es requerido.',
     'no-auth' => 'No estás autenticado.',
+    'no-user-active' => 'Tu usuario no está activo.',
 ];
 ?>

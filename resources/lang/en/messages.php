@@ -19,5 +19,6 @@ return [
     'error-comparing-password' => 'Error. Generated password does not match the verification of the generated hash.',
     'error-parameter-id-required' => 'The id parameter is required.',
     'no-auth' => 'No authentication.',
+    'no-user-active' => 'Your user is not active.',
 ];
 ?>

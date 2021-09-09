@@ -60,7 +60,7 @@ class Institute extends Model
      *
      * @return BelongsTo
      */
-    public function typeInstitute(): BelongsTo
+    public function typeInstitute (): BelongsTo
     {
         return $this->belongsTo(InstituteType::class, 'type_institute_id');
     }
@@ -70,7 +70,7 @@ class Institute extends Model
      *
      * @return BelongsTo
      */
-    public function city(): BelongsTo
+    public function city (): BelongsTo
     {
         return $this->belongsTo(City::class, 'city_id');
     }

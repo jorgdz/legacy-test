@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
@@ -24,7 +25,7 @@ class City extends Model
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * status
@@ -35,5 +36,24 @@ class City extends Model
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
-
+        
+    /**
+     * institutes
+     *
+     * @return HasMany
+     */
+    public function institutes (): HasMany
+    {
+        return $this->hasMany(Institute::class, 'city_id');
+    }
+        
+    /**
+     * cities
+     *
+     * @return HasMany
+     */
+    public function persons (): HasMany
+    {
+        return $this->hasMany(Person::class, 'city_id');
+    }
 }

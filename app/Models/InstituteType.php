@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class InstituteType extends Model
@@ -43,18 +44,25 @@ class InstituteType extends Model
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * status
      *
      * @return BelongsTo
      */
-    public function status(): BelongsTo
+    public function status (): BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
-
-
-
+    
+    /**
+     * institutes
+     *
+     * @return HasMany
+     */
+    public function institutes (): HasMany
+    {
+        return $this->hasMany(Institute::class, 'type_institute_id');
+    }
 }

@@ -17,8 +17,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class User extends Authenticatable implements AuditableContract
 {
-    use Auditable;
-    use HasFactory, HasRoles, HasApiTokens, Notifiable, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
+    use Auditable, HasFactory, HasRoles, HasApiTokens, Notifiable, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
     
     /**
      * The attributes that are mass assignable.
@@ -26,21 +25,13 @@ class User extends Authenticatable implements AuditableContract
      * @var array
      */
     protected $fillable = [
-        'type_identification_id',
-        'us_identification',
-        'us_firstname',
-        'us_secondname',
-        'us_first_lastname',
-        'us_second_lastname',
-        'us_date_birth',
-        'us_gender',
         'us_username',
         'email',
         'password',
         'status_id',
     ];
 
-    protected $auiditInclude = ['us_identification', 'us_firstname'];
+    protected $auiditInclude = ['us_username', 'email'];
 
     protected $guard_name = 'api';
 
@@ -68,7 +59,7 @@ class User extends Authenticatable implements AuditableContract
 
     protected $dates = ['deleted_at'];
 
-    protected $softCascade = ['userProfiles'];
+    protected $softCascade = ['userProfiles', 'person', 'collaborators'];
 
     /**
      * sendPasswordResetNotification
@@ -100,22 +91,20 @@ class User extends Authenticatable implements AuditableContract
     }
 
     /**
-     * typeIdentifications
-     *
-     * @return void
-     */
-    public function identifications() {
-        return $this->belongsTo(Identification::class, 'type_identification_id', 'id');
-    }
-
-
-    /**
      * collaborators
      *
      * @return void
      */
-    public function collaborators() {
+    public function collaborators () {
         return $this->belongsTo(Collaborator::class, 'id', 'user_id');
     }
-
+        
+    /**
+     * user is a person
+     *
+     * @return void
+     */
+    public function person () {
+        return $this->hasOne(Person::class, 'user_id');
+    }
 }

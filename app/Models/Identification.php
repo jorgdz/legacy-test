@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -17,21 +16,20 @@ class Identification extends Model implements AuditableContract
      * @var array
      */
     protected $fillable = [
-        'id',
         'ti_name',
     ];
 
     protected $table = 'type_identifications';
 
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     /**
-     * user
+     * person
      *
      * @return void
      */
-    public function user ()
+    public function persons ()
     {
-        return $this->belongsTo(User::class, 'type_identification_id');
+        return $this->hasMany(Person::class, 'type_identification_id');
     }
 }

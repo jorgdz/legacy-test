@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         if (CustomTenant::checkCurrent()) {
             $this->call([
                 StatusSeeder::class,
+                StatusMaritalSeeder::class,
+                TypeDisabilitySeeder::class,
+                LanguageSeeder::class,
                 ProfileSeeder::class,
                 RoleSeeder::class,
                 TypeIdentificationSeeder::class,
@@ -31,10 +34,7 @@ class DatabaseSeeder extends Seeder
                 OfferSeeder::class,
                 TypeMatterSeeder::class,
                 TypeKinshipSeeder::class,
-                TypeEducationSeeder::class
-            ]);
-
-            $this->call([
+                TypeEducationSeeder::class,
                 UserProfileSeeder::class,
                 RoleUserProfileSeeder::class,
             ]);

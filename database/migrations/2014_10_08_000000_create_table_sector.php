@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeDisabilitiesTable extends Migration
+class CreateTableSector extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTypeDisabilitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_disabilities', function (Blueprint $table) {
+        Schema::create('sectors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('typ_dis_name')->nullable();
-            $table->string('typ_dis_description')->nullable();
+            $table->string('sec_name')->nullable();
+            $table->string('sec_description')->nullable();
+            $table->string('sec_acronym')->nullable();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
@@ -31,6 +32,6 @@ class CreateTypeDisabilitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_disabilities');
+        Schema::dropIfExists('sectors');
     }
 }

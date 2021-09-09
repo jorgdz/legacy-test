@@ -14,7 +14,7 @@ class TypeReligionSeeder extends Seeder
      */
     public function run()
     {
-        DB::connection('tenant')->table('type_religion')->insert([
+        DB::connection('tenant')->table('type_religions')->insert([
             ['typ_rel_name' => 'Cristiano', 'typ_rel_description' => 'Cristanismo', 'status_id' => 1],
             ['typ_rel_name' => 'Catolico', 'typ_rel_description' => 'Catolicismo', 'status_id' => 1],
             ['typ_rel_name' => 'Islam', 'typ_rel_description' => 'Islam', 'status_id' => 1],

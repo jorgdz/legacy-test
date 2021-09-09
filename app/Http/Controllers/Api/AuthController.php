@@ -30,13 +30,15 @@ class AuthController extends Controller implements IAuthController
      * @param  mixed $request
      * @return void
      */
-    public function login(UserFormRequest $request) {
-        if (!Auth::attempt($request->only('us_username', 'password')))
+    public function login (UserFormRequest $request) {
+        //if (!Auth::attempt($request->only('us_username', 'password')))
+        if (!Auth::attempt(['us_username' => $request->us_username, 'password' => $request->password, 'status_id' => 1]))
             throw new AuthenticationException(__('messages.no-credentials'));
 
         $user = new UserResource(User::where('us_username', $request['us_username'])->firstOrFail());
+
         $token = $user->createToken('auth_token')->plainTextToken;
-        $this->setAudit($this->formatToAudit(__FUNCTION__,class_basename(User::class)));
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(User::class)));
 
         return $this->success([
             'user' => $user,

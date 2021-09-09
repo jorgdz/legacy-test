@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEthnicsTable extends Migration
+class CreateTypeReligionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateEthnicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ethnics', function (Blueprint $table) {
+        Schema::create('type_religions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('eth_name')->nullable();
-            $table->string('eth_description')->nullable();
+            $table->string('typ_rel_name')->nullable();
+            $table->string('typ_rel_description')->nullable();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateEthnicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ethnics');
+        Schema::dropIfExists('type_religion');
     }
 }

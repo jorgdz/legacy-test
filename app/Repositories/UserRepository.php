@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 
 class UserRepository extends BaseRepository
 {
-    protected $relations = ['status', 'identifications'];
-    protected $fields = ['us_identification', 'us_username', 'us_firstname', 'us_first_lastname'];
+    protected $relations = ['status', 'person'];
+    protected $fields = ['us_username', 'email'];
 
     /**
      * __construct
@@ -81,6 +81,7 @@ class UserRepository extends BaseRepository
         $query = $this->model->with(['userProfiles' => function($query) {
             $query->with('roles.permissions');
         }])->find($user_id);
+
         if ($query == null) 
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
 
@@ -106,6 +107,7 @@ class UserRepository extends BaseRepository
         $query = $this->model->with(['userProfiles' => function($query) use ($profile_id) {
             $query->with('roles.permissions')->where('profile_id',$profile_id);
         }])->find($user_id);
+
         if ($query == null) 
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
         
@@ -181,7 +183,7 @@ class UserRepository extends BaseRepository
 
         //Retornar el usuario con la nueva password
         $user = User::where("id", $id_user)->first();
-        $user['new_password']=$passwordNew;
+        $user['new_password'] = $passwordNew;
         return $user;
     }
     
