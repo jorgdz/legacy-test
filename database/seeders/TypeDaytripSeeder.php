@@ -15,9 +15,9 @@ class TypeDaytripSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('type_daytrip')->insert([
-            ['typ_day_name' => 'Matutina', 'typ_day_description' => 'En la mañana', 'status_id' => 1],
-            ['typ_day_name' => 'Vespertina', 'typ_day_description' => 'En la tarde', 'status_id' => 1],
-            ['typ_day_name' => 'Nocturna', 'typ_day_description' => 'En la noche', 'status_id' => 1],
+            ['typ_day_name' => 'Matutina',      'typ_day_description' => 'En la mañana',    'status_id' => 1],
+            ['typ_day_name' => 'Vespertina',    'typ_day_description' => 'En la tarde',     'status_id' => 1],
+            ['typ_day_name' => 'Nocturna',      'typ_day_description' => 'En la noche',     'status_id' => 1],
         ]);
     }
 }

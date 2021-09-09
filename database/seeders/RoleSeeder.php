@@ -1221,6 +1221,49 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'users'
             ],
+            /**
+             * Niveles Educativos 141-145
+             */
+            [
+                'name' => 'education-levels-listar-niveles-educativos',
+                'alias' => 'Listar niveles educativos',
+                'description' => 'Listar todos los niveles educativos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevel'
+            ],
+            [
+                'name' => 'education-levels-obtener-nivel-educativo',
+                'alias' => 'Obtener nivel educativo',
+                'description' => 'Obtener un nivel educativo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevel'
+            ],
+            [
+                'name' => 'education-levels-crear-nivel-educativo',
+                'alias' => 'Crear nivel educativo',
+                'description' => 'Agregar un nivel educativo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevel'
+            ],
+            [
+                'name' => 'education-levels-actualizar-nivel-educativo',
+                'alias' => 'Actualizar nivel educativo',
+                'description' => 'Actualizar un nivel educativo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevel'
+            ],
+            [
+                'name' => 'education-levels-borrar-nivel-educativo',
+                'alias' => 'Borrar nivel educativo',
+                'description' => 'Borrar un nivel ecucativo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevel'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1445,6 +1488,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 138, 'role_id' => 1],
             ['permission_id' => 139, 'role_id' => 1],
             ['permission_id' => 140, 'role_id' => 1],
+            /**
+             * Niveles Educativos
+             */
+            ['permission_id' => 141, 'role_id' => 1],
+            ['permission_id' => 142, 'role_id' => 1],
+            ['permission_id' => 143, 'role_id' => 1],
+            ['permission_id' => 144, 'role_id' => 1],
+            ['permission_id' => 145, 'role_id' => 1],
             /**
              * 
              * Permisos de Administrador
