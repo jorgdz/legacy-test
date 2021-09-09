@@ -33,7 +33,7 @@ require __DIR__ . "/channels/matters.php";
 require __DIR__ . "/channels/mails.php";
 require __DIR__ . "/channels/matter-status.php";
 require __DIR__ . "/channels/education-levels.php";
-
+require __DIR__ . "/channels/type-document.php";
 /*
 |--------------------------------------------------------------------------
 | API Routes
