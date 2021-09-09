@@ -1264,6 +1264,68 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'educationLevel'
             ],
+            /**
+             * Tipo Estudiante 146-147
+             */
+            [
+                'name' => 'type_students-listar-tipos-estudiantes',
+                'alias' => 'Listar tipos de estudiantes',
+                'description' => 'Listar todos los tipos de estudiantes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeStudent'
+            ],
+            [
+                'name' => 'type_students-obtener-tipo-estudiante',
+                'alias' => 'Obtener tipo de estudiante',
+                'description' => 'Obtener un tipo de estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeStudent'
+            ],
+            /**
+             * Tipo Documento 148-152
+             */
+            [
+                'name' => 'type-document-listar-tipo-documento',
+                'alias' => 'Listar tipo documentos',
+                'description' => 'Listar todos los tipos de documentos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDocument'
+            ],
+            [
+                'name' => 'type-document-obtener-tipo-documento',
+                'alias' => 'Obtener tipo documento',
+                'description' => 'Obtener un tipo de documento por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDocument'
+            ],
+            [
+                'name' => 'type-document-crear-tipo-documento',
+                'alias' => 'Crear tipo documento',
+                'description' => 'Agregar un tipo de documento',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDocument'
+            ],
+            [
+                'name' => 'type-document-actualizar-tipo-documento',
+                'alias' => 'Actualizar tipo documento',
+                'description' => 'Actualizar un tipo de documento por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDocument'
+            ],
+            [
+                'name' => 'type-document-borrar-tipo-tipo',
+                'alias' => 'Borrar tipo documento',
+                'description' => 'Borrar un tipo documento por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDocument'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1496,6 +1558,19 @@ class RoleSeeder extends Seeder
             ['permission_id' => 143, 'role_id' => 1],
             ['permission_id' => 144, 'role_id' => 1],
             ['permission_id' => 145, 'role_id' => 1],
+            /**
+             * Tipo Estudiante
+             */
+            ['permission_id' => 146, 'role_id' => 1],
+            ['permission_id' => 147, 'role_id' => 1],
+            /**
+             * Tipo Documento
+             */
+            ['permission_id' => 148, 'role_id' => 1],
+            ['permission_id' => 149, 'role_id' => 1],
+            ['permission_id' => 150, 'role_id' => 1],
+            ['permission_id' => 151, 'role_id' => 1],
+            ['permission_id' => 152, 'role_id' => 1],
             /**
              * 
              * Permisos de Administrador

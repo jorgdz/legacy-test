@@ -259,5 +259,5 @@ Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])
 /**
  * TypeStudent
  */
-Route::get('typeStudents', [TypeStudentController::class, 'index'])->middleware(['auth:sanctum']);//, 'permission:type_students-listar-tipos-estudiantes'
-Route::get('typeStudents/{typeStudent}', [TypeStudentController::class, 'show'])->middleware(['auth:sanctum']);//, 'permission:type_students-obtener-tipo-estudiante'
+Route::get('typeStudents', [TypeStudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_students-listar-tipos-estudiantes']);
+Route::get('typeStudents/{typeStudent}', [TypeStudentController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_students-obtener-tipo-estudiante']);
