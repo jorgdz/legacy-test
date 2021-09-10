@@ -51,7 +51,7 @@ class Person extends Model
      * @return void
      */
     public function identification () {
-        return $this->belongsTo(Identification::class, 'type_identification_id', 'id');
+        return $this->belongsTo(TypeIdentification::class, 'type_identification_id', 'id');
     }
     
     /**

@@ -21,7 +21,19 @@ use App\Http\Controllers\Api\PeriodStageController;
 use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\OfferController;
+use App\Http\Controllers\Api\CityController;
+use App\Http\Controllers\Api\StatusMaritalController;
+use App\Http\Controllers\Api\TypeIdentificationController;
+use App\Http\Controllers\Api\TypeReligionController;
+use App\Http\Controllers\Api\SectorController;
+use App\Http\Controllers\Api\EthnicController;
+use App\Http\Controllers\Api\TypeDisabilityController;
+use App\Http\Controllers\Api\TypeDaytripController;
+use App\Http\Controllers\Api\TypeLanguageController;
 use App\Http\Controllers\Api\TypeStudentController;
+use App\Http\Controllers\Api\BloodTypeController;
+use App\Http\Controllers\Api\TypekinshipController;
+use App\Http\Controllers\Api\TypeEducationController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -257,11 +269,81 @@ Route::post('institutes', [InstituteController::class, 'store'])->middleware(['a
 Route::get('institutes/{institute}', [InstituteController::class, 'show'])->middleware(['auth:sanctum', 'permission:institutes-obtener-instituto']);
 Route::put('institutes/{institute}', [InstituteController::class, 'update'])->middleware(['auth:sanctum', 'permission:institutes-actualizar-instituto']);
 Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:institutes-eliminar-instituto']);
+
+/**
+ * City
+ */
+Route::get('cities', [CityController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::post('cities', [CityController::class, 'store'])->middleware(['auth:sanctum', /*'permission:institutes-crear-instituto'*/]);
+Route::get('cities/{city}', [CityController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+
+/**
+ * Status Marital
+ */
+Route::get('status-marital', [StatusMaritalController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('status-marital/{statusmarital}', [StatusMaritalController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+
+/**
+ * Type Identification
+ */
+Route::get('type-identifications', [TypeIdentificationController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-identifications/{typeidentification}', [TypeIdentificationController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+
+/**
+ * Type Religion
+ */
+Route::get('type-religions', [TypeReligionController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-religions/{typereligion}', [TypeReligionController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+
+/**
+ * Sector
+ */
+Route::get('sectors', [SectorController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('sectors/{sector}', [SectorController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+
+/**
+ * Ethnic
+ */
+Route::get('ethnics', [EthnicController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('ethnics/{ethnic}', [EthnicController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+
+/**
+ * Type Disability
+ */
+Route::get('type-disabilities', [TypeDisabilityController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-disabilities/{typedisabilities}', [TypeDisabilityController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+
+/**
+ * Type Daytrip
+ */
+Route::get('type-daytrips', [TypeDaytripController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-daytrips/{typedaytrip}', [TypeDaytripController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
 /**
  * TypeStudent
  */
 Route::get('typeStudents', [TypeStudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_students-listar-tipos-estudiantes']);
 Route::get('typeStudents/{typeStudent}', [TypeStudentController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_students-obtener-tipo-estudiante']);
+/**
+ * Type Language
+ */
+Route::get('type-languages', [TypeLanguageController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-languages/{typelanguage}', [TypeLanguageController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+/**
+ * Blood Type 
+ */
+Route::get('blood-types', [BloodTypeController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('blood-types/{bloodtype}', [BloodTypeController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+/**
+ * Type Kinship
+ */
+Route::get('type-kinships', [TypekinshipController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-kinships/{typekinship}', [TypekinshipController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+
+/**
+ * Type Education
+ */
+Route::get('type-educations', [TypeEducationController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-educations/{typeeducation}', [TypeEducationController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
 /**
  * Grupo Economico
  */

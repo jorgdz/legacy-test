@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class StatusMarital extends Model
+class StatusMarital extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, SoftCascadeTrait, UsesTenantConnection, Auditable;
 

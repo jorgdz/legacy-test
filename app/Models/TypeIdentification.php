@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Identification extends Model implements AuditableContract
+class TypeIdentification extends Model implements AuditableContract
 {
     use Auditable;
 

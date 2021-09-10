@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Sector extends Model
+class Sector extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, SoftCascadeTrait, UsesTenantConnection, Auditable;
 

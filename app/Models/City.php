@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class City extends Model
+class City extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes;
+    use HasFactory, UsesTenantConnection, SoftDeletes,Auditable;
 
     /**
      * table
@@ -19,6 +21,13 @@ class City extends Model
      * @var string
      */
     protected $table = 'cities';
+
+    protected $fillable = [
+        'cit_name',
+        'cit_acronym',
+        'cit_parent_city',
+        'status_id',
+    ];
 
     /**
      * hidden
