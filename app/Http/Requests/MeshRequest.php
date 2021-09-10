@@ -27,13 +27,15 @@ class MeshRequest extends FormRequest
 
 
         switch ($this->method()) {
+
+      
             case 'POST':
                 return [
                     'mes_name' => 'required|max:255|unique:tenant.meshs,mes_name',
                     'mes_description' => 'required|max:255',
                     'mes_acronym' => 'required|max:3',
-                    'pensum_id' => 'required|integer',
-                    'level_edu_id' => 'required|integer',
+                    'pensum_id' => 'required|integer|exists:tenant.pensums,id',
+                    'level_edu_id' => 'required|integer|exists:tenant.education_levels,id',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
                 break;
@@ -43,9 +45,9 @@ class MeshRequest extends FormRequest
                     'mes_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
                     'mes_description' => 'required|max:255',
                     'mes_acronym' => 'required|max:3',
-                    'pensum_id' => 'required|integer',
-                    'level_edu_id' => 'required|integer',
-                    'status_id' => 'required|integer'
+                    'pensum_id' => 'required|integer|exists:tenant.pensums,id',
+                    'level_edu_id' => 'required|integer|exists:tenant.education_levels,id',
+                    'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
                 break;
 
@@ -55,9 +57,9 @@ class MeshRequest extends FormRequest
                     'mes_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
                     'mes_description' => 'required|max:255',
                     'mes_acronym' => 'required|max:3',
-                    'pensum_id' => 'required|integer',
-                    'level_edu_id' => 'required|integer',
-                    'status_id' => 'required|integer'
+                    'pensum_id' => 'required|integer|exists:tenant.pensums,id',
+                    'level_edu_id' => 'required|integer|exists:tenant.education_levels,id',
+                    'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
                 break;
 
