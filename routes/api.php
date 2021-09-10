@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\ParallelController;
 use App\Http\Controllers\Api\ClassRoomController;
+use App\Http\Controllers\Api\EconomicGroupController;
 use App\Http\Controllers\Api\HourhandController;
 use App\Http\Controllers\Api\InstituteController;
 use App\Http\Controllers\Api\InstituteTypeController;
@@ -261,3 +262,11 @@ Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])
  */
 Route::get('typeStudents', [TypeStudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_students-listar-tipos-estudiantes']);
 Route::get('typeStudents/{typeStudent}', [TypeStudentController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_students-obtener-tipo-estudiante']);
+/**
+ * Grupo Economico
+ */
+Route::get('economic-group', [EconomicGroupController::class, 'index'])->middleware(['auth:sanctum', 'permission:economic_group-listar-grupo-economico']);
+Route::get('economic-group/{ecogroup}', [EconomicGroupController::class, 'show'])->middleware(['auth:sanctum', 'permission:economic_group-obtener-grupo-economico']);
+Route::post('economic-group', [EconomicGroupController::class, 'store'])->middleware(['auth:sanctum', 'permission:economic_group-crear-grupo-economico']);
+Route::put('economic-group/{ecogroup}', [EconomicGroupController::class, 'update'])->middleware(['auth:sanctum', 'permission:economic_group-actualizar-grupo-economico']);
+Route::delete('economic-group/{ecogroup}', [EconomicGroupController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:economic_group-eliminar-grupo-economico']);

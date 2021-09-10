@@ -1326,6 +1326,49 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'typeDocument'
             ],
+            /**
+             * Grupo Economico 153-157
+             */
+            [
+                'name' => 'economic_group-listar-grupo-economico',
+                'alias' => 'Listar grupo economico',
+                'description' => 'Listar todos los grupos economicos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'economicGroup'
+            ],
+            [
+                'name' => 'economic_group-obtener-grupo-economico',
+                'alias' => 'Obtener grupo economico',
+                'description' => 'Obtener un grupo economico por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'economicGroup'
+            ],
+            [
+                'name' => 'economic_group-crear-grupo-economico',
+                'alias' => 'Crear grupo economico',
+                'description' => 'Agregar un grupo economico',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'economicGroup'
+            ],
+            [
+                'name' => 'economic_group-actualizar-grupo-economico',
+                'alias' => 'Actualizar grupo economico',
+                'description' => 'Actualizar un grupo economico por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'economicGroup'
+            ],
+            [
+                'name' => 'economic_group-eliminar-grupo-economico',
+                'alias' => 'Borrar grupo economico',
+                'description' => 'Borrar un grupo economico por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'economicGroup'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1571,6 +1614,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 150, 'role_id' => 1],
             ['permission_id' => 151, 'role_id' => 1],
             ['permission_id' => 152, 'role_id' => 1],
+            /**
+             * Grupo economico
+             */
+            ['permission_id' => 153, 'role_id' => 1],
+            ['permission_id' => 154, 'role_id' => 1],
+            ['permission_id' => 155, 'role_id' => 1],
+            ['permission_id' => 156, 'role_id' => 1],
+            ['permission_id' => 157, 'role_id' => 1],
 
             /**
              * 
@@ -1820,6 +1871,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 150, 'role_id' => 2],
             ['permission_id' => 151, 'role_id' => 2],
             ['permission_id' => 152, 'role_id' => 2],
+            /**
+             * Grupo economico
+             */
+            ['permission_id' => 153, 'role_id' => 2],
+            ['permission_id' => 154, 'role_id' => 2],
+            ['permission_id' => 155, 'role_id' => 2],
+            ['permission_id' => 156, 'role_id' => 2],
+            ['permission_id' => 157, 'role_id' => 2],
         ]);
     }
 }

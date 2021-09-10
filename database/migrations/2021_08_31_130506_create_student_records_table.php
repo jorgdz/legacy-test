@@ -30,6 +30,9 @@ class CreateStudentRecordsTable extends Migration
 
             $table->integer('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
+
+            $table->integer('economic_group_id')->unsigned();
+            $table->foreign('economic_group_id')->references('id')->on('economic_groups');
             
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
