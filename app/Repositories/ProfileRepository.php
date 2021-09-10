@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Profile;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 
 class ProfileRepository extends BaseRepository
 {
+    protected $fields = ['pro_name'];
+
     /**
      * __construct
      *

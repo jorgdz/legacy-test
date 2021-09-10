@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
                 StatusSeeder::class,
                 StatusMaritalSeeder::class,
                 TypeDisabilitySeeder::class,
+                EntryTypeSeed::class,
                 LanguageSeeder::class,
                 MentionSeeder::class,
                 ProfileSeeder::class,

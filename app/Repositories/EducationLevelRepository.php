@@ -16,6 +16,12 @@ class EducationLevelRepository extends BaseRepository
         'status'
     ];
 
+    protected $fields = [
+        'edu_name',
+        'edu_alias',
+        'edu_order'
+    ];
+
     /**
      * __construct
      *

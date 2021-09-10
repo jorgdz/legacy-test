@@ -12,6 +12,7 @@ class CampusRepository extends BaseRepository
 {
 
     protected $relations = ['company', 'status','periods'];
+    protected $fields = ['cam_name', 'cam_description', 'cam_direction'];
 
     /**
      * __construct
