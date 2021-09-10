@@ -9,7 +9,7 @@ use App\Repositories\Contracts\IBaseRepository;
 
 abstract class BaseCache implements IBaseRepository {
 
-    const TTL = 86400;
+    const TTL = 2;
     protected $repository;
     protected $key;
     protected $cache;
@@ -32,10 +32,20 @@ abstract class BaseCache implements IBaseRepository {
         $this->cache = new Cache();
     }
 
-    public function forgetCache($resource) {
+    public function forgetCache($resource = NULL) {
         $baseUrl  = url('/');
         $tenant = Str::slug(env('APP_NAME', 'sistema_de_planificacion_de_recursos'), '_') . '_database_tenant_id_' . app('currentTenant')->id . ':';
         $content = "{$baseUrl}/api/{$resource}";
+        $keys = Redis::connection('cache')->keys("**{$content}**");
+        for ($i=0; $i < sizeof($keys); $i++) { 
+            $splitKey = explode($tenant, $keys[$i]);
+            $this->cache::forget($splitKey[1]);
+        }
+        if (!$resource) $this->forgetToken($tenant);
+    }
+
+    public function forgetToken($tenant) {
+        $content = request()->getHost() . "_find_token";
         $keys = Redis::connection('cache')->keys("**{$content}**");
         for ($i=0; $i < sizeof($keys); $i++) { 
             $splitKey = explode($tenant, $keys[$i]);

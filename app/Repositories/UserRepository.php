@@ -2,15 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Exceptions\Custom\ConflictException;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use App\Models\UserProfile;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 use App\Exceptions\Custom\NotFoundException;
-use App\Models\UserProfile;
-use Illuminate\Http\Request;
+use App\Exceptions\Custom\ConflictException;
 
 class UserRepository extends BaseRepository
 {

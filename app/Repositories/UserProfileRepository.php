@@ -56,4 +56,15 @@ class UserProfileRepository extends BaseRepository
     public function deleteModelHasRole($models) {
         DB::connection('tenant')->table('model_has_roles')->whereIn('model_id', $models)->delete();
     }
+
+    /**
+     * 
+     * 
+     */
+    public function validationUserProfile($conditionals, $permission) {
+        return $this->model::where($conditionals)->with('roles.permissions')
+            ->whereHas('roles.permissions', function ($query) use ($permission) {
+                $query->where('name', $permission);
+            })->first();
+    }
 }

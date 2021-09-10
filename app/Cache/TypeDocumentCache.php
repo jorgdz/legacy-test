@@ -26,7 +26,7 @@ class TypeDocumentCache extends BaseCache
      */
     public function all($request)
     {
-        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
+        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($request) {
             return $this->repository->all($request);
         });
     }
@@ -39,7 +39,7 @@ class TypeDocumentCache extends BaseCache
      */
     public function find($id)
     {
-        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($id) {
+        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($id) {
             return $this->repository->find($id);
         });
     }

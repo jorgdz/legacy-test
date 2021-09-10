@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Cache\UserCache;
 use App\Models\User;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\UserFormRequest;
 use Illuminate\Auth\AuthenticationException;
 use App\Http\Controllers\Api\Contracts\IAuthController;
-use PhpParser\ErrorHandler\Collecting;
 use App\Http\Resources\UserResource as UserResource;
 use App\Traits\Auditor;
 
@@ -24,6 +24,12 @@ class AuthController extends Controller implements IAuthController
     use RestResponse;
     use Auditor;
 
+    private $userCache;
+
+    public function __construct(UserCache $userCache) {
+        $this->userCache = $userCache;
+    }
+
     /**
      * login
      *
@@ -31,7 +37,6 @@ class AuthController extends Controller implements IAuthController
      * @return void
      */
     public function login (UserFormRequest $request) {
-        //if (!Auth::attempt($request->only('us_username', 'password')))
         if (!Auth::attempt(['us_username' => $request->us_username, 'password' => $request->password, 'status_id' => 1]))
             throw new AuthenticationException(__('messages.no-credentials'));
 
@@ -64,9 +69,8 @@ class AuthController extends Controller implements IAuthController
      * @return void
      */
     public function logout (Request $request) {
-        Cache::flush();
+        $this->userCache->logout();/* Cache::flush(); */
         $request->user()->tokens()->delete();
         return $this->success(['message' => 'Good by user.']);
     }
-
 }
