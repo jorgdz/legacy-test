@@ -64,67 +64,65 @@ class Handler extends ExceptionHandler
                     __('messages.no-current-tenant'), Response::HTTP_CONFLICT);
             }
 
-            if($request->is('api/*')) {
-                if ($exception instanceof ModelNotFoundException) {
-                    $model = strtolower(class_basename($exception->getModel()));
-                    return $this->error($request->getPathInfo(), $exception,
-                        __('messages.no-exist-instance', ['model' => $model]), Response::HTTP_NOT_FOUND);
-                }
-
-                if ($exception instanceof NotFoundHttpException) {
-                    $code = $exception->getStatusCode();
-                    return $this->error($request->getPathInfo(), $exception, __('messages.not-found'), $code);
-                }
-
-                if ($exception instanceof AccessDeniedHttpException) {
-                    return $this->error($request->getPathInfo(), $exception, __('messages.forbidden'), Response::HTTP_FORBIDDEN);
-                }
-
-                if ($exception instanceof MethodNotAllowedHttpException) {
-                    return $this->error($request->getPathInfo(), $exception, __('messages.method-not-allowed'), Response::HTTP_METHOD_NOT_ALLOWED);
-                }
-
-                if ($exception instanceof HttpException) {
-                    $code = $exception->getStatusCode();
-                    return $this->error($request->getPathInfo(), $exception, __('messages.method-not-allowed'), $code);
-                }
-
-                if ($exception instanceof AuthenticationException) {
-                    return $this->error($request->getPathInfo(), $exception,
-                        $exception->getMessage(), Response::HTTP_UNAUTHORIZED);
-                }
-
-                if ($exception instanceof AuthorizationException) {
-                    return $this->error($request->getPathInfo(), $exception,
-                        __('messages.forbidden'), Response::HTTP_FORBIDDEN);
-                }
-
-                if ($exception instanceof ValidationException) {
-                    $errors = $exception->validator->errors()->getMessages();
-
-                    return $this->error($request->getPathInfo(), $exception,
-                        $errors, Response::HTTP_BAD_REQUEST);
-                }
-
-                if ($exception instanceof UnprocessableException
-                    || $exception instanceof ConflictException
-                    || $exception instanceof BadRequestException
-                    || $exception instanceof NotContentException
-                    || $exception instanceof NotFoundException
-                    ) {
-
-                    $code = $exception->getStatusCode();
-                    $message = $exception->getMessage();
-                    return $this->error($request->getPathInfo(), $exception, $message, $code);
-                }
-
-                if (config('app.debug')) {
-                    //return parent::render($request, $exception);
-                    return $this->error($request->getPathInfo(), $exception, $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
-                }
-
-                return $this->error($request->getPathInfo(), $exception, __('messages.internal-server-error'), Response::HTTP_INTERNAL_SERVER_ERROR);
+            if ($exception instanceof ModelNotFoundException) {
+                $model = strtolower(class_basename($exception->getModel()));
+                return $this->error($request->getPathInfo(), $exception,
+                    __('messages.no-exist-instance', ['model' => $model]), Response::HTTP_NOT_FOUND);
             }
+
+            if ($exception instanceof NotFoundHttpException) {
+                $code = $exception->getStatusCode();
+                return $this->error($request->getPathInfo(), $exception, __('messages.not-found'), $code);
+            }
+
+            if ($exception instanceof AccessDeniedHttpException) {
+                return $this->error($request->getPathInfo(), $exception, __('messages.forbidden'), Response::HTTP_FORBIDDEN);
+            }
+
+            if ($exception instanceof MethodNotAllowedHttpException) {
+                return $this->error($request->getPathInfo(), $exception, __('messages.method-not-allowed'), Response::HTTP_METHOD_NOT_ALLOWED);
+            }
+
+            if ($exception instanceof HttpException) {
+                $code = $exception->getStatusCode();
+                return $this->error($request->getPathInfo(), $exception, __('messages.method-not-allowed'), $code);
+            }
+
+            if ($exception instanceof AuthenticationException) {
+                return $this->error($request->getPathInfo(), $exception,
+                    $exception->getMessage(), Response::HTTP_UNAUTHORIZED);
+            }
+
+            if ($exception instanceof AuthorizationException) {
+                return $this->error($request->getPathInfo(), $exception,
+                    __('messages.forbidden'), Response::HTTP_FORBIDDEN);
+            }
+
+            if ($exception instanceof ValidationException) {
+                $errors = $exception->validator->errors()->getMessages();
+
+                return $this->error($request->getPathInfo(), $exception,
+                    $errors, Response::HTTP_BAD_REQUEST);
+            }
+
+            if ($exception instanceof UnprocessableException
+                || $exception instanceof ConflictException
+                || $exception instanceof BadRequestException
+                || $exception instanceof NotContentException
+                || $exception instanceof NotFoundException
+                ) {
+
+                $code = $exception->getStatusCode();
+                $message = $exception->getMessage();
+                return $this->error($request->getPathInfo(), $exception, $message, $code);
+            }
+
+            if (config('app.debug')) {
+                //return parent::render($request, $exception);
+                return $this->error($request->getPathInfo(), $exception, $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+
+            return $this->error($request->getPathInfo(), $exception, __('messages.internal-server-error'), Response::HTTP_INTERNAL_SERVER_ERROR);
         });
     }
 }

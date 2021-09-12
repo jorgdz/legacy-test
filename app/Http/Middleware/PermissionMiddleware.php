@@ -27,7 +27,7 @@ class PermissionMiddleware
     public function handle(Request $request, Closure $next, $permission)
     {
         if (Auth::guest()) {
-            throw new AuthenticationException();
+            throw new AuthenticationException(__('messages.no-credentials'));
         }
 
         if (!isset($request['user_profile_id'])) throw new BadRequestException(__("messages.bad-request"));

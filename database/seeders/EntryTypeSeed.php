@@ -15,9 +15,9 @@ class EntryTypeSeed extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('entry_types')->insert([
-            ['ent_ty_name' => 'Ingreso por admisiones',  'ent_ty_description' => '',     'ent_ty_acronym' => 'adm'],
-            ['ent_ty_name' => 'Ingreso por movilidad',  'ent_ty_description' => '',     'ent_ty_acronym' => 'mov'],
-            ['ent_ty_name' => 'Nivelación',  'ent_ty_description' => '',     'ent_ty_acronym' => 'niv'],
+            ['ent_ty_name' => 'Ingreso por admisiones', 'ent_ty_description' => '', 'ent_ty_acronym' => 'adm', 'status_id' => 1],
+            ['ent_ty_name' => 'Ingreso por movilidad', 'ent_ty_description' => '', 'ent_ty_acronym' => 'mov', 'status_id' => 1],
+            ['ent_ty_name' => 'Nivelación', 'ent_ty_description' => '', 'ent_ty_acronym' => 'niv', 'status_id' => 1],
         ]);
     }
 }
