@@ -273,51 +273,51 @@ Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])
 /**
  * City
  */
-Route::get('cities', [CityController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::post('cities', [CityController::class, 'store'])->middleware(['auth:sanctum', /*'permission:institutes-crear-instituto'*/]);
-Route::get('cities/{city}', [CityController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+Route::get('cities', [CityController::class, 'index'])->middleware(['auth:sanctum', 'permission:city-listar-ciudad']);
+Route::post('cities', [CityController::class, 'store'])->middleware(['auth:sanctum', 'permission:city-crear-ciudad']);
+Route::get('cities/{city}', [CityController::class, 'show'])->middleware(['auth:sanctum', 'permission:city-obtener-ciudad']);
 
 /**
  * Status Marital
  */
-Route::get('status-marital', [StatusMaritalController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('status-marital/{statusmarital}', [StatusMaritalController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+Route::get('status-marital', [StatusMaritalController::class, 'index'])->middleware(['auth:sanctum', 'permission:status_marital-listar-estatus']);
+Route::get('status-marital/{statusmarital}', [StatusMaritalController::class, 'show'])->middleware(['auth:sanctum', 'permission:status_marital-obtener-estatus']);
 
 /**
  * Type Identification
  */
-Route::get('type-identifications', [TypeIdentificationController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('type-identifications/{typeidentification}', [TypeIdentificationController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+Route::get('type-identifications', [TypeIdentificationController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_identification-listar-tipo-identificacion']);
+Route::get('type-identifications/{typeidentification}', [TypeIdentificationController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_identification-obtener-tipo-identificacion']);
 
 /**
  * Type Religion
  */
-Route::get('type-religions', [TypeReligionController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('type-religions/{typereligion}', [TypeReligionController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+Route::get('type-religions', [TypeReligionController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_religion-listar-tipo-religion']);
+Route::get('type-religions/{typereligion}', [TypeReligionController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_religion-obtener-tipo-religion']);
 
 /**
  * Sector
  */
-Route::get('sectors', [SectorController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('sectors/{sector}', [SectorController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+Route::get('sectors', [SectorController::class, 'index'])->middleware(['auth:sanctum', 'permission:sector-listar-sector']);
+Route::get('sectors/{sector}', [SectorController::class, 'show'])->middleware(['auth:sanctum', 'permission:sector-obtener-sector']);
 
 /**
  * Ethnic
  */
-Route::get('ethnics', [EthnicController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('ethnics/{ethnic}', [EthnicController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+Route::get('ethnics', [EthnicController::class, 'index'])->middleware(['auth:sanctum', 'permission:ethnic-listar-etnias']);
+Route::get('ethnics/{ethnic}', [EthnicController::class, 'show'])->middleware(['auth:sanctum', 'permission:ethnic-obtener-etnias']);
 
 /**
  * Type Disability
  */
-Route::get('type-disabilities', [TypeDisabilityController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('type-disabilities/{typedisabilities}', [TypeDisabilityController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+Route::get('type-disabilities', [TypeDisabilityController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_disability-listar-tipo-discapacidad']);
+Route::get('type-disabilities/{typedisabilities}', [TypeDisabilityController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_disability-obtener-tipo-discapacidad']);
 
 /**
  * Type Daytrip
  */
-Route::get('type-daytrips', [TypeDaytripController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('type-daytrips/{typedaytrip}', [TypeDaytripController::class, 'show'])->middleware(['auth:sanctum', /*'permission:institutes-obtener-instituto'*/]);
+Route::get('type-daytrips', [TypeDaytripController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_daytrip-listar-tipo-jornada']);
+Route::get('type-daytrips/{typedaytrip}', [TypeDaytripController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_daytrip-obtener-tipo-jornada']);
 /**
  * TypeStudent
  */
@@ -326,24 +326,24 @@ Route::get('typeStudents/{typeStudent}', [TypeStudentController::class, 'show'])
 /**
  * Type Language
  */
-Route::get('type-languages', [TypeLanguageController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('type-languages/{typelanguage}', [TypeLanguageController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-languages', [TypeLanguageController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_language-listar-tipo-idioma']);
+Route::get('type-languages/{typelanguage}', [TypeLanguageController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_language-obtener-tipo-idioma']);
 /**
  * Blood Type 
  */
-Route::get('blood-types', [BloodTypeController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('blood-types/{bloodtype}', [BloodTypeController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('blood-types', [BloodTypeController::class, 'index'])->middleware(['auth:sanctum', 'permission:blood_type-listar-tipo-sangre']);
+Route::get('blood-types/{bloodtype}', [BloodTypeController::class, 'show'])->middleware(['auth:sanctum', 'permission:blood_type-obtener-tipo-sangre']);
 /**
  * Type Kinship
  */
-Route::get('type-kinships', [TypekinshipController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('type-kinships/{typekinship}', [TypekinshipController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-kinships', [TypekinshipController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_kinship-listar-tipo-parentesco']);
+Route::get('type-kinships/{typekinship}', [TypekinshipController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_kinship-obtener-tipo-parentesco']);
 
 /**
  * Type Education
  */
-Route::get('type-educations', [TypeEducationController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
-Route::get('type-educations/{typeeducation}', [TypeEducationController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:institutes-listar-institutos'*/]);
+Route::get('type-educations', [TypeEducationController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_education-listar-tipo-educacion']);
+Route::get('type-educations/{typeeducation}', [TypeEducationController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_education-obtener-tipo-educacion']);
 /**
  * Grupo Economico
  */

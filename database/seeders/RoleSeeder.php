@@ -1369,6 +1369,242 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'economicGroup'
             ],
+            /**
+             * Ciudades 158-160
+             */
+            [
+                'name' => 'city-listar-ciudad',
+                'alias' => 'Listar ciduades',
+                'description' => 'Listar todas las ciudades',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'city'
+            ],
+            [
+                'name' => 'city-obtener-ciudad',
+                'alias' => 'Obtener ciudad',
+                'description' => 'Obtener una ciudad por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'city'
+            ],
+            [
+                'name' => 'city-crear-ciudad',
+                'alias' => 'Crear ciudad',
+                'description' => 'Crear una ciudad',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'city'
+            ],
+            /**
+             * Status Marital 161-162
+             */
+            [
+                'name' => 'status_marital-listar-estatus',
+                'alias' => 'Listar status marital',
+                'description' => 'Listar todos los estatus maritales',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'statusMarital'
+            ],
+            [
+                'name' => 'status_marital-obtener-estatus',
+                'alias' => 'Obtener status marital',
+                'description' => 'Obtener un estatus marital por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'statusMarital'
+            ],
+            /**
+             * Tipo identificacion 163-164
+             */
+            [
+                'name' => 'type_identification-listar-tipo-identificacion',
+                'alias' => 'Listar tipo identificacion',
+                'description' => 'Listar todos los tipos de identificacion',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeIdentification'
+            ],
+            [
+                'name' => 'type_identification-obtener-tipo-identificacion',
+                'alias' => 'Obtener tipo identificacion',
+                'description' => 'Obtener un tipo identificacion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeIdentification'
+            ],
+            /**
+             * Tipo religion 165-166
+             */
+            [
+                'name' => 'type_religion-listar-tipo-religion',
+                'alias' => 'Listar tipo religon',
+                'description' => 'Listar todos los tipos de religion',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeReligion'
+            ],
+            [
+                'name' => 'type_religion-obtener-tipo-religion',
+                'alias' => 'Obtener tipo religion',
+                'description' => 'Obtener un tipo religion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeReligion'
+            ],
+            /**
+             * Sector 167-168
+             */
+            [
+                'name' => 'sector-listar-sector',
+                'alias' => 'Listar sector',
+                'description' => 'Listar todos los sectores',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'sector'
+            ],
+            [
+                'name' => 'sector-obtener-sector',
+                'alias' => 'Obtener sector',
+                'description' => 'Obtener un sector por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'sector'
+            ],
+            /**
+             * Etnias 169-170
+             */
+            [
+                'name' => 'ethnic-listar-etnias',
+                'alias' => 'Listar etnias',
+                'description' => 'Listar todas las etnias',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'ethnic'
+            ],
+            [
+                'name' => 'ethnic-obtener-etnias',
+                'alias' => 'Obtener etnia',
+                'description' => 'Obtener una etnia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'ethnic'
+            ],
+            /**
+             * Tipos Discapacidad 171-172
+             */
+            [
+                'name' => 'type_disability-listar-tipo-discapacidad',
+                'alias' => 'Listar discapacidades',
+                'description' => 'Listar todas las discapacidades',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDisability'
+            ],
+            [
+                'name' => 'type_disability-obtener-tipo-discapacidad',
+                'alias' => 'Obtener tipo discapacidad',
+                'description' => 'Obtener un tipo de discapacidad por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDisability'
+            ],
+            /**
+             * Tipos Jornada 173-174
+             */
+            [
+                'name' => 'type_daytrip-listar-tipo-jornada',
+                'alias' => 'Listar jornadas',
+                'description' => 'Listar todas las jornadas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDaytrip'
+            ],
+            [
+                'name' => 'type_daytrip-obtener-tipo-jornada',
+                'alias' => 'Obtener tipo jornada',
+                'description' => 'Obtener un tipo de jornada por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeDaytrip'
+            ],
+            /**
+             * Tipo Idioma 175-176
+             */
+            [
+                'name' => 'type_language-listar-tipo-idioma',
+                'alias' => 'Listar idiomas',
+                'description' => 'Listar todos los idiomas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeLanguage'
+            ],
+            [
+                'name' => 'type_language-obtener-tipo-idioma',
+                'alias' => 'Obtener tipo idioma',
+                'description' => 'Obtener un tipo de idioma por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeLanguage'
+            ],
+            /**
+             * Tipo sangre 177-178
+             */
+            [
+                'name' => 'blood_type-listar-tipo-sangre',
+                'alias' => 'Listar tipo sangre',
+                'description' => 'Listar todos los tipos de sangre',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'bloodType'
+            ],
+            [
+                'name' => 'blood_type-obtener-tipo-sangre',
+                'alias' => 'Obtener tipo sangre',
+                'description' => 'Obtener un tipo de sangre por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'bloodType'
+            ],
+            /**
+             * Tipo Parentesco 179-180
+             */
+            [
+                'name' => 'type_kinship-listar-tipo-parentesco',
+                'alias' => 'Listar tipo parentesco',
+                'description' => 'Listar todos los tipos de parentesco',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeKinship'
+            ],
+            [
+                'name' => 'type_kinship-obtener-tipo-parentesco',
+                'alias' => 'Obtener tipo parentesco',
+                'description' => 'Obtener un tipo de parentesco por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeKinship'
+            ],
+            /**
+             * Tipo Educacion 181-182
+             */
+            [
+                'name' => 'type_education-listar-tipo-educacion',
+                'alias' => 'Listar tipo educacion',
+                'description' => 'Listar todos los tipos de educacion',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeEducation'
+            ],
+            [
+                'name' => 'type_education-obtener-tipo-educacion',
+                'alias' => 'Obtener tipo educacion',
+                'description' => 'Obtener un tipo de educacion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeEducation'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1622,6 +1858,67 @@ class RoleSeeder extends Seeder
             ['permission_id' => 155, 'role_id' => 1],
             ['permission_id' => 156, 'role_id' => 1],
             ['permission_id' => 157, 'role_id' => 1],
+            /**
+             * Ciudades
+             */
+            ['permission_id' => 158, 'role_id' => 1],
+            ['permission_id' => 159, 'role_id' => 1],
+            ['permission_id' => 160, 'role_id' => 1],
+            /**
+             * Status Marital
+             */
+            ['permission_id' => 161, 'role_id' => 1],
+            ['permission_id' => 162, 'role_id' => 1],
+            /**
+             * Tipo identificacion
+             */
+            ['permission_id' => 163, 'role_id' => 1],
+            ['permission_id' => 164, 'role_id' => 1],
+            /**
+             * Tipo religion
+             */
+            ['permission_id' => 165, 'role_id' => 1],
+            ['permission_id' => 166, 'role_id' => 1],
+            /**
+             * Sector
+             */
+            ['permission_id' => 167, 'role_id' => 1],
+            ['permission_id' => 168, 'role_id' => 1],
+            /**
+             * Etnias
+             */
+            ['permission_id' => 169, 'role_id' => 1],
+            ['permission_id' => 170, 'role_id' => 1],
+            /**
+             * Tipos Discapacidad
+             */
+            ['permission_id' => 171, 'role_id' => 1],
+            ['permission_id' => 172, 'role_id' => 1],
+            /**
+             * Tipos Jornada
+             */
+            ['permission_id' => 173, 'role_id' => 1],
+            ['permission_id' => 174, 'role_id' => 1],
+            /**
+             * Tipo Idioma
+             */
+            ['permission_id' => 175, 'role_id' => 1],
+            ['permission_id' => 176, 'role_id' => 1],
+            /**
+             * Tipo sangre
+             */
+            ['permission_id' => 177, 'role_id' => 1],
+            ['permission_id' => 178, 'role_id' => 1],
+            /**
+             * Tipo Parentesco
+             */
+            ['permission_id' => 179, 'role_id' => 1],
+            ['permission_id' => 180, 'role_id' => 1],
+            /**
+             * Tipo Educacion
+             */
+            ['permission_id' => 181, 'role_id' => 1],
+            ['permission_id' => 182, 'role_id' => 1],
 
             /**
              * 
@@ -1879,6 +2176,67 @@ class RoleSeeder extends Seeder
             ['permission_id' => 155, 'role_id' => 2],
             ['permission_id' => 156, 'role_id' => 2],
             ['permission_id' => 157, 'role_id' => 2],
+            /**
+             * Ciudades
+             */
+            ['permission_id' => 158, 'role_id' => 2],
+            ['permission_id' => 159, 'role_id' => 2],
+            ['permission_id' => 160, 'role_id' => 2],
+            /**
+             * Status Marital
+             */
+            ['permission_id' => 161, 'role_id' => 2],
+            ['permission_id' => 162, 'role_id' => 2],
+            /**
+             * Tipo identificacion
+             */
+            ['permission_id' => 163, 'role_id' => 2],
+            ['permission_id' => 164, 'role_id' => 2],
+            /**
+             * Tipo religion
+             */
+            ['permission_id' => 165, 'role_id' => 2],
+            ['permission_id' => 166, 'role_id' => 2],
+            /**
+             * Sector
+             */
+            ['permission_id' => 167, 'role_id' => 2],
+            ['permission_id' => 168, 'role_id' => 2],
+            /**
+             * Etnias
+             */
+            ['permission_id' => 169, 'role_id' => 2],
+            ['permission_id' => 170, 'role_id' => 2],
+            /**
+             * Tipos Discapacidad
+             */
+            ['permission_id' => 171, 'role_id' => 2],
+            ['permission_id' => 172, 'role_id' => 2],
+            /**
+             * Tipos Jornada
+             */
+            ['permission_id' => 173, 'role_id' => 2],
+            ['permission_id' => 174, 'role_id' => 2],
+            /**
+             * Tipo Idioma
+             */
+            ['permission_id' => 175, 'role_id' => 2],
+            ['permission_id' => 176, 'role_id' => 2],
+            /**
+             * Tipo sangre
+             */
+            ['permission_id' => 177, 'role_id' => 2],
+            ['permission_id' => 178, 'role_id' => 2],
+            /**
+             * Tipo Parentesco
+             */
+            ['permission_id' => 179, 'role_id' => 2],
+            ['permission_id' => 180, 'role_id' => 2],
+            /**
+             * Tipo Educacion
+             */
+            ['permission_id' => 181, 'role_id' => 2],
+            ['permission_id' => 182, 'role_id' => 2],
         ]);
     }
 }
