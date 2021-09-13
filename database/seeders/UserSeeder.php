@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -15,23 +15,24 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
-            'us_username' => env('LEGACY_USERNAME', 'phoppe'),
-            'email' => env('LEGACY_EMAIL', 'pepo@gmail.com'),
-            'password' => env('LEGACY_PASSWORD', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'), // password,
-            'status_id' => 1,
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
+        DB::connection('tenant')->table('users')->insert([
+            [
+                'us_username' => env('LEGACY_USERNAME', 'phoppe'),
+                'email' => env('LEGACY_EMAIL', 'pepo@gmail.com'),
+                'password' => env('LEGACY_PASSWORD', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+                'person_id' => 1,
+                'status_id' => 1,
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+            ], [
+                'us_username' => env('ADMIN_USERNAME', 'jelly'),
+                'email' => env('ADMIN_PASSWORD', 'jelly@gmail.com'),
+                'password' => env('ADMIN_EMAIL', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+                'person_id' => 2,
+                'status_id' => 1,
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+            ]
         ]);
-        
-        User::factory()->create([
-            'us_username' => 'jelly',
-            'email' => 'jelly@gmail.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
-            'status_id' => 1,
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
-        ]);
-        //User::factory(20000)->create();
     }
 }

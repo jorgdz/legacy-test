@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
+            $table->integer('person_id')->unsigned()->nullable();
+            $table->foreign('person_id')->references('id')->on('persons');
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

@@ -23,7 +23,7 @@ class UserCache extends BaseCache {
      * @return void
      */
     public function all($request) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($request) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
             return $this->repository->all($request);
         });
     }
@@ -35,7 +35,7 @@ class UserCache extends BaseCache {
      * @return void
      */
     public function find ($id) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
             return $this->repository->find($id);
         });
     }
@@ -68,7 +68,7 @@ class UserCache extends BaseCache {
      * @return void
      */
     public function showProfiles ($user_id) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($user_id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($user_id) {
             return $this->repository->showProfiles($user_id);
         });
     }
@@ -80,7 +80,7 @@ class UserCache extends BaseCache {
      * @return void
      */
     public function showProfilesById ( $user_id , $profile_id ) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ( $user_id , $profile_id ) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ( $user_id , $profile_id ) {
             return $this->repository->showProfilesById( $user_id , $profile_id );
         });
     }
@@ -92,7 +92,7 @@ class UserCache extends BaseCache {
      * @return void
      */
     public function showRolesbyUser ($user_id) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($user_id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($user_id) {
             return $this->repository->showRolesbyUser($user_id);
         });
     }
@@ -104,7 +104,7 @@ class UserCache extends BaseCache {
      * @return void
      */
     public function showRolesbyUserProfile ($user_id, $profile_id) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ( $user_id , $profile_id ) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ( $user_id , $profile_id ) {
             return $this->repository->showRolesbyUserProfile( $user_id , $profile_id );
         });
     }
@@ -128,7 +128,7 @@ class UserCache extends BaseCache {
      * @return void
      */
     public function allUserNotCollaborator($request) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($request) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
             return $this->repository->showNotColaborador($request);
         });
     }

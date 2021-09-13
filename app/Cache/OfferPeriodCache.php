@@ -23,7 +23,7 @@ class OfferPeriodCache extends BaseCache {
      */
     public function all($request)
     {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($request) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
             return $this->repository->all($request);
         });
     }
@@ -35,7 +35,7 @@ class OfferPeriodCache extends BaseCache {
      * @return void
      */
     public function find ($id) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
             return $this->repository->find($id);
         });
     }
@@ -81,7 +81,7 @@ class OfferPeriodCache extends BaseCache {
      * @return void
      */
     public function showPeriodsByOffer ($offer) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($offer) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($offer) {
             return $this->repository->showPeriodsByOffer($offer);
         });
     }
@@ -93,7 +93,7 @@ class OfferPeriodCache extends BaseCache {
      * @return void
      */
     public function showPeriodByOffer ($offer,$period) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($offer,$period) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($offer,$period) {
             return $this->repository->showPeriodByOffer($offer,$period);
         });
     }
@@ -105,7 +105,7 @@ class OfferPeriodCache extends BaseCache {
      * @return void
      */
     public function showOffersByPeriod ($period) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($period) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($period) {
             return $this->repository->showOffersByPeriod($period);
         });
     }

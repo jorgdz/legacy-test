@@ -9,10 +9,10 @@ use App\Repositories\Contracts\IBaseRepository;
 
 abstract class BaseCache implements IBaseRepository {
 
-    const TTL = 2;
     protected $repository;
     protected $key;
     protected $cache;
+    protected $ttl;
 
     /**
      * __construct
@@ -30,6 +30,7 @@ abstract class BaseCache implements IBaseRepository {
         $this->repository = $baseRepository;
         $this->key = $fullUrl;
         $this->cache = new Cache();
+        $this->ttl = now()->addMinutes(env('TTL_CACHE'));
     }
 
     public function forgetCache($resource = NULL) {

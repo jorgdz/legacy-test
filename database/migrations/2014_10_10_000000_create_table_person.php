@@ -15,7 +15,7 @@ class CreateTablePerson extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pers_identification', 10)->nullable();
+            $table->string('pers_identification', 25)->nullable();
             $table->string('pers_firstname')->nullable();
             $table->string('pers_secondname')->nullable();
             $table->string('pers_first_lastname')->nullable();
@@ -45,9 +45,6 @@ class CreateTablePerson extends Migration
 
             $table->integer('type_identification_id')->unsigned();
             $table->foreign('type_identification_id')->references('id')->on('type_identifications');
-            
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
 
             $table->integer('ethnic_id')->unsigned();
             $table->foreign('ethnic_id')->references('id')->on('ethnics');

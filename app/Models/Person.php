@@ -36,7 +36,6 @@ class Person extends Model
         'pers_num_child',
         'pers_profession',
         'type_identification_id',
-        'user_id',
         'type_religion_id',
         'status_marital_id',
         'city_id',
@@ -60,7 +59,7 @@ class Person extends Model
      * @return void
      */
     public function user () {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasMany(User::class, 'person_id');
     }
     
     /**

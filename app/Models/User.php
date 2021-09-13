@@ -28,6 +28,7 @@ class User extends Authenticatable implements AuditableContract
         'us_username',
         'email',
         'password',
+        'person_id',
         'status_id',
     ];
 
@@ -105,6 +106,6 @@ class User extends Authenticatable implements AuditableContract
      * @return void
      */
     public function person () {
-        return $this->hasOne(Person::class, 'user_id');
+        return $this->belongsTo(Person::class, 'person_id');
     }
 }

@@ -23,7 +23,7 @@ class UserProfileCache extends BaseCache {
      * @return void
      */
     public function all($request) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($request) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
             return $this->repository->all($request);
         });
     }
@@ -35,7 +35,7 @@ class UserProfileCache extends BaseCache {
      * @return void
      */
     public function find ($id) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
             return $this->repository->find($id);
         });
     }
@@ -88,7 +88,7 @@ class UserProfileCache extends BaseCache {
      */
     public function validationUserProfile($conditionals, $user_profile, $permission) {
         $this->key = url('/') . "/api/middleware_permission?usr_prof={$user_profile}";
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($conditionals, $permission) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($conditionals, $permission) {
             return $this->repository->validationUserProfile($conditionals, $permission);
         });
     }

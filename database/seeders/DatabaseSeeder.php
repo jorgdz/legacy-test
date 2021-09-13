@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
                 ProfileSeeder::class,
                 RoleSeeder::class,
                 TypeIdentificationSeeder::class,
-                UserSeeder::class,
                 TypePeriodSeeder::class,
                 TypeDaytripSeeder::class,
                 TypeReligionSeeder::class,
@@ -39,6 +38,9 @@ class DatabaseSeeder extends Seeder
                 TypeMatterSeeder::class,
                 TypeKinshipSeeder::class,
                 TypeEducationSeeder::class,
+                SectorSeeder::class,
+                PersonSeeder::class,
+                UserSeeder::class,
                 UserProfileSeeder::class,
                 RoleUserProfileSeeder::class,
             ]);
