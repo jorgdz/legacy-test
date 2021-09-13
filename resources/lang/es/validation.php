@@ -451,6 +451,7 @@ return [
 		'password' => 'contraseña',
 		'email' => 'correo',
 		'remember_token' => 'recordar token',
+		'person_id' => 'persona'
 	],
 
 ];

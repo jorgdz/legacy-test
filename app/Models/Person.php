@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Askedio\SoftCascade\Traits\SoftCascadeTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use OwenIt\Auditing\Auditable;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Person extends Model
+class Person extends Model implements AuditableContract
 {
     use Auditable, HasFactory, UsesTenantConnection, SoftDeletes;
 
@@ -43,6 +44,8 @@ class Person extends Model
         'sector_id',
         'ethnic_id'
     ];
+
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * typeIdentifications

@@ -13,7 +13,7 @@ use App\Exceptions\Custom\ConflictException;
 
 class UserRepository extends BaseRepository
 {
-    protected $relations = ['status', 'person'];
+    protected $relations = ['status', 'person.religion', 'person.statusMarital', 'person.city', 'person.currentCity', 'person.sector', 'person.ethnic', 'person.identification'];
     protected $fields = ['us_username', 'email'];
 
     /**
@@ -23,6 +23,39 @@ class UserRepository extends BaseRepository
      */
     public function __construct (User $user) {
         parent::__construct($user);
+    }
+
+    public function all ($request) {
+        $query = $this->model;
+        
+        if (!empty($this->relations)) {
+            $query = $query->with($this->relations);
+        }
+        
+        $collectQueryString = collect($request->all())
+        ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search'])->all();
+        
+        if (!empty($collectQueryString)) {
+            $query = $query->where($collectQueryString);
+        }
+        
+        if ($request->search) {
+            $fields = $this->fields;
+            $query= $query->where(function ($query) use($fields, $request) {
+                for ($i = 0; $i < count($fields); $i++){
+                    $query->orwhere($fields[$i], 'like',  '%' . $request->search .'%');
+                }      
+            });
+        }
+
+        $sort = $request->sort ?: 'id';
+        $type_sort = $request->type_sort ?: 'desc';
+
+        return $query->whereHas('userProfiles.roles', function ($query) {
+            $query->where([
+                ['id', '<>', 1]
+            ]);
+        })->orderBy($sort, $type_sort)->paginate($request->size ?: 100);
     }
 
     /**

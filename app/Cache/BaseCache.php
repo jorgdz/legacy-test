@@ -38,9 +38,9 @@ abstract class BaseCache implements IBaseRepository {
         $tenant = Str::slug(env('APP_NAME', 'sistema_de_planificacion_de_recursos'), '_') . '_database_tenant_id_' . app('currentTenant')->id . ':';
         $content = "{$baseUrl}/api/{$resource}";
         $keys = Redis::connection('cache')->keys("**{$content}**");
-        for ($i=0; $i < sizeof($keys); $i++) { 
-            $splitKey = explode($tenant, $keys[$i]);
-            $this->cache::forget($splitKey[1]);
+        foreach ($keys as $k => $v) {
+            $splitKey = explode($tenant, $keys[$k]);
+            if (count($splitKey) === 2) $this->cache::forget($splitKey[1]);
         }
         if (!$resource) $this->forgetToken($tenant);
     }
@@ -48,9 +48,9 @@ abstract class BaseCache implements IBaseRepository {
     public function forgetToken($tenant) {
         $content = request()->getHost() . "_find_token";
         $keys = Redis::connection('cache')->keys("**{$content}**");
-        for ($i=0; $i < sizeof($keys); $i++) { 
-            $splitKey = explode($tenant, $keys[$i]);
-            $this->cache::forget($splitKey[1]);
+        foreach ($keys as $k => $v) {
+            $splitKey = explode($tenant, $keys[$k]);
+            if (count($splitKey) === 2) $this->cache::forget($splitKey[1]);
         }
     }
 }

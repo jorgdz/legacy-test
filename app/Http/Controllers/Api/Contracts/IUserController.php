@@ -123,48 +123,6 @@ interface IUserController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="type_identification_id",
-     *           description="Id del tipo de identificación",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="us_identification",
-     *           description="Número de identificación",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_firstname",
-     *           description="Primer nombre del usuario",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_secondname",
-     *           description="Segundo nombre del usuario",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_first_lastname",
-     *           description="Primer apellido del usuario",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_second_lastname",
-     *           description="Segundo apellido del usuario",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_date_birth",
-     *           description="Fecha de nacimiento del usuario",
-     *           type="string",
-     *           example="1995-07-21"
-     *         ),
-     *         @OA\Property(
-     *           property="us_gender",
-     *           description="Género del usuario",
-     *           type="string",
-     *           example="Masculino/Femenino"
-     *         ),
-     *         @OA\Property(
      *           property="us_username",
      *           description="Nickname del usuario",
      *           type="string",
@@ -173,6 +131,16 @@ interface IUserController
      *           property="email",
      *           description="Correo electrónico del usuario",
      *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="password",
+     *           description="Contraseña del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="person_id",
+     *           description="Persona a la que se le asignara el usuario.",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -223,48 +191,6 @@ interface IUserController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="type_identification_id",
-     *           description="Id del tipo de identificación",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="us_identification",
-     *           description="Número de identificación",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_firstname",
-     *           description="Primer nombre del usuario",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_secondname",
-     *           description="Segundo nombre del usuario",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_first_lastname",
-     *           description="Primer apellido del usuario",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_second_lastname",
-     *           description="Segundo apellido del usuario",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="us_date_birth",
-     *           description="Fecha de nacimiento del usuario",
-     *           type="string",
-     *           example="1995-07-21"
-     *         ),
-     *         @OA\Property(
-     *           property="us_gender",
-     *           description="Género del usuario",
-     *           type="string",
-     *           example="Masculino/Femenino"
-     *         ),
-     *         @OA\Property(
      *           property="us_username",
      *           description="Nickname del usuario",
      *           type="string",
@@ -275,8 +201,8 @@ interface IUserController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="status_id",
-     *           description="Estado del usuario",
+     *           property="person_id",
+     *           description="Persona a la que se le asignara el usuario.",
      *           type="integer",
      *         ),
      *       ),
