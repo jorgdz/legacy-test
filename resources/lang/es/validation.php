@@ -1,5 +1,7 @@
 <?php
 
+use Spatie\Multitenancy\Models\Tenant;
+
 return [
 
 	/*
@@ -33,9 +35,9 @@ return [
 	'boolean'               => 'El campo :attribute debe ser verdadero o falso.',
 	'confirmed'             => 'El campo de confirmación de :attribute no coincide.',
 	'current_password'      => 'La contraseña es incorrecta.',
-    'date'                  => 'El campo :attribute no es una fecha válida.',
+	'date'                  => 'El campo :attribute no es una fecha válida.',
 	'date_equals'           => 'El campo :attribute debe ser igual a la fecha :date.',
-    'date_format' 	        => 'El campo :attribute no corresponde con el formato :format.',
+	'date_format' 	        => 'El campo :attribute no corresponde con el formato :format.',
 	'different'             => 'Los campos :attribute y :other deben ser diferentes.',
 	'digits'                => 'El campo :attribute debe ser de :digits dígitos.',
 	'digits_between'        => 'El campo :attribute debe tener entre :min y :max dígitos.',
@@ -43,7 +45,7 @@ return [
 	'distinct'              => 'El campo :attribute tiene un valor duplicado.',
 	'email'                 => 'El formato del :attribute es inválido.',
 	'ends_with'             => 'El campo :attribute debe terminar en uno de los siguientes valores: :values.',
-    'exists'                => 'El campo :attribute seleccionado es inválido.',
+	'exists'                => 'El campo :attribute seleccionado es inválido.',
 	'file'                  => 'El campo :attribute debe ser un archivo.',
 	'filled'                => 'El campo :attribute es requerido.',
 	'gt'                    => [
@@ -92,12 +94,12 @@ return [
 		'string'  => 'El campo :attribute debe tener al menos :min caracteres.',
 		'array'   => 'El campo :attribute debe tener al menos :min elementos.',
 	],
-    'multiple_of'           => 'El campo :attribute debe ser múltiplo de :value.',
+	'multiple_of'           => 'El campo :attribute debe ser múltiplo de :value.',
 	'not_in'                => 'El campo :attribute seleccionado es invalido.',
 	'not_regex'             => 'El formato del campo :attribute es inválido.',
 	'numeric'               => 'El campo :attribute debe ser un número.',
-    'password'              => 'La contraseña es incorrecta.',
-    'present'               => 'El campo :attribute debe estar presente.',
+	'password'              => 'La contraseña es incorrecta.',
+	'present'               => 'El campo :attribute debe estar presente.',
 	'regex'                 => 'El formato del campo :attribute es inválido.',
 	'required'              => 'El campo :attribute es requerido.',
 	'required_if'           => 'El campo :attribute es requerido cuando el campo :other es :value.',
@@ -106,10 +108,10 @@ return [
 	'required_with_all'     => 'El campo :attribute es requerido cuando :values está presente.',
 	'required_without'      => 'El campo :attribute es requerido cuando :values no está presente.',
 	'required_without_all'  => 'El campo :attribute es requerido cuando ningún :values está presente.',
-    'prohibited'            => 'El campo de :attribute está prohibido.',
-    'prohibited_if'         => 'El campo de :attribute esta prohibido cuando :other es :value.',
-    'prohibited_unless'     => 'El campo :attribute está prohibido a menos que :other se encuentre entre los valores de :values.',
-    'same'                  => 'El campo :attribute y :other debe coincidir.',
+	'prohibited'            => 'El campo de :attribute está prohibido.',
+	'prohibited_if'         => 'El campo de :attribute esta prohibido cuando :other es :value.',
+	'prohibited_unless'     => 'El campo :attribute está prohibido a menos que :other se encuentre entre los valores de :values.',
+	'same'                  => 'El campo :attribute y :other debe coincidir.',
 	'size'                  => [
 		'numeric' => 'El campo :attribute debe ser :size.',
 		'file'    => 'El campo :attribute debe tener :size kilobytes.',
@@ -153,70 +155,291 @@ return [
 	*/
 
 	'attributes' => [
-        'blo_typ_name' => 'nombre del tipo de sangre',
-        'blo_typ_description' => 'descripción del tipo de sangre',
-        'status_id' => 'estado',
-        'cam_name' => 'nombre de sede',
-        'cam_description' => 'descripción de sede',
-        'cam_direction' => 'dirección de la sede',
-        'cam_initials' => 'sigla de sede',
-        'company_id' => 'compañia',
-        'cit_name' => 'nombre de ciudad',
-        'cit_acronym' => 'sigla de ciudad',
-        'cit_parent_city' => 'ciudad padre',
-        'cl_name' => 'nombre de aula',
-        'cl_description' => 'descripción del aula',
-        'cl_acronym' => 'sigla del aula',
-        'co_name' => 'nombre de la compañia',
-        'co_description' => 'descripción de la compañia',
-        'co_website' => 'sitio web de la compañia',
-        'co_facebook' => 'cuenta de facebook',
-        'co_instagram' => 'cuenta de instagram',
-        'co_linkedin' => 'cuenta de linkedin',
-        'co_youtube' => 'cuenta de youtube',
-        'co_info_mail' => 'correo informativo',
-        'co_assigned_site' => 'sitio asignado',
-        'co_matrix' => 'matriz',
-        'co_logo' => 'logo',
-        'co_color' => 'color',
-        'co_pay_notification' => 'notificación de pago',
-        'co_ruc' => 'ruc',
-        'co_business_name' => 'nombre del negocio',
-        'co_comercial_name' => 'nombre comercial',
-        'co_legal_identification' => 'identificación legal',
-        'co_agent_legal' => 'agente legal',
-        'co_person_type' => 'tipo de persona',
-        'co_direction' => 'dirección',
-        'co_phone' => 'teléfono de  la compañía',
-        'co_email' => 'correo de la compañía',
-        'eco_gro_name' => 'nombre del grupo económico',
-        'eco_gro_description' => 'descripción del grupo económico',
-        'edu_name' => 'nombre del nivel educativo',
-        'edu_alias' => 'alias del nivel educativo',
-        'edu_alias' => 'alias del nivel educativo',
-        'edu_order' => 'orden del nivel educativo',
-        'edu_order' => 'orden del nivel educativo',
-        'offer_id' => 'oferta',
-        'principal_id' => 'agrupación',
-        'eth_name' => 'nombre de etnia',
-        'eth_description' => 'descripción de etnia',
-        'inst_name' => 'nombre de la institución',
-        'city_id' => 'ciudad',
-        'type_institute_id' => 'instituto',
+		'blo_typ_name' => 'nombre del tipo de sangre',
+		'blo_typ_description' => 'descripción del tipo de sangre',
+		'status_id' => 'estado',
+		'cam_name' => 'nombre de sede',
+		'cam_description' => 'descripción de sede',
+		'cam_direction' => 'dirección de la sede',
+		'cam_initials' => 'sigla de sede',
+		'company_id' => 'compañia',
+		'cit_name' => 'nombre de ciudad',
+		'cit_acronym' => 'sigla de ciudad',
+		'cit_parent_city' => 'ciudad padre',
+		'cl_name' => 'nombre de aula',
+		'cl_description' => 'descripción del aula',
+		'cl_acronym' => 'sigla del aula',
+		'co_name' => 'nombre de la compañia',
+		'co_description' => 'descripción de la compañia',
+		'co_website' => 'sitio web de la compañia',
+		'co_facebook' => 'cuenta de facebook',
+		'co_instagram' => 'cuenta de instagram',
+		'co_linkedin' => 'cuenta de linkedin',
+		'co_youtube' => 'cuenta de youtube',
+		'co_info_mail' => 'correo informativo',
+		'co_assigned_site' => 'sitio asignado',
+		'co_matrix' => 'matriz',
+		'co_logo' => 'logo',
+		'co_color' => 'color',
+		'co_pay_notification' => 'notificación de pago',
+		'co_ruc' => 'ruc',
+		'co_business_name' => 'nombre del negocio',
+		'co_comercial_name' => 'nombre comercial',
+		'co_legal_identification' => 'identificación legal',
+		'co_agent_legal' => 'agente legal',
+		'co_person_type' => 'tipo de persona',
+		'co_direction' => 'dirección',
+		'co_phone' => 'teléfono de  la compañía',
+		'co_email' => 'correo de la compañía',
+		'eco_gro_name' => 'nombre del grupo económico',
+		'eco_gro_description' => 'descripción del grupo económico',
+		'edu_name' => 'nombre del nivel educativo',
+		'edu_alias' => 'alias del nivel educativo',
+		'edu_alias' => 'alias del nivel educativo',
+		'edu_order' => 'orden del nivel educativo',
+		'edu_order' => 'orden del nivel educativo',
+		'offer_id' => 'oferta',
+		'principal_id' => 'agrupación',
+		'eth_name' => 'nombre de etnia',
+		'eth_description' => 'descripción de etnia',
+		'inst_name' => 'nombre de la institución',
+		'city_id' => 'ciudad',
+		'type_institute_id' => 'instituto',
 
-        'title' => 'titulo',
-        'name' => 'nombre',
-        'description' => 'descripcion',
-        'price' => 'precio',
-        'author_id' => 'autor',
-        'category_id' => 'categoria',
-        'domain' => 'dominio',
-        'domain_client' => 'dominio del cliente',
-        'database' => 'base de datos',
-        'us_username' => 'nombre de usuario',
-        'password' => 'contraseña',
-        'email' => 'correo',
-        'remember_token' => 'recordar token',
-    ],
+		/**
+		 * type_institutes
+		 */
+		'tin_name' => 'nombre del tipo instituto',
+		/**
+		 * mails
+		 */
+		'transport' => 'agregar la configuración de cumplimiento de transporte seguro',
+		'host' => 'anfitrión',
+		'port' => 'puerto',
+		'encryption' => 'encriptación',
+		'username' => 'nombre de usuario',
+
+		//tenant_id
+		/**
+		 * matters
+		 */
+		'mat_name' => 'nombre de materia',
+		'mat_description' => 'descripción de materia',
+		'mat_acronym' => 'acrónimo de materia',
+		'cod_matter_migration' => 'codigo de materia migrado',
+		'cod_old_migration' => 'codigo de migración de materia antigua',
+		'type_matter_id' => 'tipo de materia',
+		'type_calification_id' => 'tipo de calificación',
+		'min_note' => 'nota minima',
+		/**
+		 * matter_mesh
+		 */
+		'matter_id' => 'malla de materia',
+		'mesh_id' => 'malla',
+		'calification_type' => 'tipo de calificación',
+		'min_calification' => 'calificación minima',
+		'num_fouls' => 'numero de faltas',
+		'matter_rename' => 'cambiar el nombre de la materia',
+		/**
+		 * matter_status
+		 */
+		'type' => 'tipo',
+		/**
+		 * meshs
+		 */
+		'mes_name' => 'nombre de malla',
+		'mes_description' => 'descriptición de malla',
+		'mes_acronym' => 'acrónimo de malla',
+		'pensum_id' => 'pensum',
+		'level_edu_id' => 'nivel educativo',
+		/**
+		 * offers
+		 */
+		'off_name' => 'nombre de oferta',
+		'off_description' => 'descripcion de oferta',
+		/**
+		 * offer_period
+		 */
+		'period_id' => 'periodo',
+		/**
+		 * parallels
+		 */
+		'par_name' => 'nombre del paralelo',
+		'par_description' => 'descripción del paralelo',
+		'par_acronym' => 'acrónimo de paralelo',
+		/**
+		 * pensums
+		 */
+		'pen_name' => 'nombre del pensums',
+		'pen_description' => 'descripción de pensums',
+		'pen_acronym' => 'acrónimo de pensums',
+		'anio' => 'año',
+		/**
+		 * periods
+		 */
+		'per_name' => 'nombre del período',
+		'per_reference' => 'períodos de referencia',
+		'per_current_year' => 'períodos del año en curso',
+		'per_due_year' => 'períodos de vencimiento anual',
+		'per_min_matter_enrollment' => 'minimo de materia de matrícula por período',
+		'per_max_matter_enrollment' => 'maximo de materia de matrícula por período',
+		'campus_id' => 'campus',
+		'type_period_id' => 'tipo de periodo',
+		/**
+		 * period_stages
+		 */
+		'stage_id' => 'etapa',
+		'start_date' => 'fecha de inicio',
+		'end_date' => 'fecha de fin',
+		/**
+		 * permissions
+		 */
+		'alias' => 'alias',
+		'guard_name' => 'nombre guardado',
+		'parent_name' => 'nombre perfil padre',
+		/**
+		 * persons
+		 */
+		'pers_identification' => 'identificación de persona',
+		'pers_firstname' => 'primer nombre de la persona',
+		'pers_secondname' => 'segundo nombre de la persona',
+		'pers_first_lastname' => 'primer apellido de la persona',
+		'pers_second_lastname' => 'segundo apellido de la persona',
+		'pers_gender' => 'género de la persona',
+		'pers_date_birth' => 'fecha de nacimiento de la persona',
+		'pers_direction' => 'dirección de la persona',
+		'pers_phone_home' => 'número télefónico de la persona',
+		'pers_cell' => 'número celular de la persona',
+		'pers_num_child' => 'número de hijos de la persona',
+		'pers_profession' => 'profesión de la persona',
+		'type_identification_id' => '',
+		'user_id' => 'usuario',
+		'type_religion_id' => 'tipo de religión',
+		'status_marital_id' => 'estado civil',
+		'current_city_id' => 'ciudad actual',
+		'sector_id' => 'sector',
+		'ethnic_id' => 'étnica',
+		/**
+		 * PersonalAccessToken 
+		 */
+
+		/**
+		 * profiles
+		 */
+		'pro_name' => 'nombre del perfil',
+
+		/**
+		 * roles
+		 */
+
+		/**
+		 * sectors
+		 */
+		'sec_name' => 'nombre del sector',
+		'sec_description' => 'descripción del sector',
+		'sec_acronym' => 'acrónimo sectorial',
+		/**
+		 * stages
+		 */
+		'stg_name' => 'nombre de etapa',
+		'stg_description' => 'descripción de etapa',
+		'stg_acronym' => 'acrónimo de etapa',
+		/**
+		 * status
+		 */
+		'st_name' => 'nombre del estado',
+		/**
+		 * status_marital
+		 */
+		'sta_mar_name' => 'nombre de estado civil',
+		'sta_mar_description' => 'descripción estado civil',
+		/**
+		 * type_califications
+		 */
+		'tc_name' => 'nombre de tipo calcificaciones',
+		'tc_description' => 'descripción de tipo calcificaciones',
+		/**
+		 * type_daytrip
+		 */
+		'typ_day_name' => 'nombre de jornada academica',
+		'typ_day_description' => 'descripción de jornada academica',
+		/**
+		 * type_disabilities
+		 */
+		'typ_dis_name' => 'nombre del tipo discapacidad',
+		'typ_dis_description' => 'descripción del tipo discapacidad',
+		/**
+		 * type_document
+		 */
+		'typ_doc_name' => 'nombre del tipo documento',
+		'typ_doc_description' => 'descripción del tipo documento',
+		/**
+		 * type_education
+		 */
+		'typ_edu_name' => 'nombre del tipo educación',
+		'typ_edu_description' => 'descripción del tipo de educación',
+		/**
+		 * type_identifications
+		 */
+		'ti_name' => 'nombre del tipo indentificaion',
+		/**
+		 * type_kinship
+		 */
+		'typ_kin_name' => 'nombre del tipo parentesco',
+		'typ_kin_description' => 'descripción del tipo parentesco',
+		/**
+		 * type_languages
+		 */
+		'typ_lan_name' => 'nombre del tipo idioma ',
+		'typ_lan_description' => 'descripción del tipo idioma',
+		/**
+		 * type_matters
+		 */
+		'tm_name' => 'nombre del tipo materia',
+		'tm_acronym' => 'acrónimo del tipo materia',
+		'tm_description' => 'descripción del tipo materia',
+		'tm_order' => 'orden del tipo materia',
+		'tm_cobro' => 'cobro del tipo materia',
+		'tm_matter_count' => 'recuento de materia del tipo materia',
+		/**
+		 * type_periods
+		 */
+		'tp_name' => 'nombre del tipo período',
+		'tp_description' => 'descripción del tipo período',
+		'tp_min_matter_enrollment' => 'inscripción minima del tipo período',
+		'tp_max_matter_enrollment' => 'inscripción maxima del tipo período',
+		/**
+		 * type_religions
+		 */
+		'typ_rel_name' => 'nombre del tipo religión',
+		'typ_rel_description' => 'descripción del tipo religión',
+		/*
+		* type_students
+		*/
+		'te_name' => 'nombre del tipo estudiante',
+		'te_description' => 'descripción del tipo estudiante',
+		/*
+		* user_profiles
+		*/
+		'profile_id' => 'perfil usuario',
+
+
+
+
+
+		'title' => 'titulo',
+		'name' => 'nombre',
+		'description' => 'descripcion',
+		'price' => 'precio',
+		'author_id' => 'autor',
+		'category_id' => 'categoria',
+		'domain' => 'dominio',
+		'domain_client' => 'dominio del cliente',
+		'database' => 'base de datos',
+		'us_username' => 'nombre de usuario',
+		'password' => 'contraseña',
+		'email' => 'correo',
+		'remember_token' => 'recordar token',
+	],
 
 ];

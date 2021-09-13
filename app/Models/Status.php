@@ -14,5 +14,14 @@ class Status extends Model implements AuditableContract
 
     protected $table = 'status';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'st_name'
+    ];
+
     protected $hidden = ['created_at','updated_at','deleted_at'];
 }

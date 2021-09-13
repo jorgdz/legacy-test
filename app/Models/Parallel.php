@@ -12,6 +12,13 @@ class Parallel extends Model
     use HasFactory, UsesTenantConnection, SoftDeletes;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'parallels';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -39,7 +46,7 @@ class Parallel extends Model
      *
      * @return void
      */
-    public function status ()
+    public function status()
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
