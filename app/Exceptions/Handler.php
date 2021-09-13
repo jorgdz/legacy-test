@@ -88,7 +88,7 @@ class Handler extends ExceptionHandler
                 return $this->error($request->getPathInfo(), $exception, __('messages.method-not-allowed'), $code);
             }
 
-            if ($exception instanceof AuthenticationException) {
+            if ($exception instanceof AuthenticationException) {       
                 return $this->error($request->getPathInfo(), $exception,
                     $exception->getMessage(), Response::HTTP_UNAUTHORIZED);
             }
@@ -99,7 +99,7 @@ class Handler extends ExceptionHandler
             }
 
             if ($exception instanceof ValidationException) {
-                $errors = $exception->validator->errors()->getMessages();
+                $errors = $exception->validator->errors()->all();
 
                 return $this->error($request->getPathInfo(), $exception,
                     $errors, Response::HTTP_BAD_REQUEST);

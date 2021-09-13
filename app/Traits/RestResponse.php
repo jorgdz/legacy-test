@@ -48,8 +48,16 @@ trait RestResponse
             'timestamps' => date('Y-m-d H:i:s'),
             'path' => $path,
             'exception' =>  basename(str_replace('\\', '/', get_class($exception))),
-            'detail' => $message,
+            'detail' => $this->checkIsArray($message),
             'code' => $code
         ], $code);
+	}
+	private function checkIsArray($message){
+		$messageArray = [];
+		if(!is_array($message)){	
+			array_push($messageArray,$message);
+			$message = $messageArray;
+		}
+		return $message;
 	}
 }
