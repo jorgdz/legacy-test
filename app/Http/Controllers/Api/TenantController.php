@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Mail;
+use App\Jobs\ProcessTenant;
+use Illuminate\Support\Str;
 use App\Models\CustomTenant;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
-use App\Exceptions\Custom\UnprocessableException;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateTenantRequest;
+use Illuminate\Support\Facades\File as FileFacade;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Api\Contracts\ITenantController;
-use App\Jobs\ProcessTenant;
-use Illuminate\Support\Facades\Artisan;
 
 class TenantController extends Controller implements ITenantController
 {
@@ -146,5 +150,49 @@ class TenantController extends Controller implements ITenantController
 
         $tenant->delete();
         return $this->success($tenant);
+    }
+
+    /**
+     * Update tenant.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCurrentTenant(UpdateTenantRequest $request) {
+        $this->cache::forget($request->getHost() . '_current_tenant');
+        
+        $tenantUpdate = CustomTenant::findOrFail(app('currentTenant')->id);
+        $mailUpdate = Mail::find($tenantUpdate->mail->id);
+        
+        $name_anterior = $tenantUpdate->name;
+        
+        $tenantUpdate->fill($request->only('name'));
+        $mailUpdate->fill($request->except('name'));
+
+        if ($tenantUpdate->isClean() && $mailUpdate->isClean())
+            return $this->information(__('messages.nochange'));
+
+        if($request->name !== $name_anterior){
+            config()->set('filesystems.disks.tenant_system.root', storage_path("app/{$request->name}"));
+        }
+        
+        if($request->hasFile('logo')){
+            // Get just ext
+            $extension = $request->file('logo')->getClientOriginalExtension();
+            
+            $filename = $tenantUpdate->id.'.'.$extension;//.'_'.time().
+            
+            Storage::put($filename, FileFacade::get($request->file('logo')));
+            
+            $tenantUpdate->logo = url('/').'/storage/'.$tenantUpdate->name.'/'.$filename;
+        }
+        
+        $tenantUpdate->save();
+        $mailUpdate->save();
+
+        $this->cache::forget(request()->root() . '/api/as-tenant_as_current_tenant');
+
+        return $this->success($tenantUpdate);
     }
 }

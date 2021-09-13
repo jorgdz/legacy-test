@@ -49,7 +49,7 @@ class TypeStudentCache extends BaseCache {
      */
     public function save(Model $model)
     {
-        $this->forgetCache('typeStudents');
+        $this->forgetCache('type-students');
         return $this->repository->save($model);
     }
 
@@ -59,7 +59,7 @@ class TypeStudentCache extends BaseCache {
      * @return void
      */
     public function destroy (Model $model) {
-        $this->forgetCache('typeStudents');
+        $this->forgetCache('type-students');
         return $this->repository->destroy($model);
     }
 }

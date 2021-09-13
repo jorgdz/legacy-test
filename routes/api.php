@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\CityController;
+use App\Http\Controllers\Api\TenantController;
 use App\Http\Controllers\Api\StatusMaritalController;
 use App\Http\Controllers\Api\TypeIdentificationController;
 use App\Http\Controllers\Api\TypeReligionController;
@@ -184,12 +185,12 @@ Route::post('/classrooms/{classroom}/disabled', [ClassRoomController::class, 'di
 /**
  * TypePeriods
  */
-Route::get('/typePeriods', [TypePeriodController::class, 'index'])->middleware(['auth:sanctum', 'permission:typePeriods-listar-tiposPeriodos']);
-Route::get('/typePeriods/{typePeriod}', [TypePeriodController::class, 'show'])->middleware(['auth:sanctum', 'permission:typePeriods-obtener-tipoPeriodo']);
-Route::post('/typePeriods', [TypePeriodController::class, 'store'])->middleware(['auth:sanctum', 'permission:typePeriods-crear-tipoPeriodo']);
-Route::patch('/typePeriods/{typePeriod}', [TypePeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:typePeriods-actualizar-tipoPeriodo']);
-Route::put('/typePeriods/{typePeriod}', [TypePeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:typePeriods-actualizar-tipoPeriodo']);
-Route::delete('/typePeriods/{typePeriod}', [TypePeriodController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:typePeriods-borrar-tipoPeriodo']);
+Route::get('/type-periods', [TypePeriodController::class, 'index'])->middleware(['auth:sanctum', 'permission:typePeriods-listar-tiposPeriodos']);
+Route::get('/type-periods/{typePeriod}', [TypePeriodController::class, 'show'])->middleware(['auth:sanctum', 'permission:typePeriods-obtener-tipoPeriodo']);
+Route::post('/type-periods', [TypePeriodController::class, 'store'])->middleware(['auth:sanctum', 'permission:typePeriods-crear-tipoPeriodo']);
+Route::patch('/type-periods/{typePeriod}', [TypePeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:typePeriods-actualizar-tipoPeriodo']);
+Route::put('/type-periods/{typePeriod}', [TypePeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:typePeriods-actualizar-tipoPeriodo']);
+Route::delete('/type-periods/{typePeriod}', [TypePeriodController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:typePeriods-borrar-tipoPeriodo']);
 
 /**
  * Periods
@@ -321,8 +322,9 @@ Route::get('type-daytrips/{typedaytrip}', [TypeDaytripController::class, 'show']
 /**
  * TypeStudent
  */
-Route::get('typeStudents', [TypeStudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_students-listar-tipos-estudiantes']);
-Route::get('typeStudents/{typeStudent}', [TypeStudentController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_students-obtener-tipo-estudiante']);
+Route::get('type-students', [TypeStudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_students-listar-tipos-estudiantes']);
+Route::get('type-students/{typeStudent}', [TypeStudentController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_students-obtener-tipo-estudiante']);
+
 /**
  * Type Language
  */
@@ -352,3 +354,7 @@ Route::get('economic-group/{ecogroup}', [EconomicGroupController::class, 'show']
 Route::post('economic-group', [EconomicGroupController::class, 'store'])->middleware(['auth:sanctum', 'permission:economic_group-crear-grupo-economico']);
 Route::put('economic-group/{ecogroup}', [EconomicGroupController::class, 'update'])->middleware(['auth:sanctum', 'permission:economic_group-actualizar-grupo-economico']);
 Route::delete('economic-group/{ecogroup}', [EconomicGroupController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:economic_group-eliminar-grupo-economico']);
+/**
+ * CurrentTenant
+ */
+Route::post('tenants/edit', [TenantController::class, 'updateCurrentTenant'])->middleware(['auth:sanctum']);//, 'permission:tenant-actualizar-tenant'

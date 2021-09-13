@@ -11,7 +11,7 @@ interface ITypePeriodController
 {
     /**
      * @OA\Get(
-     *   path="/api/typePeriods",
+     *   path="/api/type-periods",
      *   tags={"Tipos de periodos"},
      *   security={
      *      {"api_key_security": {}},
@@ -80,7 +80,7 @@ interface ITypePeriodController
 
     /**
      * @OA\Post(
-     *   path="/api/typePeriods",
+     *   path="/api/type-periods",
      *   tags={"Tipos de periodos"},
      *   security={
      *      {"api_key_security": {}},
@@ -138,7 +138,7 @@ interface ITypePeriodController
 
     /**
      * @OA\Get(
-     *   path="/api/typePeriods/{typePeriod}",
+     *   path="/api/type-periods/{typePeriod}",
      *   tags={"Tipos de periodos"},
      *   security={
      *      {"api_key_security": {}},
@@ -178,7 +178,7 @@ interface ITypePeriodController
 
     /**
      * @OA\Put(
-     *   path="/api/typePeriods/{typePeriod}",
+     *   path="/api/type-periods/{typePeriod}",
      *   tags={"Tipos de periodos"},
      *   security={
      *      {"api_key_security": {}},
@@ -246,7 +246,7 @@ interface ITypePeriodController
 
      /**
      * @OA\Delete(
-     *   path="/api/typePeriods/{typePeriod}",
+     *   path="/api/type-periods/{typePeriod}",
      *   tags={"Tipos de periodos"},
      *   security={
      *      {"api_key_security": {}},

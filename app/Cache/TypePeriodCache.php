@@ -49,7 +49,7 @@ class TypePeriodCache extends BaseCache {
      */
     public function save(Model $model)
     {
-        $this->forgetCache('typePeriods');
+        $this->forgetCache('type-periods');
         return $this->repository->save($model);
     }
 
@@ -59,7 +59,7 @@ class TypePeriodCache extends BaseCache {
      * @return void
      */
     public function destroy (Model $model) {
-        $this->forgetCache('typePeriods');
+        $this->forgetCache('type-periods');
         return $this->repository->destroy($model);
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Http\Requests\UpdateTenantRequest;
 use App\Models\CustomTenant;
 use Illuminate\Http\Request;
+use Spatie\Multitenancy\Models\Tenant;
 
 interface ITenantController
 {
@@ -203,4 +205,72 @@ interface ITenantController
      *
      */
     public function destroy(CustomTenant $tenant);
+
+    /**
+     * @OA\Post(
+     *   path="/api/tenants/edit",
+     *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Editar información inquilino actual",
+     *   description="Editar información inquilino actual",
+     *   operationId="editCurrentTenant",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="name",
+     *           description="Nombre del inquilino",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="logo",
+     *           description="Logo del inquilino",
+     *           type="file",
+     *         ),
+     *         @OA\Property(
+     *           property="transport",
+     *           description="Transporte (Configuracion para el correo)",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="host",
+     *           description="Host (Configuracion para el correo)",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="port",
+     *           description="Puerto (Configuracion para el correo)",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="encryption",
+     *           description="Encriptación (Configuracion para el correo)",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="username",
+     *           description="Nombre de usuario (Configuracion para el correo)",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="password",
+     *           description="Contraseña (Configuracion para el correo)",
+     *           type="string",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updateCurrentTenant(UpdateTenantRequest $request);
 }

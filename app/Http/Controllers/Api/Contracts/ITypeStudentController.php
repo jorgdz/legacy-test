@@ -9,7 +9,7 @@ interface ITypeStudentController
 {
     /**
      * @OA\Get(
-     *   path="/api/typeStudents",
+     *   path="/api/type-students",
      *   tags={"Tipos de estudiantes"},
      *   security={
      *      {"api_key_security": {}},
@@ -81,7 +81,7 @@ interface ITypeStudentController
 
     /**
      * @OA\Get(
-     *   path="/api/typeStudents/{typeStudent}",
+     *   path="/api/type-students/{typeStudent}",
      *   tags={"Tipos de estudiantes"},
      *   security={
      *      {"api_key_security": {}},
