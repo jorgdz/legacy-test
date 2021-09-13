@@ -7,7 +7,7 @@ use App\Repositories\Base\BaseRepository;
 
 class EconomicGroupRepository extends BaseRepository {
 
-    protected $relations = [/* 'studentRecords',  */'status'];
+    protected $relations = ['studentRecords', 'status'];
 
     /**
      * __construct

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableCriteria extends Migration
+class CreateTypeCriteriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -39,6 +39,6 @@ class CreateTableCriteria extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('criterias');
+        Schema::dropIfExists('type_criterias');
     }
 }

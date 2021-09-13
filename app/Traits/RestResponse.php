@@ -52,9 +52,16 @@ trait RestResponse
             'code' => $code
         ], $code);
 	}
+
+	/**
+	 * checkIsArray
+	 *
+	 * @param  mixed $message
+	 * @return void
+	 */
 	private function checkIsArray($message){
 		$messageArray = [];
-		if(!is_array($message)){	
+		if(!is_array($message)){
 			array_push($messageArray,$message);
 			$message = $messageArray;
 		}

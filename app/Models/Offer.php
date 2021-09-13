@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -34,18 +36,18 @@ class Offer extends Model implements AuditableContract
 
     protected $dates = ['deleted_at'];
 
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at','updated_at','deleted_at', 'pivot'];
 
-    protected $softCascade = ['educationLevels'];
+    protected $softCascade = ['educationLevels', 'typeCriterias', 'typeStudents'];
 
     /**
-     * type_students
+     * periods
      *
-     * @return void
+     * @return BelongsToMany
      */
-    public function offerPeriods ()
+    public function periods () : BelongsToMany
     {
-    	return $this->hasMany(OfferPeriod::class);
+    	return $this->belongsToMany(Period::class);
     }
 
 
@@ -56,8 +58,27 @@ class Offer extends Model implements AuditableContract
      */
     public function educationLevels()
     {
-        return $this->hasMany(
-            EducationLevel::class);
+        return $this->hasMany(EducationLevel::class);
+    }
+
+    /**
+     * typeCriterias
+     *
+     * @return HasMany
+     */
+    public function typeCriterias(): HasMany
+    {
+        return $this->hasMany(TypeCriteria::class);
+    }
+
+    /**
+     * typeStudents
+     *
+     * @return HasMany
+     */
+    public function typeStudents(): HasMany
+    {
+        return $this->hasMany(TypeStudent::class);
     }
 
     /**

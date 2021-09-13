@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
-class InstituteType extends Model
+class InstituteType extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes;
+    use HasFactory, UsesTenantConnection, SoftDeletes, Auditable;
 
     protected $table = 'type_institutes';
 
@@ -55,7 +57,7 @@ class InstituteType extends Model
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
-    
+
     /**
      * institutes
      *

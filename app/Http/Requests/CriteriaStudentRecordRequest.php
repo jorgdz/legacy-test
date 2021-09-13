@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOfferRequest extends FormRequest
+class CriteriaStudentRecordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class StoreOfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'off_name' => 'required',
-            'status_id' => 'required|integer|exists:tenant.status,id',
+            'qualification' => 'required',
+            'type_criteria_id' => 'required|integer|exists:tenant.type_criterias,id',
+            'student_record_id' => 'required|integer|exists:tenant.student_records,id'
         ];
     }
 }

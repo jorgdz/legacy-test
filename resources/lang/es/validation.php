@@ -320,7 +320,7 @@ return [
 		'sector_id' => 'sector',
 		'ethnic_id' => 'étnica',
 		/**
-		 * PersonalAccessToken 
+		 * PersonalAccessToken
 		 */
 
 		/**
@@ -422,12 +422,23 @@ return [
 		* user_profiles
 		*/
 		'profile_id' => 'perfil usuario',
+        /**
+         * student_records
+         */
+        'student_id' => 'estudiante',
+        'education_level_id' => 'nivel educativo',
+        'pensum_id' => 'pensum',
+        'type_student_id' => 'tipo de estudiante',
+        'period_id' => 'periodo',
+        'economic_group_id' => 'grupo economico',
+        /**
+         * criteria_student_records
+         */
+        'qualification' => 'calificación',
+        'type_criteria_id' => 'tipo de criterio',
+        'student_record_id' => 'récord estudiantil',
 
-
-
-
-
-		'title' => 'titulo',
+    	'title' => 'titulo',
 		'name' => 'nombre',
 		'description' => 'descripcion',
 		'price' => 'precio',

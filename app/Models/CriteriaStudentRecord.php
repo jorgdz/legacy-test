@@ -10,7 +10,7 @@ use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
-class Institute extends Model implements AuditableContract
+class CriteriaStudentRecord extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes, Auditable;
 
@@ -19,7 +19,7 @@ class Institute extends Model implements AuditableContract
      *
      * @var string
      */
-    protected $table = 'institutes';
+    protected $table = 'criteria_student_records';
 
     /**
      * dates
@@ -29,51 +29,49 @@ class Institute extends Model implements AuditableContract
     protected $dates = ['deleted_at'];
 
     /**
-     * fillable
+     * guard_name
      *
-     * @var array
+     * @var string
      */
-    protected $fillable = [
-        'inst_name',
-        'city_id',
-        'status_id',
-        'type_institute_id'
-    ];
+    protected $guard_name = 'api';
 
-    /**
+     /**
      * hidden
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'qualification',
+        'type_criteria_id',
+        'student_record_id',
+    ];
 
     /**
-     * status
+     * typeCriteria
      *
      * @return BelongsTo
      */
-    public function status(): BelongsTo
+    public function typeCriteria(): BelongsTo
     {
-        return $this->belongsTo(Status::class, 'status_id');
+        return $this->belongsTo(TypeCriteria::class, 'type_criteria_id');
     }
 
     /**
-     * typeInstitute
+     * studentRecord
      *
      * @return BelongsTo
      */
-    public function typeInstitute (): BelongsTo
+    public function studentRecord(): BelongsTo
     {
-        return $this->belongsTo(InstituteType::class, 'type_institute_id');
+        return $this->belongsTo(StudentRecord::class, 'student_record_id');
     }
 
-    /**
-     * city
-     *
-     * @return BelongsTo
-     */
-    public function city (): BelongsTo
-    {
-        return $this->belongsTo(City::class, 'city_id');
-    }
+
 }

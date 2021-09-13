@@ -2,6 +2,7 @@
 
 namespace App\Cache;
 
+use App\Models\Period;
 use App\Repositories\PeriodRepository;
 use Illuminate\Database\Eloquent\Model;
 
@@ -62,4 +63,28 @@ class PeriodCache extends BaseCache {
         $this->forgetCache('periods');
         return $this->repository->destroy($model);
     }
+
+    /**
+     * showOfferByPeriod
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function showOffersByPeriod (Period $period) {
+        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($period) {
+            return $this->repository->showOffersByPeriod($period);
+        });
+    }
+
+    /**
+     * destroyOffersByPeriod
+     *
+     * @param  mixed $model
+     * @return void
+     */
+    public function destroyOffersByPeriod(Model $model) {
+        $this->forgetCache('periods');
+        return $this->repository->destroyOffersByPeriod($model);
+    }
+
 }

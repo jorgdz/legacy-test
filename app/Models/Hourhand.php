@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Hourhand extends Model implements AuditableContract
 {
-    use HasFactory, SoftDeletes, Auditable;
+    use HasFactory, SoftDeletes, SoftCascadeTrait, Auditable;
 
     /**
      * The attributes that are mass assignable.
@@ -32,25 +34,27 @@ class Hourhand extends Model implements AuditableContract
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
+    //protected $softCascade = ['courses'];
+
     /**
-     * hourhandPeriod
+     * periods
      *
      * @return void
      */
-    /*public function hourhandPeriod ()
+    public function periods ()
     {
-        return $this->hasMany(HourhandPeriod::class);
-    }*/
+        return $this->belongsToMany(Period::class);
+    }
 
     /**
      * courses
      *
-     * @return void
+     * @return HasMany
      */
-    /*public function courses ()
-    {
-        return $this->hasMany(Course::class);
-    }*/
+    // public function courses (): HasMany
+    // {
+    //     return $this->hasMany(Course::class);
+    // }
 
     /**
      * status

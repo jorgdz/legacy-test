@@ -18,12 +18,13 @@ class CreateTableCriteriaStudentRecord extends Migration
 
             $table->string('qualification', 300)->nullable();
 
-            $table->integer('criteria_id')->unsigned();
-            $table->foreign('criteria_id')->references('id')->on('type_criterias');
+            $table->integer('type_criteria_id')->unsigned();
+            $table->foreign('type_criteria_id')->references('id')->on('type_criterias');
 
             $table->integer('student_record_id')->unsigned();
             $table->foreign('student_record_id')->references('id')->on('student_records');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

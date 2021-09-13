@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
                 TypeInstituteSeeder::class,
                 TypeStudentSeeder::class,
                 OfferSeeder::class,
-                CriteriaSeeder::class,
+                TypeCriteriaSeeder::class,
                 TypeMatterSeeder::class,
                 TypeKinshipSeeder::class,
                 TypeEducationSeeder::class,

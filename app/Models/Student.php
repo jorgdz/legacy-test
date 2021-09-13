@@ -2,31 +2,53 @@
 
 namespace App\Models;
 
-use OwenIt\Auditing\Auditable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
-class EconomicGroup extends Model implements AuditableContract
+class Student extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait, Auditable;
 
     /**
-     * The table associated with the model.
+     * table
      *
      * @var string
      */
-    protected $table = 'economic_groups';
+    protected $table = 'students';
 
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * guard_name
+     *
+     * @var string
+     */
+    protected $guard_name = 'api';
+
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
-    protected $softCascade = ['student_records'];
+    /**
+     * softCascade
+     *
+     * @var array
+     */
+    protected $softCascade = ['studentRecords']; //courseStudent
 
     /**
      * The attributes that are mass assignable.
@@ -34,29 +56,28 @@ class EconomicGroup extends Model implements AuditableContract
      * @var array
      */
     protected $fillable = [
-        'eco_gro_name',
-        'eco_gro_description',
-        'status_id',
+        'user_id',
     ];
-
 
     /**
      * studentRecords
      *
      * @return HasMany
      */
-    public function studentRecords (): HasMany
+    public function studentRecords(): HasMany
     {
         return $this->hasMany(StudentRecord::class);
     }
 
     /**
-     * status
+     * courseStudent
      *
-     * @return void
+     * @return HasMany
      */
-    public function status ()
-    {
-        return $this->belongsTo(Status::class, 'status_id');
-    }
+    // public function courseStudent(): HasMany
+    // {
+    //     return $this->hasMany(CourseStudent::class);
+    // }
+
+
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Cache\InstituteCache;
-use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InstituteRequest;
 use App\Models\Institute;

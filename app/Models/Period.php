@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Period extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait,Auditable;
+    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait, Auditable;
 
     /**
      * The attributes that are mass assignable.
@@ -40,28 +42,28 @@ class Period extends Model implements AuditableContract
 
     protected $dates = ['deleted_at'];
 
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at','updated_at','deleted_at', 'pivot'];
 
-     protected $softCascade = ['offerPeriod', 'periodStages'];//, 'courses', 'hourhandPeriod', 'studentRecords'];
+    protected $softCascade = ['periodStages', 'studentRecords']; //courses
 
     /**
-     * hourhandPeriod
+     * hourhands
      *
-     * @return void
+     * @return BelongsToMany
      */
-    /*public function hourhandPeriod ()
+    public function hourhands (): BelongsToMany
     {
-        return $this->hasMany(HourhandPeriod::class);
-    }*/
- 
+        return $this->belongsToMany(Hourhand::class, 'hourhand_period','period_id', 'hourhand_id');
+    }
+
     /**
-     * offerPeriod
+     * offers
      *
-     * @return void
+     * @return BelongsToMany
      */
-    public function offerPeriod ()
+    public function offers () : BelongsToMany
     {
-        return $this->hasMany(OfferPeriod::class);
+        return $this->belongsToMany(Offer::class, 'offer_period', 'period_id', 'offer_id');
     }
 
     /**
@@ -77,22 +79,22 @@ class Period extends Model implements AuditableContract
     /**
      * courses
      *
-     * @return void
+     * @return HasMany
      */
-    /*public function courses ()
-    {
-        return $this->hasMany(Course::class);
-    }*/
+    // public function courses (): HasMany
+    // {
+    //     return $this->hasMany(Course::class);
+    // }
 
     /**
      * studentRecords
      *
-     * @return void
+     * @return HasMany
      */
-    /*public function studentRecords ()
+    public function studentRecords (): HasMany
     {
         return $this->hasMany(StudentRecord::class);
-    }*/
+    }
 
     /**
      * campus
@@ -109,7 +111,7 @@ class Period extends Model implements AuditableContract
      *
      * @return void
      */
-    public function typePeriods ()
+    public function typePeriod ()
     {
         return $this->belongsTo(TypePeriod::class, 'type_period_id');
     }

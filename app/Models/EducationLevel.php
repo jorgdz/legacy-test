@@ -5,6 +5,7 @@ namespace App\Models;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -32,7 +33,17 @@ class EducationLevel extends Model implements AuditableContract
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
     protected $dates = ['deleted_at'];
 
-    protected $softCascade = ['meshs'];
+    protected $softCascade = ['meshs', 'studentRecords'];
+
+    /**
+     * studentRecords
+     *
+     * @return HasMany
+     */
+    public function studentRecords(): HasMany
+    {
+        return $this->hasMany(StudentRecord::class);
+    }
 
     /**
      * meshs

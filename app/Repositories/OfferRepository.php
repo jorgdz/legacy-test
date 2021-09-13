@@ -3,12 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\Offer;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Period;
 use App\Repositories\Base\BaseRepository;
 
 class OfferRepository extends BaseRepository
 {
-    protected $relations = ['status','offerPeriods','educationLevels'];
+    protected $relations = ['status','periods','educationLevels'];
     /**
      * __construct
      *
@@ -18,26 +18,8 @@ class OfferRepository extends BaseRepository
         parent::__construct($offer);
     }
 
-    /**
-     * save
-     *
-     * @return void
-     */
-    public function save (Model $offer) {
-        $offer->save();
-        return $offer;
-    }
-
-    /**
-     * delete a information
-     * @param array $condition
-     *
-     * @return model
-     *
-     */
-    public function destroy (Model $model) {
-        $model->offerPeriods()->delete();
-        $model->delete();
-        return $model;
+    public function showPeriodByOffer (Offer $offer, Period $period) {
+        $periodFound = $offer->periods()->wherePivot('period_id', $period->id)->first();
+        return $periodFound;
     }
 }

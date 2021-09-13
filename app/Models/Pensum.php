@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -27,7 +28,7 @@ class Pensum extends Model implements AuditableContract
 
     protected $dates = ['deleted_at'];
 
-    protected $softCascade = ['meshs'];
+    protected $softCascade = ['meshs', 'studentRecords'];
 
     /* Relationships */
     public function status() {
@@ -38,8 +39,13 @@ class Pensum extends Model implements AuditableContract
         return $this->hasMany(Mesh::class);
     }
 
-    /* TODO: Add softCascade */
-    /* public function student_records() {
+    /**
+     * studentRecords
+     *
+     * @return HasMany
+     */
+    public function studentRecords(): HasMany
+    {
         return $this->hasMany(StudentRecord::class);
-    } */
+    }
 }

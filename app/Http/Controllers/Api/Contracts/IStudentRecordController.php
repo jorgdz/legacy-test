@@ -2,26 +2,25 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Models\Period;
+use App\Http\Requests\StudentRecordRequest;
+use App\Models\StudentRecord;
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePeriodRequest;
-use App\Http\Requests\UpdatePeriodRequest;
 
-interface IPeriodController
+interface IStudentRecordController
 {
     /**
      * @OA\Get(
-     *   path="/api/periods",
-     *   tags={"Periodos"},
+     *   path="/api/student-records",
+     *   tags={"Record Estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar las periodos",
-     *   description="Muestra todos los periodos paginadas en formato JSON",
-     *   operationId="getAllPeriods",
+     *   summary="Listar los record estudiantil",
+     *   description="Muestra todos los record estudiantil en formato JSON",
+     *   operationId="getAllStudentRecords",
      *   @OA\Parameter(
      *     name="user_profile_id",
-     *     description="Perfil de usuario",
+     *     description="Id del perfil de usuario",
      *     in="query",
      *     required=true,
      *     @OA\Schema(
@@ -51,7 +50,7 @@ interface IPeriodController
      *   ),
      *   @OA\Parameter(
      *     name="sort",
-     *     description="Ordenar por columna",
+     *     description="Ordenar por el campo",
      *     in="query",
      *     required=false,
      *     @OA\Schema(
@@ -61,12 +60,12 @@ interface IPeriodController
      *   ),
      *   @OA\Parameter(
      *     name="type_sort",
-     *     description="Sentido del Orden",
+     *     description="Tipo de orden",
      *     in="query",
      *     required=false,
      *     @OA\Schema(
      *       type="string",
-     *       example="desc"
+     *       example="asc"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -80,57 +79,57 @@ interface IPeriodController
 
     /**
      * @OA\Post(
-     *   path="/api/periods",
-     *   tags={"Periodos"},
+     *   path="/api/student-records",
+     *   tags={"Record Estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear periodo",
-     *   description="Crear un nuevo periodo.",
-     *   operationId="addPeriod",
+     *   summary="Crear record estudiantil",
+     *   description="Crear un nuevo record estudiantil.",
+     *   operationId="addRecordStudent",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="application/json",
+     *       mediaType="multipart/form-data",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
-     *           description="Perfil de usuario",
+     *           description="Id del perfil de usuario",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="per_name",
-     *           description="Nombre del periodo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="per_reference",
-     *           description="Referencia del periodo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="per_min_matter_enrollment",
-     *           description="Mínimo numero de materias a matricular",
+     *           property="student_id",
+     *           description="Id del estudiante",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="per_max_matter_enrollment",
-     *           description="Máximo numero de materias a matricular",
+     *           property="education_level_id",
+     *           description="Id del nivel educativo",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="campus_id",
-     *           description="Campus del periodo",
+     *           property="pensum_id",
+     *           description="Id del pensum",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="type_period_id",
-     *           description="Tipo de Periodo asociado",
+     *           property="type_student_id",
+     *           description="Id del tipo de estudiante",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="period_id",
+     *           description="Id del periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="economic_group_id",
+     *           description="Id del grupo economico",
      *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del periodo",
+     *           description="Estado del record estudiantil",
      *           type="integer",
      *         ),
      *       ),
@@ -144,18 +143,19 @@ interface IPeriodController
      * )
      *
      */
-    public function store (StorePeriodRequest $request);
+
+    public function store(StudentRecordRequest $request);
 
     /**
      * @OA\Get(
-     *   path="/api/periods/{period}",
-     *   tags={"Periodos"},
+     *   path="/api/student-records/{id}",
+     *   tags={"Record Estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener información de un periodo",
-     *   description="Muestra información específica de un periodo.",
-     *   operationId="showPeriod",
+     *   summary="Obtener un record estudiantil",
+     *   description="Muestra información específica de un record estudiantil por Id.",
+     *   operationId="getRecordStudent",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -167,13 +167,13 @@ interface IPeriodController
      *     ),
      *   ),
      *   @OA\Parameter(
-     *     name="period",
-     *     description="Periodo",
+     *     name="id",
+     *     description="Id del record estudiantil",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="5"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -184,26 +184,26 @@ interface IPeriodController
      * )
      *
      */
-    public function show(Request $request,Period $period);
+    public function show($id);
 
     /**
      * @OA\Put(
-     *   path="/api/periods/{period}",
-     *   tags={"Periodos"},
+     *   path="/api/student-records/{studentRecord}",
+     *   tags={"Record Estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar información de un periodo",
-     *   description="Actualizar información de un periodo.",
-     *   operationId="updatePeriod",
+     *   summary="Actualizar record estudiantil",
+     *   description="Actualizar un record estudiantil.",
+     *   operationId="updateRecordStudent",
      *   @OA\Parameter(
-     *     name="period",
-     *     description="Periodo",
+     *     name="studentRecord",
+     *     description="Id del record estudiantil",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="3"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -213,48 +213,48 @@ interface IPeriodController
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
-     *           description="Perfil de usuario",
+     *           description="Id del perfil de usuario",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="per_name",
-     *           description="Nombre del periodo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="per_reference",
-     *           description="Referencia del periodo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="per_min_matter_enrollment",
-     *           description="Mínimo numero de materias a matricular",
+     *           property="student_id",
+     *           description="Id del estudiante",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="per_max_matter_enrollment",
-     *           description="Máximo numero de materias a matricular",
+     *           property="education_level_id",
+     *           description="Id del nivel educativo",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="campus_id",
-     *           description="Campus del periodo",
+     *           property="pensum_id",
+     *           description="Id del pensum",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="type_period_id",
-     *           description="Tipo de Periodo asociado",
+     *           property="type_student_id",
+     *           description="Id del tipo de estudiante",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="period_id",
+     *           description="Id del periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="economic_group_id",
+     *           description="Id del grupo economico",
      *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del periodo",
+     *           description="Estado del record estudiantil",
      *           type="integer",
      *         ),
      *       ),
      *     ),
      *   ),
-     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
@@ -262,25 +262,25 @@ interface IPeriodController
      * )
      *
      */
-    public function update(UpdatePeriodRequest $request, Period $period);
+    public function update(StudentRecordRequest $request, StudentRecord $studentRecord);
 
-     /**
+    /**
      * @OA\Delete(
-     *   path="/api/periods/{period}",
-     *   tags={"Periodos"},
+     *   path="/api/student-records/{studentRecord}",
+     *   tags={"Record Estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un periodo",
-     *   description="Eliminar un periodo por Id",
-     *   operationId="deletePeriod",
+     *   summary="Eliminar un record estudiantil",
+     *   description="Eliminar un record estudiantil por Id",
+     *   operationId="deleteStudentRecords",
      *   @OA\Parameter(
-     *     name="period",
+     *     name="studentRecord",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="3"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -304,85 +304,6 @@ interface IPeriodController
      * )
      *
      */
-    public function destroy(Period $period);
+    public function destroy(StudentRecord $studentRecord);
 
-    /**
-     * @OA\Get(
-     *   path="/api/periods/{period}/offers",
-     *   tags={"Periodos"},
-     *   security={
-     *      {"api_key_security": {}},
-     *   },
-     *   summary="Obtener ofertas académicas a partir del periodo",
-     *   description="Muestra los ofertas académicas asociados a un periodo.",
-     *   operationId="getPeriodOffer",
-     *   @OA\Parameter(
-     *     name="user_profile_id",
-     *     description="Id del perfil de usuario",
-     *     in="query",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="1"
-     *     ),
-     *   ),
-     *   @OA\Parameter(
-     *     name="period",
-     *     description="Id del periodo",
-     *     in="path",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="1"
-     *     ),
-     *   ),
-     *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=401, description="No autenticado"),
-     *   @OA\Response(response=403, description="No autorizado"),
-     *   @OA\Response(response=404, description="No encontrado"),
-     *   @OA\Response(response=500, description="Error interno del servidor")
-     * )
-     *
-     */
-    public function showOffersByPeriod (Period $period);
-
-    /**
-     * @OA\Delete(
-     *   path="/api/periods/{period}/offers",
-     *   tags={"Periodos"},
-     *   security={
-     *      {"api_key_security": {}},
-     *   },
-     *   summary="Eliminar ofertas académicas a partir del periodo",
-     *   description="Eliminar ofertas académicas a partir del periodo",
-     *   operationId="deletePeriodOffer",
-     *   @OA\Parameter(
-     *     name="user_profile_id",
-     *     description="Id del perfil de usuario",
-     *     in="query",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="1"
-     *     ),
-     *   ),
-     *   @OA\Parameter(
-     *     name="period",
-     *     in="path",
-     *     description="Periodo",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="3"
-     *     ),
-     *   ),
-     *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
-     *   @OA\Response(response=403, description="No autorizado"),
-     *   @OA\Response(response=401, description="No autenticado"),
-     *   @OA\Response(response=500, description="Error interno del servidor")
-     * )
-     *
-     */
-    public function destroyOffersByPeriod(Period $period);
 }

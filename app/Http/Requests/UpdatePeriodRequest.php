@@ -24,7 +24,7 @@ class UpdatePeriodRequest extends FormRequest
     public function rules()
     {
         $period = $this->route()->parameter('period');
-        
+
         return [
             'per_name' => 'required|string|unique:tenant.periods,per_name,'.$period->id.'|max:255',
             'per_reference' => 'required|string|unique:tenant.periods,per_reference,'.$period->id.'|max:100',
@@ -32,7 +32,8 @@ class UpdatePeriodRequest extends FormRequest
             'per_max_matter_enrollment' => 'required|integer',
             'campus_id' => 'required|integer|exists:tenant.campus,id',
             'type_period_id' => 'required|integer|exists:tenant.type_periods,id',
-            'status_id' => 'required|integer|exists:tenant.status,id'
+            'status_id' => 'required|integer|exists:tenant.status,id',
+            'offers' => 'exists:tenant.offers,id'
         ];
     }
 }

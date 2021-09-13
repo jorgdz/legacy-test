@@ -9,13 +9,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ParallelFormRequest;
 use App\Http\Requests\UpdateParallelRequest;
 use App\Models\Parallel;
+use App\Traits\Auditor;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ParallelController extends Controller implements IParallelController
 {
-    use RestResponse;
+    use RestResponse, Auditor;
 
     private $parallelCache;
 
@@ -30,11 +31,23 @@ class ParallelController extends Controller implements IParallelController
         $this->parallelCache = $parallelCache;
     }
 
+    /**
+     * index
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function index(Request $request)
     {
         return $this->success($this->parallelCache->all($request));
     }
 
+    /**
+     * store
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function store(ParallelFormRequest $request)
     {
         $parallel = new Parallel($request->all());
@@ -44,24 +57,24 @@ class ParallelController extends Controller implements IParallelController
     }
 
     /**
-     * Display the specified resource.
+     * show
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  mixed $id
+     * @return void
      */
     public function show($id)
     {
         return $this->success($this->parallelCache->find($id));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateParallelRequest $request, Parallel $parallel)
+   /**
+    * update
+    *
+    * @param  mixed $request
+    * @param  mixed $parallel
+    * @return void
+    */
+   public function update(UpdateParallelRequest $request, Parallel $parallel)
     {
         $parallel->fill($request->all());
 
@@ -73,10 +86,10 @@ class ParallelController extends Controller implements IParallelController
 
 
     /**
-     * Remove the specified resource from storage.
+     * destroy
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  mixed $parallel
+     * @return void
      */
     public function destroy(Parallel $parallel)
     {
@@ -95,7 +108,7 @@ class ParallelController extends Controller implements IParallelController
             throw new UnprocessableException(__('messages.is-active', ['model' => class_basename(Parallel::class)]));
 
         $parallel->status_id = 1;
-
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Parallel::class)));
         return $this->success($this->parallelCache->save($parallel));
     }
 
@@ -111,7 +124,7 @@ class ParallelController extends Controller implements IParallelController
             throw new UnprocessableException(__('messages.is-inactive', ['model' => class_basename(Parallel::class)]));
 
         $parallel->status_id = 2;
-
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Parallel::class)));
         return $this->success($this->parallelCache->save($parallel));
     }
 

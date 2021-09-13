@@ -3,12 +3,11 @@
 namespace App\Repositories;
 
 use App\Models\Period;
-use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 
 class PeriodRepository extends BaseRepository
 {
-    protected $relations = ['campus', 'typePeriods', 'status','offerPeriod','periodStages']; //,'hourhandPeriod', 'studentRecords', 'courses'
+    protected $relations = ['campus', 'typePeriod', 'status','offers','periodStages', 'hourhands', 'studentRecords']; // 'courses'
 
     protected $fields = ['per_name','per_reference'];
 
@@ -22,25 +21,24 @@ class PeriodRepository extends BaseRepository
     }
 
     /**
-     * save
+     * showOffersByPeriod
      *
+     * @param  mixed $period
      * @return void
      */
-    public function save (Model $period) {
-        $period->save(); 
-        return $period;
+    public function showOffersByPeriod(Period $period) {
+        return $period->offers;
     }
 
     /**
-     * delete a information
-     * @param array $condition
+     * destroyOffersByPeriod
      *
-     * @return model
-     *
+     * @param  mixed $period
+     * @return void
      */
-    public function destroy (Model $model) {
-        $model->offerPeriod()->delete();
-        $model->delete();
-        return $model;
+    public function destroyOffersByPeriod(Period $period) {
+        $period->offers()->detach();
+        return $period;
     }
+
 }
