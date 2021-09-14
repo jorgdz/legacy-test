@@ -67,6 +67,7 @@ interface IPersonController {
      *       type="string",
      *       example="asc"
      *     ),
+     *   ),
      *   @OA\Parameter(
      *     name="search",
      *     description="Filtrar registros",
