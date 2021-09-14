@@ -37,6 +37,7 @@ use App\Http\Controllers\Api\CriteriaStudentRecordController;
 use App\Http\Controllers\Api\StudentRecordController;
 use App\Http\Controllers\Api\TypekinshipController;
 use App\Http\Controllers\Api\TypeEducationController;
+use App\Http\Controllers\Api\EmergencyContactController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -348,6 +349,15 @@ Route::get('economic-group/{ecogroup}', [EconomicGroupController::class, 'show']
 Route::post('economic-group', [EconomicGroupController::class, 'store'])->middleware(['auth:sanctum', 'permission:economic_group-crear-grupo-economico']);
 Route::put('economic-group/{ecogroup}', [EconomicGroupController::class, 'update'])->middleware(['auth:sanctum', 'permission:economic_group-actualizar-grupo-economico']);
 Route::delete('economic-group/{ecogroup}', [EconomicGroupController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:economic_group-eliminar-grupo-economico']);
+
+/**
+ * Emergency Contact
+ */
+Route::get('emergency-contact', [EmergencyContactController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:emergency_contact-listar-contacto-emergencia'*/]);
+Route::get('emergency-contact/{emergencycontact}', [EmergencyContactController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:emergency_contact-obtener-contacto-emergencia'*/]);
+Route::post('emergency-contact', [EmergencyContactController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:emergency_contact-crear-contacto-emergencia'*/]);
+Route::put('emergency-contact/{emergencycontact}', [EmergencyContactController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:emergency_contact-actualizar-contacto-emergencia'*/]);
+Route::delete('emergency-contact/{emergencycontact}', [EmergencyContactController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:emergency_contact-eliminar-contacto-emergencia'*/]);
 /**
  * Student Record
  */

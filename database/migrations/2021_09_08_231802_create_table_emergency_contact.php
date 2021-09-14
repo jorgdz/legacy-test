@@ -25,6 +25,9 @@ class CreateTableEmergencyContact extends Migration
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
+            $table->integer('person_id')->unsigned();
+            $table->foreign('person_id')->references('id')->on('persons');
+
             $table->timestamps();
             $table->softDeletes();
         });

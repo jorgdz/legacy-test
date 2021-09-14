@@ -121,4 +121,13 @@ class Person extends Model implements AuditableContract
     public function ethnic () {
         return $this->belongsTo(Ethnic::class, 'ethnic_id');
     }
+
+    /**
+     * Emergency Contact
+     *
+     * @return void
+     */
+    public function emergencyContact () {
+        return $this->hasMany(EmergencyContact::class, 'person_id');
+    }
 }

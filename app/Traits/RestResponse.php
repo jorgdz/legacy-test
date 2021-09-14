@@ -65,6 +65,6 @@ trait RestResponse
 			array_push($messageArray,$message);
 			$message = $messageArray;
 		}
-		return $message;
+		return collect($message)->unique()->values()->all();	
 	}
 }
