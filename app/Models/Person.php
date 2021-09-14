@@ -12,11 +12,9 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Person extends Model implements AuditableContract
 {
-    use Auditable, HasFactory, UsesTenantConnection, SoftDeletes;
+    use Auditable, HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
 
     protected $table = 'persons';
-
-    // use SoftCascadeTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +44,11 @@ class Person extends Model implements AuditableContract
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    protected $dates = ['deleted_at'];
+
+    /* TODO: Verificar tablas intermedias */
+    protected $softCascade = ['user'];
 
     /**
      * typeIdentifications

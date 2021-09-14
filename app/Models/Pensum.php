@@ -13,7 +13,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Pensum extends Model implements AuditableContract
 {
-    use HasFactory, SoftDeletes, SoftCascadeTrait, UsesTenantConnection,Auditable;
+    use HasFactory, SoftDeletes, SoftCascadeTrait, UsesTenantConnection, Auditable;
 
     protected $table = 'pensums';
 
@@ -44,8 +44,7 @@ class Pensum extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function studentRecords(): HasMany
-    {
+    public function studentRecords(): HasMany {
         return $this->hasMany(StudentRecord::class);
     }
 }

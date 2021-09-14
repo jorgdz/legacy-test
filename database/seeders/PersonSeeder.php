@@ -15,6 +15,7 @@ class PersonSeeder extends Seeder
     public function run() {
         DB::connection('tenant')->table('persons')->insert([
             [
+                'pers_identification' => '0999999999',
                 'pers_firstname' => 'Dante',
                 'pers_secondname' => 'Emmanuel',
                 'pers_first_lastname' => 'Ortiz',
@@ -29,6 +30,7 @@ class PersonSeeder extends Seeder
                 'type_identification_id' => 1,
                 'ethnic_id' => 1,
             ], [
+                'pers_identification' => '0888888888',
                 'pers_firstname' => 'Donella',
                 'pers_secondname' => 'Theodora',
                 'pers_first_lastname' => 'Bravo',
