@@ -48,7 +48,7 @@ class Person extends Model implements AuditableContract
     protected $dates = ['deleted_at'];
 
     /* TODO: Verificar tablas intermedias */
-    protected $softCascade = ['user'];
+    protected $softCascade = ['user','emergencyContact'];
 
     /**
      * typeIdentifications
