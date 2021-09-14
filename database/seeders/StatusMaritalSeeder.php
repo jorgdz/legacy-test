@@ -19,6 +19,7 @@ class StatusMaritalSeeder extends Seeder
             ['sta_mar_name' => 'Soltero/a', 'sta_mar_description' => 'Persona soltera', 'status_id' => 1],
             ['sta_mar_name' => 'Viudo/a', 'sta_mar_description' => 'Persona viuda', 'status_id' => 1],
             ['sta_mar_name' => 'Divorciado/a', 'sta_mar_description' => 'Persona divorciada', 'status_id' => 1],
+            ['sta_mar_name' => 'Ninguno', 'sta_mar_description' => 'Ninguno', 'status_id' => 1],
         ]);
     }
 }

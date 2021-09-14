@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -129,5 +129,15 @@ class Person extends Model implements AuditableContract
      */
     public function emergencyContact () {
         return $this->hasMany(EmergencyContact::class, 'person_id');
+    }
+
+    /**
+     * personJob
+     *
+     * @return void
+     */
+    public function personJob ()
+    {
+        return $this->hasMany(PersonJob::class);
     }
 }

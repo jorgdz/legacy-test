@@ -26,6 +26,12 @@ class CreateTablePersonJob extends Migration
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities');
 
+            $table->integer('person_id')->unsigned();
+            $table->foreign('person_id')->references('id')->on('persons');
+
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+            
             $table->timestamps();
             $table->softDeletes();
         });

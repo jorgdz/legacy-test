@@ -1605,6 +1605,278 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'typeEducation'
             ],
+            /**
+             * Persona Trabajo 183-188
+             */
+            [
+                'name' => 'person_job-listar-persona-trabajo',
+                'alias' => 'Listar persona trabajo',
+                'description' => 'Listar todos los persona trabajos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'personJob'
+            ],
+            [
+                'name' => 'person_job-obtener-persona-trabajo',
+                'alias' => 'Obtener persona trabajo',
+                'description' => 'Obtener un persona trabajo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'personJob'
+            ],
+            [
+                'name' => 'person_job-crear-persona-trabajo',
+                'alias' => 'Crear persona trabajo',
+                'description' => 'Agregar un persona trabajo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'personJob'
+            ],
+            [
+                'name' => 'persona-asignar-trabajos-persona',
+                'alias' => 'asignar trabajos persona',
+                'description' => 'Asignacion masiva de trabajos a una persona',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'person'
+            ],
+            [
+                'name' => 'person_job-actualizar-persona-trabajo',
+                'alias' => 'Actualizar persona trabajo',
+                'description' => 'Actualizar un persona trabajo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'personJob'
+            ],
+            [
+                'name' => 'person_job-eliminar-persona-trabajo',
+                'alias' => 'Borrar persona trabajo',
+                'description' => 'Borrar un persona trabajo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'personJob'
+            ],
+            /**
+             * Tenant 189
+             */
+            [
+                'name' => 'tenant-actualizar-tenant',
+                'alias' => 'Actualizar tenant',
+                'description' => 'Actualizar tenant',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'tenant'
+            ],
+            /**
+             * Criterio Estudiante 190-194
+             */
+            [
+                'name' => 'criteria_students_records-listar-criterio-record-estudiantil',
+                'alias' => 'Listar criteria_student',
+                'description' => 'Listar todos los criteria_student',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'criteriaStudent'
+            ],
+            [
+                'name' => 'criteria_students_records-crear-criterio-record-estudiantil',
+                'alias' => 'Obtener criteria_student',
+                'description' => 'Obtener un criteria_student por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'criteriaStudent'
+            ],
+            [
+                'name' => 'criteria_students_records-obtener-criterio-record-estudiantil',
+                'alias' => 'Crear criteria_student',
+                'description' => 'Agregar un criteria_student',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'criteriaStudent'
+            ],
+            [
+                'name' => 'criteria_students_records-actualizar-criterio-record-estudiantil',
+                'alias' => 'Actualizar criteria_student',
+                'description' => 'Actualizar un criteria_student por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'criteriaStudent'
+            ],
+            [
+                'name' => 'criteria_students_records-eliminar-criterio-record-estudiantil',
+                'alias' => 'Borrar criteria_student',
+                'description' => 'Borrar un criteria_student por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'criteriaStudent'
+            ],
+            /**
+             * Record Estudiantil 195-199
+             */
+            [
+                'name' => 'student_records-listar-record-estudiantil',
+                'alias' => 'Listar recodr estudiantil',
+                'description' => 'Listar todos los record estudiantil',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentRecord'
+            ],
+            [
+                'name' => 'student_records-crear-record-estudiantil',
+                'alias' => 'Obtener recodr estudiantil',
+                'description' => 'Obtener un record estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentRecord'
+            ],
+            [
+                'name' => 'student_records-obtener-record-estudiantil',
+                'alias' => 'Crear recodr estudiantil',
+                'description' => 'Agregar un record estudiantil',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentRecord'
+            ],
+            [
+                'name' => 'student_records-actualizar-record-estudiantil',
+                'alias' => 'Actualizar recodr estudiantil',
+                'description' => 'Actualizar un record estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentRecord'
+            ],
+            [
+                'name' => 'student_records-eliminar-record-estudiantil',
+                'alias' => 'Borrar record estudiantil',
+                'description' => 'Borrar un record estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentRecord'
+            ],
+            /**
+             * Oferta 200-201
+             */
+            [
+                'name' => 'offers-listar-periodos-por-oferta',
+                'alias' => 'Listar periodo oferta',
+                'description' => 'Listar todos los periodos por oferta',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerPeriod'
+            ],
+            [
+                'name' => 'offers-obtener-periodo-por-oferta',
+                'alias' => 'Obtener periodo oferta',
+                'description' => 'Obtener un periodo oferta por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offerPeriod'
+            ],
+            /**
+             * Periodo 202-203
+             */
+            [
+                'name' => 'periods-listar-ofertas-por-periodo',
+                'alias' => 'Listar oferta periodo',
+                'description' => 'Listar todas las ofertas por periodos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periodOffer'
+            ],
+            [
+                'name' => 'periods-borrar-ofertas-por-periodo',
+                'alias' => 'eliminar oferta periodo',
+                'description' => 'borrar una oferta periodo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'periodOffer'
+            ],
+            /**
+             * Persona 204-208
+             */
+            [
+                'name' => 'persons-listar-persons',
+                'alias' => 'Listar persona',
+                'description' => 'Listar todas las personas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'person'
+            ],
+            [
+                'name' => 'persons-obtener-person',
+                'alias' => 'Obtener persona',
+                'description' => 'Obtener una persona por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'person'
+            ],
+            [
+                'name' => 'persons-crear-person',
+                'alias' => 'Crear persona',
+                'description' => 'Agregar una persona',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'person'
+            ],
+            [
+                'name' => 'persons-actualizar-person',
+                'alias' => 'Actualizar persona',
+                'description' => 'Actualizar una persona por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'person'
+            ],
+            [
+                'name' => 'roles-borrar-person',
+                'alias' => 'Borrar persona',
+                'description' => 'Borrar una persona por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'person'
+            ],
+            /**
+             * Contacto Emergencia 209-213
+             */
+            [
+                'name' => 'emergency_contact-listar-contacto-emergencia',
+                'alias' => 'Listar contactos emergencia',
+                'description' => 'Listar todos los contactos de emergencia',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'emergencyContac'
+            ],
+            [
+                'name' => 'emergency_contact-obtener-contacto-emergencia',
+                'alias' => 'Obtener contacto emergencia',
+                'description' => 'Obtener un contacto de emergencia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'emergencyContac'
+            ],
+            [
+                'name' => 'emergency_contact-crear-contacto-emergencia',
+                'alias' => 'Crear contacto emergencia',
+                'description' => 'Agregar un contacto de emergencia',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'emergencyContac'
+            ],
+            [
+                'name' => 'emergency_contact-actualizar-contacto-emergencia',
+                'alias' => 'Actualizar contacto de emergencia',
+                'description' => 'Actualizar un contacto de emergencia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'emergencyContac'
+            ],
+            [
+                'name' => 'emergency_contact-eliminar-contacto-emergencia',
+                'alias' => 'Borrar contacto emergencia',
+                'description' => 'Borrar un contacto de emergencia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'emergencyContac'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -1919,6 +2191,61 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 181, 'role_id' => 1],
             ['permission_id' => 182, 'role_id' => 1],
+            /**
+             * Persona Trabajo
+             */
+            ['permission_id' => 183, 'role_id' => 1],
+            ['permission_id' => 184, 'role_id' => 1],
+            ['permission_id' => 185, 'role_id' => 1],
+            ['permission_id' => 186, 'role_id' => 1],
+            ['permission_id' => 187, 'role_id' => 1],
+            ['permission_id' => 188, 'role_id' => 1],
+            /**
+             * Tenant
+             */
+            ['permission_id' => 189, 'role_id' => 1],
+            /**
+             * Criterio Estudiante 190-194
+             */
+            ['permission_id' => 190, 'role_id' => 1],
+            ['permission_id' => 191, 'role_id' => 1],
+            ['permission_id' => 192, 'role_id' => 1],
+            ['permission_id' => 193, 'role_id' => 1],
+            ['permission_id' => 194, 'role_id' => 1],
+            /**
+             * Record Estudiantil 195-199
+             */
+            ['permission_id' => 195, 'role_id' => 1],
+            ['permission_id' => 196, 'role_id' => 1],
+            ['permission_id' => 197, 'role_id' => 1],
+            ['permission_id' => 198, 'role_id' => 1],
+            ['permission_id' => 199, 'role_id' => 1],
+            /**
+             * Oferta 200-201
+             */
+            ['permission_id' => 200, 'role_id' => 1],
+            ['permission_id' => 201, 'role_id' => 1],
+            /**
+             * Periodo 202-203
+             */
+            ['permission_id' => 202, 'role_id' => 1],
+            ['permission_id' => 203, 'role_id' => 1],
+            /**
+             * Persona 204-208
+             */
+            ['permission_id' => 204, 'role_id' => 1],
+            ['permission_id' => 205, 'role_id' => 1],
+            ['permission_id' => 206, 'role_id' => 1],
+            ['permission_id' => 207, 'role_id' => 1],
+            ['permission_id' => 208, 'role_id' => 1],
+            /**
+             * Contacto Emergencia 209-213
+             */
+            ['permission_id' => 209, 'role_id' => 1],
+            ['permission_id' => 210, 'role_id' => 1],
+            ['permission_id' => 211, 'role_id' => 1],
+            ['permission_id' => 212, 'role_id' => 1],
+            ['permission_id' => 213, 'role_id' => 1],
 
             /**
              * 
@@ -2237,6 +2564,57 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 181, 'role_id' => 2],
             ['permission_id' => 182, 'role_id' => 2],
+            /**
+             * Persona Trabajo
+             */
+            ['permission_id' => 183, 'role_id' => 2],
+            ['permission_id' => 184, 'role_id' => 2],
+            ['permission_id' => 185, 'role_id' => 2],
+            ['permission_id' => 186, 'role_id' => 2],
+            ['permission_id' => 187, 'role_id' => 2],
+            ['permission_id' => 188, 'role_id' => 2],
+            /**
+             * Persona Trabajo 190-194
+             */
+            ['permission_id' => 190, 'role_id' => 2],
+            ['permission_id' => 191, 'role_id' => 2],
+            ['permission_id' => 192, 'role_id' => 2],
+            ['permission_id' => 193, 'role_id' => 2],
+            ['permission_id' => 194, 'role_id' => 2],
+            /**
+             * Persona Trabajo 195-199
+             */
+            ['permission_id' => 195, 'role_id' => 2],
+            ['permission_id' => 196, 'role_id' => 2],
+            ['permission_id' => 197, 'role_id' => 2],
+            ['permission_id' => 198, 'role_id' => 2],
+            ['permission_id' => 199, 'role_id' => 2],
+            /**
+             * Oferta 200-201
+             */
+            ['permission_id' => 200, 'role_id' => 2],
+            ['permission_id' => 201, 'role_id' => 2],
+            /**
+             * Periodo 202-203
+             */
+            ['permission_id' => 202, 'role_id' => 2],
+            ['permission_id' => 203, 'role_id' => 2],
+            /**
+             * Persona 204-208
+             */
+            ['permission_id' => 204, 'role_id' => 2],
+            ['permission_id' => 205, 'role_id' => 2],
+            ['permission_id' => 206, 'role_id' => 2],
+            ['permission_id' => 207, 'role_id' => 2],
+            ['permission_id' => 208, 'role_id' => 2],
+            /**
+             * Contacto Emergencia 209-213
+             */
+            ['permission_id' => 209, 'role_id' => 2],
+            ['permission_id' => 210, 'role_id' => 2],
+            ['permission_id' => 211, 'role_id' => 2],
+            ['permission_id' => 212, 'role_id' => 2],
+            ['permission_id' => 213, 'role_id' => 2],
         ]);
     }
 }

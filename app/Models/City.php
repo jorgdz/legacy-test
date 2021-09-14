@@ -65,4 +65,14 @@ class City extends Model implements AuditableContract
     {
         return $this->hasMany(Person::class, 'city_id');
     }
+    
+    /**
+     * personjobs
+     *
+     * @return HasMany
+     */
+    public function personjobs (): HasMany
+    {
+        return $this->hasMany(Person::class, 'city_id');
+    }
 }

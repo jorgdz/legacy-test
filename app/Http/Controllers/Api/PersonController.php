@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
 use App\Http\Controllers\Api\Contracts\IPersonController;
+use App\Http\Requests\StoreAssignPersonJobsRequest;
+use App\Models\PersonJob;
 
 class PersonController extends Controller implements IPersonController
 {
@@ -49,6 +51,22 @@ class PersonController extends Controller implements IPersonController
             DB::rollBack();
             return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
         }
+    }
+
+    /**
+     * assignJobs
+     * 
+     * Asignacion masiva de trabajos a una persona
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     */
+    public function assignJobs(StoreAssignPersonJobsRequest $request, Person $person)
+    {
+        $person->personJob()->createMany($request->jobs);
+
+        return $this->success($person->personJob, Response::HTTP_OK);
     }
 
     /**

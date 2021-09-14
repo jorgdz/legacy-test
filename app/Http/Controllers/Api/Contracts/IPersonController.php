@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Person;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
+use App\Http\Requests\StoreAssignPersonJobsRequest;
 
 interface IPersonController {
 
@@ -215,6 +216,88 @@ interface IPersonController {
      *
      */
     public function store(PersonRequest $request);
+
+        /**
+    * @OA\Post(
+    *   path="/api/persons/{person}/jobs",
+    *   tags={"Personas"},
+    *   security={
+    *      {"api_key_security": {}},
+    *   },
+    *   summary="Assignar varios person_job",
+    *   description="Assignar varias relaciones person_job.",
+    *   operationId="assignPersonJob",
+    *   @OA\Parameter(
+    *     name="person",
+    *     description="Id de la persona",
+    *     in="path",
+    *     required=true,
+    *     @OA\Schema(
+    *       type="integer",
+    *       example="3"
+    *     ),
+    *   ),
+    *   @OA\RequestBody(
+    *     required=true,
+    *     @OA\MediaType(
+    *       mediaType="application/json",
+    *       @OA\Schema(
+    *         @OA\Property(
+    *           property="user_profile_id",
+    *           description="Id del perfil de usuario",
+    *           type="integer",
+    *         ),
+    *         @OA\Property(
+    *           property="jobs",
+    *           description="Array de trabajos",
+    *           type="array",
+    *           items={
+    *               "type" : "object",
+    *               "properties" : {
+    *                   "per_job_organization" : {
+    *                       "type" : "string"
+    *                   },
+    *                   "per_job_position" : {
+    *                       "type" : "string"
+    *                   },
+    *                   "per_job_direction" : {
+    *                       "type" : "string"
+    *                   },
+    *                   "per_job_phone" : {
+    *                       "type" : "string"
+    *                   },
+    *                   "per_job_start_date" : {
+    *                       "type" : "string",
+    *                       "format" : "date"
+    *                   },
+    *                   "per_job_end_date" : {
+    *                       "type" : "string",
+    *                       "format" : "date"
+    *                   },
+    *                   "per_job_current" : {
+    *                       "type" : "integer"
+    *                   },
+    *                   "city_id" : {
+    *                       "type" : "integer"
+    *                   },
+    *                   "status_id" : {
+    *                       "type" : "integer"
+    *                   },
+    *               }
+    *           }
+    *         ),
+    *       ),
+    *     ),
+    *   ),
+    *   @OA\Response(response=201, description="Se ha creado correctamente"),
+    *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+    *   @OA\Response(response=401, description="No autenticado"),
+    *   @OA\Response(response=403, description="No autorizado"),
+    *   @OA\Response(response=500, description="Error interno del servidor")
+    * )
+    *
+    */
+    public function assignJobs (StoreAssignPersonJobsRequest $request, Person $person);
 
     /**
      * @OA\Get(

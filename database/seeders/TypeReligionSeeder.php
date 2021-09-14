@@ -24,6 +24,7 @@ class TypeReligionSeeder extends Seeder
             ['typ_rel_name' => 'Agnostico',     'typ_rel_description' => 'Agnostico',           'status_id' => 1],
             ['typ_rel_name' => 'Ateo',          'typ_rel_description' => 'Ateo',                'status_id' => 1],
             ['typ_rel_name' => 'Otros',         'typ_rel_description' => 'Otras religiones',    'status_id' => 1],
+            ['typ_rel_name' => 'Ninguno',       'typ_rel_description' => 'Ninguno',             'status_id' => 1],
         ]);
     }
 }

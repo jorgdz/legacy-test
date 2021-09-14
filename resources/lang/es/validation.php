@@ -163,7 +163,41 @@ return [
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
 			'exists'   => 'El campo persona es inválido.'
-		]
+		],
+		'jobs.*.per_job_organization'=> [
+			'string'   => 'El campo organizacion debe ser una cadena.'
+		],
+		'jobs.*.per_job_position'=> [
+			'string'   => 'El campo posicion debe ser una cadena.'
+		],
+		'jobs.*.per_job_direction'=> [
+			'string'   => 'El campo direccion debe ser una cadena.'
+		],
+		'jobs.*.per_job_phone'=> [
+			'string'   => 'El campo telefono debe ser una cadena.',
+			'max'      => [
+				'string'  => 'El campo telefono debe ser menor que 20 caracteres.',
+			]				
+		],
+		'jobs.*.per_job_start_date'=> [
+			'date'   => 'El campo fecha de inicio no es una fecha válida.'
+		],
+		'jobs.*.per_job_end_date'=> [
+			'date'   => 'El campo fecha de fin no es una fecha válida.'
+		],
+		'jobs.*.per_job_current'=> [
+			'boolean'   => 'El campo actual debe ser verdadero o falso.'
+		],
+		'jobs.*.city_id'=> [
+			'required' => 'El campo ciudad es requerido',
+			'integer'  => 'El campo ciudad debe ser un entero.',
+			'exists'   => 'El campo ciudad seleccionado es inválido.'
+		],
+		'jobs.*.status_id'=> [
+			'required' => 'El campo estado es requerido',
+			'integer'  => 'El campo estado debe ser un entero.',
+			'exists'   => 'El campo estado seleccionado es inválido.'
+		],
 	],
 
 	/*
