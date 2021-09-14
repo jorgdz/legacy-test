@@ -22,6 +22,7 @@ class CreateTablePersonJob extends Migration
             $table->date('per_job_start_date')->nullable();
             $table->date('per_job_end_date')->nullable();
             $table->boolean('per_job_current')->nullable();
+            $table->boolean('per_job_iess_affiliated')->nullable();
 
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities');

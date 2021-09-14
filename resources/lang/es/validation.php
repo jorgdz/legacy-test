@@ -186,7 +186,10 @@ return [
 			'date'   => 'El campo fecha de fin no es una fecha válida.'
 		],
 		'jobs.*.per_job_current'=> [
-			'boolean'   => 'El campo actual debe ser verdadero o falso.'
+			'boolean'   => 'El campo trabaja actualmente debe ser verdadero o falso.'
+		],
+		'jobs.*.per_job_iess_affiliated'=> [
+			'boolean'   => 'El campo afiliado al iess debe ser verdadero o falso.'
 		],
 		'jobs.*.city_id'=> [
 			'required' => 'El campo ciudad es requerido',

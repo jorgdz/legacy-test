@@ -277,6 +277,9 @@ interface IPersonController {
     *                   "per_job_current" : {
     *                       "type" : "integer"
     *                   },
+    *                   "per_job_iess_affiliated" : {
+    *                       "type" : "integer"
+    *                   },
     *                   "city_id" : {
     *                       "type" : "integer"
     *                   },

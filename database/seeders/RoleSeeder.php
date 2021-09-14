@@ -1843,7 +1843,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los contactos de emergencia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContac'
+                'parent_name' => 'emergencyContact'
             ],
             [
                 'name' => 'emergency_contact-obtener-contacto-emergencia',
@@ -1851,7 +1851,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un contacto de emergencia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContac'
+                'parent_name' => 'emergencyContact'
             ],
             [
                 'name' => 'emergency_contact-crear-contacto-emergencia',
@@ -1859,7 +1859,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un contacto de emergencia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContac'
+                'parent_name' => 'emergencyContact'
             ],
             [
                 'name' => 'emergency_contact-actualizar-contacto-emergencia',
@@ -1867,7 +1867,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un contacto de emergencia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContac'
+                'parent_name' => 'emergencyContact'
             ],
             [
                 'name' => 'emergency_contact-eliminar-contacto-emergencia',
@@ -1875,7 +1875,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un contacto de emergencia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContac'
+                'parent_name' => 'emergencyContact'
             ],
         ]);
 

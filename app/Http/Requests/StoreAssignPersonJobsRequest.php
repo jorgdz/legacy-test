@@ -32,6 +32,7 @@ class StoreAssignPersonJobsRequest extends FormRequest
             "jobs.*.start_date" => "nullable|date",
             "jobs.*.end_date"   => "nullable|date",
             "jobs.*.per_job_current" => "nullable|boolean",
+            "jobs.*.per_job_iess_affiliated" => "nullable|boolean",
             "jobs.*.city_id"   => "required|integer|exists:tenant.cities,id",
             "jobs.*.status_id"  => "required|integer|exists:tenant.status,id"
         ];

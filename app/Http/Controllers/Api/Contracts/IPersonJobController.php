@@ -143,6 +143,11 @@ interface IPersonJobController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="per_job_iess_affiliated",
+     *           description="Afiliado al iess",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="city_id",
      *           description="Id de la ciudad",
      *           type="integer",

@@ -29,6 +29,7 @@ class PersonJob extends Model implements AuditableContract
         'per_job_start_date', 
         'per_job_end_date', 
         'per_job_current', 
+        'per_job_iess_affiliated', 
         'city_id', 
         'person_id',
         'status_id'
