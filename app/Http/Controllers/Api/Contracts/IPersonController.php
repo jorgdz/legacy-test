@@ -6,7 +6,7 @@ use App\Models\Person;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
 use App\Http\Requests\StoreAssignPersonJobsRequest;
-
+use App\Http\Requests\UpdateLanguagesPersonRequest;
 interface IPersonController {
 
     /**
@@ -523,4 +523,56 @@ interface IPersonController {
      *
      */
     public function destroy(Person $person);
+
+    /**
+     * @OA\Post(
+     *   path="/api/persons/{person}/languages",
+     *   tags={"Lenguajes por usuario"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Guardar arreglo de lenguajes por Person",
+     *   description="Guardar arreglo de lenguajes por Person",
+     *   operationId="savedLanguageByPerson",
+     *   @OA\Parameter(
+     *     name="person",
+     *     description="Persona",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="languages",
+     *           description="Array languages",
+     *           type="array",
+     *           @OA\Items(
+     *             type="integer",
+     *             example="1"
+     *           ),
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updateLanguagePerson(UpdateLanguagesPersonRequest $request, Person $person);
 }

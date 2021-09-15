@@ -33,7 +33,7 @@ class UpdateTenantRequest extends FormRequest
             'encryption'   => 'required|string|unique:landlord.mails,encryption,'.$tenant->mail->id.'|max:255',
             'username'   => 'required|string|unique:landlord.mails,username,'.$tenant->mail->id.'|max:255',
             'password'   => 'required|string|unique:landlord.mails,password,'.$tenant->mail->id.'|max:255',
-            #'logo'   => 'required|string|unique:landlord.tenants,logo,'.$tenant->id.'|max:255'
+            'logo'   => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'//|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000
         ];
     }
 }

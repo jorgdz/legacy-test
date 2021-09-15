@@ -15,8 +15,8 @@ class CreateHourhandsTable extends Migration
     {
         Schema::create('hourhands', function (Blueprint $table) {
             $table->increments('id');
-            $table->time('hour_start_time')->nullable();
-            $table->time('hour_end_time')->nullable();
+            $table->string('hour_start_time')->nullable();
+            $table->string('hour_end_time')->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

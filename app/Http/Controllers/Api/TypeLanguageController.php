@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Person;
 use App\Models\TypeLanguage;
-use App\Cache\TypeLanguageCache;
 use App\Traits\RestResponse;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Cache\TypeLanguageCache;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\Contracts\ITypeLanguageController;
+use App\Http\Requests\UpdateLanguagesPersonRequest;
 
 class TypeLanguageController extends Controller implements ITypeLanguageController
 {
@@ -76,4 +78,5 @@ class TypeLanguageController extends Controller implements ITypeLanguageControll
     {
         //
     }
+
 }

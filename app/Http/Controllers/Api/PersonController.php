@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
+use App\Http\Requests\UpdateLanguagesPersonRequest;
 use App\Http\Controllers\Api\Contracts\IPersonController;
 use App\Http\Requests\StoreAssignPersonJobsRequest;
 use App\Models\PersonJob;
@@ -120,5 +121,18 @@ class PersonController extends Controller implements IPersonController
             DB::rollBack();
             return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Person  $person
+     * @return \Illuminate\Http\Response
+     */
+    public function updateLanguagePerson(UpdateLanguagesPersonRequest $request, Person $person)
+    {
+        $person->lenguajes()->sync($request->languages); 
+        return $this->success(Person::with('lenguajes')->find($person->id));
     }
 }

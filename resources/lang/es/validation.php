@@ -208,6 +208,12 @@ return [
             'integer' => 'El valor del campo oferta debe ser un entero.',
             'distinct' => 'El valor del campo oferta tiene un valor duplicado.'
         ],
+		'languages.*' => [
+            'exists' => 'El valor del campo lenguaje seleccionado es inválido.',
+            'integer' => 'El valor del campo lenguaje debe ser un entero.',
+            'distinct' => 'El valor del campo lenguaje tiene un valor duplicado.'
+        ],
+
 	],
 
 	/*
@@ -275,6 +281,9 @@ return [
 		'inst_name' => 'nombre de la institución',
 		'city_id' => 'ciudad',
 		'type_institute_id' => 'instituto',
+		'logo_name' => 'Nombre del logo',
+		'logo_path' => 'Ruta del logo',
+		'languages' => 'lenguajes',
 
 		/**
 		 * type_institutes

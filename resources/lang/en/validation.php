@@ -149,6 +149,11 @@ return [
             'integer' => 'The offer values must be integer',
             'distinct' => 'The offer field has a duplicate value'
         ],
+        'languages.*'=> [
+            'exists' => 'The selected language is invalid.',
+            'integer' => 'The language values must be integer',
+            'distinct' => 'The language field has a duplicate value'
+        ]
     ],
 
 

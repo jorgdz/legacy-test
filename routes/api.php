@@ -39,6 +39,7 @@ use App\Http\Controllers\Api\TypekinshipController;
 use App\Http\Controllers\Api\TypeEducationController;
 use App\Http\Controllers\Api\EmergencyContactController;
 use App\Http\Controllers\Api\PersonJobController;
+use App\Http\Controllers\Api\PersonController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -389,3 +390,8 @@ Route::get('person-job/{personjob}', [PersonJobController::class, 'show'])->midd
 Route::post('person-job', [PersonJobController::class, 'store'])->middleware(['auth:sanctum', 'permission:person_job-crear-persona-trabajo']);
 Route::put('person-job/{personjob}', [PersonJobController::class, 'update'])->middleware(['auth:sanctum', 'permission:person_job-actualizar-persona-trabajo']);
 Route::delete('person-job/{personjob}', [PersonJobController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:person_job-eliminar-persona-trabajo']);
+
+/**
+ * CurrentTenant
+ */
+Route::post('persons/{person}/languages', [PersonController::class, 'updateLanguagePerson'])->middleware(['auth:sanctum']);//, 'permission:languages-person-actualizar-lenguajes-por-persona'

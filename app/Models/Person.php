@@ -69,6 +69,14 @@ class Person extends Model implements AuditableContract
     }
 
     /**
+     * person is a user
+     *
+     */
+    public function lenguajes () {
+        return $this->belongsToMany(TypeLanguage::class,'language_persons','person_id','language_id');
+    }
+    
+    /**
      * religion
      *
      * @return void

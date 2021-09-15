@@ -35,4 +35,13 @@ class TypeLanguage extends Model implements AuditableContract
     public function status() {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+    /**
+     * a person has many languages
+     *
+     * @return void
+     */
+    public function personas () {
+        return $this->belongsToMany(Person::class,'language_persons','person_id','language_id');
+    }
 }

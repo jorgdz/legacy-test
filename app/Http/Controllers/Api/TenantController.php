@@ -170,7 +170,7 @@ class TenantController extends Controller implements ITenantController
         $tenantUpdate->fill($request->only('name'));
         $mailUpdate->fill($request->except('name'));
 
-        if ($tenantUpdate->isClean() && $mailUpdate->isClean())
+        if ($tenantUpdate->isClean() && $mailUpdate->isClean() && $request->file('logo')==null)
             return $this->information(__('messages.nochange'));
 
         if($request->name !== $name_anterior){
@@ -185,7 +185,9 @@ class TenantController extends Controller implements ITenantController
             
             Storage::put($filename, FileFacade::get($request->file('logo')));
             
-            $tenantUpdate->logo = url('/').'/storage/'.$tenantUpdate->name.'/'.$filename;
+            $tenantUpdate->logo_name = $filename;
+            
+            $tenantUpdate->logo_path = url('/').'/storage/'.$tenantUpdate->name.'/'.$filename;
         }
         
         $tenantUpdate->save();

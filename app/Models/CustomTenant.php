@@ -18,7 +18,7 @@ class CustomTenant extends Tenant implements AuditableContract
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['name', 'domain', 'domain_client', 'database','logo'];
+    protected $fillable = ['name', 'domain', 'domain_client', 'database','logo_name','logo_path'];
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
