@@ -210,8 +210,8 @@ Route::put('/periods/{period}', [PeriodController::class, 'update'])->middleware
 Route::delete('/periods/{period}', [PeriodController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:periods-borrar-periodo']);
 Route::get('/periods/{period}/offers', [PeriodController::class, 'showOffersByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-ofertas-por-periodo']);
 Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffersByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-ofertas-por-periodo']);
-Route::get('/periods/{period}/hourhands', [PeriodController::class, 'showHourhandsByPeriod'])->middleware(['auth:sanctum']); //permission:periods-listar-horarios-por-periodo
-Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyHourhandsByPeriod'])->middleware(['auth:sanctum']); //permission:periods-borrar-horarios-por-periodo
+Route::get('/periods/{period}/hourhands', [PeriodController::class, 'showHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-horarios-por-periodo']);
+Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-horarios-por-periodo']);
 
 
 
@@ -382,16 +382,15 @@ Route::delete('criteria-students-records/{criteriaStudentRecord}', [CriteriaStud
 /*
  * CurrentTenant
  */
-Route::post('tenants/edit', [TenantController::class, 'updateCurrentTenant'])->middleware(['auth:sanctum']);//, 'permission:tenant-actualizar-tenant'
+Route::post('tenants/edit', [TenantController::class, 'updateCurrentTenant'])->middleware(['auth:sanctum', 'permission:tenant-actualizar-tenant']);
 /**
  * Tag Student
  */
-Route::get('tags-student', [TagStudentController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:tags_student-listar-etiqueta'*/]);
-Route::get('tags-student/{tagstudent}', [TagStudentController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:tags_student-obtener-etiqueta'*/]);
-Route::post('tags-student', [TagStudentController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:tags_student-crear-etiqueta'*/]);
-Route::put('tags-student/{tagstudent}', [TagStudentController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:tags_student-actualizar-etiqueta'*/]);
-Route::delete('tags-student/{tagstudent}', [TagStudentController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:tags_student-eliminar-etiqueta'*/]);
-Route::post('tenants/edit', [TenantController::class, 'updateCurrentTenant'])->middleware(['auth:sanctum', 'permission:tenant-actualizar-tenant']);
+Route::get('tags-student', [TagStudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:tags_student-listar-etiqueta']);
+Route::get('tags-student/{tagstudent}', [TagStudentController::class, 'show'])->middleware(['auth:sanctum', 'permission:tags_student-obtener-etiqueta']);
+Route::post('tags-student', [TagStudentController::class, 'store'])->middleware(['auth:sanctum', 'permission:tags_student-crear-etiqueta']);
+Route::put('tags-student/{tagstudent}', [TagStudentController::class, 'update'])->middleware(['auth:sanctum', 'permission:tags_student-actualizar-etiqueta']);
+Route::delete('tags-student/{tagstudent}', [TagStudentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:tags_student-eliminar-etiqueta']);
 /**
  * Persona Trabajo
  */
@@ -400,8 +399,7 @@ Route::get('person-job/{personjob}', [PersonJobController::class, 'show'])->midd
 Route::post('person-job', [PersonJobController::class, 'store'])->middleware(['auth:sanctum', 'permission:person_job-crear-persona-trabajo']);
 Route::put('person-job/{personjob}', [PersonJobController::class, 'update'])->middleware(['auth:sanctum', 'permission:person_job-actualizar-persona-trabajo']);
 Route::delete('person-job/{personjob}', [PersonJobController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:person_job-eliminar-persona-trabajo']);
-
 /**
- * CurrentTenant
+ * Persona
  */
-Route::post('persons/{person}/languages', [PersonController::class, 'updateLanguagePerson'])->middleware(['auth:sanctum']);//, 'permission:languages-person-actualizar-lenguajes-por-persona'
+Route::post('persons/{person}/languages', [PersonController::class, 'updateLanguagePerson'])->middleware(['auth:sanctum', 'permission:languages-person-actualizar-lenguajes-por-persona']);

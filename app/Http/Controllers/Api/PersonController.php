@@ -13,11 +13,11 @@ use App\Http\Requests\PersonRequest;
 use App\Http\Requests\UpdateLanguagesPersonRequest;
 use App\Http\Controllers\Api\Contracts\IPersonController;
 use App\Http\Requests\StoreAssignPersonJobsRequest;
-use App\Models\PersonJob;
+use App\Traits\Auditor;
 
 class PersonController extends Controller implements IPersonController
 {
-    use RestResponse;
+    use RestResponse, Auditor;
 
     private $personCache;
 
@@ -66,7 +66,7 @@ class PersonController extends Controller implements IPersonController
     public function assignJobs(StoreAssignPersonJobsRequest $request, Person $person)
     {
         $person->personJob()->createMany($request->jobs);
-
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Person::class)));
         return $this->success($person->personJob, Response::HTTP_OK);
     }
 

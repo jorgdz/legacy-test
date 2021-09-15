@@ -7,6 +7,7 @@ use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
@@ -142,9 +143,9 @@ class Person extends Model implements AuditableContract
     /**
      * personJob
      *
-     * @return void
+     * @return hasMany
      */
-    public function personJob ()
+    public function personJob () : HasMany
     {
         return $this->hasMany(PersonJob::class);
     }
