@@ -14,6 +14,8 @@ class BaseRepository implements IBaseRepository
 
     protected $fields = [];
 
+    protected $selected = ['*'];
+
     /**
      * __construct
      *
@@ -32,17 +34,21 @@ class BaseRepository implements IBaseRepository
     public function all ($request) {
         $query = $this->model;
         
+        if (isset($request['data'])) return $query->select($this->selected)->get();
+
         if (!empty($this->relations)) {
             $query = $query->with($this->relations);
         }
-        
+
         $collectQueryString = collect($request->all())
-        ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search'])->all();
-        
-        if (!empty($collectQueryString)) {
+            ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search', 'data', 'conditions'])->all();
+
+        if (!empty($collectQueryString)) 
             $query = $query->where($collectQueryString);
-        }
-        
+
+        if (isset($request['conditions'])) 
+            $query = $query->where($request['conditions']);
+
         if ($request->search) {
             $fields = $this->fields;
             $query= $query->where(function ($query) use($fields, $request) {

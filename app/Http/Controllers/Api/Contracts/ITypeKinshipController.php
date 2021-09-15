@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Typekinship;
 use Illuminate\Http\Request;
 
-interface ITypekinshipController
+interface ITypeKinshipController
 {
 
     /**

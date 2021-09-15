@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CampusFormRequest;
-use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\ICampusController;
 
 /**

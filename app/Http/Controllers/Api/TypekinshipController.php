@@ -8,9 +8,9 @@ use App\Cache\TypekinshipCache;
 use App\Traits\RestResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\Contracts\ITypekinshipController;
+use App\Http\Controllers\Api\Contracts\ITypeKinshipController;
 
-class TypekinshipController extends Controller implements ITypekinshipController
+class TypekinshipController extends Controller implements ITypeKinshipController
 {
     use RestResponse;
 

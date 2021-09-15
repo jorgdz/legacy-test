@@ -19,6 +19,18 @@ trait RestResponse
 	}
 
 	/**
+	 * response
+	 * 
+	 * @param mixed $data
+	 * @param mixed $code
+	 * 
+	 * @return Illuminate\Http\Response
+	 */
+	public function response ($data, $code = Response::HTTP_OK) {
+		return response()->json(["data" => ($data) ? $data : []], $code);
+	}
+
+	/**
 	 * information
 	 *
 	 * @param  mixed $data
