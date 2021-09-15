@@ -29,8 +29,6 @@ class EducationLevelFormRequest extends FormRequest
                     'edu_name' => 'required|max:255',
                     'edu_alias' => 'required|max:255',
                     'edu_order' => 'required|integer',
-                    'offer_id' => 'required|integer|exists:tenant.offers,id',
-                    'principal_id' => 'required|integer',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
                 break;
@@ -39,11 +37,9 @@ class EducationLevelFormRequest extends FormRequest
                     'edu_name' => 'required|max:255',
                     'edu_alias' => 'required|max:255',
                     'edu_order' => 'required|integer',
-                    'offer_id' => 'required|integer|exists:tenant.offers,id',
-                    'principal_id' => 'required|integer',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                     //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
-                    
+
                 ];
                 break;
 
@@ -52,8 +48,6 @@ class EducationLevelFormRequest extends FormRequest
                     'edu_name' => 'required|max:255',
                     'edu_alias' => 'required|max:255',
                     'edu_order' => 'required|integer',
-                    'offer_id' => 'required|integer|exists:tenant.offers,id',
-                    'principal_id' => 'required|integer',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
                 break;

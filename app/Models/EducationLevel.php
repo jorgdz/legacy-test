@@ -24,7 +24,6 @@ class EducationLevel extends Model implements AuditableContract
         'edu_name',
         'edu_alias',
         'edu_order',
-        'offer_id',
         'principal_id',
         'status_id',
 
@@ -53,17 +52,6 @@ class EducationLevel extends Model implements AuditableContract
     public function meshs()
     {
         return $this->hasMany(Mesh::class, 'level_edu_id');
-    }
-
-
-    /**
-     * offers
-     *
-     * @return void
-     */
-    public function offers()
-    {
-        return $this->belongsTo(Offer::class,'offer_id');
     }
 
     /**

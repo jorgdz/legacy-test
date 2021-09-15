@@ -12,7 +12,6 @@ class EducationLevelRepository extends BaseRepository
 {
 
     protected $relations = [
-        'offers',
         'status'
     ];
 

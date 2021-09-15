@@ -50,17 +50,6 @@ class Offer extends Model implements AuditableContract
     	return $this->belongsToMany(Period::class);
     }
 
-
-    /**
-     * educationLevels
-     *
-     * @return void
-     */
-    public function educationLevels()
-    {
-        return $this->hasMany(EducationLevel::class);
-    }
-
     /**
      * typeCriterias
      *

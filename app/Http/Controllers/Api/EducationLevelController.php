@@ -24,7 +24,7 @@ class EducationLevelController extends Controller implements IEducationLevelCont
     {
         $this->educationLevelCache = $educationLevelCache;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +35,7 @@ class EducationLevelController extends Controller implements IEducationLevelCont
         return $this->success($this->educationLevelCache->all($request));
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,18 +44,10 @@ class EducationLevelController extends Controller implements IEducationLevelCont
      */
     public function store(EducationLevelFormRequest $request)
     {
-        
-        DB::beginTransaction();
-        try {
-            $el = new EducationLevel($request->all());
-            $el = $this->educationLevelCache->save($el);
+        $educationLevel = new EducationLevel($request->all());
+        $educationLevel = $this->educationLevelCache->save($educationLevel);
 
-            DB::commit();
-            return $this->success($el, Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($educationLevel, Response::HTTP_CREATED);
     }
 
     /**
@@ -69,7 +61,7 @@ class EducationLevelController extends Controller implements IEducationLevelCont
         return $this->success($this->educationLevelCache->find($id));
     }
 
-  
+
     /**
      * Update the specified resource in storage.
      *
@@ -82,7 +74,7 @@ class EducationLevelController extends Controller implements IEducationLevelCont
         DB::beginTransaction();
         try {
             $educationLevel->fill($request->all());
-         
+
             if ($educationLevel->isClean())
                 return $this->information(__('messages.nochange'));
 
@@ -104,7 +96,7 @@ class EducationLevelController extends Controller implements IEducationLevelCont
      */
     public function destroy(EducationLevel $educationLevel)
     {
-        
+
         DB::beginTransaction();
         try{
             $response = $this->educationLevelCache->destroy($educationLevel);

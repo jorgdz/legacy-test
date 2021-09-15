@@ -20,10 +20,7 @@ class CreateEducationLevelsTable extends Migration
             $table->string('edu_alias', 255)->nullable();
             $table->integer('edu_order')->nullable();
 
-            $table->integer('offer_id')->unsigned();
-            $table->foreign('offer_id')->references('id')->on('offers');
-
-            $table->integer('principal_id')->unsigned();
+            $table->integer('principal_id')->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
