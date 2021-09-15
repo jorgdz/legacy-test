@@ -514,6 +514,19 @@ return [
         'qualification' => 'calificación',
         'type_criteria_id' => 'tipo de criterio',
         'student_record_id' => 'récord estudiantil',
+        /**
+         * person_jobs
+         */
+		'per_job_organization' => 'nombre de la organizacion', 
+        'per_job_position' => 'posicion que ocupa en el trabajo', 
+        'per_job_direction' => 'direccion del trabajo', 
+        'per_job_phone' => 'numero telefonico', 
+        'per_job_start_date' => 'fecha de inicio', 
+        'per_job_end_date' => 'fecha de fin', 
+        'per_job_current' => 'trabaja actualmente aqui', 
+        'per_job_iess_affiliated' => 'esta afiliado al iess', 
+        'city_id' => 'ciudad', 
+        'person_id' => 'persona',
 
     	'title' => 'titulo',
 		'name' => 'nombre',

@@ -17,7 +17,7 @@ class CreateTablePersonEducations extends Migration
             $table->increments('id');
 
             $table->date('pers_edu_graduation_date')->nullable();
-            
+            $table->string('pers_edu_calification')->nullable();
             $table->string('pers_edu_observation')->nullable();
 
             $table->integer('institute_id')->unsigned();
