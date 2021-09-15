@@ -48,7 +48,7 @@ class Person extends Model implements AuditableContract
     protected $dates = ['deleted_at'];
 
     /* TODO: Verificar tablas intermedias */
-    protected $softCascade = ['user','emergencyContact'];
+    protected $softCascade = ['user','emergencyContact', 'personJob'];
 
     /**
      * typeIdentifications
@@ -58,7 +58,7 @@ class Person extends Model implements AuditableContract
     public function identification () {
         return $this->belongsTo(TypeIdentification::class, 'type_identification_id', 'id');
     }
-    
+
     /**
      * person is a user
      *
@@ -67,7 +67,7 @@ class Person extends Model implements AuditableContract
     public function user () {
         return $this->hasMany(User::class, 'person_id');
     }
-    
+
     /**
      * religion
      *
@@ -76,7 +76,7 @@ class Person extends Model implements AuditableContract
     public function religion () {
         return $this->belongsTo(TypeReligion::class, 'type_religion_id');
     }
-        
+
     /**
      * statusMarital
      *
@@ -85,7 +85,7 @@ class Person extends Model implements AuditableContract
     public function statusMarital () {
         return $this->belongsTo(StatusMarital::class, 'status_marital_id');
     }
-    
+
     /**
      * origin city
      *
@@ -94,7 +94,7 @@ class Person extends Model implements AuditableContract
     public function city () {
         return $this->belongsTo(City::class, 'city_id');
     }
-        
+
     /**
      * currentCity
      *
@@ -103,7 +103,7 @@ class Person extends Model implements AuditableContract
     public function currentCity () {
         return $this->belongsTo(City::class, 'current_city_id');
     }
-        
+
     /**
      * sector
      *
@@ -112,7 +112,7 @@ class Person extends Model implements AuditableContract
     public function sector () {
         return $this->belongsTo(Sector::class, 'sector_id');
     }
-        
+
     /**
      * ethnic
      *

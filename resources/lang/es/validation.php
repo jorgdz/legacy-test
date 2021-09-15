@@ -177,7 +177,7 @@ return [
 			'string'   => 'El campo telefono debe ser una cadena.',
 			'max'      => [
 				'string'  => 'El campo telefono debe ser menor que 20 caracteres.',
-			]				
+			]
 		],
 		'jobs.*.per_job_start_date'=> [
 			'date'   => 'El campo fecha de inicio no es una fecha válida.'
@@ -186,10 +186,7 @@ return [
 			'date'   => 'El campo fecha de fin no es una fecha válida.'
 		],
 		'jobs.*.per_job_current'=> [
-			'boolean'   => 'El campo trabaja actualmente debe ser verdadero o falso.'
-		],
-		'jobs.*.per_job_iess_affiliated'=> [
-			'boolean'   => 'El campo afiliado al iess debe ser verdadero o falso.'
+			'boolean'   => 'El campo actual debe ser verdadero o falso.'
 		],
 		'jobs.*.city_id'=> [
 			'required' => 'El campo ciudad es requerido',
@@ -201,6 +198,16 @@ return [
 			'integer'  => 'El campo estado debe ser un entero.',
 			'exists'   => 'El campo estado seleccionado es inválido.'
 		],
+        'hourhands.*' => [
+            'exists' => 'El valor del campo horario seleccionado es inválido.',
+            'integer' => 'El valor del campo horario debe ser un entero.',
+            'distinct' => 'El valor del campo horario tiene un valor duplicado.'
+        ],
+        'offers.*' => [
+            'exists' => 'El valor del campo oferta seleccionado es inválido.',
+            'integer' => 'El valor del campo oferta debe ser un entero.',
+            'distinct' => 'El valor del campo oferta tiene un valor duplicado.'
+        ],
 	],
 
 	/*
@@ -213,6 +220,9 @@ return [
         | de "email". Esto simplemente nos ayuda a hacer los mensajes un poco más limpios.
 	|
 	*/
+
+    'hourhand' => 'horario',
+    'offer' => 'oferta',
 
 	'attributes' => [
 		'blo_typ_name' => 'nombre del tipo de sangre',
@@ -345,6 +355,13 @@ return [
 		'per_max_matter_enrollment' => 'maximo de materia de matrícula por período',
 		'campus_id' => 'campus',
 		'type_period_id' => 'tipo de periodo',
+        'offers' => 'las opciones de ofertas',
+        'hourhands' => 'las opciones de los horarios',
+        /**
+         * hourhands
+         */
+        'hour_start_time' => 'hora de inicio',
+        'hour_end_time' => 'hora final',
 		/**
 		 * period_stages
 		 */
@@ -482,13 +499,6 @@ return [
 		* user_profiles
 		*/
 		'profile_id' => 'perfil usuario',
-		/*
-		* Emergency Contact
-		*/
-		'em_ct_name' 		=> 'nombre de contacto emergencia',
-		'em_ct_first_phone' => 'número teléfono principal',
-		'type_kinship_id'	=> 'Parentesco',
-		'person_id'			=> 'Persona',
         /**
          * student_records
          */

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePeriodRequest;
 use App\Http\Requests\UpdatePeriodRequest;
 use App\Traits\Auditor;
+use Illuminate\Http\Response;
 
 class PeriodController extends Controller
 {
@@ -71,8 +72,9 @@ class PeriodController extends Controller
         $this->periodCache->save($period);
 
         $period->offers()->sync($request->offers, false);
+        $period->hourhands()->sync($request->hourhands, false);
 
-        return $this->success($period);
+        return $this->success($period, Response::HTTP_CREATED);
     }
 
     /**
@@ -95,6 +97,7 @@ class PeriodController extends Controller
             return $this->information(__('messages.nochange'));
 
         $period->offers()->sync($request->offers);
+        $period->hourhands()->sync($request->hourhands);
         return $this->success($this->periodCache->save($period));
     }
 
@@ -106,6 +109,7 @@ class PeriodController extends Controller
      */
     public function destroy(Period $period) {
         $period->offers()->detach();
+        $period->hourhands()->detach();
         return $this->success($this->periodCache->destroy($period));
     }
 
@@ -129,6 +133,28 @@ class PeriodController extends Controller
     public function destroyOffersByPeriod(Period $period) {
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Period::class)));
         return $this->success($this->periodCache->destroyOffersByPeriod($period));
+    }
+
+    /**
+     * showHourhandsByPeriod
+     *
+     * @param  mixed $period
+     * @return void
+     */
+    public function showHourhandsByPeriod (Period $period) {
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Period::class)));
+        return $this->success($this->periodCache->showHourhandsByPeriod($period));
+    }
+
+    /**
+     * destroyHourhandsByPeriod
+     *
+     * @param  mixed $period
+     * @return void
+     */
+    public function destroyHourhandsByPeriod(Period $period) {
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Period::class)));
+        return $this->success($this->periodCache->destroyHourhandsByPeriod($period));
     }
 
 }

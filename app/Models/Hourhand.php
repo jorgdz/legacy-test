@@ -21,6 +21,8 @@ class Hourhand extends Model implements AuditableContract
      */
     protected $fillable = [
         'status_id',
+        'hour_start_time',
+        'hour_end_time'
     ];
 
     /**
@@ -32,7 +34,7 @@ class Hourhand extends Model implements AuditableContract
 
     protected $dates = ['deleted_at'];
 
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at','updated_at','deleted_at','pivot'];
 
     //protected $softCascade = ['courses'];
 

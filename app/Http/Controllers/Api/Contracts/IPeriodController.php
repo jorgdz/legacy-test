@@ -142,6 +142,26 @@ interface IPeriodController
      *           description="Estado del periodo",
      *           type="integer",
      *         ),
+     *         @OA\Property(
+     *           property="offers",
+     *           description="Array de id de Ofertas",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1,2,3]",
+     *           uniqueItems=true
+     *         ),
+     *         @OA\Property(
+     *           property="hourhands",
+     *           description="Array de id de Horarios",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1,2,3]",
+     *           uniqueItems=true
+     *         ),
      *       ),
      *     ),
      *   ),
@@ -182,7 +202,7 @@ interface IPeriodController
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="5"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -194,6 +214,86 @@ interface IPeriodController
      *
      */
     public function show(Request $request,Period $period);
+
+    /**
+     * @OA\Get(
+     *   path="/api/periods/{period}/offers",
+     *   tags={"Periodos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener ofertas académicas a partir del periodo",
+     *   description="Muestra los ofertas académicas asociados a un periodo.",
+     *   operationId="getPeriodOffer",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="period",
+     *     description="Id del periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showOffersByPeriod (Period $period);
+
+    /**
+     * @OA\Get(
+     *   path="/api/periods/{period}/hourhands",
+     *   tags={"Periodos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener horarios a partir del periodo",
+     *   description="Muestra los horarios asociados a un periodo.",
+     *   operationId="getPeriodHourhand",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="period",
+     *     description="Id del periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showHourhandsByPeriod (Period $period);
 
     /**
      * @OA\Put(
@@ -212,7 +312,7 @@ interface IPeriodController
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="3"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -260,6 +360,26 @@ interface IPeriodController
      *           description="Estado del periodo",
      *           type="integer",
      *         ),
+     *         @OA\Property(
+     *           property="offers",
+     *           description="Array de id de Ofertas",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1,2,3]",
+     *           uniqueItems=true
+     *         ),
+     *         @OA\Property(
+     *           property="hourhands",
+     *           description="Array de id de Horarios",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1,2,3]",
+     *           uniqueItems=true
+     *         ),
      *       ),
      *     ),
      *   ),
@@ -289,7 +409,7 @@ interface IPeriodController
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="3"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -314,46 +434,6 @@ interface IPeriodController
      *
      */
     public function destroy(Period $period);
-
-    /**
-     * @OA\Get(
-     *   path="/api/periods/{period}/offers",
-     *   tags={"Periodos"},
-     *   security={
-     *      {"api_key_security": {}},
-     *   },
-     *   summary="Obtener ofertas académicas a partir del periodo",
-     *   description="Muestra los ofertas académicas asociados a un periodo.",
-     *   operationId="getPeriodOffer",
-     *   @OA\Parameter(
-     *     name="user_profile_id",
-     *     description="Id del perfil de usuario",
-     *     in="query",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="1"
-     *     ),
-     *   ),
-     *   @OA\Parameter(
-     *     name="period",
-     *     description="Id del periodo",
-     *     in="path",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="1"
-     *     ),
-     *   ),
-     *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=401, description="No autenticado"),
-     *   @OA\Response(response=403, description="No autorizado"),
-     *   @OA\Response(response=404, description="No encontrado"),
-     *   @OA\Response(response=500, description="Error interno del servidor")
-     * )
-     *
-     */
-    public function showOffersByPeriod (Period $period);
 
     /**
      * @OA\Delete(
@@ -382,7 +462,7 @@ interface IPeriodController
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="3"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -394,4 +474,44 @@ interface IPeriodController
      *
      */
     public function destroyOffersByPeriod(Period $period);
+
+    /**
+     * @OA\Delete(
+     *   path="/api/periods/{period}/hourhands",
+     *   tags={"Periodos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Eliminar horarios a partir del periodo",
+     *   description="Eliminar horarios a partir del periodo",
+     *   operationId="deletePeriodHourhand",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="period",
+     *     in="path",
+     *     description="Periodo",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroyHourhandsByPeriod(Period $period);
 }

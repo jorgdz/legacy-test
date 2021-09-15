@@ -87,4 +87,27 @@ class PeriodCache extends BaseCache {
         return $this->repository->destroyOffersByPeriod($model);
     }
 
+    /**
+     * showHourhandsByPeriod
+     *
+     * @param  mixed $period
+     * @return void
+     */
+    public function showHourhandsByPeriod (Period $period) {
+        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($period) {
+            return $this->repository->showHourhandsByPeriod($period);
+        });
+    }
+
+    /**
+     * destroyHourhandsByPeriod
+     *
+     * @param  mixed $model
+     * @return void
+     */
+    public function destroyHourhandsByPeriod(Model $model) {
+        $this->forgetCache('periods');
+        return $this->repository->destroyHourhandsByPeriod($model);
+    }
+
 }

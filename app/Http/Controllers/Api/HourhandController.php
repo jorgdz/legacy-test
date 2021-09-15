@@ -8,6 +8,7 @@ use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHourhandRequest;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Api\Contracts\IHourhandController;
 
 class HourhandController extends Controller implements IHourhandController
@@ -47,7 +48,7 @@ class HourhandController extends Controller implements IHourhandController
      * @param  mixed $hourhands
      * @return void
      */
-    public function show (Request $request,$id) {
+    public function show ($id) {
         return $this->success($this->hourhandCache->find($id));
     }
 
@@ -59,9 +60,8 @@ class HourhandController extends Controller implements IHourhandController
      * @return void
      */
     public function store (StoreHourhandRequest $request) {
-        $hourhandRequest = $request->all();
-        $hourhand = new Hourhand($hourhandRequest);
-        return $this->success($this->hourhandCache->save($hourhand));
+        $hourhand = new Hourhand($request->all());
+        return $this->success($this->hourhandCache->save($hourhand), Response::HTTP_CREATED);
     }
 
     /**
@@ -72,8 +72,9 @@ class HourhandController extends Controller implements IHourhandController
      * @return void
      */
     public function update (StoreHourhandRequest $request, Hourhand $hourhand) {
-        $hourhandRequest = $request->all();
-        $hourhand->fill($hourhandRequest);
+
+        $hourhand->fill($request->all());
+
         if ($hourhand->isClean())
             return $this->information(__('messages.nochange'));
 

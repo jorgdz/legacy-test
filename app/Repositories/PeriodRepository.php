@@ -41,4 +41,25 @@ class PeriodRepository extends BaseRepository
         return $period;
     }
 
+    /**
+     * showHourhandsByPeriod
+     *
+     * @param  mixed $period
+     * @return void
+     */
+    public function showHourhandsByPeriod(Period $period) {
+        return $period->hourhands;
+    }
+
+    /**
+     * destroyHourhandsByPeriod
+     *
+     * @param  mixed $period
+     * @return void
+     */
+    public function destroyHourhandsByPeriod(Period $period) {
+        $period->hourhands()->detach();
+        return $period;
+    }
+
 }

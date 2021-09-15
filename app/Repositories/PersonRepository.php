@@ -8,7 +8,8 @@ use App\Repositories\Base\BaseRepository;
 class PersonRepository extends BaseRepository
 {
 
-    protected $relations = ['identification', 'religion', 'statusMarital', 'city', 'currentCity', 'sector', 'ethnic', 'user'];
+
+    protected $relations = ['identification', 'religion', 'statusMarital', 'city', 'currentCity', 'sector', 'ethnic', 'user', 'personJob'];
     protected $fields = ['pers_identification', 'pers_firstname', 'pers_secondname', 'pers_first_lastname', 'pers_second_lastname', 'pers_gender'];
 
     /**

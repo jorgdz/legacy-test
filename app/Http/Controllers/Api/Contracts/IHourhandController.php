@@ -105,6 +105,21 @@ interface IHourhandController
      *           property="user_profile_id",
      *           description="Perfil de usuario",
      *           type="integer",
+     *           example="1"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time",
+     *           description="Hora de inicio",
+     *           type="string",
+     *           format="time",
+     *           example="17:32:28"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time",
+     *           description="Hora final",
+     *           type="string",
+     *           format="time",
+     *           example="18:32:28"
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -162,7 +177,7 @@ interface IHourhandController
      * )
      *
      */
-    public function show(Request $request,Hourhand $hourhand);
+    public function show(Hourhand $hourhand);
 
     /**
      * @OA\Put(
@@ -193,6 +208,20 @@ interface IHourhandController
      *           property="user_profile_id",
      *           description="Perfil de usuario",
      *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time",
+     *           description="Hora de inicio",
+     *           type="string",
+     *           format="time",
+     *           example="17:32:28"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time",
+     *           description="Hora final",
+     *           type="string",
+     *           format="time",
+     *           example="18:32:28"
      *         ),
      *         @OA\Property(
      *           property="status_id",

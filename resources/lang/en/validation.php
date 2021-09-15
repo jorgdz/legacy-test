@@ -123,6 +123,7 @@ return [
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -138,7 +139,19 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'hourhands.*' => [
+            'exists' => 'The selected hourhand is invalid.',
+            'integer' => 'The hourhand values must be integer',
+            'distinct' => 'The hourhand field has a duplicate value'
+        ],
+        'offers.*' => [
+            'exists' => 'The selected offer is invalid.',
+            'integer' => 'The offer values must be integer',
+            'distinct' => 'The offer field has a duplicate value'
+        ],
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------

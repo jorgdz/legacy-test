@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Offer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePeriodRequest extends FormRequest
@@ -33,7 +34,10 @@ class UpdatePeriodRequest extends FormRequest
             'campus_id' => 'required|integer|exists:tenant.campus,id',
             'type_period_id' => 'required|integer|exists:tenant.type_periods,id',
             'status_id' => 'required|integer|exists:tenant.status,id',
-            'offers' => 'exists:tenant.offers,id'
+            'offers' => 'array',
+            'offers.*' => 'integer|exists:tenant.offers,id|distinct',
+            'hourhands' => 'array',
+            'hourhands.*' => 'integer|exists:tenant.hourhands,id|distinct'
         ];
     }
 }
