@@ -61,7 +61,7 @@ class MatterController extends Controller implements IMatterController
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return $this->success($this->matterCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->matterCache->find($id));
     }
 
     /**

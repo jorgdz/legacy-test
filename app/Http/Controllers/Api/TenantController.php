@@ -64,9 +64,9 @@ class TenantController extends Controller implements ITenantController
      */
     public function index(Request $request) {
         $search = $request->search ?: '';
-        
+
         $tenant = $this->getTenantCached($request,$search);
-       
+
         return $this->success($tenant);
     }
 
@@ -105,7 +105,7 @@ class TenantController extends Controller implements ITenantController
         if ($tenant->id == $tenant_main->id)
             throw new ModelNotFoundException();
 
-        return $this->success($tenant, Response::HTTP_FOUND);
+        return $this->success($tenant);
     }
 
     /**
@@ -161,12 +161,12 @@ class TenantController extends Controller implements ITenantController
      */
     public function updateCurrentTenant(UpdateTenantRequest $request) {
         $this->cache::forget($request->getHost() . '_current_tenant');
-        
+
         $tenantUpdate = CustomTenant::findOrFail(app('currentTenant')->id);
         $mailUpdate = Mail::find($tenantUpdate->mail->id);
-        
+
         $name_anterior = $tenantUpdate->name;
-        
+
         $tenantUpdate->fill($request->only('name'));
         $mailUpdate->fill($request->except('name'));
 
@@ -176,20 +176,20 @@ class TenantController extends Controller implements ITenantController
         if($request->name !== $name_anterior){
             config()->set('filesystems.disks.tenant_system.root', storage_path("app/{$request->name}"));
         }
-        
+
         if($request->hasFile('logo')){
             // Get just ext
             $extension = $request->file('logo')->getClientOriginalExtension();
-            
+
             $filename = $tenantUpdate->id.'.'.$extension;//.'_'.time().
-            
+
             Storage::put($filename, FileFacade::get($request->file('logo')));
-            
+
             $tenantUpdate->logo_name = $filename;
-            
+
             $tenantUpdate->logo_path = url('/').'/storage/'.$tenantUpdate->name.'/'.$filename;
         }
-        
+
         $tenantUpdate->save();
         $mailUpdate->save();
 

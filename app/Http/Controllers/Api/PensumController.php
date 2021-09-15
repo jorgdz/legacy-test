@@ -61,7 +61,7 @@ class PensumController extends Controller implements IPensumController
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return $this->success($this->pensumCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->pensumCache->find($id));
     }
 
     /**

@@ -64,7 +64,7 @@ class UserController extends Controller implements IUserController
      * @return void
      */
     public function show (User $user) {
-        return $this->success($this->repoUser->find($user->id), Response::HTTP_FOUND);
+        return $this->success($this->repoUser->find($user->id));
     }
 
     /**
@@ -128,7 +128,7 @@ class UserController extends Controller implements IUserController
             ];
             $usr_profiles = $this->repoUserProfile->findByConditionals($conditionals);
 
-            if ($usr_profiles->all()) 
+            if ($usr_profiles->all())
                 $this->repoUserProfile->deleteModelHasRole(collect($usr_profiles)->pluck('id')->toArray());
 
             DB::commit();
@@ -191,7 +191,7 @@ class UserController extends Controller implements IUserController
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
 
         $userProfileRequest = array_merge(['user_id' => "".$user['id']],$request->all());
-        
+
         $userProfile->fill($userProfileRequest);
 
         if ($userProfile->isClean())
@@ -269,7 +269,7 @@ class UserController extends Controller implements IUserController
         $userProfile = UserProfile::where($matchTheseNew)->first();
         if ($userProfile == null)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
-        
+
         $this->setAudit($this->formatToAudit(__FUNCTION__,class_basename(UserProfile::class)));
         $array_roles = $request['roles'];
         return $this->success($this->repoUser->saveRolesbyUserProfile($array_roles,$userProfile));

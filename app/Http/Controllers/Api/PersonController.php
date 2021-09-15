@@ -56,7 +56,7 @@ class PersonController extends Controller implements IPersonController
 
     /**
      * assignJobs
-     * 
+     *
      * Asignacion masiva de trabajos a una persona
      *
      * @param  mixed $request
@@ -77,7 +77,7 @@ class PersonController extends Controller implements IPersonController
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return $this->success($this->personCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->personCache->find($id));
     }
 
     /**
@@ -132,7 +132,7 @@ class PersonController extends Controller implements IPersonController
      */
     public function updateLanguagePerson(UpdateLanguagesPersonRequest $request, Person $person)
     {
-        $person->lenguajes()->sync($request->languages); 
+        $person->lenguajes()->sync($request->languages);
         return $this->success(Person::with('lenguajes')->find($person->id));
     }
 }

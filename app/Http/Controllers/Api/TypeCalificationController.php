@@ -61,7 +61,7 @@ class TypeCalificationController extends Controller implements ITypeCalification
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return $this->success($this->typeCalificationCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->typeCalificationCache->find($id));
     }
 
     /**

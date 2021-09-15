@@ -61,7 +61,7 @@ class MatterStatusController extends Controller implements IMatterStatusControll
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return $this->success($this->matterStatusCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->matterStatusCache->find($id));
     }
 
     /**

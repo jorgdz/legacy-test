@@ -57,7 +57,7 @@ class CampusController extends Controller implements ICampusController
      */
     public function show($id)
     {
-        return $this->success($this->campusCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->campusCache->find($id));
     }
 
     /**

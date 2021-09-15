@@ -63,7 +63,7 @@ class CompanyController extends Controller implements ICompanyController
      */
     public function show($id)
     {
-        return $this->success($this->companyCache->find($id), Response::HTTP_FOUND);
+        return $this->success($this->companyCache->find($id));
     }
 
     /**
