@@ -271,8 +271,6 @@ return [
 		'eco_gro_description' => 'descripción del grupo económico',
 		'edu_name' => 'nombre del nivel educativo',
 		'edu_alias' => 'alias del nivel educativo',
-		'edu_alias' => 'alias del nivel educativo',
-		'edu_order' => 'orden del nivel educativo',
 		'edu_order' => 'orden del nivel educativo',
 		'offer_id' => 'oferta',
 		'principal_id' => 'agrupación',

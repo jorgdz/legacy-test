@@ -23,38 +23,12 @@ class EducationLevelFormRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->method()) {
-            case 'POST':
-                return [
-                    'edu_name' => 'required|max:255',
-                    'edu_alias' => 'required|max:255',
-                    'edu_order' => 'required|integer',
-                    'status_id' => 'required|integer|exists:tenant.status,id'
-                ];
-                break;
-            case 'PUT':
-                return [
-                    'edu_name' => 'required|max:255',
-                    'edu_alias' => 'required|max:255',
-                    'edu_order' => 'required|integer',
-                    'status_id' => 'required|integer|exists:tenant.status,id'
-                    //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
-
-                ];
-                break;
-
-            case 'PATCH':
-                return [
-                    'edu_name' => 'required|max:255',
-                    'edu_alias' => 'required|max:255',
-                    'edu_order' => 'required|integer',
-                    'status_id' => 'required|integer|exists:tenant.status,id'
-                ];
-                break;
-
-                // default:
-                //     $this->reglas();
-
-        }
+        return [
+            'edu_name' => 'required|max:255',
+            'edu_alias' => 'required|max:255',
+            'edu_order' => 'required|integer',
+            'offer_id' => 'required|integer|exists:tenant.offers,id',
+            'status_id' => 'required|integer|exists:tenant.status,id'
+        ];
     }
 }

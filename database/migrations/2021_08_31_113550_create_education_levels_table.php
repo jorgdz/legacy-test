@@ -22,6 +22,9 @@ class CreateEducationLevelsTable extends Migration
 
             $table->integer('principal_id')->nullable();
 
+            $table->integer('offer_id')->unsigned();
+            $table->foreign('offer_id')->references('id')->on('offers');
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

@@ -131,8 +131,13 @@ interface IEducationLevelController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="offer_id",
+     *           description="Oferta asociada al nivel educativo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
-     *           description="Estado de la malla",
+     *           description="Estado del nivel educativo",
      *           type="integer",
      *         ),
      *       ),
@@ -238,6 +243,11 @@ interface IEducationLevelController
      *         @OA\Property(
      *           property="principal_id",
      *           description="Codigo Principal",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="offer_id",
+     *           description="Oferta asociada al nivel educativo",
      *           type="integer",
      *         ),
      *         @OA\Property(

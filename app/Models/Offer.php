@@ -38,7 +38,7 @@ class Offer extends Model implements AuditableContract
 
     protected $hidden = ['created_at','updated_at','deleted_at', 'pivot'];
 
-    protected $softCascade = ['educationLevels', 'typeCriterias', 'typeStudents'];
+    protected $softCascade = ['educationLevels', 'typeCriterias', 'typeStudents','educationLevels'];
 
     /**
      * periods
@@ -58,6 +58,16 @@ class Offer extends Model implements AuditableContract
     public function typeCriterias(): HasMany
     {
         return $this->hasMany(TypeCriteria::class);
+    }
+
+    /**
+     * typeCriterias
+     *
+     * @return HasMany
+     */
+    public function educationLevels(): HasMany
+    {
+        return $this->hasMany(EducationLevel::class);
     }
 
     /**
