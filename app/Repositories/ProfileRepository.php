@@ -8,6 +8,7 @@ use App\Repositories\Base\BaseRepository;
 
 class ProfileRepository extends BaseRepository
 {
+    protected $relations = ['status'];
     protected $fields = ['pro_name'];
 
     /**

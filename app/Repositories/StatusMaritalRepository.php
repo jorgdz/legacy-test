@@ -12,6 +12,7 @@ class StatusMaritalRepository extends BaseRepository
 {
 
     protected $relations = ['persons', 'status'];
+    protected $fields = ['sta_mar_name'];
 
     /**
      * __construct

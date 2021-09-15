@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IsectorController;
 
-class SectorController extends Controller
+class SectorController extends Controller implements IsectorController
 {
     use RestResponse;
 

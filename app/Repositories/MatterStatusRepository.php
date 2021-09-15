@@ -9,6 +9,7 @@ class MatterStatusRepository extends BaseRepository
 {
 
     protected $relations = ['status'];
+    protected $fields = ['name', 'type'];
 
     /**
      * __construct

@@ -15,6 +15,10 @@ class TypeDocumentRepository extends BaseRepository
         'status'
     ];
 
+    protected $fields = [
+        'typ_doc_name'
+    ];
+
     /**
      * __construct
      *

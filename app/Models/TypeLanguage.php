@@ -30,4 +30,9 @@ class TypeLanguage extends Model implements AuditableContract
      * @var array
      */
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    /* Relationships */
+    public function status() {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
 }

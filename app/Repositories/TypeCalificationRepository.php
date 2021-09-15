@@ -9,6 +9,7 @@ class TypeCalificationRepository extends BaseRepository
 {
 
     protected $relations = ['status'];
+    protected $fields = ['tc_name'];
 
     /**
      * __construct

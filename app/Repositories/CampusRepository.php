@@ -11,8 +11,8 @@ use App\Repositories\Base\BaseRepository;
 class CampusRepository extends BaseRepository
 {
 
-    protected $relations = ['company', 'status','periods'];
-    protected $fields = ['cam_name', 'cam_description', 'cam_direction'];
+    protected $relations = ['company', 'status', 'periods'];
+    protected $fields = ['cam_name', 'cam_description', 'cam_direction', 'cam_initials'];
 
     /**
      * __construct

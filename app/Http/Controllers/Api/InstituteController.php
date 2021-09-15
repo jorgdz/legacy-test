@@ -9,8 +9,9 @@ use App\Models\Institute;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Api\Contracts\InterfaceInstituteController;
 
-class InstituteController extends Controller
+class InstituteController extends Controller implements InterfaceInstituteController
 {
     use RestResponse;
 

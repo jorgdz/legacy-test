@@ -8,6 +8,7 @@ use App\Repositories\Base\BaseRepository;
 class EconomicGroupRepository extends BaseRepository {
 
     protected $relations = ['studentRecords', 'status'];
+    protected $fields = ['eco_gro_name'];
 
     /**
      * __construct

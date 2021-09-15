@@ -11,7 +11,8 @@ use App\Repositories\Base\BaseRepository;
 class TypeKinshipRepository extends BaseRepository
 {
 
-    //protected $relations = ['institutes', 'status','persons'];
+    protected $relations = ['status'/* , 'institutes', 'persons' */];
+    protected $fields = ['typ_kin_name'];
 
     /**
      * __construct

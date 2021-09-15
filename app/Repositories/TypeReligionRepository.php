@@ -11,7 +11,8 @@ use App\Repositories\Base\BaseRepository;
 class TypeReligionRepository extends BaseRepository
 {
 
-    protected $relations = ['status','persons'];
+    protected $relations = ['status', 'persons'];
+    protected $fields = ['typ_rel_name'];
 
     /**
      * __construct

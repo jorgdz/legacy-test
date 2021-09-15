@@ -11,7 +11,8 @@ use App\Repositories\Base\BaseRepository;
 class BloodTypeRepository extends BaseRepository
 {
 
-    //protected $relations = ['institutes', 'status','persons'];
+    protected $relations = ['status'];
+    protected $fields = ['blo_typ_name'];
 
     /**
      * __construct

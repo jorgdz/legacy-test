@@ -49,6 +49,15 @@ interface IStudentRecordController
      *     ),
      *   ),
      *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="sort",
      *     description="Ordenar por el campo",
      *     in="query",

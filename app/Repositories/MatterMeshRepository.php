@@ -11,7 +11,8 @@ use App\Repositories\Base\BaseRepository;
 class MatterMeshRepository extends BaseRepository
 {
 
-    protected $relations = ['status','mesh','matter'];
+    protected $relations = ['status', 'mesh', 'matter'];
+    protected $fields = ['calification_type', 'min_calification', 'num_fouls', 'matter_rename'];
 
     /**
      * __construct

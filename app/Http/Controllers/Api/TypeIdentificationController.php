@@ -10,7 +10,7 @@ use App\Traits\RestResponse;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Api\Contracts\ITypeIdentificationController;
 
-class TypeIdentificationController extends Controller
+class TypeIdentificationController extends Controller implements ITypeIdentificationController
 {
     use RestResponse;
 

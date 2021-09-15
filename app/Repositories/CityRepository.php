@@ -11,7 +11,8 @@ use App\Repositories\Base\BaseRepository;
 class CityRepository extends BaseRepository
 {
 
-    protected $relations = ['institutes', 'status','persons'];
+    protected $relations = ['institutes', 'status', 'persons'];
+    protected $fields = ['cit_name', 'cit_acronym'];
 
     /**
      * __construct

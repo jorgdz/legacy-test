@@ -8,8 +8,9 @@ use App\Cache\EthnicCache;
 use App\Traits\RestResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Contracts\IEthnicController;
 
-class EthnicController extends Controller
+class EthnicController extends Controller implements IEthnicController
 {
     use RestResponse;
 

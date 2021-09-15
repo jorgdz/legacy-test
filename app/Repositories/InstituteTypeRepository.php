@@ -8,6 +8,7 @@ use App\Repositories\Base\BaseRepository;
 class InstituteTypeRepository extends BaseRepository
 {
     protected $relations = ['status'];
+    protected $fields = ['tin_name'];
 
     /**
      * __construct

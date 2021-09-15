@@ -8,6 +8,7 @@ use App\Repositories\Base\BaseRepository;
 class MailRepository extends BaseRepository
 {
     protected $relations = ['tenant'];
+    protected $fields = ['transport', 'host', 'port', 'encryption', 'username'];
 
     /**
      * __construct

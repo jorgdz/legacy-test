@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 interface ITypeIdentificationController
 {
-/**
+    /**
      * @OA\Get(
      *   path="/api/type-identifications",
      *   tags={"Tipo identificacion"},
@@ -68,6 +68,15 @@ interface ITypeIdentificationController
      *       example="asc"
      *     ),
      *   ),
+     *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -76,13 +85,10 @@ interface ITypeIdentificationController
      *
      */
     public function index(Request $request);
-   
-
-
+  
     public function store(Request $request);
-    
-
-  /**
+  
+    /**
      * @OA\Get(
      *   path="/api/type-identifications/{id}",
      *   tags={"Tipo identificacion"},
@@ -121,13 +127,8 @@ interface ITypeIdentificationController
      *
      */
     public function show($id);
-    
-
 
     public function update(Request $request, TypeIdentification $typeIdentification);
-    
-
 
     public function destroy(TypeIdentification $typeIdentification);
-    
 }

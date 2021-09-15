@@ -12,6 +12,7 @@ class TypeIdentificationRepository extends BaseRepository
 {
 
     protected $relations = ['persons'];
+    protected $fields = ['ti_name'];
 
     /**
      * __construct

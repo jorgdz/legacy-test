@@ -17,6 +17,11 @@ class MeshRepository extends BaseRepository
         'status'
     ];
 
+    protected $fields = [
+        'mes_name',
+        'mes_acronym',
+    ];
+
     /**
      * __construct
      *

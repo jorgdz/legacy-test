@@ -10,7 +10,7 @@ class TypeStudentRepository extends BaseRepository
 {
     protected $relations = ['status'];
 
-    protected $fields = ['te_name','te_description'];
+    protected $fields = ['te_name'];
 
     /**
      * __construct

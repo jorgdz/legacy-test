@@ -12,6 +12,7 @@ class EthnicRepository extends BaseRepository
 {
 
     protected $relations = ['status','persons'];
+    protected $fields = ['eth_name'];
 
     /**
      * __construct

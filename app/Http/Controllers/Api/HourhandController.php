@@ -8,9 +8,9 @@ use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHourhandRequest;
-use App\Exceptions\Custom\UnprocessableException;
+use App\Http\Controllers\Api\Contracts\IHourhandController;
 
-class HourhandController extends Controller
+class HourhandController extends Controller implements IHourhandController
 {
     use RestResponse;
 

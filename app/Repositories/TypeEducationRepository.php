@@ -11,7 +11,8 @@ use App\Repositories\Base\BaseRepository;
 class TypeEducationRepository extends BaseRepository
 {
 
-    //protected $relations = ['institutes', 'status','persons'];
+    protected $relations = ['status', /* 'institutes', 'persons' */];
+    protected $fields = ['typ_edu_name'];
 
     /**
      * __construct

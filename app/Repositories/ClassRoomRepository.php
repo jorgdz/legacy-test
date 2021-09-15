@@ -8,7 +8,7 @@ use App\Repositories\Base\BaseRepository;
 class ClassRoomRepository extends BaseRepository {
 
     protected $relations = ['status'];
-    protected $fields = ['cl_name', 'cl_description', 'cl_acronym'];
+    protected $fields = ['cl_name', 'cl_acronym'];
 
     /**
      * __construct

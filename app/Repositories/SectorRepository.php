@@ -12,6 +12,7 @@ class SectorRepository extends BaseRepository
 {
 
     protected $relations = ['status','persons'];
+    protected $fields = ['sec_name', 'sec_acronym'];
 
     /**
      * __construct

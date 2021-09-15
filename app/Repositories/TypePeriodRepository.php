@@ -9,7 +9,7 @@ class TypePeriodRepository extends BaseRepository
 {
     protected $relations = ['status','periods'];
 
-    protected $fields = ['tp_name','tp_description'];
+    protected $fields = ['tp_name'];
 
     /**
      * __construct

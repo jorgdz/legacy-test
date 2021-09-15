@@ -5,13 +5,11 @@ namespace App\Repositories;
 use App\Models\TypeDaytrip;
 use App\Repositories\Base\BaseRepository;
 
-/**
- * CampusRepository
- */
 class TypeDaytripRepository extends BaseRepository
 {
 
-    //protected $relations = ['institutes', 'status','persons'];
+    protected $relations = ['status', /* 'institutes', 'persons' */];
+    protected $fields = ['typ_day_name'];
 
     /**
      * __construct

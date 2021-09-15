@@ -9,6 +9,7 @@ class TypeMatterRepository extends BaseRepository
 {
 
     protected $relations = ['status'];
+    protected $fields = ['tm_name', 'tm_acronym'];
 
     /**
      * __construct

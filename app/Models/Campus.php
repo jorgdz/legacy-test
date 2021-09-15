@@ -30,7 +30,7 @@ class Campus extends Model implements AuditableContract
         'company_id',
     ];
 
-    //protected $auiditInclude = ['cam_name', 'cam_description', 'cam_direction', 'cam_initials', 'status_id','company_id'];
+    /* protected $auiditInclude = ['cam_name', 'cam_description', 'cam_direction', 'cam_initials', 'status_id','company_id']; */
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 

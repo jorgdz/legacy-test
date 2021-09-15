@@ -9,6 +9,7 @@ class PensumRepository extends BaseRepository
 {
 
     protected $relations = ['status'];
+    protected $fields = ['pen_name', 'pen_acronym', 'anio'];
 
     /**
      * __construct

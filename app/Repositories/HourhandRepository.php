@@ -9,6 +9,7 @@ use App\Repositories\Base\BaseRepository;
 class HourhandRepository extends BaseRepository
 {
     protected $relations = ['status'];//,'hourhand_period','courses'
+
     /**
      * __construct
      *

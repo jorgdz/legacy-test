@@ -11,7 +11,8 @@ use App\Repositories\Base\BaseRepository;
 class TypeDisabilityRepository extends BaseRepository
 {
 
-    //protected $relations = ['institutes', 'status','persons'];
+    protected $relations = ['status', /* 'institutes', 'persons' */];
+    protected $fields = ['typ_dis_name'];
 
     /**
      * __construct

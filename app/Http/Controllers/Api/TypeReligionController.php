@@ -10,7 +10,7 @@ use App\Traits\RestResponse;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Api\Contracts\ITypeReligionController;
 
-class TypeReligionController extends Controller
+class TypeReligionController extends Controller implements ITypeReligionController
 {
     use RestResponse;
 

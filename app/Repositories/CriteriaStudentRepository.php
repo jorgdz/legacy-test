@@ -9,6 +9,7 @@ class CriteriaStudentRepository extends BaseRepository
 {
 
     protected $relations = ['typeCriteria', 'studentRecord'];
+    protected $fields = ['qualification'];
 
     /**
      * __construct
