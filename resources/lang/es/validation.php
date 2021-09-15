@@ -146,20 +146,20 @@ return [
 			'string'   => 'El campo nombre de contacto emergencia debe ser una cadena.'
 		],
 		'emergencyContacts.*.em_ct_first_phone'=> [
-			'required' => 'El campo nombre de contacto emergencia es requerido',
-			'string'   => 'El campo nombre de contacto emergencia debe ser una cadena.'
+			'required' => 'El campo número teléfono principal es requerido',
+			'string'   => 'El campo número teléfono principal debe ser una cadena.'
 		],
 		'emergencyContacts.*.status_id'=> [
-			'required' => 'El campo nombre de contacto emergencia es requerido',
-			'integer'  => 'El campo nombre de contacto emergencia debe ser un entero.',
+			'required' => 'El campo estado es requerido',
+			'integer'  => 'El campo estado debe ser un entero.',
 			'exists'   => 'El campo estado seleccionado es inválido.'
 		],
 		'emergencyContacts.*.type_kinship_id'=> [
-			'required' => 'El campo nombre de contacto emergencia es requerido',
-			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
+			'required' => 'El campo parentesco es requerido',
+			'integer'  => 'El campo parentesco debe ser un entero.',
 			'exists'   => 'El campo parentesco seleccionado es inválido.'
 		],
-		'emergencyContacts.*.person_id'=> [
+		'emergencyContacts.*.person_id'=> [		
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
 			'exists'   => 'El campo persona es inválido.'
@@ -508,6 +508,17 @@ return [
 		* user_profiles
 		*/
 		'profile_id' => 'perfil usuario',
+		/*
+		* Emergency Contact
+		*/
+		'em_ct_name' 		=> 'nombre de contacto emergencia',
+		'em_ct_first_phone' => 'número teléfono principal',
+		'type_kinship_id'	=> 'Parentesco',
+		'person_id'			=> 'Persona',
+		/*
+		* Tags Student
+		*/
+		'tg_name' 		=> 'nombre de etiqueta del estudiente',
         /**
          * student_records
          */

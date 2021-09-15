@@ -38,6 +38,7 @@ use App\Http\Controllers\Api\StudentRecordController;
 use App\Http\Controllers\Api\TypekinshipController;
 use App\Http\Controllers\Api\TypeEducationController;
 use App\Http\Controllers\Api\EmergencyContactController;
+use App\Http\Controllers\Api\TagStudentController;
 use App\Http\Controllers\Api\PersonJobController;
 use App\Http\Controllers\Api\PersonController;
 
@@ -381,6 +382,15 @@ Route::delete('criteria-students-records/{criteriaStudentRecord}', [CriteriaStud
 /*
  * CurrentTenant
  */
+Route::post('tenants/edit', [TenantController::class, 'updateCurrentTenant'])->middleware(['auth:sanctum']);//, 'permission:tenant-actualizar-tenant'
+/**
+ * Tag Student
+ */
+Route::get('tags-student', [TagStudentController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:tags_student-listar-etiqueta'*/]);
+Route::get('tags-student/{tagstudent}', [TagStudentController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:tags_student-obtener-etiqueta'*/]);
+Route::post('tags-student', [TagStudentController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:tags_student-crear-etiqueta'*/]);
+Route::put('tags-student/{tagstudent}', [TagStudentController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:tags_student-actualizar-etiqueta'*/]);
+Route::delete('tags-student/{tagstudent}', [TagStudentController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:tags_student-eliminar-etiqueta'*/]);
 Route::post('tenants/edit', [TenantController::class, 'updateCurrentTenant'])->middleware(['auth:sanctum', 'permission:tenant-actualizar-tenant']);
 /**
  * Persona Trabajo
