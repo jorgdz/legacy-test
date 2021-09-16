@@ -279,9 +279,13 @@ return [
 		'inst_name' => 'nombre de la institución',
 		'city_id' => 'ciudad',
 		'type_institute_id' => 'instituto',
+		
+		
+		/**
+		 * tenant
+		 */
 		'logo_name' => 'Nombre del logo',
 		'logo_path' => 'Ruta del logo',
-		'languages' => 'lenguajes',
 
 		/**
 		 * type_institutes
@@ -396,6 +400,12 @@ return [
 		'pers_cell' => 'número celular de la persona',
 		'pers_num_child' => 'número de hijos de la persona',
 		'pers_profession' => 'profesión de la persona',
+		'pers_num_bedrooms' => 'número de dormitorios',
+		'pers_study_reason' => 'motivo de estudio',
+		'pers_num_taxpayers_household' => 'número de contribuyentes en el hogar',
+		'pers_has_vehicle' => 'Tiene vehiculo propio',
+		'city_id' => 'ciudad natal',
+		'vivienda_id' => 'vivienda',
 		'type_identification_id' => '',
 		'user_id' => 'usuario',
 		'type_religion_id' => 'tipo de religión',
@@ -403,6 +413,8 @@ return [
 		'current_city_id' => 'ciudad actual',
 		'sector_id' => 'sector',
 		'ethnic_id' => 'étnica',
+		'languages' => 'lenguajes',
+
 		/**
 		 * PersonalAccessToken
 		 */

@@ -9,7 +9,7 @@ class PersonRepository extends BaseRepository
 {
 
 
-    protected $relations = ['identification', 'religion', 'statusMarital', 'city', 'currentCity', 'sector', 'ethnic', 'user', 'personJob'];
+    protected $relations = ['identification', 'religion', 'statusMarital', 'city', 'currentCity', 'sector', 'ethnic', 'user', 'personJob','livingPlace'];
     protected $fields = ['pers_identification', 'pers_firstname', 'pers_secondname', 'pers_first_lastname', 'pers_second_lastname', 'pers_gender'];
 
     /**

@@ -175,6 +175,31 @@ interface IPersonController {
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="pers_num_bedrooms",
+     *           description="Número de dormitorios",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_study_reason",
+     *           description="Motivo de estudio",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_num_taxpayers_household",
+     *           description="Número de contribuyentes en el hogar",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_has_vehicle",
+     *           description="Tiene vehiculo propio",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="vivienda_id",
+     *           description="ID catalogo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="type_religion_id",
      *           description="ID del tipo de religion",
      *           type="integer",
@@ -472,6 +497,31 @@ interface IPersonController {
      *           property="pers_profession",
      *           description="Profesion",
      *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_num_bedrooms",
+     *           description="Número de dormitorios",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_study_reason",
+     *           description="Motivo de estudio",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_num_taxpayers_household",
+     *           description="Número de contribuyentes en el hogar",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_has_vehicle",
+     *           description="Tiene vehiculo propio",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="vivienda_id",
+     *           description="ID catalogo",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="type_religion_id",

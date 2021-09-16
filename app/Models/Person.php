@@ -35,6 +35,11 @@ class Person extends Model implements AuditableContract
         'pers_cell',
         'pers_num_child',
         'pers_profession',
+        'pers_num_bedrooms',
+        'pers_study_reason',
+        'pers_num_taxpayers_household',
+        'pers_has_vehicle',
+        'vivienda_id',
         'type_identification_id',
         'type_religion_id',
         'status_marital_id',
@@ -75,6 +80,15 @@ class Person extends Model implements AuditableContract
      */
     public function lenguajes () {
         return $this->belongsToMany(TypeLanguage::class,'language_persons','person_id','language_id');
+    }
+
+    /**
+     * living place
+     *
+     * @return void
+     */
+    public function livingPlace () {
+        return $this->belongsTo(Catalog::class, 'vivienda_id');
     }
     
     /**

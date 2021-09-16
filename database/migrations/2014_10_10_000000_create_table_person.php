@@ -27,6 +27,10 @@ class CreateTablePerson extends Migration
             $table->string('pers_cell')->nullable();
             $table->integer('pers_num_child')->nullable();
             $table->string('pers_profession')->nullable();
+            $table->integer('pers_num_bedrooms')->nullable();
+            $table->string('pers_study_reason',255)->nullable();
+            $table->integer('pers_num_taxpayers_household')->nullable();//contribuyentes en el hogar
+            $table->boolean('pers_has_vehicle')->nullable();
 
             $table->integer('type_religion_id')->unsigned();
             $table->foreign('type_religion_id')->references('id')->on('type_religions');
@@ -48,6 +52,9 @@ class CreateTablePerson extends Migration
 
             $table->integer('ethnic_id')->unsigned();
             $table->foreign('ethnic_id')->references('id')->on('ethnics');
+
+            $table->bigInteger('vivienda_id')->unsigned();
+            $table->foreign('vivienda_id')->references('id')->on('catalogs');
 
             $table->timestamps();
             $table->softDeletes();
