@@ -20,5 +20,10 @@ return [
     'error-parameter-id-required' => 'El praremtro id es requerido.',
     'no-auth' => 'No estás autenticado.',
     'no-user-active' => 'Tu usuario no está activo.',
+    'identification-empty' => "El :attribute es requerido",
+    'identification-integer' => "El :attribute debe tener solo dígitos",
+    'identification-between' => "El :attribute debe tener :number caracteres",
+    'identification-failed' => 'El :attribute es invalido',
+    'identification-not-exists' => 'El :attribute no existe'
 ];
 ?>

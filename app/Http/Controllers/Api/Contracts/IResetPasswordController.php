@@ -26,17 +26,13 @@ interface IResetPasswordController
      *       example="myemail@email.com"
      *     ),
      *   ),
-     *   @OA\RequestBody(
+     *   @OA\Parameter(
+     *     name="token",
+     *     description="Token enviado al correo",
+     *     in="query",
      *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="application/json",
-     *       @OA\Schema(
-     *         @OA\Property(
-     *           property="token",
-     *           description="Token enviado al correo",
-     *           type="string",
-     *         ),
-     *       )
+     *     @OA\Schema(
+     *       type="string"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),

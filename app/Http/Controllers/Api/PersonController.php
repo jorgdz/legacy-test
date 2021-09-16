@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Person;
 use App\Cache\PersonCache;
+use App\CustomValidation\LaravelValidatorEc;
+use App\CustomValidation\ValidadorEc;
+use App\Exceptions\Custom\BadRequestException;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,6 +17,9 @@ use App\Http\Requests\UpdateLanguagesPersonRequest;
 use App\Http\Controllers\Api\Contracts\IPersonController;
 use App\Http\Requests\StoreAssignPersonJobsRequest;
 use App\Traits\Auditor;
+use Exception;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class PersonController extends Controller implements IPersonController
 {
@@ -41,17 +47,8 @@ class PersonController extends Controller implements IPersonController
      * @return \Illuminate\Http\Response
      */
     public function store(PersonRequest $request) {
-        DB::beginTransaction();
-        try {
-            $person = new Person($request->all());
-            $person = $this->personCache->save($person);
-
-            DB::commit();
-            return $this->success($person, Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        $person = new Person($request->all());
+        return $this->success($this->personCache->save($person), Response::HTTP_CREATED);
     }
 
     /**
@@ -88,21 +85,12 @@ class PersonController extends Controller implements IPersonController
      * @return \Illuminate\Http\Response
      */
     public function update(PersonRequest $request, Person $person) {
-        DB::beginTransaction();
-        try {
-            $person->fill($request->all());
+        $person->fill($request->all());
 
-            if ($person->isClean())
-                return $this->information(__('messages.nochange'));
+        if ($person->isClean())
+            return $this->information(__('messages.nochange'));
 
-            $response = $this->personCache->save($person);
-
-            DB::commit();
-            return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($this->personCache->save($person));
     }
 
     /**

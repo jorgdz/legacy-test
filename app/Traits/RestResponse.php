@@ -20,10 +20,10 @@ trait RestResponse
 
 	/**
 	 * response
-	 * 
+	 *
 	 * @param mixed $data
 	 * @param mixed $code
-	 * 
+	 *
 	 * @return Illuminate\Http\Response
 	 */
 	public function response ($data, $code = Response::HTTP_OK) {
@@ -77,6 +77,6 @@ trait RestResponse
 			array_push($messageArray,$message);
 			$message = $messageArray;
 		}
-		return collect($message)->unique()->values()->all();	
+		return collect($message)->unique()->values()->all();
 	}
 }

@@ -159,7 +159,7 @@ return [
 			'integer'  => 'El campo parentesco debe ser un entero.',
 			'exists'   => 'El campo parentesco seleccionado es inválido.'
 		],
-		'emergencyContacts.*.person_id'=> [		
+		'emergencyContacts.*.person_id'=> [
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
 			'exists'   => 'El campo persona es inválido.'
@@ -227,10 +227,7 @@ return [
 	|
 	*/
 
-    'hourhand' => 'horario',
-    'offer' => 'oferta',
-
-	'attributes' => [
+    'attributes' => [
 		'blo_typ_name' => 'nombre del tipo de sangre',
 		'blo_typ_description' => 'descripción del tipo de sangre',
 		'status_id' => 'estado',
@@ -279,8 +276,8 @@ return [
 		'inst_name' => 'nombre de la institución',
 		'city_id' => 'ciudad',
 		'type_institute_id' => 'instituto',
-		
-		
+
+
 		/**
 		 * tenant
 		 */
@@ -388,7 +385,7 @@ return [
 		/**
 		 * persons
 		 */
-		'pers_identification' => 'identificación de persona',
+		'pers_identification' => 'número de identificación de la persona',
 		'pers_firstname' => 'primer nombre de la persona',
 		'pers_secondname' => 'segundo nombre de la persona',
 		'pers_first_lastname' => 'primer apellido de la persona',
@@ -406,7 +403,7 @@ return [
 		'pers_has_vehicle' => 'Tiene vehiculo propio',
 		'city_id' => 'ciudad natal',
 		'vivienda_id' => 'vivienda',
-		'type_identification_id' => '',
+		'type_identification_id' => 'tipo de identificación de la persona',
 		'user_id' => 'usuario',
 		'type_religion_id' => 'tipo de religión',
 		'status_marital_id' => 'estado civil',
@@ -547,15 +544,15 @@ return [
         /**
          * person_jobs
          */
-		'per_job_organization' => 'nombre de la organizacion', 
-        'per_job_position' => 'posicion que ocupa en el trabajo', 
-        'per_job_direction' => 'direccion del trabajo', 
-        'per_job_phone' => 'numero telefonico', 
-        'per_job_start_date' => 'fecha de inicio', 
-        'per_job_end_date' => 'fecha de fin', 
-        'per_job_current' => 'trabaja actualmente aqui', 
-        'per_job_iess_affiliated' => 'esta afiliado al iess', 
-        'city_id' => 'ciudad', 
+		'per_job_organization' => 'nombre de la organizacion',
+        'per_job_position' => 'posicion que ocupa en el trabajo',
+        'per_job_direction' => 'direccion del trabajo',
+        'per_job_phone' => 'numero telefonico',
+        'per_job_start_date' => 'fecha de inicio',
+        'per_job_end_date' => 'fecha de fin',
+        'per_job_current' => 'trabaja actualmente aqui',
+        'per_job_iess_affiliated' => 'esta afiliado al iess',
+        'city_id' => 'ciudad',
         'person_id' => 'persona',
 
     	'title' => 'titulo',

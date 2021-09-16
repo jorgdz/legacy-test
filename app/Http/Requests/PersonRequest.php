@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\RuleValidationTypeIdentification;
+use App\Rules\ValidateCiRule;
+use App\Rules\ValidateRucRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PersonRequest extends FormRequest
@@ -23,7 +26,7 @@ class PersonRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'pers_identification'  => 'required|string|unique:tenant.persons,pers_identification',
+            'pers_identification'  => ['nullable','unique:tenant.persons,pers_identification'],
             'pers_firstname'       => 'required|string',
             'pers_secondname'      => 'required|string',
             'pers_first_lastname'  => 'required|string',
@@ -48,10 +51,65 @@ class PersonRequest extends FormRequest
             'ethnic_id'         => 'required|integer|exists:tenant.ethnics,id',
             'type_identification_id' => 'required|integer|exists:tenant.type_identifications,id',
         ];
+
+        $typeIdentification = intval($this->request->get('type_identification_id'));
+        $persIdentification = $this->request->get('pers_identification');
+
+        if(in_array($this->method(), ['POST'])) {
+            switch($typeIdentification) {
+                case $typeIdentification == 1 || $typeIdentification == 3:
+                    if($persIdentification==null) {
+                        $rules['pers_identification'] = [
+                            'required', new ValidateCiRule(""),
+                        ];
+                    } else {
+                        $rules['pers_identification'] = [
+                            'string', new ValidateCiRule($this->request->get('pers_identification'))
+                        ];
+                    }
+                    break;
+                case $typeIdentification == 2:
+                    if($persIdentification==null) {
+                        $rules['pers_identification'] = [
+                            'required', new ValidateRucRule(""),
+                        ];
+                    } else {
+                        $rules['pers_identification'] = [
+                            'string', new ValidateRucRule($this->request->get('pers_identification'))
+                        ];
+                    }
+            }
+        }
+
+
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
             $rules['pers_identification'] = [
                 'unique:tenant.persons,pers_identification,' . $this->person->id
             ];
+
+            switch($typeIdentification) {
+                case $typeIdentification == 1 || $typeIdentification == 3:
+                    if($persIdentification==null) {
+                        $rules['pers_identification'] = [
+                            'required', new ValidateCiRule(""),
+                        ];
+                    } else {
+                        $rules['pers_identification'] = [
+                            'string', new ValidateCiRule($this->request->get('pers_identification'))
+                        ];
+                    }
+                    break;
+                case $typeIdentification == 2:
+                    if($persIdentification==null) {
+                        $rules['pers_identification'] = [
+                            'required', new ValidateRucRule(""),
+                        ];
+                    } else {
+                        $rules['pers_identification'] = [
+                            'string', new ValidateRucRule($this->request->get('pers_identification'))
+                        ];
+                    }
+            }
         }
 
         return $rules;
