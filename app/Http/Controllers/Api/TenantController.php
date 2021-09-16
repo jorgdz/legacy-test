@@ -161,7 +161,7 @@ class TenantController extends Controller implements ITenantController
      * @return \Illuminate\Http\Response
      */
     public function updateCurrentTenant(UpdateTenantRequest $request) {
-        //$this->cache::forget($request->getHost() . '_current_tenant');
+        /* $this->cache::forget($request->getHost() . '_current_tenant'); */
         $this->cache::flush();
 
         $tenantUpdate = CustomTenant::findOrFail(app('currentTenant')->id);
@@ -185,7 +185,8 @@ class TenantController extends Controller implements ITenantController
     * @return \Illuminate\Http\Response
      */
     public function updateLogoCurrentTenant (UpdateLogoCurrentTenantRequest $request) {
-        $this->cache::forget($request->getHost() . '_current_tenant');
+        /* $this->cache::forget($request->getHost() . '_current_tenant'); */
+        $this->cache::flush();
         $tenantUpdate = CustomTenant::findOrFail(app('currentTenant')->id);
 
         if($request->hasFile('logo')) {

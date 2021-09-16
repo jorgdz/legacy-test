@@ -7,9 +7,12 @@ use App\Cache\CatalogCache;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\Contracts\ICatalogController;
+use App\Http\Requests\CatalogRequest;
 
-class CatalogController extends Controller
+class CatalogController extends Controller implements ICatalogController
 {
     use RestResponse;
 
@@ -37,18 +40,28 @@ class CatalogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        //
+    public function store(CatalogRequest $request) {
+        DB::beginTransaction();
+        try {
+            $catalog = new Catalog($request->all());
+            $catalog = $this->catalogCache->save($catalog);
+
+            DB::commit();
+            return $this->success($catalog, Response::HTTP_CREATED);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Catalog  $catalog
+     * @param  int  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function show(Catalog $catalog) {
-        //
+    public function show($id) {
+        return $this->success($this->catalogCache->find($id));
     }
 
     /**
@@ -58,17 +71,21 @@ class CatalogController extends Controller
      * @param  \App\Models\Catalog  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Catalog $catalog) {
-        //
-    }
+    public function update(CatalogRequest $request, Catalog $catalog) {
+        DB::beginTransaction();
+        try {
+            $catalog->fill($request->all());
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Catalog $catalog) {
-        //
+            if ($catalog->isClean())
+                return $this->information(__('messages.nochange'));
+
+            $response = $this->catalogCache->save($catalog);
+
+            DB::commit();
+            return $this->success($response);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
+        }
     }
 }

@@ -19,6 +19,7 @@ class Catalog extends Model implements AuditableContract
         'cat_acronym',
         'cat_description',
         'parent_id',
+        'status_id',
     ];
 
     protected $hidden = [
@@ -28,7 +29,12 @@ class Catalog extends Model implements AuditableContract
         'parent_id',
     ];
 
+    /* Relationship */
+    public function status() {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
+
     public function children() {
-        return $this->hasMany(Catalog::class, 'parent_id')->with('children');
+        return $this->hasMany(Catalog::class, 'parent_id')->with('status')->with('children');
     }
 }

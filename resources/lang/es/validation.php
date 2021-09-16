@@ -587,7 +587,15 @@ return [
 		'password' => 'contraseña',
 		'email' => 'correo',
 		'remember_token' => 'recordar token',
-		'person_id' => 'persona'
+		'person_id' => 'persona',
+
+		/**
+		 * Catalogs
+		 */
+		'cat_name' => 'nombre del catalogo',
+		'cat_description' => 'descripcion del catalogo',
+		'cat_acronym' => 'acrónimo del catalogo',
+		'parent_id' => 'padre'
 	],
 
 ];
