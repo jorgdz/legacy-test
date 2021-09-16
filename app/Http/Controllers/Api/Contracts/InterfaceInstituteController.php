@@ -130,7 +130,15 @@ interface InterfaceInstituteController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "inst_name" : "required",
+     *          "city_id"   : "required|integer",
+     *          "status_id" : "required|integer",
+     *          "type_institute_id" : "required|integer",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -233,7 +241,15 @@ interface InterfaceInstituteController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "inst_name" : "required",
+     *          "city_id"   : "required|integer",
+     *          "status_id" : "required|integer",
+     *          "type_institute_id" : "required|integer",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

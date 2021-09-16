@@ -24,11 +24,11 @@ class CompanyFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'co_name'          => 'required',
-            'co_description'   => 'required',
-            'co_website'   => 'required',
+            'co_name'    => 'required',
+            'co_website' => 'required',
             'co_email'   => 'required:unique:tenant.companies,co_email',
-            'status_id'     => 'required',
+            'status_id'  => 'required',
+            'co_ruc '    => 'required',
         ];
     }
 }

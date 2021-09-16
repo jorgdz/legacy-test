@@ -87,7 +87,14 @@ interface ITenantController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "name": "required|string",
+     *          "domain": "required|string",
+     *          "domain_client": "required|string",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -169,7 +176,14 @@ interface ITenantController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "name": "required|string",
+     *          "domain": "required|string",
+     *          "domain_client": "required|string",
+     *      },
+     *   )),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -266,7 +280,18 @@ interface ITenantController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "name"   :  "required|max:255|string|unique:landlord.tenants,name,tenant->id",
+     *          "transport"   : "required|string|max:255",
+     *          "host"   : "required|string|max:255",
+     *          "port"   : "required|string|max:255",
+     *          "encryption"   : "required|string|max:255",
+     *          "username"   : "required|max:255|string|unique:landlord.mails,username,tenant->mail->id",
+     *          "password"   : "required|max:255|string|unique:landlord.mails,password,tenant->mail->id",            
+     *      },
+     *   )),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -304,7 +329,12 @@ interface ITenantController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "logo" : "image|max:2048",
+     *      },
+     *   )),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

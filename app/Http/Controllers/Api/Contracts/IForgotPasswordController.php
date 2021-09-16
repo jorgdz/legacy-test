@@ -29,7 +29,12 @@ interface IForgotPasswordController
      *   ),
      *   @OA\Response(response=200, description="Se ha enviado un correo de cambio de contraseña"),
      *   @OA\Response(response=404, description="No se pudo enviar el correo electrónico a este nombre de usuario"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "us_username": "required|string",
+     *      },
+     *   )),
      *   @OA\Response(response=500, description="Error interno del servidor")
      * )
      *

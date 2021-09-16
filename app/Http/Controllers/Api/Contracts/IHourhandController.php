@@ -187,7 +187,21 @@ interface IHourhandController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "hour_monday" : "required|boolean",
+     *          "hour_tuesday" : "required|boolean",
+     *          "hour_wednesday" : "required|boolean",
+     *          "hour_thursday" : "required|boolean",
+     *          "hour_friday" : "required|boolean",
+     *          "hour_saturday" : "required|boolean",
+     *          "hour_sunday" : "required|boolean",
+     *          "hour_start_time" : "required",
+     *          "hour_end_time" : "required",
+     *          "status_id" : "required|integer|exists:status,id"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -337,7 +351,21 @@ interface IHourhandController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "hour_monday" : "required|boolean",
+     *          "hour_tuesday" : "required|boolean",
+     *          "hour_wednesday" : "required|boolean",
+     *          "hour_thursday" : "required|boolean",
+     *          "hour_friday" : "required|boolean",
+     *          "hour_saturday" : "required|boolean",
+     *          "hour_sunday" : "required|boolean",
+     *          "hour_start_time" : "required",
+     *          "hour_end_time" : "required",
+     *          "status_id" : "required|integer|exists:status,id"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

@@ -145,7 +145,17 @@ interface ITypeMatterController {
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "tm_name" : "required|string|unique:type_matters,tm_name",
+     *          "tm_acronym" : "required|string|between:2,3",
+     *          "tm_order" : "required|integer",
+     *          "tm_cobro" : "required|boolean",
+     *          "tm_matter_count" : "required|boolean",
+     *          "status_id" : "required|integer|exists:status,id"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -263,7 +273,17 @@ interface ITypeMatterController {
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "tm_name" : "required|string|unique:type_matters,tm_name,typeMatter->id",
+     *          "tm_acronym" : "required|string|between:2,3",
+     *          "tm_order" : "required|integer",
+     *          "tm_cobro" : "required|boolean",
+     *          "tm_matter_count" : "required|boolean",
+     *          "status_id" : "required|integer|exists:status,id"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

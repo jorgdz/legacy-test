@@ -132,7 +132,14 @@ interface IParallelController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "par_name" : "required|unique:parallels,par_name",
+     *          "par_description" : "required",
+     *          "par_acronym" : "max:3"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -236,7 +243,13 @@ interface IParallelController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "par_name" : "required|unique:parallels,par_name,parallel->id",
+     *          "par_acronym" : "max:3"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

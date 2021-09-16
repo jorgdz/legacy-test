@@ -166,7 +166,22 @@ interface IPeriodController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *        "per_name" : "required|string|unique:periods,per_name|max:255",
+     *        "per_reference" : "required|string|unique:periods,per_reference|max:100",
+     *        "per_min_matter_enrollment" : "required|integer",
+     *        "per_max_matter_enrollment" : "required|integer",
+     *        "campus_id" : "required|integer|exists:campus,id",
+     *        "type_period_id" : "required|integer|exists:type_periods,id",
+     *        "status_id" : "required|integer|exists:status,id",
+     *        "offers" : "array",
+     *        "offers.*" : "integer|exists:offers,id|distinct",
+     *        "hourhands" : "array",
+     *        "hourhands.*" : "integer|exists:hourhands,id|distinct"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -384,7 +399,22 @@ interface IPeriodController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *        "per_name" : "required|string|unique:periods,per_name,period->id|max:255",
+     *       "per_reference" : "required|string|unique:periods,per_reference,period->id|max:100",
+     *       "per_min_matter_enrollment" : "required|integer",
+     *       "per_max_matter_enrollment" : "required|integer",
+     *       "campus_id" : "required|integer|exists:campus,id",
+     *       "type_period_id" : "required|integer|exists:type_periods,id",
+     *       "status_id" : "required|integer|exists:status,id",
+     *       "offers" : "array",
+     *       "offers.*" : "integer|exists:offers,id|distinct",
+     *       "hourhands" : "array",
+     *       "hourhands.*" : "integer|exists:hourhands,id|distinct"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

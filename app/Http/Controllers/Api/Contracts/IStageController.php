@@ -131,7 +131,15 @@ interface IStageController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "stg_name" : "required|string|unique:stages,stg_name|max:255",
+     *          "stg_description" : "required|string|unique:stages,stg_description|max:255",
+     *          "stg_acronym" : "required|string|unique:stages,stg_acronym|between:2,4",
+     *          "status_id" : "required|integer|exists:status,id",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -234,7 +242,15 @@ interface IStageController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *     "stg_name" : "required|string|unique:stages,stg_name,stage->id|max:255",
+     *       "stg_description" : "required|string|unique:stages,stg_description,stage->id|max:255",
+     *       "stg_acronym" : "required|string|unique:stages,stg_acronym,stage->id|between:2,4",
+     *       "status_id" : "required|integer|exists:status,id",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

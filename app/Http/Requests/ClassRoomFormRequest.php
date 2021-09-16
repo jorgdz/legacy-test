@@ -25,7 +25,6 @@ class ClassRoomFormRequest extends FormRequest
     {
         return [
             'cl_name' => 'required|unique:tenant.classrooms,cl_name',
-            'cl_description' => 'required',
             'cl_acronym' => 'max:4',
         ];
     }

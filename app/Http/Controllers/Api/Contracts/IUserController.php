@@ -160,7 +160,16 @@ interface IUserController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "us_username": "required|string|unique:users,us_username",
+     *          "email"      : "required|email|unique:users,email",
+     *          "password"   : "required|string",
+     *          "status_id"  : "required|integer|exists:status,id",
+     *          "person_id"  : "required|integer|exists:persons,id"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -218,7 +227,16 @@ interface IUserController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "us_username": "required|string|unique:users,us_username",
+     *          "email"      : "required|email|unique:users,email",
+     *          "password"   : "required|string",
+     *          "status_id"  : "required|integer|exists:status,id",
+     *          "person_id"  : "required|integer|exists:persons,id"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -827,7 +845,13 @@ interface IUserController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "user_profile_id" : "required|integer",
+     *          "status_id" : "required|integer|exists:status,id"
+     *      },
+     *   )),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

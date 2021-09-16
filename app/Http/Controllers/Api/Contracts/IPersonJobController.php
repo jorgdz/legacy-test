@@ -166,7 +166,21 @@ interface IPersonJobController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *            "per_job_organization" : "nullable|string",
+     *        "per_job_position" : "nullable|string",
+     *        "per_job_direction" : "nullable|string",
+     *        "per_job_phone" : "nullable|string|max:20",
+     *        "start_date" : "nullable|date",
+     *        "end_date"   : "nullable|date",
+     *        "per_job_current" : "nullable|boolean",
+     *        "city_id"   : "required|integer|exists:cities,id",
+     *        "person_id"  : "required|integer|exists:persons,id",
+     *        "status_id"  : "required|integer|exists:status,id"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -298,7 +312,21 @@ interface IPersonJobController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *         "per_job_organization" : "nullable|string",
+     *        "per_job_position" : "nullable|string",
+     *        "per_job_direction" : "nullable|string",
+     *        "per_job_phone" : "nullable|string|max:20",
+     *        "start_date" : "nullable|date",
+     *        "end_date"   : "nullable|date",
+     *        "per_job_current" : "nullable|boolean",
+     *        "city_id"   : "required|integer|exists:cities,id",
+     *        "person_id"  : "required|integer|exists:persons,id",
+     *        "status_id"  : "required|integer|exists:status,id"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

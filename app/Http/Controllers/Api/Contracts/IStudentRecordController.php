@@ -145,7 +145,17 @@ interface IStudentRecordController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "student_id": "required|integer|exists:students,id",
+     *          "education_level_id": "required|integer|exists:education_levels,id",
+     *          "pensum_id": "required|integer|exists:pensums,id",
+     *          "type_student_id": "required|integer|exists:type_students,id",
+     *          "period_id": "required|integer|exists:periods,id",
+     *          "status_id": "required|integer|exists:status,id",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -264,7 +274,17 @@ interface IStudentRecordController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "student_id": "required|integer|exists:students,id",
+     *          "education_level_id": "required|integer|exists:education_levels,id",
+     *          "pensum_id": "required|integer|exists:pensums,id",
+     *          "type_student_id": "required|integer|exists:type_students,id",
+     *          "period_id": "required|integer|exists:periods,id",
+     *          "status_id": "required|integer|exists:status,id",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

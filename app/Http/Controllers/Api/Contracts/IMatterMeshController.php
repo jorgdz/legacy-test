@@ -146,7 +146,17 @@ interface IMatterMeshController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "matter_id" : "required|integer",
+     *          "mesh_id" : "required|integer",
+     *          "calification_type" : "required",
+     *          "min_calification" : "required",
+     *          "num_fouls" : "required",
+     *          "matter_rename" : "required"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -260,7 +270,17 @@ interface IMatterMeshController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "matter_id" : "required|integer",
+     *          "mesh_id" : "required|integer",
+     *          "calification_type" : "required",
+     *          "min_calification" : "required",
+     *          "num_fouls" : "required",
+     *          "matter_rename" : "required"
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

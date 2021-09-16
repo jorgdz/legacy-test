@@ -90,7 +90,15 @@ interface IResetPasswordController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Se ha cambiado la contraseña"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *        "token" : "required",
+     *       "email" : "required|email",
+     *       "password" : "required|confirmed",
+     *       "password_confirmation" : "required|same:password"
+     *      },
+     *   )),
      *   @OA\Response(response=500, description="Error interno del servidor")
      * )
      *

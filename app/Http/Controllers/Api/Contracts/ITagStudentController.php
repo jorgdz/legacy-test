@@ -128,8 +128,10 @@ interface ITagStudentController
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
-     *      @OA\Property(type="string", property="tg_name", example="required|string"),
-     *      @OA\Property(type="string", property="status_id", example="required|integer|exists"),
+     *      example={
+     *          "tg_name": "required|string",
+     *          "status_id": "required|integer|exists",
+     *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
@@ -228,7 +230,13 @@ interface ITagStudentController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "tg_name": "required|string",
+     *          "status_id": "required|integer|exists",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

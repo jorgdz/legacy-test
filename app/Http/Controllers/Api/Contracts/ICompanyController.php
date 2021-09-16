@@ -226,7 +226,16 @@ interface ICompanyController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "co_name"    : "required",
+     *          "co_ruc"    : "required",
+     *          "co_website" : "required",
+     *          "co_email"   : "required:unique:tenant.companies,co_email",
+     *          "status_id"  : "required",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -424,7 +433,16 @@ interface ICompanyController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "co_name"    : "required",
+     *          "co_ruc"    : "required",
+     *          "co_website" : "required",
+     *          "co_email"   : "required:unique:tenant.companies,co_email",
+     *          "status_id"  : "required",
+     *      },
+     *   )),
      *   @OA\Response(response=401, description="No autenticado"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")

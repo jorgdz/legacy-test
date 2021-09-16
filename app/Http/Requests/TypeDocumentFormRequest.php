@@ -27,14 +27,12 @@ class TypeDocumentFormRequest extends FormRequest
             case 'POST':
                 return [
                     'typ_doc_name' => 'required|max:255',
-                    'typ_doc_description' => 'required|max:255',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
                 break;
             case 'PUT':
                 return [
                     'typ_doc_name' => 'required|max:255',
-                    'typ_doc_description' => 'required|max:255',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                     //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
                 ];
@@ -43,7 +41,6 @@ class TypeDocumentFormRequest extends FormRequest
             case 'PATCH':
                 return [
                     'typ_doc_name' => 'required|max:255',
-                    'typ_doc_description' => 'required|max:255',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                     //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
                 ];
