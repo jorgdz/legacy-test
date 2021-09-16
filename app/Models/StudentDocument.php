@@ -10,10 +10,18 @@ use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-
-class TypeDocument extends Model implements AuditableContract
+class StudentDocument extends Model implements AuditableContract
 {
+
     use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait, Auditable;
+
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'student_documents';
 
     /**
      * The attributes that are mass assignable.
@@ -21,17 +29,13 @@ class TypeDocument extends Model implements AuditableContract
      * @var array
      */
     protected $fillable = [
-        'typ_doc_name',
-        'typ_doc_description',
+        'stu_doc_url',
+        'stu_doc_name_file',
+        'type_document_id',
+        'students_id',
         'status_id'
     ];
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'type_document';
 
     protected $dates = ['deleted_at'];
 
@@ -39,20 +43,24 @@ class TypeDocument extends Model implements AuditableContract
 
 
     /**
-     * softCascade
-     *
-     * @var array
-     */
-    protected $softCascade = ['studentDocuments']; 
-
-    /**
-     * studentDocuments
+     * typeDocument
      *
      * @return void
      */
-    public function studentDocuments()
+    public function typeDocument()
     {
-        return $this->hasMany(StudentDocument::class);
+        return $this->belongsTo(typeDocument::class, 'type_document_id');
+    }
+
+
+    /**
+     * student
+     *
+     * @return void
+     */
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'students_id');
     }
 
 

@@ -13,13 +13,19 @@ class CreateMatterStatusTable extends Migration
      */
     public function up()
     {
+        
+
         Schema::create('matter_status', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('name', 255)->nullable();
             $table->string('description', 255)->nullable();
-            $table->string('type', 255)->nullable();
+            //$table->string('type', 255)->nullable();
 
+            $table->integer('type_matter_id')->unsigned();
+            $table->foreign('type_matter_id')->references('id')->on('type_matters');
+           
+            
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

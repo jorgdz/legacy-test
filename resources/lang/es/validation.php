@@ -141,78 +141,82 @@ return [
 		'attribute-name' => [
 			'rule-name'  => 'custom-message',
 		],
-		'emergencyContacts.*.em_ct_name'=> [
+		'emergencyContacts.*.em_ct_name' => [
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'string'   => 'El campo nombre de contacto emergencia debe ser una cadena.'
 		],
-		'emergencyContacts.*.em_ct_first_phone'=> [
+		'emergencyContacts.*.em_ct_first_phone' => [
 			'required' => 'El campo número teléfono principal es requerido',
 			'string'   => 'El campo número teléfono principal debe ser una cadena.'
 		],
-		'emergencyContacts.*.status_id'=> [
+		'emergencyContacts.*.status_id' => [
 			'required' => 'El campo estado es requerido',
 			'integer'  => 'El campo estado debe ser un entero.',
 			'exists'   => 'El campo estado seleccionado es inválido.'
 		],
-		'emergencyContacts.*.type_kinship_id'=> [
+		'emergencyContacts.*.type_kinship_id' => [
 			'required' => 'El campo parentesco es requerido',
 			'integer'  => 'El campo parentesco debe ser un entero.',
 			'exists'   => 'El campo parentesco seleccionado es inválido.'
 		],
+<<<<<<< HEAD
+		'emergencyContacts.*.person_id' => [
+=======
 		'emergencyContacts.*.person_id'=> [
+>>>>>>> 8fbd57c1b2da8f234a32f6828cb46126078330b9
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
 			'exists'   => 'El campo persona es inválido.'
 		],
-		'jobs.*.per_job_organization'=> [
+		'jobs.*.per_job_organization' => [
 			'string'   => 'El campo organizacion debe ser una cadena.'
 		],
-		'jobs.*.per_job_position'=> [
+		'jobs.*.per_job_position' => [
 			'string'   => 'El campo posicion debe ser una cadena.'
 		],
-		'jobs.*.per_job_direction'=> [
+		'jobs.*.per_job_direction' => [
 			'string'   => 'El campo direccion debe ser una cadena.'
 		],
-		'jobs.*.per_job_phone'=> [
+		'jobs.*.per_job_phone' => [
 			'string'   => 'El campo telefono debe ser una cadena.',
 			'max'      => [
 				'string'  => 'El campo telefono debe ser menor que 20 caracteres.',
 			]
 		],
-		'jobs.*.per_job_start_date'=> [
+		'jobs.*.per_job_start_date' => [
 			'date'   => 'El campo fecha de inicio no es una fecha válida.'
 		],
-		'jobs.*.per_job_end_date'=> [
+		'jobs.*.per_job_end_date' => [
 			'date'   => 'El campo fecha de fin no es una fecha válida.'
 		],
-		'jobs.*.per_job_current'=> [
+		'jobs.*.per_job_current' => [
 			'boolean'   => 'El campo actual debe ser verdadero o falso.'
 		],
-		'jobs.*.city_id'=> [
+		'jobs.*.city_id' => [
 			'required' => 'El campo ciudad es requerido',
 			'integer'  => 'El campo ciudad debe ser un entero.',
 			'exists'   => 'El campo ciudad seleccionado es inválido.'
 		],
-		'jobs.*.status_id'=> [
+		'jobs.*.status_id' => [
 			'required' => 'El campo estado es requerido',
 			'integer'  => 'El campo estado debe ser un entero.',
 			'exists'   => 'El campo estado seleccionado es inválido.'
 		],
-        'hourhands.*' => [
-            'exists' => 'El valor del campo horario seleccionado es inválido.',
-            'integer' => 'El valor del campo horario debe ser un entero.',
-            'distinct' => 'El valor del campo horario tiene un valor duplicado.'
-        ],
-        'offers.*' => [
-            'exists' => 'El valor del campo oferta seleccionado es inválido.',
-            'integer' => 'El valor del campo oferta debe ser un entero.',
-            'distinct' => 'El valor del campo oferta tiene un valor duplicado.'
-        ],
+		'hourhands.*' => [
+			'exists' => 'El valor del campo horario seleccionado es inválido.',
+			'integer' => 'El valor del campo horario debe ser un entero.',
+			'distinct' => 'El valor del campo horario tiene un valor duplicado.'
+		],
+		'offers.*' => [
+			'exists' => 'El valor del campo oferta seleccionado es inválido.',
+			'integer' => 'El valor del campo oferta debe ser un entero.',
+			'distinct' => 'El valor del campo oferta tiene un valor duplicado.'
+		],
 		'languages.*' => [
-            'exists' => 'El valor del campo lenguaje seleccionado es inválido.',
-            'integer' => 'El valor del campo lenguaje debe ser un entero.',
-            'distinct' => 'El valor del campo lenguaje tiene un valor duplicado.'
-        ],
+			'exists' => 'El valor del campo lenguaje seleccionado es inválido.',
+			'integer' => 'El valor del campo lenguaje debe ser un entero.',
+			'distinct' => 'El valor del campo lenguaje tiene un valor duplicado.'
+		],
 
 	],
 
@@ -227,7 +231,14 @@ return [
 	|
 	*/
 
+<<<<<<< HEAD
+	'hourhand' => 'horario',
+	'offer' => 'oferta',
+
+	'attributes' => [
+=======
     'attributes' => [
+>>>>>>> 8fbd57c1b2da8f234a32f6828cb46126078330b9
 		'blo_typ_name' => 'nombre del tipo de sangre',
 		'blo_typ_description' => 'descripción del tipo de sangre',
 		'status_id' => 'estado',
@@ -363,13 +374,13 @@ return [
 		'per_max_matter_enrollment' => 'maximo de materia de matrícula por período',
 		'campus_id' => 'campus',
 		'type_period_id' => 'tipo de periodo',
-        'offers' => 'las opciones de ofertas',
-        'hourhands' => 'las opciones de los horarios',
-        /**
-         * hourhands
-         */
-        'hour_start_time' => 'hora de inicio',
-        'hour_end_time' => 'hora final',
+		'offers' => 'las opciones de ofertas',
+		'hourhands' => 'las opciones de los horarios',
+		/**
+		 * hourhands
+		 */
+		'hour_start_time' => 'hora de inicio',
+		'hour_end_time' => 'hora final',
 		/**
 		 * period_stages
 		 */
@@ -555,7 +566,15 @@ return [
         'city_id' => 'ciudad',
         'person_id' => 'persona',
 
-    	'title' => 'titulo',
+		/**
+		 * student_documents
+		 */
+		'stu_doc_url' => 'url del documento',
+		'stu_doc_name_file' => 'nombre del archivo',
+		'type_document_id' => 'tipo documento',
+		'students_id' => 'estudiante',
+
+		'title' => 'titulo',
 		'name' => 'nombre',
 		'description' => 'descripcion',
 		'price' => 'precio',

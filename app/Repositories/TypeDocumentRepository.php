@@ -12,7 +12,7 @@ class TypeDocumentRepository extends BaseRepository
 {
 
     protected $relations = [
-        'status'
+       'studentDocuments','status'
     ];
 
     protected $fields = [

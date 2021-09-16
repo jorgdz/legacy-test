@@ -24,6 +24,9 @@ return [
     'identification-integer' => "El :attribute debe tener solo dígitos",
     'identification-between' => "El :attribute debe tener :number caracteres",
     'identification-failed' => 'El :attribute es invalido',
-    'identification-not-exists' => 'El :attribute no existe'
+    'identification-not-exists' => 'El :attribute no existe',
+    'file-extensions-allowed' => "Extensiones permitidas :file",
+    'error-save-local-storage' => 'Error al guardar archivo en el local storage.',
+    'error-file-not-exist'=>'El archivo solicitado no existe en nuestro servidor!',
 ];
 ?>

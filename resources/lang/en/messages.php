@@ -25,5 +25,8 @@ return [
     'identification-between' => 'The :attribute must have :number characters',
     'identification-failed' => 'The :attribute is invalid',
     'identification-not-exists' => 'The :attribute does not exist',
+    'file-extensions-allowed' => "Allowed extensions :file",
+    'error-save-local-storage'=>'Error saving file to local storage',
+    'error-file-not-exist'=>'Requested file does not exist on our server!',
 ];
 ?>

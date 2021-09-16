@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Http\Requests\StudentDocumentFormRequest;
+use App\Models\Student;
+use App\Models\StudentDocument;
 use Illuminate\Http\Request;
-use App\Http\Requests\ShowByUserProfileIdRequest;
-use App\Http\Requests\TypeDocumentFormRequest;
-use App\Models\TypeDocument;
 
-interface ITypeDocumentController
+
+
+interface IStudentDocumentController
 {
 
     /**
      * @OA\Get(
-     *   path="/api/type-document",
-     *   tags={"Tipo de Documentos"},
+     *   path="/api/student-document",
+     *   tags={"Documentos estudiantes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar los tipos de documentos",
-     *   description="Muestra todas los tipos de documentos en formato JSON",
-     *   operationId="getAllTypeDocuments",
+     *   summary="Listar los documentos estudiantes",
+     *   description="Muestra la lista de documentos de estudiantes en formato JSON",
+     *   operationId="getAllStudentDocuments",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -88,16 +90,17 @@ interface ITypeDocumentController
      */
     public function index(Request $request);
 
+
     /**
      * @OA\Post(
-     *   path="/api/type-document",
-     *   tags={"Tipo de Documentos"},
+     *   path="/api/student-document",
+     *   tags={"Documentos estudiantes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear tipo de documento",
-     *   description="Crear nuevo Tipo documento.",
-     *   operationId="addTypeDocument",
+     *   summary="Crear Documento Estudiantes",
+     *   description="Subir el documento Estudiante.",
+     *   operationId="addStudentDocument",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -109,18 +112,28 @@ interface ITypeDocumentController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="typ_doc_name",
-     *           description="Nombre del tipo documento",
-     *           type="string",
+     *           property="stu_doc_name_file[]",
+     *           description="Array file Documento del estudiante",
+     *           type="array",
+     *           @OA\Items(
+     *             type="string",
+     *             format="binary",
+     *           ),
+     *         
      *         ),
-     *         @OA\Property(
-     *           property="typ_doc_description",
-     *           description="Descripcion de tipo documento",
-     *           type="string",
+     *          @OA\Property(
+     *           property="type_document_id",
+     *           description="Id Tipo documento",
+     *           type="integer",
+     *         ),
+     *          @OA\Property(
+     *           property="students_id",
+     *           description="Id Estudiante",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado de la malla",
+     *           description="Estado de documento estudiante",
      *           type="integer",
      *         ),
      *       ),
@@ -130,8 +143,10 @@ interface ITypeDocumentController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *           "typ_doc_name": "required|max:255",
-     *           "status_id": "required|integer|exists:status,id"
+     *          "stu_doc_name_file" : "array|required|extensionFile",
+     *          "type_document_id" : "required|integer|exists:tenant.type_document,id",
+     *          "students_id" : "required|integer|exists:tenant.students,id",
+     *          "status_id" : "required|integer|exists:status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -140,19 +155,18 @@ interface ITypeDocumentController
      * )
      *
      */
-    public function store(TypeDocumentFormRequest $educationLevelFormRequest);
-
+    public function store(StudentDocumentFormRequest $studentDocumentFormRequest);
 
     /**
      * @OA\Get(
-     *   path="/api/type-document/{id}",
-     *   tags={"Tipo de Documentos"},
+     *   path="/api/student-document/{id}",
+     *   tags={"Documentos estudiantes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener un tipo de documento",
-     *   description="Muestra información específica de un tipo de documento.",
-     *   operationId="getIdTypeDocument",
+     *   summary="Obtener un documento estudiante",
+     *   description="Muestra información específica de un documento estudiante.",
+     *   operationId="getIdStudentDocument",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -165,7 +179,7 @@ interface ITypeDocumentController
      *   ),
      *   @OA\Parameter(
      *     name="id",
-     *     description="Id del tipo de documento",
+     *     description="Id del Documento estudiante",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -184,83 +198,19 @@ interface ITypeDocumentController
     public function show($id);
 
 
-    /**
-     * @OA\Put(
-     *   path="/api/type-document/{typeDocument}",
-     *   tags={"Tipo de Documentos"},
-     *   security={
-     *      {"api_key_security": {}},
-     *   },
-     *   summary="Actualizar tipo documento",
-     *   description="Actualizar un tipo de documento.",
-     *   operationId="updateTypeDocument",
-     *   @OA\Parameter(
-     *     name="typeDocument",
-     *     description="Id del tipo de documento",
-     *     in="path",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="1"
-     *     ),
-     *   ),
-     *   @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="application/json",
-     *       @OA\Schema(
-     *         @OA\Property(
-     *           property="user_profile_id",
-     *           description="Id del perfil de usuario",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="typ_doc_name",
-     *           description="Nombre del tipo de documento",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="typ_doc_description",
-     *           description="Descripcion del tipo de documento",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="status_id",
-     *           description="Estado del tipo de calificación",
-     *           type="integer",
-     *         ),
-     *       ),
-     *     ),
-     *   ),
-     *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
-     *   @OA\JsonContent(
-     *      example={
-     *           "typ_doc_name": "required|max:255",
-     *           "status_id": "required|integer|exists:status,id"
-     *      },
-     *   )),
-     *   @OA\Response(response=401, description="No autenticado"),
-     *   @OA\Response(response=403, description="No autorizado"),
-     *   @OA\Response(response=500, description="Error interno del servidor")
-     * )
-     *
-     */
-    public function update(TypeDocumentFormRequest $request, TypeDocument $typeDocument);
-
 
     /**
      * @OA\Delete(
-     *   path="/api/type-document/{typeDocument}",
-     *   tags={"Tipo de Documentos"},
+     *   path="/api/student-document/{studentDocument}",
+     *   tags={"Documentos estudiantes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un tipo de documento",
-     *   description="Eliminar un tipo de documento por Id",
-     *   operationId="deleteTypeDocument",
+     *   summary="Eliminar un documento estudiante",
+     *   description="Eliminar un documento estudiante por Id",
+     *   operationId="deleteStudenDocument",
      *   @OA\Parameter(
-     *     name="typeDocument",
+     *     name="studentDocument",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -289,5 +239,47 @@ interface ITypeDocumentController
      * )
      *
      */
-    public function destroy(TypeDocument $typeDocument);
+    public function destroy(StudentDocument $studentDocument);
+
+
+
+
+    /**
+     * @OA\Get(
+     *   path="/api/student-document/download/{filename}",
+     *   tags={"Documentos estudiantes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Descargar documento estudiante",
+     *   description="Descargar estudiante documento estudiante.",
+     *   operationId="getDownloadStudentDocument",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="filename",
+     *     description="Nombre del Documento estudiante",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function download($filename);
 }

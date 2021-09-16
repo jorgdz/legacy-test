@@ -48,7 +48,7 @@ class Student extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $softCascade = ['studentRecords']; //courseStudent
+    protected $softCascade = ['studentRecords','studentDocuments']; //courseStudent
 
     /**
      * The attributes that are mass assignable.
@@ -67,6 +67,16 @@ class Student extends Model implements AuditableContract
     public function studentRecords(): HasMany
     {
         return $this->hasMany(StudentRecord::class);
+    }
+
+    /**
+     * studentDocuments
+     *
+     * @return void
+     */
+    public function studentDocuments()
+    {
+        return $this->hasMany(StudentDocument::class);
     }
 
     /**

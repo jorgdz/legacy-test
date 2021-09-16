@@ -10,6 +10,7 @@ use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotFoundException;
 use Illuminate\Auth\AuthenticationException;
 use App\Exceptions\Custom\BadRequestException;
+use App\Exceptions\Custom\FailLocalStorageRequestException;
 use App\Exceptions\Custom\NotContentException;
 use Illuminate\Validation\ValidationException;
 use App\Exceptions\Custom\UnprocessableException;
@@ -110,6 +111,7 @@ class Handler extends ExceptionHandler
                 || $exception instanceof BadRequestException
                 || $exception instanceof NotContentException
                 || $exception instanceof NotFoundException
+                || $exception instanceof FailLocalStorageRequestException
                 ) {
 
                 $code = $exception->getStatusCode();

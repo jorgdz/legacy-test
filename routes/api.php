@@ -56,6 +56,7 @@ require __DIR__ . "/channels/education-levels.php";
 require __DIR__ . "/channels/type-document.php";
 require __DIR__ . "/channels/persons.php";
 require __DIR__ . "/channels/catalogs.php";
+require __DIR__ . "/channels/student-documents.php";
 
 /*
 |--------------------------------------------------------------------------
