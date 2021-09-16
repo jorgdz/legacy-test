@@ -8,7 +8,7 @@ use App\Repositories\Base\BaseRepository;
 
 class HourhandRepository extends BaseRepository
 {
-    protected $relations = ['status'];//,'hourhand_period','courses'
+    protected $relations = ['status']; //,'hourhand_period','courses'
 
     /**
      * __construct
@@ -17,15 +17,5 @@ class HourhandRepository extends BaseRepository
      */
     public function __construct (Hourhand $hourhand) {
         parent::__construct($hourhand);
-    }
-
-    /**
-     * save
-     *
-     * @return void
-     */
-    public function save (Model $hourhand) {
-        $hourhand->save();
-        return $hourhand;
     }
 }

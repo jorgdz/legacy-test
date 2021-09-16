@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Http\Requests\UpdateLogoCurrentTenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
 use App\Models\CustomTenant;
 use Illuminate\Http\Request;
@@ -222,14 +223,14 @@ interface ITenantController
      *       mediaType="multipart/form-data",
      *       @OA\Schema(
      *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="name",
      *           description="Nombre del inquilino",
      *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="logo",
-     *           description="Logo del inquilino",
-     *           type="file",
      *         ),
      *         @OA\Property(
      *           property="transport",
@@ -273,4 +274,42 @@ interface ITenantController
      *
      */
     public function updateCurrentTenant(UpdateTenantRequest $request);
+
+    /**
+     * @OA\Post(
+     *   path="/api/tenants/logo",
+     *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Cambiar logo del inquilino",
+     *   description="Editar el logo del inquilino actual",
+     *   operationId="editLogoCurrentTenant",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="logo",
+     *           description="Logo del inquilino",
+     *           type="file",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updateLogoCurrentTenant(UpdateLogoCurrentTenantRequest $request);
 }

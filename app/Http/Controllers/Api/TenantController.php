@@ -17,6 +17,7 @@ use App\Http\Requests\UpdateTenantRequest;
 use Illuminate\Support\Facades\File as FileFacade;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Api\Contracts\ITenantController;
+use App\Http\Requests\UpdateLogoCurrentTenantRequest;
 
 class TenantController extends Controller implements ITenantController
 {
@@ -160,24 +161,34 @@ class TenantController extends Controller implements ITenantController
      * @return \Illuminate\Http\Response
      */
     public function updateCurrentTenant(UpdateTenantRequest $request) {
-        $this->cache::forget($request->getHost() . '_current_tenant');
+        //$this->cache::forget($request->getHost() . '_current_tenant');
+        $this->cache::flush();
 
         $tenantUpdate = CustomTenant::findOrFail(app('currentTenant')->id);
         $mailUpdate = Mail::find($tenantUpdate->mail->id);
 
-        $name_anterior = $tenantUpdate->name;
-
         $tenantUpdate->fill($request->only('name'));
         $mailUpdate->fill($request->except('name'));
 
-        if ($tenantUpdate->isClean() && $mailUpdate->isClean() && $request->file('logo')==null)
+        if ($tenantUpdate->isClean() && $mailUpdate->isClean())
             return $this->information(__('messages.nochange'));
 
-        if($request->name !== $name_anterior){
-            config()->set('filesystems.disks.tenant_system.root', storage_path("app/{$request->name}"));
-        }
+        $tenantUpdate->save();
+        $mailUpdate->save();
+        return $this->success($tenantUpdate);
+    }
 
-        if($request->hasFile('logo')){
+    /**
+     * updateLogoCurrentTenant
+     *
+     * @param  mixed $request
+    * @return \Illuminate\Http\Response
+     */
+    public function updateLogoCurrentTenant (UpdateLogoCurrentTenantRequest $request) {
+        $this->cache::forget($request->getHost() . '_current_tenant');
+        $tenantUpdate = CustomTenant::findOrFail(app('currentTenant')->id);
+
+        if($request->hasFile('logo')) {
             // Get just ext
             $extension = $request->file('logo')->getClientOriginalExtension();
 
@@ -188,13 +199,12 @@ class TenantController extends Controller implements ITenantController
             $tenantUpdate->logo_name = $filename;
 
             $tenantUpdate->logo_path = url('/').'/storage/'.$tenantUpdate->name.'/'.$filename;
+            
+            $tenantUpdate->save();
         }
-
-        $tenantUpdate->save();
-        $mailUpdate->save();
 
         $this->cache::forget(request()->root() . '/api/as-tenant_as_current_tenant');
 
         return $this->success($tenantUpdate);
-    }
+    } 
 }

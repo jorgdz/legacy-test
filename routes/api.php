@@ -384,6 +384,8 @@ Route::delete('criteria-students-records/{criteriaStudentRecord}', [CriteriaStud
  * CurrentTenant
  */
 Route::post('tenants/edit', [TenantController::class, 'updateCurrentTenant'])->middleware(['auth:sanctum', 'permission:tenant-actualizar-tenant']);
+Route::post('tenants/logo', [TenantController::class, 'updateLogoCurrentTenant'])->middleware(['auth:sanctum', 'permission:tenant-actualizar-tenant']);
+
 /**
  * Tag Student
  */

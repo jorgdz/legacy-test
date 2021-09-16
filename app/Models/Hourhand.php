@@ -20,9 +20,17 @@ class Hourhand extends Model implements AuditableContract
      * @var array
      */
     protected $fillable = [
-        'status_id',
+        'hour_monday',
+        'hour_tuesday',
+        'hour_wednesday',
+        'hour_thursday',
+        'hour_friday',
+        'hour_saturday',
+        'hour_sunday',
+        'hour_description',
         'hour_start_time',
-        'hour_end_time'
+        'hour_end_time',
+        'status_id',
     ];
 
     /**

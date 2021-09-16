@@ -26,14 +26,14 @@ class UpdateTenantRequest extends FormRequest
         $tenant = app('currentTenant');
         //dd($tenant->mail->id);
         return [
-            'name'   => 'required|string|unique:landlord.tenants,name,'.$tenant->id.'|max:255',
-            'transport'   => 'required|string|unique:landlord.mails,transport,'.$tenant->mail->id.'|max:255',
-            'host'   => 'required|string|unique:landlord.mails,host,'.$tenant->mail->id.'|max:255',
-            'port'   => 'required|integer|unique:landlord.mails,port,'.$tenant->mail->id,
-            'encryption'   => 'required|string|unique:landlord.mails,encryption,'.$tenant->mail->id.'|max:255',
-            'username'   => 'required|string|unique:landlord.mails,username,'.$tenant->mail->id.'|max:255',
-            'password'   => 'required|string|unique:landlord.mails,password,'.$tenant->mail->id.'|max:255',
-            'logo'   => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'//|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000
+            'name'   => 'required|max:255|string|unique:landlord.tenants,name,'.$tenant->id,
+            'transport'   => 'required|string|max:255',
+            'host'   => 'required|string|max:255',
+            'port'   => 'required|string|max:255',
+            'encryption'   => 'required|string|max:255',
+            'username'   => 'required|max:255|string|unique:landlord.mails,username,'.$tenant->mail->id,
+            'password'   => 'required|max:255|string|unique:landlord.mails,password,'.$tenant->mail->id,            
+            //'logo'   => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'//|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000
         ];
     }
 }

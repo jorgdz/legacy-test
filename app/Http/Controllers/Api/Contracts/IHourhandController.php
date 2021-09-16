@@ -77,6 +77,15 @@ interface IHourhandController
      *       type="string",
      *     ),
      *   ),
+     *   @OA\Parameter(
+     *     name="data",
+     *     description="Listar todos los horarios sin paginar",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -120,6 +129,54 @@ interface IHourhandController
      *           type="string",
      *           format="time",
      *           example="18:32:28"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_monday",
+     *           description="Lunes",
+     *           type="boolean",
+     *           example="true"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_tuesday",
+     *           description="Martes",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_wednesday",
+     *           description="Miercoles",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_thursday",
+     *           description="Jueves",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_friday",
+     *           description="Viernes",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_saturday",
+     *           description="Sabado",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_sunday",
+     *           description="Domingo",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_description",
+     *           description="Descripción",
+     *           type="string",
+     *           example="Algun descripción adicional"
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -222,6 +279,54 @@ interface IHourhandController
      *           type="string",
      *           format="time",
      *           example="18:32:28"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_monday",
+     *           description="Lunes",
+     *           type="boolean",
+     *           example="true"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_tuesday",
+     *           description="Martes",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_wednesday",
+     *           description="Miercoles",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_thursday",
+     *           description="Jueves",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_friday",
+     *           description="Viernes",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_saturday",
+     *           description="Sabado",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_sunday",
+     *           description="Domingo",
+     *           type="boolean",
+     *           example="false"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_description",
+     *           description="Descripción",
+     *           type="string",
+     *           example="Algun descripción adicional"
      *         ),
      *         @OA\Property(
      *           property="status_id",

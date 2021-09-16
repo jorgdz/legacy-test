@@ -24,6 +24,15 @@ class StoreHourhandRequest extends FormRequest
     public function rules()
     {
         return [
+            'hour_monday' => 'required|boolean',
+            'hour_tuesday' => 'required|boolean',
+            'hour_wednesday' => 'required|boolean',
+            'hour_thursday' => 'required|boolean',
+            'hour_friday' => 'required|boolean',
+            'hour_saturday' => 'required|boolean',
+            'hour_sunday' => 'required|boolean',
+            'hour_start_time' => 'required',
+            'hour_end_time' => 'required',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }

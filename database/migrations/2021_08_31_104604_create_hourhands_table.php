@@ -15,6 +15,14 @@ class CreateHourhandsTable extends Migration
     {
         Schema::create('hourhands', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('hour_monday')->nullable();
+            $table->boolean('hour_tuesday')->nullable();
+            $table->boolean('hour_wednesday')->nullable();
+            $table->boolean('hour_thursday')->nullable();
+            $table->boolean('hour_friday')->nullable();
+            $table->boolean('hour_saturday')->nullable();
+            $table->boolean('hour_sunday')->nullable();
+            $table->string('hour_description')->nullable();
             $table->string('hour_start_time')->nullable();
             $table->string('hour_end_time')->nullable();
 
