@@ -1883,6 +1883,100 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'person'
             ],
+            /**
+             * Catalogar 214-218
+             */
+            [
+                'name' => 'catalogs-listar-catalogs',
+                'alias' => 'Listar catalogo',
+                'description' => 'Listar todo el catalogo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'catalog'
+            ],
+            [
+                'name' => 'catalogs-obtener-catalog',
+                'alias' => 'Obtener catalogo',
+                'description' => 'Obtener un catalogo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'catalog'
+            ],
+            [
+                'name' => 'catalogs-crear-catalog',
+                'alias' => 'Crear catalogo',
+                'description' => 'Agregar un catalogo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'catalog'
+            ],
+            [
+                'name' => 'catalogs-actualizar-catalog',
+                'alias' => 'Actualizar catalogo',
+                'description' => 'Actualizar un catalogo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'catalog'
+            ],
+            [
+                'name' => 'catalogs-borrar-catalog',
+                'alias' => 'Borrar catalogo',
+                'description' => 'Borrar un catalogo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'catalog'
+            ],
+            /**
+             * Documentos Estudiante 219-224
+             */
+            [
+                'name' => 'student-document-listar-documentos-estudiantes',
+                'alias' => 'Listar documento estudiante',
+                'description' => 'Listar todos los documento estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentDocument'
+            ],
+            [
+                'name' => 'student-document-obtener-documento-estudiante',
+                'alias' => 'Obtener documento estudiante',
+                'description' => 'Obtener un documento estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentDocument'
+            ],
+            [
+                'name' => 'student-document-crear-documento-estudiante',
+                'alias' => 'Crear documento estudiante',
+                'description' => 'Agregar un documento estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentDocument'
+            ],
+            [
+                'name' => 'student-document-actualizar-documento-estudiante',
+                'alias' => 'Actualizar documento estudiante',
+                'description' => 'Actualizar un documento estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentDocument'
+            ],
+            [
+                'name' => 'student-document-borrar-documento-estudiante',
+                'alias' => 'Borrar documento estudiante',
+                'description' => 'Borrar un documento estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentDocument'
+            ],
+            [
+                'name' => 'student-document-descargar-documentos-estudiantes',
+                'alias' => 'Descargar documento estudiante',
+                'description' => 'Descargar un documento estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'studentDocument'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2258,6 +2352,23 @@ class RoleSeeder extends Seeder
              * Persona 213
              */
             ['permission_id' => 213, 'role_id' => 1],
+            /**
+             * Catalogar 214-218
+             */
+            ['permission_id' => 214, 'role_id' => 1],
+            ['permission_id' => 215, 'role_id' => 1],
+            ['permission_id' => 216, 'role_id' => 1],
+            ['permission_id' => 217, 'role_id' => 1],
+            ['permission_id' => 218, 'role_id' => 1],
+            /**
+             * Documentos Estudiante 219-224
+             */
+            ['permission_id' => 219, 'role_id' => 1],
+            ['permission_id' => 220, 'role_id' => 1],
+            ['permission_id' => 221, 'role_id' => 1],
+            ['permission_id' => 222, 'role_id' => 1],
+            ['permission_id' => 223, 'role_id' => 1],
+            ['permission_id' => 224, 'role_id' => 1],
 
             /**
              * 
@@ -2633,6 +2744,23 @@ class RoleSeeder extends Seeder
              * Persona 213
              */
             ['permission_id' => 213, 'role_id' => 2],
+            /**
+             * Catalogar 214-218
+             */
+            ['permission_id' => 214, 'role_id' => 2],
+            ['permission_id' => 215, 'role_id' => 2],
+            ['permission_id' => 216, 'role_id' => 2],
+            ['permission_id' => 217, 'role_id' => 2],
+            ['permission_id' => 218, 'role_id' => 2],
+            /**
+             * Documentos Estudiante 219-224
+             */
+            ['permission_id' => 219, 'role_id' => 1],
+            ['permission_id' => 220, 'role_id' => 1],
+            ['permission_id' => 221, 'role_id' => 1],
+            ['permission_id' => 222, 'role_id' => 1],
+            ['permission_id' => 223, 'role_id' => 1],
+            ['permission_id' => 224, 'role_id' => 1],
         ]);
     }
 }
