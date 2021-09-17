@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class MatterMesh extends Model implements AuditableContract
 {
@@ -65,6 +66,16 @@ class MatterMesh extends Model implements AuditableContract
     public function status ()
     {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    /**
+     * matterMeshDependencies
+     *
+     * @return BelongsToMany
+     */
+    public function matterMeshDependencies (): BelongsToMany
+    {
+        return $this->belongsToMany(MatterMesh::class, 'mat_mesh_dependencies','parent_matter_mesh_id', 'child_matter_mesh_id');
     }
 
 }

@@ -13,9 +13,19 @@ class CreateTableMatterMeshDependency extends Migration
      */
     public function up()
     {
-        Schema::create('matter_mat_dependencies', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('mat_mesh_dependencies', function (Blueprint $table) {
+            $table->integer('parent_matter_mesh_id')->unsigned();
+            $table->integer('child_matter_mesh_id')->unsigned();
+
+            $table->foreign('parent_matter_mesh_id')
+                ->references('id')
+                ->on('matter_mesh');
+
+            $table->foreign('child_matter_mesh_id')
+                ->references('id')
+                ->on('matter_mesh');
+
+            $table->primary(['parent_matter_mesh_id', 'child_matter_mesh_id'], 'mat_mesh_dependencies_matter_mesh_id_matter_mesh_id_primary');
         });
     }
 
@@ -26,6 +36,6 @@ class CreateTableMatterMeshDependency extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matter_mat_dependencies');
+        Schema::dropIfExists('mat_mesh_dependencies');
     }
 }

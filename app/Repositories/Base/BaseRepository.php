@@ -108,7 +108,7 @@ class BaseRepository implements IBaseRepository
             });
         }
 
-        $sort = $this->model->getTable(). '.'. $request->sort ?: $this->model->getTable().'.id';
+        $sort = $request->sort ? $this->model->getTable(). '.'. $request->sort : $this->model->getTable().'.id';
         $type_sort = $request->type_sort ?: 'desc';
 
         return $query->orderBy($sort, $type_sort)
