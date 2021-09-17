@@ -33,12 +33,12 @@ class BaseRepository implements IBaseRepository
      */
     public function all ($request) {
         $query = $this->model;
-        
-        if (isset($request['data'])) return $query->select($this->selected)->get();
 
         if (!empty($this->relations)) {
             $query = $query->with($this->relations);
         }
+
+        if (isset($request['data'])) return $query->select($this->selected)->get();
 
         $collectQueryString = collect($request->all())
             ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search', 'data', 'conditions'])->all();
