@@ -15,7 +15,26 @@ class Person extends Model implements AuditableContract
 {
     use Auditable, HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
 
+    /**
+     * table
+     *
+     * @var string
+     */
     protected $table = 'persons';
+
+    /**
+     * primaryKey
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['city_id', 'sector_id', 'ethnic_id'];
 
     /**
      * The attributes that are mass assignable.
@@ -90,7 +109,7 @@ class Person extends Model implements AuditableContract
     public function livingPlace () {
         return $this->belongsTo(Catalog::class, 'vivienda_id');
     }
-    
+
     /**
      * religion
      *

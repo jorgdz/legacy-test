@@ -22,6 +22,8 @@ class City extends Model implements AuditableContract
      */
     protected $table = 'cities';
 
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'cit_name',
         'cit_acronym',
@@ -34,7 +36,7 @@ class City extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'id'];
 
     /**
      * status
@@ -45,7 +47,7 @@ class City extends Model implements AuditableContract
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
-        
+
     /**
      * institutes
      *
@@ -55,7 +57,7 @@ class City extends Model implements AuditableContract
     {
         return $this->hasMany(Institute::class, 'city_id');
     }
-        
+
     /**
      * cities
      *
@@ -65,7 +67,7 @@ class City extends Model implements AuditableContract
     {
         return $this->hasMany(Person::class, 'city_id');
     }
-    
+
     /**
      * personjobs
      *

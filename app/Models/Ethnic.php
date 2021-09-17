@@ -16,12 +16,14 @@ class Ethnic extends Model implements AuditableContract
 
     protected $table = 'ethnics';
 
+    protected $primaryKey = 'id';
+
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $dates = ['deleted_at'];
 
     protected $softCascade = ['persons'];
-    
+
     protected $fillable = [
         'eth_name',
         'eth_description',
@@ -36,7 +38,7 @@ class Ethnic extends Model implements AuditableContract
     public function persons () {
         return $this->hasMany(Person::class, 'sector_id');
     }
-        
+
     /**
      * status
      *
