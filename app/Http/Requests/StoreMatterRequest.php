@@ -23,7 +23,7 @@ class StoreMatterRequest extends FormRequest
     public function rules() {
         $rules = [
             'mat_name' => 'required|string|unique:tenant.matters,mat_name',
-            'mat_acronym' => 'required|string|between:2,3',
+            'mat_acronym' => 'required|string',
             'cod_matter_migration' => 'required|string',
             'type_matter_id' => 'required|integer|exists:tenant.type_matters,id',
             'type_calification_id' => 'required|integer|exists:tenant.type_califications,id',

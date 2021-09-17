@@ -17,7 +17,7 @@ class CreateTypeMattersTable extends Migration
             $table->increments('id');
 
             $table->string('tm_name', 255)->nullable();
-            $table->char('tm_acronym', 3)->nullable();
+            $table->string('tm_acronym', 3)->nullable();
             $table->string('tm_description', 255)->nullable();
             $table->integer('tm_order')->nullable();
             $table->boolean('tm_cobro')->nullable();
