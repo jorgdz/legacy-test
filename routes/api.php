@@ -407,3 +407,5 @@ Route::delete('person-job/{personjob}', [PersonJobController::class, 'destroy'])
  * Persona
  */
 Route::post('persons/{person}/languages', [PersonController::class, 'updateLanguagePerson'])->middleware(['auth:sanctum', 'permission:languages-person-actualizar-lenguajes-por-persona']);
+
+Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);

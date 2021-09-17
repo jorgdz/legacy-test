@@ -1977,6 +1977,17 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'studentDocument'
             ],
+            /**
+             * Estados 225
+             */
+            [
+                'name' => 'status-listar-status',
+                'alias' => 'Listado de estados',
+                'description' => 'Listar todos los permisos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'status'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2369,6 +2380,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 222, 'role_id' => 1],
             ['permission_id' => 223, 'role_id' => 1],
             ['permission_id' => 224, 'role_id' => 1],
+            
+            /**
+             * Estados 225
+             */
+            ['permission_id' => 225, 'role_id' => 1],
 
             /**
              * 
@@ -2761,6 +2777,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 222, 'role_id' => 2],
             ['permission_id' => 223, 'role_id' => 2],
             ['permission_id' => 224, 'role_id' => 2],
+
+            /**
+             * Estados 225
+             */
+            ['permission_id' => 225, 'role_id' => 2],
         ]);
     }
 }
