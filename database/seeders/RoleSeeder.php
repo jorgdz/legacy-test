@@ -2755,12 +2755,12 @@ class RoleSeeder extends Seeder
             /**
              * Documentos Estudiante 219-224
              */
-            ['permission_id' => 219, 'role_id' => 1],
-            ['permission_id' => 220, 'role_id' => 1],
-            ['permission_id' => 221, 'role_id' => 1],
-            ['permission_id' => 222, 'role_id' => 1],
-            ['permission_id' => 223, 'role_id' => 1],
-            ['permission_id' => 224, 'role_id' => 1],
+            ['permission_id' => 219, 'role_id' => 2],
+            ['permission_id' => 220, 'role_id' => 2],
+            ['permission_id' => 221, 'role_id' => 2],
+            ['permission_id' => 222, 'role_id' => 2],
+            ['permission_id' => 223, 'role_id' => 2],
+            ['permission_id' => 224, 'role_id' => 2],
         ]);
     }
 }
