@@ -22,9 +22,14 @@ class CreateMatterMeshTable extends Migration
             $table->float('min_calification', 8, 4);
             $table->integer('num_fouls')->unsigned();
             $table->string('matter_rename', 255)->nullable();
-            $table->integer('status_id')->unsigned();
 
+            $table->string('clasification_matter', 255)->nullable();
+            $table->integer('group')->nullable(); // grupo, sección o nivel o semestre al que pertenece
+            $table->integer('order')->nullable(); // Por cada grupo tengo una numeración para ordernar los registros
+
+            $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
+
             $table->foreign('matter_id')->references('id')->on('matters');
             $table->foreign('mesh_id')->references('id')->on('meshs');
 
