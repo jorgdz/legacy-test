@@ -41,17 +41,10 @@ class MatterController extends Controller implements IMatterController
      * @return \Illuminate\Http\Response
      */
     public function store(StoreMatterRequest $request) {
-        DB::beginTransaction();
-        try {
-            $matter = new Matter($request->all());
-            $matter = $this->matterCache->save($matter);
+        $matter = new Matter($request->all());
+        $matter = $this->matterCache->save($matter);
 
-            DB::commit();
-            return $this->success($matter, Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($matter, Response::HTTP_CREATED);
     }
 
     /**
@@ -72,21 +65,13 @@ class MatterController extends Controller implements IMatterController
      * @return \Illuminate\Http\Response
      */
     public function update(StoreMatterRequest $request, Matter $matter) {
-        DB::beginTransaction();
-        try {
-            $matter->fill($request->all());
+        $matter->fill($request->all());
+        if ($matter->isClean())
+            return $this->information(__('messages.nochange'));
 
-            if ($matter->isClean())
-                return $this->information(__('messages.nochange'));
+        $response = $this->matterCache->save($matter);
 
-            $response = $this->matterCache->save($matter);
-
-            DB::commit();
-            return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($response);
     }
 
     /**
@@ -96,14 +81,6 @@ class MatterController extends Controller implements IMatterController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Matter $matter) {
-        DB::beginTransaction();
-        try {
-            $response = $this->matterCache->destroy($matter);
-            DB::commit();
-            return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($this->matterCache->destroy($matter));
     }
 }

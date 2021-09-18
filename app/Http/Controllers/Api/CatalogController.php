@@ -41,17 +41,10 @@ class CatalogController extends Controller implements ICatalogController
      * @return \Illuminate\Http\Response
      */
     public function store(CatalogRequest $request) {
-        DB::beginTransaction();
-        try {
-            $catalog = new Catalog($request->all());
-            $catalog = $this->catalogCache->save($catalog);
+        $catalog = new Catalog($request->all());
+        $catalog = $this->catalogCache->save($catalog);
 
-            DB::commit();
-            return $this->success($catalog, Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($catalog, Response::HTTP_CREATED);
     }
 
     /**
@@ -72,20 +65,11 @@ class CatalogController extends Controller implements ICatalogController
      * @return \Illuminate\Http\Response
      */
     public function update(CatalogRequest $request, Catalog $catalog) {
-        DB::beginTransaction();
-        try {
-            $catalog->fill($request->all());
+        $catalog->fill($request->all());
 
-            if ($catalog->isClean())
-                return $this->information(__('messages.nochange'));
+        if ($catalog->isClean())
+            return $this->information(__('messages.nochange'));
 
-            $response = $this->catalogCache->save($catalog);
-
-            DB::commit();
-            return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($this->catalogCache->save($catalog));
     }
 }
