@@ -58,6 +58,8 @@ require __DIR__ . "/channels/persons.php";
 require __DIR__ . "/channels/catalogs.php";
 require __DIR__ . "/channels/student-documents.php";
 require __DIR__ . "/channels/mentions.php";
+require __DIR__ . "/channels/type-student-programs.php";
+
 
 /*
 |--------------------------------------------------------------------------

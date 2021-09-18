@@ -159,11 +159,7 @@ return [
 			'integer'  => 'El campo parentesco debe ser un entero.',
 			'exists'   => 'El campo parentesco seleccionado es inválido.'
 		],
-<<<<<<< HEAD
 		'emergencyContacts.*.person_id' => [
-=======
-		'emergencyContacts.*.person_id'=> [
->>>>>>> 8fbd57c1b2da8f234a32f6828cb46126078330b9
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
 			'exists'   => 'El campo persona es inválido.'
@@ -231,14 +227,10 @@ return [
 	|
 	*/
 
-<<<<<<< HEAD
 	'hourhand' => 'horario',
 	'offer' => 'oferta',
 
 	'attributes' => [
-=======
-    'attributes' => [
->>>>>>> 8fbd57c1b2da8f234a32f6828cb46126078330b9
 		'blo_typ_name' => 'nombre del tipo de sangre',
 		'blo_typ_description' => 'descripción del tipo de sangre',
 		'status_id' => 'estado',
@@ -537,34 +529,34 @@ return [
 		* Tags Student
 		*/
 		'tg_name' 		=> 'nombre de etiqueta del estudiente',
-        /**
-         * student_records
-         */
-        'student_id' => 'estudiante',
-        'education_level_id' => 'nivel educativo',
-        'pensum_id' => 'pensum',
-        'type_student_id' => 'tipo de estudiante',
-        'period_id' => 'periodo',
-        'economic_group_id' => 'grupo economico',
-        /**
-         * criteria_student_records
-         */
-        'qualification' => 'calificación',
-        'type_criteria_id' => 'tipo de criterio',
-        'student_record_id' => 'récord estudiantil',
-        /**
-         * person_jobs
-         */
+		/**
+		 * student_records
+		 */
+		'student_id' => 'estudiante',
+		'education_level_id' => 'nivel educativo',
+		'pensum_id' => 'pensum',
+		'type_student_id' => 'tipo de estudiante',
+		'period_id' => 'periodo',
+		'economic_group_id' => 'grupo economico',
+		/**
+		 * criteria_student_records
+		 */
+		'qualification' => 'calificación',
+		'type_criteria_id' => 'tipo de criterio',
+		'student_record_id' => 'récord estudiantil',
+		/**
+		 * person_jobs
+		 */
 		'per_job_organization' => 'nombre de la organizacion',
-        'per_job_position' => 'posicion que ocupa en el trabajo',
-        'per_job_direction' => 'direccion del trabajo',
-        'per_job_phone' => 'numero telefonico',
-        'per_job_start_date' => 'fecha de inicio',
-        'per_job_end_date' => 'fecha de fin',
-        'per_job_current' => 'trabaja actualmente aqui',
-        'per_job_iess_affiliated' => 'esta afiliado al iess',
-        'city_id' => 'ciudad',
-        'person_id' => 'persona',
+		'per_job_position' => 'posicion que ocupa en el trabajo',
+		'per_job_direction' => 'direccion del trabajo',
+		'per_job_phone' => 'numero telefonico',
+		'per_job_start_date' => 'fecha de inicio',
+		'per_job_end_date' => 'fecha de fin',
+		'per_job_current' => 'trabaja actualmente aqui',
+		'per_job_iess_affiliated' => 'esta afiliado al iess',
+		'city_id' => 'ciudad',
+		'person_id' => 'persona',
 
 		/**
 		 * student_documents
@@ -595,7 +587,15 @@ return [
 		'cat_name' => 'nombre del catalogo',
 		'cat_description' => 'descripcion del catalogo',
 		'cat_acronym' => 'acrónimo del catalogo',
-		'parent_id' => 'padre'
+		'parent_id' => 'padre',
+
+		/**
+		 * Type Student Programs
+		 */
+		'typ_stu_pro_name' => 'nombre del tipo programa para estudiantes',
+		'typ_stu_pro_description' => 'descripción del tipo programa para estudiantes',
+		'typ_stu_pro_acronym' => 'Acrónimo programa para estudiantes',
+		
 	],
 
 ];
