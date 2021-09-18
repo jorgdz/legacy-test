@@ -159,7 +159,8 @@ return [
 			'integer'  => 'El campo parentesco debe ser un entero.',
 			'exists'   => 'El campo parentesco seleccionado es inválido.'
 		],
-		'emergencyContacts.*.person_id' => [
+
+		'emergencyContacts.*.person_id'=> [
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
 			'exists'   => 'El campo persona es inválido.'
@@ -227,10 +228,10 @@ return [
 	|
 	*/
 
-	'hourhand' => 'horario',
-	'offer' => 'oferta',
 
 	'attributes' => [
+        'hourhand' => 'horario',
+	    'offer' => 'oferta',
 		'blo_typ_name' => 'nombre del tipo de sangre',
 		'blo_typ_description' => 'descripción del tipo de sangre',
 		'status_id' => 'estado',
@@ -595,7 +596,7 @@ return [
 		'typ_stu_pro_name' => 'nombre del tipo programa para estudiantes',
 		'typ_stu_pro_description' => 'descripción del tipo programa para estudiantes',
 		'typ_stu_pro_acronym' => 'Acrónimo programa para estudiantes',
-		
+
 	],
 
 ];

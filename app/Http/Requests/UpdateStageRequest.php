@@ -26,7 +26,6 @@ class UpdateStageRequest extends FormRequest
         $stage = $this->route()->parameter('stage');
         return  [
             'stg_name' => 'required|string|unique:tenant.stages,stg_name,'.$stage->id.'|max:255',
-            'stg_description' => 'required|string|unique:tenant.stages,stg_description,'.$stage->id.'|max:255',
             'stg_acronym' => 'required|string|unique:tenant.stages,stg_acronym,'.$stage->id.'|between:2,4',
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];

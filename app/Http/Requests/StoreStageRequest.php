@@ -27,7 +27,6 @@ class StoreStageRequest extends FormRequest
     {
         return  [
             'stg_name' => 'required|string|unique:tenant.stages,stg_name|max:255',
-            'stg_description' => 'required|string|unique:tenant.stages,stg_description|max:255',
             'stg_acronym' => 'required|string|unique:tenant.stages,stg_acronym|between:2,4',
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];
