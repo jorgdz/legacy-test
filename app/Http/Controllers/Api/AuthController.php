@@ -46,9 +46,9 @@ class AuthController extends Controller implements IAuthController
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(User::class)));
 
         return $this->success([
-            'user' => $user,
-            'access_token' => $token,
             'token_type' => 'Bearer',
+            'access_token' => $token,
+            'user' => $user,
         ]);
     }
 
@@ -69,7 +69,7 @@ class AuthController extends Controller implements IAuthController
      * @return void
      */
     public function logout (Request $request) {
-        $this->userCache->logout();/* Cache::flush(); */
+        $this->userCache->logout();
         $request->user()->tokens()->delete();
         return $this->success(['message' => 'Good by user.']);
     }

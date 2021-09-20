@@ -23,7 +23,7 @@ class CatalogRequest extends FormRequest
     public function rules() {
         $rules = [
             'cat_name'    => 'required|string|unique:tenant.catalogs,cat_name',
-            'cat_acronym' => (!$this->parent_id) ? 'required|unique:tenant.catalogs,cat_acronym|max:4' : 'nullable|unique:tenant.catalogs,cat_acronym|max:4',
+            'cat_acronym' => 'nullable|unique:tenant.catalogs,cat_acronym|max:4',
             'parent_id'   => 'nullable|integer|exists:tenant.catalogs,id',
             'status_id'   => 'required|integer|exists:tenant.status,id',
         ];
@@ -32,6 +32,12 @@ class CatalogRequest extends FormRequest
                 'nullable',
                 'string',
                 'unique:tenant.catalogs,cat_name,' . $this->catalog->id
+            ];
+            $rules['cat_acronym'] = [
+                'nullable',
+                'string',
+                'max:4',
+                'unique:tenant.catalogs,cat_acronym,' . $this->catalog->id
             ];
         }
 

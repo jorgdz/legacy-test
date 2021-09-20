@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Catalog;
+use Illuminate\Support\Facades\Schema;
 use App\Repositories\Base\BaseRepository;
 
 class CatalogRepository extends BaseRepository
@@ -21,34 +22,22 @@ class CatalogRepository extends BaseRepository
     }
 
     public function all ($request) {
-        $query = $this->model->select($this->selected);
-
-        if ($this->relations) $query = $query->with($this->relations);
-
-        if (isset($request['data'])) {
-            if ($request->search) {
-                $fields = $this->fields;
-                $query = $query->where(function ($query) use($fields, $request) {
-                    for ($i = 0; $i < count($fields); $i++){
-                        $query->where($fields[$i], $request->search);
-                    }      
-                });
-            }
-            return $query->get();
+        if (isset($request['data']) && $request->search) {
+            return ($request['data'] === 'all') ?  $this->data
+                ->withOutPaginate($this->selected)
+                ->withModelRelations($this->relations)
+                ->filter($request, $this->fields, $this->model->getRelations(), $this->model->getKeyName(), $this->model->getTable())
+                ->getCollection() : [];
         }
 
-        $collectQueryString = collect($request->all())
-            ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search', 'data', 'conditions'])->all();
-
-        if (!empty($collectQueryString)) 
-            $query = $query->where($collectQueryString);
-
-        if (isset($request['conditions'])) 
-            $query = $query->where($request['conditions']);
-
-        $sort = $request->sort ?: 'id';
-        $type_sort = $request->type_sort ?: 'desc';
-
-        return $query->orderBy($sort, $type_sort)->paginate($request->size ?: 100);
+        return $this->data
+            ->withModelRelations($this->relations)
+            ->searchWithColumnNames($request)
+            ->searchWithConditions($request)
+            ->filter($request, $this->fields,
+                $this->model->getRelations(),
+                $this->model->getKeyName(),
+                $this->model->getTable())
+            ->paginated($request, $this->model->getTable());
     }
 }

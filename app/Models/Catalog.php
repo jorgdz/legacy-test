@@ -35,6 +35,8 @@ class Catalog extends Model implements AuditableContract
     }
 
     public function children() {
-        return $this->hasMany(Catalog::class, 'parent_id')->with('status')->with('children');
+        return $this->hasMany(Catalog::class, 'parent_id')->with('status')->with('children')->where(function($query) {
+            if (isset(request()->query()['data'])) $query->where('status_id', 1);
+        });
     }
 }

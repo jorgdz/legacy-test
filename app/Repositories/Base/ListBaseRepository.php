@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Base;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 
 class ListBaseRepository
@@ -25,10 +26,16 @@ class ListBaseRepository
     /**
      * withOutPaginate
      *
-     * @return get data with out paginte
+     * @param  mixed $selected
+     * @return ListBaseRepository
      */
-    public function withOutPaginate ($selected) {
-        return $this->model->select($selected)->get();
+    public function withOutPaginate ($selected) : ListBaseRepository {
+        $this->model = $this->model->select($selected)->where(function($query) {
+            if (array_search('status_id', Schema::getColumnListing($this->model->getTable()))) {
+                $query->where('status_id', 1);
+            }
+        });
+        return $this;
     }
 
     /**
@@ -75,7 +82,7 @@ class ListBaseRepository
     /**
      * filter
      *
-     * @return void
+     * @return $this
      */
     public function filter ($request, $fields, $relations, $keyName, $table) {
         $query = $this->model;
@@ -147,6 +154,16 @@ class ListBaseRepository
     private function cleanQueryParams ($request) {
         return collect($request->all())
             ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search', 'data', 'conditions'])->all();
+    }
+
+        
+    /**
+     * getCollection
+     *
+     * @return void
+     */
+    public function getCollection() {
+        return $this->model->get();
     }
 
      /**

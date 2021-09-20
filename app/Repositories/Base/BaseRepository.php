@@ -4,7 +4,6 @@ namespace App\Repositories\Base;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Contracts\IBaseRepository;
-use Illuminate\Support\Facades\Schema;
 
 class BaseRepository implements IBaseRepository
 {
@@ -21,7 +20,7 @@ class BaseRepository implements IBaseRepository
 
     protected $parents = [];
 
-    private $data;
+    protected $data;
 
     /**
      * __construct
@@ -42,7 +41,7 @@ class BaseRepository implements IBaseRepository
      */
     public function all ($request) {
         if (isset($request['data']))
-            return $this->data->withOutPaginate($this->selected);
+            return ($request['data'] === 'all') ? $this->data->withOutPaginate($this->selected)->getCollection() : [];
 
         return $this->data
             ->withModelRelations($this->relations)

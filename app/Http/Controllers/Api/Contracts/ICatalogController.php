@@ -213,7 +213,7 @@ interface ICatalogController
      *   description="Actualizar un catalogo.",
      *   operationId="updateCatalog",
      *   @OA\Parameter(
-     *     name="catalogo",
+     *     name="catalog",
      *     description="Id del catalogo",
      *     in="path",
      *     required=true,
@@ -277,5 +277,5 @@ interface ICatalogController
      * )
      *
      */
-    public function update(CatalogRequest $request, Catalog $pensum);
+    public function update(CatalogRequest $request, Catalog $catalog);
 }
