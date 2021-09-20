@@ -73,7 +73,7 @@ class Person extends Model implements AuditableContract
     protected $dates = ['deleted_at'];
 
     /* TODO: Verificar tablas intermedias */
-    protected $softCascade = ['user','emergencyContact', 'personJob'];
+    protected $softCascade = ['user','emergencyContact', 'personJob','person_student'];
 
     /**
      * typeIdentifications
@@ -90,7 +90,7 @@ class Person extends Model implements AuditableContract
      * @return void
      */
     public function user () {
-        return $this->hasMany(User::class, 'person_id');
+        return $this->hasOne(User::class, 'person_id');
     }
 
     /**
@@ -181,5 +181,20 @@ class Person extends Model implements AuditableContract
     public function personJob () : HasMany
     {
         return $this->hasMany(PersonJob::class);
+    }
+
+    /**
+     * Relative
+     *
+     * @return void
+     */
+    public function person_relative () {
+        return $this->hasMany(Relative::class,'person_id_relative');
+        
+    }
+
+    public function person_student () {
+        return $this->hasMany(Relative::class,'person_id_student');
+        
     }
 }

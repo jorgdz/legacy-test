@@ -41,6 +41,7 @@ use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\TypeIdentificationController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
+use App\Http\Controllers\Api\RelativeController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -410,5 +411,14 @@ Route::delete('person-job/{personjob}', [PersonJobController::class, 'destroy'])
  * Persona
  */
 Route::post('persons/{person}/languages', [PersonController::class, 'updateLanguagePerson'])->middleware(['auth:sanctum', 'permission:languages-person-actualizar-lenguajes-por-persona']);
+
+/**
+ * Relative
+ */
+Route::get('/relatives', [RelativeController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:relatives-listar-familiar'*/]);
+Route::get('/relatives/{relative}', [RelativeController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:relatives-obtener-familiar'*/]);
+Route::post('/relatives', [RelativeController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:relatives-crear-familiar'*/]);
+Route::put('/relatives/{relative}', [RelativeController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:relatives-actualizar-familiar'*/]);
+Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:relatives-borrar-familiar'*/]);
 
 Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);

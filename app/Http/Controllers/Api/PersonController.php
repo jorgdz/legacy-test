@@ -100,15 +100,15 @@ class PersonController extends Controller implements IPersonController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Person $person) {
-        DB::beginTransaction();
-        try {
+        //DB::beginTransaction();
+        //try {
             $response = $this->personCache->destroy($person);
-            DB::commit();
+           // DB::commit();
             return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        // } catch (\Exception $ex) {
+        //     DB::rollBack();
+        //     return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
+        // }
     }
 
     /**
@@ -122,5 +122,10 @@ class PersonController extends Controller implements IPersonController
     {
         $person->lenguajes()->sync($request->languages);
         return $this->success(Person::with('lenguajes')->find($person->id));
+    }
+
+    public function showRelativeByPerson (Person $person ) {  
+        $relatives = Person::with('person_student.person_relative')->find($person->id);
+        return $this->success($relatives);
     }
 }

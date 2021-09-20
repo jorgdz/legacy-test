@@ -21,6 +21,7 @@ class TypeKinshipSeeder extends Seeder
             ['typ_kin_name' => 'Tio/a',     'typ_kin_description' => 'Tio/a',                   'status_id' => 1],
             ['typ_kin_name' => 'Abuelo/a',  'typ_kin_description' => 'Abuelo/a',                'status_id' => 1],
             ['typ_kin_name' => 'Primo/a',   'typ_kin_description' => 'Primo/a',                 'status_id' => 1],
+            ['typ_kin_name' => 'Otro/a',    'typ_kin_description' => 'Otro/a',                  'status_id' => 1],
         ]);
     }
 }

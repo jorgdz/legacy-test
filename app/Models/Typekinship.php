@@ -33,4 +33,13 @@ class Typekinship extends Model
     public function status() {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+    /**
+     * Relative
+     *
+     * @return void
+     */
+    public function relative () {
+        return $this->hasMany(Relative::class,'type_kinship_id');
+    }
 }

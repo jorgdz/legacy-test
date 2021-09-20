@@ -678,4 +678,44 @@ interface IPersonController {
      *
      */
     public function updateLanguagePerson(UpdateLanguagesPersonRequest $request, Person $person);
+
+    /**
+     * @OA\Get(
+     *   path="/api/persons/{person}/relatives",
+     *   tags={"Familiares por Persona"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener una persona",
+     *   description="Muestra información específica de todos los familiares de una persona por Id.",
+     *   operationId="getRelativeByPerson",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="person",
+     *     description="Id de la persona (estudiante)",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showRelativeByPerson(Person $person);
 }

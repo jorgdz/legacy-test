@@ -60,7 +60,7 @@ class User extends Authenticatable implements AuditableContract
 
     protected $dates = ['deleted_at'];
 
-    protected $softCascade = ['userProfiles', 'person', 'collaborators'];
+    protected $softCascade = ['userProfiles', 'collaborators'];
 
     /**
      * sendPasswordResetNotification
@@ -97,7 +97,7 @@ class User extends Authenticatable implements AuditableContract
      * @return void
      */
     public function collaborators () {
-        return $this->belongsTo(Collaborator::class, 'id', 'user_id');
+        return $this->hasOne(Collaborator::class, 'id', 'user_id');
     }
         
     /**

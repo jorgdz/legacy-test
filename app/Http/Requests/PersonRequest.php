@@ -32,7 +32,7 @@ class PersonRequest extends FormRequest
             'pers_first_lastname'  => 'required|string',
             'pers_second_lastname' => 'required|string',
             'pers_gender'     => 'required|string',
-            'pers_date_birth' => 'required|date',
+            'pers_date_birth' => 'required|date',//defautl
             'pers_direction'  => 'required|string',
             'pers_phone_home' => 'string|max:255',
             'pers_cell' => 'string|max:255',
