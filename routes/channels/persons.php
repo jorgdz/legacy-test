@@ -9,4 +9,4 @@ Route::post('/persons', [PersonController::class, 'store'])->middleware(['auth:s
 Route::post('persons/{person}/jobs', [PersonController::class, 'assignJobs'])->middleware(['auth:sanctum', 'permission:persona-asignar-trabajos-persona']);
 Route::put('/persons/{person}', [PersonController::class, 'update'])->middleware(['auth:sanctum', 'permission:persons-actualizar-person']);
 Route::patch('/persons/{person}', [PersonController::class, 'update'])->middleware(['auth:sanctum', 'permission:persons-actualizar-person']);
-Route::delete('/persons/{person}', [PersonController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:roles-borrar-person']);
+Route::delete('/persons/{person}', [PersonController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:persons-borrar-person']);

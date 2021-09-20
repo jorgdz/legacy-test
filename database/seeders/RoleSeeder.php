@@ -1760,7 +1760,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'person'
             ],
             [
-                'name' => 'roles-borrar-person',
+                'name' => 'persons-borrar-person',
                 'alias' => 'Borrar persona',
                 'description' => 'Borrar una persona por su identificador',
                 'guard_name' => 'api',
@@ -1987,6 +1987,68 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1,
                 'parent_name' => 'status'
+            ],
+            /**
+             * Mencion 226-227
+             */
+            [
+                'name' => 'mention-listar-menciones',
+                'alias' => 'Listar menciones',
+                'description' => 'Listar todas las menciones',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mention'
+            ],
+            [
+                'name' => 'mention-obtener-mencion',
+                'alias' => 'Obtener mencion',
+                'description' => 'Obtener una mencion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mention'
+            ],
+            /**
+             * Tipo progama estudiante 228-232
+             */
+            [
+                'name' => 'type-student-program-listar-tipo-programa-estudiante',
+                'alias' => 'Listar tipos programa estudiante',
+                'description' => 'Listar todos los tipo de programa del estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeStudentProgram'
+            ],
+            [
+                'name' => 'type-student-program-obtener-tipo-programa-estudiante',
+                'alias' => 'Obtener tipo programa estudiante',
+                'description' => 'Obtener un tipo de programa del estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeStudentProgram'
+            ],
+            [
+                'name' => 'type-student-program-crear-tipo-programa-estudiante',
+                'alias' => 'Crear tipo programa estudiante',
+                'description' => 'Agregar un tipo de programa del estudiante estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeStudentProgram'
+            ],
+            [
+                'name' => 'type-student-program-actualizar-tipo-programa-estudiante',
+                'alias' => 'Actualizar tipo programa estudiante',
+                'description' => 'Actualizar un tipo de programa del estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeStudentProgram'
+            ],
+            [
+                'name' => 'type-student-program-borrar-tipo-programa-estudiante',
+                'alias' => 'Borrar tipo programa estudiante',
+                'description' => 'Borrar un tipo de programa del estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeStudentProgram'
             ],
         ]);
 
@@ -2385,6 +2447,19 @@ class RoleSeeder extends Seeder
              * Estados 225
              */
             ['permission_id' => 225, 'role_id' => 1],
+            /**
+             * Mencion 226-227
+             */
+            ['permission_id' => 226, 'role_id' => 1],
+            ['permission_id' => 227, 'role_id' => 1],
+            /**
+             * Tipo progama estudiante 228-232
+             */
+            ['permission_id' => 228, 'role_id' => 1],
+            ['permission_id' => 229, 'role_id' => 1],
+            ['permission_id' => 230, 'role_id' => 1],
+            ['permission_id' => 231, 'role_id' => 1],
+            ['permission_id' => 232, 'role_id' => 1],
 
             /**
              * 
@@ -2782,6 +2857,19 @@ class RoleSeeder extends Seeder
              * Estados 225
              */
             ['permission_id' => 225, 'role_id' => 2],
+            /**
+             * Mencion 226-227
+             */
+            ['permission_id' => 226, 'role_id' => 2],
+            ['permission_id' => 227, 'role_id' => 2],
+            /**
+             * Tipo progama estudiante 228-232
+             */
+            ['permission_id' => 228, 'role_id' => 2],
+            ['permission_id' => 229, 'role_id' => 2],
+            ['permission_id' => 230, 'role_id' => 2],
+            ['permission_id' => 231, 'role_id' => 2],
+            ['permission_id' => 232, 'role_id' => 2],
         ]);
     }
 }
