@@ -33,8 +33,11 @@ class MatterMesh extends Model implements AuditableContract
         'mesh_id',
         'calification_type',
         'min_calification',
+        'clasification_matter',
         'num_fouls',
         'matter_rename',
+        'group',
+        'order',
         'status_id',
     ];
 

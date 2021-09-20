@@ -32,6 +32,13 @@ class City extends Model implements AuditableContract
     ];
 
     /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status_id'];
+
+    /**
      * hidden
      *
      * @var array

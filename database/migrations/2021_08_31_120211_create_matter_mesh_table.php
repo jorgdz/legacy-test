@@ -24,7 +24,7 @@ class CreateMatterMeshTable extends Migration
             $table->string('matter_rename', 255)->nullable();
 
             $table->string('clasification_matter', 255)->nullable();
-            $table->integer('group')->nullable(); // grupo, sección o nivel o semestre al que pertenece
+            $table->string('group', 255)->nullable(); // grupo, sección o nivel o semestre al que pertenece
             $table->integer('order')->nullable(); // Por cada grupo tengo una numeración para ordernar los registros
 
             $table->integer('status_id')->unsigned();

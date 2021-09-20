@@ -12,7 +12,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Mesh extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait,Auditable;
+    use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait, Auditable;
 
     protected $table = 'meshs';
 
@@ -42,15 +42,15 @@ class Mesh extends Model implements AuditableContract
         return $this->belongsTo(Pensum::class, 'pensum_id');
     }
 
-    // /**
-    //  * educationLevels
-    //  *
-    //  * @return void
-    //  */
-    // public function educationLevel()
-    // {
-    //     return $this->belongsTo(EducationLevel::class, 'level_edu_id');
-    // }
+    /**
+    * educationLevels
+    *
+    * @return void
+    */
+    public function educationLevel()
+    {
+        return $this->belongsTo(EducationLevel::class, 'level_edu_id');
+    }
 
     /**
      * status
