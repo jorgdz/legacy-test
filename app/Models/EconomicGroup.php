@@ -26,7 +26,7 @@ class EconomicGroup extends Model implements AuditableContract
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
-    protected $softCascade = ['student_records'];
+    protected $softCascade = ['studentRecords'];
 
     /**
      * The attributes that are mass assignable.
