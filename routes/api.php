@@ -415,10 +415,10 @@ Route::post('persons/{person}/languages', [PersonController::class, 'updateLangu
 /**
  * Relative
  */
-Route::get('/relatives', [RelativeController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:relatives-listar-familiar'*/]);
-Route::get('/relatives/{relative}', [RelativeController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:relatives-obtener-familiar'*/]);
-Route::post('/relatives', [RelativeController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:relatives-crear-familiar'*/]);
-Route::put('/relatives/{relative}', [RelativeController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:relatives-actualizar-familiar'*/]);
-Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:relatives-borrar-familiar'*/]);
+Route::get('/relatives', [RelativeController::class, 'index'])->middleware(['auth:sanctum', 'permission:relatives-listar-familiar']);
+Route::get('/relatives/{relative}', [RelativeController::class, 'show'])->middleware(['auth:sanctum', 'permission:relatives-obtener-familiar']);
+Route::post('/relatives', [RelativeController::class, 'store'])->middleware(['auth:sanctum', 'permission:relatives-crear-familiar']);
+Route::put('/relatives/{relative}', [RelativeController::class, 'update'])->middleware(['auth:sanctum', 'permission:relatives-actualizar-familiar']);
+Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:relatives-borrar-familiar']);
 
 Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);

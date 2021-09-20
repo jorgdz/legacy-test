@@ -2050,6 +2050,57 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'typeStudentProgram'
             ],
+            /**
+             * Familia 233-238
+             */
+            [
+                'name' => 'relatives-listar-familiar',
+                'alias' => 'Listar familiar',
+                'description' => 'Listar todos los familiares',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'relatives'
+            ],
+            [
+                'name' => 'relatives-obtener-familiar',
+                'alias' => 'Obtener familiar',
+                'description' => 'Obtener un familiar por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'relatives'
+            ],
+            [
+                'name' => 'relatives-crear-familiar',
+                'alias' => 'Crear familiar',
+                'description' => 'Agregar un familiar',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'relatives'
+            ],
+            [
+                'name' => 'relatives-actualizar-familiar',
+                'alias' => 'Actualizar familiar',
+                'description' => 'Actualizar un familiar por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'relatives'
+            ],
+            [
+                'name' => 'relatives-borrar-familiar',
+                'alias' => 'Borrar familiar',
+                'description' => 'Borrar un familiar por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'relatives'
+            ],
+            [
+                'name' => 'relatives-obtener-familiar-por-estudiante',
+                'alias' => 'Obtener familiar estudiante',
+                'description' => 'Obtener un familiar por estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'relatives'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2460,6 +2511,15 @@ class RoleSeeder extends Seeder
             ['permission_id' => 230, 'role_id' => 1],
             ['permission_id' => 231, 'role_id' => 1],
             ['permission_id' => 232, 'role_id' => 1],
+            /**
+             * Familia 233-238
+             */
+            ['permission_id' => 233, 'role_id' => 1],
+            ['permission_id' => 234, 'role_id' => 1],
+            ['permission_id' => 235, 'role_id' => 1],
+            ['permission_id' => 236, 'role_id' => 1],
+            ['permission_id' => 237, 'role_id' => 1],
+            ['permission_id' => 238, 'role_id' => 1],
 
             /**
              * 
@@ -2870,6 +2930,15 @@ class RoleSeeder extends Seeder
             ['permission_id' => 230, 'role_id' => 2],
             ['permission_id' => 231, 'role_id' => 2],
             ['permission_id' => 232, 'role_id' => 2],
+            /**
+             * Familia 233-238
+             */
+            ['permission_id' => 233, 'role_id' => 2],
+            ['permission_id' => 234, 'role_id' => 2],
+            ['permission_id' => 235, 'role_id' => 2],
+            ['permission_id' => 236, 'role_id' => 2],
+            ['permission_id' => 237, 'role_id' => 2],
+            ['permission_id' => 238, 'role_id' => 2],
         ]);
     }
 }
