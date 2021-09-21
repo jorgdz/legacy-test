@@ -25,7 +25,7 @@ class InstituteTypeRequest extends FormRequest
     {
         return [
             'tin_name' => 'required',
-            'status_id' => 'required|integer'
+            'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }
 }

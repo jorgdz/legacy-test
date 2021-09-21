@@ -24,8 +24,8 @@ class PeriodStageRequest extends FormRequest
     public function rules()
     {
         return [
-            'stage_id' => 'required',
-            'period_id' => 'required',
+            'stage_id' => 'required|exists:tenant.stages,id',
+            'period_id' => 'required|exists:tenant.periods,id',
             'start_date' => 'required',
             'end_date' => 'required',
         ];

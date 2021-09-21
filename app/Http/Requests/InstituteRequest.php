@@ -25,9 +25,9 @@ class InstituteRequest extends FormRequest
     {
         return [
             'inst_name' => 'required',
-            'city_id' => 'required|integer',
-            'status_id' => 'required|integer',
-            'type_institute_id' => 'required|integer',
+            'city_id' => 'required|integer|exists:tenant.cities,id',
+            'status_id' => 'required|integer|exists:tenant.status,id',
+            'type_institute_id' => 'required|integer|exists:tenant.type_institutes,id',
         ];
     }
 }

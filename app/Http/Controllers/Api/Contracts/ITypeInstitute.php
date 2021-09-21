@@ -124,7 +124,7 @@ interface ITypeInstitute
      *   @OA\JsonContent(
      *      example={
      *          "tin_name" : "required",
-     *          "status_id" : "required|integer"
+     *          "status_id" : "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -223,7 +223,7 @@ interface ITypeInstitute
      *   @OA\JsonContent(
      *      example={
      *          "tin_name" : "required",
-     *          "status_id" : "required|integer"
+     *          "status_id" : "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

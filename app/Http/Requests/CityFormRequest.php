@@ -26,7 +26,7 @@ class CityFormRequest extends FormRequest
         return [
             'cit_name'          => 'required|unique',
             'cit_acronym'       => 'required',
-            'status_id'         => 'required|integer',
+            'status_id'         => 'required|integer|exists:tenant.status,id',
         ];
     }
 }

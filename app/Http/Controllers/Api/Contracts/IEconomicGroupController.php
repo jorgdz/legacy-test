@@ -130,7 +130,6 @@ interface IEconomicGroupController
      *   @OA\JsonContent(
      *      example={
      *          "eco_gro_name" : "unique:tenant.economic_groups,eco_gro_name",
-     *          "eco_gro_description" : "required|string",
      *          "status_id" : "required|integer|exists:tenant.status,id"
      *      },
      *   )),

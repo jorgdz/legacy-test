@@ -25,7 +25,6 @@ class ParallelFormRequest extends FormRequest
     {
         return [
             'par_name' => 'required|unique:tenant.parallels,par_name',
-            'par_description' => 'required',
             'par_acronym' => 'max:3'
         ];
     }

@@ -26,7 +26,6 @@ class StoreTypePeriodRequest extends FormRequest
     {
         return [
             'tp_name' => 'required|string|unique:tenant.type_periods,tp_name|max:255',
-            'tp_description' => 'required|string|unique:tenant.type_periods,tp_description|max:255',
             'tp_min_matter_enrollment' => 'required|integer',
             'tp_max_matter_enrollment' => 'required|integer',
             'status_id' => 'required|integer|exists:tenant.status,id',

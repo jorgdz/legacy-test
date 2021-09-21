@@ -13,7 +13,7 @@ class StatusRepository extends BaseRepository
 
     protected $parents = ['category_status'];
 
-    protected $selfFieldsAndParents = ['cat_name'];
+    protected $selfFieldsAndParents = ['cat_name', 'st_name'];
 
     /**
      * __construct

@@ -136,7 +136,6 @@ interface IParallelController
      *   @OA\JsonContent(
      *      example={
      *          "par_name" : "required|unique:parallels,par_name",
-     *          "par_description" : "required",
      *          "par_acronym" : "max:3"
      *      },
      *   )),

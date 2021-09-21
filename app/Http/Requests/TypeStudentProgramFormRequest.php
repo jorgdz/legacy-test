@@ -28,7 +28,6 @@ class TypeStudentProgramFormRequest extends FormRequest
             case 'POST':
                 return [
                     'typ_stu_pro_name' => 'required|max:255|unique:tenant.type_student_programs,typ_stu_pro_name',
-                    'typ_stu_pro_description' => 'max:255',
                     'typ_stu_pro_acronym' => 'required|max:10|unique:tenant.type_student_programs,typ_stu_pro_acronym',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
@@ -36,7 +35,6 @@ class TypeStudentProgramFormRequest extends FormRequest
             case 'PUT':
                 return [
                     'typ_stu_pro_name' => 'required|max:255|unique:tenant.type_student_programs,typ_stu_pro_name,'. $this->typeStudentProgram->id,
-                    'typ_stu_pro_description' => 'max:255',
                     'typ_stu_pro_acronym' => 'required|max:10|unique:tenant.type_student_programs,typ_stu_pro_acronym,'. $this->typeStudentProgram->id,
                     'status_id' => 'required|integer|exists:tenant.status,id'
                     //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
@@ -46,7 +44,6 @@ class TypeStudentProgramFormRequest extends FormRequest
             case 'PATCH':
                 return [
                     'typ_stu_pro_name' => 'required|max:255|unique:tenant.type_student_programs,typ_stu_pro_name,'. $this->typeStudentProgram->typ_stu_pro_name,
-                    'typ_stu_pro_description' => 'max:255',
                     'typ_stu_pro_acronym' => 'required|max:10|unique:tenant.type_student_programs,typ_stu_pro_acronym,'. $this->typeStudentProgram->typ_stu_pro_acronym,
                     'status_id' => 'required|integer|exists:tenant.status,id'
                     //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,

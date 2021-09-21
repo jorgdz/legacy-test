@@ -140,7 +140,6 @@ interface ITypePeriodController
      *   @OA\JsonContent(
      *      example={
      *          "tp_name" : "required|string|unique:type_periods,tp_name|max:255",
-     *          "tp_description" : "required|string|unique:type_periods,tp_description|max:255",
      *           "tp_min_matter_enrollment" : "required|integer",
      *           "tp_max_matter_enrollment" : "required|integer",
      *           "status_id" : "required|integer|exists:status,id",
@@ -257,7 +256,6 @@ interface ITypePeriodController
      *   @OA\JsonContent(
      *      example={
      *           "tp_name" : "required|string|unique:type_periods,tp_name,typePeriod->id|max:255",
-     *           "tp_description" : "required|string|unique:type_periods,tp_description,typePeriod->id|max:255",
      *           "tp_min_matter_enrollment" : "required|integer",
      *           "tp_max_matter_enrollment" : "required|integer",
      *            "status_id" : "required|integer|exists:status,id",

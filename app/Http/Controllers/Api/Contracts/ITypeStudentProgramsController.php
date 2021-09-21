@@ -145,7 +145,6 @@ interface ITypeStudentProgramsController
      *   @OA\JsonContent(
      *      example={
      *           "typ_stu_pro_name": "required|max:255|unique",
-     *           "typ_stu_pro_description": "max:255",
      *           "typ_stu_pro_acronym": "required|max:10|unique",
      *           "status_id": "required|integer|exists:status,id"
      *      },
@@ -258,7 +257,6 @@ interface ITypeStudentProgramsController
      *   @OA\JsonContent(
      *      example={
      *             "typ_stu_pro_name": "required|max:255|unique",
-     *           "typ_stu_pro_description": "max:255",
      *           "typ_stu_pro_acronym": "required|max:10|unique",
      *           "status_id": "required|integer|exists:status,id"
      *      },

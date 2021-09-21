@@ -140,10 +140,10 @@ interface IRelativeController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "person_id_relative" : "required|integer|exists:persons,id",
-     *          "person_id_student"  : "required|integer|exists:persons,id",
-     *          "type_kinship_id"    : "required|integer|exists:type_kinship,id",
-     *          "status_id"          : "required|integer",
+     *          "person_id_relative" : "required|integer|exists:tenant.persons,id",
+     *          "person_id_student"  : "required|integer|exists:tenant.persons,id",
+     *          "type_kinship_id"    : "required|integer|exists:tenant.type_kinship,id",
+     *          "status_id"          : "required|integer|exists:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -256,10 +256,10 @@ interface IRelativeController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "person_id_relative" : "required|integer|exists:persons,id",
-     *          "person_id_student"  : "required|integer|exists:persons,id",
-     *          "type_kinship_id"    : "required|integer|exists:type_kinship,id",
-     *          "status_id"          : "required|integer",
+     *          "person_id_relative" : "required|integer|exists:tenant.persons,id",
+     *          "person_id_student"  : "required|integer|exists:tenant.persons,id",
+     *          "type_kinship_id"    : "required|integer|exists:tenant.type_kinship,id",
+     *          "status_id"          : "required|integer|exists:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

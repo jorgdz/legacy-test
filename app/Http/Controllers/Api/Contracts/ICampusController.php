@@ -155,8 +155,8 @@ interface ICampusController
      *      example={
      *         "cam_name"          : "required",
      *       "cam_direction"     : "required",
-     *       "status_id"         : "required|integer",
-     *       "company_id"        : "required|integer",
+     *       "status_id"         : "required|integer|exists:tenant.status,id",
+     *       "company_id"        : "required|integer|exists:tenant.companies,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -276,8 +276,8 @@ interface ICampusController
      *      example={
      *         "cam_name"          : "required",
      *         "cam_direction"     : "required",
-     *         "status_id"         : "required|integer",
-     *         "company_id"        : "required|integer",
+     *         "status_id"         : "required|integer|exists:tenant.status,id",
+     *         "company_id"        : "required|integer|exists:tenant.companies,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

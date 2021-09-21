@@ -24,7 +24,7 @@ class ShowByUserProfileIdRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_profile_id' => 'required|integer|'
+            'user_profile_id' => 'required|integer'
         ];
     }
 }

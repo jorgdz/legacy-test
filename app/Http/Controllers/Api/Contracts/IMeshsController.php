@@ -147,7 +147,6 @@ interface IMeshsController
      *   @OA\JsonContent(
      *      example={
      *          "mes_name" : "required|max:255|unique:meshs,mes_name",
-     *          "mes_description" : "required|max:255",
      *          "mes_acronym" : "required|max:3",
      *          "pensum_id" : "required|integer|exists:pensums,id",
      *          "level_edu_id" : "required|integer|exists:education_levels,id",
@@ -273,7 +272,6 @@ interface IMeshsController
      *   @OA\JsonContent(
      *      example={
      *          "mes_name" : "required|max:255|unique:meshs,mes_name",
-     *          "mes_description" : "required|max:255",
      *          "mes_acronym" : "required|max:3",
      *          "pensum_id" : "required|integer|exists:pensums,id",
      *          "level_edu_id" : "required|integer|exists:education_levels,id",
