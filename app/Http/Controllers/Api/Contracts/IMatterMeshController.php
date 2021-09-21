@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Http\Requests\MatterMeshDependenciesRequest;
 use App\Http\Requests\MatterMeshRequest;
 use App\Models\MatterMesh;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ interface IMatterMeshController
 {
     /**
      * @OA\Get(
-     *   path="/api/mattermeshs",
+     *   path="/api/matter-mesh",
      *   tags={"MatterMesh"},
      *   security={
      *      {"api_key_security": {}},
@@ -88,7 +89,7 @@ interface IMatterMeshController
 
     /**
      * @OA\Post(
-     *   path="/api/mattermeshs",
+     *   path="/api/matter-mesh",
      *   tags={"MatterMesh"},
      *   security={
      *      {"api_key_security": {}},
@@ -166,8 +167,67 @@ interface IMatterMeshController
     public function store(MatterMeshRequest $request);
 
     /**
+     * @OA\Post(
+     *   path="/api/matter-mesh/{mattermesh}/dependencies",
+     *   tags={"MatterMesh"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Asignar dependencias a una materia y malla",
+     *   description="Asigna materias que dependen de una materia y malla.",
+     *   operationId="addMatterMeshDependencies",
+     *   @OA\Parameter(
+     *     name="mattermesh",
+     *     description="Id del mattermesh",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer"
+     *         ),
+     *          @OA\Property(
+     *           property="matterMesh",
+     *           description="Array de id de mattermesh",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[7, 8]",
+     *           uniqueItems=true
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Se ha asignado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "matterMesh" : "array",
+     *          "matterMesh.*" : "integer|exists:tenant.matter_mesh,id|distinct",
+     *      },
+     *   )),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function asignDependencies(MatterMeshDependenciesRequest $request, MatterMesh $mattermesh);
+
+    /**
      * @OA\Get(
-     *   path="/api/mattermeshs/{id}",
+     *   path="/api/matter-mesh/{id}",
      *   tags={"MatterMesh"},
      *   security={
      *      {"api_key_security": {}},
@@ -206,8 +266,48 @@ interface IMatterMeshController
     public function show($id);
 
     /**
+     * @OA\Get(
+     *   path="/api/matter-mesh/{mattermesh}/dependencies",
+     *   tags={"MatterMesh"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener las materias que dependen de una materia por malla",
+     *   description="Muestra información específica las materias que dependen de una materia por malla por Id.",
+     *   operationId="getMatterMeshDependencies",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="mattermesh",
+     *     description="Id de la materia y malla",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showDependencies(MatterMesh $mattermesh);
+
+    /**
      * @OA\Put(
-     *   path="/api/mattermeshs/{mattermesh}",
+     *   path="/api/matter-mesh/{mattermesh}",
      *   tags={"MatterMesh"},
      *   security={
      *      {"api_key_security": {}},
@@ -291,7 +391,7 @@ interface IMatterMeshController
 
     /**
      * @OA\Delete(
-     *   path="/api/mattermeshs/{mattermesh}",
+     *   path="/api/matter-mesh/{mattermesh}",
      *   tags={"MatterMesh"},
      *   security={
      *      {"api_key_security": {}},

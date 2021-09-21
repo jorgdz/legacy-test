@@ -153,6 +153,11 @@ return [
             'exists' => 'The selected language is invalid.',
             'integer' => 'The language values must be integer',
             'distinct' => 'The language field has a duplicate value'
+        ],
+        'matterMesh.*'=> [
+            'exists' => 'The selected matter mesh is invalid.',
+            'integer' => 'The matter mesh values must be integer',
+            'distinct' => 'The matter mesh field has a duplicate value'
         ]
     ],
 

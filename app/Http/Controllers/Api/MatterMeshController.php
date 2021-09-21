@@ -7,15 +7,17 @@ use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IMatterMeshController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MatterMeshDependenciesRequest;
 use App\Http\Requests\MatterMeshRequest;
 use App\Models\MatterMesh;
+use App\Traits\Auditor;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class MatterMeshController extends Controller implements IMatterMeshController
 {
-    use RestResponse;
+    use RestResponse, Auditor;
 
     /**
      * matterMeshCache
@@ -59,8 +61,21 @@ class MatterMeshController extends Controller implements IMatterMeshController
         }
 
         $matterMesh = new MatterMesh($request->all());
-        $matterMesh = $this->matterMeshCache->save($matterMesh);
-        return $this->success($matterMesh, Response::HTTP_CREATED);
+        return $this->success($this->matterMeshCache->save($matterMesh), Response::HTTP_CREATED);
+    }
+
+    /**
+     * asignDependencies
+     *
+     * @param  mixed $request
+     * @param  mixed $mattermesh
+     * @return void
+     */
+    public function asignDependencies(MatterMeshDependenciesRequest $request, MatterMesh $mattermesh)
+    {
+        $mattermesh->matterMeshDependencies()->sync($request->matterMesh);
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(MatterMesh::class)));
+        return $this->success($this->matterMeshCache->save($mattermesh));
     }
 
     /**
@@ -72,6 +87,18 @@ class MatterMeshController extends Controller implements IMatterMeshController
     public function show($id)
     {
         return $this->success($this->matterMeshCache->find($id));
+    }
+
+    /**
+     * showDependencies
+     *
+     * @param  mixed $mattermesh
+     * @return void
+     */
+    public function showDependencies(MatterMesh $mattermesh)
+    {
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(MatterMesh::class)));
+        return $this->success($this->matterMeshCache->showDependencies($mattermesh));
     }
 
     /**

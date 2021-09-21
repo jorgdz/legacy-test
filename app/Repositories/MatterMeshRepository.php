@@ -11,7 +11,17 @@ use App\Repositories\Base\BaseRepository;
 class MatterMeshRepository extends BaseRepository
 {
 
-    protected $relations = ['status', 'mesh', 'matter'];
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status', 'mesh', 'matter', 'matterMeshDependencies'];
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['calification_type', 'min_calification', 'num_fouls', 'matter_rename'];
 
     /**
@@ -21,6 +31,16 @@ class MatterMeshRepository extends BaseRepository
      */
     public function __construct (MatterMesh $matterMesh) {
         parent::__construct($matterMesh);
+    }
+
+    /**
+     * showDependencies
+     *
+     * @param  mixed $matterMesh
+     * @return void
+     */
+    public function showDependencies(MatterMesh $matterMesh) {
+        return $matterMesh->matterMeshDependencies;
     }
 
 }

@@ -34,7 +34,15 @@ class Person extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['city_id', 'sector_id', 'ethnic_id'];
+    protected $relations = [
+        'type_identification_id',
+        'city_id',
+        'sector_id',
+        'ethnic_id',
+        'vivienda_id',
+        'type_religion_id',
+        'status_marital_id'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -97,7 +105,7 @@ class Person extends Model implements AuditableContract
      * person is a user
      *
      */
-    public function lenguajes () {
+    public function languages () {
         return $this->belongsToMany(TypeLanguage::class,'language_persons','person_id','language_id');
     }
 
@@ -176,7 +184,7 @@ class Person extends Model implements AuditableContract
     /**
      * personJob
      *
-     * @return hasMany
+     * @return HasMany
      */
     public function personJob () : HasMany
     {
@@ -190,11 +198,16 @@ class Person extends Model implements AuditableContract
      */
     public function person_relative () {
         return $this->hasMany(Relative::class,'person_id_relative');
-        
+
     }
 
+    /**
+     * person_student
+     *
+     * @return void
+     */
     public function person_student () {
         return $this->hasMany(Relative::class,'person_id_student');
-        
+
     }
 }

@@ -66,12 +66,12 @@ class ProfileCache extends BaseCache {
     /**
      * find
      *
-     * @param  mixed $id
+     * @param  mixed $model
      * @return void
      */
-    public function showUsers ($profile_id) {
-        return $this->cache::remember($this->key, $this->ttl, function () use ($profile_id) {
-            return $this->repository->showUsers($profile_id);
+    public function showUsers (Model $model) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($model) {
+            return $this->repository->showUsers($model);
         });
     }
 }

@@ -41,6 +41,7 @@ use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\TypeIdentificationController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
+use App\Http\Controllers\Api\PersonController;
 use App\Http\Controllers\Api\RelativeController;
 
 /* Import routes */
@@ -224,11 +225,13 @@ Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyH
 /**
  * MatterMesh
  */
-Route::get('/mattermeshs', [MatterMeshController::class, 'index'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-materias-mallas']);
-Route::get('/mattermeshs/{mattermesh}', [MatterMeshController::class, 'show'])->middleware(['auth:sanctum', 'permission:mattermesh-obtener-materias-mallas']);
-Route::post('/mattermeshs', [MatterMeshController::class, 'store'])->middleware(['auth:sanctum', 'permission:mattermesh-crear-materias-mallas']);
-Route::put('/mattermeshs/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
-Route::delete('/mattermeshs/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
+Route::get('/matter-mesh', [MatterMeshController::class, 'index'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-materias-mallas']);
+Route::get('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'show'])->middleware(['auth:sanctum', 'permission:mattermesh-obtener-materias-mallas']);
+Route::get('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'showDependencies'])->middleware(['auth:sanctum']); //permission:mattermesh-listar-dependencias-por-materias-mallas
+Route::post('/matter-mesh', [MatterMeshController::class, 'store'])->middleware(['auth:sanctum', 'permission:mattermesh-crear-materias-mallas']);
+Route::post('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'asignDependencies'])->middleware(['auth:sanctum']); //permission:mattermesh-asignar-dependencias-por-materias-mallas
+Route::put('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
+Route::delete('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
 
 /*
  *
@@ -408,10 +411,9 @@ Route::post('person-job', [PersonJobController::class, 'store'])->middleware(['a
 Route::put('person-job/{personjob}', [PersonJobController::class, 'update'])->middleware(['auth:sanctum', 'permission:person_job-actualizar-persona-trabajo']);
 Route::delete('person-job/{personjob}', [PersonJobController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:person_job-eliminar-persona-trabajo']);
 /**
- * Persona
+ * Status
  */
-Route::post('persons/{person}/languages', [PersonController::class, 'updateLanguagePerson'])->middleware(['auth:sanctum', 'permission:languages-person-actualizar-lenguajes-por-persona']);
-
+Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);
 /**
  * Relative
  */
@@ -421,4 +423,3 @@ Route::post('/relatives', [RelativeController::class, 'store'])->middleware(['au
 Route::put('/relatives/{relative}', [RelativeController::class, 'update'])->middleware(['auth:sanctum', 'permission:relatives-actualizar-familiar']);
 Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:relatives-borrar-familiar']);
 
-Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);

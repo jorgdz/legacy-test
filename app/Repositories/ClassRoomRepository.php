@@ -10,6 +10,10 @@ class ClassRoomRepository extends BaseRepository {
     protected $relations = ['status'];
     protected $fields = ['cl_name', 'cl_acronym'];
 
+    protected $selfFieldsAndParents = ['cl_name', 'cl_acronym', 'st_name'];
+
+    protected $parents = ['status'];
+
     /**
      * __construct
      *

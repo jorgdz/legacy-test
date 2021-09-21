@@ -104,10 +104,10 @@ class ProfileController extends Controller implements IProfileController
      * showUser
      *
      * @param  mixed $request
-     * @param  mixed $user
+     * @param  mixed $profile
      * @return void
      */
-    public function showUsers (Request $request,$profile_id) {
-        return $this->success($this->repoProfile->showUsers($profile_id));
+    public function showUsers (Request $request, Profile $profile) {
+        return $this->success($this->repoProfile->showUsers($profile));
     }
 }

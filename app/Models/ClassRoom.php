@@ -27,6 +27,8 @@ class ClassRoom extends Model implements AuditableContract
         'status_id',
     ];
 
+    protected $relations = ['status_id'];
+
     /**
      * The attributes are hidden
      *

@@ -21,7 +21,7 @@ class MatterMesh extends Model implements AuditableContract
 
     protected $guard_name = 'api';
 
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at','updated_at','deleted_at','pivot'];
 
     /**
      * The attributes that are mass assignable.

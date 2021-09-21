@@ -41,7 +41,7 @@ class TypeLanguage extends Model implements AuditableContract
      *
      * @return void
      */
-    public function personas () {
+    public function persons () {
         return $this->belongsToMany(Person::class,'language_persons','person_id','language_id');
     }
 }

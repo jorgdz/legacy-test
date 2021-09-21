@@ -43,7 +43,7 @@ class City extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'id'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * status

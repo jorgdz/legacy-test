@@ -14,14 +14,22 @@ class PersonRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['identification', 'religion', 'statusMarital', 'city', 'currentCity', 'sector', 'ethnic', 'user', 'personJob','livingPlace'];
+    protected $relations = ['identification', 'religion', 'statusMarital', 'city', 'currentCity', 'sector', 'ethnic', 'user', 'personJob', 'livingPlace', 'languages'];
 
     /**
      * parents
      *
      * @var array
      */
-    protected $parents = ['cities', 'sectors', 'ethnics'];
+    protected $parents = [
+        'cities',
+        'sectors',
+        'ethnics',
+        'type_languages',
+        'catalogs',
+        'type_religions',
+        'status_marital'
+    ];
 
     /**
      * fields
@@ -56,6 +64,12 @@ class PersonRepository extends BaseRepository
         'sec_acronym',
         'eth_name',
         'eth_description',
+        'typ_lan_name',
+        'cat_name',
+        'cat_acronym',
+        'cat_description',
+        'typ_rel_name',
+        'sta_mar_name'
     ];
 
     /**

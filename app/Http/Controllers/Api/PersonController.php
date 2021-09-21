@@ -4,22 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Person;
 use App\Cache\PersonCache;
-use App\CustomValidation\LaravelValidatorEc;
-use App\CustomValidation\ValidadorEc;
-use App\Exceptions\Custom\BadRequestException;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
 use App\Http\Requests\UpdateLanguagesPersonRequest;
 use App\Http\Controllers\Api\Contracts\IPersonController;
 use App\Http\Requests\StoreAssignPersonJobsRequest;
 use App\Traits\Auditor;
-use Exception;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
 class PersonController extends Controller implements IPersonController
 {
@@ -100,15 +93,7 @@ class PersonController extends Controller implements IPersonController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Person $person) {
-        //DB::beginTransaction();
-        //try {
-            $response = $this->personCache->destroy($person);
-           // DB::commit();
-            return $this->success($response);
-        // } catch (\Exception $ex) {
-        //     DB::rollBack();
-        //     return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
-        // }
+        return $this->success($this->personCache->destroy($person));
     }
 
     /**
@@ -120,11 +105,17 @@ class PersonController extends Controller implements IPersonController
      */
     public function updateLanguagePerson(UpdateLanguagesPersonRequest $request, Person $person)
     {
-        $person->lenguajes()->sync($request->languages);
-        return $this->success(Person::with('lenguajes')->find($person->id));
+        $person->languages()->sync($request->languages);
+        return $this->success(Person::with('languages')->find($person->id));
     }
 
-    public function showRelativeByPerson (Person $person ) {  
+    /**
+     * showRelativeByPerson
+     *
+     * @param  mixed $person
+     * @return void
+     */
+    public function showRelativeByPerson (Person $person ) {
         $relatives = Person::with('person_student.person_relative')->find($person->id);
         return $this->success($relatives);
     }

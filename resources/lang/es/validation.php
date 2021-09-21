@@ -214,6 +214,11 @@ return [
 			'integer' => 'El valor del campo lenguaje debe ser un entero.',
 			'distinct' => 'El valor del campo lenguaje tiene un valor duplicado.'
 		],
+        'matterMesh.*' => [
+			'exists' => 'El valor del campo materia malla seleccionado es inválido.',
+			'integer' => 'El valor del campo materia malla debe ser un entero.',
+			'distinct' => 'El valor del campo materia malla tiene un valor duplicado.'
+		],
 
 	],
 
@@ -322,6 +327,7 @@ return [
 		'min_calification' => 'calificación minima',
 		'num_fouls' => 'numero de faltas',
 		'matter_rename' => 'cambiar el nombre de la materia',
+        'matterMesh' => 'las opciones de los materias y mallas',
 		/**
 		 * matter_status
 		 */

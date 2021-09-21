@@ -11,7 +11,7 @@ use App\Repositories\Base\BaseRepository;
 class TypeLanguageRepository extends BaseRepository
 {
 
-    protected $relations = ['status', /* 'institutes', 'persons' */];
+    protected $relations = ['status', 'persons', /*'institutes'*/];
     protected $fields = ['typ_lan_name'];
 
     /**
