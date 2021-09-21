@@ -15,6 +15,20 @@ class Status extends Model implements AuditableContract
     protected $table = 'status';
 
     /**
+     * primaryKey
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['category_status_id'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -24,4 +38,8 @@ class Status extends Model implements AuditableContract
     ];
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
+
+    public function categoryStatus() {
+        return $this->belongsTo(CategoryStatus::class, 'category_status_id');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatusTable extends Migration
+class CreateCategoryStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('status', function (Blueprint $table) {
+        Schema::create('category_status', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('st_name', 255)->nullable();
-
-            $table->integer('category_status_id')->unsigned();
-            $table->foreign('category_status_id')->references('id')->on('category_status');
             
+            $table->string('cat_name')->nullable();
+            $table->string('cat_description')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +31,6 @@ class CreateStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status');
+        Schema::dropIfExists('category_status');
     }
 }

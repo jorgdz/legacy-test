@@ -8,7 +8,7 @@ Route::get('/persons/{id}', [PersonController::class, 'show'])->middleware(['aut
 Route::post('/persons', [PersonController::class, 'store'])->middleware(['auth:sanctum', 'permission:persons-crear-person']);
 Route::post('persons/{person}/jobs', [PersonController::class, 'assignJobs'])->middleware(['auth:sanctum', 'permission:persona-asignar-trabajos-persona']);
 Route::post('persons/{person}/languages', [PersonController::class, 'updateLanguagePerson'])->middleware(['auth:sanctum', 'permission:languages-person-actualizar-lenguajes-por-persona']);
-Route::put('persons/{person}/students', [PersonController::class, 'personAsStudent'])->middleware(['auth:sanctum']);//, 'permission:person-as-student-configurar-persona-como-estudiante'
+Route::put('persons/{person}/students', [PersonController::class, 'personAsStudent'])->middleware(['auth:sanctum', 'permission:person-as-student-configurar-persona-como-estudiante']);
 Route::put('/persons/{person}', [PersonController::class, 'update'])->middleware(['auth:sanctum', 'permission:persons-actualizar-person']);
 Route::patch('/persons/{person}', [PersonController::class, 'update'])->middleware(['auth:sanctum', 'permission:persons-actualizar-person']);
 Route::get('/persons/{person}/relatives', [PersonController::class, 'showRelativeByPerson'])->middleware(['auth:sanctum', 'permission:relatives-obtener-familiar-por-estudiante']);

@@ -101,7 +101,7 @@ class ListBaseRepository
 
                         for($i = 0; $i < count($this->getParents()); $i++) {
 
-                            $query->join($this->getParent($i), function($join) use ($i, $keyName, $table, $relations) {
+                            $query->select($table.'.*')->join($this->getParent($i), function($join) use ($i, $keyName, $table, $relations) {
 
                                 $join->on($this->getParent($i).".".$keyName,
                                     $table.".".$relations[$i]

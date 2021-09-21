@@ -41,6 +41,7 @@ use App\Http\Controllers\Api\EmergencyContactController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\TypeIdentificationController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\CategoryStatusController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
 use App\Http\Controllers\Api\RelativeController;
 /* Import routes */
@@ -226,9 +227,9 @@ Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyH
  */
 Route::get('/matter-mesh', [MatterMeshController::class, 'index'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-materias-mallas']);
 Route::get('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'show'])->middleware(['auth:sanctum', 'permission:mattermesh-obtener-materias-mallas']);
-Route::get('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'showDependencies'])->middleware(['auth:sanctum']); //permission:mattermesh-listar-dependencias-por-materias-mallas
+Route::get('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'showDependencies'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-dependencias-por-materias-mallas']);
 Route::post('/matter-mesh', [MatterMeshController::class, 'store'])->middleware(['auth:sanctum', 'permission:mattermesh-crear-materias-mallas']);
-Route::post('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'asignDependencies'])->middleware(['auth:sanctum']); //permission:mattermesh-asignar-dependencias-por-materias-mallas
+Route::post('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'asignDependencies'])->middleware(['auth:sanctum', 'permission:mattermesh-asignar-dependencias-por-materias-mallas']);
 Route::put('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
 Route::delete('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
 
@@ -425,4 +426,8 @@ Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->
 /**
  * Student
  */
-Route::post('students', [StudentController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:languages-person-actualizar-lenguajes-por-persona'
+Route::post('students', [StudentController::class, 'store'])->middleware(['auth:sanctum', 'permission:student-crear-estudiante']);
+/**
+ * Status
+ */
+Route::get('category-status', [CategoryStatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:category-status-listar-categoria-estado']);

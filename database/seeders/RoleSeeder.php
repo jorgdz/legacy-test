@@ -1983,7 +1983,7 @@ class RoleSeeder extends Seeder
             [
                 'name' => 'status-listar-status',
                 'alias' => 'Listado de estados',
-                'description' => 'Listar todos los permisos',
+                'description' => 'Listar todos los estados',
                 'guard_name' => 'api',
                 'status_id' => 1,
                 'parent_name' => 'status'
@@ -2100,6 +2100,58 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1,
                 'parent_name' => 'relatives'
+            ],
+            /**
+             * Categoria Estados 239
+             */
+            [
+                'name' => 'category-status-listar-categoria-estado',
+                'alias' => 'Listado de categoria estados',
+                'description' => 'Listar todas las categorias de estados',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'categoryStatus'
+            ],
+            /**
+             * Estudiantes 240
+             */
+            [
+                'name' => 'student-crear-estudiante',
+                'alias' => 'Crear estudiante',
+                'description' => 'Crear un estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'student'
+            ],
+            /**
+             * Estudiantes 241-242
+             */
+            [
+                'name' => 'mattermesh-asignar-dependencias-por-materias-mallas',
+                'alias' => 'asignar dependencia materia malla',
+                'description' => 'Asignar dependecias de materias por mallas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matterMesh'
+            ],
+            [
+                'name' => 'mattermesh-listar-dependencias-por-materias-mallas',
+                'alias' => 'listar dependencia materia malla',
+                'description' => 'Lista todas las dependecias de materias por mallas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'matterMesh'
+            ],
+            /**
+             * Persona 243
+             */
+            [
+                'name' => 'person-as-student-configurar-persona-como-estudiante',
+                'alias' => 'Configurar persona estudiante',
+                'description' => 'Configura una persona como un estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'person'
             ],
         ]);
 
@@ -2520,6 +2572,23 @@ class RoleSeeder extends Seeder
             ['permission_id' => 236, 'role_id' => 1],
             ['permission_id' => 237, 'role_id' => 1],
             ['permission_id' => 238, 'role_id' => 1],
+            /**
+             * Categoria Estados 239
+             */
+            ['permission_id' => 239, 'role_id' => 1],
+            /**
+             * Estudiantes 240
+             */
+            ['permission_id' => 240, 'role_id' => 1],
+            /**
+             * Estudiantes 241-242
+             */
+            ['permission_id' => 241, 'role_id' => 1],
+            ['permission_id' => 242, 'role_id' => 1],
+            /**
+             * Persona 243
+             */
+            ['permission_id' => 243, 'role_id' => 1],
 
             /**
              * 
@@ -2939,6 +3008,23 @@ class RoleSeeder extends Seeder
             ['permission_id' => 236, 'role_id' => 2],
             ['permission_id' => 237, 'role_id' => 2],
             ['permission_id' => 238, 'role_id' => 2],
+            /**
+             * Categoria Estados 239
+             */
+            ['permission_id' => 239, 'role_id' => 2],
+            /**
+             * Estudiantes 240
+             */
+            ['permission_id' => 240, 'role_id' => 2],
+            /**
+             * Estudiantes 241-242
+             */
+            ['permission_id' => 241, 'role_id' => 2],
+            ['permission_id' => 242, 'role_id' => 2],
+            /**
+             * Persona 243
+             */
+            ['permission_id' => 243, 'role_id' => 2],
         ]);
     }
 }

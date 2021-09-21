@@ -15,9 +15,9 @@ class StatusSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('status')->insert([
-            ['st_name' => 'Activo'],
-            ['st_name' => 'Inactivo'],
-            ['st_name' => 'Eliminado']
+            ['st_name' => 'Activo', 'category_status_id' => '1'],
+            ['st_name' => 'Inactivo', 'category_status_id' => '1'],
+            ['st_name' => 'Eliminado', 'category_status_id' => '1']
         ]);
     }
 }
