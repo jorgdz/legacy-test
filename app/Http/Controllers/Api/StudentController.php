@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use Exception;
-use Throwable;
 use App\Models\User;
 use App\Models\Person;
 use App\Traits\Helper;
 use App\Models\Student;
 use App\Cache\StudentCache;
+use App\Mail\EmailRegister;
 use Illuminate\Support\Str;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreStudentRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\DatabaseException;
-
+use Illuminate\Http\Response;
 class StudentController extends Controller
 {
     use RestResponse,Helper;
@@ -68,7 +68,8 @@ class StudentController extends Controller
         $user = new User($request->only(['email']));
         
         $user->us_username = $request->get('pers_identification');
-        $user->password = Hash::make(Str::random(8));
+        $password = Str::random(8);
+        $user->password = Hash::make($password);
         $user->person_id = $person->id;
         $user->status_id = 1;
         $user->save();
@@ -84,9 +85,13 @@ class StudentController extends Controller
         $student->save();
 
         DB::commit();
+
+        Mail::to($request->get('email'))->send(new EmailRegister($user,$password ));
+        
+        return $this->success($this->information(__('messages.model-saved-successfully', ['model' => class_basename(Student::class)])), Response::HTTP_CREATED);
+        
         }catch(Exception $ex){
             DB::rollback();
-            //dd($ex->errorInfo[2]);
             throw new DatabaseException($ex->errorInfo[2]);
         }
     }
