@@ -28,5 +28,8 @@ return [
     'file-extensions-allowed' => "Allowed extensions :file",
     'error-save-local-storage'=>'Error saving file to local storage',
     'error-file-not-exist'=>'Requested file does not exist on our server!',
+    'model-saved-successfully'=>"':model' saved successfully!",
+    'error-saving-model'=>"Error saving ':model'!",
+    'error-database'=>"Error executing the transaction!",
 ];
 ?>

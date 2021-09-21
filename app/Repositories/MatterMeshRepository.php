@@ -22,7 +22,7 @@ class MatterMeshRepository extends BaseRepository
      *
      * @var array
      */
-    protected $fields = ['calification_type', 'min_calification', 'num_fouls', 'matter_rename'];
+    protected $fields = ['calification_type', 'min_calification','max_calification', 'num_fouls', 'matter_rename'];
 
     /**
      * __construct

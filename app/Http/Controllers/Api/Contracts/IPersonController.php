@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Person;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
+use App\Http\Requests\StorePersonAsStudentRequest;
 use App\Http\Requests\StoreAssignPersonJobsRequest;
 use App\Http\Requests\UpdateLanguagesPersonRequest;
+
 interface IPersonController {
 
     /**
@@ -244,6 +246,15 @@ interface IPersonController {
      *          "pers_gender"     : "required|string",
      *          "pers_date_birth" : "required|date",
      *          "pers_direction"  : "required|string",
+     *          "pers_phone_home" : "nullable|string",
+     *          "pers_cell" : "nullable|string",
+     *          "pers_num_child" : "nullable|integer",
+     *          "pers_profession" : "nullable|string",
+     *          "pers_num_bedrooms" : "nullable|integer",
+     *          "pers_study_reason" : "nullable|string",
+     *          "pers_num_taxpayers_household" : "nullable|integer",
+     *          "pers_has_vehicle" : "nullable|digits_between:0,1",
+     *          "vivienda_id"  : "required|integer|exists:tenant.catalogs,id",
      *          "type_religion_id"  : "required|integer|exists:type_religions,id",
      *          "status_marital_id" : "required|integer|exists:status_marital,id",
      *          "city_id"           : "required|integer|exists:cities,id",
@@ -718,4 +729,64 @@ interface IPersonController {
      *
      */
     public function showRelativeByPerson(Person $person);
+
+
+    /**
+     * @OA\Put(
+     *   path="/api/persons/{person}/students",
+     *   tags={"Estudiantes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Registrar a un estudiante a partir de su perfil persona",
+     *   description="Registrar a un estudiante a partir de su perfil persona",
+     *   operationId="savePersonAsStudent",
+     *   @OA\Parameter(
+     *     name="person",
+     *     description="Persona",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="5"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="campus_id",
+     *           description="Campus",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="modalidad_id",
+     *           description="Modalidad",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="jornada_id",
+     *           description="Jornada",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     * @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+     
+    public function personAsStudent(Request $request, Person $person);
 }

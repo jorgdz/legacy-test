@@ -129,6 +129,12 @@ interface IMatterMeshController
      *           format="float"
      *         ),
      *         @OA\Property(
+     *           property="max_calification",
+     *           description="Calificacion maxima del tipo de calificacion",
+     *           type="integer",
+     *           format="float"
+     *         ),
+     *         @OA\Property(
      *           property="num_fouls",
      *           description="Numero de faltas",
      *           type="integer",
@@ -154,6 +160,7 @@ interface IMatterMeshController
      *          "mesh_id" : "required|integer",
      *          "calification_type" : "required",
      *          "min_calification" : "required",
+     *          "max_calification" : "required",
      *          "num_fouls" : "required",
      *          "matter_rename" : "required"
      *      },
@@ -357,6 +364,12 @@ interface IMatterMeshController
      *           format="float"
      *         ),
      *         @OA\Property(
+     *           property="max_calification",
+     *           description="Calificacion  maxima",
+     *           type="number",
+     *           format="float"
+     *         ),
+     *         @OA\Property(
      *           property="num_fouls",
      *           description="Numero de faltas",
      *           type="integer",
@@ -377,6 +390,7 @@ interface IMatterMeshController
      *          "mesh_id" : "required|integer",
      *          "calification_type" : "required",
      *          "min_calification" : "required",
+     *          "max_calification" : "required",
      *          "num_fouls" : "required",
      *          "matter_rename" : "required"
      *      },

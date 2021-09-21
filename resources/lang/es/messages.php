@@ -28,5 +28,8 @@ return [
     'file-extensions-allowed' => "Extensiones permitidas :file",
     'error-save-local-storage' => 'Error al guardar archivo en el local storage.',
     'error-file-not-exist'=>'El archivo solicitado no existe en nuestro servidor!',
+    'user-saved-successfully'=>'Usuario guardado con éxito!',
+    'error-saving-model'=>"Error al guardar ':model'!",
+    'error-database'=>"Error al ejecutar la transacción!",
 ];
 ?>

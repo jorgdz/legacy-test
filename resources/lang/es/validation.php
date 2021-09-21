@@ -159,7 +159,6 @@ return [
 			'integer'  => 'El campo parentesco debe ser un entero.',
 			'exists'   => 'El campo parentesco seleccionado es inválido.'
 		],
-
 		'emergencyContacts.*.person_id'=> [
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
@@ -325,6 +324,7 @@ return [
 		'mesh_id' => 'malla',
 		'calification_type' => 'tipo de calificación',
 		'min_calification' => 'calificación minima',
+		'max_calification' => 'calificación maxima',
 		'num_fouls' => 'numero de faltas',
 		'matter_rename' => 'cambiar el nombre de la materia',
         'matterMesh' => 'las opciones de los materias y mallas',

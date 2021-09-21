@@ -19,8 +19,9 @@ class CreateMatterMeshTable extends Migration
             $table->integer('matter_id')->unsigned();
             $table->integer('mesh_id')->unsigned();
             $table->string('calification_type', 255)->nullable();
-            $table->float('min_calification', 8, 4);
-            $table->integer('num_fouls')->unsigned();
+            $table->float('min_calification', 8, 4)->nullable();
+            $table->float('max_calification', 8, 4)->nullable();
+            $table->integer('num_fouls')->nullable();
             $table->string('matter_rename', 255)->nullable();
 
             $table->string('clasification_matter', 255)->nullable();

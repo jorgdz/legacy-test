@@ -5,12 +5,13 @@ namespace App\Exceptions;
 use Throwable;
 use App\Traits\RestResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotFoundException;
 use Illuminate\Auth\AuthenticationException;
 use App\Exceptions\Custom\BadRequestException;
-use App\Exceptions\Custom\FailLocalStorageRequestException;
+use App\Exceptions\Custom\DatabaseException;
 use App\Exceptions\Custom\NotContentException;
 use Illuminate\Validation\ValidationException;
 use App\Exceptions\Custom\UnprocessableException;
@@ -18,6 +19,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Spatie\Multitenancy\Exceptions\NoCurrentTenant;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Exceptions\Custom\FailLocalStorageRequestException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -104,6 +106,12 @@ class Handler extends ExceptionHandler
 
                 return $this->error($request->getPathInfo(), $exception,
                     $errors, Response::HTTP_BAD_REQUEST);
+            }
+            if ($exception instanceof DatabaseException) {
+                if (config('app.debug')) {
+                    return $this->error($request->getPathInfo(), $exception, $exception->getMessage(), $exception->getStatusCode());
+                }   
+                return $this->error($request->getPathInfo(), $exception, __('messages.error-database'), $exception->getStatusCode());
             }
 
             if ($exception instanceof UnprocessableException

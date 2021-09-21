@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Askedio\SoftCascade\Traits\SoftCascadeTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
@@ -56,7 +57,14 @@ class Student extends Model implements AuditableContract
      * @var array
      */
     protected $fillable = [
+        'stud_code',
+        'stud_photo',
+        'stud_observation',
         'user_id',
+        'status_id',
+        'campus_id',
+        'modalidad_id',
+        'jornada_id'
     ];
 
     /**
@@ -70,6 +78,56 @@ class Student extends Model implements AuditableContract
     }
 
     /**
+     * status
+     *
+     * @return BelongsTo
+     */
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    /**
+     * modality
+     *
+     * @return void
+     */
+    public function modality ()
+    {
+        return $this->belongsTo(Modality::class, 'modalidad_id');
+    }
+
+    /**
+     * campus
+     *
+     * @return void
+     */
+    public function campus ()
+    {
+        return $this->belongsTo(Campus::class, 'campus_id');
+    }
+
+    /**
+     * daytrip
+     *
+     * @return void
+     */
+    public function daytrip ()
+    {
+        return $this->belongsTo(TypeDaytrip::class, 'jornada_id');
+    }
+
+    /**
+     * user
+     *
+     * @return void
+     */
+    public function user ()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
      * studentDocuments
      *
      * @return void
@@ -78,7 +136,7 @@ class Student extends Model implements AuditableContract
     {
         return $this->hasMany(StudentDocument::class);
     }
-
+    
     /**
      * courseStudent
      *

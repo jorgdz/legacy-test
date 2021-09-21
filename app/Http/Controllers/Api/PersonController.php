@@ -2,26 +2,33 @@
 
 namespace App\Http\Controllers\Api;
 
+use Exception;
 use App\Models\Person;
+use App\Traits\Helper;
+use App\Models\Student;
+use App\Traits\Auditor;
 use App\Cache\PersonCache;
+use App\Cache\StudentCache;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
+use App\Exceptions\Custom\ConflictException;
+use App\Http\Requests\StoreAssignPersonJobsRequest;
 use App\Http\Requests\UpdateLanguagesPersonRequest;
 use App\Http\Controllers\Api\Contracts\IPersonController;
-use App\Http\Requests\StoreAssignPersonJobsRequest;
-use App\Traits\Auditor;
 
 class PersonController extends Controller implements IPersonController
 {
-    use RestResponse, Auditor;
+    use RestResponse, Auditor, Helper;
 
     private $personCache;
+    private $studentCache;
 
-    public function __construct(PersonCache $personCache) {
+    public function __construct(PersonCache $personCache,StudentCache $studentCache) {
         $this->personCache = $personCache;
+        $this->studentCache = $studentCache;
     }
 
     /**
@@ -118,5 +125,27 @@ class PersonController extends Controller implements IPersonController
     public function showRelativeByPerson (Person $person ) {
         $relatives = Person::with('person_student.person_relative')->find($person->id);
         return $this->success($relatives);
+    }
+
+    /**
+     * Set a person as student.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Person  $person
+     * @return \Illuminate\Http\Response
+     */
+    public function personAsStudent(Request $request, Person $person)
+    {
+        if(is_null($person->user))
+            throw new ConflictException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
+
+        $user = $person->user;
+
+        $student = new Student($request->only(['campus_id','modalidad_id','jornada_id']));
+        $student->stud_code = $this->stud_code_avaliable();
+        $student->user_id = $user->id;
+        $student->status_id = 1;
+        
+        return $this->success($this->studentCache->save($student));
     }
 }

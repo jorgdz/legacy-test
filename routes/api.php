@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\StatusController;
 use App\Http\Controllers\Api\TenantController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\AsTenantController;
 use App\Http\Controllers\Api\HourhandController;
 use App\Http\Controllers\Api\ParallelController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Api\ClassRoomController;
 use App\Http\Controllers\Api\InstituteController;
 use App\Http\Controllers\Api\PersonJobController;
 use App\Http\Controllers\Api\MatterMeshController;
+use App\Http\Controllers\Api\TagStudentController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\PeriodStageController;
 use App\Http\Controllers\Api\TypeDaytripController;
@@ -36,14 +38,11 @@ use App\Http\Controllers\Api\StudentRecordController;
 use App\Http\Controllers\Api\TypeEducationController;
 use App\Http\Controllers\Api\TypeDisabilityController;
 use App\Http\Controllers\Api\EmergencyContactController;
-use App\Http\Controllers\Api\TagStudentController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\TypeIdentificationController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
-use App\Http\Controllers\Api\PersonController;
 use App\Http\Controllers\Api\RelativeController;
-
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
 require __DIR__ . "/channels/permissions.php";
@@ -423,3 +422,7 @@ Route::post('/relatives', [RelativeController::class, 'store'])->middleware(['au
 Route::put('/relatives/{relative}', [RelativeController::class, 'update'])->middleware(['auth:sanctum', 'permission:relatives-actualizar-familiar']);
 Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:relatives-borrar-familiar']);
 
+/**
+ * Student
+ */
+Route::post('students', [StudentController::class, 'store'])->middleware(['auth:sanctum']);//, 'permission:languages-person-actualizar-lenguajes-por-persona'
