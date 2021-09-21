@@ -571,7 +571,6 @@ return [
 		'stu_doc_url' => 'url del documento',
 		'stu_doc_name_file' => 'nombre del archivo',
 		'type_document_id' => 'tipo documento',
-		'students_id' => 'estudiante',
 
 		'title' => 'titulo',
 		'name' => 'nombre',

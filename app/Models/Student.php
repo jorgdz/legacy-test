@@ -94,7 +94,7 @@ class Student extends Model implements AuditableContract
      */
     public function modality ()
     {
-        return $this->belongsTo(Modality::class, 'modalidad_id');
+        //return $this->belongsTo(Modality::class, 'modalidad_id');
     }
 
     /**

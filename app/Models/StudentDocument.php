@@ -32,7 +32,7 @@ class StudentDocument extends Model implements AuditableContract
         'stu_doc_url',
         'stu_doc_name_file',
         'type_document_id',
-        'students_id',
+        'student_id',
         'status_id'
     ];
 
@@ -60,7 +60,7 @@ class StudentDocument extends Model implements AuditableContract
      */
     public function student()
     {
-        return $this->belongsTo(Student::class, 'students_id');
+        return $this->belongsTo(Student::class, 'student_id');
     }
 
 

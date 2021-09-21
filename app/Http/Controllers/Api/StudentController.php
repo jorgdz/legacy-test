@@ -20,12 +20,13 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\DatabaseException;
 use Illuminate\Http\Response;
+use App\Http\Requests\UpdateStudentRequest;
 class StudentController extends Controller
 {
     use RestResponse,Helper;
 
     /**
-     * studentRecordCache
+     * studentCache
      *
      * @var mixed
      */
@@ -34,7 +35,7 @@ class StudentController extends Controller
     /**
      * __construct
      *
-     * @param  mixed $studentRecordCache
+     * @param  mixed $studentCache
      * @return void
      */
     public function __construct(StudentCache $studentCache)
@@ -88,7 +89,7 @@ class StudentController extends Controller
 
         Mail::to($request->get('email'))->send(new EmailRegister($user,$password ));
         
-        return $this->success($this->information(__('messages.model-saved-successfully', ['model' => class_basename(Student::class)])), Response::HTTP_CREATED);
+        return $this->success(__('messages.model-saved-successfully', ['model' => class_basename(Student::class)]));
         
         }catch(Exception $ex){
             DB::rollback();
@@ -102,31 +103,35 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Student $student)
     {
-        return $this->success($this->studentCache->find($id));
+        return $this->success($this->studentCache->find($student->id));
     }
 
     /**
      * update
      *
      * @param  mixed $request
-     * @param  mixed $studentRecord
+     * @param  mixed $student
      * @return void
      */
-    public function update(StoreStudentRequest $request, Student $student)
+    public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        $student->fill($request->all());
+        if ($student->isClean())
+            return $this->information(__('messages.nochange'));
+
+        return $this->success($this->studentCache->save($student));
     }
 
     /**
      * destroy
      *
-     * @param  mixed $studentRecord
+     * @param  mixed $student
      * @return void
      */
     public function destroy(Student $student)
     {
-        //
+        return $this->success($this->studentCache->destroy($student));
     }
 }

@@ -127,7 +127,7 @@ interface IStudentDocumentController
      *           type="integer",
      *         ),
      *          @OA\Property(
-     *           property="students_id",
+     *           property="student_id",
      *           description="Id Estudiante",
      *           type="integer",
      *         ),
@@ -145,7 +145,7 @@ interface IStudentDocumentController
      *      example={
      *          "stu_doc_name_file" : "array|required|extensionFile",
      *          "type_document_id" : "required|integer|exists:tenant.type_document,id",
-     *          "students_id" : "required|integer|exists:tenant.students,id",
+     *          "student_id" : "required|integer|exists:tenant.students,id",
      *          "status_id" : "required|integer|exists:status,id"
      *      },
      *   )),

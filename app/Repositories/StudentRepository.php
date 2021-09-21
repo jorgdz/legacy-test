@@ -13,7 +13,7 @@ class StudentRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['studentRecords', 'modality', 'status', 'campus','daytrip','user']; //studentRecordsPeriods
+    protected $relations = ['studentRecords', 'studentDocuments' , 'status', 'campus','daytrip','user']; //studentRecordsPeriods,'modality'
 
     /**
      * __construct

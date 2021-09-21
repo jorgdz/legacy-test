@@ -69,7 +69,7 @@ class StudentDocumentFormRequest extends FormRequest
                     //'stu_doc_url' => 'required|max:255',
                     'stu_doc_name_file' => 'array|required|extensionFile',//|max:2048',
                     'type_document_id' => 'required|integer|exists:tenant.type_document,id',
-                    'students_id' => 'required|integer|exists:tenant.students,id',
+                    'student_id' => 'required|integer|exists:tenant.students,id',
                     'status_id' => 'required|integer|exists:tenant.status,id'
                 ];
                 break;
@@ -78,7 +78,7 @@ class StudentDocumentFormRequest extends FormRequest
                     //'stu_doc_url' => 'required|max:255',
                    // 'stu_doc_name_file' => 'required|max:255',
                     'type_document_id' => 'required|integer|exists:tenant.type_document,id',
-                    'students_id' => 'required|integer|exists:tenant.students,id',
+                    'student_id' => 'required|integer|exists:tenant.students,id',
                     'status_id' => 'required|integer|exists:tenant.status,id'
 
                     // 'mes_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,//
@@ -90,7 +90,7 @@ class StudentDocumentFormRequest extends FormRequest
                    // 'stu_doc_url' => 'required|max:255',
                     //'stu_doc_name_file' => 'required|max:255',
                     'type_document_id' => 'required|integer|exists:tenant.type_document,id',
-                    'students_id' => 'required|integer|exists:tenant.students,id',
+                    'student_id' => 'required|integer|exists:tenant.students,id',
                     'status_id' => 'required|integer|exists:tenant.status,id'
 
                 ];

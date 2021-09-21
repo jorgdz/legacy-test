@@ -6,6 +6,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 
 interface IStudentController
 {
@@ -222,10 +223,124 @@ interface IStudentController
 
     public function store(StoreStudentRequest $request);
 
-    public function show($id);
+    public function show(Request $request,Student $student);
+    
+    /**
+     * @OA\Put(
+     *   path="/api/students/{student}",
+     *   tags={"Estudiantes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Actualizar la información de estudiante",
+     *   description="Actualizar la información de estudiante.",
+     *   operationId="updateStudent",
+     *   @OA\Parameter(
+     *     name="student",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="stud_observation",
+     *           description="Observación",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="campus_id",
+     *           description="Campus",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="modalidad_id",
+     *           description="Modalidad",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="jornada_id",
+     *           description="Jornada",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Estado del record estudiantil",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "stud_observation" : "string",
+     *          "campus_id" : "required|integer|exists:tenant.campus,id",
+     *          "modalidad_id" : "required|integer|exists:tenant.modalities,id",
+     *          "jornada_id" : "required|integer|exists:tenant.type_daytrip,id",
+     *          "status_id" : "required|integer|exists:tenant.status,id"
+     *      },
+     *   )),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function update(UpdateStudentRequest $request, Student $student);
 
-    public function update(Request $request, Student $studentRecord);
-
-    public function destroy(Student $studentRecord);
+    /**
+     * @OA\Delete(
+     *   path="/api/students/{student}",
+     *   tags={"Estudiantes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Eliminar un estudiante",
+     *   description="Eliminar un estudiante por Id",
+     *   operationId="deleteStudent",
+     *   @OA\Parameter(
+     *     name="student",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroy(Student $student);
 
 }

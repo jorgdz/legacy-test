@@ -24,8 +24,8 @@ class CreateStudentDocumentsTable extends Migration
             $table->integer('type_document_id')->unsigned();
             $table->foreign('type_document_id')->references('id')->on('type_document');
 
-            $table->integer('students_id')->unsigned();
-            $table->foreign('students_id')->references('id')->on('students');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('students');
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
