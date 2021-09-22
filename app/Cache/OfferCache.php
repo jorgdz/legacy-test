@@ -71,8 +71,8 @@ class OfferCache extends BaseCache {
      * @return void
      */
     public function showPeriodsByOffer (Offer $offer) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($offer) {
-            return $offer->periods;
+        return $this->cache::remember($this->key, $this->ttl, function () use ($offer) {
+            return $this->repository->showPeriodsByOffer($offer);
         });
     }
 
@@ -83,7 +83,7 @@ class OfferCache extends BaseCache {
      * @return void
      */
     public function showPeriodByOffer (Offer $offer, Period $period) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($offer,$period) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($offer,$period) {
             return $this->repository->showPeriodByOffer($offer, $period);
         });
     }
