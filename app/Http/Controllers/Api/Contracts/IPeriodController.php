@@ -128,6 +128,16 @@ interface IPeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="campus",
+     *           description="Array de id de Sedes",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1,2,3]",
+     *           uniqueItems=true
+     *         ),
+     *         @OA\Property(
      *           property="per_num_fees",
      *           description="Numero de cuotas de la matricula",
      *           type="integer",
@@ -142,11 +152,6 @@ interface IPeriodController
      *           property="per_pay_enrollment",
      *           description="Paga o no paga matricula",
      *           type="boolean",
-     *         ),
-     *         @OA\Property(
-     *           property="campus_id",
-     *           description="Campus del periodo",
-     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="type_period_id",
@@ -189,7 +194,10 @@ interface IPeriodController
      *        "per_reference" : "required|string|unique:periods,per_reference|max:100",
      *        "per_min_matter_enrollment" : "required|integer",
      *        "per_max_matter_enrollment" : "required|integer",
-     *        "campus_id" : "required|integer|exists:campus,id",
+     *        "campus" : "array",
+     *        "campus.*" : "integer|exists:tenant.campus,id",
+     *        "per_num_fees" : "nullable|integer",
+     *        "per_fees" : "numeric|required_if:per_pay_enrollment,true|required_if:per_pay_enrollment,1",
      *        "type_period_id" : "required|integer|exists:type_periods,id",
      *        "status_id" : "required|integer|exists:status,id",
      *        "offers" : "array",
@@ -438,6 +446,9 @@ interface IPeriodController
      *       "per_reference" : "required|string|unique:periods,per_reference,period->id|max:100",
      *       "per_min_matter_enrollment" : "required|integer",
      *       "per_max_matter_enrollment" : "required|integer",
+     *       "per_num_fees" : "nullable|integer",
+     *       "per_fees" : "numeric|required_if:per_pay_enrollment,true|required_if:per_pay_enrollment,1",
+     *       "per_pay_enrollment" : "required|boolean",
      *       "campus_id" : "required|integer|exists:campus,id",
      *       "type_period_id" : "required|integer|exists:type_periods,id",
      *       "status_id" : "required|integer|exists:status,id",

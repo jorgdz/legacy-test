@@ -8,7 +8,23 @@ use App\Repositories\Base\BaseRepository;
 
 class HourhandRepository extends BaseRepository
 {
-    protected $relations = ['status']; //,'hourhand_period','courses'
+    protected $relations = ['status', 'periods']; //'courses'
+
+    /**
+     * fields
+     *
+     * @var array
+     */
+    protected $fields = [
+        'hour_monday',
+        'hour_tuesday',
+        'hour_wednesday',
+        'hour_thursday',
+        'hour_friday',
+        'hour_saturday',
+        'hour_sunday',
+        'hour_description'
+    ];
 
     /**
      * __construct

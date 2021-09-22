@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MatterMeshRequest extends FormRequest
+class UpdateMatterMeshRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,9 @@ class MatterMeshRequest extends FormRequest
     public function rules()
     {
         return [
-            'matter_id' => 'required|integer|exists:tenant.matters,id',
+            'matter_id' => "required|integer|exists:tenant.matters,id|unique:tenant.matter_mesh,matter_id, {$this->route('mattermesh')->id}",
             'mesh_id' => 'required|integer|exists:tenant.meshs,id',
             'simbology_id' => 'integer|exists:tenant.simbologies,id',
-            'calification_type' => 'required',
-            'min_calification' => 'required',
-            'max_calification' => 'required',
-            'num_fouls' => 'required',
-            'matter_rename' => 'required'
         ];
     }
 }

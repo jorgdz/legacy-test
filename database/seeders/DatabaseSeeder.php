@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
                 RoleSeeder::class,
                 TypeIdentificationSeeder::class,
                 TypePeriodSeeder::class,
+                SimbologySeeder::class,
                 TypeDaytripSeeder::class,
                 TypeReligionSeeder::class,
                 EthnicSeeder::class,

@@ -44,6 +44,8 @@ use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\CategoryStatusController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
 use App\Http\Controllers\Api\RelativeController;
+use App\Http\Controllers\Api\SimbologyController;
+
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
 require __DIR__ . "/channels/permissions.php";
@@ -254,6 +256,8 @@ Route::put('/offers/{offer}', [OfferController::class, 'update'])->middleware(['
 Route::delete('/offers/{offer}', [OfferController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:offers-borrar-oferta']);
 Route::get('/offers/{offer}/periods', [OfferController::class, 'showPeriodsByOffer'])->middleware(['auth:sanctum', 'permission:offers-listar-periodos-por-oferta']);
 Route::get('/offers/{offer}/periods/{period}', [OfferController::class, 'showPeriodByOffer'])->middleware(['auth:sanctum', 'permission:offers-obtener-periodo-por-oferta']);
+Route::get('/offers/{offer}/simbologies', [OfferController::class, 'showSimbologiesByOffer'])->middleware(['auth:sanctum']);//permission:offers-listar-simbologias-por-oferta
+Route::post('/offers/{offer}/simbologies', [OfferController::class, 'assignSimbologiesByOffer'])->middleware(['auth:sanctum']);//permission:offers-asignar-simbologias-por-oferta
 
 /*
  * Hourhand
@@ -434,3 +438,11 @@ Route::delete('students/{student}', [StudentController::class, 'destroy'])->midd
  * Categoria Status
  */
 Route::get('category-status', [CategoryStatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:category-status-listar-categoria-estado']);
+/**
+ * Simbologies
+ */
+Route::get('/simbologies', [SimbologyController::class, 'index'])->middleware(['auth:sanctum']); // permission:simbology-listar-simbologias
+Route::get('/simbologies/{simbology}', [SimbologyController::class, 'show'])->middleware(['auth:sanctum']);// permission:simbology-obtener-simbologia
+Route::post('/simbologies', [SimbologyController::class, 'store'])->middleware(['auth:sanctum']);// permission:simbology-crear-simbologia
+Route::put('/simbologies/{simbology}', [SimbologyController::class, 'update'])->middleware(['auth:sanctum']);// permission:simbology-actualizar-simbologia
+Route::delete('/simbologies/{simbology}', [SimbologyController::class, 'destroy'])->middleware(['auth:sanctum']);// permission:simbology-eliminar-simbologia

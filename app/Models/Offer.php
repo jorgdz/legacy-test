@@ -50,6 +50,16 @@ class Offer extends Model implements AuditableContract
     	return $this->belongsToMany(Period::class);
     }
 
+     /**
+     * simbologies
+     *
+     * @return BelongsToMany
+     */
+    public function simbologies (): BelongsToMany
+    {
+        return $this->belongsToMany(Simbology::class, 'offer_simbology', 'offer_id', 'simbology_id');
+    }
+
     /**
      * typeCriterias
      *

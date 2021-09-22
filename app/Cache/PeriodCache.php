@@ -67,12 +67,12 @@ class PeriodCache extends BaseCache {
     /**
      * showOfferByPeriod
      *
-     * @param  mixed $id
+     * @param  mixed $model
      * @return void
      */
-    public function showOffersByPeriod (Period $period) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($period) {
-            return $this->repository->showOffersByPeriod($period);
+    public function showOffersByPeriod (Model $model) {
+        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($model) {
+            return $this->repository->showOffersByPeriod($model);
         });
     }
 

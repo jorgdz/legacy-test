@@ -31,5 +31,6 @@ return [
     'model-saved-successfully'=>"':model' saved successfully!",
     'error-saving-model'=>"Error saving ':model'!",
     'error-database'=>"Error executing the transaction!",
+    'success' => 'Data saved successfully'
 ];
 ?>

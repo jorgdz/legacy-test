@@ -218,6 +218,15 @@ return [
 			'integer' => 'El valor del campo materia malla debe ser un entero.',
 			'distinct' => 'El valor del campo materia malla tiene un valor duplicado.'
 		],
+        'campus.*' => [
+            'exists' => 'El valor del campo sede seleccionado es inválido.',
+			'integer' => 'El valor del campo sede debe ser un entero.',
+        ],
+        'simbologies.*' => [
+            'exists' => 'El valor del campo simbologia seleccionado es inválido.',
+			'integer' => 'El valor del campo simbologia debe ser un entero.',
+            'distinct' => 'El valor del campo simbologia tiene un valor duplicado.'
+        ],
 
 	],
 
@@ -322,6 +331,7 @@ return [
 		 */
 		'matter_id' => 'malla de materia',
 		'mesh_id' => 'malla',
+        'simbology_id' => 'simbologia',
 		'calification_type' => 'tipo de calificación',
 		'min_calification' => 'calificación minima',
 		'max_calification' => 'calificación maxima',
@@ -345,6 +355,7 @@ return [
 		 */
 		'off_name' => 'nombre de oferta',
 		'off_description' => 'descripcion de oferta',
+        'simbologies' => 'simbologias',
 		/**
 		 * offer_period
 		 */
@@ -371,7 +382,7 @@ return [
 		'per_due_year' => 'períodos de vencimiento anual',
 		'per_min_matter_enrollment' => 'minimo de materia de matrícula por período',
 		'per_max_matter_enrollment' => 'maximo de materia de matrícula por período',
-		'campus_id' => 'campus',
+		'campus' => 'sedes',
 		'type_period_id' => 'tipo de periodo',
 		'offers' => 'las opciones de ofertas',
 		'hourhands' => 'las opciones de los horarios',
@@ -601,7 +612,11 @@ return [
 		'typ_stu_pro_name' => 'nombre del tipo programa para estudiantes',
 		'typ_stu_pro_description' => 'descripción del tipo programa para estudiantes',
 		'typ_stu_pro_acronym' => 'Acrónimo programa para estudiantes',
-
+        /**
+         * Simbologies
+         */
+        'sim_color' => 'color de la simbologia',
+        'sim_description' => 'nombre de la simbologia',
 	],
 
 ];

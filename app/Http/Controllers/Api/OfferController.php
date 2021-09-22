@@ -10,7 +10,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Controllers\Api\Contracts\IOfferController;
+use App\Http\Requests\OfferSimbologyRequest;
 use App\Traits\Auditor;
+use Illuminate\Http\Response;
 
 class OfferController extends Controller implements IOfferController
 {
@@ -101,8 +103,23 @@ class OfferController extends Controller implements IOfferController
      * @return void
      */
     public function showPeriodsByOffer (Offer $offer ) {
+
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Offer::class)));
         return $this->success($this->offerCache->showPeriodsByOffer($offer));
+
+    }
+
+    /**
+     * showSimbologiesByOffer
+     *
+     * @param  mixed $offer
+     * @return void
+     */
+    public function showSimbologiesByOffer(Offer $offer) {
+
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Offer::class)));
+        return $this->success($this->offerCache->showSimbologiesByOffer($offer));
+
     }
 
     /**
@@ -115,6 +132,19 @@ class OfferController extends Controller implements IOfferController
     public function showPeriodByOffer (Offer $offer, Period $period ) {
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Offer::class)));
         return $this->success($this->offerCache->showPeriodByOffer($offer,$period));
+    }
+
+    /**
+     * assignSimbologiesByOffer
+     *
+     * @param  mixed $request
+     * @param  mixed $offer
+     * @return void
+     */
+    public function assignSimbologiesByOffer(OfferSimbologyRequest $request, Offer $offer) {
+        $offer->simbologies()->sync($request->simbologies);
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Offer::class)));
+        return $this->success($this->offerCache->save($offer));
     }
 
 }

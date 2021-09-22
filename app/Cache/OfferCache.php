@@ -67,12 +67,24 @@ class OfferCache extends BaseCache {
     /**
      * showPeriodsByOffer
      *
-     * @param  mixed $id
+     * @param  mixed $model
      * @return void
      */
-    public function showPeriodsByOffer (Offer $offer) {
-        return $this->cache::remember($this->key, $this->ttl, function () use ($offer) {
-            return $this->repository->showPeriodsByOffer($offer);
+    public function showPeriodsByOffer (Model $model) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($model) {
+            return $this->repository->showPeriodsByOffer($model);
+        });
+    }
+
+    /**
+     * showSimbologiesByOffer
+     *
+     * @param  mixed $model
+     * @return void
+     */
+    public function showSimbologiesByOffer (Model $model) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($model) {
+            return $this->repository->showSimbologiesByOffer($model);
         });
     }
 

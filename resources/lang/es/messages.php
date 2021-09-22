@@ -31,5 +31,6 @@ return [
     'user-saved-successfully'=>'Usuario guardado con éxito!',
     'error-saving-model'=>"Error al guardar ':model'!",
     'error-database'=>"Error al ejecutar la transacción!",
+    'success' => 'Datos guardados exitosamente',
 ];
 ?>

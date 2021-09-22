@@ -31,12 +31,12 @@ class MatterMesh extends Model implements AuditableContract
     protected $fillable = [
         'matter_id',
         'mesh_id',
+        'simbology_id',
         'calification_type',
         'min_calification',
         'max_calification',
         'num_fouls',
         'matter_rename',
-        'clasification_matter',
         'group',
         'order',
         'status_id',
@@ -60,6 +60,16 @@ class MatterMesh extends Model implements AuditableContract
     public function mesh(): BelongsTo
     {
         return $this->belongsTo(Mesh::class, 'mesh_id');
+    }
+
+    /**
+     * simbology
+     *
+     * @return BelongsTo
+     */
+    public function simbology() : BelongsTo
+    {
+        return $this->belongsTo(Simbology::class, 'simbology_id');
     }
 
     /**

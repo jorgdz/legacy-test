@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
+use App\Http\Requests\OfferSimbologyRequest;
 use App\Models\Offer;
 use App\Models\Period;
 use Illuminate\Http\Request;
@@ -376,4 +377,103 @@ interface IOfferController
      *
      */
     public function showPeriodByOffer (Offer $offer, Period $period);
+
+    /**
+     * @OA\Get(
+     *   path="/api/offers/{offer}/simbologies",
+     *   tags={"Ofertas Académicas"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener simbologias a partir de oferta académica",
+     *   description="Muestra los simbologias asociados a la oferta académica.",
+     *   operationId="getSimbologiesByOffer",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="offer",
+     *     description="Oferta",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showSimbologiesByOffer (Offer $offer);
+
+    /**
+     * @OA\Post(
+     *   path="/api/offers/{offer}/simbologies",
+     *   tags={"Ofertas Académicas"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Asignar simbologies a una oferta academica",
+     *   description="Asigna simbologies a una oferta.",
+     *   operationId="addSimbologiesByOffer",
+     *   @OA\Parameter(
+     *     name="offer",
+     *     description="Id del offer",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer"
+     *         ),
+     *          @OA\Property(
+     *           property="simbologies",
+     *           description="Array de id de simbologies",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1, 2]",
+     *           uniqueItems=true
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Se ha asignado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "simbologies" : "array",
+     *          "simbologies.*" : "integer|exists:tenant.simbologies,id|distinct",
+     *      },
+     *   )),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function assignSimbologiesByOffer(OfferSimbologyRequest $request, Offer $offer);
 }

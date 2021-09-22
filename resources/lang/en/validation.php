@@ -158,7 +158,15 @@ return [
             'exists' => 'The selected matter mesh is invalid.',
             'integer' => 'The matter mesh values must be integer',
             'distinct' => 'The matter mesh field has a duplicate value'
-        ]
+        ],
+        'campus.*' => [
+            'exists' => 'The selected campus is invalid.',
+            'integer' => 'The campus values must be integer',
+        ],
+        'simbologies.*' => [
+            'exists' => 'The selected simbology is invalid.',
+            'integer' => 'The simbology values must be integer',
+        ],
     ],
 
 

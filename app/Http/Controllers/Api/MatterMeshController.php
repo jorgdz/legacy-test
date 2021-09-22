@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Contracts\IMatterMeshController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MatterMeshDependenciesRequest;
 use App\Http\Requests\MatterMeshRequest;
+use App\Http\Requests\UpdateMatterMeshRequest;
 use App\Models\MatterMesh;
 use App\Traits\Auditor;
 use App\Traits\RestResponse;
@@ -104,11 +105,11 @@ class MatterMeshController extends Controller implements IMatterMeshController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  UpdateMatterMeshRequest  $request
+     * @param  mixed  $mattermesh
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MatterMesh $mattermesh)
+    public function update(UpdateMatterMeshRequest $request, MatterMesh $mattermesh)
     {
         $mattermesh->fill($request->all());
 

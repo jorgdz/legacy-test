@@ -65,17 +65,26 @@ class PeriodController extends Controller implements IPeriodController
 
         $currentYear = intval(date('Y'));
         $perDueYear = date('Y') + 1;
+        $campus = $request->campus;
 
-        $periodRequest = array_merge(['per_current_year' => $currentYear],['per_due_year' => $perDueYear],$request->all());
 
-        $period = new Period($periodRequest);
+        for($i = 0; $i < count($request->campus); $i++) {
 
-        $this->periodCache->save($period);
+            $periodRequest = array_merge(
+                ['per_current_year' => $currentYear],
+                ['per_due_year' => $perDueYear],
+                ['campus_id' => $campus[$i]],
+                $request->all()
+            );
 
-        $period->offers()->sync($request->offers, false);
-        $period->hourhands()->sync($request->hourhands, false);
+            $period = new Period($periodRequest);
+            $this->periodCache->save($period);
+            $period->offers()->sync($request->offers, false);
+            $period->hourhands()->sync($request->hourhands, false);
 
-        return $this->success($period, Response::HTTP_CREATED);
+        }
+
+        return $this->information(__('messages.success'));
     }
 
     /**
@@ -90,7 +99,11 @@ class PeriodController extends Controller implements IPeriodController
         $currentYear = intval(date('Y'));
         $perDueYear = date('Y') + 1;
 
-        $periodRequest = array_merge(['per_current_year' => $currentYear],['per_due_year' => $perDueYear],$request->all());
+        $periodRequest = array_merge(
+            ['per_current_year' => $currentYear],
+            ['per_due_year' => $perDueYear],
+            $request->all()
+        );
 
         $period->fill($periodRequest);
 

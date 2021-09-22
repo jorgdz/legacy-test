@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Contracts;
 
 use App\Http\Requests\MatterMeshDependenciesRequest;
 use App\Http\Requests\MatterMeshRequest;
+use App\Http\Requests\UpdateMatterMeshRequest;
 use App\Models\MatterMesh;
 use Illuminate\Http\Request;
 
@@ -118,6 +119,11 @@ interface IMatterMeshController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="simbology_id",
+     *           description="Id de simbology",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="calification_type",
      *           description="Tipo de calificacion",
      *           type="string",
@@ -145,6 +151,16 @@ interface IMatterMeshController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="group",
+     *           description="Grupo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="order",
+     *           description="Orden de asignacion",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado",
      *           type="integer",
@@ -158,6 +174,7 @@ interface IMatterMeshController
      *      example={
      *          "matter_id" : "required|integer",
      *          "mesh_id" : "required|integer",
+     *          "simbology_id" : "integer|exists:tenant.simbologies,id",
      *          "calification_type" : "required",
      *          "min_calification" : "required",
      *          "max_calification" : "required",
@@ -352,6 +369,11 @@ interface IMatterMeshController
      *           description="Id de la malla",
      *           type="integer",
      *         ),
+     *          @OA\Property(
+     *           property="simbology_id",
+     *           description="Id de simbology",
+     *           type="integer",
+     *         ),
      *         @OA\Property(
      *           property="calification_type",
      *           description="Tipo de calificacion",
@@ -375,6 +397,16 @@ interface IMatterMeshController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="group",
+     *           description="Grupo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="order",
+     *           description="Orden de asignacion",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado",
      *           type="integer",
@@ -386,13 +418,9 @@ interface IMatterMeshController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "matter_id" : "required|integer",
-     *          "mesh_id" : "required|integer",
-     *          "calification_type" : "required",
-     *          "min_calification" : "required",
-     *          "max_calification" : "required",
-     *          "num_fouls" : "required",
-     *          "matter_rename" : "required"
+     *          "matter_id" : "required|integer|exists:tenant.matters,id|unique:tenant.matter_mesh,matter_id, {$this->route('mattermesh')->id}",
+     *          "mesh_id" : "required|integer|exists:tenant.meshs,id",
+     *          "simbology_id" : "integer|exists:tenant.simbologies,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -401,7 +429,7 @@ interface IMatterMeshController
      * )
      *
      */
-    public function update(Request $request, MatterMesh $mattermesh);
+    public function update(UpdateMatterMeshRequest $request, MatterMesh $mattermesh);
 
     /**
      * @OA\Delete(

@@ -18,13 +18,13 @@ class CreateMatterMeshTable extends Migration
 
             $table->integer('matter_id')->unsigned();
             $table->integer('mesh_id')->unsigned();
+            $table->integer('simbology_id')->unsigned();
             $table->string('calification_type', 255)->nullable();
             $table->float('min_calification', 8, 4)->nullable();
             $table->float('max_calification', 8, 4)->nullable();
             $table->integer('num_fouls')->nullable();
             $table->string('matter_rename', 255)->nullable();
 
-            $table->string('clasification_matter', 255)->nullable();
             $table->string('group', 255)->nullable(); // grupo, sección o nivel o semestre al que pertenece
             $table->integer('order')->nullable(); // Por cada grupo tengo una numeración para ordernar los registros
 
@@ -33,6 +33,7 @@ class CreateMatterMeshTable extends Migration
 
             $table->foreign('matter_id')->references('id')->on('matters');
             $table->foreign('mesh_id')->references('id')->on('meshs');
+            $table->foreign('simbology_id')->references('id')->on('simbologies');
 
             $table->timestamps();
             $table->softDeletes();

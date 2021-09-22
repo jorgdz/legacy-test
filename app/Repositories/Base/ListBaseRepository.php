@@ -129,6 +129,7 @@ class ListBaseRepository
             });
         }
 
+        $this->model = $query;
         return $this;
     }
 
@@ -156,7 +157,7 @@ class ListBaseRepository
             ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search', 'data', 'conditions'])->all();
     }
 
-        
+
     /**
      * getCollection
      *
