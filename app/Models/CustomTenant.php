@@ -63,4 +63,13 @@ class CustomTenant extends Tenant implements AuditableContract
     public function mail () {
         return $this->hasOne(Mail::class, 'tenant_id');
     }
+
+    /**
+     * filesystem
+     *
+     * @return void
+     */
+    public function filesystem() {
+        return $this->hasOne(CustomFilesystem::class, 'tenant_id');
+    }
 }
