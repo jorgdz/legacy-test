@@ -28,6 +28,8 @@ class UpdateTypePeriodRequest extends FormRequest
             'tp_name' => 'required|string|unique:tenant.type_periods,tp_name,'.$typePeriod->id.'|max:255',
             'tp_min_matter_enrollment' => 'required|integer',
             'tp_max_matter_enrollment' => 'required|integer',
+            'tp_num_fees' => 'nullable|integer',
+            'tp_fees' => 'nullable|numeric',
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];
     }

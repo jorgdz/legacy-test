@@ -128,6 +128,22 @@ interface IPeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="per_num_fees",
+     *           description="Numero de cuotas de la matricula",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="per_fees",
+     *           description="Valor total de la matricula",
+     *           type="number",
+     *           format="float",
+     *         ),
+     *         @OA\Property(
+     *           property="per_pay_enrollment",
+     *           description="Paga o no paga matricula",
+     *           type="boolean",
+     *         ),
+     *         @OA\Property(
      *           property="campus_id",
      *           description="Campus del periodo",
      *           type="integer",
@@ -228,7 +244,7 @@ interface IPeriodController
      * )
      *
      */
-    public function show(Request $request,Period $period);
+    public function show($id);
 
     /**
      * @OA\Get(
@@ -359,6 +375,22 @@ interface IPeriodController
      *           property="per_max_matter_enrollment",
      *           description="Máximo numero de materias a matricular",
      *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="per_num_fees",
+     *           description="Numero de cuotas de la matricula",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="per_fees",
+     *           description="Valor total de la matricula",
+     *           type="number",
+     *           format="float",
+     *         ),
+     *         @OA\Property(
+     *           property="per_pay_enrollment",
+     *           description="Paga o no paga matricula",
+     *           type="boolean",
      *         ),
      *         @OA\Property(
      *           property="campus_id",

@@ -22,6 +22,9 @@ class CreatePeriodsTable extends Migration
             $table->string('per_due_year')->nullable();
             $table->integer('per_min_matter_enrollment')->nullable();
             $table->integer('per_max_matter_enrollment')->nullable();
+            $table->integer('per_num_fees')->nullable();
+            $table->float('per_fees', 8, 3)->nullable();
+            $table->boolean('per_pay_enrollment');
 
             $table->integer('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus');

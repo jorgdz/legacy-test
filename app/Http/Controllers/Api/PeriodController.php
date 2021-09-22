@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Period;
 use App\Cache\PeriodCache;
+use App\Http\Controllers\Api\Contracts\IPeriodController;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,7 @@ use App\Http\Requests\UpdatePeriodRequest;
 use App\Traits\Auditor;
 use Illuminate\Http\Response;
 
-class PeriodController extends Controller
+class PeriodController extends Controller implements IPeriodController
 {
     use RestResponse, Auditor;
 

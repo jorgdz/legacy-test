@@ -128,6 +128,17 @@ interface ITypePeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="tp_num_fees",
+     *           description="Numero de cuotas de la matricula",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="tp_fees",
+     *           description="Valor total de la matricula",
+     *           type="number",
+     *           format="float",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del tipo de periodo",
      *           type="integer",
@@ -242,6 +253,17 @@ interface ITypePeriodController
      *           property="tp_max_matter_enrollment",
      *           description="Máximo numero de materias a matricular",
      *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="tp_num_fees",
+     *           description="Numero de cuotas de la matricula",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="tp_fees",
+     *           description="Valor total de la matricula",
+     *           type="number",
+     *           format="float",
      *         ),
      *         @OA\Property(
      *           property="status_id",
