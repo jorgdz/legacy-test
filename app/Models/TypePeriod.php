@@ -26,7 +26,8 @@ class TypePeriod extends Model implements AuditableContract
         'tp_min_matter_enrollment',
         'tp_max_matter_enrollment',
         'tp_num_fees',
-        'tp_fees'
+        'tp_fees',
+        'tp_pay_enrollment'
     ];
 
     /**

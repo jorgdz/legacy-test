@@ -139,6 +139,11 @@ interface ITypePeriodController
      *           format="float",
      *         ),
      *         @OA\Property(
+     *           property="tp_pay_enrollment",
+     *           description="Paga o no paga matricula",
+     *           type="boolean",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del tipo de periodo",
      *           type="integer",
@@ -264,6 +269,11 @@ interface ITypePeriodController
      *           description="Valor total de la matricula",
      *           type="number",
      *           format="float",
+     *         ),
+     *         @OA\Property(
+     *           property="tp_pay_enrollment",
+     *           description="Paga o no paga matricula",
+     *           type="boolean",
      *         ),
      *         @OA\Property(
      *           property="status_id",

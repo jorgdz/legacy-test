@@ -442,8 +442,8 @@ Route::get('category-status', [CategoryStatusController::class, 'index'])->middl
 /**
  * Simbologies
  */
-Route::get('/simbologies', [SimbologyController::class, 'index'])->middleware(['auth:sanctum']); // permission:simbology-listar-simbologias
-Route::get('/simbologies/{simbology}', [SimbologyController::class, 'show'])->middleware(['auth:sanctum']);// permission:simbology-obtener-simbologia
-Route::post('/simbologies', [SimbologyController::class, 'store'])->middleware(['auth:sanctum']);// permission:simbology-crear-simbologia
-Route::put('/simbologies/{simbology}', [SimbologyController::class, 'update'])->middleware(['auth:sanctum']);// permission:simbology-actualizar-simbologia
-Route::delete('/simbologies/{simbology}', [SimbologyController::class, 'destroy'])->middleware(['auth:sanctum']);// permission:simbology-eliminar-simbologia
+Route::get('/simbologies', [SimbologyController::class, 'index'])->middleware(['auth:sanctum', 'permission:simbology-listar-simbologias']);
+Route::get('/simbologies/{simbology}', [SimbologyController::class, 'show'])->middleware(['auth:sanctum', 'permission:simbology-obtener-simbologia']);
+Route::post('/simbologies', [SimbologyController::class, 'store'])->middleware(['auth:sanctum', 'permission:simbology-crear-simbologia']);
+Route::put('/simbologies/{simbology}', [SimbologyController::class, 'update'])->middleware(['auth:sanctum', 'permission:simbology-actualizar-simbologia']);
+Route::delete('/simbologies/{simbology}', [SimbologyController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:simbology-eliminar-simbologia']);

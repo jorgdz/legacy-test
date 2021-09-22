@@ -2177,6 +2177,60 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'person'
             ],
+            /**
+             * Materia Malla 247
+             */
+            [
+                'name' => 'matters-by-meshs-obtener-materias-por-malla',
+                'alias' => 'Obtener materia por malla',
+                'description' => 'Obtener todas las materias por el identificador de su malla',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'mesh'
+            ],
+            /**
+             * Simbology 248-252
+             */
+            [
+                'name' => 'simbology-listar-simbologias',
+                'alias' => 'Listar simbologias',
+                'description' => 'Listar todas las simbologias',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'simbology'
+            ],
+            [
+                'name' => 'simbology-obtener-simbologia',
+                'alias' => 'Obtener simbologia',
+                'description' => 'Obtener una simbologia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'simbology'
+            ],
+            [
+                'name' => 'simbology-crear-simbologia',
+                'alias' => 'Crear simbologia',
+                'description' => 'Agregar una simbologia',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'simbology'
+            ],
+            [
+                'name' => 'simbology-actualizar-simbologia',
+                'alias' => 'Actualizar simbologia',
+                'description' => 'Actualizar una simbologia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'simbology'
+            ],
+            [
+                'name' => 'simbology-eliminar-simbologia',
+                'alias' => 'Borrar simbologia',
+                'description' => 'Borrar una simbologia por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'simbology'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2616,6 +2670,18 @@ class RoleSeeder extends Seeder
              * Persona 246
              */
             ['permission_id' => 246, 'role_id' => 1],
+            /**
+             * Materia Malla 247
+             */
+            ['permission_id' => 247, 'role_id' => 1],
+            /**
+             * Simbology 248-252
+             */
+            ['permission_id' => 248, 'role_id' => 1],
+            ['permission_id' => 249, 'role_id' => 1],
+            ['permission_id' => 250, 'role_id' => 1],
+            ['permission_id' => 251, 'role_id' => 1],
+            ['permission_id' => 252, 'role_id' => 1],
 
             /**
              * 
@@ -3055,6 +3121,18 @@ class RoleSeeder extends Seeder
              * Persona 246
              */
             ['permission_id' => 246, 'role_id' => 2],
+            /**
+             * Materia Malla 247
+             */
+            ['permission_id' => 247, 'role_id' => 2],
+            /**
+             * Simbology 248-252
+             */
+            ['permission_id' => 248, 'role_id' => 2],
+            ['permission_id' => 249, 'role_id' => 2],
+            ['permission_id' => 250, 'role_id' => 2],
+            ['permission_id' => 251, 'role_id' => 2],
+            ['permission_id' => 252, 'role_id' => 2],
         ]);
     }
 }
