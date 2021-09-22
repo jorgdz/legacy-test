@@ -27,8 +27,8 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('periods')->insert([
-            ['per_name' => 'Periodo 2 Nuevo', 'per_reference' => 'Periodo 2 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
-            ['per_name' => 'Periodo 1', 'per_reference' => 'Periodo 1 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
+            ['per_name' => 'Periodo 2 Nuevo', 'per_reference' => 'Periodo 2 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'per_num_fees' => 10, 'per_fees' => 300, 'per_pay_enrollment' => 1, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
+            ['per_name' => 'Periodo 1', 'per_reference' => 'Periodo 1 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'per_num_fees' => 20, 'per_fees' => 600, 'per_pay_enrollment' => 0, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('type_califications')->insert([
@@ -56,6 +56,12 @@ class DefaultExampleSeeder extends Seeder
 
         DB::connection('tenant')->table('meshs')->insert([
             ['mes_name' => 'Malla Curricular', 'mes_description' => '', 'mes_acronym' => 'm1', 'pensum_id' => 1, 'level_edu_id' => 2, 'status_id' => 1],
+        ]);
+
+        DB::connection('tenant')->table('hourhands')->insert([
+            ['hour_monday' => 1, 'hour_tuesday' => 1, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 0, 'hour_sunday' => 0, 'hour_description' => 'horario 1', 'hour_start_time' => '08:00:00', 'hour_end_time' => '13:30:00', 'status_id' => 1],
+            ['hour_monday' => 1, 'hour_tuesday' => 0, 'hour_wednesday' => 0, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 0, 'hour_description' => 'horario 2', 'hour_start_time' => '13:30:00', 'hour_end_time' => '19:00:00', 'status_id' => 1],
+            ['hour_monday' => 0, 'hour_tuesday' => 0, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 1, 'hour_description' => 'horario 3', 'hour_start_time' => '10:00:00', 'hour_end_time' => '15:40:00', 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('matters')->insert([
