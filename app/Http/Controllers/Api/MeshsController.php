@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Cache\MatterMeshCache;
 use App\Models\Mesh;
 use App\Cache\MeshCache;
 use App\Exceptions\Custom\UnprocessableException;
@@ -19,10 +20,12 @@ class MeshsController extends Controller implements IMeshsController
     use RestResponse;
 
     private $meshCache;
+    private $matterMeshCache;
 
-    public function __construct(MeshCache $meshCache)
+    public function __construct(MeshCache $meshCache,MatterMeshCache $matterMeshCache)
     {
         $this->meshCache = $meshCache;
+        $this->matterMeshCache = $matterMeshCache;
     }
 
 
@@ -120,5 +123,16 @@ class MeshsController extends Controller implements IMeshsController
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $mesh
+     * @return \Illuminate\Http\Response
+     */
+    public function showMattersByMesh(Request $request,Mesh $mesh)
+    {
 
+        return $this->success($this->matterMeshCache->findMatersbyMesh($request,$mesh->id));
+
+    }
 }

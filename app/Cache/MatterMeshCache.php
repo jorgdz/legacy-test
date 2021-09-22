@@ -80,5 +80,17 @@ class MatterMeshCache extends BaseCache
         return $this->repository->destroy($model);
     }
 
+    /**
+     * findMatersbyMesh
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function findMatersbyMesh($request,$id)
+    {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($request,$id) {
+            return $this->repository->findMatersbyMesh($request,$id);
+        });
+    }
 
 }
