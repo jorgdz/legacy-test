@@ -97,6 +97,6 @@ class MatterMeshRepository extends BaseRepository
         $sort = isset(request()->query()['sort']) ? request()->query()['sort'] : 'id';
         $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
 
-        return $query->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ?: 100)->where("mesh_id",$id);
+        return $query->where("mesh_id",$id)->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ?: 100);
     }
 }
