@@ -2113,8 +2113,16 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'categoryStatus'
             ],
             /**
-             * Estudiantes 240
+             * Estudiantes 240-243
              */
+            [
+                'name' => 'student-show-estudiante',
+                'alias' => 'Obtener estudiante',
+                'description' => 'Obtener un estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'student'
+            ],
             [
                 'name' => 'student-crear-estudiante',
                 'alias' => 'Crear estudiante',
@@ -2123,8 +2131,24 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'student'
             ],
+            [
+                'name' => 'student-update-estudiante',
+                'alias' => 'Actualizar estudiante',
+                'description' => 'Actualizar un estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'student'
+            ],
+            [
+                'name' => 'student-delete-estudiante',
+                'alias' => 'Eliminar estudiante',
+                'description' => 'Eliminar un estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'student'
+            ],
             /**
-             * Estudiantes 241-242
+             * Materia Malla 244-245
              */
             [
                 'name' => 'mattermesh-asignar-dependencias-por-materias-mallas',
@@ -2143,7 +2167,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'matterMesh'
             ],
             /**
-             * Persona 243
+             * Persona 246
              */
             [
                 'name' => 'person-as-student-configurar-persona-como-estudiante',
@@ -2577,18 +2601,21 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 239, 'role_id' => 1],
             /**
-             * Estudiantes 240
+             * Estudiantes 240-243
              */
             ['permission_id' => 240, 'role_id' => 1],
-            /**
-             * Estudiantes 241-242
-             */
             ['permission_id' => 241, 'role_id' => 1],
             ['permission_id' => 242, 'role_id' => 1],
-            /**
-             * Persona 243
-             */
             ['permission_id' => 243, 'role_id' => 1],
+            /**
+             * Estudiantes 244-245
+             */
+            ['permission_id' => 244, 'role_id' => 1],
+            ['permission_id' => 245, 'role_id' => 1],
+            /**
+             * Persona 246
+             */
+            ['permission_id' => 246, 'role_id' => 1],
 
             /**
              * 
@@ -3013,18 +3040,21 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 239, 'role_id' => 2],
             /**
-             * Estudiantes 240
+             * Estudiantes 240-243
              */
             ['permission_id' => 240, 'role_id' => 2],
-            /**
-             * Estudiantes 241-242
-             */
             ['permission_id' => 241, 'role_id' => 2],
             ['permission_id' => 242, 'role_id' => 2],
-            /**
-             * Persona 243
-             */
             ['permission_id' => 243, 'role_id' => 2],
+            /**
+             * Estudiantes 244-245
+             */
+            ['permission_id' => 244, 'role_id' => 2],
+            ['permission_id' => 245, 'role_id' => 2],
+            /**
+             * Persona 246
+             */
+            ['permission_id' => 246, 'role_id' => 2],
         ]);
     }
 }
