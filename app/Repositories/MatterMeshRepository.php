@@ -82,6 +82,7 @@ class MatterMeshRepository extends BaseRepository
         $fields = $this->fields;
         $query = $query->with([
             'matter',
+            'simbology',
             'matter.typeMatter',
             'matterMeshDependencies.matter',
         ]);
