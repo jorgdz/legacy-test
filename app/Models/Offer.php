@@ -65,8 +65,7 @@ class Offer extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function typeCriterias(): HasMany
-    {
+    public function typeCriterias(): HasMany {
         return $this->hasMany(TypeCriteria::class);
     }
 
@@ -75,9 +74,12 @@ class Offer extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function educationLevels(): HasMany
-    {
+    public function educationLevels(): HasMany {
         return $this->hasMany(EducationLevel::class);
+    }
+
+    public function educationLevelsParent(): HasMany {
+        return $this->hasMany(EducationLevel::class)->with('child');
     }
 
     /**
@@ -85,8 +87,7 @@ class Offer extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function typeStudents(): HasMany
-    {
+    public function typeStudents(): HasMany {
         return $this->hasMany(TypeStudent::class);
     }
 
@@ -95,8 +96,7 @@ class Offer extends Model implements AuditableContract
      *
      * @return void
      */
-    public function status ()
-    {
+    public function status() {
         return $this->belongsTo(Status::class, 'status_id');
     }
 }

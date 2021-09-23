@@ -17,8 +17,6 @@ class EducationLevel extends Model implements AuditableContract
 
     protected $table = 'education_levels';
 
-
-
     protected $fillable = [
 
         'edu_name',
@@ -40,8 +38,7 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function studentRecords(): HasMany
-    {
+    public function studentRecords(): HasMany {
         return $this->hasMany(StudentRecord::class);
     }
 
@@ -50,8 +47,7 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return void
      */
-    public function meshs()
-    {
+    public function meshs() {
         return $this->hasMany(Mesh::class, 'level_edu_id');
     }
 
@@ -60,8 +56,7 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return void
      */
-    public function offer()
-    {
+    public function offer() {
         return $this->belongsTo(Offer::class, 'offer_id');
     }
     
@@ -70,14 +65,19 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return void
      */
-    public function status()
-    {
+    public function status() {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
     public function children() {
         return $this->hasMany(EducationLevel::class, 'principal_id')->with('offer')->with('status')->with('children')->where(function($query) {
             if (isset(request()->query()['data'])) $query->where('status_id', 1);
+        });
+    }
+
+    public function child(): HasMany {
+        return $this->hasMany(EducationLevel::class, 'principal_id')->with('child')->where(function($query) {
+            $query->where('status_id', 1);
         });
     }
 }

@@ -16,7 +16,6 @@ use Illuminate\Http\Response;
 
 class OfferController extends Controller implements IOfferController
 {
-    //
     use RestResponse, Auditor;
 
     /**
