@@ -77,7 +77,7 @@ class MatterMeshRepository extends BaseRepository
      * @param  mixed $mesh
      * @return subjects by id mesh
      */
-    public function findMatersbyMesh ($request,$id) {
+    public function findMatersbyMesh ($request, $id) {
         $query = $this->model;
         $fields = $this->fields;
         $query = $query->with([
@@ -99,5 +99,16 @@ class MatterMeshRepository extends BaseRepository
         $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
 
         return $query->where("mesh_id",$id)->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ?: 100);
+    }
+    
+    /**
+     * setMatterMesh
+     *
+     * @param  mixed $conditions
+     * @param  mixed $params
+     * @return void
+     */
+    public function setMatterMesh($conditions, $params) {
+        return MatterMesh::where($conditions)->update($params);
     }
 }

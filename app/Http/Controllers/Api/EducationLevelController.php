@@ -47,7 +47,7 @@ class EducationLevelController extends Controller implements IEducationLevelCont
         $educationLevel = new EducationLevel($request->all());
         $educationLevel = $this->educationLevelCache->save($educationLevel);
 
-        return $this->success($educationLevel, Response::HTTP_CREATED);
+        return $this->success($educationLevel);
     }
 
     /**

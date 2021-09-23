@@ -121,11 +121,6 @@ interface IEducationLevelController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="edu_order",
-     *           description="Numero de Orden",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="principal_id",
      *           description="Id principal",
      *           type="integer",

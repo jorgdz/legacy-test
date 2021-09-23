@@ -45,7 +45,7 @@ class TypeMatterController extends Controller implements ITypeMatterController
             $tm = $this->typeMatterCache->save($tm);
 
             DB::commit();
-            return $this->success($tm, Response::HTTP_CREATED);
+            return $this->success($tm);
         } catch (\Exception $ex) {
             DB::rollBack();
             return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());

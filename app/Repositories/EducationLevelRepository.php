@@ -26,8 +26,11 @@ class EducationLevelRepository extends BaseRepository
      *
      * @return void
      */
-    public function __construct(EducationLevel $educationLevel)
-    {
+    public function __construct(EducationLevel $educationLevel) {
         parent::__construct($educationLevel);
+    }
+
+    public function setEducationLevel($conditions, $params) {
+        return EducationLevel::where($conditions)->update($params);
     }
 }

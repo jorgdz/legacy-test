@@ -26,7 +26,6 @@ class StoreTypeMatterRequest extends FormRequest
         $rules = [
             'tm_name' => 'required|string|unique:tenant.type_matters,tm_name',
             'tm_acronym' => 'required|string|between:2,3',
-            'tm_order' => 'required|integer',
             'tm_cobro' => 'required|boolean',
             'tm_matter_count' => 'required|boolean',
             'status_id' => 'required|integer|exists:tenant.status,id'

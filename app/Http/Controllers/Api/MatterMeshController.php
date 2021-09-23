@@ -42,8 +42,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         return $this->success($this->matterMeshCache->all($request));
     }
 
@@ -53,8 +52,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MatterMeshRequest $request)
-    {
+    public function store(MatterMeshRequest $request) {
         $data = DB::table('matter_mesh')
                 ->whereNotNull('deleted_at')
                 ->where('matter_id', $request->matter_id)
@@ -78,7 +76,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
         }
 
         $matterMesh = new MatterMesh($request->all());
-        return $this->success($this->matterMeshCache->save($matterMesh), Response::HTTP_CREATED);
+        return $this->success($this->matterMeshCache->save($matterMesh));
     }
 
     /**
@@ -88,8 +86,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @param  mixed $mattermesh
      * @return void
      */
-    public function asignDependencies(MatterMeshDependenciesRequest $request, MatterMesh $mattermesh)
-    {
+    public function asignDependencies(MatterMeshDependenciesRequest $request, MatterMesh $mattermesh) {
         $mattermesh->matterMeshDependencies()->sync($request->matterMesh);
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(MatterMesh::class)));
         return $this->success($this->matterMeshCache->save($mattermesh));
@@ -101,8 +98,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         return $this->success($this->matterMeshCache->find($id));
     }
 
@@ -112,8 +108,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @param  mixed $mattermesh
      * @return void
      */
-    public function showDependencies(MatterMesh $mattermesh)
-    {
+    public function showDependencies(MatterMesh $mattermesh) {
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(MatterMesh::class)));
         return $this->success($this->matterMeshCache->showDependencies($mattermesh));
     }
@@ -125,8 +120,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @param  mixed  $mattermesh
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMatterMeshRequest $request, MatterMesh $mattermesh)
-    {
+    public function update(UpdateMatterMeshRequest $request, MatterMesh $mattermesh) {
         $mattermesh->fill($request->all());
 
         if ($mattermesh->isClean())
@@ -141,8 +135,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MatterMesh $mattermesh)
-    {
+    public function destroy(MatterMesh $mattermesh) {
         return $this->success($this->matterMeshCache->destroy($mattermesh));
     }
     
@@ -152,8 +145,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @param  mixed $mattermesh
      * @return void
      */
-    public function restoreMatterMesh($id) 
-    {        
+    public function restoreMatterMesh(Request $request, $id) {
         MatterMesh::withTrashed()->find($id)->restore();
         return $this->information(__('messages.success'));
     }

@@ -122,11 +122,6 @@ interface ITypeMatterController {
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="tm_order",
-     *           description="Numero de orden del tipo de materia",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="tm_cobro",
      *           description="Verificar si aplica cobro el tipo de materia",
      *           type="boolean",

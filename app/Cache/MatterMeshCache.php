@@ -23,8 +23,7 @@ class MatterMeshCache extends BaseCache
      * @param  mixed $request
      * @return void
      */
-    public function all($request)
-    {
+    public function all($request) {
         return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
             return $this->repository->all($request);
         });
@@ -36,9 +35,26 @@ class MatterMeshCache extends BaseCache
      * @param  mixed $model
      * @return void
      */
-    public function save(Model $model)
-    {
+    public function save(Model $model) {
         $this->forgetCache('mattermesh');
+
+        $method = request()->method();
+        if (in_array($method, ['POST'])) {
+            $model->order = $model->max('order') + 1;
+        } elseif (in_array($method, ['PATCH', 'PUT'])) {
+            $old = $model->getOriginal('order');
+            $new = $model->getAttributes()['order'];
+            if ($old <> $new) {
+                $conditions = [
+                    ['order', $new],
+                ];
+                $params = [
+                    'order' => $old,
+                ];
+                $this->repository->setMatterMesh($conditions, $params);
+            }
+        }
+
         return $this->repository->save($model);
     }
 
@@ -48,8 +64,7 @@ class MatterMeshCache extends BaseCache
      * @param  mixed $id
      * @return void
      */
-    public function find($id)
-    {
+    public function find($id) {
         return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
             return $this->repository->find($id);
         });
@@ -61,8 +76,7 @@ class MatterMeshCache extends BaseCache
      * @param  mixed $model
      * @return void
      */
-    public function showDependencies(Model $model)
-    {
+    public function showDependencies(Model $model) {
         return $this->cache::remember($this->key, $this->ttl, function() use ($model) {
             return $this->repository->showDependencies($model);
         });
@@ -74,8 +88,7 @@ class MatterMeshCache extends BaseCache
      * @param  mixed $model
      * @return void
      */
-    public function destroy (Model $model)
-    {
+    public function destroy (Model $model) {
         $this->forgetCache('mattermesh');
         return $this->repository->destroy($model);
     }
@@ -86,8 +99,7 @@ class MatterMeshCache extends BaseCache
      * @param  mixed $id
      * @return void
      */
-    public function findMatersbyMesh($request,$id)
-    {
+    public function findMatersbyMesh($request,$id) {
         return $this->cache::remember($this->key, $this->ttl, function () use ($request,$id) {
             return $this->repository->findMatersbyMesh($request,$id);
         });

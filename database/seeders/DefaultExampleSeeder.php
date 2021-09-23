@@ -51,7 +51,7 @@ class DefaultExampleSeeder extends Seeder
 
         DB::connection('tenant')->table('education_levels')->insert([
             ['edu_name' => 'Facultad de Derecho y Gobernabilidad', 'edu_alias' => '', 'edu_order' => 1, 'principal_id' => null, 'offer_id' => 1, 'status_id' => 1],
-            ['edu_name' => 'Carrera de Derecho', 'edu_alias' => '', 'edu_order' => 1, 'principal_id' => 1, 'offer_id' => 1, 'status_id' => 1],
+            ['edu_name' => 'Carrera de Derecho', 'edu_alias' => '', 'edu_order' => 2, 'principal_id' => 1, 'offer_id' => 1, 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('meshs')->insert([

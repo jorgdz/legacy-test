@@ -48,6 +48,24 @@ class TypeMatterCache extends BaseCache {
      */
     public function save(Model $model) {
         $this->forgetCache('type-matters');
+
+        $method = request()->method();
+        if (in_array($method, ['POST'])) {
+            $model->tm_order = $model->max('tm_order') + 1;
+        } elseif (in_array($method, ['PATCH', 'PUT'])) {
+            $old = $model->getOriginal('tm_order');
+            $new = $model->getAttributes()['tm_order'];
+            if ($old <> $new) {
+                $conditions = [
+                    ['tm_order', $new],
+                ];
+                $params = [
+                    'tm_order' => $old,
+                ];
+                $this->repository->setTypeMatter($conditions, $params);
+            }
+        }
+
         return $this->repository->save($model);
     }
 

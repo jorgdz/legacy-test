@@ -26,7 +26,6 @@ class EducationLevelFormRequest extends FormRequest
         return [
             'edu_name' => 'required|max:255',
             'edu_alias' => 'required|max:255',
-            'edu_order' => 'required|integer',
             'offer_id' => 'required|integer|exists:tenant.offers,id',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];

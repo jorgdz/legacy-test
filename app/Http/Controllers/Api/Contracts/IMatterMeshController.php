@@ -156,11 +156,6 @@ interface IMatterMeshController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="order",
-     *           description="Orden de asignacion",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="status_id",
      *           description="Estado",
      *           type="integer",
