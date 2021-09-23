@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomTenant;
 use App\Models\CustomFilesystem;
 use App\Models\CustomTypeDocument;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
@@ -36,8 +37,8 @@ class FilesystemService {
     public function show(Request $request) {
         if ($this->filesystem) {
             $encode = base64_encode($request->name);
-            return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}");
-            /* return Redirect::to(env('URI_API_DOC') . "descargar-archivo/{$encode}"); */
+            //return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}");
+            return Redirect::to(config('app.api_doc_url') . "descargar-archivo/{$encode}");
         };
 
         return Storage::disk('s3')->response($request->name);
@@ -98,8 +99,8 @@ class FilesystemService {
     public function download(Request $request) {
         if ($this->filesystem) {
             $encode = base64_encode($request->name);
-            return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}");
-            /* return Redirect::to(env('URI_API_DOC') . "descargar-archivo/{$encode}"); */
+            //return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}");
+            return Redirect::to(config('app.api_doc_url') . "descargar-archivo/{$encode}");
         };
         
         return Storage::disk('s3')->download($request->name);
