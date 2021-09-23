@@ -11,6 +11,10 @@ class UserProfileRepository extends BaseRepository
 {
     protected $relations = ['user', 'profile'];
 
+    protected $parents = ['user', 'profile', 'status'];
+
+    protected $selfFieldsAndParents = ['us_username', 'email', 'pro_name', 'st_name'];
+
     /**
      * __construct
      *

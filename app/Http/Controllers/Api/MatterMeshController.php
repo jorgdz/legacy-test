@@ -152,9 +152,9 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @param  mixed $mattermesh
      * @return void
      */
-    public function restoreMatterMesh(Request $request, $id) 
+    public function restoreMatterMesh($id) 
     {        
         MatterMesh::withTrashed()->find($id)->restore();
-        return $this->information(__('messages.matter_mesh-saved-successfully'));
+        return $this->information(__('messages.success'));
     }
 }

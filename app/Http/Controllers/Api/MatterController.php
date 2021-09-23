@@ -13,6 +13,7 @@ use App\Http\Requests\StoreMatterRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IMatterController;
+use App\Models\EducationLevel;
 use Exception;
 
 class MatterController extends Controller implements IMatterController
@@ -41,6 +42,11 @@ class MatterController extends Controller implements IMatterController
      * @return \Illuminate\Http\Response
      */
     public function store(StoreMatterRequest $request) {
+        $educationLevel = EducationLevel::findOrFail($request->education_level_id);
+
+        if ($educationLevel->principal_id != null)
+            throw new ConflictException(__('messages.error-saving-model', ['model' => class_basename(Matter::class)]));
+
         $matter = new Matter($request->all());
         $matter = $this->matterCache->save($matter);
 
@@ -65,6 +71,11 @@ class MatterController extends Controller implements IMatterController
      * @return \Illuminate\Http\Response
      */
     public function update(StoreMatterRequest $request, Matter $matter) {
+        $educationLevel = EducationLevel::findOrFail($request->education_level_id);
+
+        if ($educationLevel->principal_id != null)
+            throw new ConflictException(__('messages.error-saving-model', ['model' => class_basename(Matter::class)]));
+            
         $matter->fill($request->all());
         if ($matter->isClean())
             return $this->information(__('messages.nochange'));

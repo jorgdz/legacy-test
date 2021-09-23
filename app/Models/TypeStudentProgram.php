@@ -20,6 +20,8 @@ class TypeStudentProgram extends Model implements AuditableContract
      */
     protected $table = 'type_student_programs';
 
+    protected $relations = ['status_id'];
+
     /**
      * The attributes that are mass assignable.
      *

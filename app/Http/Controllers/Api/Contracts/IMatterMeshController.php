@@ -513,5 +513,5 @@ interface IMatterMeshController
      * )
      *
      */
-    public function restoreMatterMesh(Request $request, $id);
+    public function restoreMatterMesh($id);
 }

@@ -80,4 +80,8 @@ class EducationLevel extends Model implements AuditableContract
             $query->where('status_id', 1);
         });
     }
+
+    public function matter() {
+        return $this->hasMany(Matter::class, 'education_level_id');
+    }
 }

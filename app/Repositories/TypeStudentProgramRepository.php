@@ -15,6 +15,10 @@ class TypeStudentProgramRepository extends BaseRepository
        'status'
     ];
 
+    protected $parents = ['status'];
+
+    protected $selfFieldsAndParents = ['typ_stu_pro_name', 'typ_stu_pro_acronym', 'st_name'];
+
     protected $fields = [
         'typ_stu_pro_name','typ_stu_pro_acronym'
     ];

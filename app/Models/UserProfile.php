@@ -23,6 +23,8 @@ class UserProfile extends Model implements AuditableContract
     protected $guard_name = 'api';
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
+
+    protected $relations = ['user_id', 'profile_id', 'status_id'];
     
     /**
      * user

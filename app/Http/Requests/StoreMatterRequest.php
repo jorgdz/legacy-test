@@ -27,6 +27,7 @@ class StoreMatterRequest extends FormRequest
             'cod_matter_migration' => 'required|string',
             'type_matter_id' => 'required|integer|exists:tenant.type_matters,id',
             'type_calification_id' => 'required|integer|exists:tenant.type_califications,id',
+            'education_level_id' => 'required|integer|exists:tenant.education_levels,id',
             'min_note' => 'required|numeric',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];

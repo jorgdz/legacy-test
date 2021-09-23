@@ -142,6 +142,11 @@ interface IMatterController {
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="education_level_id",
+     *           description="Tipo de calificación",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="min_note",
      *           description="Nota mínima de la materia",
      *           type="number",
@@ -277,6 +282,11 @@ interface IMatterController {
      *         ),
      *         @OA\Property(
      *           property="type_calification_id",
+     *           description="Tipo de calificación",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="education_level_id",
      *           description="Tipo de calificación",
      *           type="integer",
      *         ),

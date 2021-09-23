@@ -24,8 +24,16 @@ class Matter extends Model implements AuditableContract
      * @var array
      */
     protected $fillable = [
-        'mat_name', 'mat_description', 'mat_acronym', 'cod_matter_migration', 'cod_old_migration',
-        'type_matter_id', 'type_calification_id', 'min_note', 'status_id'
+        'mat_name', 
+        'mat_description', 
+        'mat_acronym', 
+        'cod_matter_migration', 
+        'cod_old_migration',
+        'type_matter_id', 
+        'type_calification_id', 
+        'education_level_id',
+        'min_note', 
+        'status_id'
     ];
     protected $hidden = [];
     protected $dates = ['deleted_at'];
@@ -63,4 +71,8 @@ class Matter extends Model implements AuditableContract
     // {
     //     return $this->hasMany(Course::class, 'matter_id');
     // }
+
+    public function educationLevel() {
+        return $this->belongsTo(EducationLevel::class, 'education_level_id');
+    }
 }
