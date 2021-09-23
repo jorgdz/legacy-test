@@ -234,6 +234,7 @@ Route::get('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::clas
 Route::post('/matter-mesh', [MatterMeshController::class, 'store'])->middleware(['auth:sanctum', 'permission:mattermesh-crear-materias-mallas']);
 Route::post('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'asignDependencies'])->middleware(['auth:sanctum', 'permission:mattermesh-asignar-dependencias-por-materias-mallas']);
 Route::put('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
+Route::patch('/matter-mesh/{id}', [MatterMeshController::class, 'restoreMatterMesh'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
 Route::delete('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
 
 /*

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Cache\MatterMeshCache;
 use App\Exceptions\Custom\ConflictException;
-use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IMatterMeshController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MatterMeshDependenciesRequest;
@@ -15,6 +14,7 @@ use App\Traits\Auditor;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class MatterMeshController extends Controller implements IMatterMeshController
 {
@@ -55,6 +55,22 @@ class MatterMeshController extends Controller implements IMatterMeshController
      */
     public function store(MatterMeshRequest $request)
     {
+        $data = DB::table('matter_mesh')
+                ->whereNotNull('deleted_at')
+                ->where('matter_id', $request->matter_id)
+                ->where('mesh_id', $request->mesh_id)
+                ->first();
+
+        if ($data){
+            MatterMesh::withTrashed()->find($data->id)->restore();
+
+            $mattermesh = MatterMesh::findOrFail($data->id);
+            $mattermesh->fill($request->all());
+            $mattermesh->save();
+
+            return $this->information(__('messages.success'));
+        }
+
         $matterMeshFound = MatterMesh::where('matter_id', $request->matter_id)->where('mesh_id', $request->mesh_id)->first();
 
         if($matterMeshFound) {
@@ -128,5 +144,17 @@ class MatterMeshController extends Controller implements IMatterMeshController
     public function destroy(MatterMesh $mattermesh)
     {
         return $this->success($this->matterMeshCache->destroy($mattermesh));
+    }
+    
+    /**
+     * restoreMatterMesh
+     *
+     * @param  mixed $mattermesh
+     * @return void
+     */
+    public function restoreMatterMesh(Request $request, $id) 
+    {        
+        MatterMesh::withTrashed()->find($id)->restore();
+        return $this->information(__('messages.matter_mesh-saved-successfully'));
     }
 }
