@@ -133,10 +133,9 @@ interface ITypePeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="tp_fees",
+     *           property="tp_fees_enrollment",
      *           description="Valor total de la matricula",
-     *           type="number",
-     *           format="float",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="tp_pay_enrollment",
@@ -265,10 +264,9 @@ interface ITypePeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="tp_fees",
+     *           property="tp_fees_enrollment",
      *           description="Valor total de la matricula",
-     *           type="number",
-     *           format="float",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="tp_pay_enrollment",

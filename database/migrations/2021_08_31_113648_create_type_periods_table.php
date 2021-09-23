@@ -22,7 +22,7 @@ class CreateTypePeriodsTable extends Migration
             $table->integer('tp_min_matter_enrollment')->nullable();
             $table->integer('tp_max_matter_enrollment')->nullable();
             $table->integer('tp_num_fees')->nullable();
-            $table->float('tp_fees', 8, 3)->nullable();
+            $table->integer('tp_fees_enrollment')->nullable();
             $table->boolean('tp_pay_enrollment');
 
             $table->integer('status_id')->unsigned();

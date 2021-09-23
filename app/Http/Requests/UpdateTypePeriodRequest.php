@@ -29,7 +29,7 @@ class UpdateTypePeriodRequest extends FormRequest
             'tp_min_matter_enrollment' => 'required|integer',
             'tp_max_matter_enrollment' => 'required|integer',
             'tp_num_fees' => 'nullable|integer',
-            'tp_fees' => 'nullable|required_if:tp_pay_enrollment,true|required_if:tp_pay_enrollment,1',
+            'tp_fees_enrollment' => 'nullable|integer|required_if:tp_pay_enrollment,true|required_if:tp_pay_enrollment,1|lte:tp_num_fees',
             'tp_pay_enrollment' => 'required|boolean',
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];

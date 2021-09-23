@@ -143,10 +143,9 @@ interface IPeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="per_fees",
-     *           description="Valor total de la matricula",
-     *           type="number",
-     *           format="float",
+     *           property="per_fees_enrollment",
+     *           description="Total de cuotas que se pagaran con esta matricula",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="per_pay_enrollment",
@@ -390,10 +389,9 @@ interface IPeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="per_fees",
-     *           description="Valor total de la matricula",
-     *           type="number",
-     *           format="float",
+     *           property="per_fees_enrollment",
+     *           description="Total de cuotas que se pagaran con esta matricula",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="per_pay_enrollment",

@@ -257,8 +257,8 @@ Route::put('/offers/{offer}', [OfferController::class, 'update'])->middleware(['
 Route::delete('/offers/{offer}', [OfferController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:offers-borrar-oferta']);
 Route::get('/offers/{offer}/periods', [OfferController::class, 'showPeriodsByOffer'])->middleware(['auth:sanctum', 'permission:offers-listar-periodos-por-oferta']);
 Route::get('/offers/{offer}/periods/{period}', [OfferController::class, 'showPeriodByOffer'])->middleware(['auth:sanctum', 'permission:offers-obtener-periodo-por-oferta']);
-Route::get('/offers/{offer}/simbologies', [OfferController::class, 'showSimbologiesByOffer'])->middleware(['auth:sanctum']);//permission:offers-listar-simbologias-por-oferta
-Route::post('/offers/{offer}/simbologies', [OfferController::class, 'assignSimbologiesByOffer'])->middleware(['auth:sanctum']);//permission:offers-asignar-simbologias-por-oferta
+Route::get('/offers/{offer}/simbologies', [OfferController::class, 'showSimbologiesByOffer'])->middleware(['auth:sanctum', 'permission:offers-listar-simbologias-por-oferta']);
+Route::post('/offers/{offer}/simbologies', [OfferController::class, 'assignSimbologiesByOffer'])->middleware(['auth:sanctum', 'permission:offers-asignar-simbologias-por-oferta']);
 
 /*
  * Hourhand

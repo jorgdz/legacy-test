@@ -29,7 +29,7 @@ class Period extends Model implements AuditableContract
         'per_min_matter_enrollment',
         'per_max_matter_enrollment',
         'per_num_fees',
-        'per_fees',
+        'per_fees_enrollment',
         'per_pay_enrollment',
         'campus_id',
         'type_period_id',

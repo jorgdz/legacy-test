@@ -2231,6 +2231,25 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'simbology'
             ],
+            /**
+             * Simbologia Oferta 253-254
+             */
+            [
+                'name' => 'offers-listar-simbologias-por-oferta',
+                'alias' => 'Listar simbologias oferta',
+                'description' => 'Listar todas las simbologias por ofertas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offer'
+            ],
+            [
+                'name' => 'offers-asignar-simbologias-por-oferta',
+                'alias' => 'Asignar simbologia oferta',
+                'description' => 'Asignacion masiva de simbologia a la oferta',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'offer'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2682,6 +2701,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 250, 'role_id' => 1],
             ['permission_id' => 251, 'role_id' => 1],
             ['permission_id' => 252, 'role_id' => 1],
+            /**
+             * Simbologia Oferta 253-254
+             */
+            ['permission_id' => 253, 'role_id' => 1],
+            ['permission_id' => 254, 'role_id' => 1],
 
             /**
              * 
@@ -3133,6 +3157,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 250, 'role_id' => 2],
             ['permission_id' => 251, 'role_id' => 2],
             ['permission_id' => 252, 'role_id' => 2],
+            /**
+             * Simbologia Oferta 253-254
+             */
+            ['permission_id' => 253, 'role_id' => 2],
+            ['permission_id' => 254, 'role_id' => 2],
         ]);
     }
 }

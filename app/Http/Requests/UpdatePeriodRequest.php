@@ -32,7 +32,7 @@ class UpdatePeriodRequest extends FormRequest
             'per_min_matter_enrollment' => 'required|integer',
             'per_max_matter_enrollment' => 'required|integer',
             'per_num_fees' => 'nullable|integer',
-            'per_fees' => 'numeric|required_if:per_pay_enrollment,true|required_if:per_pay_enrollment,1',
+            'per_fees_enrollment' => 'integer|required_if:per_pay_enrollment,true|required_if:per_pay_enrollment,1|lte:per_num_fees',
             'per_pay_enrollment' => 'required|boolean',
             'campus_id' => 'required|integer|exists:tenant.campus,id',
             'type_period_id' => 'required|integer|exists:tenant.type_periods,id',

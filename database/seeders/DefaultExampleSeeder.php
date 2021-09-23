@@ -27,8 +27,8 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('periods')->insert([
-            ['per_name' => 'Periodo 2 Nuevo', 'per_reference' => 'Periodo 2 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'per_num_fees' => 10, 'per_fees' => 300, 'per_pay_enrollment' => 1, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
-            ['per_name' => 'Periodo 1', 'per_reference' => 'Periodo 1 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'per_num_fees' => 20, 'per_fees' => 600, 'per_pay_enrollment' => 0, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
+            ['per_name' => 'Periodo 2 Nuevo', 'per_reference' => 'Periodo 2 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'per_num_fees' => 10, 'per_fees_enrollment' => 3, 'per_pay_enrollment' => 1, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
+            ['per_name' => 'Periodo 1', 'per_reference' => 'Periodo 1 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'per_num_fees' => 20, 'per_fees_enrollment' => 6, 'per_pay_enrollment' => 0, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('type_califications')->insert([
