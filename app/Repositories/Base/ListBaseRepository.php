@@ -141,9 +141,9 @@ class ListBaseRepository
      */
     public function paginated ($request, $table) {
         $sort = $request->sort ? $table. '.'. $request->sort : $table.'.id';
-        $type_sort = $request->type_sort ?: 'desc';
+        $type_sort = $request->type_sort ? $request->type_sort : 'desc';
 
-        return $this->model->orderBy($sort, $type_sort)->paginate($request->size ?: 100);
+        return $this->model->orderBy($sort, $type_sort)->paginate($request->size ? $request->size : 100);
     }
 
     /**

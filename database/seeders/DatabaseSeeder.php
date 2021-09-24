@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ClassroomType;
 use App\Models\CustomTenant;
 use Illuminate\Database\Seeder;
 
@@ -49,7 +50,8 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 UserProfileSeeder::class,
                 RoleUserProfileSeeder::class,
-                StudentSeeder::class
+                StudentSeeder::class,
+                ClassroomTypeSeeder::class,
             ]);
         }
     }

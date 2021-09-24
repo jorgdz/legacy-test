@@ -99,4 +99,14 @@ class Campus extends Model implements AuditableContract
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+    /**
+     * classrooms
+     *
+     * @return HasMany
+     */
+    public function classrooms() : HasMany
+    {
+        return $this->hasMany(ClassRoom::class, 'campus_id');
+    }
 }

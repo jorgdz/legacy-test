@@ -16,8 +16,16 @@ class CreateTableClassrooms extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cl_name', 255);
-            $table->string('cl_description', 255)->nullable();
+            $table->integer('cl_cap_max')->nullable();
             $table->string('cl_acronym', 4)->nullable();
+            $table->string('cl_description', 255)->nullable();
+
+
+            $table->integer('campus_id')->unsigned();
+            $table->foreign('campus_id')->references('id')->on('campus');
+
+            $table->integer('classroom_type_id')->unsigned();
+            $table->foreign('classroom_type_id')->references('id')->on('classroom_types');
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

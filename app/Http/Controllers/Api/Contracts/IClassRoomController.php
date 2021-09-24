@@ -113,9 +113,29 @@ interface IClassRoomController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="cl_cap_max",
+     *           description="Capacidad maxima del aula",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="cl_acronym",
+     *           description="Acronimo del aula",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="cl_description",
      *           description="Descripcion del aula",
      *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="campus_id",
+     *           description="Sede",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="classroom_type_id",
+     *           description="Tipo de aula",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -129,8 +149,12 @@ interface IClassRoomController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "cl_name" : "required|unique:tenant.classrooms,cl_name",
-     *          "cl_acronym" : "max:4",
+     *           "cl_name" : "required|unique:tenant.classrooms,cl_name",
+     *           "cl_cap_max" : "integer",
+     *           "cl_acronym" : "max:4",
+     *           "campus_id" : "integer|exists:tenant.campus,id",
+     *           "classroom_type_id" : "integer|exists:tenant.classroom_types,id",
+     *           "status_id" : "integer|exists:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -218,9 +242,29 @@ interface IClassRoomController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="cl_cap_max",
+     *           description="Capacidad maxima del aula",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="cl_acronym",
+     *           description="Acronimo del aula",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="cl_description",
      *           description="Descripcion del aula",
      *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="campus_id",
+     *           description="Sede",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="classroom_type_id",
+     *           description="Tipo de aula",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -234,8 +278,12 @@ interface IClassRoomController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *           "cl_name" : "required|unique:tenant.classrooms,cl_name,classroom->id",
-     *       "cl_acronym" : "max:4"
+     *           "cl_name" : "required|unique:tenant.classrooms,cl_name, {$this->route('classroom')->id}",
+     *           "cl_cap_max" : "integer",
+     *           "cl_acronym" : "max:4",
+     *           "campus_id" : "integer|exists:tenant.campus,id",
+     *           "classroom_type_id" : "integer|exists:tenant.classroom_types,id",
+     *           "status_id" : "integer|exists:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

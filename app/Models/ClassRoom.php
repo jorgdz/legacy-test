@@ -12,7 +12,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class ClassRoom extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes,Auditable;
+    use HasFactory, UsesTenantConnection, SoftDeletes, Auditable;
 
     /**
      * table
@@ -28,8 +28,11 @@ class ClassRoom extends Model implements AuditableContract
      */
     protected $fillable = [
         'cl_name',
-        'cl_description',
+        'cl_cap_max',
         'cl_acronym',
+        'cl_description',
+        'campus_id',
+        'classroom_type_id',
         'status_id',
     ];
 
@@ -38,7 +41,7 @@ class ClassRoom extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['status_id'];
+    protected $relations = ['campus_id','classroom_type_id','status_id'];
 
     /**
      * The attributes are hidden
@@ -50,6 +53,26 @@ class ClassRoom extends Model implements AuditableContract
         'updated_at',
         'deleted_at'
     ];
+
+    /**
+     * campus
+     *
+     * @return BelongsTo
+     */
+    public function campus() : BelongsTo
+    {
+        return $this->belongsTo(Campus::class, 'campus_id');
+    }
+
+    /**
+     * classroomType
+     *
+     * @return BelongsTo
+     */
+    public function classroomType() : BelongsTo
+    {
+        return $this->belongsTo(ClassroomType::class, 'classroom_type_id');
+    }
 
     /**
      * status
