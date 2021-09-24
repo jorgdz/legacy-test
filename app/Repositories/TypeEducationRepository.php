@@ -6,12 +6,12 @@ use App\Models\TypeEducation;
 use App\Repositories\Base\BaseRepository;
 
 /**
- * CampusRepository
+ * TypeEducationRepository
  */
 class TypeEducationRepository extends BaseRepository
 {
 
-    protected $relations = ['status', /* 'institutes', 'persons' */];
+    protected $relations = ['status'];
     protected $fields = ['typ_edu_name'];
 
     /**

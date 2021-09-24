@@ -49,7 +49,7 @@ class TypeKinshipCache extends BaseCache {
      */
     public function save(Model $model)
     {
-        $this->forgetCache('typekinships');
+        $this->forgetCache('type-kinships');
         return $this->repository->save($model);
     }
 
@@ -59,7 +59,7 @@ class TypeKinshipCache extends BaseCache {
      * @return void
      */
     public function destroy (Model $model) {
-        $this->forgetCache('typekinships');
+        $this->forgetCache('type-kinships');
         return $this->repository->destroy($model);
     }
 }

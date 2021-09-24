@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -29,12 +31,21 @@ class TypeMatter extends Model implements AuditableContract
 
     protected $softCascade = ['matters'];
 
-    /* Relationship */
-    public function status() {
+    /**
+     * status
+     *
+     * @return BelongsTo
+     */
+    public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    public function matters() {
-        return $this->hasMany(Matter::class, 'type_matter_id');
+    /**
+     * matterStatus
+     *
+     * @return HasMany
+     */
+    public function matterStatus() : HasMany {
+        return $this->hasMany(MatterStatus::class, 'type_matter_id');
     }
 }

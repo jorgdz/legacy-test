@@ -34,10 +34,32 @@ class Offer extends Model implements AuditableContract
      */
     protected $table = 'offers';
 
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status_id'];
+
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at', 'pivot'];
 
+    /**
+     * softCascade
+     *
+     * @var array
+     */
     protected $softCascade = ['educationLevels', 'typeCriterias', 'typeStudents','educationLevels'];
 
     /**

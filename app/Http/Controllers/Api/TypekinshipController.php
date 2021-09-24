@@ -3,22 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Typekinship;
-use App\Cache\TypekinshipCache;
+use App\Models\TypeKinship;
+use App\Cache\TypeKinshipCache;
 use App\Traits\RestResponse;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Contracts\ITypeKinshipController;
 
-class TypekinshipController extends Controller implements ITypeKinshipController
+class TypeKinshipController extends Controller implements ITypeKinshipController
 {
     use RestResponse;
 
-    private $typekinshipCache;
+    private $typeKinshipCache;
 
-    public function __construct(TypekinshipCache $typekinshipCache)
+    public function __construct(TypeKinshipCache $typeKinshipCache)
     {
-        $this->typekinshipCache = $typekinshipCache;
+        $this->typeKinshipCache = $typeKinshipCache;
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +26,7 @@ class TypekinshipController extends Controller implements ITypeKinshipController
      */
     public function index(Request $request)
     {
-        return $this->success($this->typekinshipCache->all($request));
+        return $this->success($this->typeKinshipCache->all($request));
     }
 
     /**
@@ -44,22 +43,22 @@ class TypekinshipController extends Controller implements ITypeKinshipController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Typekinship  $typekinship
+     * @param  \App\Models\TypeKinship  $typekinship
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return $this->success($this->typekinshipCache->find($id));
+        return $this->success($this->typeKinshipCache->find($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Typekinship  $typekinship
+     * @param  \App\Models\TypeKinship  $typekinship
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Typekinship $typekinship)
+    public function update(Request $request, TypeKinship $typekinship)
     {
         //
     }
@@ -67,10 +66,10 @@ class TypekinshipController extends Controller implements ITypeKinshipController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Typekinship  $typekinship
+     * @param  \App\Models\TypeKinship  $typekinship
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Typekinship $typekinship)
+    public function destroy(TypeKinship $typekinship)
     {
         //
     }

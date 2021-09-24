@@ -5,6 +5,7 @@ namespace App\Models;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
@@ -66,9 +67,9 @@ class TypeStudent extends Model
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status()
+    public function status() : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

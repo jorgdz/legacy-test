@@ -13,9 +13,7 @@ use Illuminate\Http\Response;
 use App\Cache\UserProfileCache;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Repositories\UserRepository;
 use App\Http\Requests\StoreUserRequest;
-use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\NotFoundException;
 use App\Exceptions\Custom\NotContentException;
 use App\Http\Requests\StoreUserProfileRequest;
@@ -146,8 +144,8 @@ class UserController extends Controller implements IUserController
      * @param  mixed $user
      * @return void
      */
-    public function showProfiles (Request $request, $user_id ) {
-        return $this->success($this->repoUser->showProfiles($user_id));
+    public function showProfiles (Request $request, User $user) {
+        return $this->success($this->repoUser->showProfiles($user));
     }
 
     /**
@@ -277,13 +275,10 @@ class UserController extends Controller implements IUserController
 
     /**
      * showUsersUnCollaborator
-     *
-     * @param  mixed $request
-     * @param  mixed $user
      * @return void
      */
-    public function showUsersUnCollaborator (Request $request ) {
-        $users = $this->repoUser->allUserNotCollaborator($request);
+    public function showUsersUnCollaborator () {
+        $users = $this->repoUser->allUserNotCollaborator();
 
         if(!$users)
             throw new NotContentException(__("messages.no-content"));

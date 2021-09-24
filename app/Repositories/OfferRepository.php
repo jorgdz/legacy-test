@@ -9,8 +9,34 @@ use App\Repositories\Base\BaseRepository;
 
 class OfferRepository extends BaseRepository
 {
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = ['status', 'periods', 'educationLevels', 'simbologies'];
+
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['off_name'];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = ['off_name', 'st_name'];
+
 
     /**
      * __construct
@@ -82,7 +108,7 @@ class OfferRepository extends BaseRepository
 
         return $query->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ?: 100);
     }
-    
+
     /**
      * find @override
      *

@@ -24,6 +24,13 @@ class StudentRecord extends Model implements AuditableContract
     protected $table = 'student_records';
 
     /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['student_id', 'education_level_id', 'pensum_id', 'type_student_id', 'period_id', 'economic_group_id', 'status_id'];
+
+    /**
      * dates
      *
      * @var array

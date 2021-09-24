@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Typekinship;
+use App\Models\TypeKinship;
 use App\Repositories\Base\BaseRepository;
 
 /**
- * CampusRepository
+ * TypeKinshipRepository
  */
 class TypeKinshipRepository extends BaseRepository
 {
 
-    protected $relations = ['status'/* , 'institutes', 'persons' */];
+    protected $relations = ['status'];
     protected $fields = ['typ_kin_name'];
 
     /**
@@ -19,7 +19,7 @@ class TypeKinshipRepository extends BaseRepository
      *
      * @return void
      */
-    public function __construct (Typekinship $typekinship) {
+    public function __construct (TypeKinship $typekinship) {
         parent::__construct($typekinship);
     }
 }

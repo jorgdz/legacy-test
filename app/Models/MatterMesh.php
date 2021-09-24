@@ -15,12 +15,39 @@ class MatterMesh extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes,Auditable;
 
+    /**
+     * table
+     *
+     * @var string
+     */
     protected $table = 'matter_mesh';
 
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['matter_id', 'mesh_id', 'simbology_id', 'status_id'];
+
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * guard_name
+     *
+     * @var string
+     */
     protected $guard_name = 'api';
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at','pivot'];
 
     /**

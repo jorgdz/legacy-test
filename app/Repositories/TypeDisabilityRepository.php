@@ -6,12 +6,12 @@ use App\Models\TypeDisability;
 use App\Repositories\Base\BaseRepository;
 
 /**
- * CampusRepository
+ * TypeDisabilityRepository
  */
 class TypeDisabilityRepository extends BaseRepository
 {
 
-    protected $relations = ['status', /* 'institutes', 'persons' */];
+    protected $relations = ['status'];
     protected $fields = ['typ_dis_name'];
 
     /**

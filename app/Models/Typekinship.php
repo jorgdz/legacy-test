@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Typekinship extends Model
+class TypeKinship extends Model
 {
     use HasFactory;
 
@@ -29,17 +31,31 @@ class Typekinship extends Model
      */
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-    /* Relationships */
-    public function status() {
+    /**
+     * status
+     *
+     * @return BelongsTo
+     */
+    public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
     /**
      * Relative
      *
-     * @return void
+     * @return HasMany
      */
-    public function relative () {
+    public function relatives () : HasMany {
         return $this->hasMany(Relative::class,'type_kinship_id');
+    }
+
+    /**
+     * emergencyContacts
+     *
+     * @return HasMany
+     */
+    public function emergencyContacts() : HasMany
+    {
+        return $this->hasMany(EmergencyContact::class, 'type_kinship_id');
     }
 }

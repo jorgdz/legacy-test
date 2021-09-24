@@ -8,8 +8,37 @@ use App\Repositories\Base\BaseRepository;
 class MatterStatusRepository extends BaseRepository
 {
 
-    protected $relations = ['status'];
-    protected $fields = ['name', 'type'];
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status', 'typeMatter'];
+
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['type_matters','status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
+    protected $fields = ['name', 'description'];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = [
+        'name', 'description', 'st_name',
+        'tm_name', 'tm_acronym',
+        'st_name'
+    ];
 
     /**
      * __construct

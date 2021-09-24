@@ -10,6 +10,8 @@ class HourhandRepository extends BaseRepository
 {
     protected $relations = ['status', 'periods']; //'courses'
 
+    protected $parents = ['status'];
+
     /**
      * fields
      *
@@ -25,6 +27,20 @@ class HourhandRepository extends BaseRepository
         'hour_sunday',
         'hour_description'
     ];
+
+    protected $selfFieldsAndParents = [
+        'hour_monday',
+        'hour_tuesday',
+        'hour_wednesday',
+        'hour_thursday',
+        'hour_friday',
+        'hour_saturday',
+        'hour_sunday',
+        'hour_description',
+        'st_name'
+    ];
+
+
 
     /**
      * __construct

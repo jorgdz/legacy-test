@@ -7,8 +7,28 @@ use App\Repositories\Base\BaseRepository;
 
 class EconomicGroupRepository extends BaseRepository {
 
-    protected $relations = ['studentRecords', 'status'];
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status', 'studentRecords'];
+
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['eco_gro_name'];
+
+    protected $selfFieldsAndParents = ['eco_gro_name', 'st_name'];
 
     /**
      * __construct

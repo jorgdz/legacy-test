@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -35,9 +36,6 @@ class TypeStudentProgram extends Model implements AuditableContract
     ];
 
 
-
-
-
     protected $dates = ['deleted_at'];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
@@ -45,9 +43,9 @@ class TypeStudentProgram extends Model implements AuditableContract
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status()
+    public function status() : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

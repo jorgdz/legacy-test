@@ -17,7 +17,7 @@ class FilesystemService {
 
     private $filesystem;
     private $http;
-    
+
     /**
      * __construct
      *
@@ -27,7 +27,7 @@ class FilesystemService {
         $this->http = $guzzle;
         $this->filesystem = CustomFilesystem::where('tenant_id', app('currentTenant')->id)->first();
     }
-    
+
     /**
      * show
      *
@@ -43,7 +43,7 @@ class FilesystemService {
 
         return Storage::disk('s3')->response($request->name);
     }
-    
+
     /**
      * store
      *
@@ -89,7 +89,7 @@ class FilesystemService {
 
         return $this->success($response);
     }
-    
+
     /**
      * download
      *
@@ -102,7 +102,7 @@ class FilesystemService {
             //return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}");
             return Redirect::to(config('app.api_doc_url') . "descargar-archivo/{$encode}");
         };
-        
+
         return Storage::disk('s3')->download($request->name);
     }
 }

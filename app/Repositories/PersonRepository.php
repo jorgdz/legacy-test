@@ -14,7 +14,22 @@ class PersonRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['identification', 'religion', 'statusMarital', 'city', 'currentCity', 'sector', 'ethnic', 'user', 'personJob', 'livingPlace', 'languages'];
+    protected $relations = [
+        'identification',
+        'religion',
+        'statusMarital',
+        'city',
+        'currentCity',
+        'sector',
+        'ethnic',
+        'user',
+        'livingPlace',
+        'personJob',
+        'languages',
+        'emergencyContact',
+        'personRelatives',
+        'personStudents'
+    ];
 
     /**
      * parents

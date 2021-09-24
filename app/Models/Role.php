@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Permission\Models\Role as RolePersonalized;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
@@ -18,14 +19,33 @@ class Role extends RolePersonalized
      *
      * @var array
      */
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = ['name', 'description', 'guard_name', 'status_id'];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
-    /* Relationships */
-    public function status () {
+    /**
+     * status
+     *
+     * @return BelongsTo
+     */
+    public function status () : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
 }

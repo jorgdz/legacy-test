@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -13,6 +14,11 @@ class ClassRoom extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes,Auditable;
 
+    /**
+     * table
+     *
+     * @var string
+     */
     protected $table = 'classrooms';
 
     /**
@@ -27,6 +33,11 @@ class ClassRoom extends Model implements AuditableContract
         'status_id',
     ];
 
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = ['status_id'];
 
     /**
@@ -43,9 +54,9 @@ class ClassRoom extends Model implements AuditableContract
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status ()
+    public function status () : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

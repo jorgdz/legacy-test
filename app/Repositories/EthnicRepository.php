@@ -11,8 +11,33 @@ use App\Repositories\Base\BaseRepository;
 class EthnicRepository extends BaseRepository
 {
 
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = ['status','persons'];
+
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['eth_name'];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = ['eth_name', 'st_name'];
 
     /**
      * __construct

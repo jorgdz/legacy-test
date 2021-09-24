@@ -5,6 +5,7 @@ namespace App\Models;
 use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
@@ -12,8 +13,18 @@ class Catalog extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, Auditable;
 
+    /**
+     * table
+     *
+     * @var string
+     */
     protected $table = 'catalogs';
 
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'cat_name',
         'cat_acronym',
@@ -22,15 +33,24 @@ class Catalog extends Model implements AuditableContract
         'status_id',
     ];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = [
-        'created_at', 
-        'updated_at', 
+        'created_at',
+        'updated_at',
         'deleted_at',
         'parent_id',
     ];
 
-    /* Relationship */
-    public function status() {
+    /**
+     * status
+     *
+     * @return BelongsTo
+     */
+    public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
 

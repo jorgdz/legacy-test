@@ -5,6 +5,7 @@ namespace App\Models;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -37,17 +38,27 @@ class StudentDocument extends Model implements AuditableContract
     ];
 
 
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
 
     /**
      * typeDocument
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function typeDocument()
+    public function typeDocument() : BelongsTo
     {
         return $this->belongsTo(typeDocument::class, 'type_document_id');
     }
@@ -56,9 +67,9 @@ class StudentDocument extends Model implements AuditableContract
     /**
      * student
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function student()
+    public function student() : BelongsTo
     {
         return $this->belongsTo(Student::class, 'student_id');
     }
@@ -67,9 +78,9 @@ class StudentDocument extends Model implements AuditableContract
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status()
+    public function status() : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

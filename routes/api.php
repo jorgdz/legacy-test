@@ -27,7 +27,7 @@ use App\Http\Controllers\Api\TagStudentController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\PeriodStageController;
 use App\Http\Controllers\Api\TypeDaytripController;
-use App\Http\Controllers\Api\TypekinshipController;
+use App\Http\Controllers\Api\TypeKinshipController;
 use App\Http\Controllers\Api\TypeStudentController;
 use App\Http\Controllers\Api\TypeLanguageController;
 use App\Http\Controllers\Api\TypeReligionController;
@@ -353,8 +353,8 @@ Route::get('blood-types/{bloodtype}', [BloodTypeController::class, 'show'])->mid
 /**
  * Type Kinship
  */
-Route::get('type-kinships', [TypekinshipController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_kinship-listar-tipo-parentesco']);
-Route::get('type-kinships/{typekinship}', [TypekinshipController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_kinship-obtener-tipo-parentesco']);
+Route::get('type-kinships', [TypeKinshipController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_kinship-listar-tipo-parentesco']);
+Route::get('type-kinships/{typekinship}', [TypeKinshipController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_kinship-obtener-tipo-parentesco']);
 
 /**
  * Type Education

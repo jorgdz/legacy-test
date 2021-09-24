@@ -12,13 +12,14 @@ use App\Repositories\Base\BaseRepository;
 class RelativeRepository extends BaseRepository
 {
 
-    protected $relations = ['type_kinship','person_relative'];
+    protected $relations = ['typeKinship','personRelative'];
 
     protected $fields    = ['rel_description'];
 
     protected $parents   = ['persons'];
 
     protected $selfFieldsAndParents = [
+        'rel_description',
         'pers_identification',
         'pers_firstname',
         'pers_secondname',

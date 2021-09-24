@@ -7,8 +7,33 @@ use App\Repositories\Base\BaseRepository;
 
 class InstituteTypeRepository extends BaseRepository
 {
-    protected $relations = ['status'];
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status', 'institutes'];
+
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['tin_name'];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = ['tin_name', 'st_name'];
 
     /**
      * __construct

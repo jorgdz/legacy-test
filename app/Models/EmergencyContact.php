@@ -6,21 +6,47 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
-// use OwenIt\Auditing\Auditable;
-// use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class EmergencyContact extends Model// implements AuditableContract
 {
     //use HasFactory, Auditable;
     use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
 
+    /**
+     * table
+     *
+     * @var string
+     */
     protected $table = 'emergency_contacts';
 
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['type_kinship_id', 'person_id', 'status_id'];
+
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'em_ct_name',
         'em_ct_first_phone',
@@ -30,21 +56,34 @@ class EmergencyContact extends Model// implements AuditableContract
         'person_id'
     ];
 
-    
+
 
     /**
      * emergency contact has a person
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function person () {
+    public function person () : BelongsTo {
         return $this->belongsTo(Person::class, 'person_id');
     }
 
-    public function status ()
+    /**
+     * status
+     *
+     * @return BelongsTo
+     */
+    public function status () : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    //FALTA KINSHIP
+    /**
+     * typeKinship
+     *
+     * @return BelongsTo
+     */
+    public function typeKinship() : BelongsTo
+    {
+        return $this->belongsTo(Typekinship::class, 'type_kinship_id');
+    }
 }

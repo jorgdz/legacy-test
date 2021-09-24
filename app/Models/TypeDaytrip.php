@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TypeDaytrip extends Model
 {
@@ -29,8 +30,12 @@ class TypeDaytrip extends Model
      */
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-    /* Relationships */
-    public function status() {
+    /**
+     * status
+     *
+     * @return BelongsTo
+     */
+    public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
 }

@@ -7,9 +7,38 @@ use App\Repositories\Base\BaseRepository;
 
 class PeriodRepository extends BaseRepository
 {
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = ['campus', 'typePeriod', 'status','offers','periodStages', 'hourhands', 'studentRecords']; // 'courses'
 
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['campus', 'type_periods', 'status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['per_name','per_reference'];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = [
+        'per_name','per_reference',
+        'cam_name', 'cam_description', 'cam_direction', 'cam_initials',
+        'tp_name',
+        'st_name'
+    ];
 
     /**
      * __construct

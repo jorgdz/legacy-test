@@ -123,7 +123,7 @@ class PersonController extends Controller implements IPersonController
      * @return void
      */
     public function showRelativeByPerson (Person $person ) {
-        $relatives = Person::with('person_student.person_relative')->find($person->id);
+        $relatives = Person::with('personStudents.personRelative')->find($person->id);
         return $this->success($relatives);
     }
 
@@ -137,7 +137,7 @@ class PersonController extends Controller implements IPersonController
     public function personAsStudent(Request $request, Person $person)
     {
         if(is_null($person->user))
-            throw new ConflictException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
+            throw new ConflictException(__('messages.exist-instance'));
 
         $user = $person->user;
 
@@ -145,7 +145,7 @@ class PersonController extends Controller implements IPersonController
         $student->stud_code = $this->stud_code_avaliable();
         $student->user_id = $user->id;
         $student->status_id = 1;
-        
+
         return $this->success($this->studentCache->save($student));
     }
 }

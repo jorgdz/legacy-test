@@ -5,6 +5,7 @@ namespace App\Models;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
@@ -15,8 +16,20 @@ class EducationLevel extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait, Auditable;
 
+    /**
+     * table
+     *
+     * @var string
+     */
     protected $table = 'education_levels';
 
+    protected $relations = ['offer_id', 'status_id'];
+
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
 
         'edu_name',
@@ -28,9 +41,25 @@ class EducationLevel extends Model implements AuditableContract
 
     ];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * softCascade
+     *
+     * @var array
+     */
     protected $softCascade = ['meshs', 'studentRecords'];
 
     /**
@@ -45,27 +74,27 @@ class EducationLevel extends Model implements AuditableContract
     /**
      * meshs
      *
-     * @return void
+     * @return HasMany
      */
-    public function meshs() {
+    public function meshs() :  HasMany{
         return $this->hasMany(Mesh::class, 'level_edu_id');
     }
 
     /**
      * offer
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function offer() {
+    public function offer() : BelongsTo {
         return $this->belongsTo(Offer::class, 'offer_id');
     }
-    
+
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status() {
+    public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
 

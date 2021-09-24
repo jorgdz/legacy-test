@@ -3,12 +3,22 @@
 namespace App\Repositories;
 
 use App\Models\Catalog;
-use Illuminate\Support\Facades\Schema;
 use App\Repositories\Base\BaseRepository;
 
 class CatalogRepository extends BaseRepository
 {
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = ['status', 'children'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['cat_acronym'];
 
     /**
@@ -21,6 +31,12 @@ class CatalogRepository extends BaseRepository
         parent::__construct($catalog);
     }
 
+    /**
+     * all
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function all ($request) {
         if (isset($request['data']) && $request->search) {
             return ($request['data'] === 'all') ?  $this->data

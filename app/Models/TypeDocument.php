@@ -5,6 +5,8 @@ namespace App\Models;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -43,14 +45,14 @@ class TypeDocument extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $softCascade = ['studentDocuments']; 
+    protected $softCascade = ['studentDocuments'];
 
     /**
      * studentDocuments
      *
-     * @return void
+     * @return HasMany
      */
-    public function studentDocuments()
+    public function studentDocuments() : HasMany
     {
         return $this->hasMany(StudentDocument::class);
     }
@@ -59,9 +61,9 @@ class TypeDocument extends Model implements AuditableContract
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status()
+    public function status() : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

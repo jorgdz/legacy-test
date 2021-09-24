@@ -7,11 +7,32 @@ use App\Repositories\Base\BaseRepository;
 
 class ClassRoomRepository extends BaseRepository {
 
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = ['status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['cl_name', 'cl_acronym'];
 
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
     protected $selfFieldsAndParents = ['cl_name', 'cl_acronym', 'st_name'];
 
+    /**
+     * parents
+     *
+     * @var array
+     */
     protected $parents = ['status'];
 
     /**

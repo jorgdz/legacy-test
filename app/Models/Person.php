@@ -23,13 +23,6 @@ class Person extends Model implements AuditableContract
     protected $table = 'persons';
 
     /**
-     * primaryKey
-     *
-     * @var string
-     */
-    protected $primaryKey = 'id';
-
-    /**
      * relations
      *
      * @var array
@@ -81,7 +74,7 @@ class Person extends Model implements AuditableContract
     protected $dates = ['deleted_at'];
 
     /* TODO: Verificar tablas intermedias */
-    protected $softCascade = ['user','emergencyContact', 'personJob','person_student'];
+    protected $softCascade = ['user','emergencyContact', 'personJob','personStudents'];
 
     /**
      * typeIdentifications
@@ -192,11 +185,11 @@ class Person extends Model implements AuditableContract
     }
 
     /**
-     * Relative
+     * personRelative
      *
-     * @return void
+     * @return HasMany
      */
-    public function person_relative () {
+    public function personRelatives () : HasMany {
         return $this->hasMany(Relative::class,'person_id_relative');
 
     }
@@ -206,7 +199,7 @@ class Person extends Model implements AuditableContract
      *
      * @return void
      */
-    public function person_student () {
+    public function personStudents () {
         return $this->hasMany(Relative::class,'person_id_student');
 
     }

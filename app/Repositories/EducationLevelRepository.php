@@ -11,14 +11,44 @@ use App\Repositories\Base\BaseRepository;
 class EducationLevelRepository extends BaseRepository
 {
 
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = [
-        'status','offer', 'children'
+        'status','offer', 'meshs', 'children'
     ];
 
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['offers', 'status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = [
         'edu_name',
         'edu_alias',
         'edu_order'
+    ];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = [
+        'edu_name',
+        'edu_alias',
+        'edu_order',
+        'off_name',
+        'st_name',
     ];
 
     /**

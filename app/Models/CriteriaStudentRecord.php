@@ -22,6 +22,13 @@ class CriteriaStudentRecord extends Model implements AuditableContract
     protected $table = 'criteria_student_records';
 
     /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['type_criteria_id'];
+
+    /**
      * dates
      *
      * @var array

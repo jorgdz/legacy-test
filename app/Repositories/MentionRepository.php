@@ -11,12 +11,39 @@ use App\Repositories\Base\BaseRepository;
 class MentionRepository extends BaseRepository
 {
 
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = [
        'status'
     ];
 
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = [
         'ment_name'
+    ];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = [
+        'ment_name',
+        'st_name'
     ];
 
     /**
@@ -30,5 +57,5 @@ class MentionRepository extends BaseRepository
     }
 
 
-    
+
 }

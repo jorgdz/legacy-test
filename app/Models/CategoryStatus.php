@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class CategoryStatus extends Model implements AuditableContract
 {
     use Auditable, HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
-    
+
     /**
      * table
      *
@@ -38,9 +39,19 @@ class CategoryStatus extends Model implements AuditableContract
         'cat_description',
     ];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
-    public function status() {
+    /**
+     * status
+     *
+     * @return HasMany
+     */
+    public function status() : HasMany {
         return $this->hasMany(Status::class, 'category_status_id');
     }
 }

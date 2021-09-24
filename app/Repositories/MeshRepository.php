@@ -12,15 +12,45 @@ use App\Repositories\Base\BaseRepository;
 class MeshRepository extends BaseRepository
 {
 
+    /**
+     * relations
+     *
+     * @var array
+     */
     protected $relations = [
         'educationLevel',
         'pensum',
         'status',
     ];
 
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['pensums', 'education_levels', 'status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = [
         'mes_name',
         'mes_acronym',
+    ];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = [
+        'mes_name',
+        'mes_acronym',
+        'pen_name', 'pen_acronym', 'anio',
+        'edu_name', 'edu_alias', 'edu_order',
+        'st_name'
     ];
 
     /**

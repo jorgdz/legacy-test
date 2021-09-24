@@ -22,6 +22,13 @@ class Institute extends Model implements AuditableContract
     protected $table = 'institutes';
 
     /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['city_id', 'type_institute_id','status_id'];
+
+    /**
      * dates
      *
      * @var array

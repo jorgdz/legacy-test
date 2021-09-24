@@ -61,6 +61,11 @@ class Simbology extends Model implements AuditableContract
      */
     protected $softCascade = ['matterMesh'];
 
+    /**
+     * status
+     *
+     * @return BelongsTo
+     */
     public function status() : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');

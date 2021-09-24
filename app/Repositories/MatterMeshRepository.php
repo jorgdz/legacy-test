@@ -19,6 +19,13 @@ class MatterMeshRepository extends BaseRepository
     protected $relations = ['status', 'mesh', 'matter', 'simbology', 'matterMeshDependencies'];
 
     /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['matters', 'meshs', 'simbologies', 'status'];
+
+    /**
      * fields
      *
      * @var array
@@ -29,6 +36,23 @@ class MatterMeshRepository extends BaseRepository
         'max_calification',
         'matter_rename',
         'group',
+    ];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = [
+        'calification_type',
+        'min_calification',
+        'max_calification',
+        'matter_rename',
+        'group',
+        'mat_name', 'mat_acronym', 'cod_matter_migration', 'cod_old_migration', 'min_note',
+        'mes_name', 'mes_acronym',
+        'sim_description',
+        'st_name'
     ];
 
     /**

@@ -43,10 +43,32 @@ class Period extends Model implements AuditableContract
      */
     protected $table = 'periods';
 
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['campus_id', 'type_period_id', 'status_id'];
+
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at', 'pivot'];
 
+    /**
+     * softCascade
+     *
+     * @var array
+     */
     protected $softCascade = ['periodStages', 'studentRecords']; //courses
 
     /**

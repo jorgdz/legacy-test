@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -33,19 +35,34 @@ class Stage extends Model implements AuditableContract
      */
     protected $table = 'stages';
 
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
+    /**
+     * softCascade
+     *
+     * @var array
+     */
     protected $softCascade = ['periodStages'];
 
     /**
-     * period_stages
+     * periodStages
      *
-     * @return void
+     * @return HasMany
      */
-    
-    public function periodStages ()
+
+    public function periodStages () : HasMany
     {
     	return $this->hasMany(PeriodStage::class, 'stage_id');
     }
@@ -53,9 +70,9 @@ class Stage extends Model implements AuditableContract
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status ()
+    public function status () : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

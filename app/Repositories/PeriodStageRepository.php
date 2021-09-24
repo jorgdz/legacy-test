@@ -3,13 +3,37 @@
 namespace App\Repositories;
 
 use App\Models\PeriodStage;
-use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 
 class PeriodStageRepository extends BaseRepository
 {
-    protected $relations = ['periods', 'stages', 'status'];
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['period', 'stage', 'status'];
+
+    protected $parents = ['stages', 'periods', 'status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['start_date', 'end_date'];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = [
+        'start_date', 'end_date',
+        'stg_name', 'stg_acronym',
+        'per_name','per_reference',
+        'st_name'
+    ];
 
     /**
      * __construct

@@ -3,13 +3,37 @@
 namespace App\Repositories;
 
 use App\Models\Profile;
-use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 
 class ProfileRepository extends BaseRepository
 {
-    protected $relations = ['status'];
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status', 'userProfiles'];
+
+    /**
+     * parents
+     *
+     * @var array
+     */
+    protected $parents = ['status'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['pro_name'];
+
+    /**
+     * selfFieldsAndParents
+     *
+     * @var array
+     */
+    protected $selfFieldsAndParents = ['pro_name', 'st_name'];
 
     /**
      * __construct

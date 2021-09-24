@@ -7,9 +7,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -18,7 +20,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 class User extends Authenticatable implements AuditableContract
 {
     use Auditable, HasFactory, HasRoles, HasApiTokens, Notifiable, UsesTenantConnection, SoftDeletes, SoftCascadeTrait;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -44,6 +46,7 @@ class User extends Authenticatable implements AuditableContract
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
         'created_at',
         'updated_at',
         'deleted_at'
@@ -76,36 +79,36 @@ class User extends Authenticatable implements AuditableContract
     /**
      * userProfiles
      *
-     * @return void
+     * @return HasMany
      */
-    public function userProfiles() {
+    public function userProfiles() : HasMany {
         return $this->hasMany(UserProfile::class);
     }
 
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status() {
+    public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
     /**
-     * collaborators
+     * collaborator
      *
-     * @return void
+     * @return HasOne
      */
-    public function collaborators () {
-        return $this->hasOne(Collaborator::class, 'id', 'user_id');
+    public function collaborator () : HasOne {
+        return $this->hasOne(Collaborator::class);
     }
-        
+
     /**
      * user is a person
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function person () {
+    public function person () : BelongsTo {
         return $this->belongsTo(Person::class, 'person_id');
     }
 }

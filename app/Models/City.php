@@ -22,8 +22,11 @@ class City extends Model implements AuditableContract
      */
     protected $table = 'cities';
 
-    protected $primaryKey = 'id';
-
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'cit_name',
         'cit_acronym',

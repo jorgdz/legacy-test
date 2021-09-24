@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
@@ -22,10 +23,32 @@ class EconomicGroup extends Model implements AuditableContract
      */
     protected $table = 'economic_groups';
 
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status_id'];
+
+    /**
+     * dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * hidden
+     *
+     * @var array
+     */
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
+    /**
+     * softCascade
+     *
+     * @var array
+     */
     protected $softCascade = ['studentRecords'];
 
     /**
@@ -53,9 +76,9 @@ class EconomicGroup extends Model implements AuditableContract
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status ()
+    public function status () : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

@@ -15,7 +15,19 @@ class InstituteType extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes, Auditable;
 
+    /**
+     * table
+     *
+     * @var string
+     */
     protected $table = 'type_institutes';
+
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status_id'];
 
     /**
      * The attributes that are mass assignable.

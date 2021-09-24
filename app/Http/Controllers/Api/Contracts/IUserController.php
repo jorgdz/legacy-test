@@ -325,7 +325,7 @@ interface IUserController
      * )
      *
      */
-    public function showProfiles (Request $request, $user);
+    public function showProfiles (Request $request, User $user);
 
     /**
      * @OA\Get(
@@ -802,7 +802,7 @@ interface IUserController
      * )
      *
      */
-    public function showUsersUnCollaborator (Request $request);
+    public function showUsersUnCollaborator ();
 
      /**
      * @OA\Put(

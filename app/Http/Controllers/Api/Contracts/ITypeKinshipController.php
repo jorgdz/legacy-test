@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Models\Typekinship;
+use App\Models\TypeKinship;
 use Illuminate\Http\Request;
 
 interface ITypeKinshipController
@@ -85,11 +85,11 @@ interface ITypeKinshipController
      *
      */
     public function index(Request $request);
-   
+
 
 
     public function store(Request $request);
-    
+
 
     /**
      * @OA\Get(
@@ -130,13 +130,13 @@ interface ITypeKinshipController
      *
      */
     public function show($id);
-    
 
 
-    public function update(Request $request, Typekinship $typekinship);
-    
+
+    public function update(Request $request, TypeKinship $typekinship);
 
 
-    public function destroy(Typekinship $typekinship);
-    
+
+    public function destroy(TypeKinship $typekinship);
+
 }

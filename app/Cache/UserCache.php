@@ -67,9 +67,9 @@ class UserCache extends BaseCache {
      * @param  mixed $id
      * @return void
      */
-    public function showProfiles ($user_id) {
-        return $this->cache::remember($this->key, $this->ttl, function () use ($user_id) {
-            return $this->repository->showProfiles($user_id);
+    public function showProfiles (Model $model) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($model) {
+            return $this->repository->showProfiles($model);
         });
     }
 
@@ -127,9 +127,9 @@ class UserCache extends BaseCache {
      * @param  mixed $request
      * @return void
      */
-    public function allUserNotCollaborator($request) {
-        return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
-            return $this->repository->showNotColaborador($request);
+    public function allUserNotCollaborator() {
+        return $this->cache::remember($this->key, $this->ttl, function () {
+            return $this->repository->showNotColaborador();
         });
     }
 
@@ -144,9 +144,9 @@ class UserCache extends BaseCache {
     }
 
     /**
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function logout() {
         $this->forgetCache();

@@ -6,6 +6,7 @@ use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -13,6 +14,20 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 class Hourhand extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, SoftCascadeTrait, Auditable;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'hourhands';
+
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status_id'];
 
     /**
      * The attributes that are mass assignable.
@@ -32,13 +47,6 @@ class Hourhand extends Model implements AuditableContract
         'hour_end_time',
         'status_id',
     ];
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'hourhands';
 
     /**
      * dates
@@ -79,9 +87,9 @@ class Hourhand extends Model implements AuditableContract
     /**
      * status
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function status ()
+    public function status () : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

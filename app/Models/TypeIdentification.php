@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
@@ -26,9 +27,9 @@ class TypeIdentification extends Model implements AuditableContract
     /**
      * person
      *
-     * @return void
+     * @return HasMany
      */
-    public function persons ()
+    public function persons () : HasMany
     {
         return $this->hasMany(Person::class, 'type_identification_id');
     }
