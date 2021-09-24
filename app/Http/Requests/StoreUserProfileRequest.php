@@ -28,7 +28,7 @@ class StoreUserProfileRequest extends FormRequest
         return [
             'profile_id' => 'required|integer|exists:tenant.profiles,id|'.Rule::unique('user_profiles')->where(function ($query) use ($user) {
                 return $query->where('user_id', $user->id);
-            }),
+            })->where('deleted_at', NULL),
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];
     }
