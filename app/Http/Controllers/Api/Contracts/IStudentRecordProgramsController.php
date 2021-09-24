@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Http\Requests\EducationLevelFormRequest;
-use App\Models\EducationLevel;
 use Illuminate\Http\Request;
-use App\Http\Requests\MeshRequest;
 use App\Http\Requests\ShowByUserProfileIdRequest;
+use App\Http\Requests\StudentRecordProgramFormRequest;
+use App\Models\StudentRecord;
+use App\Models\StudentRecordProgram;
 
-interface IEducationLevelController
+
+interface IStudentRecordProgramsController
 {
 
     /**
      * @OA\Get(
-     *   path="/api/education-levels",
-     *   tags={"Niveles Educativos"},
+     *   path="/api/student-record-programs",
+     *   tags={"Programa de registro estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar las niveles Educativos",
-     *   description="Muestra todas los niveles educativos en formato JSON",
-     *   operationId="getAllEducationLevels",
+     *   summary="Listar los programas de registro estudiantil",
+     *   description="Muestra todas los programas de registro estudiantil en formato JSON",
+     *   operationId="getAllStudentRecordPrograms",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -72,18 +73,17 @@ interface IEducationLevelController
      *     ),
      *   ),
      *   @OA\Parameter(
-     *     name="principal_id",
-     *     description="Principal",
+     *     name="search",
+     *     description="Filtrar registros",
      *     in="query",
      *     required=false,
      *     @OA\Schema(
      *       type="string",
-     *       example=""
      *     ),
      *   ),
      *   @OA\Parameter(
-     *     name="search",
-     *     description="Filtrar registros",
+     *     name="data",
+     *     description="mostrar todos los datos sin paginacion (enviar all)",
      *     in="query",
      *     required=false,
      *     @OA\Schema(
@@ -102,14 +102,14 @@ interface IEducationLevelController
 
     /**
      * @OA\Post(
-     *   path="/api/education-levels",
-     *   tags={"Niveles Educativos"},
+     *   path="/api/student-record-programs",
+     *   tags={"Programa de registro estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear Nivel Educativo",
-     *   description="Crear nuevo Nivel Educativo.",
-     *   operationId="addEducationLevels",
+     *   summary="Crear programa de registro estudiantil",
+     *   description="Crear nuevo programa de registro estudiantil.",
+     *   operationId="addStudentRecordPrograms",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -120,29 +120,19 @@ interface IEducationLevelController
      *           description="Id del perfil de usuario",
      *           type="integer",
      *         ),
-     *         @OA\Property(
-     *           property="edu_name",
-     *           description="Nombre del Nivel Educativo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="edu_alias",
-     *           description="Alias de Nivel Educativo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="principal_id",
-     *           description="Id principal",
+     *          @OA\Property(
+     *           property="student_record_id",
+     *           description="Record de estudiante",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="offer_id",
-     *           description="Oferta asociada al nivel educativo",
+     *           property="type_student_program_id",
+     *           description="Tipo programa para estudiantes",
      *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del nivel educativo",
+     *           description="Estado de la malla",
      *           type="integer",
      *         ),
      *       ),
@@ -152,10 +142,9 @@ interface IEducationLevelController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "edu_name" : "required|max:255",
-     *          "edu_alias" : "required|max:255",
-     *          "edu_order" : "required|integer",
-     *          "status_id" : "required|integer|exists:status,id"
+     *           "student_record_id": "required|integer|exists:student_records,id",
+     *           "type_student_program_id": "required|integer|exists:type_student_programs,id",
+     *           "status_id": "required|integer|exists:status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -164,19 +153,20 @@ interface IEducationLevelController
      * )
      *
      */
-    public function store(EducationLevelFormRequest $educationLevelFormRequest);
+    public function store(StudentRecordProgramFormRequest $studentRecordProgramFormRequest);
+
 
 
     /**
      * @OA\Get(
-     *   path="/api/education-levels/{id}",
-     *   tags={"Niveles Educativos"},
+     *   path="/api/student-record-programs/{id}",
+     *   tags={"Programa de registro estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener una malla",
-     *   description="Muestra información específica de un nivel educativo.",
-     *   operationId="getEducationLevel",
+     *   summary="Obtener un programa de registro estudiantil.",
+     *   description="Muestra información específica de un programa de registro estudiantil",
+     *   operationId="getIdStudentRecordProgram",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -189,7 +179,7 @@ interface IEducationLevelController
      *   ),
      *   @OA\Parameter(
      *     name="id",
-     *     description="Id de nivel educativo",
+     *     description="Id del programa de registro estudiantil",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -205,22 +195,22 @@ interface IEducationLevelController
      * )
      *
      */
-    public function show(EducationLevelFormRequest $request, $id);
+    public function show($id);
 
 
     /**
      * @OA\Put(
-     *   path="/api/education-levels/{educationLevel}",
-     *   tags={"Niveles Educativos"},
+     *   path="/api/student-record-programs/{studentRecordProgram}",
+     *   tags={"Programa de registro estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar Nivel Educativo",
-     *   description="Actualizar un nivel educativo.",
-     *   operationId="updateEducationLevels",
+     *   summary="Actualizar tipo documento",
+     *   description="Actualizar un programa de registro estudiantilo.",
+     *   operationId="updateStudentRecordPrograms",
      *   @OA\Parameter(
-     *     name="educationLevel",
-     *     description="Id del nivel educativo",
+     *     name="studentRecordProgram",
+     *     description="Id pograma de registro estudiantil",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -238,29 +228,14 @@ interface IEducationLevelController
      *           description="Id del perfil de usuario",
      *           type="integer",
      *         ),
-     *         @OA\Property(
-     *           property="edu_name",
-     *           description="Nombre del nivel educativo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="edu_alias",
-     *           description="Alias del nivel educativo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="edu_order",
-     *           description="Numero de Orden",
+     *          @OA\Property(
+     *           property="student_record_id",
+     *           description="Record de estudiante",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="principal_id",
-     *           description="Codigo Principal",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="offer_id",
-     *           description="Oferta asociada al nivel educativo",
+     *           property="type_student_program_id",
+     *           description="Tipo programa para estudiantes",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -275,10 +250,9 @@ interface IEducationLevelController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "edu_name" : "required|max:255",
-     *          "edu_alias" : "required|max:255",
-     *          "edu_order" : "required|integer",
-     *          "status_id" : "required|integer|exists:status,id"
+     *           "student_record_id": "required|integer|exists:student_records,id",
+     *           "type_student_program_id": "required|integer|exists:type_student_programs,id",
+     *           "status_id": "required|integer|exists:status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -287,21 +261,21 @@ interface IEducationLevelController
      * )
      *
      */
-    public function update(EducationLevelFormRequest $request, EducationLevel $educationLevel);
+    public function update(StudentRecordProgramFormRequest $studentRecordProgramFormRequest, StudentRecordProgram $studentRecordProgram);
 
 
     /**
      * @OA\Delete(
-     *   path="/api/education-levels/{educationLevel}",
-     *   tags={"Niveles Educativos"},
+     *   path="/api/student-record-programs/{studentRecordProgram}",
+     *   tags={"Programa de registro estudiantil"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un nivel educativo",
-     *   description="Eliminar un nivel educativo por Id",
-     *   operationId="deleteEducationLevel",
+     *   summary="Eliminar un programa de registro estudiantil",
+     *   description="Eliminar un programa de registro estudiantil por Id",
+     *   operationId="deleteStudentRecordPrograms",
      *   @OA\Parameter(
-     *     name="educationLevel",
+     *     name="studentRecordProgram",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -330,5 +304,8 @@ interface IEducationLevelController
      * )
      *
      */
-    public function destroy(EducationLevel $educationLevel);
+    public function destroy(StudentRecordProgram $studentRecordProgram);
+
+
+    public function listStudentRecordProgramAndTypeStudentPrograms(Request $request, StudentRecordProgram $studentRecordProgram);
 }

@@ -12,7 +12,7 @@ class TypeStudentProgramRepository extends BaseRepository
 {
 
     protected $relations = [
-       'status'
+       'status', 
     ];
 
     protected $parents = ['status'];

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -40,6 +41,17 @@ class TypeStudentProgram extends Model implements AuditableContract
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
+
+     /**
+     * studentRecordPrograms
+     *
+     * @return HasMany
+     */
+    public function studentRecordPrograms(): HasMany
+    {
+        return $this->hasMany(StudentRecordProgram::class);
+    }
+    
     /**
      * status
      *

@@ -20,6 +20,7 @@ use Spatie\Multitenancy\Exceptions\NoCurrentTenant;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Exceptions\Custom\FailLocalStorageRequestException;
+use App\Exceptions\Custom\StudentRecordProgramRequestException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -120,6 +121,7 @@ class Handler extends ExceptionHandler
                 || $exception instanceof NotContentException
                 || $exception instanceof NotFoundException
                 || $exception instanceof FailLocalStorageRequestException
+                || $exception instanceof StudentRecordProgramRequestException
                 ) {
 
                 $code = $exception->getStatusCode();

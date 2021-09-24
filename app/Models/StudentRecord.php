@@ -49,7 +49,7 @@ class StudentRecord extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * softCascade
@@ -81,6 +81,17 @@ class StudentRecord extends Model implements AuditableContract
     public function criteriaStudentRecords(): HasMany
     {
         return $this->hasMany(CriteriaStudentRecord::class);
+    }
+
+
+    /**
+     * studentRecordPrograms
+     *
+     * @return HasMany
+     */
+    public function studentRecordPrograms(): HasMany
+    {
+        return $this->hasMany(StudentRecordProgram::class);
     }
 
     /**

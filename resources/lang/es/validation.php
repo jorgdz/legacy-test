@@ -617,6 +617,11 @@ return [
          */
         'sim_color' => 'color de la simbologia',
         'sim_description' => 'nombre de la simbologia',
+		
+		/**
+		 * Student Record Programs
+		 */
+		'type_student_program_id' => 'tipo programa para estudiantes',
 	],
 
 ];

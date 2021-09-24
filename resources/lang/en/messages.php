@@ -31,6 +31,8 @@ return [
     'model-saved-successfully'=>"':model' saved successfully!",
     'error-saving-model'=>"Error saving ':model'!",
     'error-database'=>"Error executing the transaction!",
-    'success' => 'Data saved successfully'
+    'success' => 'Data saved successfully',
+    'error-student-record-programs'=>"Student record has already Assigned a Program Type for students.",
+
 ];
 ?>

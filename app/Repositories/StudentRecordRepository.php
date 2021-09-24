@@ -13,7 +13,18 @@ class StudentRecordRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['student', 'educationLevel', 'pensum', 'typeStudent', 'period', 'status', 'criteriaStudentRecords']; //studentRecordsPeriods
+    protected $relations = [
+        'student',
+        'educationLevel',
+        'pensum',
+        'typeStudent',
+        'period',
+        'status',
+        'criteriaStudentRecords',
+        'studentRecordPrograms.type_student_program'
+
+    ]; //studentRecordsPeriods
+
 
     /**
      * parents
@@ -46,5 +57,4 @@ class StudentRecordRepository extends BaseRepository
     {
         parent::__construct($studentRecord);
     }
-
 }

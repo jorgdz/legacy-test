@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Cache\StudentRecordCache;
+use App\Cache\StudentRecordProgramsCache;
 use App\Http\Controllers\Api\Contracts\IStudentRecordController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRecordRequest;
 use App\Models\StudentRecord;
+use App\Models\StudentRecordProgram;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -22,15 +24,22 @@ class StudentRecordController extends Controller implements IStudentRecordContro
      */
     private $studentRecordCache;
 
+     /**
+     * studentRecordProgramsCache
+     *
+     * @var mixed
+     */
+    private $studentRecordProgramsCache;
     /**
      * __construct
      *
      * @param  mixed $studentRecordCache
      * @return void
      */
-    public function __construct(StudentRecordCache $studentRecordCache)
+    public function __construct(StudentRecordCache $studentRecordCache, StudentRecordProgramsCache $studentRecordProgramsCache)
     {
         $this->studentRecordCache = $studentRecordCache;
+        $this->studentRecordProgramsCache = $studentRecordProgramsCache;
     }
 
     /**
@@ -94,4 +103,21 @@ class StudentRecordController extends Controller implements IStudentRecordContro
     {
         return $this->success($this->studentRecordCache->destroy($studentRecord));
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function StudentRecordProgramAndTypeStudentPrograms(Request $request, StudentRecordProgram $studentRecordProgram)
+    {
+
+        $SudentRecordId = $studentRecordProgram->student_record_id;
+        $request['conditions'] = [
+            ['student_record_id', $SudentRecordId],
+        ];
+   
+        return $this->success($this->studentRecordProgramsCache->all($request));
+    }
+
 }

@@ -45,6 +45,7 @@ use App\Http\Controllers\Api\CategoryStatusController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
 use App\Http\Controllers\Api\RelativeController;
 use App\Http\Controllers\Api\SimbologyController;
+use App\Http\Controllers\Api\StudentRecordProgramsController;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -65,6 +66,7 @@ require __DIR__ . "/channels/mentions.php";
 require __DIR__ . "/channels/type-student-programs.php";
 require __DIR__ . "/channels/filesystems.php";
 require __DIR__ . "/channels/student-records-period.php";
+require __DIR__ . "/channels/student-record-programs.php";
 
 
 /*
@@ -384,6 +386,7 @@ Route::delete('emergency-contact/{emergencycontact}', [EmergencyContactControlle
  */
 Route::get('student-records', [StudentRecordController::class, 'index'])->middleware(['auth:sanctum', 'permission:student_records-listar-record-estudiantil']);
 Route::post('student-records', [StudentRecordController::class, 'store'])->middleware(['auth:sanctum', 'permission:student_records-crear-record-estudiantil']);
+Route::get('student-records/{studentRecordProgram}/type-student-programs', [StudentRecordController::class, 'StudentRecordProgramAndTypeStudentPrograms'])->middleware(['auth:sanctum',/*  'permission:student-records-and-type-student-programs-listar-programa-registro-estudiantil-asociado-record-estudiante' */]);
 Route::get('student-records/{studentRecord}', [StudentRecordController::class, 'show'])->middleware(['auth:sanctum', 'permission:student_records-obtener-record-estudiantil']);
 Route::put('student-records/{studentRecord}', [StudentRecordController::class, 'update'])->middleware(['auth:sanctum', 'permission:student_records-actualizar-record-estudiantil']);
 Route::delete('student-records/{studentRecord}', [StudentRecordController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:student_records-eliminar-record-estudiantil']);

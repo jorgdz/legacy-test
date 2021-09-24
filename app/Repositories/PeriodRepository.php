@@ -56,7 +56,7 @@ class PeriodRepository extends BaseRepository
      * @return void
      */
     public function showOffersByPeriod(Period $period) {
-
+        //$studentRecord->studentRecordPrograms()->where('student_record_id',)
         $query = $period->offers()->wherePivot('period_id', $period->id)->with([
             'status',
             'educationLevels',
