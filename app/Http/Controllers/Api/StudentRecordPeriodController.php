@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\StudentRecordPeriod;
 use App\Http\Controllers\Controller;
 use App\Cache\StudentRecordPeriodCache;
+use App\Exceptions\Custom\ConflictException;
 use App\Http\Requests\StudentRecordPeriodRequest;
 use App\Http\Controllers\Api\Contracts\IStudentRecordPeriodController;
 
@@ -40,6 +41,15 @@ class StudentRecordPeriodController extends Controller implements IStudentRecord
         DB::beginTransaction();
         try {
             $studentRecordPeriod = new StudentRecordPeriod($request->all());
+
+            $conditionals = [
+                ['student_record_id', $request['student_record_id']],
+                ['periodo_id', $request['periodo_id']]
+            ];
+            $hasRegister = $this->studentRecordPeriodCache->findByConditionals($conditionals);
+            
+            if ($hasRegister) throw new ConflictException(__('messages.exist-instance'));  
+
             $studentRecordPeriod = $this->studentRecordPeriodCache->save($studentRecordPeriod);
 
             DB::commit();
@@ -74,6 +84,15 @@ class StudentRecordPeriodController extends Controller implements IStudentRecord
 
             if ($studentRecordPeriod->isClean())
                 return $this->information(__('messages.nochange'));
+
+            $conditionals = [
+                ['id', '<>', $studentRecordPeriod->id],
+                ['student_record_id', $request['student_record_id']],
+                ['periodo_id', $request['periodo_id']]
+            ];
+            $hasRegister = $this->studentRecordPeriodCache->findByConditionals($conditionals);
+
+            if ($hasRegister) throw new ConflictException(__('messages.exist-instance'));
 
             $response = $this->studentRecordPeriodCache->save($studentRecordPeriod);
 

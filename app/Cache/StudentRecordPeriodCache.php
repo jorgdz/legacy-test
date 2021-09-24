@@ -40,6 +40,16 @@ class StudentRecordPeriodCache extends BaseCache {
             return $this->repository->find($id);
         });
     }
+    
+    /**
+     * findByConditionals
+     *
+     * @param  mixed $conditionals
+     * @return void
+     */
+    public function findByConditionals($conditionals) {
+        return $this->repository->findByConditionals($conditionals);
+    }
 
     /**
      * save

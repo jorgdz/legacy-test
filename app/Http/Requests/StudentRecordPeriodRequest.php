@@ -21,26 +21,21 @@ class StudentRecordPeriodRequest extends FormRequest
      * @return array
      */
     public function rules() {
-        /* $rules = [
-            'cat_name'    => 'required|string|unique:tenant.catalogs,cat_name',
-            'cat_acronym' => 'nullable|unique:tenant.catalogs,cat_acronym|max:4',
-            'parent_id'   => 'nullable|integer|exists:tenant.catalogs,id',
-            'status_id'   => 'required|integer|exists:tenant.status,id',
+        $rules = [
+            'student_record_id' => 'required|integer|exists:tenant.student_records,id',
+            'periodo_id'        => 'required|integer|exists:tenant.periods,id',
+            'status_student_id' => 'required|integer|exists:tenant.status_students,id',
+            'status_id'         => 'required|integer|exists:tenant.status,id',
         ];
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
-            $rules['cat_name'] = [
-                'nullable',
-                'string',
-                'unique:tenant.catalogs,cat_name,' . $this->catalog->id
-            ];
-            $rules['cat_acronym'] = [
-                'nullable',
-                'string',
-                'max:4',
-                'unique:tenant.catalogs,cat_acronym,' . $this->catalog->id
+            $rules = [
+                'student_record_id' => 'nullable|integer|exists:tenant.student_records,id',
+                'periodo_id'        => 'nullable|integer|exists:tenant.periods,id',
+                'status_student_id' => 'nullable|integer|exists:tenant.status_students,id',
+                'status_id'         => 'nullable|integer|exists:tenant.status,id',
             ];
         }
 
-        return $rules; */
+        return $rules; 
     }
 }

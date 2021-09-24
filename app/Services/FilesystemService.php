@@ -37,7 +37,7 @@ class FilesystemService {
     public function show(Request $request) {
         if ($this->filesystem) {
             $encode = base64_encode($request->name);
-            //return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}");
+            /* return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}"); */
             return Redirect::to(config('app.api_doc_url') . "descargar-archivo/{$encode}");
         };
 
@@ -61,7 +61,7 @@ class FilesystemService {
                 "id_tipo_documento" => $request->type_document,
                 "fecha_subida"      => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             ];
-            $guzzle = $this->http->uploadFileApiDocument(env('URI_API_DOC') . "v1/archivos/subir-archivo", $this->filesystem['token'], $params);
+            $guzzle = $this->http->uploadFileApiDocument(config('app.api_doc_url') . "v1/archivos/subir-archivo", $this->filesystem['token'], $params);
 
             $response = array();
             foreach ($guzzle["datosAdicionales"] as $key => $value) {
@@ -99,7 +99,7 @@ class FilesystemService {
     public function download(Request $request) {
         if ($this->filesystem) {
             $encode = base64_encode($request->name);
-            //return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}");
+            /* return $this->http->get(env('URI_API_DOC') . "descargar-archivo/{$encode}"); */
             return Redirect::to(config('app.api_doc_url') . "descargar-archivo/{$encode}");
         };
 
