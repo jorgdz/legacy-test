@@ -57,7 +57,7 @@ class PeriodStageController extends Controller implements IPeriodStageController
         $periodStagePreview = PeriodStage::where('stage_id', $request->stage_id)->where('period_id', $request->period_id)->get();
         //Si hay data repetida manda una excepcion
         if ($periodStagePreview->isNotEmpty())
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(PeriodStage::class)]));
+            throw new ConflictException(__('messages.exist-instance'));
 
         $periodStage = new PeriodStage($request->all());
 

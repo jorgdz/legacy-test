@@ -153,7 +153,7 @@ interface IMatterMeshController
      *         @OA\Property(
      *           property="group",
      *           description="Grupo",
-     *           type="string",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -174,6 +174,7 @@ interface IMatterMeshController
      *          "min_calification" : "required",
      *          "max_calification" : "required",
      *          "num_fouls" : "required",
+     *          "group" : "required",
      *          "matter_rename" : "required"
      *      },
      *   )),
@@ -394,7 +395,7 @@ interface IMatterMeshController
      *         @OA\Property(
      *           property="group",
      *           description="Grupo",
-     *           type="string",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="order",
@@ -413,9 +414,15 @@ interface IMatterMeshController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "matter_id" : "required|integer|exists:tenant.matters,id|unique:tenant.matter_mesh,matter_id, {$this->route('mattermesh')->id}",
-     *          "mesh_id" : "required|integer|exists:tenant.meshs,id",
-     *          "simbology_id" : "integer|exists:tenant.simbologies,id"
+     *          "matter_id" : "required|integer",
+     *          "mesh_id" : "required|integer",
+     *          "simbology_id" : "integer|exists:tenant.simbologies,id",
+     *          "calification_type" : "required",
+     *          "min_calification" : "required",
+     *          "max_calification" : "required",
+     *          "num_fouls" : "required",
+     *          "group" : "required",
+     *          "matter_rename" : "required"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -508,5 +515,5 @@ interface IMatterMeshController
      * )
      *
      */
-    public function restoreMatterMesh($id);
+    public function restoreMatterMesh(Request $request, $id);
 }

@@ -76,7 +76,7 @@ class StudentController extends Controller
         $user->save();
         
         if(!is_null(Student::where('user_id',$user->id)->first()))
-            throw new ConflictException(__('messages.exist-instance', ['model' => class_basename(Student::class)]));
+            throw new ConflictException(__('messages.exist-instance'));
 
         $student = new Student($request->only(['campus_id','modalidad_id','jornada_id']));
         $student->stud_code = $this->stud_code_avaliable();

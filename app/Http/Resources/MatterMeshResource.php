@@ -23,7 +23,6 @@ class MatterMeshResource extends JsonResource
             'pensum'                => $this->pensum,
             'status'                => $this->status,
             'matter_mesh'           => $this->matterMesh
-                ->where('status_id', 1)->sortBy('order')->groupBy('group'),
         ];
     }
 }

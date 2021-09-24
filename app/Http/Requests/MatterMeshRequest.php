@@ -31,6 +31,7 @@ class MatterMeshRequest extends FormRequest
             'min_calification' => 'required',
             'max_calification' => 'required',
             'num_fouls' => 'required',
+            'group' => 'required',
             'matter_rename' => 'required'
         ];
     }

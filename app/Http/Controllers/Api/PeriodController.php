@@ -107,11 +107,15 @@ class PeriodController extends Controller implements IPeriodController
 
         $period->fill($periodRequest);
 
-        if ($period->isClean())
+        if ($period->isClean() && !isset($request['hourhands']) && !isset($request['offers']) )
             return $this->information(__('messages.nochange'));
 
-        $period->offers()->sync($request->offers);
-        $period->hourhands()->sync($request->hourhands);
+        if (isset($request['offers']))
+            $period->offers()->sync($request->offers);
+            
+        if (isset($request['hourhands']))
+            $period->hourhands()->sync($request->hourhands);
+    
         return $this->success($this->periodCache->save($period));
     }
 
