@@ -72,6 +72,16 @@ interface IEducationLevelController
      *     ),
      *   ),
      *   @OA\Parameter(
+     *     name="principal_id",
+     *     description="Principal",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="NULL"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="search",
      *     description="Filtrar registros",
      *     in="query",

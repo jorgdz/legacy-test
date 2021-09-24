@@ -58,7 +58,7 @@ class AuthController extends Controller implements IAuthController
      * @return void
      */
     public function whoami (Request $request) {
-        $user = User::findOrFail($request->user()->id);       
+        $user = User::findOrFail($request->user()->id);
         return new UserResource($user);
     }
 
@@ -70,7 +70,10 @@ class AuthController extends Controller implements IAuthController
      */
     public function logout (Request $request) {
         $this->userCache->logout();
-        $request->user()->tokens()->delete();
+        $request->user()->tokens()
+            ->where('id', $request->user()->currentAccessToken()->id)
+            ->delete();
+
         return $this->success(['message' => 'Good by user.']);
     }
 }

@@ -35,7 +35,8 @@ class EducationLevelRepository extends BaseRepository
     protected $fields = [
         'edu_name',
         'edu_alias',
-        'edu_order'
+        'edu_order',
+        'principal_id'
     ];
 
     /**
