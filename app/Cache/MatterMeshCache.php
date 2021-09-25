@@ -39,20 +39,23 @@ class MatterMeshCache extends BaseCache
         $this->forgetCache('mattermesh');
 
         $method = request()->method();
+
         if (in_array($method, ['POST'])) {
+
             $model->order = $model->max('order') + 1;
+            
         } elseif (in_array($method, ['PATCH', 'PUT'])) {
+
             $old = $model->getOriginal('order');
+            
             $new = $model->getAttributes()['order'];
+
             if ($old <> $new) {
-                $conditions = [
-                    ['order', $new],
-                ];
-                $params = [
-                    'order' => $old,
-                ];
-                $this->repository->setMatterMesh($conditions, $params);
+                $this->repository->setMatterMesh($model->id, $old, $new);
+                
+                $model->order = $model->getOriginal('order');
             }
+
         }
 
         return $this->repository->save($model);

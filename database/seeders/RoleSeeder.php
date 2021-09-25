@@ -2250,6 +2250,100 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'offer'
             ],
+            /**
+             * Record de Programa Estudiantil 255-260
+             */
+            [
+                'name' => 'student-record-programs-listar-programas-registro-estudiantil',
+                'alias' => 'Listar student-records-programs',
+                'description' => 'Listar todos los records de programa estudiantil',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPrograms'
+            ],
+            [
+                'name' => 'student-record-programs-obtener-programa-registro-estudiantil',
+                'alias' => 'Obtener student-record-programs',
+                'description' => 'Obtener un record de programa estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPrograms'
+            ],
+            [
+                'name' => 'student-record-programs-crear-programa-registro-estudiantil',
+                'alias' => 'Crear student-record-programs',
+                'description' => 'Agregar un record de programa estudiantil',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPrograms'
+            ],
+            [
+                'name' => 'student-record-programs-actualizar-programa-registro-estudiantil',
+                'alias' => 'Actualizar student-record-programs',
+                'description' => 'Actualizar un record de programa estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPrograms'
+            ],
+            [
+                'name' => 'student-record-programs-borrar-programa-registro-estudiantil',
+                'alias' => 'Borrar student-record-programs',
+                'description' => 'Borrar un record de programa estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPrograms'
+            ],
+            [
+                'name' => 'student-records-and-type-student-programs-listar-programa-registro-estudiantil-asociado-record-estudiante',
+                'alias' => 'listar student-record-programs-registro-estudiantil',
+                'description' => 'Listar todos los record de programa estudiantil y registros asociados',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecord'
+            ],
+            /**
+             * Record de Periodo Estudiantil 261-265
+             */
+            [
+                'name' => 'student-records-period-listar-student-records-period',
+                'alias' => 'Listar student-records-period',
+                'description' => 'Listar todos los records de periodo estudiantil',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPeriod'
+            ],
+            [
+                'name' => 'student-records-period-obtener-student-record-period',
+                'alias' => 'Obtener student-record-period',
+                'description' => 'Obtener un record de periodo estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPeriod'
+            ],
+            [
+                'name' => 'student-records-period-crear-student-record-period',
+                'alias' => 'Crear student-record-period',
+                'description' => 'Agregar un record de periodo estudiantil',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPeriod'
+            ],
+            [
+                'name' => 'student-records-period-actualizar-student-record-period',
+                'alias' => 'Actualizar student-record-period',
+                'description' => 'Actualizar un record de periodo estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPeriod'
+            ],
+            [
+                'name' => 'student-records-period-borrar-student-record-period',
+                'alias' => 'Borrar student-record-period',
+                'description' => 'Borrar un record de periodo estudiantil por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'StudentRecordPeriod'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2706,6 +2800,23 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 253, 'role_id' => 1],
             ['permission_id' => 254, 'role_id' => 1],
+            /**
+             * Record de Programa Estudiantil 255-260
+             */
+            ['permission_id' => 255, 'role_id' => 1],
+            ['permission_id' => 256, 'role_id' => 1],
+            ['permission_id' => 257, 'role_id' => 1],
+            ['permission_id' => 258, 'role_id' => 1],
+            ['permission_id' => 259, 'role_id' => 1],
+            ['permission_id' => 260, 'role_id' => 1],
+            /**
+             * Record de Periodo Estudiantil 261-265
+             */
+            ['permission_id' => 261, 'role_id' => 1],
+            ['permission_id' => 262, 'role_id' => 1],
+            ['permission_id' => 263, 'role_id' => 1],
+            ['permission_id' => 264, 'role_id' => 1],
+            ['permission_id' => 265, 'role_id' => 1],
 
             /**
              * 
@@ -3162,6 +3273,23 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 253, 'role_id' => 2],
             ['permission_id' => 254, 'role_id' => 2],
+            /**
+             * Record de Programa Estudiantil 255-260
+             */
+            ['permission_id' => 255, 'role_id' => 2],
+            ['permission_id' => 256, 'role_id' => 2],
+            ['permission_id' => 257, 'role_id' => 2],
+            ['permission_id' => 258, 'role_id' => 2],
+            ['permission_id' => 259, 'role_id' => 2],
+            ['permission_id' => 260, 'role_id' => 2],
+            /**
+             * Record de Periodo Estudiantil 261-265
+             */
+            ['permission_id' => 261, 'role_id' => 2],
+            ['permission_id' => 262, 'role_id' => 2],
+            ['permission_id' => 263, 'role_id' => 2],
+            ['permission_id' => 264, 'role_id' => 2],
+            ['permission_id' => 265, 'role_id' => 2],
         ]);
     }
 }

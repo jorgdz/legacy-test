@@ -14,6 +14,7 @@ use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IMatterController;
 use App\Models\EducationLevel;
+use App\Models\MatterMesh;
 use Exception;
 
 class MatterController extends Controller implements IMatterController
@@ -92,6 +93,9 @@ class MatterController extends Controller implements IMatterController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Matter $matter) {
+        if($matter->matterMesh->first())
+            return $this->information(__('messages.error-dependency-model', ['model' => class_basename(Matter::class), 'model1' => class_basename(MatterMesh::class)]), Response::HTTP_BAD_REQUEST);
+
         return $this->success($this->matterCache->destroy($matter));
     }
 }

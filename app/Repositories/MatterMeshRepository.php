@@ -132,7 +132,34 @@ class MatterMeshRepository extends BaseRepository
      * @param  mixed $params
      * @return void
      */
-    public function setMatterMesh($conditions, $params) {
-        return MatterMesh::where($conditions)->update($params);
+    public function setMatterMesh($id, $old, $new) {
+        if ($new > $old) {
+            $order = MatterMesh::findOrFail($id);
+            MatterMesh::WhereBetween('order', [(int)$old, (int)$new])->decrement('order');
+            $order->order = $new;
+
+            return $order->save();
+        }
+        
+        $order = MatterMesh::findOrFail($id);
+        MatterMesh::WhereBetween('order', [(int)$new, (int)$old])->increment('order');
+        $order->order = $new;
+
+        return $order->save();
     }
+    // public function setMatterMesh($id, $old, $new) {
+    //     if ($new < $old) {
+    //         $order = MatterMesh::where('order', $new)->first();
+    //         MatterMesh::orWhereBetween('order', [(int)$new, (int)$old])->decrement('order');
+    //         $order->order = $old;
+
+    //         return $order->save();
+    //     }
+
+    //     $order = MatterMesh::where('order', $new)->first();
+    //     MatterMesh::orWhereBetween('order', [(int)$old, (int)$new])->increment('order');
+    //     $order->order = $old;
+
+    //     return $order->save();
+    // }
 }

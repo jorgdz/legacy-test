@@ -33,6 +33,6 @@ return [
     'error-database'=>"Error al ejecutar la transacción!",
     'success' => 'Datos guardados exitosamente',
     'error-student-record-programs'=>"Récord estudiantil ya tiene Asigando un Tipo programa para estudiantes.",
-
+    'error-dependency-model'=>"Error de dependencia en ':model' y ':model1'!",
 ];
 ?>

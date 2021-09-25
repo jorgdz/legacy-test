@@ -33,6 +33,6 @@ return [
     'error-database'=>"Error executing the transaction!",
     'success' => 'Data saved successfully',
     'error-student-record-programs'=>"Student record has already Assigned a Program Type for students.",
-
+    'error-dependency-model'=>"Dependency error beetwen ':model' and ':model1'!",
 ];
 ?>
