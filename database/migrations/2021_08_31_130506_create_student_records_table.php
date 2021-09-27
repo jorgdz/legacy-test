@@ -22,8 +22,10 @@ class CreateStudentRecordsTable extends Migration
             $table->integer('education_level_id')->unsigned();
             $table->foreign('education_level_id')->references('id')->on('education_levels');
 
-            $table->integer('pensum_id')->unsigned();
-            $table->foreign('pensum_id')->references('id')->on('pensums');
+            $table->integer('mesh_id')->unsigned();
+            $table->foreign('mesh_id')->references('id')->on('meshs');
+            /* $table->integer('pensum_id')->unsigned();
+            $table->foreign('pensum_id')->references('id')->on('pensums'); */
             
             $table->integer('type_student_id')->unsigned();
             $table->foreign('type_student_id')->references('id')->on('type_students');

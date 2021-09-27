@@ -125,8 +125,8 @@ interface IMeshsController
      *           type="string"
      *         ),
      *         @OA\Property(
-     *           property="pensum_id",
-     *           description="Id del pensum",
+     *           property="anio",
+     *           description="Año",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -148,7 +148,7 @@ interface IMeshsController
      *      example={
      *          "mes_name" : "required|max:255|unique:meshs,mes_name",
      *          "mes_acronym" : "required|max:3",
-     *          "pensum_id" : "required|integer|exists:pensums,id",
+     *          "anio" : "required|integer",
      *          "level_edu_id" : "required|integer|exists:education_levels,id",
      *          "status_id" : "required|integer|exists:status,id"
      *      },
@@ -250,8 +250,8 @@ interface IMeshsController
      *           type="string"
      *         ),
      *         @OA\Property(
-     *           property="pensum_id",
-     *           description="Id del pensum",
+     *           property="anio",
+     *           description="Año",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -273,7 +273,7 @@ interface IMeshsController
      *      example={
      *          "mes_name" : "required|max:255|unique:meshs,mes_name",
      *          "mes_acronym" : "required|max:3",
-     *          "pensum_id" : "required|integer|exists:pensums,id",
+     *          "anio" : "required|integer",
      *          "level_edu_id" : "required|integer|exists:education_levels,id",
      *          "status_id" : "required|integer|exists:status,id"
      *      },

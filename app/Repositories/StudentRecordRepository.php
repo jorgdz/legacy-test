@@ -16,9 +16,11 @@ class StudentRecordRepository extends BaseRepository
     protected $relations = [
         'student',
         'educationLevel',
-        'pensum',
+        // 'pensum',
+        'mesh',
         'typeStudent',
         'period',
+        'economicGroup',
         'status',
         'criteriaStudentRecords',
         'studentRecordPrograms.type_student_program'
@@ -31,7 +33,14 @@ class StudentRecordRepository extends BaseRepository
      *
      * @var array
      */
-    protected $parents = ['students', 'education_levels', 'pensums', 'type_students', 'periods', 'status'];
+    protected $parents = [
+        'students', 
+        'education_levels', 
+        // 'pensums', 
+        'meshs',
+        'type_students', 
+        'periods', 
+        'status'];
 
     /**
      * selfFieldsAndParents
@@ -41,7 +50,8 @@ class StudentRecordRepository extends BaseRepository
     protected $selfFieldsAndParents = [
         'stud_code',
         'edu_name', 'edu_alias', 'edu_order',
-        'pen_name', 'pen_acronym', 'anio',
+        'mes_name','mes_description','mes_acronym','anio',
+        //'pen_name', 'pen_acronym', 'anio',
         'te_name',
         'per_name','per_reference',
         'st_name'

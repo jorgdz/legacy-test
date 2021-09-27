@@ -118,8 +118,8 @@ interface IStudentRecordController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="pensum_id",
-     *           description="Id del pensum",
+     *           property="mesh_id",
+     *           description="Id de malla",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -151,9 +151,10 @@ interface IStudentRecordController
      *      example={
      *          "student_id": "required|integer|exists:students,id",
      *          "education_level_id": "required|integer|exists:education_levels,id",
-     *          "pensum_id": "required|integer|exists:pensums,id",
+     *          "mesh_id": "required|integer|exists:meshs,id",
      *          "type_student_id": "required|integer|exists:type_students,id",
      *          "period_id": "required|integer|exists:periods,id",
+     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id",
      *          "status_id": "required|integer|exists:status,id",
      *      },
      *   )),
@@ -247,8 +248,8 @@ interface IStudentRecordController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="pensum_id",
-     *           description="Id del pensum",
+     *           property="mesh_id",
+     *           description="Id de malla",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -283,6 +284,7 @@ interface IStudentRecordController
      *          "pensum_id": "required|integer|exists:pensums,id",
      *          "type_student_id": "required|integer|exists:type_students,id",
      *          "period_id": "required|integer|exists:periods,id",
+     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id",
      *          "status_id": "required|integer|exists:status,id",
      *      },
      *   )),

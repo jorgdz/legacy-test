@@ -28,7 +28,16 @@ class StudentRecord extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['student_id', 'education_level_id', 'pensum_id', 'type_student_id', 'period_id', 'economic_group_id', 'status_id'];
+    protected $relations = [
+        'student_id',
+        'education_level_id',
+        // 'pensum_id',
+        'mesh_id',
+        'type_student_id',
+        'period_id',
+        'economic_group_id',
+        'status_id'
+    ];
 
     /**
      * dates
@@ -66,7 +75,8 @@ class StudentRecord extends Model implements AuditableContract
     protected $fillable = [
         'student_id',
         'education_level_id',
-        'pensum_id',
+        //'pensum_id',
+        'mesh_id',
         'type_student_id',
         'period_id',
         'economic_group_id',
@@ -124,14 +134,24 @@ class StudentRecord extends Model implements AuditableContract
         return $this->belongsTo(EducationLevel::class, 'education_level_id');
     }
 
-    /**
+    // /**
+    //  * pensum
+    //  *
+    //  * @return BelongsTo
+    //  */
+    // public function pensum(): BelongsTo
+    // {
+    //     return $this->belongsTo(Pensum::class, 'pensum_id');
+    // }
+
+     /**
      * pensum
      *
      * @return BelongsTo
      */
-    public function pensum(): BelongsTo
+    public function mesh(): BelongsTo
     {
-        return $this->belongsTo(Pensum::class, 'pensum_id');
+        return $this->belongsTo(Mesh::class, 'mesh_id');
     }
 
     /**

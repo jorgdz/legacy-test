@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -22,7 +23,7 @@ class Mesh extends Model implements AuditableContract
      */
     protected $table = 'meshs';
 
-    protected $relations = ['pensum_id', 'level_edu_id', 'status_id'];
+    protected $relations = [ 'level_edu_id', 'status_id'];
 
     /**
      * dates
@@ -40,7 +41,7 @@ class Mesh extends Model implements AuditableContract
         'mes_name',
         'mes_description',
         'mes_acronym',
-        'pensum_id',
+        'anio',
         'level_edu_id',
         'status_id'
     ];
@@ -60,14 +61,24 @@ class Mesh extends Model implements AuditableContract
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
 
-    /**
-     * pensum
+    // /**
+    //  * pensum
+    //  *
+    //  * @return BelongsTo
+    //  */
+    // public function pensum() : BelongsTo
+    // {
+    //     return $this->belongsTo(Pensum::class, 'pensum_id');
+    // }
+
+
+     /**
+     * studentRecords
      *
-     * @return BelongsTo
+     * @return HasMany
      */
-    public function pensum() : BelongsTo
-    {
-        return $this->belongsTo(Pensum::class, 'pensum_id');
+    public function studentRecords(): HasMany {
+        return $this->hasMany(StudentRecord::class);
     }
 
     /**

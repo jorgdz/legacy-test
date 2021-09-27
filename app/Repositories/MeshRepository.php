@@ -19,7 +19,7 @@ class MeshRepository extends BaseRepository
      */
     protected $relations = [
         'educationLevel',
-        'pensum',
+        // 'pensum',
         'status',
     ];
 
@@ -28,7 +28,10 @@ class MeshRepository extends BaseRepository
      *
      * @var array
      */
-    protected $parents = ['pensums', 'education_levels', 'status'];
+    protected $parents = [
+        // 'pensums', 
+        'education_levels',
+         'status'];
 
     /**
      * fields
@@ -48,7 +51,7 @@ class MeshRepository extends BaseRepository
     protected $selfFieldsAndParents = [
         'mes_name',
         'mes_acronym',
-        'pen_name', 'pen_acronym', 'anio',
+        // 'pen_name', 'pen_acronym', 'anio',
         'edu_name', 'edu_alias', 'edu_order',
         'st_name'
     ];
@@ -75,7 +78,7 @@ class MeshRepository extends BaseRepository
         $query = $query->with([
             'educationLevel',
             'educationLevel.offer',
-            'pensum',
+            // 'pensum',
             'status',
             'matterMesh',
             'matterMesh.matter',

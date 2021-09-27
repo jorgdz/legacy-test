@@ -18,11 +18,12 @@ class CreateMeshsTable extends Migration
             $table->string('mes_name', 255)->nullable();
             $table->string('mes_description', 255)->nullable();
             $table->string('mes_acronym', 3)->nullable();
-            $table->integer('pensum_id')->unsigned();
+            $table->integer('anio')->nullable();
+            // $table->integer('pensum_id')->unsigned();
             $table->integer('level_edu_id')->unsigned();
             $table->integer('status_id')->unsigned();
 
-            $table->foreign('pensum_id')->references('id')->on('pensums');
+            // $table->foreign('pensum_id')->references('id')->on('pensums');
             $table->foreign('level_edu_id')->references('id')->on('education_levels');
             $table->foreign('status_id')->references('id')->on('status');
 

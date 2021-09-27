@@ -13,7 +13,10 @@ class PensumRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'meshs', 'studentRecords'];
+    protected $relations = [
+        'status',
+        //  'meshs',
+          'studentRecords'];
 
     /**
      * parents
@@ -22,22 +25,22 @@ class PensumRepository extends BaseRepository
      */
     protected $parents = ['status'];
 
-    /**
-     * fields
-     *
-     * @var array
-     */
-    protected $fields = ['pen_name', 'pen_acronym', 'anio'];
+    // /**
+    //  * fields
+    //  *
+    //  * @var array
+    //  */
+    // protected $fields = ['pen_name', 'pen_acronym', 'anio'];
 
-    /**
-     * selfFieldsAndParents
-     *
-     * @var array
-     */
-    protected $selfFieldsAndParents = [
-        'pen_name', 'pen_acronym', 'anio',
-        'st_name'
-    ];
+    // /**
+    //  * selfFieldsAndParents
+    //  *
+    //  * @var array
+    //  */
+    // protected $selfFieldsAndParents = [
+    //     'pen_name', 'pen_acronym', 'anio',
+    //     'st_name'
+    // ];
 
     /**
      * __construct
