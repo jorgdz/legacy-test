@@ -438,11 +438,11 @@ Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->
 /**
  * Student
  */
-Route::get('students', [StudentController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:student-listar-estudiante'*/]);
-Route::get('students/{student}', [StudentController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:student-show-estudiante'*/]);
+Route::get('students', [StudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:student-listar-estudiante']);
+Route::get('students/{student}', [StudentController::class, 'show'])->middleware(['auth:sanctum', 'permission:student-show-estudiante']);
 Route::post('students', [StudentController::class, 'store'])->middleware(['auth:sanctum', 'permission:student-crear-estudiante']);
 Route::put('students/{student}', [StudentController::class, 'update'])->middleware(['auth:sanctum', 'permission:student-update-estudiante']);
-Route::post('students/photo', [StudentController::class, 'updatePhoto'])->middleware(['auth:sanctum'/*, 'permission:student-update-photo-estudiante'*/]);
+Route::post('students/photo', [StudentController::class, 'updatePhoto'])->middleware(['auth:sanctum', 'permission:student-update-photo-estudiante']);
 Route::delete('students/{student}', [StudentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:student-delete-estudiante']);
 /**
  * Categoria Status

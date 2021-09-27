@@ -2387,6 +2387,25 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'classroomType'
             ],
+            /**
+             * Estudiante 271-272
+             */
+            [
+                'name' => 'student-listar-estudiante',
+                'alias' => 'Listar estudiantes',
+                'description' => 'Listar todos los estudiantes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'student'
+            ],
+            [
+                'name' => 'student-update-photo-estudiante',
+                'alias' => 'Actualizar foto estudiante',
+                'description' => 'Actualizar una foto de un estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'student'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2868,6 +2887,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 268, 'role_id' => 1],
             ['permission_id' => 269, 'role_id' => 1],
             ['permission_id' => 270, 'role_id' => 1],
+            /**
+             * Estudiante 271-272
+             */
+            ['permission_id' => 271, 'role_id' => 1],
+            ['permission_id' => 272, 'role_id' => 1],
 
             /**
              * 
@@ -3349,6 +3373,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 268, 'role_id' => 2],
             ['permission_id' => 269, 'role_id' => 2],
             ['permission_id' => 270, 'role_id' => 2],
+            /**
+             * Estudiante 271-272
+             */
+            ['permission_id' => 271, 'role_id' => 2],
+            ['permission_id' => 272, 'role_id' => 2],
         ]);
     }
 }
