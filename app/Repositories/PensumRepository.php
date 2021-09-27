@@ -16,7 +16,8 @@ class PensumRepository extends BaseRepository
     protected $relations = [
         'status',
         //  'meshs',
-          'studentRecords'];
+        //'studentRecords'
+    ];
 
     /**
      * parents

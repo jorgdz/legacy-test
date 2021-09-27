@@ -120,7 +120,7 @@ interface IClassRoomController
      *         @OA\Property(
      *           property="cl_acronym",
      *           description="Acronimo del aula",
-     *           type="integer",
+     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="cl_description",
@@ -249,7 +249,7 @@ interface IClassRoomController
      *         @OA\Property(
      *           property="cl_acronym",
      *           description="Acronimo del aula",
-     *           type="integer",
+     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="cl_description",

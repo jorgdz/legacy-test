@@ -56,7 +56,6 @@ class PeriodRepository extends BaseRepository
      * @return void
      */
     public function showOffersByPeriod(Period $period) {
-        //$studentRecord->studentRecordPrograms()->where('student_record_id',)
         $query = $period->offers()->wherePivot('period_id', $period->id)->with([
             'status',
             'educationLevels',
@@ -76,7 +75,7 @@ class PeriodRepository extends BaseRepository
         $sort = isset(request()->query()['sort']) ? request()->query()['sort'] : 'id';
         $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
 
-        return $query->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ?: 100);
+        return $query->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ? request()->query()['size'] : 100);
     }
 
     /**
@@ -124,7 +123,7 @@ class PeriodRepository extends BaseRepository
         $sort = isset(request()->query()['sort']) ? request()->query()['sort'] : 'id';
         $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
 
-        return $query->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ?: 100);
+        return $query->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ? request()->query()['size'] : 100);
     }
 
     /**

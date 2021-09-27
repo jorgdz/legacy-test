@@ -55,7 +55,7 @@ class UserRepository extends BaseRepository
             $query->where([
                 ['id', '<>', 1]
             ]);
-        })->orderBy($sort, $type_sort)->paginate($request->size ?: 100);
+        })->orderBy($sort, $type_sort)->paginate($request->size ? $request->size : 100);
     }
 
     /**
