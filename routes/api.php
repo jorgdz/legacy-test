@@ -46,7 +46,6 @@ use App\Http\Controllers\Api\ClassroomTypeController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
 use App\Http\Controllers\Api\RelativeController;
 use App\Http\Controllers\Api\SimbologyController;
-use App\Models\ClassroomType;
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -459,8 +458,8 @@ Route::delete('/simbologies/{simbology}', [SimbologyController::class, 'destroy'
 /**
  * ClassRoomType
  */
-Route::get('/classroom-types', [ClassroomTypeController::class, 'index'])->middleware(['auth:sanctum']);// permission:classroomType-listar-tipos-de-aulas
-Route::get('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'show'])->middleware(['auth:sanctum']); //permission:classroomType-obtener-tipo-aula
-Route::post('/classroom-types', [ClassroomTypeController::class, 'store'])->middleware(['auth:sanctum']);//permission:classroomType-crear-tipo-aula;
-Route::put('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'update'])->middleware(['auth:sanctum']);//permission:classroomType-actualizar-tipo-aula
-Route::delete('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'destroy'])->middleware(['auth:sanctum']);//permission:classroomType-eliminar-tipo-aula
+Route::get('/classroom-types', [ClassroomTypeController::class, 'index'])->middleware(['auth:sanctum', 'permission:classroomType-listar-tipos-de-aulas']);
+Route::get('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'show'])->middleware(['auth:sanctum', 'permission:classroomType-obtener-tipo-aula']);
+Route::post('/classroom-types', [ClassroomTypeController::class, 'store'])->middleware(['auth:sanctum', 'permission:classroomType-crear-tipo-aula']);
+Route::put('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'update'])->middleware(['auth:sanctum', 'permission:classroomType-actualizar-tipo-aula']);
+Route::delete('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classroomType-eliminar-tipo-aula']);

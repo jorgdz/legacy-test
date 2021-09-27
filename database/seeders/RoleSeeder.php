@@ -2344,6 +2344,49 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'StudentRecordPeriod'
             ],
+            /**
+             * Tipo Aulas 266-270
+             */
+            [
+                'name' => 'classroomType-listar-tipos-de-aulas',
+                'alias' => 'Listar tipos aulas',
+                'description' => 'Listar todos los tipos de aulas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomType'
+            ],
+            [
+                'name' => 'classroomType-obtener-tipo-aula',
+                'alias' => 'Obtener tipo aula',
+                'description' => 'Obtener un tipo de aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomType'
+            ],
+            [
+                'name' => 'classroomType-crear-tipo-aula',
+                'alias' => 'Crear tipo aula',
+                'description' => 'Agregar un nuevo tipo de aula',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomType'
+            ],
+            [
+                'name' => 'classroomType-actualizar-tipo-aula',
+                'alias' => 'Actualizar tipo aula',
+                'description' => 'Actualizar un tipo de aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomType'
+            ],
+            [
+                'name' => 'classroomType-eliminar-tipo-aula',
+                'alias' => 'Borrar tipo aula',
+                'description' => 'Borrar un tipo de aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomType'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2817,6 +2860,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 263, 'role_id' => 1],
             ['permission_id' => 264, 'role_id' => 1],
             ['permission_id' => 265, 'role_id' => 1],
+            /**
+             * Tipo Aulas 266-270
+             */
+            ['permission_id' => 266, 'role_id' => 1],
+            ['permission_id' => 267, 'role_id' => 1],
+            ['permission_id' => 268, 'role_id' => 1],
+            ['permission_id' => 269, 'role_id' => 1],
+            ['permission_id' => 270, 'role_id' => 1],
 
             /**
              * 
@@ -3290,6 +3341,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 263, 'role_id' => 2],
             ['permission_id' => 264, 'role_id' => 2],
             ['permission_id' => 265, 'role_id' => 2],
+            /**
+             * Tipo Aulas 266-270
+             */
+            ['permission_id' => 266, 'role_id' => 2],
+            ['permission_id' => 267, 'role_id' => 2],
+            ['permission_id' => 268, 'role_id' => 2],
+            ['permission_id' => 269, 'role_id' => 2],
+            ['permission_id' => 270, 'role_id' => 2],
         ]);
     }
 }

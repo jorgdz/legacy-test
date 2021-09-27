@@ -124,42 +124,28 @@ class MatterMeshRepository extends BaseRepository
         $page = isset(request()->query()['size']) ? request()->query()['size'] : 100;
         return $query->where("mesh_id", $id)->orderBy($sort, $type_sort)->paginate($page);
     }
-    
+        
     /**
      * setMatterMesh
      *
-     * @param  mixed $conditions
-     * @param  mixed $params
+     * @param  mixed $id
+     * @param  mixed $old
+     * @param  mixed $new
      * @return void
      */
     public function setMatterMesh($id, $old, $new) {
+        $order = MatterMesh::findOrFail($id);
+
         if ($new > $old) {
-            $order = MatterMesh::findOrFail($id);
             MatterMesh::WhereBetween('order', [(int)$old, (int)$new])->decrement('order');
             $order->order = $new;
 
             return $order->save();
         }
         
-        $order = MatterMesh::findOrFail($id);
         MatterMesh::WhereBetween('order', [(int)$new, (int)$old])->increment('order');
         $order->order = $new;
 
         return $order->save();
     }
-    // public function setMatterMesh($id, $old, $new) {
-    //     if ($new < $old) {
-    //         $order = MatterMesh::where('order', $new)->first();
-    //         MatterMesh::orWhereBetween('order', [(int)$new, (int)$old])->decrement('order');
-    //         $order->order = $old;
-
-    //         return $order->save();
-    //     }
-
-    //     $order = MatterMesh::where('order', $new)->first();
-    //     MatterMesh::orWhereBetween('order', [(int)$old, (int)$new])->increment('order');
-    //     $order->order = $old;
-
-    //     return $order->save();
-    // }
 }
