@@ -24,14 +24,12 @@ class StudentRecordPeriodRequest extends FormRequest
         $rules = [
             'student_record_id' => 'required|integer|exists:tenant.student_records,id',
             'periodo_id'        => 'required|integer|exists:tenant.periods,id',
-            'status_student_id' => 'required|integer|exists:tenant.status_students,id',
             'status_id'         => 'required|integer|exists:tenant.status,id',
         ];
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
             $rules = [
                 'student_record_id' => 'nullable|integer|exists:tenant.student_records,id',
                 'periodo_id'        => 'nullable|integer|exists:tenant.periods,id',
-                'status_student_id' => 'nullable|integer|exists:tenant.status_students,id',
                 'status_id'         => 'nullable|integer|exists:tenant.status,id',
             ];
         }

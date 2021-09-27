@@ -22,9 +22,6 @@ class CreateStudentRecodsPeriodTable extends Migration
             $table->integer('periodo_id')->unsigned();
             $table->foreign('periodo_id')->references('id')->on('periods');
 
-            $table->integer('status_student_id')->unsigned();
-            $table->foreign('status_student_id')->references('id')->on('status_students');
-
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

@@ -7,9 +7,9 @@ use App\Repositories\Base\BaseRepository;
 
 class StudentRecordPeriodRepository extends BaseRepository
 {
-    protected $relations = ['student_record', 'period', 'student_status', 'status'];
-    protected $parents = ['periods', 'status_students', 'status']; /* Name of rable relationals */
-    protected $selfFieldsAndParents = ['per_name', 'per_reference', 'sts_name', 'sts_let_pay', 'st_name']; /* Fields of table relationals */
+    protected $relations = ['student_record', 'period', 'status'];
+    protected $parents = ['periods', 'status']; /* Name of rable relationals */
+    protected $selfFieldsAndParents = ['per_name', 'per_reference', 'st_name']; /* Fields of table relationals */
     
     /**
      * __construct

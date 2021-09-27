@@ -20,7 +20,6 @@ class StudentRecordPeriod extends Model implements AuditableContract
     protected $fillable = [
         'student_record_id', 
         'periodo_id', 
-        'status_student_id', 
         'status_id'
     ];
 
@@ -32,7 +31,6 @@ class StudentRecordPeriod extends Model implements AuditableContract
 
     protected $relations = [
         'periodo_id', 
-        'status_student_id', 
         'status_id'
     ];
 
@@ -49,9 +47,5 @@ class StudentRecordPeriod extends Model implements AuditableContract
 
     public function period(): BelongsTo {
         return $this->belongsTo(Period::class, 'periodo_id');
-    }
-
-    public function student_status(): BelongsTo {
-        return $this->belongsTo(StatusStudent::class, 'status_student_id');
     }
 }

@@ -117,11 +117,6 @@ interface IStudentRecordPeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="status_student_id",
-     *           description="Estado del estudiante",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del registro del estudiante",
      *           type="integer",
@@ -135,7 +130,6 @@ interface IStudentRecordPeriodController
      *      example={
      *          "student_record_id": "required|integer|exists:tenant.student_records,id",
      *          "periodo_id": "required|integer|exists:tenant.periods,id",
-     *          "status_student_id": "required|integer|exists:tenant.status_students,id",
      *          "status_id": "required|integer|exists:tenant.status,id",
      *      },
      *   )),
@@ -228,11 +222,6 @@ interface IStudentRecordPeriodController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="status_student_id",
-     *           description="Estado del estudiante",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del registro del estudiante",
      *           type="integer",
@@ -246,7 +235,6 @@ interface IStudentRecordPeriodController
      *      example={
      *          "student_record_id": "nullable|integer|exists:tenant.student_records,id",
      *          "periodo_id": "nullable|integer|exists:tenant.periods,id",
-     *          "status_student_id": "nullable|integer|exists:tenant.status_students,id",
      *          "status_id": "nullable|integer|exists:tenant.status,id",
      *      },
      *   )),

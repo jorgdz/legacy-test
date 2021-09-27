@@ -22,23 +22,19 @@ class MeshsController extends Controller implements IMeshsController
     private $meshCache;
     private $matterMeshCache;
 
-    public function __construct(MeshCache $meshCache,MatterMeshCache $matterMeshCache)
-    {
+    public function __construct(MeshCache $meshCache, MatterMeshCache $matterMeshCache) {
         $this->meshCache = $meshCache;
         $this->matterMeshCache = $matterMeshCache;
     }
-
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         return $this->success($this->meshCache->all($request));
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -46,8 +42,7 @@ class MeshsController extends Controller implements IMeshsController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MeshRequest $request)
-    {
+    public function store(MeshRequest $request) {
         DB::beginTransaction();
         try {
             $mesh = new Mesh($request->all());
@@ -61,16 +56,13 @@ class MeshsController extends Controller implements IMeshsController
         }
     }
 
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id)
-    {
-
+    public function show(Request $request, $id) {
         return $this->success($this->meshCache->find($id));
 
     }
@@ -83,8 +75,7 @@ class MeshsController extends Controller implements IMeshsController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MeshRequest $request, Mesh $mesh)
-    {
+    public function update(MeshRequest $request, Mesh $mesh) {
         DB::beginTransaction();
         try {
             $mesh->fill($request->all());
@@ -102,15 +93,13 @@ class MeshsController extends Controller implements IMeshsController
         }
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mesh $mesh)
-    {
+    public function destroy(Mesh $mesh) {
         DB::beginTransaction();
         try {
             $response = $this->meshCache->destroy($mesh);
@@ -129,9 +118,7 @@ class MeshsController extends Controller implements IMeshsController
      * @param  int  $mesh
      * @return \Illuminate\Http\Response
      */
-    public function showMattersByMesh(Request $request,Mesh $mesh)
-    {
-
+    public function showMattersByMesh(Request $request, Mesh $mesh) {
         return $this->success($this->matterMeshCache->findMatersbyMesh($request,$mesh->id));
 
     }

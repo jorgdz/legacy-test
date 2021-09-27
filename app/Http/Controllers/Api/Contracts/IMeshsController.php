@@ -9,7 +9,6 @@ use App\Http\Requests\ShowByUserProfileIdRequest;
 
 interface IMeshsController
 {
-
     /**
      * @OA\Get(
      *   path="/api/meshs",
@@ -88,7 +87,6 @@ interface IMeshsController
      */
     public function index(Request $request);
 
-
     /**
      * @OA\Post(
      *   path="/api/meshs",
@@ -115,14 +113,65 @@ interface IMeshsController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="mes_description",
-     *           description="Descripcion de malla",
+     *           property="mes_res_cas",
+     *           description="Resolucion CAS",
      *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_res_ocas",
+     *           description="Resolucion OCAS",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_cod_career",
+     *           description="Codigo de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_title",
+     *           description="Titulo de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_itinerary",
+     *           description="Itinerario de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_modality",
+     *           description="Modalidad de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_number_matter",
+     *           description="Numero de materia de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_number_period",
+     *           description="Numero de periodo de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_creation_date",
+     *           description="Fecha de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_type_calification",
+     *           description="Tipo de calificacion de la malla",
+     *           type="string",
+     *           example="Horas/Creditos"
      *         ),
      *         @OA\Property(
      *           property="mes_acronym",
      *           description="Acronimo(Siglas) de malla",
      *           type="string"
+     *         ),
+     *         @OA\Property(
+     *           property="mes_description",
+     *           description="Descripcion de malla",
+     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="anio",
@@ -146,11 +195,21 @@ interface IMeshsController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "mes_name" : "required|max:255|unique:meshs,mes_name",
-     *          "mes_acronym" : "required|max:3",
-     *          "anio" : "required|integer",
-     *          "level_edu_id" : "required|integer|exists:education_levels,id",
-     *          "status_id" : "required|integer|exists:status,id"
+     *          "mes_name": "required|max:255|unique:tenant.meshs,mes_name",
+     *          "mes_res_cas": "nullable|string|max:255",
+     *          "mes_res_ocas": "nullable|string|max:255",
+     *          "mes_cod_career": "nullable|string|max:255",
+     *          "mes_title": "nullable|string|max:255",
+     *          "mes_itinerary": "nullable|string|max:255",
+     *          "mes_modality": "nullable|string|max:255",
+     *          "mes_number_matter": "nullable|integer|max:255",
+     *          "mes_number_period": "nullable|integer|max:255",
+     *          "mes_creation_date": "nullable|date|max:255",
+     *          "mes_type_calification": "nullable|in:Horas,Creditos",
+     *          "mes_acronym": "nullable|max:3",
+     *          "anio": "required|integer",
+     *          "level_edu_id": "required|integer|exists:tenant.education_levels,id",
+     *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -160,8 +219,6 @@ interface IMeshsController
      *
      */
     public function store(MeshRequest $request);
-
-
 
     /**
      * @OA\Get(
@@ -203,7 +260,6 @@ interface IMeshsController
      */
     public function show(ShowByUserProfileIdRequest $request, $id);
 
-
     /**
      * @OA\Put(
      *   path="/api/meshs/{meshs}",
@@ -234,20 +290,71 @@ interface IMeshsController
      *           description="Id del perfil de usuario",
      *           type="integer",
      *         ),
-     *        @OA\Property(
+     *         @OA\Property(
      *           property="mes_name",
      *           description="Nombre de la malla",
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="mes_description",
-     *           description="Descripcion de malla",
+     *           property="mes_res_cas",
+     *           description="Resolucion CAS",
      *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_res_ocas",
+     *           description="Resolucion OCAS",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_cod_career",
+     *           description="Codigo de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_title",
+     *           description="Titulo de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_itinerary",
+     *           description="Itinerario de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_modality",
+     *           description="Modalidad de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_number_matter",
+     *           description="Numero de materia de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_number_period",
+     *           description="Numero de periodo de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_creation_date",
+     *           description="Fecha de la malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_type_calification",
+     *           description="Tipo de calificacion de la malla",
+     *           type="string",
+     *           example="Horas/Creditos"
      *         ),
      *         @OA\Property(
      *           property="mes_acronym",
      *           description="Acronimo(Siglas) de malla",
      *           type="string"
+     *         ),
+     *         @OA\Property(
+     *           property="mes_description",
+     *           description="Descripcion de malla",
+     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="anio",
@@ -256,14 +363,14 @@ interface IMeshsController
      *         ),
      *         @OA\Property(
      *           property="level_edu_id",
-     *           description="Id del nivel de educación",
+     *           description="Id de nivel de educación",
      *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
      *           description="Estado de la malla",
      *           type="integer",
-     *         )
+     *         ),
      *       ),
      *     ),
      *   ),
@@ -271,11 +378,21 @@ interface IMeshsController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "mes_name" : "required|max:255|unique:meshs,mes_name",
-     *          "mes_acronym" : "required|max:3",
-     *          "anio" : "required|integer",
-     *          "level_edu_id" : "required|integer|exists:education_levels,id",
-     *          "status_id" : "required|integer|exists:status,id"
+     *          "mes_name": "required|max:255|unique:tenant.meshs,mes_name",
+     *          "mes_res_cas": "nullable|string|max:255",
+     *          "mes_res_ocas": "nullable|string|max:255",
+     *          "mes_cod_career": "nullable|string|max:255",
+     *          "mes_title": "nullable|string|max:255",
+     *          "mes_itinerary": "nullable|string|max:255",
+     *          "mes_modality": "nullable|string|max:255",
+     *          "mes_number_matter": "nullable|integer|max:255",
+     *          "mes_number_period": "nullable|integer|max:255",
+     *          "mes_creation_date": "nullable|date|max:255",
+     *          "mes_type_calification": "nullable|in:Horas,Creditos",
+     *          "mes_acronym": "nullable|max:3",
+     *          "anio": "required|integer",
+     *          "level_edu_id": "required|integer|exists:tenant.education_levels,id",
+     *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -285,7 +402,6 @@ interface IMeshsController
      *
      */
     public function update(MeshRequest $request, Mesh $mesh);
-
 
     /**
      * @OA\Delete(
