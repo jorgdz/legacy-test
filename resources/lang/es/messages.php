@@ -35,5 +35,6 @@ return [
     'success' => 'Datos guardados exitosamente',
     'error-student-record-programs'=>"Récord estudiantil ya tiene Asigando un Tipo programa para estudiantes.",
     'error-dependency-model'=>"Error de dependencia en ':model' y ':model1'!",
+    'not-period' => 'La foto no pudo ser guardada porque no hay un periodo dado!',
 ];
 ?>

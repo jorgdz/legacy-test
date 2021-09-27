@@ -11,8 +11,7 @@ trait Helper
 {
     function stud_code_avaliable(){
         $currentYear = intval(date('Y'));
-        $student = DB::connection('tenant')->table('students')->orderBy('id','desc')->first();
-
+        $student = Student::withTrashed()->orderBy('id','desc')->first();
         if(is_null($student))
             return $currentYear.'000001' ;
         else{

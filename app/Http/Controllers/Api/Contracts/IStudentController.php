@@ -519,5 +519,5 @@ interface IStudentController
      * )
      *
      */
-    public function updatePhoto(Request $request);
+    public function updatePhoto(StudentPhotoRequest $request);
 }

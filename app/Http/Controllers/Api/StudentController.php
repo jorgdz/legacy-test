@@ -148,14 +148,14 @@ class StudentController extends Controller implements IStudentController
      * @param  mixed $student
      * @return void
      */
-    public function updatePhoto(Request $request)
+    public function updatePhoto(StudentPhotoRequest $request)
     {
         $student=Student::where('user_id',$request->user()->id)->first();
         if(is_null($student))
             throw new NotFoundException(__('messages.no-exist-instance-resource'));
 
         $response = $this->filesystemService->store($request);
-
+        
         $request->replace(['stud_photo' => $response[0]['route']]);
 
         $student->fill($request->all());

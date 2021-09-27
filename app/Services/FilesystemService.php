@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\Custom\BadRequestException;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use App\Models\CustomTenant;
@@ -55,6 +56,8 @@ class FilesystemService {
             ->where('id', CustomTenant::current()->id)->first();
 
         if ($currentTenant) {
+            if(!$request->period)
+                throw new BadRequestException(__('messages.not-period'));
             $params = [
                 "id_usuario"  => $currentTenant->filesystem->user_id,
                 "id_cliente"  => $currentTenant->filesystem->client_id,

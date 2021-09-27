@@ -59,7 +59,7 @@ class StudentPhotoRequest extends FormRequest
         return [
             //'student_id' => 'required|integer|exists:tenant.students,id',
             'files' => 'required|extensionFile',
-            'period'   => 'required|integer',
+            //'period'   => 'required|integer',
             'type_document'   => 'required|integer|exists:landlord.type_documents,id',
         ];
     }
