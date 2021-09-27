@@ -52,6 +52,7 @@ class DatabaseSeeder extends Seeder
                 RoleUserProfileSeeder::class,
                 StudentSeeder::class,
                 ClassroomTypeSeeder::class,
+                PositionSeeder::class,
             ]);
         }
     }

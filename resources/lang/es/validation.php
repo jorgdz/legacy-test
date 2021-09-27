@@ -617,11 +617,21 @@ return [
          */
         'sim_color' => 'color de la simbologia',
         'sim_description' => 'nombre de la simbologia',
-		
+
 		/**
 		 * Student Record Programs
 		 */
 		'type_student_program_id' => 'tipo programa para estudiantes',
+        /**
+         * Classroom Type
+         */
+        'clt_name' => 'nombre del tipo de aula',
+        'clt_description' => 'descripcion del tipo de aula',
+        /**
+         * Positions
+         */
+        'pos_name' => 'nombre del cargo',
+        'pos_description' => 'descripcion del cargo',
 	],
 
 ];

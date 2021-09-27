@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Permission\Models\Role as RolePersonalized;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
@@ -47,5 +48,15 @@ class Role extends RolePersonalized
      */
     public function status () : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    /**
+     * positions
+     *
+     * @return HasMany
+     */
+    public function positions() : HasMany
+    {
+        return $this->hasMany(Position::class, 'role_id');
     }
 }

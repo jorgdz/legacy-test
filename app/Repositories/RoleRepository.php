@@ -3,13 +3,23 @@
 namespace App\Repositories;
 
 use App\Models\Role;
-use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 use Illuminate\Support\Facades\DB;
 
 class RoleRepository extends BaseRepository
 {
-    protected $relations = ['status', 'permissions'];
+    /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['status', 'positions', 'permissions'];
+
+    /**
+     * fields
+     *
+     * @var array
+     */
     protected $fields = ['name'];
 
     /**
@@ -21,6 +31,12 @@ class RoleRepository extends BaseRepository
         parent::__construct($role);
     }
 
+    /**
+     * deleteModelHasRole
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function deleteModelHasRole($id) {
         DB::connection('tenant')->table('model_has_roles')->where('role_id', $id)->delete();
     }

@@ -44,6 +44,7 @@ use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\CategoryStatusController;
 use App\Http\Controllers\Api\ClassroomTypeController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
+use App\Http\Controllers\Api\PositionController;
 use App\Http\Controllers\Api\RelativeController;
 use App\Http\Controllers\Api\SimbologyController;
 
@@ -462,4 +463,12 @@ Route::get('/classroom-types', [ClassroomTypeController::class, 'index'])->middl
 Route::get('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'show'])->middleware(['auth:sanctum', 'permission:classroomType-obtener-tipo-aula']);
 Route::post('/classroom-types', [ClassroomTypeController::class, 'store'])->middleware(['auth:sanctum', 'permission:classroomType-crear-tipo-aula']);
 Route::put('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'update'])->middleware(['auth:sanctum', 'permission:classroomType-actualizar-tipo-aula']);
-Route::delete('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classroomType-eliminar-tipo-aula']);
+//Route::delete('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classroomType-eliminar-tipo-aula']);
+/**
+ * Positions
+ */
+Route::get('/positions', [PositionController::class, 'index'])->middleware(['auth:sanctum']);//permission:positions-listar-cargos
+Route::get('/positions/{position}', [PositionController::class, 'show'])->middleware(['auth:sanctum']); //permission:positions-obtener-cargo
+Route::post('/positions', [PositionController::class, 'store'])->middleware(['auth:sanctum']); //permission:positions-crear-cargo
+Route::put('/positions/{position}', [PositionController::class, 'update'])->middleware(['auth:sanctum']); //permission:positions-actualizar-cargo
+Route::delete('/positions/{position}', [PositionController::class, 'destroy'])->middleware(['auth:sanctum']); //permission:positions-eliminar-cargo
