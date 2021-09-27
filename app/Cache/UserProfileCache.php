@@ -39,7 +39,7 @@ class UserProfileCache extends BaseCache {
             return $this->repository->find($id);
         });
     }
-    
+
     /**
      * save
      *
@@ -66,7 +66,7 @@ class UserProfileCache extends BaseCache {
     *
     * @param array $conditionals
     * @return Illuminate\Database\Eloquent\Model
-    * 
+    *
     */
     public function findByConditionals($conditionals) {
         return $this->repository->findByConditionals($conditionals);
@@ -76,7 +76,7 @@ class UserProfileCache extends BaseCache {
      * Remove the specified resource from storage.
      *
      * @param array $models
-     * 
+     *
      */
     public function deleteModelHasRole($models) {
         return $this->repository->deleteModelHasRole($models);

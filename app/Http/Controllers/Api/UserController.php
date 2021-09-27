@@ -167,7 +167,7 @@ class UserController extends Controller implements IUserController
      * @return void
      */
     public function saveProfiles (StoreUserProfileRequest $request, User $user) {
-        $userProfileRequest = array_merge(['user_id' => "".$user['id']],$request->all());
+        $userProfileRequest = array_merge(['user_id' => $user->id], $request->all());
         $userProfile = new UserProfile($userProfileRequest);
         $userProfile = $this->repoUserProfile->save($userProfile);
         return $this->success($userProfile);

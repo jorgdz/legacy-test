@@ -3,6 +3,7 @@
 namespace App\Cache;
 
 use Illuminate\Support\Str;
+use App\Models\CustomTenant;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 use App\Repositories\Contracts\IBaseRepository;
@@ -35,7 +36,7 @@ abstract class BaseCache implements IBaseRepository {
 
     public function forgetCache($resource = NULL) {
         $baseUrl  = url('/');
-        $tenant = Str::slug(env('APP_NAME', 'sistema_de_planificacion_de_recursos'), '_') . '_database_tenant_id_' . app('currentTenant')->id . ':';
+        $tenant = Str::slug(env('APP_NAME', 'sistema_de_planificacion_de_recursos'), '_') . '_database_tenant_id_' . CustomTenant::current()->id . ':';
         $content = "{$baseUrl}/api/{$resource}";
         $keys = Redis::connection('cache')->keys("**{$content}**");
         foreach ($keys as $k => $v) {

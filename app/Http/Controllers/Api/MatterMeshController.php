@@ -53,7 +53,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @return \Illuminate\Http\Response
      */
     public function store(MatterMeshRequest $request) {
-        $data = DB::table('matter_mesh')
+        $data = DB::connection('tenant')->table('matter_mesh')
                 ->whereNotNull('deleted_at')
                 ->where('matter_id', $request->matter_id)
                 ->where('mesh_id', $request->mesh_id)
@@ -138,7 +138,7 @@ class MatterMeshController extends Controller implements IMatterMeshController
     public function destroy(MatterMesh $mattermesh) {
         return $this->success($this->matterMeshCache->destroy($mattermesh));
     }
-    
+
     /**
      * restoreMatterMesh
      *

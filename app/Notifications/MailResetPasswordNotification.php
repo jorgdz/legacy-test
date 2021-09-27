@@ -2,11 +2,12 @@
 
 namespace App\Notifications;
 
-use Illuminate\Auth\Notifications\ResetPassword;
+use App\Models\CustomTenant;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class MailResetPasswordNotification extends ResetPassword
 {
@@ -43,7 +44,7 @@ class MailResetPasswordNotification extends ResetPassword
      */
     public function toMail($notifiable)
     {
-        $tenant = app('currentTenant');
+        $tenant = CustomTenant::current();
         return (new MailMessage)->view('mails.reset-password',[
             'tenant' => $tenant,
             'url' => $this->url.'?email='.$notifiable->getEmailForPasswordReset(),

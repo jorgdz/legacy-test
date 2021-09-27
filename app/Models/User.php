@@ -72,7 +72,7 @@ class User extends Authenticatable implements AuditableContract
      * @return void
      */
     public function sendPasswordResetNotification($token) {
-        $url = app('currentTenant')->domain_client.'/'.'restablecer-clave'.'/'.$token;
+        $url = CustomTenant::current()->domain_client.'/'.'restablecer-clave'.'/'.$token;
         $this->notify(new MailResetPasswordNotification($url));
     }
 

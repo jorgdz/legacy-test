@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Cache\StudentDocumentCache;
-use App\Exceptions\Custom\FailLocalStorageRequestException;
-use App\Exceptions\Custom\NotFoundException;
-use App\Http\Controllers\Api\Contracts\IStudentDocumentController;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StudentDocumentFormRequest;
-use App\Models\StudentDocument;
-use App\Traits\RestResponse;
 use Exception;
+use Illuminate\Support\Str;
+use App\Models\CustomTenant;
+use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
+use App\Models\StudentDocument;
 use Illuminate\Support\Facades\DB;
+use App\Cache\StudentDocumentCache;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Exceptions\Custom\NotFoundException;
+use App\Http\Requests\StudentDocumentFormRequest;
 use Illuminate\Support\Facades\File as FileFacade;
-use Illuminate\Support\Str;
+use App\Exceptions\Custom\FailLocalStorageRequestException;
+use App\Http\Controllers\Api\Contracts\IStudentDocumentController;
 
 class StudentDocumentController extends Controller implements IStudentDocumentController
 {
@@ -57,9 +58,9 @@ class StudentDocumentController extends Controller implements IStudentDocumentCo
         //recorrer archivos
         foreach ($request->stu_doc_name_file as $key => $file) {
 
-            //generar el nombre del archivo 
-            $idTenenant = app('currentTenant')->id;
-            $tenantName = app('currentTenant')->name;
+            //generar el nombre del archivo
+            $idTenenant = CustomTenant::current()->id;
+            $tenantName = CustomTenant::current()->name;
             $fechaHora = Carbon::now()->format('YmdHms'); //->toDateTimeString();
             $random = Str::random(10);
             $filename = $idTenenant . '-' . $random . '_' . $fechaHora . '.' . $file->getClientOriginalExtension();
@@ -133,7 +134,7 @@ class StudentDocumentController extends Controller implements IStudentDocumentCo
     public function download($filename)
     {
 
-        $tenantName = app('currentTenant')->name;
+        $tenantName = CustomTenant::current()->name;
 
         $file_path = storage_path() . '/app/' . $tenantName . '/' . $filename;
 
@@ -142,7 +143,7 @@ class StudentDocumentController extends Controller implements IStudentDocumentCo
             throw new NotFoundException(__("messages.error-file-not-exist"));
 
            // return $this->information(__('messages.error-file-not-exist'), Response::HTTP_NOT_FOUND);
-        } 
+        }
         return Storage::download($filename);
     }
 

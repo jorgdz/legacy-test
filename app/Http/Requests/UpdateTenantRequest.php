@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\CustomTenant;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTenantRequest extends FormRequest
@@ -23,7 +24,7 @@ class UpdateTenantRequest extends FormRequest
      */
     public function rules()
     {
-        $tenant = app('currentTenant');
+        $tenant = CustomTenant::current();
         //dd($tenant->mail->id);
         return [
             'name'   => 'required|max:255|string|unique:landlord.tenants,name,'.$tenant->id,
@@ -32,7 +33,7 @@ class UpdateTenantRequest extends FormRequest
             'port'   => 'required|string|max:255',
             'encryption'   => 'required|string|max:255',
             'username'   => 'required|max:255|string|unique:landlord.mails,username,'.$tenant->mail->id,
-            'password'   => 'required|max:255|string|unique:landlord.mails,password,'.$tenant->mail->id,            
+            'password'   => 'required|max:255|string|unique:landlord.mails,password,'.$tenant->mail->id,
             //'logo'   => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'//|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000
         ];
     }

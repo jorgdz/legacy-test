@@ -10,7 +10,7 @@ trait Helper
 {
     function stud_code_avaliable(){
         $currentYear = intval(date('Y'));
-        $student = DB::table('students')->orderBy('id','desc')->first();
+        $student = DB::connection('tenant')->table('students')->orderBy('id','desc')->first();
         if(is_null($student))
             return $currentYear.'000001' ;
         else{
@@ -39,7 +39,7 @@ trait Helper
                     default:
                         $zero_str='';
                         break;
-        
+
                 }
                 return $currentYear.$zero_str.$counter_stud_codi;
             }

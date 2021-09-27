@@ -23,7 +23,7 @@ class AsTenantController extends Controller implements IAsTenantController
         $key = request()->url().'_as_current_tenant';
 
         return Cache::remember($key, now()->addMinutes(150), function () {
-            return response()->json(CustomTenant::findOrFail(app('currentTenant')->id));
+            return response()->json(CustomTenant::findOrFail(CustomTenant::current()->id));
         });
     }
 }

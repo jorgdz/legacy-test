@@ -164,7 +164,7 @@ class TenantController extends Controller implements ITenantController
         /* $this->cache::forget($request->getHost() . '_current_tenant'); */
         $this->cache::flush();
 
-        $tenantUpdate = CustomTenant::findOrFail(app('currentTenant')->id);
+        $tenantUpdate = CustomTenant::findOrFail(CustomTenant::current()->id);
         $mailUpdate = Mail::find($tenantUpdate->mail->id);
 
         $tenantUpdate->fill($request->only('name'));
@@ -187,7 +187,7 @@ class TenantController extends Controller implements ITenantController
     public function updateLogoCurrentTenant (UpdateLogoCurrentTenantRequest $request) {
         /* $this->cache::forget($request->getHost() . '_current_tenant'); */
         $this->cache::flush();
-        $tenantUpdate = CustomTenant::findOrFail(app('currentTenant')->id);
+        $tenantUpdate = CustomTenant::findOrFail(CustomTenant::current()->id);
 
         if($request->hasFile('logo')) {
             // Get just ext
@@ -200,12 +200,12 @@ class TenantController extends Controller implements ITenantController
             $tenantUpdate->logo_name = $filename;
 
             $tenantUpdate->logo_path = url('/').'/storage/'.$tenantUpdate->name.'/'.$filename;
-            
+
             $tenantUpdate->save();
         }
 
         $this->cache::forget(request()->root() . '/api/as-tenant_as_current_tenant');
 
         return $this->success($tenantUpdate);
-    } 
+    }
 }
