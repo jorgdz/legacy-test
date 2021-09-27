@@ -84,7 +84,7 @@ class FilesystemService {
         $response = array();
         foreach ($request->file('files') as $key => $value) {
             $name = time() . '_'. uniqid() . '.'. $request->file('files')[$key]->getClientOriginalExtension();
-            $upload = Storage::put("{$path}/{$name}", FileFacade::get($request->file('files')[$key]), 'public');
+            $upload = Storage::put("{$path}/{$name}", FileFacade::get($request->file('files')[$key]));
 
             if ($upload) {
                 array_push($response, [
