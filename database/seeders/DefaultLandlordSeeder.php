@@ -20,7 +20,8 @@ class DefaultLandlordSeeder extends Seeder
             ['name' => 'MENSAJES'],
             ['name' => 'ADMISIONES'],
             ['name' => 'CIRCULATE_EVENTO'],
-            ['name' => 'ARCHIVOS_PFD'],
+            ['name' => 'LOGOS'],
+            ['name' => 'FOTOS_ALUMNOS'],
         ]);
     }
 }

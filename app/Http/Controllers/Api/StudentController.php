@@ -19,9 +19,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreStudentRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\DatabaseException;
-use Illuminate\Http\Response;
+use App\Exceptions\Custom\NotFoundException;
+use App\Http\Controllers\Api\Contracts\IStudentController;
+use App\Http\Requests\StudentPhotoRequest;
 use App\Http\Requests\UpdateStudentRequest;
-class StudentController extends Controller
+use App\Services\FilesystemService;
+
+class StudentController extends Controller implements IStudentController
 {
     use RestResponse,Helper;
 
@@ -31,6 +35,7 @@ class StudentController extends Controller
      * @var mixed
      */
     private $studentCache;
+    private $filesystemService;
 
     /**
      * __construct
@@ -38,9 +43,10 @@ class StudentController extends Controller
      * @param  mixed $studentCache
      * @return void
      */
-    public function __construct(StudentCache $studentCache)
+    public function __construct(StudentCache $studentCache,FilesystemService $filesystemService)
     {
         $this->studentCache = $studentCache;
+        $this->filesystemService = $filesystemService;
     }
 
     /**
@@ -67,14 +73,14 @@ class StudentController extends Controller
         $person = new Person($request->except(['email','campus_id','modalidad_id','jornada_id']));
         $person->save();
         $user = new User($request->only(['email']));
-        
+
         $user->us_username = $request->get('pers_identification');
         $password = Str::random(8);
         $user->password = Hash::make($password);
         $user->person_id = $person->id;
         $user->status_id = 1;
         $user->save();
-        
+
         if(!is_null(Student::where('user_id',$user->id)->first()))
             throw new ConflictException(__('messages.exist-instance'));
 
@@ -82,15 +88,15 @@ class StudentController extends Controller
         $student->stud_code = $this->stud_code_avaliable();
         $student->user_id = $user->id;
         $student->status_id = 1;
-        
+
         $student->save();
 
         DB::commit();
 
         Mail::to($request->get('email'))->send(new EmailRegister($user,$password ));
-        
+
         return $this->success(__('messages.model-saved-successfully', ['model' => class_basename(Student::class)]));
-        
+
         }catch(Exception $ex){
             DB::rollback();
             throw new DatabaseException($ex->errorInfo[2]);
@@ -103,7 +109,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Request $request,Student $student)
     {
         return $this->success($this->studentCache->find($student->id));
     }
@@ -133,5 +139,29 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         return $this->success($this->studentCache->destroy($student));
+    }
+
+    /**
+     * updatePhoto
+     *
+     * @param  mixed $request
+     * @param  mixed $student
+     * @return void
+     */
+    public function updatePhoto(Request $request)
+    {
+        $student=Student::where('user_id',$request->user()->id)->first();
+        if(is_null($student))
+            throw new NotFoundException(__('messages.no-exist-instance-resource'));
+
+        $response = $this->filesystemService->store($request);
+
+        $request->replace(['stud_photo' => $response[0]['route']]);
+
+        $student->fill($request->all());
+        if ($student->isClean())
+            return $this->information(__('messages.nochange'));
+
+        return $this->success($this->studentCache->save($student));
     }
 }

@@ -59,6 +59,7 @@ class Student extends Model implements AuditableContract
     protected $fillable = [
         'stud_code',
         'stud_photo',
+        'stud_photo_path',
         'stud_observation',
         'user_id',
         'status_id',

@@ -5,6 +5,7 @@ return [
     'method-not-allowed' => 'Método no permitido.',
     'no-exist-instance' => "No existe ninguna instancia de ':model' con el id dado",
     'exist-instance' => "Ya existe una instancia de este recurso con los paramentros dados en el cuerpo de solicitud",
+    'no-exist-instance-resource' => "No existe una instancia de este recurso.",
     'exist-instance-custom' => "Ya existe una instancia de ':model' con las instancias ':modelA' y ':modelB' dadas",
     'forbidden' => 'Recurso no autorizado.',
     'no-authorize' => 'Se requiere autenticación para acceder a este recurso.',

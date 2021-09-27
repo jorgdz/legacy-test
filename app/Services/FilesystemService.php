@@ -79,6 +79,7 @@ class FilesystemService {
 
         $tenant   = CustomTenant::findOrFail(CustomTenant::current()->id);
         $document = CustomTypeDocument::findOrFail($request->type_document);
+
         $path = $tenant->name . (($request->period) ? "/{$request->period}" : "") . "/{$document->name}";
 
         $response = array();

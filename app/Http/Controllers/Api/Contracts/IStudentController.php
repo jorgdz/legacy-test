@@ -6,11 +6,87 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\StudentPhotoRequest;
 use App\Http\Requests\UpdateStudentRequest;
 
 interface IStudentController
 {
-
+    /**
+     * @OA\Get(
+     *   path="/api/students",
+     *   tags={"Estudiantes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Listar las estudiantes",
+     *   description="Muestra todas los estudiantes paginados en formato JSON",
+     *   operationId="getAllStudents",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="size",
+     *     description="Numero de elementos por pagina",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="10"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="sort",
+     *     description="Ordenar por el campo (Para ordenar por el identificador del estudiante especificar la tabla de referencia Ej:students.id, para el resto basta con colocar el nombre del campo que contiene la llave foranea Ej:jornada_id)",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="students.id"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_sort",
+     *     description="Tipo de orden",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="asc"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
     public function index(Request $request);
 
     /**
@@ -220,11 +296,50 @@ interface IStudentController
      * )
      *
      */
-
     public function store(StoreStudentRequest $request);
 
+    /**
+     * @OA\Get(
+     *   path="/api/students/{student}",
+     *   tags={"Estudiantes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener la información de un estudiante",
+     *   description="Obtener la información de un estudiante por su identificador",
+     *   operationId="showStudent",
+     *   @OA\Parameter(
+     *     name="student",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
     public function show(Request $request,Student $student);
-    
+
     /**
      * @OA\Put(
      *   path="/api/students/{student}",
@@ -343,4 +458,66 @@ interface IStudentController
      */
     public function destroy(Student $student);
 
+    /**
+     * @OA\Post(
+     *   path="/api/students/photo",
+     *   tags={"Estudiantes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Actualizar la foto de perfil de estudiante",
+     *   description="Actualizarla foto de perfil de estudiante.",
+     *   operationId="updatePhotoStudent",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="student_id",
+     *           description="Id del estudiante",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="files",
+     *           description="Foto de perfil",
+     *           type="array",
+     *           @OA\Items(
+     *              type="file"
+     *           ),
+     *         ),
+     *         @OA\Property(
+     *           property="period",
+     *           description="Periodo de actualizacion",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_document",
+     *           description="tipo de documento",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "photo" : "required|file",
+     *          "period" : "required|integer",
+     *          "type_document" : "required|integer|exists:landlord.type_documents,id"
+     *      },
+     *   )),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updatePhoto(Request $request);
 }

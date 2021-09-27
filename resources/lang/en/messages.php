@@ -5,6 +5,7 @@ return [
     'method-not-allowed' => 'Method Not Allowed.',
     'no-exist-instance' => "Does not exist any instance of ':model' with the given id",
     'exist-instance-custom' => "There is an instance of ':model' with ':modelA' and ':modelB' instances provided",
+    'no-exist-instance-resource' => "Does not exist any instance with the given resource",
     'exist-instance' => "There is an instance of ':model' with the given parameters in the RequestBody",
     'forbidden' => 'Unauthorized resource.',
     'no-authorize' => 'Authentication is required to access this resource.',

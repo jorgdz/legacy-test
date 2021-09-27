@@ -18,6 +18,7 @@ class CreateTableStudent extends Migration
 
             $table->string('stud_code')->nullable();
             $table->string('stud_photo')->nullable();
+            $table->string('stud_photo_path')->nullable();
             $table->string('stud_observation')->nullable();
 
             $table->integer('user_id')->unsigned();
