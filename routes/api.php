@@ -121,8 +121,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
  */
 Route::put('/users/{user}/change/password', [UserController::class, 'changePassword'])->middleware(['auth:sanctum',  'permission:users-change-password']);
 Route::get('/users/uncollaborator', [UserController::class, 'showUsersUnCollaborator'])->middleware(['auth:sanctum',  'permission:users-lista-usuario-diferente-colaborador']);
-Route::get('/users', [UserController::class, 'index'])->middleware(['auth:sanctum']);
-Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth:sanctum']);
+Route::get('/users', [UserController::class, 'index'])->middleware(['auth:sanctum', 'permission:users-listar-usuarios']);
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth:sanctum', 'permission:users-obtener-usuario']);
 Route::post('/users', [UserController::class, 'store'])->middleware(['auth:sanctum', 'permission:users-crear-usuario']);
 Route::patch('/users/{user}', [UserController::class, 'update'])->middleware(['auth:sanctum', 'permission:users-actualizar-usuario']);
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth:sanctum', 'permission:users-actualizar-usuario']);

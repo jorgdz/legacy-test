@@ -2449,6 +2449,22 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'position'
             ],
+            [
+                'name' => 'users-listar-usuarios',
+                'alias' => 'Listar usuarios',
+                'description' => 'Listar todos los usuarios',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'users'
+            ],
+            [
+                'name' => 'users-obtener-usuario',
+                'alias' => 'Obtener un usuario',
+                'description' => 'Obtener un usuario por id',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'users'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2841,7 +2857,7 @@ class RoleSeeder extends Seeder
             ['permission_id' => 222, 'role_id' => 1],
             ['permission_id' => 223, 'role_id' => 1],
             ['permission_id' => 224, 'role_id' => 1],
-            
+
             /**
              * Estados 225
              */
@@ -2943,17 +2959,19 @@ class RoleSeeder extends Seeder
             ['permission_id' => 275, 'role_id' => 1],
             ['permission_id' => 276, 'role_id' => 1],
             ['permission_id' => 277, 'role_id' => 1],
+            ['permission_id' => 278, 'role_id' => 1],
+            ['permission_id' => 279, 'role_id' => 1],
 
             /**
-             * 
-             * 
-             * 
+             *
+             *
+             *
              * Permisos de Administrador
-             * 
-             * 
-             * 
+             *
+             *
+             *
              */
-            
+
             /**
              * Perfiles
              */
@@ -3437,6 +3455,8 @@ class RoleSeeder extends Seeder
             ['permission_id' => 275, 'role_id' => 2],
             ['permission_id' => 276, 'role_id' => 2],
             ['permission_id' => 277, 'role_id' => 2],
+            ['permission_id' => 278, 'role_id' => 2],
+            ['permission_id' => 279, 'role_id' => 2],
         ]);
     }
 }
