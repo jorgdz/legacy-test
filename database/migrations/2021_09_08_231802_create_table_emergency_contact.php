@@ -20,8 +20,8 @@ class CreateTableEmergencyContact extends Migration
             $table->string('em_ct_second_phone', 50)->nullable();
 
             $table->integer('type_kinship_id')->unsigned();
-            $table->foreign('type_kinship_id')->references('id')->on('type_kinship');
-           
+            $table->foreign('type_kinship_id')->references('id')->on('catalogs');
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

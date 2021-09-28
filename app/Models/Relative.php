@@ -57,10 +57,10 @@ class Relative extends Model implements AuditableContract
     /**
      * Type Kinship
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function typeKinship () {
-        return $this->belongsTo(Typekinship::class, 'type_kinship_id','id');
+    public function typeKinship () : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'type_kinship_id','id');
     }
 
     /**

@@ -20,7 +20,7 @@ class InstituteRepository extends BaseRepository
      *
      * @var array
      */
-    protected $parents = ['cities', 'type_institutes', 'status'];
+    protected $parents = ['catalogs', 'type_institutes', 'status'];
 
     /**
      * fields
@@ -36,8 +36,8 @@ class InstituteRepository extends BaseRepository
      */
     protected $selfFieldsAndParents = [
         'inst_name',
-        'cit_name',
-        'cit_acronym',
+        'cat_name',
+        'cat_acronym',
         'tin_name',
         'st_name'
     ];

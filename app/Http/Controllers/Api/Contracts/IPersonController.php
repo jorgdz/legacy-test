@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Person;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
-use App\Http\Requests\StorePersonAsStudentRequest;
 use App\Http\Requests\StoreAssignPersonJobsRequest;
 use App\Http\Requests\UpdateLanguagesPersonRequest;
 
@@ -53,7 +52,7 @@ interface IPersonController {
      *   ),
      *   @OA\Parameter(
      *     name="sort",
-     *     description="Ordenar por el campo",
+     *     description="Ordenar por el campo (Para ordenar por modalidad o jornada la tabla de referencia Ej:identification.cat_name, religion.cat_name, statusMarital.cat_name, city.cat_name, currentCity.cat_name, sector.cat_name, ethnic.cat_name, livingPlace.cat_name para el resto de los campos no es necesario especificar nada mas)",
      *     in="query",
      *     required=false,
      *     @OA\Schema(
@@ -113,6 +112,7 @@ interface IPersonController {
      *           property="type_identification_id",
      *           description="ID del tipo de identificacion",
      *           type="integer",
+     *           example="66 - 69",
      *         ),
      *         @OA\Property(
      *           property="pers_identification",
@@ -200,36 +200,43 @@ interface IPersonController {
      *           property="vivienda_id",
      *           description="ID catalogo",
      *           type="integer",
+     *           example="16 al 24",
      *         ),
      *         @OA\Property(
      *           property="type_religion_id",
      *           description="ID del tipo de religion",
      *           type="integer",
+     *           example="35 - 44",
      *         ),
      *         @OA\Property(
      *           property="status_marital_id",
      *           description="ID del estado marital",
      *           type="integer",
+     *           example="45 - 48",
      *         ),
      *         @OA\Property(
      *           property="city_id",
      *           description="ID de la ciudad natal",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="current_city_id",
      *           description="ID de la ciudad que actualmente se encuentra",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="sector_id",
      *           description="ID del sector",
      *           type="integer",
+     *           example="54 - 59",
      *         ),
      *         @OA\Property(
      *           property="ethnic_id",
      *           description="ID de etnia",
      *           type="integer",
+     *           example="60 - 65",
      *         ),
      *       ),
      *     ),
@@ -255,13 +262,13 @@ interface IPersonController {
      *          "pers_num_taxpayers_household" : "nullable|integer",
      *          "pers_has_vehicle" : "nullable|digits_between:0,1",
      *          "vivienda_id"  : "required|integer|exists:tenant.catalogs,id",
-     *          "type_religion_id"  : "required|integer|exists:type_religions,id",
-     *          "status_marital_id" : "required|integer|exists:status_marital,id",
-     *          "city_id"           : "required|integer|exists:cities,id",
-     *          "current_city_id"   : "required|integer|exists:cities,id",
-     *          "sector_id"         : "required|integer|exists:sectors,id",
-     *          "ethnic_id"         : "required|integer|exists:ethnics,id",
-     *          "type_identification_id" : "required|integer|exists:type_identifications,id",
+     *          "type_religion_id"  : "required|integer|exists:catalogs,id",
+     *          "status_marital_id" : "required|integer|exists:catalogs,id",
+     *          "city_id"           : "required|integer|exists:catalogs,id",
+     *          "current_city_id"   : "required|integer|exists:catalogs,id",
+     *          "sector_id"         : "required|integer|exists:catalogs,id",
+     *          "ethnic_id"         : "required|integer|exists:catalogs,id",
+     *          "type_identification_id" : "required|integer|exists:catalogs,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -336,7 +343,8 @@ interface IPersonController {
     *                       "type" : "integer"
     *                   },
     *                   "city_id" : {
-    *                       "type" : "integer"
+    *                       "type" : "integer",
+    *                       "example" : "49 - 53",
     *                   },
     *                   "status_id" : {
     *                       "type" : "integer"
@@ -360,7 +368,7 @@ interface IPersonController {
     *        "end_date"   : "nullable|date",
     *        "per_job_current" : "nullable|boolean",
     *        "per_job_iess_affiliated" : "nullable|boolean",
-    *        "city_id"   : "required|integer|exists:tenant.cities,id",
+    *        "city_id"   : "required|integer|exists:tenant.catalogs,id",
     *        "status_id"  : "required|integer|exists:tenant.status,id"
     *      },
     *   )),
@@ -446,6 +454,7 @@ interface IPersonController {
      *           property="type_identification_id",
      *           description="ID del tipo de identificacion",
      *           type="integer",
+     *           example="66 - 69",
      *         ),
      *         @OA\Property(
      *           property="pers_identification",
@@ -533,36 +542,43 @@ interface IPersonController {
      *           property="vivienda_id",
      *           description="ID catalogo",
      *           type="integer",
+     *           example="16 al 24",
      *         ),
      *         @OA\Property(
      *           property="type_religion_id",
      *           description="ID del tipo de religion",
      *           type="integer",
+     *           example="35 - 44",
      *         ),
      *         @OA\Property(
      *           property="status_marital_id",
      *           description="ID del estado marital",
      *           type="integer",
+     *           example="45 - 48",
      *         ),
      *         @OA\Property(
      *           property="city_id",
      *           description="ID de la ciudad natal",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="current_city_id",
      *           description="ID de la ciudad que actualmente se encuentra",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="sector_id",
      *           description="ID del sector",
      *           type="integer",
+     *           example="54 - 59",
      *         ),
      *         @OA\Property(
      *           property="ethnic_id",
      *           description="ID de etnia",
      *           type="integer",
+     *           example="60 - 65",
      *         ),
      *       ),
      *     ),
@@ -579,13 +595,13 @@ interface IPersonController {
      *          "pers_gender"          : "required|string",
      *          "pers_date_birth"      : "required|date",
      *          "pers_direction"       : "required|string",
-     *          "type_religion_id"     : "required|integer|exists:type_religions,id",
-     *          "status_marital_id"    : "required|integer|exists:status_marital,id",
-     *          "city_id"              : "required|integer|exists:cities,id",
-     *          "current_city_id"      : "required|integer|exists:cities,id",
-     *          "sector_id"            : "required|integer|exists:sectors,id",
-     *          "ethnic_id"            : "required|integer|exists:ethnics,id",
-     *          "type_identification_id" : "required|integer|exists:type_identifications,id",
+     *          "type_religion_id"     : "required|integer|exists:catalogs,id",
+     *          "status_marital_id"    : "required|integer|exists:catalogs,id",
+     *          "city_id"              : "required|integer|exists:catalogs,id",
+     *          "current_city_id"      : "required|integer|exists:catalogs,id",
+     *          "sector_id"            : "required|integer|exists:catalogs,id",
+     *          "ethnic_id"            : "required|integer|exists:catalogs,id",
+     *          "type_identification_id" : "required|integer|exists:catalogs,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -674,7 +690,7 @@ interface IPersonController {
      *           type="array",
      *           @OA\Items(
      *             type="integer",
-     *             example="1"
+     *             example="81, 82, 83, 84"
      *           ),
      *         ),
      *       ),
@@ -688,7 +704,7 @@ interface IPersonController {
      * )
      *
      */
-    public function updateLanguagePerson(UpdateLanguagesPersonRequest $request, Person $person);
+    public function assignLanguages(UpdateLanguagesPersonRequest $request, Person $person);
 
     /**
      * @OA\Get(
@@ -787,6 +803,6 @@ interface IPersonController {
      * )
      *
      */
-     
+
     public function personAsStudent(Request $request, Person $person);
 }

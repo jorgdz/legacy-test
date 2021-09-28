@@ -6,6 +6,7 @@ use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
@@ -43,6 +44,7 @@ class Catalog extends Model implements AuditableContract
         'updated_at',
         'deleted_at',
         'parent_id',
+        'pivot',
     ];
 
     /**
@@ -52,6 +54,11 @@ class Catalog extends Model implements AuditableContract
      */
     public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    public function persons() : BelongsToMany
+    {
+        return $this->belongsToMany(Person::class);
     }
 
     public function children() {

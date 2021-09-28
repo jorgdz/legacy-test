@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablePersonLanguage extends Migration
+class CreateCatalogPersonTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTablePersonLanguage extends Migration
      */
     public function up()
     {
-        Schema::create('language_persons', function (Blueprint $table) {
+        Schema::create('catalog_person', function (Blueprint $table) {
             $table->integer('person_id')->unsigned();
-            $table->integer('language_id')->unsigned();
+            $table->integer('catalog_id')->unsigned();
 
-            $table->foreign('language_id')->references('id')->on('type_languages');
             $table->foreign('person_id')->references('id')->on('persons');
+            $table->foreign('catalog_id')->references('id')->on('catalogs');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateTablePersonLanguage extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('language_persons');
+        Schema::dropIfExists('catalog_person');
     }
 }

@@ -17,7 +17,7 @@ class CreateInstituteTable extends Migration
             $table->increments('id');
             $table->string('inst_name')->nullable();
             $table->integer('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('city_id')->references('id')->on('catalogs');
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->integer('type_institute_id')->unsigned();

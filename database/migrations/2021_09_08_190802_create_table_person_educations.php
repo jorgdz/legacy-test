@@ -22,13 +22,13 @@ class CreateTablePersonEducations extends Migration
 
             $table->integer('institute_id')->unsigned();
             $table->foreign('institute_id')->references('id')->on('institutes');
-            
+
             $table->integer('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('cities');
-            
+            $table->foreign('city_id')->references('id')->on('catalogs');
+
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons');
-            
+
             $table->integer('type_education_id')->unsigned();
             $table->foreign('type_education_id')->references('id')->on('type_education');
 

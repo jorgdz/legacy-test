@@ -25,7 +25,7 @@ class CreateTableStudent extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->integer('jornada_id')->unsigned();
-            $table->foreign('jornada_id')->references('id')->on('type_daytrip');
+            $table->foreign('jornada_id')->references('id')->on('catalogs');
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
@@ -34,7 +34,7 @@ class CreateTableStudent extends Migration
             $table->foreign('campus_id')->references('id')->on('campus');
 
             $table->integer('modalidad_id')->unsigned();
-            $table->foreign('modalidad_id')->references('id')->on('modalities');
+            $table->foreign('modalidad_id')->references('id')->on('catalogs');
 
             $table->timestamps();
             $table->softDeletes();

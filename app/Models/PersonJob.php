@@ -75,7 +75,7 @@ class PersonJob extends Model implements AuditableContract
      * @return BelongsTo
      */
     public function city() : BelongsTo {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->belongsTo(Catalog::class, 'city_id');
     }
 
     /**

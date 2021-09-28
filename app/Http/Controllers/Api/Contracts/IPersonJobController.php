@@ -151,6 +151,7 @@ interface IPersonJobController
      *           property="city_id",
      *           description="Id de la ciudad",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="person_id",
@@ -176,7 +177,7 @@ interface IPersonJobController
      *        "start_date" : "nullable|date",
      *        "end_date"   : "nullable|date",
      *        "per_job_current" : "nullable|boolean",
-     *        "city_id"   : "required|integer|exists:cities,id",
+     *        "city_id"   : "required|integer|exists:catalogs,id",
      *        "person_id"  : "required|integer|exists:persons,id",
      *        "status_id"  : "required|integer|exists:status,id"
      *      },
@@ -297,6 +298,7 @@ interface IPersonJobController
      *           property="city_id",
      *           description="Id de la ciudad",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="person_id",
@@ -322,7 +324,7 @@ interface IPersonJobController
      *        "start_date" : "nullable|date",
      *        "end_date"   : "nullable|date",
      *        "per_job_current" : "nullable|boolean",
-     *        "city_id"   : "required|integer|exists:cities,id",
+     *        "city_id"   : "required|integer|exists:catalogs,id",
      *        "person_id"  : "required|integer|exists:persons,id",
      *        "status_id"  : "required|integer|exists:status,id"
      *      },

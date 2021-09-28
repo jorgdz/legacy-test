@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Permission\Models\Role as RolePersonalized;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
@@ -53,10 +54,10 @@ class Role extends RolePersonalized
     /**
      * positions
      *
-     * @return HasMany
+     * @return HasOne
      */
-    public function positions() : HasMany
+    public function position() : HasOne
     {
-        return $this->hasMany(Position::class, 'role_id');
+        return $this->hasOne(Position::class, 'role_id');
     }
 }

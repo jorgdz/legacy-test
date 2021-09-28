@@ -2,14 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\StageController;
 use App\Http\Controllers\Api\CampusController;
-use App\Http\Controllers\Api\EthnicController;
 use App\Http\Controllers\Api\PeriodController;
-use App\Http\Controllers\Api\SectorController;
 use App\Http\Controllers\Api\StatusController;
 use App\Http\Controllers\Api\TenantController;
 use App\Http\Controllers\Api\CompanyController;
@@ -27,19 +24,15 @@ use App\Http\Controllers\Api\TagStudentController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\PeriodStageController;
 use App\Http\Controllers\Api\TypeDaytripController;
-use App\Http\Controllers\Api\TypeKinshipController;
 use App\Http\Controllers\Api\TypeStudentController;
 use App\Http\Controllers\Api\TypeLanguageController;
-use App\Http\Controllers\Api\TypeReligionController;
 use App\Http\Controllers\Api\EconomicGroupController;
 use App\Http\Controllers\Api\InstituteTypeController;
-use App\Http\Controllers\Api\StatusMaritalController;
 use App\Http\Controllers\Api\StudentRecordController;
 use App\Http\Controllers\Api\TypeEducationController;
 use App\Http\Controllers\Api\TypeDisabilityController;
 use App\Http\Controllers\Api\EmergencyContactController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
-use App\Http\Controllers\Api\TypeIdentificationController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\CategoryStatusController;
 use App\Http\Controllers\Api\ClassroomTypeController;
@@ -294,39 +287,45 @@ Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])
 /**
  * City
  */
-Route::get('cities', [CityController::class, 'index'])->middleware(['auth:sanctum', 'permission:city-listar-ciudad']);
-Route::post('cities', [CityController::class, 'store'])->middleware(['auth:sanctum', 'permission:city-crear-ciudad']);
-Route::get('cities/{city}', [CityController::class, 'show'])->middleware(['auth:sanctum', 'permission:city-obtener-ciudad']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('cities', [CityController::class, 'index'])->middleware(['auth:sanctum', 'permission:city-listar-ciudad']);
+//Route::post('cities', [CityController::class, 'store'])->middleware(['auth:sanctum', 'permission:city-crear-ciudad']);
+//Route::get('cities/{city}', [CityController::class, 'show'])->middleware(['auth:sanctum', 'permission:city-obtener-ciudad']);
 
 /**
  * Status Marital
  */
-Route::get('status-marital', [StatusMaritalController::class, 'index'])->middleware(['auth:sanctum', 'permission:status_marital-listar-estatus']);
-Route::get('status-marital/{statusmarital}', [StatusMaritalController::class, 'show'])->middleware(['auth:sanctum', 'permission:status_marital-obtener-estatus']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('status-marital', [StatusMaritalController::class, 'index'])->middleware(['auth:sanctum', 'permission:status_marital-listar-estatus']);
+//Route::get('status-marital/{statusmarital}', [StatusMaritalController::class, 'show'])->middleware(['auth:sanctum', 'permission:status_marital-obtener-estatus']);
 
 /**
  * Type Identification
  */
-Route::get('type-identifications', [TypeIdentificationController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_identification-listar-tipo-identificacion']);
-Route::get('type-identifications/{typeidentification}', [TypeIdentificationController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_identification-obtener-tipo-identificacion']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('type-identifications', [TypeIdentificationController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_identification-listar-tipo-identificacion']);
+//Route::get('type-identifications/{typeidentification}', [TypeIdentificationController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_identification-obtener-tipo-identificacion']);
 
 /**
  * Type Religion
  */
-Route::get('type-religions', [TypeReligionController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_religion-listar-tipo-religion']);
-Route::get('type-religions/{typereligion}', [TypeReligionController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_religion-obtener-tipo-religion']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('type-religions', [TypeReligionController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_religion-listar-tipo-religion']);
+//Route::get('type-religions/{typereligion}', [TypeReligionController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_religion-obtener-tipo-religion']);
 
 /**
  * Sector
  */
-Route::get('sectors', [SectorController::class, 'index'])->middleware(['auth:sanctum', 'permission:sector-listar-sector']);
-Route::get('sectors/{sector}', [SectorController::class, 'show'])->middleware(['auth:sanctum', 'permission:sector-obtener-sector']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('sectors', [SectorController::class, 'index'])->middleware(['auth:sanctum', 'permission:sector-listar-sector']);
+//Route::get('sectors/{sector}', [SectorController::class, 'show'])->middleware(['auth:sanctum', 'permission:sector-obtener-sector']);
 
 /**
  * Ethnic
  */
-Route::get('ethnics', [EthnicController::class, 'index'])->middleware(['auth:sanctum', 'permission:ethnic-listar-etnias']);
-Route::get('ethnics/{ethnic}', [EthnicController::class, 'show'])->middleware(['auth:sanctum', 'permission:ethnic-obtener-etnias']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('ethnics', [EthnicController::class, 'index'])->middleware(['auth:sanctum', 'permission:ethnic-listar-etnias']);
+//Route::get('ethnics/{ethnic}', [EthnicController::class, 'show'])->middleware(['auth:sanctum', 'permission:ethnic-obtener-etnias']);
 
 /**
  * Type Disability
@@ -337,8 +336,9 @@ Route::get('type-disabilities/{typedisabilities}', [TypeDisabilityController::cl
 /**
  * Type Daytrip
  */
-Route::get('type-daytrips', [TypeDaytripController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_daytrip-listar-tipo-jornada']);
-Route::get('type-daytrips/{typedaytrip}', [TypeDaytripController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_daytrip-obtener-tipo-jornada']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('type-daytrips', [TypeDaytripController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_daytrip-listar-tipo-jornada']);
+//Route::get('type-daytrips/{typedaytrip}', [TypeDaytripController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_daytrip-obtener-tipo-jornada']);
 /**
  * TypeStudent
  */
@@ -348,8 +348,9 @@ Route::get('type-students/{typeStudent}', [TypeStudentController::class, 'show']
 /**
  * Type Language
  */
-Route::get('type-languages', [TypeLanguageController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_language-listar-tipo-idioma']);
-Route::get('type-languages/{typelanguage}', [TypeLanguageController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_language-obtener-tipo-idioma']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('type-languages', [TypeLanguageController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_language-listar-tipo-idioma']);
+//Route::get('type-languages/{typelanguage}', [TypeLanguageController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_language-obtener-tipo-idioma']);
 /**
  * Blood Type
  */
@@ -358,8 +359,9 @@ Route::get('blood-types/{bloodtype}', [BloodTypeController::class, 'show'])->mid
 /**
  * Type Kinship
  */
-Route::get('type-kinships', [TypeKinshipController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_kinship-listar-tipo-parentesco']);
-Route::get('type-kinships/{typekinship}', [TypeKinshipController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_kinship-obtener-tipo-parentesco']);
+/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
+//Route::get('type-kinships', [TypeKinshipController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_kinship-listar-tipo-parentesco']);
+//Route::get('type-kinships/{typekinship}', [TypeKinshipController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_kinship-obtener-tipo-parentesco']);
 
 /**
  * Type Education

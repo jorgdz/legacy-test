@@ -24,18 +24,6 @@ class PositionSeeder extends Seeder
             [
                 'pos_name' => 'Soporte',
                 'pos_description' => 'Es quien se encarga de operar el sistema',
-                'role_id' => 1,
-                'status_id' => 1,
-            ],
-            [
-                'pos_name' => 'Gerente',
-                'pos_description' => 'Es quien representa la empresa',
-                'role_id' => 2,
-                'status_id' => 1,
-            ],
-            [
-                'pos_name' => 'Tecnico',
-                'pos_description' => 'Es quien se encarga de reparar algo',
                 'role_id' => 2,
                 'status_id' => 1,
             ],

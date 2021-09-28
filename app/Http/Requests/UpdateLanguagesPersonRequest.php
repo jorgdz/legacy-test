@@ -28,7 +28,7 @@ class UpdateLanguagesPersonRequest extends FormRequest
     {
         return [
             'languages' => 'array|required',
-            'languages.*' => 'integer|exists:tenant.type_languages,id|distinct'
+            'languages.*' => 'integer|exists:tenant.catalogs,id|distinct'
         ];
     }
 }

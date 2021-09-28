@@ -115,6 +115,7 @@ interface InterfaceInstituteController
      *           property="city_id",
      *           description="Ciudad del instituto",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="type_institute_id",
@@ -134,7 +135,7 @@ interface InterfaceInstituteController
      *   @OA\JsonContent(
      *      example={
      *          "inst_name" : "required",
-     *          "city_id"   : "required|integer|exists:tenant.cities,id",
+     *          "city_id"   : "required|integer|exists:tenant.catalogs,id",
      *          "status_id" : "required|integer|exists:tenant.status,id",
      *          "type_institute_id" : "required|integer|exists:tenant.type_institutes,id",
      *      },
@@ -226,6 +227,7 @@ interface InterfaceInstituteController
      *           property="city_id",
      *           description="Ciudad del instituto",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="type_institute_id",
@@ -245,8 +247,8 @@ interface InterfaceInstituteController
      *   @OA\JsonContent(
      *      example={
      *          "inst_name" : "required",
-     *          "city_id"   : "required|integer",
-     *          "status_id" : "required|integer",
+     *          "city_id"   : "required|integer|exists:tenant.catalogs,id",
+     *          "status_id" : "required|integer|exists:tenant.status,id",
      *          "type_institute_id" : "required|integer|exists:tenant.type_institutes,id",
      *      },
      *   )),

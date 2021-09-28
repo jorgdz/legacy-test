@@ -13,7 +13,7 @@ class RoleRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'positions', 'permissions'];
+    protected $relations = ['status', 'position', 'permissions'];
 
     /**
      * fields

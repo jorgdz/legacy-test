@@ -28,8 +28,8 @@ class UpdateStudentRequest extends FormRequest
             //student
             'stud_observation' => 'string',
             'campus_id' => 'required|integer|exists:tenant.campus,id',
-            'modalidad_id' => 'required|integer|exists:tenant.modalities,id',
-            'jornada_id' => 'required|integer|exists:tenant.type_daytrip,id',
+            'modalidad_id' => 'required|integer|exists:tenant.catalogs,id',
+            'jornada_id' => 'required|integer|exists:tenant.catalogs,id',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }

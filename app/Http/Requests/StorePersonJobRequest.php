@@ -31,7 +31,7 @@ class StorePersonJobRequest extends FormRequest
             "start_date" => "nullable|date",
             "end_date"   => "nullable|date",
             "per_job_current" => "nullable|boolean",
-            "city_id"   => "required|integer|exists:tenant.cities,id",
+            "city_id"   => "required|integer|exists:tenant.catalogs,id",
             "person_id"  => "required|integer|exists:tenant.persons,id",
             "status_id"  => "required|integer|exists:tenant.status,id"
         ];

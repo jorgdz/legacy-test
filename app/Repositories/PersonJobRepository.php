@@ -20,7 +20,7 @@ class PersonJobRepository extends BaseRepository
      *
      * @var array
      */
-    protected $parents = ['cities', 'persons', 'status'];
+    protected $parents = ['catalogs', 'persons', 'status'];
 
     /**
      * fields
@@ -31,7 +31,7 @@ class PersonJobRepository extends BaseRepository
 
     protected $selfFieldsAndParents = [
         'per_job_organization', 'per_job_position', 'per_job_direction',
-        'cit_name', 'cit_acronym',
+        'cat_name', 'cat_acronym',
         'pers_identification', 'pers_firstname', 'pers_secondname', 'pers_first_lastname', 'pers_second_lastname', 'pers_gender',
         'st_name'
     ];

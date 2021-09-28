@@ -7,6 +7,8 @@ use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -27,6 +29,7 @@ class Person extends Model implements AuditableContract
      *
      * @var array
      */
+    /*
     protected $relations = [
         'type_identification_id',
         'city_id',
@@ -36,6 +39,7 @@ class Person extends Model implements AuditableContract
         'type_religion_id',
         'status_marital_id'
     ];
+    */
 
     /**
      * The attributes that are mass assignable.
@@ -69,7 +73,7 @@ class Person extends Model implements AuditableContract
         'ethnic_id'
     ];
 
-    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'pivot'];
 
     protected $dates = ['deleted_at'];
 
@@ -79,10 +83,10 @@ class Person extends Model implements AuditableContract
     /**
      * typeIdentifications
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function identification () {
-        return $this->belongsTo(TypeIdentification::class, 'type_identification_id', 'id');
+    public function identification () : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'type_identification_id', 'id');
     }
 
     /**
@@ -95,11 +99,12 @@ class Person extends Model implements AuditableContract
     }
 
     /**
-     * person is a user
+     * languages
+     * @return BelongsToMany
      *
      */
-    public function languages () {
-        return $this->belongsToMany(TypeLanguage::class,'language_persons','person_id','language_id');
+    public function languages () : BelongsToMany {
+        return $this->belongsToMany(Catalog::class,'catalog_person','person_id','catalog_id');
     }
 
     /**
@@ -114,55 +119,55 @@ class Person extends Model implements AuditableContract
     /**
      * religion
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function religion () {
-        return $this->belongsTo(TypeReligion::class, 'type_religion_id');
+    public function religion () : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'type_religion_id');
     }
 
     /**
      * statusMarital
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function statusMarital () {
-        return $this->belongsTo(StatusMarital::class, 'status_marital_id');
+    public function statusMarital () : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'status_marital_id');
     }
 
     /**
      * origin city
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function city () {
-        return $this->belongsTo(City::class, 'city_id');
+    public function city () : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'city_id');
     }
 
     /**
      * currentCity
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function currentCity () {
-        return $this->belongsTo(City::class, 'current_city_id');
+    public function currentCity () : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'current_city_id');
     }
 
     /**
      * sector
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function sector () {
-        return $this->belongsTo(Sector::class, 'sector_id');
+    public function sector () : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'sector_id');
     }
 
     /**
      * ethnic
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function ethnic () {
-        return $this->belongsTo(Ethnic::class, 'ethnic_id');
+    public function ethnic () : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'ethnic_id');
     }
 
     /**

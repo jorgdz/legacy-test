@@ -81,6 +81,6 @@ class Institute extends Model implements AuditableContract
      */
     public function city (): BelongsTo
     {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->belongsTo(Catalog::class, 'city_id');
     }
 }

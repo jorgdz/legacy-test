@@ -110,7 +110,7 @@ class PersonController extends Controller implements IPersonController
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function updateLanguagePerson(UpdateLanguagesPersonRequest $request, Person $person)
+    public function assignLanguages(UpdateLanguagesPersonRequest $request, Person $person)
     {
         $person->languages()->sync($request->languages);
         return $this->success(Person::with('languages')->find($person->id));

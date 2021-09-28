@@ -91,19 +91,19 @@ class Student extends Model implements AuditableContract
     /**
      * modality
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function modality ()
+    public function modality () : BelongsTo
     {
-        //return $this->belongsTo(Modality::class, 'modalidad_id');
+        return $this->belongsTo(Catalog::class, 'modalidad_id');
     }
 
     /**
      * campus
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function campus ()
+    public function campus () : BelongsTo
     {
         return $this->belongsTo(Campus::class, 'campus_id');
     }
@@ -111,19 +111,19 @@ class Student extends Model implements AuditableContract
     /**
      * daytrip
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function daytrip ()
+    public function daytrip () : BelongsTo
     {
-        return $this->belongsTo(TypeDaytrip::class, 'jornada_id');
+        return $this->belongsTo(Catalog::class, 'jornada_id');
     }
 
     /**
      * user
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function user ()
+    public function user () : BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -131,13 +131,13 @@ class Student extends Model implements AuditableContract
     /**
      * studentDocuments
      *
-     * @return void
+     * @return HasMany
      */
-    public function studentDocuments()
+    public function studentDocuments() : HasMany
     {
         return $this->hasMany(StudentDocument::class);
     }
-    
+
     /**
      * courseStudent
      *

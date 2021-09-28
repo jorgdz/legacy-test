@@ -28,7 +28,7 @@ class CreateCoursesTable extends Migration
             $table->foreign('classroom_id')->references('id')->on('classrooms');
 
             $table->integer('modality_id')->unsigned();
-            $table->foreign('modality_id')->references('id')->on('modalities');
+            $table->foreign('modality_id')->references('id')->on('catalogs');
 
             $table->integer('hourhand_id')->unsigned();
             $table->foreign('hourhand_id')->references('id')->on('hourhands');

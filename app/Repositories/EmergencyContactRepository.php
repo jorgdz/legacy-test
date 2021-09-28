@@ -23,7 +23,7 @@ class EmergencyContactRepository extends BaseRepository
      *
      * @var array
      */
-    protected $parents = ['type_kinship', 'persons', 'status'];
+    protected $parents = ['catalogs', 'persons', 'status'];
 
     /**
      * fields
@@ -41,7 +41,7 @@ class EmergencyContactRepository extends BaseRepository
         'em_ct_name',
         'em_ct_first_phone',
         'em_ct_second_phone',
-        'typ_kin_name',
+        'cat_name',
         'st_name',
     ];
 

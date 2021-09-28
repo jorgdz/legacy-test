@@ -53,12 +53,12 @@ interface IStudentController
      *   ),
      *   @OA\Parameter(
      *     name="sort",
-     *     description="Ordenar por el campo (Para ordenar por el identificador del estudiante especificar la tabla de referencia Ej:students.id, para el resto basta con colocar el nombre del campo que contiene la llave foranea Ej:jornada_id)",
+     *     description="Ordenar por el campo (Para ordenar por modalidad o jornada la tabla de referencia Ej:modality.cat_name o daytrip.cat_name, para el resto de los campos no es necesario especificar nada mas",
      *     in="query",
      *     required=false,
      *     @OA\Schema(
      *       type="string",
-     *       example="students.id"
+     *       example="id"
      *     ),
      *   ),
      *   @OA\Parameter(
@@ -113,6 +113,7 @@ interface IStudentController
      *           property="type_identification_id",
      *           description="Tipo de indentificación",
      *           type="integer",
+     *           example="66 - 69",
      *         ),
      *         @OA\Property(
      *           property="pers_identification",
@@ -202,36 +203,43 @@ interface IStudentController
      *           property="vivienda_id",
      *           description="ID catalogo",
      *           type="integer",
+     *           example="16 al 24",
      *         ),
      *         @OA\Property(
      *           property="type_religion_id",
-     *           description="Tipo de religión",
+     *           description="ID del tipo de religion",
      *           type="integer",
+     *           example="35 - 44",
      *         ),
      *         @OA\Property(
      *           property="status_marital_id",
-     *           description="Estado civil",
+     *           description="ID del estado marital",
      *           type="integer",
+     *           example="45 - 48",
      *         ),
      *         @OA\Property(
      *           property="city_id",
-     *           description="Ciudad de nacimiento",
+     *           description="ID de la ciudad natal",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="current_city_id",
-     *           description="Ciudad de actual de residencia",
+     *           description="ID de la ciudad que actualmente se encuentra",
      *           type="integer",
+     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="sector_id",
-     *           description="Sector asociado a la residencia actual",
+     *           description="ID del sector",
      *           type="integer",
+     *           example="54 - 59",
      *         ),
      *         @OA\Property(
      *           property="ethnic_id",
-     *           description="Étnia",
+     *           description="ID de etnia",
      *           type="integer",
+     *           example="60 - 65",
      *         ),
      *         @OA\Property(
      *           property="email",
@@ -247,11 +255,13 @@ interface IStudentController
      *           property="modalidad_id",
      *           description="Modalidad",
      *           type="integer",
+     *           example="70",
      *         ),
      *         @OA\Property(
      *           property="jornada_id",
      *           description="Jornada",
      *           type="integer",
+     *           example="71 - 73",
      *         ),
      *       ),
      *     ),
@@ -277,17 +287,17 @@ interface IStudentController
      *          "pers_num_taxpayers_household" : "nullable|integer",
      *          "pers_has_vehicle" : "nullable|digits_between:0,1",
      *          "vivienda_id"  : "required|integer|exists:tenant.catalogs,id",
-     *          "type_religion_id"  : "required|integer|exists:type_religions,id",
-     *          "status_marital_id" : "required|integer|exists:status_marital,id",
-     *          "city_id"           : "required|integer|exists:cities,id",
-     *          "current_city_id"   : "required|integer|exists:cities,id",
-     *          "sector_id"         : "required|integer|exists:sectors,id",
-     *          "ethnic_id"         : "required|integer|exists:ethnics,id",
-     *          "type_identification_id" : "required|integer|exists:type_identifications,id",
+     *          "type_religion_id"  : "required|integer|exists:catalogs,id",
+     *          "status_marital_id" : "required|integer|exists:catalogs,id",
+     *          "city_id"           : "required|integer|exists:catalogs,id",
+     *          "current_city_id"   : "required|integer|exists:catalogs,id",
+     *          "sector_id"         : "required|integer|exists:catalogs,id",
+     *          "ethnic_id"         : "required|integer|exists:catalogs,id",
+     *          "type_identification_id" : "required|integer|exists:catalogs,id",
      *          "email"      : "required|email|unique:tenant.users,email",
      *          "campus_id" : "required|integer|exists:tenant.campus,id",
-     *          "modalidad_id" : "required|integer|exists:tenant.modalities,id",
-     *          "jornada_id" : "required|integer|exists:tenant.type_daytrip,id"
+     *          "modalidad_id" : "required|integer|exists:tenant.catalogs,id",
+     *          "jornada_id" : "required|integer|exists:tenant.catalogs,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -383,11 +393,13 @@ interface IStudentController
      *           property="modalidad_id",
      *           description="Modalidad",
      *           type="integer",
+     *           example="70",
      *         ),
      *         @OA\Property(
      *           property="jornada_id",
      *           description="Jornada",
      *           type="integer",
+     *           example="71 - 73",
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -403,8 +415,8 @@ interface IStudentController
      *      example={
      *          "stud_observation" : "string",
      *          "campus_id" : "required|integer|exists:tenant.campus,id",
-     *          "modalidad_id" : "required|integer|exists:tenant.modalities,id",
-     *          "jornada_id" : "required|integer|exists:tenant.type_daytrip,id",
+     *          "modalidad_id" : "required|integer|exists:tenant.catalogs,id",
+     *          "jornada_id" : "required|integer|exists:tenant.catalogs,id",
      *          "status_id" : "required|integer|exists:tenant.status,id"
      *      },
      *   )),

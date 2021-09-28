@@ -21,12 +21,12 @@ class CreateRelativesTable extends Migration
 
             $table->integer('person_id_student')->unsigned();
             $table->foreign('person_id_student')->references('id')->on('persons');
-            
+
             $table->integer('type_kinship_id')->unsigned();
-            $table->foreign('type_kinship_id')->references('id')->on('type_kinship');
-            
+            $table->foreign('type_kinship_id')->references('id')->on('catalogs');
+
             $table->string('rel_description')->nullable();
-           
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

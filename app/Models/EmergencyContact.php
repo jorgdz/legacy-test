@@ -26,7 +26,7 @@ class EmergencyContact extends Model// implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['type_kinship_id', 'person_id', 'status_id'];
+    protected $relations = ['catalogs', 'person_id', 'status_id'];
 
     /**
      * dates
@@ -84,6 +84,6 @@ class EmergencyContact extends Model// implements AuditableContract
      */
     public function typeKinship() : BelongsTo
     {
-        return $this->belongsTo(Typekinship::class, 'type_kinship_id');
+        return $this->belongsTo(Catalog::class, 'type_kinship_id');
     }
 }

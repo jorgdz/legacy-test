@@ -33,27 +33,27 @@ class CreateTablePerson extends Migration
             $table->boolean('pers_has_vehicle')->nullable();
 
             $table->integer('type_religion_id')->unsigned();
-            $table->foreign('type_religion_id')->references('id')->on('type_religions');
+            $table->foreign('type_religion_id')->references('id')->on('catalogs');
 
             $table->integer('status_marital_id')->unsigned();
-            $table->foreign('status_marital_id')->references('id')->on('status_marital');
+            $table->foreign('status_marital_id')->references('id')->on('catalogs');
 
             $table->integer('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('city_id')->references('id')->on('catalogs');
 
             $table->integer('current_city_id')->unsigned();
-            $table->foreign('current_city_id')->references('id')->on('cities');
+            $table->foreign('current_city_id')->references('id')->on('catalogs');
 
             $table->integer('sector_id')->unsigned();
-            $table->foreign('sector_id')->references('id')->on('sectors');
+            $table->foreign('sector_id')->references('id')->on('catalogs');
 
             $table->integer('type_identification_id')->unsigned();
-            $table->foreign('type_identification_id')->references('id')->on('type_identifications');
+            $table->foreign('type_identification_id')->references('id')->on('catalogs');
 
             $table->integer('ethnic_id')->unsigned();
-            $table->foreign('ethnic_id')->references('id')->on('ethnics');
+            $table->foreign('ethnic_id')->references('id')->on('catalogs');
 
-            $table->bigInteger('vivienda_id')->unsigned();
+            $table->integer('vivienda_id')->unsigned();
             $table->foreign('vivienda_id')->references('id')->on('catalogs');
 
             $table->timestamps();
