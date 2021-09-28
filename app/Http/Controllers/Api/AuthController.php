@@ -13,6 +13,7 @@ use App\Http\Requests\UserFormRequest;
 use Illuminate\Auth\AuthenticationException;
 use App\Http\Controllers\Api\Contracts\IAuthController;
 use App\Http\Resources\UserResource as UserResource;
+use App\Models\UserProfile;
 use App\Traits\Auditor;
 
 /**
@@ -40,7 +41,15 @@ class AuthController extends Controller implements IAuthController
         if (!Auth::attempt(['us_username' => $request->us_username, 'password' => $request->password, 'status_id' => 1]))
             throw new AuthenticationException(__('messages.no-credentials'));
 
-        $user = new UserResource(User::where('us_username', $request['us_username'])->firstOrFail());
+        $user = User::with(['userProfiles' => fn ($query) => 
+                $query->whereHas('roles', fn ($query) => $query->where('status_id', 1))
+            ])
+            ->where('us_username', $request['us_username'])->firstOrFail();
+            
+        if (!$user->userProfiles || count($user->userProfiles) <= 0)
+            throw new AuthenticationException(__('messages.no-roles-assign'));
+
+        $user = new UserResource($user);
 
         $token = $user->createToken('auth_token')->plainTextToken;
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(User::class)));
