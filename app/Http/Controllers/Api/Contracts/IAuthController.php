@@ -81,4 +81,23 @@ interface IAuthController
      *
      */
     public function logout(Request $request);
+
+    /**
+     * @OA\Post(
+     *   path="/api/logout/all-devices",
+     *   tags={"Autenticado"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Remover los tokens del usuario autenticado",
+     *   description="Remover token",
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function logout_all_devices(Request $request);
 }

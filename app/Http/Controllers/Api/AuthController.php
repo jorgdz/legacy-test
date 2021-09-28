@@ -76,4 +76,18 @@ class AuthController extends Controller implements IAuthController
 
         return $this->success(['message' => 'Good by user.']);
     }
+
+    /**
+     * logout-all-devices
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function logout_all_devices (Request $request) {
+        $this->userCache->logout();
+        $request->user()->tokens()
+            ->delete();
+
+        return $this->success(['message' => 'Good by user.']);
+    }
 }

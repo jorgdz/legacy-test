@@ -108,7 +108,7 @@ Route::get('/whoami', [AuthController::class, 'whoami'])->middleware('auth:sanct
  * Logout
  */
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-
+Route::post('/logout/all-devices', [AuthController::class, 'logout_all_devices'])->middleware('auth:sanctum');
 /**
  * Users
  */
