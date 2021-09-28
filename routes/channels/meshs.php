@@ -9,3 +9,4 @@ Route::get('/meshs/{mesh}/matters', [MeshsController::class, 'showMattersByMesh'
 Route::post('/meshs', [MeshsController::class, 'store'])->middleware(['auth:sanctum', 'permission:meshs-crear-mallas']);
 Route::put('/meshs/{mesh}', [MeshsController::class, 'update'])->middleware(['auth:sanctum', 'permission:meshs-actualizar-mallas']);
 Route::delete('/meshs/{mesh}', [MeshsController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:meshs-borrar-malla']);
+Route::get('/meshs/{mesh}/component', [MeshsController::class, 'learningComponentByMesh'])->middleware(['auth:sanctum'/*, 'permission:learning_components-listar-componente-aprendizaje'*/]);

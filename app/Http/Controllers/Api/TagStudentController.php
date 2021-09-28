@@ -41,17 +41,9 @@ class TagStudentController extends Controller implements ITagStudentController
      */
     public function store(TagStudentFormRequest $request)
     {
-        DB::beginTransaction();
-        try {
             $tagStudent = new TagStudent($request->all());
             $tagStudent = $this->tagStudentCache->save($tagStudent);
-
-            DB::commit();
             return $this->success($tagStudent, Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
     }
 
     /**
@@ -73,22 +65,15 @@ class TagStudentController extends Controller implements ITagStudentController
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, TagStudent $tagstudent)
-    {
-        DB::beginTransaction();
-        try {
+    {  
             $tagstudent->fill($request->all());
 
             if ($tagstudent->isClean())
                 return $this->information(__('messages.nochange'));
 
             $response = $this->tagStudentCache->save($tagstudent);
-
-            DB::commit();
+         
             return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
     }
 
     /**
@@ -99,14 +84,7 @@ class TagStudentController extends Controller implements ITagStudentController
      */
     public function destroy(TagStudent $tagstudent)
     {
-        DB::beginTransaction();
-        try {
             $response = $this->tagStudentCache->destroy($tagstudent);
-            DB::commit();
-            return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+            return $this->success($response);    
     }
 }

@@ -39,7 +39,11 @@ use App\Http\Controllers\Api\ClassroomTypeController;
 use App\Http\Controllers\Api\CriteriaStudentRecordController;
 use App\Http\Controllers\Api\PositionController;
 use App\Http\Controllers\Api\RelativeController;
+use App\Http\Controllers\Api\ComponentController;
+use App\Http\Controllers\Api\DetailMatterMeshController;
+use App\Http\Controllers\Api\LearningComponentController;
 use App\Http\Controllers\Api\SimbologyController;
+
 
 /* Import routes */
 require __DIR__ . "/channels/roles.php";
@@ -234,7 +238,7 @@ Route::post('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::cla
 Route::put('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
 Route::patch('/matter-mesh/{id}', [MatterMeshController::class, 'restoreMatterMesh'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
 Route::delete('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
-
+Route::get('/matter-mesh/{mattermesh}/prerequisites', [MatterMeshController::class, 'showPrerequisites'])->middleware(['auth:sanctum' /*,'permission:mattermesh-listar-dependencias-por-materias-mallas'*/]);
 /*
  *
  * PeriodStages
@@ -438,6 +442,34 @@ Route::put('/relatives/{relative}', [RelativeController::class, 'update'])->midd
 Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:relatives-borrar-familiar']);
 
 /**
+ * Component
+ */
+Route::get('/components', [ComponentController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:components-listar-componente'*/]);
+Route::get('/components/{component}', [ComponentController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:components-obtener-componente'*/]);
+Route::post('/components', [ComponentController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:components-crear-componente'*/]);
+Route::put('/components/{component}', [ComponentController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:components-actualizar-componente'*/]);
+Route::delete('/components/{component}', [ComponentController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:components-borrar-componente'*/]);
+
+/**
+ * Details MatterMesh
+ */
+Route::get('/details-matter-mesh', [DetailMatterMeshController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-listar-detalle-materiamalla'*/]);
+Route::get('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-obtener-detalle-materiamalla'*/]);
+Route::post('/details-matter-mesh', [DetailMatterMeshController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-crear-detalle-materiamalla'*/]);
+Route::put('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-actualizar-detalle-materiamalla'*/]);
+Route::delete('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-borrar-detalle-materiamalla'*/]);
+
+/**
+ * Learning Component 
+ */
+Route::get('/learning-components', [LearningComponentController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:learning_components-listar-componente-aprendizaje'*/]);
+Route::get('/learning-components/{learningcomponent}', [LearningComponentController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:learning_components-obtener-componente-aprendizaje'*/]);
+Route::post('/learning-components', [LearningComponentController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:learning_components-crear-componente-aprendizaje'*/]);
+Route::put('/learning-components/{learningcomponent}', [LearningComponentController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:learning_components-actualizar-componente-aprendizaje'*/]);
+Route::delete('/learning-components/{learningcomponent}', [LearningComponentController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:learning_components-borrar-componente-aprendizaje'*/]);
+
+Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);
+/** 
  * Student
  */
 Route::get('students', [StudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:student-listar-estudiante']);
@@ -458,6 +490,7 @@ Route::get('/simbologies/{simbology}', [SimbologyController::class, 'show'])->mi
 Route::post('/simbologies', [SimbologyController::class, 'store'])->middleware(['auth:sanctum', 'permission:simbology-crear-simbologia']);
 Route::put('/simbologies/{simbology}', [SimbologyController::class, 'update'])->middleware(['auth:sanctum', 'permission:simbology-actualizar-simbologia']);
 Route::delete('/simbologies/{simbology}', [SimbologyController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:simbology-eliminar-simbologia']);
+
 /**
  * ClassRoomType
  */
@@ -474,3 +507,4 @@ Route::get('/positions/{position}', [PositionController::class, 'show'])->middle
 Route::post('/positions', [PositionController::class, 'store'])->middleware(['auth:sanctum', 'permission:positions-crear-cargo']);
 Route::put('/positions/{position}', [PositionController::class, 'update'])->middleware(['auth:sanctum', 'permission:positions-actualizar-cargo']);
 Route::delete('/positions/{position}', [PositionController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:positions-eliminar-cargo']);
+

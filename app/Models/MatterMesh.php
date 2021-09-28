@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
+
 class MatterMesh extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes,Auditable;
@@ -49,6 +50,8 @@ class MatterMesh extends Model implements AuditableContract
      * @var array
      */
     protected $hidden = ['created_at','updated_at','deleted_at','pivot'];
+
+    protected $appends = ['total_hours_workload'];
 
     /**
      * The attributes that are mass assignable.
@@ -119,4 +122,32 @@ class MatterMesh extends Model implements AuditableContract
         return $this->belongsToMany(MatterMesh::class, 'mat_mesh_dependencies','parent_matter_mesh_id', 'child_matter_mesh_id');
     }
 
+    /**
+     * Detail Matter Mesh
+     *
+     * @return void
+     */
+    public function detailMatterMesh () {
+        return $this->hasMany(DetailMatterMesh::class,'matter_mesh_id');
+    }
+
+    /**
+     * Total of hours grouped by Matter mesh
+     *
+     * @return void
+     */
+    public function getTotalHoursWorkloadAttribute()
+    {
+        return DetailMatterMesh::where('matter_mesh_id','=',$this->id)->groupBy('matter_mesh_id')->sum('dem_workload');
+    }
+
+    /**
+     * matterMeshPrerequisites
+     *
+     * @return BelongsToMany
+     */
+    public function matterMeshPrerequisites (): BelongsToMany
+    {
+        return $this->belongsToMany(MatterMesh::class, 'mat_mesh_dependencies','child_matter_mesh_id','parent_matter_mesh_id');
+    }
 }

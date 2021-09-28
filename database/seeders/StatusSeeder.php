@@ -21,6 +21,8 @@ class StatusSeeder extends Seeder
             ['st_name' => 'Ingreso', 'category_status_id' => '4'],
             ['st_name' => 'Vigente', 'category_status_id' => '4'],
             ['st_name' => 'No vigente', 'category_status_id' => '4'],
+            ['st_name' => 'Publicado', 'category_status_id' => '5'],
+            ['st_name' => 'No Publicado', 'category_status_id' => '5'],
         ]);
     }
 }

@@ -612,6 +612,19 @@ return [
 		'typ_stu_pro_name' => 'nombre del tipo programa para estudiantes',
 		'typ_stu_pro_description' => 'descripción del tipo programa para estudiantes',
 		'typ_stu_pro_acronym' => 'Acrónimo programa para estudiantes',
+		/**
+		 * Component
+		 */
+		'com_acronym' => 'abreviatura del componente de aprendizaje',
+		'com_name' 	  => 'nombre del componente de aprendizaje',
+		'component_id'=> 'componente',
+		/**
+		 * Details MatterMesh
+		 */
+		'matter_mesh_id' => 'materia malla',
+		'components_id'  => 'componente aprendizaje',
+		'dem_workload'   => 'carga horaria',
+
         /**
          * Simbologies
          */
@@ -622,6 +635,7 @@ return [
 		 * Student Record Programs
 		 */
 		'type_student_program_id' => 'tipo programa para estudiantes',
+
         /**
          * Classroom Type
          */
@@ -632,6 +646,7 @@ return [
          */
         'pos_name' => 'nombre del cargo',
         'pos_description' => 'descripcion del cargo',
+
 	],
 
 ];

@@ -148,4 +148,36 @@ class MatterMeshRepository extends BaseRepository
 
         return $order->save();
     }
+
+    
+    /**
+     * showPrerequisites
+     *
+     * @param  mixed $matterMesh
+     * @return void
+     */
+    public function showPrerequisites(MatterMesh $matterMesh) {
+        $query = $matterMesh->matterMeshPrerequisites()->wherePivot('child_matter_mesh_id', $matterMesh->id)->with(['status', 'mesh', 'matter', 'simbology']);
+
+        $fields = [
+            'calification_type',
+            'min_calification',
+            'max_calification',
+            'matter_rename',
+            'group',
+        ];
+
+        if (isset(request()->query()['search'])) {
+            $query = $query->where(function ($query) use ($fields) {
+                for($i = 0; $i < count($fields); $i ++) {
+                    $query->orwhere($fields[$i], 'like',  '%' . strtolower(request()->query()['search']) .'%');
+                }
+            });
+        }
+
+        $sort = isset(request()->query()['sort']) ? request()->query()['sort'] : 'id';
+        $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
+
+        return $query->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ? request()->query()['size'] : 100);
+    }
 }

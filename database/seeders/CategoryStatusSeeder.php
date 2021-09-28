@@ -19,6 +19,7 @@ class CategoryStatusSeeder extends Seeder
             ['cat_name' => 'Desarrollo',    'cat_description' => 'Estados en desarrollo'],
             ['cat_name' => 'Planificacion', 'cat_description' => 'Estados en planificacion'],
             ['cat_name' => 'Materias',      'cat_description' => 'Estados en materias'],
+            ['cat_name' => 'Mallas',        'cat_description' => 'Estados en mallas'],
         ]);
     }
 }

@@ -108,4 +108,16 @@ class MatterMeshCache extends BaseCache
         });
     }
 
+    /**
+     * showDependencies
+     *
+     * @param  mixed $model
+     * @return void
+     */
+    public function showPrerequisites(Model $model) {
+        return $this->cache::remember($this->key, $this->ttl, function() use ($model) {
+            return $this->repository->showPrerequisites($model);
+        });
+    }
+
 }

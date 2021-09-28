@@ -38,16 +38,11 @@ class ListBaseRepository
         return $this;
     }
 
-    /**
-     * withModelRelations
-     *
-     * @param  mixed $relations
-     * @return get relations child or parent
-     */
-    public function withModelRelations ($relations) : ListBaseRepository {
-        if (!empty($relations))
-            $this->model = $this->model->with($relations);
 
+    public function withModelRelations (array $relations) : ListBaseRepository {
+        if (count($relations)>0){
+            $this->model = $this->model->with($relations);
+        }      
         return $this;
     }
 
@@ -90,15 +85,13 @@ class ListBaseRepository
             $query = $query->when($request, function ($query) use ($request, $fields, $relations, $keyName, $table) {
                 if($this->getParents() == 0) {
                     $query = $query->where(function ($query) use ($request, $fields) {
-
                         for($i = 0; $i < count($fields); $i++) {
                             $query->orwhere($fields[$i], 'like',  '%' . strtolower($request->search) .'%');
-                        }
-
+                        }              
                     });
                 } else {
                     if(count($relations) > 0) {
-
+                
                         for($i = 0; $i < count($this->getParents()); $i++) {
 
                             $query->select($table.'.*')->join($this->getParent($i), function($join) use ($i, $keyName, $table, $relations) {

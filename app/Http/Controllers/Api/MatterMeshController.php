@@ -149,4 +149,15 @@ class MatterMeshController extends Controller implements IMatterMeshController
         MatterMesh::withTrashed()->find($id)->restore();
         return $this->information(__('messages.success'));
     }
+
+    /**
+     * show Prerequisites matter mesh
+     *
+     * @param  mixed $mattermesh
+     * @return void
+     */
+    public function showPrerequisites(MatterMesh $mattermesh) {
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(MatterMesh::class)));
+        return $this->success($this->matterMeshCache->showPrerequisites($mattermesh));
+    }
 }

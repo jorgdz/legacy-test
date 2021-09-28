@@ -55,7 +55,7 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('meshs')->insert([
-            ['mes_name' => 'Malla Curricular', 'mes_description' => '', 'mes_acronym' => 'm1', 'anio' => 2021, 'level_edu_id' => 2, 'status_id' => 1],
+            ['mes_name' => 'Malla Curricular', 'mes_description' => '', 'mes_acronym' => 'm1', 'anio' => 2021, 'level_edu_id' => 2, 'status_id' => 8],
         ]);
 
         DB::connection('tenant')->table('hourhands')->insert([

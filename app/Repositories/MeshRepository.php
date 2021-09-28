@@ -81,11 +81,27 @@ class MeshRepository extends BaseRepository
             // 'pensum',
             'status',
             'matterMesh',
+            'learningComponent',
             'matterMesh.matter',
             'matterMesh.matter.typeMatter',
             'matterMesh.matterMeshDependencies.matter',
+            'matterMesh.detailMatterMesh.component',    
         ]);
 
         return new MatterMeshResource($query->findOrFail($id));
+    }
+
+    public function checkComponentInMeshsPublished($componentId)
+    {
+        return $this->model->where('status_id','=','7')
+                            ->whereHas('learningComponent', function ($query) use($componentId) {
+                                $query->where('component_id', '=', $componentId);
+                            })->first();
+
+    }
+
+    public function checkMeshPublished($meshId)
+    {
+        return Mesh::where('id',$meshId)->where('status_id','7')->first();
     }
 }

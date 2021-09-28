@@ -110,4 +110,14 @@ class Mesh extends Model implements AuditableContract
     {
         return $this->hasMany(MatterMesh::class);
     }
+
+    /**
+     * Learning Components 
+     *
+     * @return void
+     */
+    public function learningComponent () 
+    {
+        return $this->hasMany(LearningComponent::class,'mesh_id');
+    }
 }

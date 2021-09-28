@@ -14,6 +14,7 @@ use Illuminate\Http\Response;
 use App\Http\Requests\MeshRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Http\Controllers\Api\Contracts\IMeshsController;
+use App\Models\LearningComponent;
 
 class MeshsController extends Controller implements IMeshsController
 {
@@ -110,6 +111,11 @@ class MeshsController extends Controller implements IMeshsController
             return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
 
         }
+    }
+
+    public function learningComponentByMesh(Mesh $mesh)
+    {   
+        return $this->success(Mesh::with('learningComponent.component')->find($mesh->id));
     }
 
     /**

@@ -22,7 +22,9 @@ class MatterMeshResource extends JsonResource
             'education_level'       => $this->educationLevel,
             'pensum'                => $this->pensum,
             'status'                => $this->status,
+            'learningComponent'     => $this->learningComponent,
             'matter_mesh'           => collect($this->matterMesh)->where('status_id', 1)->sortBy('order')->values()->all(),
+
         ];
     }
 }

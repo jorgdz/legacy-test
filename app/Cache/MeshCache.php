@@ -66,4 +66,14 @@ class MeshCache extends BaseCache
         $this->forgetCache('meshs');
         return $this->repository->destroy($model);
     }
+
+    public function checkComponentInMeshsPublished($componentId)
+    {
+        return $this->repository->checkComponentInMeshsPublished($componentId);
+    }
+
+    public function checkMeshPublished($meshId)
+    {
+        return $this->repository->checkMeshPublished($meshId);
+    }
 }
