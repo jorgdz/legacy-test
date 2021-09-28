@@ -49,7 +49,7 @@ class MatterMesh extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','deleted_at','pivot'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'pivot'];
 
     protected $appends = ['total_hours_workload'];
 
@@ -62,7 +62,8 @@ class MatterMesh extends Model implements AuditableContract
         'matter_id',
         'mesh_id',
         'simbology_id',
-        'calification_type',
+        'can_homologate',
+        'min_note',
         'min_calification',
         'max_calification',
         'num_fouls',
@@ -77,8 +78,7 @@ class MatterMesh extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function matter(): BelongsTo
-    {
+    public function matter(): BelongsTo {
         return $this->belongsTo(Matter::class, 'matter_id');
     }
 
@@ -87,8 +87,7 @@ class MatterMesh extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function mesh(): BelongsTo
-    {
+    public function mesh(): BelongsTo {
         return $this->belongsTo(Mesh::class, 'mesh_id');
     }
 
@@ -97,8 +96,7 @@ class MatterMesh extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function simbology() : BelongsTo
-    {
+    public function simbology(): BelongsTo {
         return $this->belongsTo(Simbology::class, 'simbology_id');
     }
 
@@ -107,8 +105,7 @@ class MatterMesh extends Model implements AuditableContract
      *
      * @return void
      */
-    public function status ()
-    {
+    public function status() {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
@@ -117,8 +114,7 @@ class MatterMesh extends Model implements AuditableContract
      *
      * @return BelongsToMany
      */
-    public function matterMeshDependencies (): BelongsToMany
-    {
+    public function matterMeshDependencies(): BelongsToMany {
         return $this->belongsToMany(MatterMesh::class, 'mat_mesh_dependencies','parent_matter_mesh_id', 'child_matter_mesh_id');
     }
 
@@ -136,8 +132,7 @@ class MatterMesh extends Model implements AuditableContract
      *
      * @return void
      */
-    public function getTotalHoursWorkloadAttribute()
-    {
+    public function getTotalHoursWorkloadAttribute() {
         return DetailMatterMesh::where('matter_mesh_id','=',$this->id)->groupBy('matter_mesh_id')->sum('dem_workload');
     }
 
@@ -146,8 +141,7 @@ class MatterMesh extends Model implements AuditableContract
      *
      * @return BelongsToMany
      */
-    public function matterMeshPrerequisites (): BelongsToMany
-    {
+    public function matterMeshPrerequisites(): BelongsToMany {
         return $this->belongsToMany(MatterMesh::class, 'mat_mesh_dependencies','child_matter_mesh_id','parent_matter_mesh_id');
     }
 }

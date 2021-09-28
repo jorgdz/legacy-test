@@ -13,8 +13,7 @@ class MeshCache extends BaseCache
      *
      * @return void
      */
-    public function __construct(MeshRepository $meshRepository)
-    {
+    public function __construct(MeshRepository $meshRepository) {
         parent::__construct($meshRepository);
     }
 
@@ -24,8 +23,7 @@ class MeshCache extends BaseCache
      * @param  mixed $request
      * @return void
      */
-    public function all($request)
-    {
+    public function all($request) {
         return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
             return $this->repository->all($request);
         });
@@ -37,8 +35,7 @@ class MeshCache extends BaseCache
      * @param  mixed $id
      * @return void
      */
-    public function find($id)
-    {
+    public function find($id) {
         return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
             return $this->repository->find($id);
         });
@@ -50,8 +47,7 @@ class MeshCache extends BaseCache
      * @param  mixed $model
      * @return void
      */
-    public function save(Model $model)
-    {
+    public function save(Model $model) {
         $this->forgetCache('meshs');
         return $this->repository->save($model);
     }
@@ -61,8 +57,7 @@ class MeshCache extends BaseCache
      *
      * @return void
      */
-    public function destroy(Model $model)
-    {
+    public function destroy(Model $model) {
         $this->forgetCache('meshs');
         return $this->repository->destroy($model);
     }

@@ -10,10 +10,10 @@ use App\Http\Requests\MatterMeshDependenciesRequest;
 use App\Http\Requests\MatterMeshRequest;
 use App\Http\Requests\UpdateMatterMeshRequest;
 use App\Models\MatterMesh;
+use App\Repositories\MeshRepository;
 use App\Traits\Auditor;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class MatterMeshController extends Controller implements IMatterMeshController
@@ -26,14 +26,16 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @var mixed
      */
     private $matterMeshCache;
+    private $meshRepository;
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct (MatterMeshCache $matterMeshCache) {
+    public function __construct (MatterMeshCache $matterMeshCache, MeshRepository $meshRepository) {
         $this->matterMeshCache = $matterMeshCache;
+        $this->meshRepository  = $meshRepository;
     }
 
 
@@ -53,13 +55,24 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @return \Illuminate\Http\Response
      */
     public function store(MatterMeshRequest $request) {
+        $conditionals = [
+            ['id', $request->mesh_id]
+        ];
+        $meshs = $this->meshRepository->findByConditionals($conditionals);
+
+        if (!$meshs) {
+            throw new ConflictException(__('messages.no-exist-instance-resource'));
+        } elseif (count($meshs['matter_mesh']) >= $meshs['mes_number_matter']) {
+            throw new ConflictException(__('messages.max', ['max' => $meshs['mes_number_matter']]));
+        }
+
         $data = DB::connection('tenant')->table('matter_mesh')
                 ->whereNotNull('deleted_at')
                 ->where('matter_id', $request->matter_id)
                 ->where('mesh_id', $request->mesh_id)
                 ->first();
 
-        if ($data){
+        if ($data) {
             MatterMesh::withTrashed()->find($data->id)->restore();
 
             $mattermesh = MatterMesh::findOrFail($data->id);
@@ -116,11 +129,11 @@ class MatterMeshController extends Controller implements IMatterMeshController
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateMatterMeshRequest  $request
+     * @param  MatterMeshRequest  $request
      * @param  mixed  $mattermesh
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMatterMeshRequest $request, MatterMesh $mattermesh) {
+    public function update(MatterMeshRequest $request, MatterMesh $mattermesh) {
         $mattermesh->fill($request->all());
 
         if ($mattermesh->isClean())

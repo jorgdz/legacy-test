@@ -25,7 +25,8 @@ class UpdateMatterMeshRequest extends FormRequest
     {
         return [
             'matter_id' => "required|integer|exists:tenant.matters,id|unique:tenant.matter_mesh,matter_id, {$this->route('mattermesh')->id}",
-            'mesh_id' => 'required|integer|exists:tenant.meshs,id',
+            'mesh_id'   => 'required|integer|exists:tenant.meshs,id',
+            'group'     => 'nullable|integer',
             'simbology_id' => 'integer|exists:tenant.simbologies,id',
         ];
     }

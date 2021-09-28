@@ -21,14 +21,19 @@ class CreateMeshsTable extends Migration
             $table->string('mes_cod_career')->nullable();
             $table->string('mes_title')->nullable();
             $table->string('mes_itinerary')->nullable();
-            $table->string('mes_modality')->nullable();
             $table->integer('mes_number_matter')->nullable();
             $table->integer('mes_number_period')->nullable();
+            $table->integer('mes_number_matter_homologate')->nullable();
             $table->date('mes_creation_date')->nullable();
-            $table->enum('mes_type_calification', ['Horas', 'Creditos'])->nullable();
             $table->string('mes_acronym', 3)->nullable();
             $table->integer('anio')->nullable();
             $table->string('mes_description', 255)->nullable();
+
+            $table->integer('mes_modality_id')->unsigned();
+            $table->foreign('mes_modality_id')->references('id')->on('catalogs');
+
+            $table->integer('type_calification_id')->unsigned();
+            $table->foreign('type_calification_id')->references('id')->on('type_califications');
 
             $table->integer('level_edu_id')->unsigned();
             $table->foreign('level_edu_id')->references('id')->on('education_levels');

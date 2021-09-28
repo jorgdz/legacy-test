@@ -76,7 +76,7 @@ class MatterController extends Controller implements IMatterController
 
         if ($educationLevel->principal_id != null)
             throw new ConflictException(__('messages.error-saving-model', ['model' => class_basename(Matter::class)]));
-            
+
         $matter->fill($request->all());
         if ($matter->isClean())
             return $this->information(__('messages.nochange'));

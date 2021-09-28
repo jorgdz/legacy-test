@@ -12,14 +12,14 @@ class MatterRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'typeMatter', 'typeCalification', 'educationLevel','matterMesh'];
+    protected $relations = ['status', 'typeMatter', 'educationLevel', 'matterMesh'];
 
     /**
      * parents
      *
      * @var array
      */
-    protected $parents = ['type_matters', 'type_califications', 'education_levels','status'];
+    protected $parents = ['type_matters', 'education_levels', 'areas', 'status'];
 
     /**
      * fields
@@ -28,10 +28,10 @@ class MatterRepository extends BaseRepository
      */
     protected $fields = [
         'mat_name',
-        'mat_acronym',
         'cod_matter_migration',
         'cod_old_migration',
-        'min_note'
+        'mat_acronym',
+        'mat_translate'
     ];
 
     /**
@@ -40,11 +40,8 @@ class MatterRepository extends BaseRepository
      * @var array
      */
     protected $selfFieldsAndParents = [
-        'mat_name', 'mat_acronym', 'cod_matter_migration', 'cod_old_migration', 'min_note',
-        'tm_name', 'tm_acronym',
-        'tc_name',
-        'edu_name', 'edu_alias', 'edu_order',
-        'st_name'
+        'mat_name', 'mat_acronym', 'cod_matter_migration', 'cod_old_migration',
+        'tm_name', 'tm_acronym', 'edu_name', 'edu_alias', 'edu_order', 'st_name'
     ];
 
 

@@ -36,6 +36,7 @@ return [
     'error-student-record-programs'=>"Student record has already Assigned a Program Type for students.",
     'error-dependency-model'=>"Dependency error beetwen ':model' and ':model1'!",
     'not-period' => 'Photo could not be saved because there is no given period',
+    'max' => 'The maximum number of records is :max.',
     'number-of-allowed-files' => 'Only one file can be uploaded.',
     'no-roles-assign' => 'There are no roles assigned for this user',
 ];

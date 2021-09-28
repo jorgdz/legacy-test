@@ -23,7 +23,7 @@ class Mesh extends Model implements AuditableContract
      */
     protected $table = 'meshs';
 
-    protected $relations = [ 'level_edu_id', 'status_id'];
+    protected $relations = ['mes_modality_id', 'type_calification_id', 'level_edu_id', 'status_id'];
 
     /**
      * dates
@@ -39,9 +39,20 @@ class Mesh extends Model implements AuditableContract
      */
     protected $fillable = [
         'mes_name',
-        'mes_description',
+        'mes_res_cas',
+        'mes_res_ocas',
+        'mes_cod_career',
+        'mes_title',
+        'mes_itinerary',
+        'mes_number_matter',
+        'mes_number_period',
+        'mes_number_matter_homologate',
+        'mes_creation_date',
         'mes_acronym',
         'anio',
+        'mes_description',
+        'mes_modality_id',
+        'type_calification_id',
         'level_edu_id',
         'status_id'
     ];
@@ -61,17 +72,6 @@ class Mesh extends Model implements AuditableContract
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
 
-    // /**
-    //  * pensum
-    //  *
-    //  * @return BelongsTo
-    //  */
-    // public function pensum() : BelongsTo
-    // {
-    //     return $this->belongsTo(Pensum::class, 'pensum_id');
-    // }
-
-
      /**
      * studentRecords
      *
@@ -86,8 +86,7 @@ class Mesh extends Model implements AuditableContract
     *
     * @return BelongsTo
     */
-    public function educationLevel() : BelongsTo
-    {
+    public function educationLevel(): BelongsTo {
         return $this->belongsTo(EducationLevel::class, 'level_edu_id');
     }
 
@@ -96,8 +95,7 @@ class Mesh extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function status() : BelongsTo
-    {
+    public function status(): BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
@@ -106,9 +104,26 @@ class Mesh extends Model implements AuditableContract
      *
      * @return void
      */
-    public function matterMesh()
-    {
+    public function matterMesh(): HasMany {
         return $this->hasMany(MatterMesh::class);
+    }
+
+    /**
+     * modality
+     *
+     * @return BelongsTo
+     */
+    public function modality(): BelongsTo {
+        return $this->belongsTo(Catalog::class, 'mes_modality_id');
+    }
+
+    /**
+     * typeCalification
+     *
+     * @return BelongsTo
+     */
+    public function typeCalification(): BelongsTo {
+        return $this->belongsTo(TypeCalification::class, 'type_calification_id');
     }
 
     /**
@@ -116,8 +131,7 @@ class Mesh extends Model implements AuditableContract
      *
      * @return void
      */
-    public function learningComponent () 
-    {
+    public function learningComponent(): HasMany {
         return $this->hasMany(LearningComponent::class,'mesh_id');
     }
 }

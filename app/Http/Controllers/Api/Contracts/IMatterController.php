@@ -112,16 +112,6 @@ interface IMatterController {
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="mat_description",
-     *           description="Descripción de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_acronym",
-     *           description="Siglas de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
      *           property="cod_matter_migration",
      *           description="Código de la materia",
      *           type="string",
@@ -132,13 +122,23 @@ interface IMatterController {
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="type_matter_id",
-     *           description="Tipo de materia",
-     *           type="integer",
+     *           property="mat_acronym",
+     *           description="Siglas de la materia",
+     *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="type_calification_id",
-     *           description="Tipo de calificación",
+     *           property="mat_translate",
+     *           description="Traduccion de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mat_description",
+     *           description="Descripción de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="type_matter_id",
+     *           description="Tipo de materia",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -147,9 +147,9 @@ interface IMatterController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="min_note",
-     *           description="Nota mínima de la materia",
-     *           type="number",
+     *           property="area_id",
+     *           description="Tipo de area",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
@@ -163,13 +163,15 @@ interface IMatterController {
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "mat_name" : "required|string|unique:matters,mat_name",
-     *          "mat_acronym" : "required|string|between:2,3",
-     *          "cod_matter_migration" : "required|string",
-     *          "type_matter_id" : "required|integer|exists:type_matters,id",
-     *          "type_calification_id" : "required|integer|exists:type_califications,id",
-     *          "min_note" : "required|numeric",
-     *          "status_id" : "required|integer|exists:status,id"
+     *          "mat_name": "required|string|unique:tenant.matters,mat_name",
+     *          "cod_matter_migration": "nullable|string",
+     *          "cod_old_migration": "nullable|string",
+     *          "mat_acronym": "nullable|string|max:3",
+     *          "mat_translate": "nullable|string",
+     *          "type_matter_id": "required|integer|exists:tenant.type_matters,id",
+     *          "education_level_id": "required|integer|exists:tenant.education_levels,id",
+     *          "area_id": "required|integer|exists:tenant.areas,id",
+     *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -256,16 +258,6 @@ interface IMatterController {
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="mat_description",
-     *           description="Descripción de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_acronym",
-     *           description="Siglas de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
      *           property="cod_matter_migration",
      *           description="Código de la materia",
      *           type="string",
@@ -276,13 +268,23 @@ interface IMatterController {
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="type_matter_id",
-     *           description="Tipo de materia",
-     *           type="integer",
+     *           property="mat_acronym",
+     *           description="Siglas de la materia",
+     *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="type_calification_id",
-     *           description="Tipo de calificación",
+     *           property="mat_translate",
+     *           description="Traduccion de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mat_description",
+     *           description="Descripción de la materia",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="type_matter_id",
+     *           description="Tipo de materia",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -291,13 +293,13 @@ interface IMatterController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="min_note",
-     *           description="Nota mínima de la materia",
-     *           type="number",
+     *           property="area_id",
+     *           description="Tipo de area",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del tipo de calificación",
+     *           description="Estado de la materia",
      *           type="integer",
      *         ),
      *       ),
@@ -307,13 +309,15 @@ interface IMatterController {
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "mat_name" : "required|string|unique:matters,mat_name",
-     *          "mat_acronym" : "required|string|between:2,3",
-     *          "cod_matter_migration" : "required|string",
-     *          "type_matter_id" : "required|integer|exists:type_matters,id",
-     *          "type_calification_id" : "required|integer|exists:type_califications,id",
-     *          "min_note" : "required|numeric",
-     *          "status_id" : "required|integer|exists:status,id"
+     *          "mat_name": "required|string|unique:tenant.matters,mat_name",
+     *          "cod_matter_migration": "nullable|string",
+     *          "cod_old_migration": "nullable|string",
+     *          "mat_acronym": "nullable|string|max:3",
+     *          "mat_translate": "nullable|string",
+     *          "type_matter_id": "required|integer|exists:tenant.type_matters,id",
+     *          "education_level_id": "required|integer|exists:tenant.education_levels,id",
+     *          "area_id": "required|integer|exists:tenant.areas,id",
+     *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

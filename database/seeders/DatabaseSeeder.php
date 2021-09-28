@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\ClassroomType;
 use App\Models\CustomTenant;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +18,7 @@ class DatabaseSeeder extends Seeder
             $this->call([
                 CategoryStatusSeeder::class,
                 StatusSeeder::class,
+                AreasSeeder::class,
                 CompanySeeder::class,
                 CampusSeeder::class,
                 CatalogSeeder::class,

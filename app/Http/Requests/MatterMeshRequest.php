@@ -23,16 +23,28 @@ class MatterMeshRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'matter_id' => 'required|integer|exists:tenant.matters,id',
-            'mesh_id' => 'required|integer|exists:tenant.meshs,id',
-            'simbology_id' => 'integer|exists:tenant.simbologies,id',
-            'calification_type' => 'required',
-            'min_calification' => 'required',
-            'max_calification' => 'required',
-            'num_fouls' => 'required',
-            'group' => 'required',
-            'matter_rename' => 'required'
+            'mesh_id'   => 'required|integer|exists:tenant.meshs,id',
+            'simbology_id'      => 'integer|exists:tenant.simbologies,id',
+            'can_homologate'    => 'required|boolean',
+            'min_note'          => 'required|numeric',
+            'min_calification'  => 'required|numeric',
+            'max_calification'  => 'required|numeric',
+            'num_fouls'         => 'required|integer',
+            'matter_rename'     => 'nullable|string',
+            'group'             => 'nullable|integer',
+            'status_id'         => 'required|integer|exists:tenant.status,id'
         ];
+        if (in_array($this->method(), ['PUT', 'PATCH'])) {
+            $rules['matter_id'] = [
+                'required',
+                'integer',
+                'exists:tenant.matters,id',
+                'unique:tenant.matter_mesh,matter_id,' . $this->route('mattermesh')->id
+            ];
+        }
+
+        return $rules;
     }
 }

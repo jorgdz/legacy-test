@@ -36,6 +36,7 @@ return [
     'error-student-record-programs'=>"Récord estudiantil ya tiene Asigando un Tipo programa para estudiantes.",
     'error-dependency-model'=>"Error de dependencia en ':model' y ':model1'!",
     'not-period' => 'La foto no pudo ser guardada porque no hay un periodo dado!',
+    'max' => "La cantidad de registros máximo es :max.",
     'number-of-allowed-files' => 'Solo se permite subir un archivo.',
     'no-roles-assign' => 'No hay roles asignados para este usuario',
 ];

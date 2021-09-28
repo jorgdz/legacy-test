@@ -138,19 +138,19 @@ interface IMeshsController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="mes_modality",
-     *           description="Modalidad de la malla",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
      *           property="mes_number_matter",
      *           description="Numero de materia de la malla",
-     *           type="string",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="mes_number_period",
      *           description="Numero de periodo de la malla",
-     *           type="string",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_number_matter_homologate",
+     *           description="Numero de materias a homologar",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="mes_creation_date",
@@ -158,20 +158,9 @@ interface IMeshsController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="mes_type_calification",
-     *           description="Tipo de calificacion de la malla",
-     *           type="string",
-     *           example="Horas/Creditos"
-     *         ),
-     *         @OA\Property(
      *           property="mes_acronym",
      *           description="Acronimo(Siglas) de malla",
      *           type="string"
-     *         ),
-     *         @OA\Property(
-     *           property="mes_description",
-     *           description="Descripcion de malla",
-     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="anio",
@@ -179,8 +168,23 @@ interface IMeshsController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="mes_description",
+     *           description="Descripcion de malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_modality_id",
+     *           description="Id de la modalidad de la malla (Catalogo)",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_calification_id",
+     *           description="Id del tipo de calificacion",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="level_edu_id",
-     *           description="Id de nivel de educación",
+     *           description="Id del nivel de educación",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -201,13 +205,15 @@ interface IMeshsController
      *          "mes_cod_career": "nullable|string|max:255",
      *          "mes_title": "nullable|string|max:255",
      *          "mes_itinerary": "nullable|string|max:255",
-     *          "mes_modality": "nullable|string|max:255",
-     *          "mes_number_matter": "nullable|integer|max:255",
-     *          "mes_number_period": "nullable|integer|max:255",
-     *          "mes_creation_date": "nullable|date|max:255",
-     *          "mes_type_calification": "nullable|in:Horas,Creditos",
-     *          "mes_acronym": "nullable|max:3",
+     *          "mes_number_matter": "nullable|integer",
+     *          "mes_number_period": "nullable|integer",
+     *          "mes_number_matter_homologate": "nullable|integer",
+     *          "mes_creation_date": "nullable|date",
+     *          "mes_acronym": "nullable|string|max:3",
      *          "anio": "required|integer",
+     *          "mes_description": "nullable|string",
+     *          "mes_modality_id": "required|integer|exists:tenant.catalogs,id",
+     *          "type_calification_id": "required|integer|exists:tenant.type_califications,id",
      *          "level_edu_id": "required|integer|exists:tenant.education_levels,id",
      *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
@@ -321,19 +327,19 @@ interface IMeshsController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="mes_modality",
-     *           description="Modalidad de la malla",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
      *           property="mes_number_matter",
      *           description="Numero de materia de la malla",
-     *           type="string",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="mes_number_period",
      *           description="Numero de periodo de la malla",
-     *           type="string",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_number_matter_homologate",
+     *           description="Numero de materias a homologar",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="mes_creation_date",
@@ -341,20 +347,9 @@ interface IMeshsController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="mes_type_calification",
-     *           description="Tipo de calificacion de la malla",
-     *           type="string",
-     *           example="Horas/Creditos"
-     *         ),
-     *         @OA\Property(
      *           property="mes_acronym",
      *           description="Acronimo(Siglas) de malla",
      *           type="string"
-     *         ),
-     *         @OA\Property(
-     *           property="mes_description",
-     *           description="Descripcion de malla",
-     *           type="string",
      *         ),
      *         @OA\Property(
      *           property="anio",
@@ -362,8 +357,23 @@ interface IMeshsController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="mes_description",
+     *           description="Descripcion de malla",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="mes_modality_id",
+     *           description="Id de la modalidad de la malla (Catalogo)",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_calification_id",
+     *           description="Id del tipo de calificacion",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="level_edu_id",
-     *           description="Id de nivel de educación",
+     *           description="Id del nivel de educación",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -384,13 +394,15 @@ interface IMeshsController
      *          "mes_cod_career": "nullable|string|max:255",
      *          "mes_title": "nullable|string|max:255",
      *          "mes_itinerary": "nullable|string|max:255",
-     *          "mes_modality": "nullable|string|max:255",
-     *          "mes_number_matter": "nullable|integer|max:255",
-     *          "mes_number_period": "nullable|integer|max:255",
-     *          "mes_creation_date": "nullable|date|max:255",
-     *          "mes_type_calification": "nullable|in:Horas,Creditos",
-     *          "mes_acronym": "nullable|max:3",
+     *          "mes_number_matter": "nullable|integer",
+     *          "mes_number_period": "nullable|integer",
+     *          "mes_number_matter_homologate": "nullable|integer",
+     *          "mes_creation_date": "nullable|date",
+     *          "mes_acronym": "nullable|string|max:3",
      *          "anio": "required|integer",
+     *          "mes_description": "nullable|string",
+     *          "mes_modality_id": "required|integer|exists:tenant.catalogs,id",
+     *          "type_calification_id": "required|integer|exists:tenant.type_califications,id",
      *          "level_edu_id": "required|integer|exists:tenant.education_levels,id",
      *          "status_id": "required|integer|exists:tenant.status,id"
      *      },

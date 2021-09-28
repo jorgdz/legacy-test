@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Http\Resources\MatterMeshResource;
 use App\Models\Mesh;
+use App\Http\Resources\MatterMeshResource;
 use App\Repositories\Base\BaseRepository;
 
 /**
@@ -18,8 +18,9 @@ class MeshRepository extends BaseRepository
      * @var array
      */
     protected $relations = [
+        'modality',
+        'typeCalification',
         'educationLevel',
-        // 'pensum',
         'status',
     ];
 
@@ -29,9 +30,11 @@ class MeshRepository extends BaseRepository
      * @var array
      */
     protected $parents = [
-        // 'pensums', 
+        'catalogs',
+        'type_califications',
         'education_levels',
-         'status'];
+        'status'
+    ];
 
     /**
      * fields
@@ -40,7 +43,14 @@ class MeshRepository extends BaseRepository
      */
     protected $fields = [
         'mes_name',
+        'mes_res_cas',
+        'mes_res_ocas',
+        'mes_cod_career',
+        'mes_title',
+        'mes_itinerary',
+        'mes_creation_date',
         'mes_acronym',
+        'anio',
     ];
 
     /**
@@ -49,11 +59,8 @@ class MeshRepository extends BaseRepository
      * @var array
      */
     protected $selfFieldsAndParents = [
-        'mes_name',
-        'mes_acronym',
-        // 'pen_name', 'pen_acronym', 'anio',
-        'edu_name', 'edu_alias', 'edu_order',
-        'st_name'
+        'mes_name', 'mes_res_cas', 'mes_res_ocas', 'mes_cod_career', 'mes_title', 'mes_itinerary', 'mes_creation_date', 
+        'mes_acronym', 'anio', 'cat_name', 'cat_acronym', 'tc_name', 'edu_name', 'edu_alias', 'edu_order', 'st_name'
     ];
 
     /**
@@ -61,8 +68,7 @@ class MeshRepository extends BaseRepository
      *
      * @return void
      */
-    public function __construct(Mesh $mesh)
-    {
+    public function __construct(Mesh $mesh) {
         parent::__construct($mesh);
     }
 
@@ -78,7 +84,6 @@ class MeshRepository extends BaseRepository
         $query = $query->with([
             'educationLevel',
             'educationLevel.offer',
-            // 'pensum',
             'status',
             'matterMesh',
             'learningComponent',
@@ -91,17 +96,37 @@ class MeshRepository extends BaseRepository
         return new MatterMeshResource($query->findOrFail($id));
     }
 
-    public function checkComponentInMeshsPublished($componentId)
-    {
-        return $this->model->where('status_id','=','7')
-                            ->whereHas('learningComponent', function ($query) use($componentId) {
-                                $query->where('component_id', '=', $componentId);
-                            })->first();
-
+    /**
+     * findByConditionals
+     *
+     * @param  mixed $conditionals
+     * @return void
+     */
+    public function findByConditionals($conditionals) {
+        $query = $this->model->with(['matterMesh'])->where($conditionals)->first();
+        return json_decode(json_encode($query), true);
     }
 
-    public function checkMeshPublished($meshId)
-    {
+    /**
+     * checkComponentInMeshsPublished
+     *
+     * @param  mixed $componentId
+     * @return void
+     */
+    public function checkComponentInMeshsPublished($componentId) {
+        return $this->model->where('status_id','=','7')
+            ->whereHas('learningComponent', function ($query) use($componentId) {
+                $query->where('component_id', '=', $componentId);
+            })->first();
+    }
+
+    /**
+     * checkMeshPublished
+     *
+     * @param  mixed $meshId
+     * @return void
+     */
+    public function checkMeshPublished($meshId) {
         return Mesh::where('id',$meshId)->where('status_id','7')->first();
     }
 }

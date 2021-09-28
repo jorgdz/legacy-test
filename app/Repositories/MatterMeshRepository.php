@@ -31,7 +31,8 @@ class MatterMeshRepository extends BaseRepository
      * @var array
      */
     protected $fields = [
-        'calification_type',
+        'can_homologate',
+        'min_note',
         'min_calification',
         'max_calification',
         'matter_rename',
@@ -44,15 +45,10 @@ class MatterMeshRepository extends BaseRepository
      * @var array
      */
     protected $selfFieldsAndParents = [
-        'calification_type',
-        'min_calification',
-        'max_calification',
-        'matter_rename',
-        'group',
-        'mat_name', 'mat_acronym', 'cod_matter_migration', 'cod_old_migration', 'min_note',
-        'mes_name', 'mes_acronym',
-        'sim_description',
-        'st_name'
+        'can_homologate', 'min_note', 'min_calification', 'max_calification', 'matter_rename', 'group',
+        'mat_name', 'cod_matter_migration', 'cod_old_migration', 'mat_translate', 'mat_acronym',
+        'mes_name', 'mes_res_cas', 'mes_res_ocas', 'mes_cod_career', 'mes_title', 'mes_itinerary', 
+        'mes_creation_date', 'mes_acronym', 'sim_description', 'st_name'
     ];
 
     /**
@@ -101,7 +97,7 @@ class MatterMeshRepository extends BaseRepository
      * @param  mixed $mesh
      * @return subjects by id mesh
      */
-    public function findMatersbyMesh ($request, $id) {
+    public function findMatersbyMesh($request, $id) {
         $query = $this->model;
         $fields = $this->fields;
         $query = $query->with([

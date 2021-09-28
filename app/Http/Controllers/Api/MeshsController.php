@@ -68,7 +68,6 @@ class MeshsController extends Controller implements IMeshsController
 
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -126,6 +125,5 @@ class MeshsController extends Controller implements IMeshsController
      */
     public function showMattersByMesh(Request $request, Mesh $mesh) {
         return $this->success($this->matterMeshCache->findMatersbyMesh($request,$mesh->id));
-
     }
 }

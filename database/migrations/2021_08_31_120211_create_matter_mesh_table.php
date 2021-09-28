@@ -17,23 +17,28 @@ class CreateMatterMeshTable extends Migration
             $table->increments('id');
 
             $table->integer('matter_id')->unsigned();
+            $table->foreign('matter_id')->references('id')->on('matters');
+
             $table->integer('mesh_id')->unsigned();
+            $table->foreign('mesh_id')->references('id')->on('meshs');
+
             $table->integer('simbology_id')->unsigned();
-            $table->string('calification_type', 255)->nullable();
+            $table->foreign('simbology_id')->references('id')->on('simbologies');
+
+            $table->boolean('can_homologate')->nullable();
+            $table->float('min_note', 8, 4)->nullable()->unsigned();
             $table->float('min_calification', 8, 4)->nullable();
             $table->float('max_calification', 8, 4)->nullable();
             $table->integer('num_fouls')->nullable();
             $table->string('matter_rename', 255)->nullable();
+            $table->integer('group')->nullable(); /* grupo, sección o nivel o semestre al que pertenece */
+            $table->integer('order')->nullable(); /* Por cada grupo tengo una numeración para ordernar los registros */
 
-            $table->integer('group')->nullable(); // grupo, sección o nivel o semestre al que pertenece
-            $table->integer('order')->nullable(); // Por cada grupo tengo una numeración para ordernar los registros
+            $table->integer('calification_models_id')->nullable();
+            $table->foreign('calification_models_id')->references('id')->on('calification_models');
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-
-            $table->foreign('matter_id')->references('id')->on('matters');
-            $table->foreign('mesh_id')->references('id')->on('meshs');
-            $table->foreign('simbology_id')->references('id')->on('simbologies');
 
             $table->timestamps();
             $table->softDeletes();
