@@ -2406,6 +2406,49 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'student'
             ],
+            /**
+             * Cargo 273-277
+             */
+            [
+                'name' => 'positions-listar-cargos',
+                'alias' => 'Listar cargos',
+                'description' => 'Listar todos los cargos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'position'
+            ],
+            [
+                'name' => 'positions-obtener-cargo',
+                'alias' => 'Obtener cargo',
+                'description' => 'Obtener un cargo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'position'
+            ],
+            [
+                'name' => 'positions-crear-cargo',
+                'alias' => 'Crear cargo',
+                'description' => 'Agregar un cargo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'position'
+            ],
+            [
+                'name' => 'positions-actualizar-cargo',
+                'alias' => 'Actualizar cargo',
+                'description' => 'Actualizar un cargo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'position'
+            ],
+            [
+                'name' => 'positions-eliminar-cargo',
+                'alias' => 'Borrar cargo',
+                'description' => 'Borrar un cargo por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'position'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2892,6 +2935,14 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 271, 'role_id' => 1],
             ['permission_id' => 272, 'role_id' => 1],
+            /**
+             * Cargo 273-277
+             */
+            ['permission_id' => 273, 'role_id' => 1],
+            ['permission_id' => 274, 'role_id' => 1],
+            ['permission_id' => 275, 'role_id' => 1],
+            ['permission_id' => 276, 'role_id' => 1],
+            ['permission_id' => 277, 'role_id' => 1],
 
             /**
              * 
@@ -3378,6 +3429,14 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 271, 'role_id' => 2],
             ['permission_id' => 272, 'role_id' => 2],
+            /**
+             * Cargo 273-277
+             */
+            ['permission_id' => 273, 'role_id' => 2],
+            ['permission_id' => 274, 'role_id' => 2],
+            ['permission_id' => 275, 'role_id' => 2],
+            ['permission_id' => 276, 'role_id' => 2],
+            ['permission_id' => 277, 'role_id' => 2],
         ]);
     }
 }

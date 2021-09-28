@@ -467,8 +467,8 @@ Route::put('/classroom-types/{classroomType}', [ClassroomTypeController::class, 
 /**
  * Positions
  */
-Route::get('/positions', [PositionController::class, 'index'])->middleware(['auth:sanctum']);//permission:positions-listar-cargos
-Route::get('/positions/{position}', [PositionController::class, 'show'])->middleware(['auth:sanctum']); //permission:positions-obtener-cargo
-Route::post('/positions', [PositionController::class, 'store'])->middleware(['auth:sanctum']); //permission:positions-crear-cargo
-Route::put('/positions/{position}', [PositionController::class, 'update'])->middleware(['auth:sanctum']); //permission:positions-actualizar-cargo
-Route::delete('/positions/{position}', [PositionController::class, 'destroy'])->middleware(['auth:sanctum']); //permission:positions-eliminar-cargo
+Route::get('/positions', [PositionController::class, 'index'])->middleware(['auth:sanctum', 'permission:positions-listar-cargos']);
+Route::get('/positions/{position}', [PositionController::class, 'show'])->middleware(['auth:sanctum', 'permission:positions-obtener-cargo']);
+Route::post('/positions', [PositionController::class, 'store'])->middleware(['auth:sanctum', 'permission:positions-crear-cargo']);
+Route::put('/positions/{position}', [PositionController::class, 'update'])->middleware(['auth:sanctum', 'permission:positions-actualizar-cargo']);
+Route::delete('/positions/{position}', [PositionController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:positions-eliminar-cargo']);
