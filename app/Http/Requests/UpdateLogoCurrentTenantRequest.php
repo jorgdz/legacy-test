@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class UpdateLogoCurrentTenantRequest extends FormRequest
 {
@@ -23,8 +25,58 @@ class UpdateLogoCurrentTenantRequest extends FormRequest
      */
     public function rules()
     {
+        /**
+         * Validacion para los tipos de logos
+         */
+        Validator::extend('extensionFile', function ($attribute, $value, $parameters, $validator) {
+
+            $extensionPermitidas = ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg', 'JPEG', 'JPG', 'PNG', 'GIF', 'TIFF', 'SVG'];
+            $extSubidas = [];
+
+            $collection = collect($extensionPermitidas);
+
+            foreach ($value as $file) {
+                array_push($extSubidas, $file->getClientOriginalExtension());
+            }
+
+            foreach ($extSubidas as $ext) {
+                if (!$collection->contains($ext)) {
+
+                    $validator->addReplacer('extensionFile',  function ($message, $attribute, $rule, $parameters) use ($extensionPermitidas) {
+                        return str_replace(':file', implode(", ", $extensionPermitidas), __('messages.file-extensions-allowed'));
+                    });
+
+                    return false;
+                }
+            }
+
+            return true;
+        });
+
+
+
+        /**
+         * Validacion para subir un solo archivo
+         */
+        Validator::extend('oneFile', function ($attribute, $value, $parameters, $validator) {
+
+
+            if (count($value) > 1) {
+                $validator->addReplacer('oneFile',  function ($message, $attribute, $rule, $parameters) {
+                    return str_replace(':atribute',  '' , __('messages.number-of-allowed-files'));
+                });
+
+                return false;
+            }
+
+            return true;
+
+        });
+
         return [
-            'logo'   => 'image|max:2048'//|mimes:jpg,png,jpeg,gif,svg |dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000
+            'files' => 'required|array|extensionFile|oneFile',
+            //'period'   => 'required|integer',
+            'type_document'   => 'required|integer|exists:landlord.type_documents,id',
         ];
     }
 }

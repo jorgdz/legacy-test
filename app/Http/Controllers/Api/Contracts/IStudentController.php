@@ -509,7 +509,7 @@ interface IStudentController
      *   @OA\JsonContent(
      *      example={
      *          "photo" : "required|file",
-     *          "period" : "required|integer",
+     *          "period" : "integer",
      *          "type_document" : "required|integer|exists:landlord.type_documents,id"
      *      },
      *   )),

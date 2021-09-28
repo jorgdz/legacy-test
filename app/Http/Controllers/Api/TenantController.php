@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\Custom\FailLocalStorageRequestException;
 use App\Models\Mail;
 use App\Jobs\ProcessTenant;
 use Illuminate\Support\Str;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\File as FileFacade;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Api\Contracts\ITenantController;
 use App\Http\Requests\UpdateLogoCurrentTenantRequest;
+use App\Services\FilesystemService;
 
 class TenantController extends Controller implements ITenantController
 {
@@ -27,8 +29,11 @@ class TenantController extends Controller implements ITenantController
     protected $key;
     protected $cache;
 
+    private $filesystemService;
 
-    public function __construct() {
+
+    public function __construct(FilesystemService $filesystemService)
+    {
         $this->domain = \parse_url(config('app.url'), PHP_URL_HOST);
         $key = request()->url();
         $queryParams = request()->query();
@@ -37,20 +42,22 @@ class TenantController extends Controller implements ITenantController
         $fullUrl = "{$key}?{$queryString}";
         $this->key = $fullUrl;
         $this->cache = new Cache();
+        $this->filesystemService = $filesystemService;
     }
 
-    private function getTenantCached(Request $request, $search){//page,size,search
-        if($search == ''){
+    private function getTenantCached(Request $request, $search)
+    { //page,size,search
+        if ($search == '') {
             $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
                 return CustomTenant::where('domain', '<>', $this->domain)
                     ->orderBy('id', 'desc')
                     ->paginate($request->size ?: 10);
             });
-        }else{
+        } else {
             $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($search) {
                 return CustomTenant::where('domain', '<>', $this->domain)
                     ->where('name', $search)
-                    ->orWhere('domain', $search )
+                    ->orWhere('domain', $search)
                     ->orWhere('domain_client', $search)
                     ->first();
             });
@@ -63,10 +70,11 @@ class TenantController extends Controller implements ITenantController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $search = $request->search ?: '';
 
-        $tenant = $this->getTenantCached($request,$search);
+        $tenant = $this->getTenantCached($request, $search);
 
         return $this->success($tenant);
     }
@@ -77,12 +85,25 @@ class TenantController extends Controller implements ITenantController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $rules = [
             'name' => ['required', 'alpha_dash', 'unique:landlord.tenants', 'max:255'],
             'domain' => ['required', 'unique:landlord.tenants', 'max:255'],
             'domain_client' => ['required', 'unique:landlord.tenants', 'max:255'],
             'database' => ['required', 'max:255'],
+
+            'description' => ['max:255'],
+            'website' => ['max:255'],
+            'assigned_site' => ['max:255'],
+            'facebook' => ['max:255'],
+            'instagram' => ['max:255'],
+            'linkedin' => ['max:255'],
+            'youtube' => ['max:255'],
+            'info_mail' => ['required', 'email', 'unique:landlord.tenants', 'max:255'],
+            'matrix' => ['max:255'],
+            'color' => ['max:255'],
+
         ];
 
         $request->validate($rules);
@@ -100,7 +121,8 @@ class TenantController extends Controller implements ITenantController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomTenant $tenant) {
+    public function show(CustomTenant $tenant)
+    {
         $tenant_main = CustomTenant::where('domain', $this->domain)->first();
 
         if ($tenant->id == $tenant_main->id)
@@ -116,11 +138,24 @@ class TenantController extends Controller implements ITenantController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $tenant) {
+    public function update(Request $request, $tenant)
+    {
+
         $rules = [
-            'name' => 'alpha_dash|unique:landlord.tenants,name,'.$tenant,
-            'domain' => 'unique:landlord.tenants,domain,'.$tenant,
-            'domain_client' => 'unique:landlord.tenants,domain_client,'.$tenant,
+            'name' => 'alpha_dash|unique:landlord.tenants,name,' . $tenant,
+            'domain' => 'unique:landlord.tenants,domain,' . $tenant,
+            'domain_client' => 'unique:landlord.tenants,domain_client,' . $tenant,
+
+            'description' => 'max:255',
+            'website' => 'max:255',
+            'assigned_site' => 'max:255',
+            'facebook' => 'max:255',
+            'instagram' => 'max:255',
+            'linkedin' => 'max:255',
+            'youtube' => 'max:255',
+            'info_mail' => 'required|email|max:255|unique:landlord.tenants,info_mail,' . $tenant,
+            'matrix' => 'max:255',
+            'color' =>  'max:255',
         ];
 
         $this->validate($request, $rules);
@@ -143,7 +178,8 @@ class TenantController extends Controller implements ITenantController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomTenant $tenant) {
+    public function destroy(CustomTenant $tenant)
+    {
         $tenant_main = CustomTenant::where('domain', $this->domain)->first();
 
         if ($tenant->id == $tenant_main->id)
@@ -160,7 +196,8 @@ class TenantController extends Controller implements ITenantController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateCurrentTenant(UpdateTenantRequest $request) {
+    public function updateCurrentTenant(UpdateTenantRequest $request)
+    {
         /* $this->cache::forget($request->getHost() . '_current_tenant'); */
         $this->cache::flush();
 
@@ -182,30 +219,31 @@ class TenantController extends Controller implements ITenantController
      * updateLogoCurrentTenant
      *
      * @param  mixed $request
-    * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
-    public function updateLogoCurrentTenant (UpdateLogoCurrentTenantRequest $request) {
+    public function updateLogoCurrentTenant(UpdateLogoCurrentTenantRequest $request)
+    {
         /* $this->cache::forget($request->getHost() . '_current_tenant'); */
         $this->cache::flush();
         $tenantUpdate = CustomTenant::findOrFail(CustomTenant::current()->id);
 
-        if($request->hasFile('logo')) {
-            // Get just ext
-            $extension = $request->file('logo')->getClientOriginalExtension();
 
-            $filename = $tenantUpdate->id.'.'.$extension;//.'_'.time().
+        //enviar el archivo a guardar
+        $response = $this->filesystemService->store($request);
 
-            Storage::put($filename, FileFacade::get($request->file('logo')));
 
-            $tenantUpdate->logo_name = $filename;
+        if (empty($response))
+            throw new FailLocalStorageRequestException(__("messages.no-content"));
 
-            $tenantUpdate->logo_path = url('/').'/storage/'.$tenantUpdate->name.'/'.$filename;
+        $tenantUpdate->logo_name = $response[0]['name'];
 
-            $tenantUpdate->save();
-        }
+        $tenantUpdate->logo_path = $response[0]['route'];
+
+        $tenantUpdate->save();
 
         $this->cache::forget(request()->root() . '/api/as-tenant_as_current_tenant');
 
         return $this->success($tenantUpdate);
+        
     }
 }

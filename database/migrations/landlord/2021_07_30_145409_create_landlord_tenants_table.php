@@ -16,8 +16,22 @@ class CreateLandlordTenantsTable extends Migration
             $table->string('domain')->unique();
             $table->string('domain_client')->unique();
             $table->string('database');
+
+            $table->string('description',255)->nullable();
+            $table->string('website',255)->nullable();
+            $table->string('assigned_site',255)->nullable();
+            $table->string('facebook',255)->nullable();
+            $table->string('instagram',255)->nullable();
+            $table->string('linkedin',255)->nullable();
+            $table->string('youtube',255)->nullable();
+            $table->string('info_mail',255)->nullable();
+            $table->string('matrix',255)->nullable();
+            $table->string('color',255)->nullable();
+          
             $table->timestamps();
             $table->softDeletes();
+
+
         });
     }
 }
