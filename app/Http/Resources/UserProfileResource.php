@@ -21,7 +21,7 @@ class UserProfileResource extends JsonResource
              'profile_id' =>  $this->profile_id ,
              'status'     =>  $this->status ,
              'profile'    =>  $this->profile ,
-             'roles'      =>  RoleResource::collection($this->roles)
+             'roles'      =>  RoleResource::collection($this->roles)->where('status_id', 1)
          ];
     }
 }
