@@ -44,17 +44,10 @@ class MeshsController extends Controller implements IMeshsController
      * @return \Illuminate\Http\Response
      */
     public function store(MeshRequest $request) {
-        DB::beginTransaction();
-        try {
-            $mesh = new Mesh($request->all());
-            $mesh = $this->meshCache->save($mesh);
 
-            DB::commit();
-            return $this->success($mesh, Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        $mesh = new Mesh($request->all());
+        return $this->success($this->meshCache->save($mesh), Response::HTTP_CREATED);
+
     }
 
     /**
@@ -76,21 +69,14 @@ class MeshsController extends Controller implements IMeshsController
      * @return \Illuminate\Http\Response
      */
     public function update(MeshRequest $request, Mesh $mesh) {
-        DB::beginTransaction();
-        try {
-            $mesh->fill($request->all());
+        $mesh->fill($request->all());
 
-            if ($mesh->isClean())
-                return $this->information(__('messages.nochange'));
+        if ($mesh->isClean())
+            return $this->information(__('messages.nochange'));
 
-            $response = $this->meshCache->save($mesh);
+        $response = $this->meshCache->save($mesh);
 
-            DB::commit();
-            return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($response);
     }
 
     /**
@@ -113,7 +99,7 @@ class MeshsController extends Controller implements IMeshsController
     }
 
     public function learningComponentByMesh(Mesh $mesh)
-    {   
+    {
         return $this->success(Mesh::with('learningComponent.component')->find($mesh->id));
     }
 

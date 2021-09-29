@@ -102,8 +102,8 @@ class DefaultExampleSeeder extends Seeder
 
         DB::connection('tenant')->table('meshs')->insert([
             [
-                'mes_name' => 'Malla Curricular', 'mes_res_cas' => NULL, 'mes_res_ocas' => NULL, 'mes_cod_career' => 'QWERTY.Q1', 'mes_title' => 'Malla Titulo', 'mes_itinerary' => NULL, 
-                'mes_number_matter' => 72, 'mes_number_period' => 8, 'mes_number_matter_homologate' => 15, 'mes_creation_date' => '1995-07-21', 'mes_acronym' => 'MS1', 'anio' => '2018', 
+                'mes_name' => 'Malla Curricular', 'mes_res_cas' => NULL, 'mes_res_ocas' => NULL, 'mes_cod_career' => 'QWERTY.Q1', 'mes_title' => 'Malla Titulo', 'mes_itinerary' => NULL,
+                'mes_number_matter' => 43, 'mes_number_period' => 8, 'mes_quantity_external_matter_homologate' => 1, 'mes_quantity_internal_matter_homologate' => 2,'mes_creation_date' => '1995-07-21', 'mes_acronym' => 'MS1', 'anio' => '2018',
                 'mes_modality_id' => 70, 'type_calification_id' => 2, 'level_edu_id' => 1, 'mes_description' => NULL, 'status_id' => 8
             ],
         ]);

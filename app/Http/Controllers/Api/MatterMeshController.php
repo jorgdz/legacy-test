@@ -10,6 +10,7 @@ use App\Http\Requests\MatterMeshDependenciesRequest;
 use App\Http\Requests\MatterMeshRequest;
 use App\Http\Requests\UpdateMatterMeshRequest;
 use App\Models\MatterMesh;
+use App\Models\Mesh;
 use App\Repositories\MeshRepository;
 use App\Traits\Auditor;
 use App\Traits\RestResponse;
@@ -55,16 +56,16 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @return \Illuminate\Http\Response
      */
     public function store(MatterMeshRequest $request) {
-        $conditionals = [
-            ['id', $request->mesh_id]
-        ];
-        $meshs = $this->meshRepository->findByConditionals($conditionals);
+        // $conditionals = [
+        //     ['id', $request->mesh_id]
+        // ];
+        // $meshs = $this->meshRepository->findByConditionals($conditionals);
 
-        if (!$meshs) {
-            throw new ConflictException(__('messages.no-exist-instance-resource'));
-        } elseif (count($meshs['matter_mesh']) >= $meshs['mes_number_matter']) {
-            throw new ConflictException(__('messages.max', ['max' => $meshs['mes_number_matter']]));
-        }
+        // if (!$meshs) {
+        //     throw new ConflictException(__('messages.no-exist-instance-resource'));
+        // } elseif (count($meshs['matter_mesh']) >= $meshs['mes_number_matter']) {
+        //     throw new ConflictException(__('messages.max', ['max' => $meshs['mes_number_matter']]));
+        // }
 
         $data = DB::connection('tenant')->table('matter_mesh')
                 ->whereNotNull('deleted_at')
@@ -79,7 +80,9 @@ class MatterMeshController extends Controller implements IMatterMeshController
             $mattermesh->fill($request->all());
             $mattermesh->save();
 
-            return $this->information(__('messages.success'));
+            Mesh::findOrFail($mattermesh->mesh_id)->increment('mes_number_matter');
+
+            return $this->success($mattermesh);
         }
 
         $matterMeshFound = MatterMesh::where('matter_id', $request->matter_id)->where('mesh_id', $request->mesh_id)->first();
@@ -89,7 +92,13 @@ class MatterMeshController extends Controller implements IMatterMeshController
         }
 
         $matterMesh = new MatterMesh($request->all());
-        return $this->success($this->matterMeshCache->save($matterMesh));
+        $matterMesh = $this->matterMeshCache->save($matterMesh);
+
+        if($matterMesh) {
+            Mesh::findOrFail($matterMesh->mesh_id)->increment('mes_number_matter');
+        }
+
+        return $this->success($matterMesh);
     }
 
     /**
@@ -149,6 +158,12 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @return \Illuminate\Http\Response
      */
     public function destroy(MatterMesh $mattermesh) {
+        $mesh = Mesh::findOrFail($mattermesh->mesh_id);
+
+        if($mesh->mes_number_matter > 0) {
+            $mesh->decrement('mes_number_matter');
+        }
+
         return $this->success($this->matterMeshCache->destroy($mattermesh));
     }
 
@@ -159,8 +174,10 @@ class MatterMeshController extends Controller implements IMatterMeshController
      * @return void
      */
     public function restoreMatterMesh(Request $request, $id) {
-        MatterMesh::withTrashed()->find($id)->restore();
-        return $this->information(__('messages.success'));
+        $matterMesh = MatterMesh::withTrashed()->findOrFail($id);
+        $matterMesh->restore();
+        Mesh::findOrFail($matterMesh->mesh_id)->increment('mes_number_matter');
+        return $this->success($this->matterMeshCache->save($matterMesh));
     }
 
     /**

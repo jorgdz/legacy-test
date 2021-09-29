@@ -46,7 +46,8 @@ class Mesh extends Model implements AuditableContract
         'mes_itinerary',
         'mes_number_matter',
         'mes_number_period',
-        'mes_number_matter_homologate',
+        'mes_quantity_external_matter_homologate',
+        'mes_quantity_internal_matter_homologate',
         'mes_creation_date',
         'mes_acronym',
         'anio',
@@ -127,7 +128,7 @@ class Mesh extends Model implements AuditableContract
     }
 
     /**
-     * Learning Components 
+     * Learning Components
      *
      * @return void
      */
