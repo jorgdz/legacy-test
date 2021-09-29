@@ -23,9 +23,7 @@ use App\Http\Controllers\Api\MatterMeshController;
 use App\Http\Controllers\Api\TagStudentController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\PeriodStageController;
-use App\Http\Controllers\Api\TypeDaytripController;
 use App\Http\Controllers\Api\TypeStudentController;
-use App\Http\Controllers\Api\TypeLanguageController;
 use App\Http\Controllers\Api\EconomicGroupController;
 use App\Http\Controllers\Api\InstituteTypeController;
 use App\Http\Controllers\Api\StudentRecordController;
@@ -238,7 +236,7 @@ Route::post('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::cla
 Route::put('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
 Route::patch('/matter-mesh/{id}', [MatterMeshController::class, 'restoreMatterMesh'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
 Route::delete('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
-Route::get('/matter-mesh/{mattermesh}/prerequisites', [MatterMeshController::class, 'showPrerequisites'])->middleware(['auth:sanctum' /*,'permission:mattermesh-listar-dependencias-por-materias-mallas'*/]);
+Route::get('/matter-mesh/{mattermesh}/prerequisites', [MatterMeshController::class, 'showPrerequisites'])->middleware(['auth:sanctum' ,'permission:mattermesh-listar-dependencias-por-materias-mallas']);
 /*
  *
  * PeriodStages
@@ -289,60 +287,11 @@ Route::put('institutes/{institute}', [InstituteController::class, 'update'])->mi
 Route::delete('institutes/{institute}', [InstituteController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:institutes-eliminar-instituto']);
 
 /**
- * City
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('cities', [CityController::class, 'index'])->middleware(['auth:sanctum', 'permission:city-listar-ciudad']);
-//Route::post('cities', [CityController::class, 'store'])->middleware(['auth:sanctum', 'permission:city-crear-ciudad']);
-//Route::get('cities/{city}', [CityController::class, 'show'])->middleware(['auth:sanctum', 'permission:city-obtener-ciudad']);
-
-/**
- * Status Marital
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('status-marital', [StatusMaritalController::class, 'index'])->middleware(['auth:sanctum', 'permission:status_marital-listar-estatus']);
-//Route::get('status-marital/{statusmarital}', [StatusMaritalController::class, 'show'])->middleware(['auth:sanctum', 'permission:status_marital-obtener-estatus']);
-
-/**
- * Type Identification
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('type-identifications', [TypeIdentificationController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_identification-listar-tipo-identificacion']);
-//Route::get('type-identifications/{typeidentification}', [TypeIdentificationController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_identification-obtener-tipo-identificacion']);
-
-/**
- * Type Religion
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('type-religions', [TypeReligionController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_religion-listar-tipo-religion']);
-//Route::get('type-religions/{typereligion}', [TypeReligionController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_religion-obtener-tipo-religion']);
-
-/**
- * Sector
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('sectors', [SectorController::class, 'index'])->middleware(['auth:sanctum', 'permission:sector-listar-sector']);
-//Route::get('sectors/{sector}', [SectorController::class, 'show'])->middleware(['auth:sanctum', 'permission:sector-obtener-sector']);
-
-/**
- * Ethnic
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('ethnics', [EthnicController::class, 'index'])->middleware(['auth:sanctum', 'permission:ethnic-listar-etnias']);
-//Route::get('ethnics/{ethnic}', [EthnicController::class, 'show'])->middleware(['auth:sanctum', 'permission:ethnic-obtener-etnias']);
-
-/**
  * Type Disability
  */
 Route::get('type-disabilities', [TypeDisabilityController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_disability-listar-tipo-discapacidad']);
 Route::get('type-disabilities/{typedisabilities}', [TypeDisabilityController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_disability-obtener-tipo-discapacidad']);
 
-/**
- * Type Daytrip
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('type-daytrips', [TypeDaytripController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_daytrip-listar-tipo-jornada']);
-//Route::get('type-daytrips/{typedaytrip}', [TypeDaytripController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_daytrip-obtener-tipo-jornada']);
 /**
  * TypeStudent
  */
@@ -350,22 +299,10 @@ Route::get('type-students', [TypeStudentController::class, 'index'])->middleware
 Route::get('type-students/{typeStudent}', [TypeStudentController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_students-obtener-tipo-estudiante']);
 
 /**
- * Type Language
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('type-languages', [TypeLanguageController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_language-listar-tipo-idioma']);
-//Route::get('type-languages/{typelanguage}', [TypeLanguageController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_language-obtener-tipo-idioma']);
-/**
  * Blood Type
  */
 Route::get('blood-types', [BloodTypeController::class, 'index'])->middleware(['auth:sanctum', 'permission:blood_type-listar-tipo-sangre']);
 Route::get('blood-types/{bloodtype}', [BloodTypeController::class, 'show'])->middleware(['auth:sanctum', 'permission:blood_type-obtener-tipo-sangre']);
-/**
- * Type Kinship
- */
-/**-------------------------------------- SE ELIMINAN ESTAS RUTAS E IGUAL LOS PERMISOS ---------------------------------------------------- */
-//Route::get('type-kinships', [TypeKinshipController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_kinship-listar-tipo-parentesco']);
-//Route::get('type-kinships/{typekinship}', [TypeKinshipController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_kinship-obtener-tipo-parentesco']);
 
 /**
  * Type Education
@@ -444,29 +381,29 @@ Route::delete('/relatives/{relative}', [RelativeController::class, 'destroy'])->
 /**
  * Component
  */
-Route::get('/components', [ComponentController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:components-listar-componente'*/]);
-Route::get('/components/{component}', [ComponentController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:components-obtener-componente'*/]);
-Route::post('/components', [ComponentController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:components-crear-componente'*/]);
-Route::put('/components/{component}', [ComponentController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:components-actualizar-componente'*/]);
-Route::delete('/components/{component}', [ComponentController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:components-borrar-componente'*/]);
+Route::get('/components', [ComponentController::class, 'index'])->middleware(['auth:sanctum', 'permission:components-listar-componente']);
+Route::get('/components/{component}', [ComponentController::class, 'show'])->middleware(['auth:sanctum', 'permission:components-obtener-componente']);
+Route::post('/components', [ComponentController::class, 'store'])->middleware(['auth:sanctum', 'permission:components-crear-componente']);
+Route::put('/components/{component}', [ComponentController::class, 'update'])->middleware(['auth:sanctum', 'permission:components-actualizar-componente']);
+Route::delete('/components/{component}', [ComponentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:components-borrar-componente']);
 
 /**
  * Details MatterMesh
  */
-Route::get('/details-matter-mesh', [DetailMatterMeshController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-listar-detalle-materiamalla'*/]);
-Route::get('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-obtener-detalle-materiamalla'*/]);
-Route::post('/details-matter-mesh', [DetailMatterMeshController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-crear-detalle-materiamalla'*/]);
-Route::put('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-actualizar-detalle-materiamalla'*/]);
-Route::delete('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-borrar-detalle-materiamalla'*/]);
+Route::get('/details-matter-mesh', [DetailMatterMeshController::class, 'index'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-listar-detalle-materiamalla']);
+Route::get('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'show'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-obtener-detalle-materiamalla']);
+Route::post('/details-matter-mesh', [DetailMatterMeshController::class, 'store'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-crear-detalle-materiamalla']);
+Route::put('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-actualizar-detalle-materiamalla']);
+Route::delete('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-borrar-detalle-materiamalla']);
 
 /**
  * Learning Component 
  */
-Route::get('/learning-components', [LearningComponentController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:learning_components-listar-componente-aprendizaje'*/]);
-Route::get('/learning-components/{learningcomponent}', [LearningComponentController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:learning_components-obtener-componente-aprendizaje'*/]);
-Route::post('/learning-components', [LearningComponentController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:learning_components-crear-componente-aprendizaje'*/]);
-Route::put('/learning-components/{learningcomponent}', [LearningComponentController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:learning_components-actualizar-componente-aprendizaje'*/]);
-Route::delete('/learning-components/{learningcomponent}', [LearningComponentController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:learning_components-borrar-componente-aprendizaje'*/]);
+Route::get('/learning-components', [LearningComponentController::class, 'index'])->middleware(['auth:sanctum', 'permission:learning_components-listar-componente-aprendizaje']);
+Route::get('/learning-components/{learningcomponent}', [LearningComponentController::class, 'show'])->middleware(['auth:sanctum', 'permission:learning_components-obtener-componente-aprendizaje']);
+Route::post('/learning-components', [LearningComponentController::class, 'store'])->middleware(['auth:sanctum', 'permission:learning_components-crear-componente-aprendizaje']);
+Route::put('/learning-components/{learningcomponent}', [LearningComponentController::class, 'update'])->middleware(['auth:sanctum', 'permission:learning_components-actualizar-componente-aprendizaje']);
+Route::delete('/learning-components/{learningcomponent}', [LearningComponentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:learning_components-borrar-componente-aprendizaje']);
 
 Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);
 /** 

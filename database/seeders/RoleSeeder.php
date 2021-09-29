@@ -15,8 +15,8 @@ class RoleSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('roles')->insert([
-            ['name' => 'Sistemas', 'description' => 'Usuario superadministrador', 'guard_name' => 'api', 'status_id' => 2],
-            ['name' => 'Colaborador', 'description' => 'Usuario administrador', 'guard_name' => 'api', 'status_id' => 2],
+            ['name' => 'Sistemas', 'description' => 'Usuario superadministrador', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'Colaborador', 'description' => 'Usuario administrador', 'guard_name' => 'api', 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('permissions')->insert([
@@ -1303,129 +1303,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'economicGroup'
             ],
             /**
-             * Ciudades 150-152
-             */
-            [
-                'name' => 'city-listar-ciudad',
-                'alias' => 'Listar ciduades',
-                'description' => 'Listar todas las ciudades',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'city'
-            ],
-            [
-                'name' => 'city-obtener-ciudad',
-                'alias' => 'Obtener ciudad',
-                'description' => 'Obtener una ciudad por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'city'
-            ],
-            [
-                'name' => 'city-crear-ciudad',
-                'alias' => 'Crear ciudad',
-                'description' => 'Crear una ciudad',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'city'
-            ],
-            /**
-             * Status Marital 153-154
-             */
-            [
-                'name' => 'status_marital-listar-estatus',
-                'alias' => 'Listar status marital',
-                'description' => 'Listar todos los estatus maritales',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'statusMarital'
-            ],
-            [
-                'name' => 'status_marital-obtener-estatus',
-                'alias' => 'Obtener status marital',
-                'description' => 'Obtener un estatus marital por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'statusMarital'
-            ],
-            /**
-             * Tipo identificacion 155-156
-             */
-            [
-                'name' => 'type_identification-listar-tipo-identificacion',
-                'alias' => 'Listar tipo identificacion',
-                'description' => 'Listar todos los tipos de identificacion',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeIdentification'
-            ],
-            [
-                'name' => 'type_identification-obtener-tipo-identificacion',
-                'alias' => 'Obtener tipo identificacion',
-                'description' => 'Obtener un tipo identificacion por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeIdentification'
-            ],
-            /**
-             * Tipo religion 157-158
-             */
-            [
-                'name' => 'type_religion-listar-tipo-religion',
-                'alias' => 'Listar tipo religon',
-                'description' => 'Listar todos los tipos de religion',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeReligion'
-            ],
-            [
-                'name' => 'type_religion-obtener-tipo-religion',
-                'alias' => 'Obtener tipo religion',
-                'description' => 'Obtener un tipo religion por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeReligion'
-            ],
-            /**
-             * Sector 159-160
-             */
-            [
-                'name' => 'sector-listar-sector',
-                'alias' => 'Listar sector',
-                'description' => 'Listar todos los sectores',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'sector'
-            ],
-            [
-                'name' => 'sector-obtener-sector',
-                'alias' => 'Obtener sector',
-                'description' => 'Obtener un sector por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'sector'
-            ],
-            /**
-             * Etnias 161-162
-             */
-            [
-                'name' => 'ethnic-listar-etnias',
-                'alias' => 'Listar etnias',
-                'description' => 'Listar todas las etnias',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'ethnic'
-            ],
-            [
-                'name' => 'ethnic-obtener-etnias',
-                'alias' => 'Obtener etnia',
-                'description' => 'Obtener una etnia por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'ethnic'
-            ],
-            /**
-             * Tipos Discapacidad 163-164
+             * Tipos Discapacidad 150-151
              */
             [
                 'name' => 'type_disability-listar-tipo-discapacidad',
@@ -1444,45 +1322,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typeDisability'
             ],
             /**
-             * Tipos Jornada 165-166
-             */
-            [
-                'name' => 'type_daytrip-listar-tipo-jornada',
-                'alias' => 'Listar jornadas',
-                'description' => 'Listar todas las jornadas',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeDaytrip'
-            ],
-            [
-                'name' => 'type_daytrip-obtener-tipo-jornada',
-                'alias' => 'Obtener tipo jornada',
-                'description' => 'Obtener un tipo de jornada por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeDaytrip'
-            ],
-            /**
-             * Tipo Idioma 167-168
-             */
-            [
-                'name' => 'type_language-listar-tipo-idioma',
-                'alias' => 'Listar idiomas',
-                'description' => 'Listar todos los idiomas',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeLanguage'
-            ],
-            [
-                'name' => 'type_language-obtener-tipo-idioma',
-                'alias' => 'Obtener tipo idioma',
-                'description' => 'Obtener un tipo de idioma por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeLanguage'
-            ],
-            /**
-             * Tipo sangre 169-170
+             * Tipo sangre 152-153
              */
             [
                 'name' => 'blood_type-listar-tipo-sangre',
@@ -1501,26 +1341,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'bloodType'
             ],
             /**
-             * Tipo Parentesco 171-172
-             */
-            [
-                'name' => 'type_kinship-listar-tipo-parentesco',
-                'alias' => 'Listar tipo parentesco',
-                'description' => 'Listar todos los tipos de parentesco',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeKinship'
-            ],
-            [
-                'name' => 'type_kinship-obtener-tipo-parentesco',
-                'alias' => 'Obtener tipo parentesco',
-                'description' => 'Obtener un tipo de parentesco por su identificador',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'typeKinship'
-            ],
-            /**
-             * Tipo Educacion 173-174
+             * Tipo Educacion 154-155
              */
             [
                 'name' => 'type_education-listar-tipo-educacion',
@@ -1539,7 +1360,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typeEducation'
             ],
             /**
-             * Persona Trabajo 175-180
+             * Persona Trabajo 156-161
              */
             [
                 'name' => 'person_job-listar-persona-trabajo',
@@ -1590,7 +1411,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'personJob'
             ],
             /**
-             * Tenant 181
+             * Tenant 162
              */
             [
                 'name' => 'tenant-actualizar-tenant',
@@ -1601,7 +1422,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'tenant'
             ],
             /**
-             * Criterio Estudiante 182-186
+             * Criterio Estudiante 163-167
              */
             [
                 'name' => 'criteria_students_records-listar-criterio-record-estudiantil',
@@ -1644,7 +1465,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'criteriaStudent'
             ],
             /**
-             * Record Estudiantil 187-191
+             * Record Estudiantil 168-172
              */
             [
                 'name' => 'student_records-listar-record-estudiantil',
@@ -1687,7 +1508,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'studentRecord'
             ],
             /**
-             * Oferta 192-193
+             * Oferta 173-174
              */
             [
                 'name' => 'offers-listar-periodos-por-oferta',
@@ -1706,7 +1527,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'offerPeriod'
             ],
             /**
-             * Periodo 194-195
+             * Periodo 175-176
              */
             [
                 'name' => 'periods-listar-ofertas-por-periodo',
@@ -1725,7 +1546,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'periodOffer'
             ],
             /**
-             * Persona 196-200
+             * Persona 177-181
              */
             [
                 'name' => 'persons-listar-persons',
@@ -1768,7 +1589,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'person'
             ],
             /**
-             * Contacto Emergencia 201-205
+             * Contacto Emergencia 182-186
              */
             [
                 'name' => 'emergency_contact-listar-contacto-emergencia',
@@ -1811,7 +1632,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'emergencyContact'
             ],
             /**
-             * Periodos 206-207
+             * Periodos 187-188
              */
             [
                 'name' => 'periods-listar-horarios-por-periodo',
@@ -1830,7 +1651,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'periods'
             ],
             /**
-             * Etiqueta Estudiante 208-212
+             * Etiqueta Estudiante 189-193
              */
             [
                 'name' => 'tags_student-listar-etiqueta',
@@ -1873,7 +1694,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'tagStudent'
             ],
             /**
-             * Persona 213
+             * Persona 194
              */
             [
                 'name' => 'languages-person-actualizar-lenguajes-por-persona',
@@ -1884,7 +1705,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'person'
             ],
             /**
-             * Catalogar 214-218
+             * Catalogar 195-199
              */
             [
                 'name' => 'catalogs-listar-catalogs',
@@ -1927,7 +1748,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'catalog'
             ],
             /**
-             * Documentos Estudiante 219-224
+             * Documentos Estudiante 200-205
              */
             [
                 'name' => 'student-document-listar-documentos-estudiantes',
@@ -1978,7 +1799,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'studentDocument'
             ],
             /**
-             * Estados 225
+             * Estados 206
              */
             [
                 'name' => 'status-listar-status',
@@ -1989,7 +1810,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'status'
             ],
             /**
-             * Mencion 226-227
+             * Mencion 207-208
              */
             [
                 'name' => 'mention-listar-menciones',
@@ -2008,7 +1829,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'mention'
             ],
             /**
-             * Tipo progama estudiante 228-232
+             * Tipo progama estudiante 209-213
              */
             [
                 'name' => 'type-student-program-listar-tipo-programa-estudiante',
@@ -2051,7 +1872,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'typeStudentProgram'
             ],
             /**
-             * Familia 233-238
+             * Familia 214-219
              */
             [
                 'name' => 'relatives-listar-familiar',
@@ -2102,7 +1923,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'relatives'
             ],
             /**
-             * Categoria Estados 239
+             * Categoria Estados 220
              */
             [
                 'name' => 'category-status-listar-categoria-estado',
@@ -2113,7 +1934,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'categoryStatus'
             ],
             /**
-             * Estudiantes 240-243
+             * Estudiantes 221-224
              */
             [
                 'name' => 'student-show-estudiante',
@@ -2148,7 +1969,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'student'
             ],
             /**
-             * Materia Malla 244-245
+             * Materia Malla 225-226
              */
             [
                 'name' => 'mattermesh-asignar-dependencias-por-materias-mallas',
@@ -2167,7 +1988,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'matterMesh'
             ],
             /**
-             * Persona 246
+             * Persona 227
              */
             [
                 'name' => 'person-as-student-configurar-persona-como-estudiante',
@@ -2178,7 +1999,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'person'
             ],
             /**
-             * Materia Malla 247
+             * Materia Malla 228
              */
             [
                 'name' => 'matters-by-meshs-obtener-materias-por-malla',
@@ -2189,7 +2010,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'mesh'
             ],
             /**
-             * Simbology 248-252
+             * Simbology 229-233
              */
             [
                 'name' => 'simbology-listar-simbologias',
@@ -2232,7 +2053,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'simbology'
             ],
             /**
-             * Simbologia Oferta 253-254
+             * Simbologia Oferta 234-235
              */
             [
                 'name' => 'offers-listar-simbologias-por-oferta',
@@ -2251,7 +2072,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'offer'
             ],
             /**
-             * Record de Programa Estudiantil 255-260
+             * Record de Programa Estudiantil 236-241
              */
             [
                 'name' => 'student-record-programs-listar-programas-registro-estudiantil',
@@ -2302,7 +2123,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'StudentRecord'
             ],
             /**
-             * Record de Periodo Estudiantil 261-265
+             * Record de Periodo Estudiantil 242-246
              */
             [
                 'name' => 'student-records-period-listar-student-records-period',
@@ -2345,7 +2166,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'StudentRecordPeriod'
             ],
             /**
-             * Tipo Aulas 266-270
+             * Tipo Aulas 247-251
              */
             [
                 'name' => 'classroomType-listar-tipos-de-aulas',
@@ -2388,7 +2209,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'classroomType'
             ],
             /**
-             * Estudiante 271-272
+             * Estudiante 252-253
              */
             [
                 'name' => 'student-listar-estudiante',
@@ -2407,7 +2228,7 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'student'
             ],
             /**
-             * Cargo 273-277
+             * Cargo 254-260
              */
             [
                 'name' => 'positions-listar-cargos',
@@ -2464,6 +2285,135 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1,
                 'parent_name' => 'users'
+            ],
+            /**
+             * Componente 261-265
+             */
+            [
+                'name' => 'components-listar-componente',
+                'alias' => 'Listar componente',
+                'description' => 'Listar todos los componentes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'component'
+            ],
+            [
+                'name' => 'components-obtener-componente',
+                'alias' => 'Obtener componente',
+                'description' => 'Obtener un componente por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'component'
+            ],
+            [
+                'name' => 'components-crear-componente',
+                'alias' => 'Crear componente',
+                'description' => 'Agregar un componente',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'component'
+            ],
+            [
+                'name' => 'components-actualizar-componente',
+                'alias' => 'Actualizar componente',
+                'description' => 'Actualizar un componente por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'component'
+            ],
+            [
+                'name' => 'components-borrar-componente',
+                'alias' => 'Borrar componente',
+                'description' => 'Borrar un componente por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'component'
+            ],
+            /**
+             * Detalle Materia Malla 266-270
+             */
+            [
+                'name' => 'details_matter_mesh-listar-detalle-materiamalla',
+                'alias' => 'Listar detalle materia malla',
+                'description' => 'Listar todos los detalle materia mallas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'detailMatterMesh'
+            ],
+            [
+                'name' => 'details_matter_mesh-obtener-detalle-materiamalla',
+                'alias' => 'Obtener detalle materia malla',
+                'description' => 'Obtener un detalle materia malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'detailMatterMesh'
+            ],
+            [
+                'name' => 'details_matter_mesh-crear-detalle-materiamalla',
+                'alias' => 'Crear detalle materia malla',
+                'description' => 'Agregar un detalle materia malla',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'detailMatterMesh'
+            ],
+            [
+                'name' => 'details_matter_mesh-actualizar-detalle-materiamalla',
+                'alias' => 'Actualizar detalle materia malla',
+                'description' => 'Actualizar un detalle materia malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'detailMatterMesh'
+            ],
+            [
+                'name' => 'details_matter_mesh-borrar-detalle-materiamalla',
+                'alias' => 'Borrar detalle materia malla',
+                'description' => 'Borrar un detalle materia malla por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'detailMatterMesh'
+            ],
+            /**
+             * Componente Aprendizaje 271-275
+             */
+            [
+                'name' => 'learning_components-listar-componente-aprendizaje',
+                'alias' => 'Listar componente aprendizaje',
+                'description' => 'Listar todos los componente aprendizajes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'learningComponent'
+            ],
+            [
+                'name' => 'learning_components-obtener-componente-aprendizaje',
+                'alias' => 'Obtener componente aprendizaje',
+                'description' => 'Obtener un componente aprendizaje por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'learningComponent'
+            ],
+            [
+                'name' => 'learning_components-crear-componente-aprendizaje',
+                'alias' => 'Crear componente aprendizaje',
+                'description' => 'Agregar un componente aprendizaje',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'learningComponent'
+            ],
+            [
+                'name' => 'learning_components-actualizar-componente-aprendizaje',
+                'alias' => 'Actualizar componente aprendizaje',
+                'description' => 'Actualizar un componente aprendizaje por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'learningComponent'
+            ],
+            [
+                'name' => 'learning_components-borrar-componente-aprendizaje',
+                'alias' => 'Borrar componente aprendizaje',
+                'description' => 'Borrar un componente aprendizaje por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'learningComponent'
             ],
         ]);
 
@@ -2708,259 +2658,134 @@ class RoleSeeder extends Seeder
             ['permission_id' => 148, 'role_id' => 1],
             ['permission_id' => 149, 'role_id' => 1],
             /**
-             * Ciudades 150-152
+             * Tipos Discapacidad 150-152
              */
             ['permission_id' => 150, 'role_id' => 1],
             ['permission_id' => 151, 'role_id' => 1],
             ['permission_id' => 152, 'role_id' => 1],
-            /**
-             * Status Marital 153-154
-             */
             ['permission_id' => 153, 'role_id' => 1],
             ['permission_id' => 154, 'role_id' => 1],
-            /**
-             * Tipo identificacion 155-156
-             */
             ['permission_id' => 155, 'role_id' => 1],
             ['permission_id' => 156, 'role_id' => 1],
-            /**
-             * Tipo religion 157-158
-             */
             ['permission_id' => 157, 'role_id' => 1],
             ['permission_id' => 158, 'role_id' => 1],
-            /**
-             * Sector 159-160
-             */
             ['permission_id' => 159, 'role_id' => 1],
             ['permission_id' => 160, 'role_id' => 1],
-            /**
-             * Etnias 161-162
-             */
             ['permission_id' => 161, 'role_id' => 1],
             ['permission_id' => 162, 'role_id' => 1],
-            /**
-             * Tipos Discapacidad 163-164
-             */
             ['permission_id' => 163, 'role_id' => 1],
             ['permission_id' => 164, 'role_id' => 1],
-            /**
-             * Tipos Jornada 165-166
-             */
             ['permission_id' => 165, 'role_id' => 1],
             ['permission_id' => 166, 'role_id' => 1],
-            /**
-             * Tipo Idioma 167-168
-             */
             ['permission_id' => 167, 'role_id' => 1],
             ['permission_id' => 168, 'role_id' => 1],
-            /**
-             * Tipo sangre 169-170
-             */
             ['permission_id' => 169, 'role_id' => 1],
             ['permission_id' => 170, 'role_id' => 1],
-            /**
-             * Tipo Parentesco 171-172
-             */
             ['permission_id' => 171, 'role_id' => 1],
             ['permission_id' => 172, 'role_id' => 1],
-            /**
-             * Tipo Educacion 173-174
-             */
             ['permission_id' => 173, 'role_id' => 1],
             ['permission_id' => 174, 'role_id' => 1],
-            /**
-             * Persona Trabajo 175-180
-             */
             ['permission_id' => 175, 'role_id' => 1],
             ['permission_id' => 176, 'role_id' => 1],
             ['permission_id' => 177, 'role_id' => 1],
             ['permission_id' => 178, 'role_id' => 1],
             ['permission_id' => 179, 'role_id' => 1],
             ['permission_id' => 180, 'role_id' => 1],
-            /**
-             * Tenant 181
-             */
             ['permission_id' => 181, 'role_id' => 1],
-            /**
-             * Criterio Estudiante 182-186
-             */
             ['permission_id' => 182, 'role_id' => 1],
             ['permission_id' => 183, 'role_id' => 1],
             ['permission_id' => 184, 'role_id' => 1],
             ['permission_id' => 185, 'role_id' => 1],
             ['permission_id' => 186, 'role_id' => 1],
-            /**
-             * Record Estudiantil 187-191
-             */
             ['permission_id' => 187, 'role_id' => 1],
             ['permission_id' => 188, 'role_id' => 1],
             ['permission_id' => 189, 'role_id' => 1],
             ['permission_id' => 190, 'role_id' => 1],
             ['permission_id' => 191, 'role_id' => 1],
-            /**
-             * Oferta 192-193
-             */
             ['permission_id' => 192, 'role_id' => 1],
             ['permission_id' => 193, 'role_id' => 1],
-            /**
-             * Periodo 194-195
-             */
             ['permission_id' => 194, 'role_id' => 1],
             ['permission_id' => 195, 'role_id' => 1],
-            /**
-             * Persona 196-200
-             */
             ['permission_id' => 196, 'role_id' => 1],
             ['permission_id' => 197, 'role_id' => 1],
             ['permission_id' => 198, 'role_id' => 1],
             ['permission_id' => 199, 'role_id' => 1],
             ['permission_id' => 200, 'role_id' => 1],
-            /**
-             * Contacto Emergencia 201-205
-             */
             ['permission_id' => 201, 'role_id' => 1],
             ['permission_id' => 202, 'role_id' => 1],
             ['permission_id' => 203, 'role_id' => 1],
             ['permission_id' => 204, 'role_id' => 1],
             ['permission_id' => 205, 'role_id' => 1],
-            /**
-             * Periodos 206-207
-             */
             ['permission_id' => 206, 'role_id' => 1],
             ['permission_id' => 207, 'role_id' => 1],
-            /**
-             * Etiqueta Estudiante 208-212
-             */
             ['permission_id' => 208, 'role_id' => 1],
             ['permission_id' => 209, 'role_id' => 1],
             ['permission_id' => 210, 'role_id' => 1],
             ['permission_id' => 211, 'role_id' => 1],
             ['permission_id' => 212, 'role_id' => 1],
-            /**
-             * Persona 213
-             */
             ['permission_id' => 213, 'role_id' => 1],
-            /**
-             * Catalogar 214-218
-             */
             ['permission_id' => 214, 'role_id' => 1],
             ['permission_id' => 215, 'role_id' => 1],
             ['permission_id' => 216, 'role_id' => 1],
             ['permission_id' => 217, 'role_id' => 1],
             ['permission_id' => 218, 'role_id' => 1],
-            /**
-             * Documentos Estudiante 219-224
-             */
             ['permission_id' => 219, 'role_id' => 1],
             ['permission_id' => 220, 'role_id' => 1],
             ['permission_id' => 221, 'role_id' => 1],
             ['permission_id' => 222, 'role_id' => 1],
             ['permission_id' => 223, 'role_id' => 1],
             ['permission_id' => 224, 'role_id' => 1],
-
-            /**
-             * Estados 225
-             */
             ['permission_id' => 225, 'role_id' => 1],
-            /**
-             * Mencion 226-227
-             */
             ['permission_id' => 226, 'role_id' => 1],
             ['permission_id' => 227, 'role_id' => 1],
-            /**
-             * Tipo progama estudiante 228-232
-             */
             ['permission_id' => 228, 'role_id' => 1],
             ['permission_id' => 229, 'role_id' => 1],
             ['permission_id' => 230, 'role_id' => 1],
             ['permission_id' => 231, 'role_id' => 1],
             ['permission_id' => 232, 'role_id' => 1],
-            /**
-             * Familia 233-238
-             */
             ['permission_id' => 233, 'role_id' => 1],
             ['permission_id' => 234, 'role_id' => 1],
             ['permission_id' => 235, 'role_id' => 1],
             ['permission_id' => 236, 'role_id' => 1],
             ['permission_id' => 237, 'role_id' => 1],
             ['permission_id' => 238, 'role_id' => 1],
-            /**
-             * Categoria Estados 239
-             */
             ['permission_id' => 239, 'role_id' => 1],
-            /**
-             * Estudiantes 240-243
-             */
             ['permission_id' => 240, 'role_id' => 1],
             ['permission_id' => 241, 'role_id' => 1],
             ['permission_id' => 242, 'role_id' => 1],
             ['permission_id' => 243, 'role_id' => 1],
-            /**
-             * Estudiantes 244-245
-             */
             ['permission_id' => 244, 'role_id' => 1],
             ['permission_id' => 245, 'role_id' => 1],
-            /**
-             * Persona 246
-             */
             ['permission_id' => 246, 'role_id' => 1],
-            /**
-             * Materia Malla 247
-             */
             ['permission_id' => 247, 'role_id' => 1],
-            /**
-             * Simbology 248-252
-             */
             ['permission_id' => 248, 'role_id' => 1],
             ['permission_id' => 249, 'role_id' => 1],
             ['permission_id' => 250, 'role_id' => 1],
             ['permission_id' => 251, 'role_id' => 1],
             ['permission_id' => 252, 'role_id' => 1],
-            /**
-             * Simbologia Oferta 253-254
-             */
             ['permission_id' => 253, 'role_id' => 1],
             ['permission_id' => 254, 'role_id' => 1],
-            /**
-             * Record de Programa Estudiantil 255-260
-             */
             ['permission_id' => 255, 'role_id' => 1],
             ['permission_id' => 256, 'role_id' => 1],
             ['permission_id' => 257, 'role_id' => 1],
             ['permission_id' => 258, 'role_id' => 1],
             ['permission_id' => 259, 'role_id' => 1],
             ['permission_id' => 260, 'role_id' => 1],
-            /**
-             * Record de Periodo Estudiantil 261-265
-             */
             ['permission_id' => 261, 'role_id' => 1],
             ['permission_id' => 262, 'role_id' => 1],
             ['permission_id' => 263, 'role_id' => 1],
             ['permission_id' => 264, 'role_id' => 1],
             ['permission_id' => 265, 'role_id' => 1],
-            /**
-             * Tipo Aulas 266-270
-             */
             ['permission_id' => 266, 'role_id' => 1],
             ['permission_id' => 267, 'role_id' => 1],
             ['permission_id' => 268, 'role_id' => 1],
             ['permission_id' => 269, 'role_id' => 1],
             ['permission_id' => 270, 'role_id' => 1],
-            /**
-             * Estudiante 271-272
-             */
             ['permission_id' => 271, 'role_id' => 1],
             ['permission_id' => 272, 'role_id' => 1],
-            /**
-             * Cargo 273-277
-             */
             ['permission_id' => 273, 'role_id' => 1],
             ['permission_id' => 274, 'role_id' => 1],
             ['permission_id' => 275, 'role_id' => 1],
-            ['permission_id' => 276, 'role_id' => 1],
-            ['permission_id' => 277, 'role_id' => 1],
-            ['permission_id' => 278, 'role_id' => 1],
-            ['permission_id' => 279, 'role_id' => 1],
 
             /**
              *
@@ -3208,255 +3033,133 @@ class RoleSeeder extends Seeder
             ['permission_id' => 148, 'role_id' => 2],
             ['permission_id' => 149, 'role_id' => 2],
             /**
-             * Ciudades 150-152
+             * Tipos Discapacidad 150-152
              */
             ['permission_id' => 150, 'role_id' => 2],
             ['permission_id' => 151, 'role_id' => 2],
             ['permission_id' => 152, 'role_id' => 2],
-            /**
-             * Status Marital 153-154
-             */
             ['permission_id' => 153, 'role_id' => 2],
             ['permission_id' => 154, 'role_id' => 2],
-            /**
-             * Tipo identificacion 155-156
-             */
             ['permission_id' => 155, 'role_id' => 2],
             ['permission_id' => 156, 'role_id' => 2],
-            /**
-             * Tipo religion 157-158
-             */
             ['permission_id' => 157, 'role_id' => 2],
             ['permission_id' => 158, 'role_id' => 2],
-            /**
-             * Sector 159-160
-             */
             ['permission_id' => 159, 'role_id' => 2],
             ['permission_id' => 160, 'role_id' => 2],
-            /**
-             * Etnias 161-162
-             */
             ['permission_id' => 161, 'role_id' => 2],
-            ['permission_id' => 162, 'role_id' => 2],
-            /**
-             * Tipos Discapacidad 163-164
-             */
             ['permission_id' => 163, 'role_id' => 2],
             ['permission_id' => 164, 'role_id' => 2],
-            /**
-             * Tipos Jornada 165-166
-             */
             ['permission_id' => 165, 'role_id' => 2],
             ['permission_id' => 166, 'role_id' => 2],
-            /**
-             * Tipo Idioma 167-168
-             */
             ['permission_id' => 167, 'role_id' => 2],
             ['permission_id' => 168, 'role_id' => 2],
-            /**
-             * Tipo sangre 169-170
-             */
             ['permission_id' => 169, 'role_id' => 2],
             ['permission_id' => 170, 'role_id' => 2],
-            /**
-             * Tipo Parentesco 171-172
-             */
             ['permission_id' => 171, 'role_id' => 2],
             ['permission_id' => 172, 'role_id' => 2],
-            /**
-             * Tipo Educacion 173-174
-             */
             ['permission_id' => 173, 'role_id' => 2],
             ['permission_id' => 174, 'role_id' => 2],
-            /**
-             * Persona Trabajo 175-180
-             */
             ['permission_id' => 175, 'role_id' => 2],
             ['permission_id' => 176, 'role_id' => 2],
             ['permission_id' => 177, 'role_id' => 2],
             ['permission_id' => 178, 'role_id' => 2],
             ['permission_id' => 179, 'role_id' => 2],
             ['permission_id' => 180, 'role_id' => 2],
-            /**
-             * Criterio Estudiante 182-186
-             */
+            ['permission_id' => 181, 'role_id' => 2],
             ['permission_id' => 182, 'role_id' => 2],
             ['permission_id' => 183, 'role_id' => 2],
             ['permission_id' => 184, 'role_id' => 2],
             ['permission_id' => 185, 'role_id' => 2],
             ['permission_id' => 186, 'role_id' => 2],
-            /**
-             * Record Estudiantil 187-191
-             */
             ['permission_id' => 187, 'role_id' => 2],
             ['permission_id' => 188, 'role_id' => 2],
             ['permission_id' => 189, 'role_id' => 2],
             ['permission_id' => 190, 'role_id' => 2],
             ['permission_id' => 191, 'role_id' => 2],
-            /**
-             * Oferta 192-193
-             */
             ['permission_id' => 192, 'role_id' => 2],
             ['permission_id' => 193, 'role_id' => 2],
-            /**
-             * Periodo 194-195
-             */
             ['permission_id' => 194, 'role_id' => 2],
             ['permission_id' => 195, 'role_id' => 2],
-            /**
-             * Persona 196-200
-             */
             ['permission_id' => 196, 'role_id' => 2],
             ['permission_id' => 197, 'role_id' => 2],
             ['permission_id' => 198, 'role_id' => 2],
             ['permission_id' => 199, 'role_id' => 2],
             ['permission_id' => 200, 'role_id' => 2],
-            /**
-             * Contacto Emergencia 201-205
-             */
             ['permission_id' => 201, 'role_id' => 2],
             ['permission_id' => 202, 'role_id' => 2],
             ['permission_id' => 203, 'role_id' => 2],
             ['permission_id' => 204, 'role_id' => 2],
             ['permission_id' => 205, 'role_id' => 2],
-            /**
-             * Periodos 206-207
-             */
             ['permission_id' => 206, 'role_id' => 2],
             ['permission_id' => 207, 'role_id' => 2],
-            /**
-             * Etiqueta Estudiante 208-212
-             */
             ['permission_id' => 208, 'role_id' => 2],
             ['permission_id' => 209, 'role_id' => 2],
             ['permission_id' => 210, 'role_id' => 2],
             ['permission_id' => 211, 'role_id' => 2],
             ['permission_id' => 212, 'role_id' => 2],
-            /**
-             * Persona 213
-             */
             ['permission_id' => 213, 'role_id' => 2],
-            /**
-             * Catalogar 214-218
-             */
             ['permission_id' => 214, 'role_id' => 2],
             ['permission_id' => 215, 'role_id' => 2],
             ['permission_id' => 216, 'role_id' => 2],
             ['permission_id' => 217, 'role_id' => 2],
             ['permission_id' => 218, 'role_id' => 2],
-            /**
-             * Documentos Estudiante 219-224
-             */
             ['permission_id' => 219, 'role_id' => 2],
             ['permission_id' => 220, 'role_id' => 2],
             ['permission_id' => 221, 'role_id' => 2],
             ['permission_id' => 222, 'role_id' => 2],
             ['permission_id' => 223, 'role_id' => 2],
             ['permission_id' => 224, 'role_id' => 2],
-
-            /**
-             * Estados 225
-             */
             ['permission_id' => 225, 'role_id' => 2],
-            /**
-             * Mencion 226-227
-             */
             ['permission_id' => 226, 'role_id' => 2],
             ['permission_id' => 227, 'role_id' => 2],
-            /**
-             * Tipo progama estudiante 228-232
-             */
             ['permission_id' => 228, 'role_id' => 2],
             ['permission_id' => 229, 'role_id' => 2],
             ['permission_id' => 230, 'role_id' => 2],
             ['permission_id' => 231, 'role_id' => 2],
             ['permission_id' => 232, 'role_id' => 2],
-            /**
-             * Familia 233-238
-             */
             ['permission_id' => 233, 'role_id' => 2],
             ['permission_id' => 234, 'role_id' => 2],
             ['permission_id' => 235, 'role_id' => 2],
             ['permission_id' => 236, 'role_id' => 2],
             ['permission_id' => 237, 'role_id' => 2],
             ['permission_id' => 238, 'role_id' => 2],
-            /**
-             * Categoria Estados 239
-             */
             ['permission_id' => 239, 'role_id' => 2],
-            /**
-             * Estudiantes 240-243
-             */
             ['permission_id' => 240, 'role_id' => 2],
             ['permission_id' => 241, 'role_id' => 2],
             ['permission_id' => 242, 'role_id' => 2],
             ['permission_id' => 243, 'role_id' => 2],
-            /**
-             * Estudiantes 244-245
-             */
             ['permission_id' => 244, 'role_id' => 2],
             ['permission_id' => 245, 'role_id' => 2],
-            /**
-             * Persona 246
-             */
             ['permission_id' => 246, 'role_id' => 2],
-            /**
-             * Materia Malla 247
-             */
             ['permission_id' => 247, 'role_id' => 2],
-            /**
-             * Simbology 248-252
-             */
             ['permission_id' => 248, 'role_id' => 2],
             ['permission_id' => 249, 'role_id' => 2],
             ['permission_id' => 250, 'role_id' => 2],
             ['permission_id' => 251, 'role_id' => 2],
             ['permission_id' => 252, 'role_id' => 2],
-            /**
-             * Simbologia Oferta 253-254
-             */
             ['permission_id' => 253, 'role_id' => 2],
             ['permission_id' => 254, 'role_id' => 2],
-            /**
-             * Record de Programa Estudiantil 255-260
-             */
             ['permission_id' => 255, 'role_id' => 2],
             ['permission_id' => 256, 'role_id' => 2],
             ['permission_id' => 257, 'role_id' => 2],
             ['permission_id' => 258, 'role_id' => 2],
             ['permission_id' => 259, 'role_id' => 2],
             ['permission_id' => 260, 'role_id' => 2],
-            /**
-             * Record de Periodo Estudiantil 261-265
-             */
             ['permission_id' => 261, 'role_id' => 2],
             ['permission_id' => 262, 'role_id' => 2],
             ['permission_id' => 263, 'role_id' => 2],
             ['permission_id' => 264, 'role_id' => 2],
             ['permission_id' => 265, 'role_id' => 2],
-            /**
-             * Tipo Aulas 266-270
-             */
             ['permission_id' => 266, 'role_id' => 2],
             ['permission_id' => 267, 'role_id' => 2],
             ['permission_id' => 268, 'role_id' => 2],
             ['permission_id' => 269, 'role_id' => 2],
             ['permission_id' => 270, 'role_id' => 2],
-            /**
-             * Estudiante 271-272
-             */
             ['permission_id' => 271, 'role_id' => 2],
             ['permission_id' => 272, 'role_id' => 2],
-            /**
-             * Cargo 273-277
-             */
             ['permission_id' => 273, 'role_id' => 2],
             ['permission_id' => 274, 'role_id' => 2],
             ['permission_id' => 275, 'role_id' => 2],
-            ['permission_id' => 276, 'role_id' => 2],
-            ['permission_id' => 277, 'role_id' => 2],
-            ['permission_id' => 278, 'role_id' => 2],
-            ['permission_id' => 279, 'role_id' => 2],
         ]);
     }
 }
