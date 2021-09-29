@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Models\User;
 use App\Traits\RestResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller implements IForgotPasswordController
@@ -18,18 +19,16 @@ class ForgotPasswordController extends Controller implements IForgotPasswordCont
     {
         $user = User::where('us_username', $request->us_username)->first();
 
-        if($user) {
-            $response = Password::sendResetLink($request->only('us_username'));
+        if(!$user)
+            return $this->information(__('passwords.email'), Response::HTTP_NOT_FOUND);
 
-            if($response === Password::RESET_LINK_SENT) {
-                return $this->success(__('passwords.sent'));
-            } else {
-                throw new NotFoundException(__('messages.not-email'));
-            }
-        } else {
-            throw new NotFoundException(__('messages.not-found'));
-        }
+        $response = Password::sendResetLink([
+            'email' => $user->email
+        ]);
 
+        return $response === Password::RESET_LINK_SENT ?
+            $this->information(__('passwords.sent')) :
+            $this->information(__('messages.not-email'), Response::HTTP_NOT_FOUND);
     }
 
 }
