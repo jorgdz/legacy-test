@@ -22,9 +22,21 @@ class CreateHourhandsTable extends Migration
             $table->boolean('hour_friday')->nullable();
             $table->boolean('hour_saturday')->nullable();
             $table->boolean('hour_sunday')->nullable();
+            $table->string('hour_start_time_monday')->nullable();
+            $table->string('hour_end_time_monday')->nullable();
+            $table->string('hour_start_time_tuesday')->nullable();
+            $table->string('hour_end_time_tuesday')->nullable();
+            $table->string('hour_start_time_wednesday')->nullable();
+            $table->string('hour_end_time_wednesday')->nullable();
+            $table->string('hour_start_time_thursday')->nullable();
+            $table->string('hour_end_time_thursday')->nullable();
+            $table->string('hour_start_time_friday')->nullable();
+            $table->string('hour_end_time_friday')->nullable();
+            $table->string('hour_start_time_saturday')->nullable();
+            $table->string('hour_end_time_saturday')->nullable();
+            $table->string('hour_start_time_sunday')->nullable();
+            $table->string('hour_end_time_sunday')->nullable();
             $table->string('hour_description')->nullable();
-            $table->string('hour_start_time')->nullable();
-            $table->string('hour_end_time')->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

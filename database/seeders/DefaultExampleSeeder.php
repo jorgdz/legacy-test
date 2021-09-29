@@ -109,9 +109,36 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('hourhands')->insert([
-            ['hour_monday' => 1, 'hour_tuesday' => 1, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 0, 'hour_sunday' => 0, 'hour_description' => 'horario 1', 'hour_start_time' => '08:00:00', 'hour_end_time' => '13:30:00', 'status_id' => 1],
-            ['hour_monday' => 1, 'hour_tuesday' => 0, 'hour_wednesday' => 0, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 0, 'hour_description' => 'horario 2', 'hour_start_time' => '13:30:00', 'hour_end_time' => '19:00:00', 'status_id' => 1],
-            ['hour_monday' => 0, 'hour_tuesday' => 0, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 1, 'hour_description' => 'horario 3', 'hour_start_time' => '10:00:00', 'hour_end_time' => '15:40:00', 'status_id' => 1],
+            ['hour_monday' => 1, 'hour_tuesday' => 1, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 0, 'hour_sunday' => 0,
+                'hour_start_time_monday' => '08:00:00', 'hour_end_time_monday' => '08:30:00',
+                'hour_start_time_tuesday' => '08:00:00', 'hour_end_time_tuesday' => '08:30:00',
+                'hour_start_time_wednesday' => '08:00:00', 'hour_end_time_wednesday' => '08:30:00',
+                'hour_start_time_thursday' => '08:00:00', 'hour_end_time_thursday' => '08:30:00',
+                'hour_start_time_friday' => '08:00:00', 'hour_end_time_friday' => '08:30:00',
+                'hour_start_time_saturday' => NULL, 'hour_end_time_saturday' => NULL,
+                'hour_start_time_sunday' => NULL, 'hour_end_time_sunday' => NULL,
+                'hour_description' => 'horario 1', 'status_id' => 1],
+
+            ['hour_monday' => 1, 'hour_tuesday' => 0, 'hour_wednesday' => 0, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 0,
+                'hour_start_time_monday' => '08:00:00', 'hour_end_time_monday' => '08:30:00',
+                'hour_start_time_tuesday' => NULL, 'hour_end_time_tuesday' => NULL,
+                'hour_start_time_wednesday' => NULL, 'hour_end_time_wednesday' => NULL,
+                'hour_start_time_thursday' => '08:00:00', 'hour_end_time_thursday' => '08:30:00',
+                'hour_start_time_friday' => '08:00:00', 'hour_end_time_friday' => '08:30:00',
+                'hour_start_time_saturday' => '08:00:00', 'hour_end_time_saturday' => '08:30:00',
+                'hour_start_time_sunday' => NULL, 'hour_end_time_sunday' => NULL,
+                'hour_description' => 'horario 2', 'status_id' => 1],
+
+            ['hour_monday' => 0, 'hour_tuesday' => 0, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 1,
+                'hour_start_time_monday' => NULL, 'hour_end_time_monday' => NULL,
+                'hour_start_time_tuesday' => NULL, 'hour_end_time_tuesday' => NULL,
+                'hour_start_time_wednesday' => '08:00:00', 'hour_end_time_wednesday' => '08:30:00',
+                'hour_start_time_thursday' => '08:00:00', 'hour_end_time_thursday' => '08:30:00',
+                'hour_start_time_friday' => '08:00:00', 'hour_end_time_friday' => '08:30:00',
+                'hour_start_time_saturday' => '08:00:00', 'hour_end_time_saturday' => '08:30:00',
+                'hour_start_time_sunday' => '08:00:00', 'hour_end_time_sunday' => '08:30:00',
+                'hour_description' => 'horario 3', 'status_id' => 1
+            ],
         ]);
 
         DB::connection('tenant')->table('matter_mesh')->insert([

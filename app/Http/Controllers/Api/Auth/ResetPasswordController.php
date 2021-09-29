@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Exceptions\Custom\ConflictException;
-use App\Exceptions\Custom\NotFoundException;
 use App\Http\Controllers\Api\Contracts\IResetPasswordController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
 use App\Traits\RestResponse;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Contracts\Auth\PasswordBroker;
-use Illuminate\Contracts\Auth\PasswordBrokerFactory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -30,7 +27,7 @@ class ResetPasswordController extends Controller implements IResetPasswordContro
             ->first();
 
         if(!$passwordReset || !Hash::check($token, $passwordReset->token))
-            throw new ConflictException(__('passwords.token'));
+            return $this->information(__('passwords.token'), Response::HTTP_CONFLICT);
 
         $user = User::where('email', $passwordReset->email)->first();
         return $this->success([
@@ -53,7 +50,7 @@ class ResetPasswordController extends Controller implements IResetPasswordContro
 
         });
         if($response != Password::PASSWORD_RESET)
-            throw new NotFoundException(__('messages.not-email'));
+           return $this->information(__('messages.not-email'), Response::HTTP_NOT_FOUND);
 
         return $this->success(__('passwords.reset'));
     }

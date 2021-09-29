@@ -117,20 +117,6 @@ interface IHourhandController
      *           example="1"
      *         ),
      *         @OA\Property(
-     *           property="hour_start_time",
-     *           description="Hora de inicio",
-     *           type="string",
-     *           format="time",
-     *           example="17:32:28"
-     *         ),
-     *         @OA\Property(
-     *           property="hour_end_time",
-     *           description="Hora final",
-     *           type="string",
-     *           format="time",
-     *           example="18:32:28"
-     *         ),
-     *         @OA\Property(
      *           property="hour_monday",
      *           description="Lunes",
      *           type="boolean",
@@ -173,6 +159,78 @@ interface IHourhandController
      *           example="false"
      *         ),
      *         @OA\Property(
+     *           property="hour_start_time_monday",
+     *           description="Hora de inicio del Lunes",
+     *           type="string",
+     *           example="08:00:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_monday",
+     *           description="Hora final del Lunes",
+     *           type="string",
+     *           example="08:30:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_tuesday",
+     *           description="Hora de inicio del Martes",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_tuesday",
+     *           description="Hora final del Martes",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_wednesday",
+     *           description="Hora de inicio del Miercoles",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_wednesday",
+     *           description="Hora final del Miercoles",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_thursday",
+     *           description="Hora de inicio del Jueves",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_thursday",
+     *           description="Hora final del Jueves",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_friday",
+     *           description="Hora de inicio del Viernes",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_friday",
+     *           description="Hora final del Viernes",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_saturday",
+     *           description="Hora de inicio del Sabado",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_saturday",
+     *           description="Hora final del Sabado",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_sunday",
+     *           description="Hora de inicio del Domingo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_sunday",
+     *           description="Hora final del Domingo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="hour_description",
      *           description="Descripción",
      *           type="string",
@@ -190,16 +248,14 @@ interface IHourhandController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "hour_monday" : "required|boolean",
-     *          "hour_tuesday" : "required|boolean",
-     *          "hour_wednesday" : "required|boolean",
-     *          "hour_thursday" : "required|boolean",
-     *          "hour_friday" : "required|boolean",
-     *          "hour_saturday" : "required|boolean",
-     *          "hour_sunday" : "required|boolean",
-     *          "hour_start_time" : "required",
-     *          "hour_end_time" : "required",
-     *          "status_id" : "required|integer|exists:status,id"
+     *          "hour_monday" : "boolean",
+     *          "hour_tuesday" : "boolean",
+     *          "hour_wednesday" : "boolean",
+     *          "hour_thursday" : "boolean",
+     *          "hour_friday" : "boolean",
+     *          "hour_saturday" : "boolean",
+     *          "hour_sunday" : "boolean",
+     *          "status_id" : "integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -281,20 +337,6 @@ interface IHourhandController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="hour_start_time",
-     *           description="Hora de inicio",
-     *           type="string",
-     *           format="time",
-     *           example="17:32:28"
-     *         ),
-     *         @OA\Property(
-     *           property="hour_end_time",
-     *           description="Hora final",
-     *           type="string",
-     *           format="time",
-     *           example="18:32:28"
-     *         ),
-     *         @OA\Property(
      *           property="hour_monday",
      *           description="Lunes",
      *           type="boolean",
@@ -337,6 +379,90 @@ interface IHourhandController
      *           example="false"
      *         ),
      *         @OA\Property(
+     *           property="hour_start_time_monday",
+     *           description="Hora de inicio del Lunes",
+     *           type="string",
+     *           example="08:00:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_monday",
+     *           description="Hora final del Lunes",
+     *           type="string",
+     *           example="08:30:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_tuesday",
+     *           description="Hora de inicio del Martes",
+     *           type="string",
+     *           example="09:00:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_tuesday",
+     *           description="Hora final del Martes",
+     *           type="string",
+     *           example="09:30:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_wednesday",
+     *           description="Hora de inicio del Miercoles",
+     *           type="string",
+     *           example="10:00:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_wednesday",
+     *           description="Hora final del Miercoles",
+     *           type="string",
+     *           example="10:30:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_thursday",
+     *           description="Hora de inicio del Jueves",
+     *           type="string",
+     *           example="11:00:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_thursday",
+     *           description="Hora final del Jueves",
+     *           type="string",
+     *           example="11:30:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_friday",
+     *           description="Hora de inicio del Viernes",
+     *           type="string",
+     *           example="12:00:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_friday",
+     *           description="Hora final del Viernes",
+     *           type="string",
+     *           example="12:30:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_saturday",
+     *           description="Hora de inicio del Sabado",
+     *           type="string",
+     *           example="13:00:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_saturday",
+     *           description="Hora final del Sabado",
+     *           type="string",
+     *           example="13:30:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_start_time_sunday",
+     *           description="Hora de inicio del Domingo",
+     *           type="string",
+     *           example="14:00:00"
+     *         ),
+     *         @OA\Property(
+     *           property="hour_end_time_sunday",
+     *           description="Hora final del Domingo",
+     *           type="string",
+     *           example="14:30:00"
+     *         ),
+     *         @OA\Property(
      *           property="hour_description",
      *           description="Descripción",
      *           type="string",
@@ -354,16 +480,14 @@ interface IHourhandController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "hour_monday" : "required|boolean",
-     *          "hour_tuesday" : "required|boolean",
-     *          "hour_wednesday" : "required|boolean",
-     *          "hour_thursday" : "required|boolean",
-     *          "hour_friday" : "required|boolean",
-     *          "hour_saturday" : "required|boolean",
-     *          "hour_sunday" : "required|boolean",
-     *          "hour_start_time" : "required",
-     *          "hour_end_time" : "required",
-     *          "status_id" : "required|integer|exists:status,id"
+     *          "hour_monday" : "boolean",
+     *          "hour_tuesday" : "boolean",
+     *          "hour_wednesday" : "boolean",
+     *          "hour_thursday" : "boolean",
+     *          "hour_friday" : "boolean",
+     *          "hour_saturday" : "boolean",
+     *          "hour_sunday" : "boolean",
+     *          "status_id" : "integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -390,7 +514,7 @@ interface IHourhandController
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="3"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\RequestBody(

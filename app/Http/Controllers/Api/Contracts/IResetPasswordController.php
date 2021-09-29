@@ -29,10 +29,10 @@ interface IResetPasswordController
      *   @OA\Parameter(
      *     name="token",
      *     description="Token enviado al correo",
-     *     in="query",
+     *     in="path",
      *     required=true,
      *     @OA\Schema(
-     *       type="string"
+     *       type="string",
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
