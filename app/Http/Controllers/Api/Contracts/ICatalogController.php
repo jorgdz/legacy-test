@@ -202,6 +202,46 @@ interface ICatalogController
      */
     public function show($id);
 
+    /**
+     * @OA\Get(
+     *   path="/api/catalogs/{catalog:acronym}/children",
+     *   tags={"Catalogo"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener un catalogo por su acronimo",
+     *   description="Muestra información específica de un catalogo por acronimo.",
+     *   operationId="getCatalogByAcronym",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="catalog:acronym",
+     *     description="acronimo del catalogo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="VV"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function getChildren(string $acronym);
+
    /**
      * @OA\Put(
      *   path="/api/catalogs/{catalog}",

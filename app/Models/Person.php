@@ -70,7 +70,10 @@ class Person extends Model implements AuditableContract
         'city_id',
         'current_city_id',
         'sector_id',
-        'ethnic_id'
+        'ethnic_id',
+        'pers_has_disability',
+        'pers_disability_identification',
+        'pers_disability_percent'
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'pivot'];

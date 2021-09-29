@@ -197,6 +197,21 @@ interface IPersonController {
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="pers_has_disability",
+     *           description="¿Posee discapacidad?",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_disability_identification",
+     *           description="Nro. Carnet de discapacidad",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_disability_percent",
+     *           description="Porcentaje de discapacidad",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="vivienda_id",
      *           description="ID catalogo",
      *           type="integer",
@@ -269,6 +284,9 @@ interface IPersonController {
      *          "sector_id"         : "required|integer|exists:catalogs,id",
      *          "ethnic_id"         : "required|integer|exists:catalogs,id",
      *          "type_identification_id" : "required|integer|exists:catalogs,id",
+     *          "pers_has_disability" : "required|boolean",
+     *          "pers_disability_identification" : "nullable|unique:tenant.persons,pers_disability_identification|required_if:pers_has_disability,true|required_if:pers_has_disability,1",
+     *          "pers_disability_percent" : "nullable|integer",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -539,6 +557,21 @@ interface IPersonController {
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="pers_has_disability",
+     *           description="¿Posee discapacidad?",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_disability_identification",
+     *           description="Nro. Carnet de discapacidad",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_disability_percent",
+     *           description="Porcentaje de discapacidad",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="vivienda_id",
      *           description="ID catalogo",
      *           type="integer",
@@ -602,6 +635,9 @@ interface IPersonController {
      *          "sector_id"            : "required|integer|exists:catalogs,id",
      *          "ethnic_id"            : "required|integer|exists:catalogs,id",
      *          "type_identification_id" : "required|integer|exists:catalogs,id",
+     *          "pers_has_disability" : "required|boolean",
+     *          "pers_disability_identification" : "nullable|unique:tenant.persons,pers_disability_identification|required_if:pers_has_disability,true|required_if:pers_has_disability,1",
+     *          "pers_disability_percent" : "nullable|integer",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

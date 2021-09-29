@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Catalog;
 use App\Cache\CatalogCache;
+use App\Exceptions\Custom\UnprocessableException;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -55,6 +56,21 @@ class CatalogController extends Controller implements ICatalogController
      */
     public function show($id) {
         return $this->success($this->catalogCache->find($id));
+    }
+    
+    /**
+     * getChildren
+     *
+     * @param  string $acronym
+     * @return void
+     */
+    public function getChildren(string $acronym) {
+        $catalog = Catalog::where('cat_acronym', $acronym)->first();
+
+        if(!$catalog)
+            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => class_basename(Catalog::class)]));
+
+        return $this->success($this->catalogCache->find($catalog->id));
     }
 
     /**

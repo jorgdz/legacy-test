@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CatalogController;
 
+Route::get('/catalogs/{catalog:acronym}/children', [CatalogController::class, 'getChildren'])->middleware(['auth:sanctum', 'permission:catalogs-obtener-catalog']);
 Route::get('/catalogs', [CatalogController::class, 'index'])->middleware(['auth:sanctum', 'permission:catalogs-listar-catalogs']);
 Route::get('/catalogs/{id}', [CatalogController::class, 'show'])->middleware(['auth:sanctum', 'permission:catalogs-obtener-catalog']);
 Route::post('/catalogs', [CatalogController::class, 'store'])->middleware(['auth:sanctum', 'permission:catalogs-crear-catalog']);

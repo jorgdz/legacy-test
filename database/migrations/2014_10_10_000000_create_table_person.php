@@ -31,6 +31,9 @@ class CreateTablePerson extends Migration
             $table->string('pers_study_reason',255)->nullable();
             $table->integer('pers_num_taxpayers_household')->nullable();//contribuyentes en el hogar
             $table->boolean('pers_has_vehicle')->nullable();
+            $table->boolean('pers_has_disability')->nullable();
+            $table->string('pers_disability_identification', 10)->nullable();
+            $table->integer('pers_disability_percent')->nullable();
 
             $table->integer('type_religion_id')->unsigned();
             $table->foreign('type_religion_id')->references('id')->on('catalogs');
