@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\FailLocalStorageRequestException;
 use App\Models\Mail;
 use App\Jobs\ProcessTenant;
@@ -20,20 +21,25 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Api\Contracts\ITenantController;
 use App\Http\Requests\UpdateLogoCurrentTenantRequest;
 use App\Services\FilesystemService;
+use Illuminate\Support\Facades\DB;
 
 class TenantController extends Controller implements ITenantController
 {
-
     use RestResponse;
+
     private $domain;
     protected $key;
     protected $cache;
 
     private $filesystemService;
-
-
-    public function __construct(FilesystemService $filesystemService)
-    {
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $filesystemService
+     * @return void
+     */
+    public function __construct(FilesystemService $filesystemService) {
         $this->domain = \parse_url(config('app.url'), PHP_URL_HOST);
         $key = request()->url();
         $queryParams = request()->query();
@@ -44,9 +50,15 @@ class TenantController extends Controller implements ITenantController
         $this->cache = new Cache();
         $this->filesystemService = $filesystemService;
     }
-
-    private function getTenantCached(Request $request, $search)
-    { //page,size,search
+    
+    /**
+     * getTenantCached
+     *
+     * @param  mixed $request
+     * @param  mixed $search
+     * @return void
+     */
+    private function getTenantCached(Request $request, $search) {
         if ($search == '') {
             $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
                 return CustomTenant::where('domain', '<>', $this->domain)
@@ -70,8 +82,7 @@ class TenantController extends Controller implements ITenantController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         $search = $request->search ?: '';
 
         $tenant = $this->getTenantCached($request, $search);
@@ -85,8 +96,7 @@ class TenantController extends Controller implements ITenantController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $rules = [
             'name' => ['required', 'alpha_dash', 'unique:landlord.tenants', 'max:255'],
             'domain' => ['required', 'unique:landlord.tenants', 'max:255'],
@@ -122,8 +132,7 @@ class TenantController extends Controller implements ITenantController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomTenant $tenant)
-    {
+    public function show(CustomTenant $tenant) {
         $tenant_main = CustomTenant::where('domain', $this->domain)->first();
 
         if ($tenant->id == $tenant_main->id)
@@ -139,9 +148,7 @@ class TenantController extends Controller implements ITenantController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $tenant)
-    {
-
+    public function update(Request $request, $tenant) {
         $rules = [
             'name' => 'alpha_dash|unique:landlord.tenants,name,' . $tenant,
             'domain' => 'unique:landlord.tenants,domain,' . $tenant,
@@ -180,14 +187,14 @@ class TenantController extends Controller implements ITenantController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomTenant $tenant)
-    {
+    public function destroy(CustomTenant $tenant) {
         $tenant_main = CustomTenant::where('domain', $this->domain)->first();
 
         if ($tenant->id == $tenant_main->id)
             throw new ModelNotFoundException();
 
         $tenant->delete();
+        $this->cache::flush();
         return $this->success($tenant);
     }
 
@@ -198,8 +205,7 @@ class TenantController extends Controller implements ITenantController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateCurrentTenant(UpdateTenantRequest $request)
-    {
+    public function updateCurrentTenant(UpdateTenantRequest $request) {
         /* $this->cache::forget($request->getHost() . '_current_tenant'); */
         $this->cache::flush();
 
@@ -223,16 +229,13 @@ class TenantController extends Controller implements ITenantController
      * @param  mixed $request
      * @return \Illuminate\Http\Response
      */
-    public function updateLogoCurrentTenant(UpdateLogoCurrentTenantRequest $request)
-    {
+    public function updateLogoCurrentTenant(UpdateLogoCurrentTenantRequest $request) {
         /* $this->cache::forget($request->getHost() . '_current_tenant'); */
         $this->cache::flush();
         $tenantUpdate = CustomTenant::findOrFail(CustomTenant::current()->id);
 
-
-        //enviar el archivo a guardar
+        /* enviar el archivo a guardar */
         $response = $this->filesystemService->store($request);
-
 
         if (empty($response))
             throw new FailLocalStorageRequestException(__("messages.no-content"));
@@ -246,6 +249,31 @@ class TenantController extends Controller implements ITenantController
         $this->cache::forget(request()->root() . '/api/as-tenant_as_current_tenant');
 
         return $this->success($tenantUpdate);
-        
+    }
+
+    
+    /**
+     * restoreTenant
+     *
+     * @param  mixed $tenant
+     * @return void
+     */
+    public function restoreTenant($id) {
+        $tenant_pri = CustomTenant::where('domain', $this->domain)->first();
+        $tenant_cli = DB::connection('landlord')->table('tenants')
+            ->whereNotNull('deleted_at')
+            ->where('id', $id)
+            ->first();
+
+        if (!$tenant_cli) 
+            throw new ConflictException(__('messages.no-exist-instance-resource'));
+
+        if ($tenant_cli->id == $tenant_pri->id) 
+            throw new ModelNotFoundException();
+
+        CustomTenant::withTrashed()->find($tenant_cli->id)->restore();
+        $this->cache::flush();
+
+        return $this->success($tenant_cli);
     }
 }

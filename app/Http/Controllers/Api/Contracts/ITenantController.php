@@ -491,4 +491,34 @@ interface ITenantController
      *
      */
     public function updateLogoCurrentTenant(UpdateLogoCurrentTenantRequest $request);
+
+    /**
+     * @OA\Put(
+     *   path="/api/restore-tenant/{id}",
+     *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Restaurar a un inquilino",
+     *   description="Restaura a un inquilino específico.",
+     *   operationId="restoreTenant",
+     *   @OA\Parameter(
+     *     name="id",
+     *     description="Id del inquilino",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function restoreTenant($id);
 }
