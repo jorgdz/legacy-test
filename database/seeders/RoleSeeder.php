@@ -2429,6 +2429,49 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'learningComponent'
             ],
+            /**
+             * Modelo Calificacion 276-280
+             */
+            [
+                'name' => 'calification-models-listar-modelo-calificacion',
+                'alias' => 'Listar modelo calificacion',
+                'description' => 'Listar todos los modelo calificacion',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'calificationModel'
+            ],
+            [
+                'name' => 'calification-models-obtener-modelo-calificacion',
+                'alias' => 'Obtener modelo calificacion',
+                'description' => 'Obtener un modelo calificacion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'calificationModel'
+            ],
+            [
+                'name' => 'calification-models-crear-modelo-calificacion',
+                'alias' => 'Crear modelo calificacion',
+                'description' => 'Agregar un modelo calificacion',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'calificationModel'
+            ],
+            [
+                'name' => 'calification-models-actualizar-modelo-calificacion',
+                'alias' => 'Actualizar modelo calificacion',
+                'description' => 'Actualizar un modelo calificacion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'calificationModel'
+            ],
+            [
+                'name' => 'calification-models-borrar-modelo-calificacion',
+                'alias' => 'Borrar modelo calificacion',
+                'description' => 'Borrar un modelo calificacion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'calificationModel'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -2800,6 +2843,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 273, 'role_id' => 1],
             ['permission_id' => 274, 'role_id' => 1],
             ['permission_id' => 275, 'role_id' => 1],
+            ['permission_id' => 276, 'role_id' => 1],
+            ['permission_id' => 277, 'role_id' => 1],
+            ['permission_id' => 278, 'role_id' => 1],
+            ['permission_id' => 279, 'role_id' => 1],
+            ['permission_id' => 280, 'role_id' => 1],
 
             /**
              *
@@ -3174,6 +3222,11 @@ class RoleSeeder extends Seeder
             ['permission_id' => 273, 'role_id' => 2],
             ['permission_id' => 274, 'role_id' => 2],
             ['permission_id' => 275, 'role_id' => 2],
+            ['permission_id' => 276, 'role_id' => 2],
+            ['permission_id' => 277, 'role_id' => 2],
+            ['permission_id' => 278, 'role_id' => 2],
+            ['permission_id' => 279, 'role_id' => 2],
+            ['permission_id' => 280, 'role_id' => 2],
         ]);
     }
 }
