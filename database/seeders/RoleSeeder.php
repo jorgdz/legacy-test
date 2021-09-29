@@ -15,8 +15,22 @@ class RoleSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('roles')->insert([
-            ['name' => 'Sistemas', 'description' => 'Usuario superadministrador', 'guard_name' => 'api', 'status_id' => 1],
-            ['name' => 'Colaborador', 'description' => 'Usuario administrador', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'SUPERADMINISTRADOR', 'description' => 'Usuario superadministrador', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'ADMINISTRADOR', 'description' => 'Rol administrador', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'SOPORTE', 'description' => 'Rol de soporte', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'VICERRECTORADO', 'description' => 'Rol de soporte', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'POSTGRADO', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'BIENESTAR ESTUDIANTIL', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'PLANIFICACION', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'SECRETARIA', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'ECOTEC INTERNATIONAL', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'VINCULACION', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'INVESTIGACION', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'DECANO', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'ADMISIONES', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'COORD. ACADEMICA', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'IDIOMA', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'RECURSOS HUMANOS', 'description' => '', 'guard_name' => 'api', 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('permissions')->insert([

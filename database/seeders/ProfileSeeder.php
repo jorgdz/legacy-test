@@ -15,11 +15,13 @@ class ProfileSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('profiles')->insert([
-            ['pro_name' => 'General', 'status_id' => 1],
+           /*  ['pro_name' => 'General', 'status_id' => 1],
             ['pro_name' => 'Soporte', 'status_id' => 1],
-            ['pro_name' => 'Colaborador', 'status_id' => 1],
+            ['pro_name' => 'Colaborador', 'status_id' => 1], */
             ['pro_name' => 'Estudiante', 'status_id' => 1],
             ['pro_name' => 'Representante', 'status_id' => 1],
+            ['pro_name' => 'Administrativo', 'status_id' => 1],
+            ['pro_name' => 'Docente', 'status_id' => 1],
         ]);
     }
 }
