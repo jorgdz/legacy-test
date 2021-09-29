@@ -23,6 +23,7 @@ use App\Exceptions\Custom\NotFoundException;
 use App\Http\Controllers\Api\Contracts\IStudentController;
 use App\Http\Requests\StudentPhotoRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\StudentRecord;
 use App\Services\FilesystemService;
 
 class StudentController extends Controller implements IStudentController
@@ -90,6 +91,12 @@ class StudentController extends Controller implements IStudentController
         $student->status_id = 1;
 
         $student->save();
+
+       
+        $studentRecord = new StudentRecord($request->only(['education_level_id', 'mesh_id','type_student_id', 'period_id','economic_group_id']));
+        $studentRecord->student_id =  $student->id;
+        $studentRecord->status_id = 1;
+        $studentRecord->save();
 
         DB::commit();
 

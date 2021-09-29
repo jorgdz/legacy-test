@@ -56,7 +56,15 @@ class StoreStudentRequest extends FormRequest
             //student
             'campus_id' => 'required|integer|exists:tenant.campus,id',
             'modalidad_id' => 'required|integer|exists:tenant.catalogs,id',
-            'jornada_id' => 'required|integer|exists:tenant.catalogs,id'
+            'jornada_id' => 'required|integer|exists:tenant.catalogs,id',
+            //student_record
+            'education_level_id' => 'required|integer|exists:tenant.education_levels,id',
+            'mesh_id' => 'required|integer|exists:tenant.meshs,id',
+            'type_student_id' => 'required|integer|exists:tenant.type_students,id',
+            'period_id' => 'required|integer|exists:tenant.periods,id',
+            'economic_group_id' => 'required|integer|exists:tenant.economic_groups,id',
+            'status_id' => 'exists:tenant.status,id',
+        
         ];
 
         $typeIdentification = intval($this->request->get('type_identification_id'));

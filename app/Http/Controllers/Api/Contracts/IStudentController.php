@@ -263,6 +263,31 @@ interface IStudentController
      *           type="integer",
      *           example="71 - 73",
      *         ),
+     *         @OA\Property(
+     *           property="education_level_id",
+     *           description="Id del nivel educativo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="mesh_id",
+     *           description="Id de malla",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_student_id",
+     *           description="Id del tipo de estudiante",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="period_id",
+     *           description="Id del periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="economic_group_id",
+     *           description="Id del grupo economico",
+     *           type="integer",
+     *         ),
      *       ),
      *     ),
      *   ),
@@ -297,7 +322,12 @@ interface IStudentController
      *          "email"      : "required|email|unique:tenant.users,email",
      *          "campus_id" : "required|integer|exists:tenant.campus,id",
      *          "modalidad_id" : "required|integer|exists:tenant.catalogs,id",
-     *          "jornada_id" : "required|integer|exists:tenant.catalogs,id"
+     *          "jornada_id" : "required|integer|exists:tenant.catalogs,id",
+     *          "education_level_id" : "required|integer|exists:tenant.education_levels,id",
+     *          "mesh_id" : "required|integer|exists:tenant.meshs,id",
+     *          "type_student_id" : "required|integer|exists:tenant.type_students,id",
+     *          "period_id" : "required|integer|exists:tenant.periods,id",
+     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
