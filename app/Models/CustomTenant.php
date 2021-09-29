@@ -37,6 +37,8 @@ class CustomTenant extends Tenant implements AuditableContract
         'info_mail',
         'matrix',
         'color',
+
+        'students_number',
       
     ];
 

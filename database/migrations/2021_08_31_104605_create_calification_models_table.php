@@ -16,6 +16,10 @@ class CreateCalificationModelsTable extends Migration
         Schema::create('calification_models', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('cal_mod_name', 255)->nullable();
+            $table->string('cal_mod_acronym', 10)->nullable();
+            $table->boolean('cal_mod_equivalence')->nullable();
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

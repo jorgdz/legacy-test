@@ -6,7 +6,7 @@ use App\Models\StudentDocument;
 use App\Repositories\Base\BaseRepository;
 
 /**
- * StudentDocumentRepository.php
+ * StudentDocumentRepository
  */
 class StudentDocumentRepository extends BaseRepository
 {

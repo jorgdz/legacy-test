@@ -63,6 +63,7 @@ require __DIR__ . "/channels/type-student-programs.php";
 require __DIR__ . "/channels/filesystems.php";
 require __DIR__ . "/channels/student-records-period.php";
 require __DIR__ . "/channels/student-record-programs.php";
+require __DIR__ . "/channels/calification-models.php";
 
 
 

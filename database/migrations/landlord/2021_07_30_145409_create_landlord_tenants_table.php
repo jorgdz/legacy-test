@@ -27,6 +27,8 @@ class CreateLandlordTenantsTable extends Migration
             $table->string('info_mail',255)->nullable();
             $table->string('matrix',255)->nullable();
             $table->string('color',255)->nullable();
+
+            $table->string('students_number')->nullable();
           
             $table->timestamps();
             $table->softDeletes();

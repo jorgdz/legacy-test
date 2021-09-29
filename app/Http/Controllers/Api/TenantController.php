@@ -103,6 +103,7 @@ class TenantController extends Controller implements ITenantController
             'info_mail' => ['required', 'email', 'unique:landlord.tenants', 'max:255'],
             'matrix' => ['max:255'],
             'color' => ['max:255'],
+            'students_number'=> ['max:255'],
 
         ];
 
@@ -156,6 +157,7 @@ class TenantController extends Controller implements ITenantController
             'info_mail' => 'required|email|max:255|unique:landlord.tenants,info_mail,' . $tenant,
             'matrix' => 'max:255',
             'color' =>  'max:255',
+            'students_number'=> ['max:255'],
         ];
 
         $this->validate($request, $rules);

@@ -647,6 +647,13 @@ return [
         'pos_name' => 'nombre del cargo',
         'pos_description' => 'descripcion del cargo',
 
+		/**
+		 * Calification Models
+		 */
+		'cal_mod_name' => 'nombre del modelo de calificación',
+		'cal_mod_acronym' => 'sigla del modelo de calificación',
+		'cal_mod_equivalence' => 'equivalencia del modelo de calificación', 
+
 	],
 
 ];
