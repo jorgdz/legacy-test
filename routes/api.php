@@ -467,9 +467,9 @@ Route::delete('/positions/{position}', [PositionController::class, 'destroy'])->
 /**
  * Agreements (Convenios)
  */
-Route::get('/agreements', [AgreementController::class, 'index'])->middleware(['auth:sanctum']); // permission:agreement-listar-convenios
-Route::get('/agreements/{agreement}', [AgreementController::class, 'show'])->middleware(['auth:sanctum']); // permission:agreement-obtener-convenio
-Route::post('/agreements', [AgreementController::class, 'store'])->middleware(['auth:sanctum']); // permission:agreement-crear-convenio
-Route::put('/agreements/{agreement}', [AgreementController::class, 'update'])->middleware(['auth:sanctum']); // permission:agreement-actualizar-convenio
-Route::post('/agreements/{agreement}/enabled', [AgreementController::class, 'enabled'])->middleware(['auth:sanctum']); // permission:agreement-activar-convenio
-Route::post('/agreements/{agreement}/disabled', [AgreementController::class, 'disabled'])->middleware(['auth:sanctum']); // permission:agreement-desactivar-convenio
+Route::get('/agreements', [AgreementController::class, 'index'])->middleware(['auth:sanctum', 'permission:agreement-listar-convenios']);
+Route::get('/agreements/{agreement}', [AgreementController::class, 'show'])->middleware(['auth:sanctum', 'permission:agreement-obtener-convenio']);
+Route::post('/agreements', [AgreementController::class, 'store'])->middleware(['auth:sanctum', 'permission:agreement-crear-convenio']);
+Route::put('/agreements/{agreement}', [AgreementController::class, 'update'])->middleware(['auth:sanctum', 'permission:agreement-actualizar-convenio']);
+Route::post('/agreements/{agreement}/enabled', [AgreementController::class, 'enabled'])->middleware(['auth:sanctum', 'permission:agreement-activar-convenio']);
+Route::post('/agreements/{agreement}/disabled', [AgreementController::class, 'disabled'])->middleware(['auth:sanctum', 'permission:agreement-desactivar-convenio']);

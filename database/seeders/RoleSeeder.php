@@ -43,7 +43,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los perfiles',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'profiles'
+                'parent_name' => 'profiles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'profiles-obtener-perfil',
@@ -51,7 +52,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un perfil por su identificador único',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'profiles'
+                'parent_name' => 'profiles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'profiles-crear-perfil',
@@ -59,7 +61,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nuevo perfil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'profiles'
+                'parent_name' => 'profiles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'profiles-actualizar-perfil',
@@ -67,7 +70,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un perfil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'profiles'
+                'parent_name' => 'profiles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'profiles-borrar-un-perfil',
@@ -75,7 +79,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un perfil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'profiles'
+                'parent_name' => 'profiles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'profiles-listar-usuarios-por-perfil',
@@ -83,7 +88,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los usuarios por el identificador único del perfil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'profiles'
+                'parent_name' => 'profiles',
+                'module_group' => 'configuration'
             ],
             /**
              * Roles 7-11
@@ -94,7 +100,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los roles',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'roles'
+                'parent_name' => 'roles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'roles-obtener-rol',
@@ -102,7 +109,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un rol por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'roles'
+                'parent_name' => 'roles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'roles-crear-rol',
@@ -110,7 +118,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nuevo rol',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'roles'
+                'parent_name' => 'roles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'roles-actualizar-rol',
@@ -118,7 +127,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un rol por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'roles'
+                'parent_name' => 'roles',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'roles-borrar-rol',
@@ -126,7 +136,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un rol por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'roles'
+                'parent_name' => 'roles',
+                'module_group' => 'configuration'
             ],
             /**
              * Permisos 12-16
@@ -137,7 +148,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los permisos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'permissions'
+                'parent_name' => 'permissions',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'permissions-obtener-permiso',
@@ -145,7 +157,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un permiso por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'permissions'
+                'parent_name' => 'permissions',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'permissions-crear-permiso',
@@ -153,7 +166,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nuevo permiso',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'permissions'
+                'parent_name' => 'permissions',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'permissions-actualizar-permiso',
@@ -161,7 +175,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un permiso por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'permissions'
+                'parent_name' => 'permissions',
+                'module_group' => 'configuration'
             ],
             [
                 'name' => 'permissions-borrar-permiso',
@@ -169,7 +184,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un permiso por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'permissions'
+                'parent_name' => 'permissions',
+                'module_group' => 'configuration'
             ],
             /**
              * Compañias 17-21
@@ -180,7 +196,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las compañias',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'companies'
+                'parent_name' => 'companies',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'companies-obtener-compania',
@@ -188,7 +205,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una compañia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'companies'
+                'parent_name' => 'companies',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'companies-crear-compania',
@@ -196,7 +214,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una nueva compañia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'companies'
+                'parent_name' => 'companies',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'companies-actualizar-compania',
@@ -204,7 +223,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una compañia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'companies'
+                'parent_name' => 'companies',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'companies-borrar-compania',
@@ -212,7 +232,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una compañia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'companies'
+                'parent_name' => 'companies',
+                'module_group' => 'academic'
             ],
             /**
              * Sedes 22-26
@@ -223,7 +244,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las sedes',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'campus'
+                'parent_name' => 'campus',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'campus-obtener-sede',
@@ -231,7 +253,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una sede por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'campus'
+                'parent_name' => 'campus',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'campus-crear-sede',
@@ -239,7 +262,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una nueva sede',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'campus'
+                'parent_name' => 'campus',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'campus-actualizar-sede',
@@ -247,7 +271,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una sede por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'campus'
+                'parent_name' => 'campus',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'campus-borrar-sede',
@@ -255,7 +280,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una sede por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'campus'
+                'parent_name' => 'campus',
+                'module_group' => 'academic'
             ],
             /**
              * Usuarios 27-35
@@ -266,7 +292,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los perfiles por el identificador único del usuario',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-mostrar-perfil-especifico-por-usuario',
@@ -274,7 +301,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Mostrar en detalle los datos de un perfil por el identificador único del usuario y del perfil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-guardar-perfil-por-usuario',
@@ -282,7 +310,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Guardar perfil por el identificador único del usuario',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-actualizar-perfil-por-usuario',
@@ -290,7 +319,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Cambiar un perfil existente usando el identificador único del usuario por el identificador de perfil a asociar',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-borrar-perfiles-por-usuario',
@@ -298,7 +328,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar todos los perfiles asociados a un usuario por el identificador único',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-borrar-perfil-especifico-por-usuario',
@@ -306,7 +337,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un perfil asociados a un usuario por el identificador único del usuario y del perfil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-listar-roles-por-usuario',
@@ -314,7 +346,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los roles por el identificador único del usuario',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-listar-roles-por-usuario-y-perfil',
@@ -322,7 +355,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar roles por el identificador único del usuario y del perfil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-sincronizar-roles-por-usuario-y-perfil',
@@ -330,7 +364,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Sincronizar roles por el identificador único del usuario y del perfil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             /**
              * Paralelos 36-42
@@ -341,7 +376,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las paralelos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'parallels'
+                'parent_name' => 'parallels',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'parallels-obtener-paralelo',
@@ -349,7 +385,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un paralelo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'parallels'
+                'parent_name' => 'parallels',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'parallels-crear-paralelo',
@@ -357,7 +394,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nuevo paralelo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'parallels'
+                'parent_name' => 'parallels',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'parallels-actualizar-paralelo',
@@ -365,7 +403,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un paralelo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'parallels'
+                'parent_name' => 'parallels',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'parallels-borrar-paralelo',
@@ -373,7 +412,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un paralelo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'parallels'
+                'parent_name' => 'parallels',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'parallels-activar-paralelo',
@@ -381,7 +421,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Activa un paralelo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'parallels'
+                'parent_name' => 'parallels',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'parallels-desactivar-paralelo',
@@ -389,7 +430,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Desactiva un paralelo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'parallels'
+                'parent_name' => 'parallels',
+                'module_group' => 'academic'
             ],
             /**
              * Aulas 43-49
@@ -400,7 +442,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las aulas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classrooms'
+                'parent_name' => 'classrooms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classrooms-obtener-aula',
@@ -408,7 +451,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una aula por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classrooms'
+                'parent_name' => 'classrooms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classrooms-crear-aula',
@@ -416,7 +460,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una nueva aula',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classrooms'
+                'parent_name' => 'classrooms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classrooms-actualizar-aula',
@@ -424,7 +469,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una aula por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classrooms'
+                'parent_name' => 'classrooms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classrooms-borrar-aula',
@@ -432,7 +478,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una aula por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classrooms'
+                'parent_name' => 'classrooms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classrooms-activar-aula',
@@ -440,7 +487,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Activa un aula por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classrooms'
+                'parent_name' => 'classrooms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classrooms-desactivar-aula',
@@ -448,7 +496,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Desactiva un aula por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classrooms'
+                'parent_name' => 'classrooms',
+                'module_group' => 'academic'
             ],
             /**
              * Pensum 50-54
@@ -459,7 +508,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los pensums',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'pensums'
+                'parent_name' => 'pensums',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'pensums-obtener-pensum',
@@ -467,7 +517,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un pemsun por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'pensums'
+                'parent_name' => 'pensums',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'pensums-crear-pensum',
@@ -475,7 +526,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nuevo pensum',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'pensums'
+                'parent_name' => 'pensums',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'pensums-actualizar-pensum',
@@ -483,7 +535,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un pensum por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'pensums'
+                'parent_name' => 'pensums',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'pensums-borrar-pensum',
@@ -491,7 +544,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un pensum por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'pensums'
+                'parent_name' => 'pensums',
+                'module_group' => 'academic'
             ],
             /**
              * Etapas 55-59
@@ -502,7 +556,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las etapas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'stages'
+                'parent_name' => 'stages',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'stages-obtener-etapa',
@@ -510,7 +565,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un pemsun por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'stages'
+                'parent_name' => 'stages',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'stages-crear-etapa',
@@ -518,7 +574,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una nueva etapa',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'stages'
+                'parent_name' => 'stages',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'stages-actualizar-etapa',
@@ -526,7 +583,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una etapa por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'stages'
+                'parent_name' => 'stages',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'stages-borrar-etapa',
@@ -534,7 +592,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una etapa por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'stages'
+                'parent_name' => 'stages',
+                'module_group' => 'academic'
             ],
             /**
              * Tipos de Periodos 60-64
@@ -545,7 +604,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipos de periodos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typePeriods'
+                'parent_name' => 'typePeriods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'typePeriods-obtener-tipoPeriodo',
@@ -553,7 +613,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typePeriods'
+                'parent_name' => 'typePeriods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'typePeriods-crear-tipoPeriodo',
@@ -561,7 +622,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un tipo de periodo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typePeriods'
+                'parent_name' => 'typePeriods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'typePeriods-actualizar-tipoPeriodo',
@@ -569,7 +631,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un tipo de periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typePeriods'
+                'parent_name' => 'typePeriods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'typePeriods-borrar-tipoPeriodo',
@@ -577,7 +640,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un tipo de periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typePeriods'
+                'parent_name' => 'typePeriods',
+                'module_group' => 'academic'
             ],
             /**
              *  Mallas academicas [Meshs] JS 65-69
@@ -588,7 +652,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las mallas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'meshs'
+                'parent_name' => 'meshs',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'meshs-obtener-malla',
@@ -596,7 +661,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'meshs'
+                'parent_name' => 'meshs',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'meshs-crear-mallas',
@@ -604,7 +670,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una nueva malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'meshs'
+                'parent_name' => 'meshs',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'meshs-actualizar-mallas',
@@ -612,7 +679,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'meshs'
+                'parent_name' => 'meshs',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'meshs-borrar-malla',
@@ -620,7 +688,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'meshs'
+                'parent_name' => 'meshs',
+                'module_group' => 'academic'
             ],
             /**
              * Tipo Calificaciones 70-74
@@ -631,7 +700,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipo de calificaciones',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeCalifications'
+                'parent_name' => 'typeCalifications',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-califications-obtener-type-calification',
@@ -639,7 +709,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de calificacion por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeCalifications'
+                'parent_name' => 'typeCalifications',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-califications-crear-type-calification',
@@ -647,7 +718,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nuevo tipo calificacion',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeCalifications'
+                'parent_name' => 'typeCalifications',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-califications-actualizar-type-calification',
@@ -655,7 +727,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un tipo calificacion por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeCalifications'
+                'parent_name' => 'typeCalifications',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-califications-borrar-type-calification',
@@ -663,7 +736,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un tipo calificacion por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeCalifications'
+                'parent_name' => 'typeCalifications',
+                'module_group' => 'academic'
             ],
             /**
              * Tipos de Materias 75-79
@@ -674,7 +748,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipo de materias',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeMatters'
+                'parent_name' => 'typeMatters',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-matters-obtener-type-matter',
@@ -682,7 +757,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeMatters'
+                'parent_name' => 'typeMatters',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-matters-crear-type-matter',
@@ -690,7 +766,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nuevo tipo materia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeMatters'
+                'parent_name' => 'typeMatters',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-matters-actualizar-type-matter',
@@ -698,7 +775,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un tipo materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeMatters'
+                'parent_name' => 'typeMatters',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-matters-borrar-type-matter',
@@ -706,7 +784,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un tipo materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeMatters'
+                'parent_name' => 'typeMatters',
+                'module_group' => 'academic'
             ],
             /**
              * Materias 80-84
@@ -717,7 +796,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las materias',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matters'
+                'parent_name' => 'matters',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'matters-obtener-matter',
@@ -725,7 +805,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matters'
+                'parent_name' => 'matters',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'matters-crear-matter',
@@ -733,7 +814,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una nueva materia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matters'
+                'parent_name' => 'matters',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'matters-actualizar-matter',
@@ -741,7 +823,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matters'
+                'parent_name' => 'matters',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'matters-borrar-matter',
@@ -749,7 +832,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matters'
+                'parent_name' => 'matters',
+                'module_group' => 'academic'
             ],
             /**
              * Periodos por etapas 85-89
@@ -760,7 +844,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los periodos por etapas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodStages'
+                'parent_name' => 'periodStages',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periodStages-obtener-periodoEtapa',
@@ -768,7 +853,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una relacion periodo_etapa por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodStages'
+                'parent_name' => 'periodStages',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periodStages-crear-periodoEtapa',
@@ -776,7 +862,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un registro asociado de periodo_etapa',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodStages'
+                'parent_name' => 'periodStages',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periodStages-actualizar-periodoEtapa',
@@ -784,7 +871,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un registro asociado de periodo_etapa por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodStages'
+                'parent_name' => 'periodStages',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periodStages-borrar-periodoEtapa',
@@ -792,7 +880,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un registro asociado de periodo_etapa por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodStages'
+                'parent_name' => 'periodStages',
+                'module_group' => 'academic'
             ],
             /**
              * User Colaboradores 90-91
@@ -803,7 +892,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar usuario que no sean colaborador desde el usuario administrador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-change-password',
@@ -811,7 +901,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Cambiar la contraseña de un usuario',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             /**
              * Periodos 92-96
@@ -822,7 +913,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los periodos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periods'
+                'parent_name' => 'periods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periods-obtener-periodo',
@@ -830,7 +922,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periods'
+                'parent_name' => 'periods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periods-crear-periodo',
@@ -838,7 +931,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un periodo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periods'
+                'parent_name' => 'periods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periods-actualizar-periodo',
@@ -846,7 +940,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periods'
+                'parent_name' => 'periods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periods-borrar-periodo',
@@ -854,7 +949,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periods'
+                'parent_name' => 'periods',
+                'module_group' => 'academic'
             ],
             /**
              * Materias por Malla 97-101
@@ -865,7 +961,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las materias por malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh'
+                'parent_name' => 'mattermesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'mattermesh-obtener-materias-mallas',
@@ -873,7 +970,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener materias relacionadas con el identificador de una malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh'
+                'parent_name' => 'mattermesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'mattermesh-crear-materias-mallas',
@@ -881,7 +979,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un registro relacional entre materia y malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh'
+                'parent_name' => 'mattermesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'mattermesh-actualizar-materias-mallas',
@@ -889,7 +988,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un registro relacional entre materia y malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh'
+                'parent_name' => 'mattermesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'mattermesh-borrar-materias-mallas',
@@ -897,7 +997,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un registro relacional entre materia y malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh'
+                'parent_name' => 'mattermesh',
+                'module_group' => 'academic'
             ],
             /**
              * Ofertas 102-106
@@ -908,7 +1009,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las ofertas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offers'
+                'parent_name' => 'offers',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'offers-obtener-oferta',
@@ -916,7 +1018,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una oferta por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offers'
+                'parent_name' => 'offers',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'offers-crear-oferta',
@@ -924,7 +1027,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una oferta',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offers'
+                'parent_name' => 'offers',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'offers-actualizar-oferta',
@@ -932,7 +1036,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una oferta por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offers'
+                'parent_name' => 'offers',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'offers-borrar-oferta',
@@ -940,7 +1045,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una oferta por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offers'
+                'parent_name' => 'offers',
+                'module_group' => 'academic'
             ],
             /**
              * Horarios 107-111
@@ -951,7 +1057,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los horarios',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'hourhand'
+                'parent_name' => 'hourhand',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'hourhands-obtener-horario',
@@ -959,7 +1066,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un horario por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'hourhand'
+                'parent_name' => 'hourhand',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'hourhands-crear-horario',
@@ -967,7 +1075,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un horario',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'hourhand'
+                'parent_name' => 'hourhand',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'hourhands-actualizar-horario',
@@ -975,7 +1084,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un horario por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'hourhand'
+                'parent_name' => 'hourhand',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'hourhands-borrar-horario',
@@ -983,7 +1093,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un horario por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'hourhand'
+                'parent_name' => 'hourhand',
+                'module_group' => 'academic'
             ],
             /**
              * Institutos 112-116
@@ -994,7 +1105,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los institutos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'institutes'
+                'parent_name' => 'institutes',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'institutes-obtener-instituto',
@@ -1002,7 +1114,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un instituto por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'institutes'
+                'parent_name' => 'institutes',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'institutes-crear-instituto',
@@ -1010,7 +1123,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un instituto',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'institutes'
+                'parent_name' => 'institutes',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'institutes-actualizar-instituto',
@@ -1018,7 +1132,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un instituto por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'institutes'
+                'parent_name' => 'institutes',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'institutes-eliminar-instituto',
@@ -1026,7 +1141,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un instituto por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'institutes'
+                'parent_name' => 'institutes',
+                'module_group' => 'academic'
             ],
             /**
              * Tipo Institutos 117-121
@@ -1037,7 +1153,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipos institutos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'instituteType'
+                'parent_name' => 'instituteType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'institutetype-obtener-tipo-de-instituto',
@@ -1045,7 +1162,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de instituto por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'instituteType'
+                'parent_name' => 'instituteType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'institutetype-crear-tipo-de-instituto',
@@ -1053,7 +1171,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un tipo de instituto',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'instituteType'
+                'parent_name' => 'instituteType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'institutetype-actualizar-tipo-de-instituto',
@@ -1061,7 +1180,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un tipo de instituto por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'instituteType'
+                'parent_name' => 'instituteType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'institutetype-eliminar-tipo-de-instituto',
@@ -1069,7 +1189,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un tipo de instituto por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'instituteType'
+                'parent_name' => 'instituteType',
+                'module_group' => 'academic'
             ],
             /**
              * Mail 122-124
@@ -1080,7 +1201,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los mails',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mail'
+                'parent_name' => 'mail',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'mails-obtener-mail',
@@ -1088,7 +1210,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un mail por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mail'
+                'parent_name' => 'mail',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'mails-actualizar-mail',
@@ -1096,7 +1219,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un mail por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mail'
+                'parent_name' => 'mail',
+                'module_group' => 'academic'
             ],
             /**
              * Estado Materia 125-129
@@ -1107,7 +1231,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los estados materias',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterStatus'
+                'parent_name' => 'matterStatus',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'matter-status-obtener-matter-status',
@@ -1115,7 +1240,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un estado materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterStatus'
+                'parent_name' => 'matterStatus',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'matter-status-crear-matter-status',
@@ -1123,7 +1249,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un estado materia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterStatus'
+                'parent_name' => 'matterStatus',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'matter-status-actualizar-matter-status',
@@ -1131,7 +1258,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un estado materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterStatus'
+                'parent_name' => 'matterStatus',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'matter-status-borrar-matter-status',
@@ -1139,7 +1267,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un estado materia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterStatus'
+                'parent_name' => 'matterStatus',
+                'module_group' => 'academic'
             ],
             /**
              * Usuario 130-132
@@ -1150,7 +1279,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un usuario',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-actualizar-usuario',
@@ -1158,7 +1288,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un usuario por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-borrar-usuario',
@@ -1166,7 +1297,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un usuario por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             /**
              * Niveles Educativos 133-137
@@ -1177,7 +1309,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los niveles educativos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'educationLevel'
+                'parent_name' => 'educationLevel',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'education-levels-obtener-nivel-educativo',
@@ -1185,7 +1318,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un nivel educativo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'educationLevel'
+                'parent_name' => 'educationLevel',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'education-levels-crear-nivel-educativo',
@@ -1193,7 +1327,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nivel educativo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'educationLevel'
+                'parent_name' => 'educationLevel',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'education-levels-actualizar-nivel-educativo',
@@ -1201,7 +1336,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un nivel educativo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'educationLevel'
+                'parent_name' => 'educationLevel',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'education-levels-borrar-nivel-educativo',
@@ -1209,7 +1345,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un nivel ecucativo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'educationLevel'
+                'parent_name' => 'educationLevel',
+                'module_group' => 'academic'
             ],
             /**
              * Tipo Estudiante 138-139
@@ -1220,7 +1357,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipos de estudiantes',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeStudent'
+                'parent_name' => 'typeStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type_students-obtener-tipo-estudiante',
@@ -1228,7 +1366,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeStudent'
+                'parent_name' => 'typeStudent',
+                'module_group' => 'academic'
             ],
             /**
              * Tipo Documento 140-144
@@ -1239,7 +1378,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipos de documentos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeDocument'
+                'parent_name' => 'typeDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-document-obtener-tipo-documento',
@@ -1247,7 +1387,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de documento por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeDocument'
+                'parent_name' => 'typeDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-document-crear-tipo-documento',
@@ -1255,7 +1396,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un tipo de documento',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeDocument'
+                'parent_name' => 'typeDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-document-actualizar-tipo-documento',
@@ -1263,7 +1405,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un tipo de documento por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeDocument'
+                'parent_name' => 'typeDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-document-borrar-tipo-documento',
@@ -1271,7 +1414,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un tipo documento por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeDocument'
+                'parent_name' => 'typeDocument',
+                'module_group' => 'academic'
             ],
             /**
              * Grupo Economico 145-149
@@ -1282,7 +1426,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los grupos economicos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'economicGroup'
+                'parent_name' => 'economicGroup',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'economic_group-obtener-grupo-economico',
@@ -1290,7 +1435,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un grupo economico por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'economicGroup'
+                'parent_name' => 'economicGroup',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'economic_group-crear-grupo-economico',
@@ -1298,7 +1444,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un grupo economico',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'economicGroup'
+                'parent_name' => 'economicGroup',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'economic_group-actualizar-grupo-economico',
@@ -1306,7 +1453,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un grupo economico por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'economicGroup'
+                'parent_name' => 'economicGroup',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'economic_group-eliminar-grupo-economico',
@@ -1314,7 +1462,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un grupo economico por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'economicGroup'
+                'parent_name' => 'economicGroup',
+                'module_group' => 'academic'
             ],
             /**
              * Tipos Discapacidad 150-151
@@ -1325,7 +1474,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las discapacidades',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeDisability'
+                'parent_name' => 'typeDisability',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type_disability-obtener-tipo-discapacidad',
@@ -1333,7 +1483,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de discapacidad por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeDisability'
+                'parent_name' => 'typeDisability',
+                'module_group' => 'academic'
             ],
             /**
              * Tipo sangre 152-153
@@ -1344,7 +1495,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipos de sangre',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'bloodType'
+                'parent_name' => 'bloodType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'blood_type-obtener-tipo-sangre',
@@ -1352,7 +1504,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de sangre por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'bloodType'
+                'parent_name' => 'bloodType',
+                'module_group' => 'academic'
             ],
             /**
              * Tipo Educacion 154-155
@@ -1363,7 +1516,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipos de educacion',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeEducation'
+                'parent_name' => 'typeEducation',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type_education-obtener-tipo-educacion',
@@ -1371,7 +1525,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de educacion por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeEducation'
+                'parent_name' => 'typeEducation',
+                'module_group' => 'academic'
             ],
             /**
              * Persona Trabajo 156-161
@@ -1382,7 +1537,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los persona trabajos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'personJob'
+                'parent_name' => 'personJob',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'person_job-obtener-persona-trabajo',
@@ -1390,7 +1546,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un persona trabajo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'personJob'
+                'parent_name' => 'personJob',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'person_job-crear-persona-trabajo',
@@ -1398,7 +1555,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un persona trabajo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'personJob'
+                'parent_name' => 'personJob',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'persona-asignar-trabajos-persona',
@@ -1406,7 +1564,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Asignacion masiva de trabajos a una persona',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'person'
+                'parent_name' => 'person',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'person_job-actualizar-persona-trabajo',
@@ -1414,7 +1573,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un persona trabajo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'personJob'
+                'parent_name' => 'personJob',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'person_job-eliminar-persona-trabajo',
@@ -1422,7 +1582,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un persona trabajo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'personJob'
+                'parent_name' => 'personJob',
+                'module_group' => 'academic'
             ],
             /**
              * Tenant 162
@@ -1433,7 +1594,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar tenant',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'tenant'
+                'parent_name' => 'tenant',
+                'module_group' => 'academic'
             ],
             /**
              * Criterio Estudiante 163-167
@@ -1444,7 +1606,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los criteria_student',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'criteriaStudent'
+                'parent_name' => 'criteriaStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'criteria_students_records-crear-criterio-record-estudiantil',
@@ -1452,7 +1615,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un criteria_student por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'criteriaStudent'
+                'parent_name' => 'criteriaStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'criteria_students_records-obtener-criterio-record-estudiantil',
@@ -1460,7 +1624,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un criteria_student',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'criteriaStudent'
+                'parent_name' => 'criteriaStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'criteria_students_records-actualizar-criterio-record-estudiantil',
@@ -1468,7 +1633,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un criteria_student por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'criteriaStudent'
+                'parent_name' => 'criteriaStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'criteria_students_records-eliminar-criterio-record-estudiantil',
@@ -1476,7 +1642,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un criteria_student por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'criteriaStudent'
+                'parent_name' => 'criteriaStudent',
+                'module_group' => 'academic'
             ],
             /**
              * Record Estudiantil 168-172
@@ -1487,7 +1654,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los record estudiantil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentRecord'
+                'parent_name' => 'studentRecord',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student_records-crear-record-estudiantil',
@@ -1495,7 +1663,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un record estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentRecord'
+                'parent_name' => 'studentRecord',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student_records-obtener-record-estudiantil',
@@ -1503,7 +1672,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un record estudiantil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentRecord'
+                'parent_name' => 'studentRecord',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student_records-actualizar-record-estudiantil',
@@ -1511,7 +1681,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un record estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentRecord'
+                'parent_name' => 'studentRecord',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student_records-eliminar-record-estudiantil',
@@ -1519,7 +1690,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un record estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentRecord'
+                'parent_name' => 'studentRecord',
+                'module_group' => 'academic'
             ],
             /**
              * Oferta 173-174
@@ -1530,7 +1702,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los periodos por oferta',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offerPeriod'
+                'parent_name' => 'offerPeriod',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'offers-obtener-periodo-por-oferta',
@@ -1538,7 +1711,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un periodo oferta por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offerPeriod'
+                'parent_name' => 'offerPeriod',
+                'module_group' => 'academic'
             ],
             /**
              * Periodo 175-176
@@ -1549,7 +1723,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las ofertas por periodos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodOffer'
+                'parent_name' => 'periodOffer',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periods-borrar-ofertas-por-periodo',
@@ -1557,7 +1732,8 @@ class RoleSeeder extends Seeder
                 'description' => 'borrar una oferta periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodOffer'
+                'parent_name' => 'periodOffer',
+                'module_group' => 'academic'
             ],
             /**
              * Persona 177-181
@@ -1568,7 +1744,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las personas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'person'
+                'parent_name' => 'person',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'persons-obtener-person',
@@ -1576,7 +1753,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una persona por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'person'
+                'parent_name' => 'person',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'persons-crear-person',
@@ -1584,7 +1762,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una persona',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'person'
+                'parent_name' => 'person',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'persons-actualizar-person',
@@ -1592,7 +1771,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una persona por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'person'
+                'parent_name' => 'person',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'persons-borrar-person',
@@ -1600,7 +1780,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una persona por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'person'
+                'parent_name' => 'person',
+                'module_group' => 'academic'
             ],
             /**
              * Contacto Emergencia 182-186
@@ -1611,7 +1792,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los contactos de emergencia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContact'
+                'parent_name' => 'emergencyContact',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'emergency_contact-obtener-contacto-emergencia',
@@ -1619,7 +1801,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un contacto de emergencia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContact'
+                'parent_name' => 'emergencyContact',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'emergency_contact-crear-contacto-emergencia',
@@ -1627,7 +1810,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un contacto de emergencia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContact'
+                'parent_name' => 'emergencyContact',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'emergency_contact-actualizar-contacto-emergencia',
@@ -1635,7 +1819,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un contacto de emergencia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContact'
+                'parent_name' => 'emergencyContact',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'emergency_contact-eliminar-contacto-emergencia',
@@ -1643,7 +1828,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un contacto de emergencia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'emergencyContact'
+                'parent_name' => 'emergencyContact',
+                'module_group' => 'academic'
             ],
             /**
              * Periodos 187-188
@@ -1654,7 +1840,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los horarios por periodos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periods'
+                'parent_name' => 'periods',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'periods-borrar-horarios-por-periodo',
@@ -1662,7 +1849,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un horario periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periods'
+                'parent_name' => 'periods',
+                'module_group' => 'academic'
             ],
             /**
              * Etiqueta Estudiante 189-193
@@ -1673,7 +1861,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las etiquetas de estudiantes',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'tagStudent'
+                'parent_name' => 'tagStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'tags_student-obtener-etiqueta',
@@ -1681,7 +1870,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una etiqueta estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'tagStudent'
+                'parent_name' => 'tagStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'tags_student-crear-etiqueta',
@@ -1689,7 +1879,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una etiqueta de estudiante',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'tagStudent'
+                'parent_name' => 'tagStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'tags_student-actualizar-etiqueta',
@@ -1697,7 +1888,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una etiqueta estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'tagStudent'
+                'parent_name' => 'tagStudent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'tags_student-eliminar-etiqueta',
@@ -1705,7 +1897,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una etiqueta estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'tagStudent'
+                'parent_name' => 'tagStudent',
+                'module_group' => 'academic'
             ],
             /**
              * Persona 194
@@ -1716,7 +1909,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar el lenguaje de la persona por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'person'
+                'parent_name' => 'person',
+                'module_group' => 'academic'
             ],
             /**
              * Catalogar 195-199
@@ -1727,7 +1921,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todo el catalogo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'catalog'
+                'parent_name' => 'catalog',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'catalogs-obtener-catalog',
@@ -1735,7 +1930,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un catalogo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'catalog'
+                'parent_name' => 'catalog',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'catalogs-crear-catalog',
@@ -1743,7 +1939,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un catalogo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'catalog'
+                'parent_name' => 'catalog',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'catalogs-actualizar-catalog',
@@ -1751,7 +1948,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un catalogo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'catalog'
+                'parent_name' => 'catalog',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'catalogs-borrar-catalog',
@@ -1759,7 +1957,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un catalogo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'catalog'
+                'parent_name' => 'catalog',
+                'module_group' => 'academic'
             ],
             /**
              * Documentos Estudiante 200-205
@@ -1770,7 +1969,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los documento estudiante',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentDocument'
+                'parent_name' => 'studentDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-document-obtener-documento-estudiante',
@@ -1778,7 +1978,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un documento estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentDocument'
+                'parent_name' => 'studentDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-document-crear-documento-estudiante',
@@ -1786,7 +1987,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un documento estudiante',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentDocument'
+                'parent_name' => 'studentDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-document-actualizar-documento-estudiante',
@@ -1794,7 +1996,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un documento estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentDocument'
+                'parent_name' => 'studentDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-document-borrar-documento-estudiante',
@@ -1802,7 +2005,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un documento estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentDocument'
+                'parent_name' => 'studentDocument',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-document-descargar-documentos-estudiantes',
@@ -1810,7 +2014,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Descargar un documento estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'studentDocument'
+                'parent_name' => 'studentDocument',
+                'module_group' => 'academic'
             ],
             /**
              * Estados 206
@@ -1821,7 +2026,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los estados',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'status'
+                'parent_name' => 'status',
+                'module_group' => 'academic'
             ],
             /**
              * Mencion 207-208
@@ -1832,7 +2038,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las menciones',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mention'
+                'parent_name' => 'mention',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'mention-obtener-mencion',
@@ -1840,7 +2047,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una mencion por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mention'
+                'parent_name' => 'mention',
+                'module_group' => 'academic'
             ],
             /**
              * Tipo progama estudiante 209-213
@@ -1851,7 +2059,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipo de programa del estudiante',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeStudentProgram'
+                'parent_name' => 'typeStudentProgram',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-student-program-obtener-tipo-programa-estudiante',
@@ -1859,7 +2068,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de programa del estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeStudentProgram'
+                'parent_name' => 'typeStudentProgram',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-student-program-crear-tipo-programa-estudiante',
@@ -1867,7 +2077,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un tipo de programa del estudiante estudiante',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeStudentProgram'
+                'parent_name' => 'typeStudentProgram',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-student-program-actualizar-tipo-programa-estudiante',
@@ -1875,7 +2086,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un tipo de programa del estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeStudentProgram'
+                'parent_name' => 'typeStudentProgram',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'type-student-program-borrar-tipo-programa-estudiante',
@@ -1883,7 +2095,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un tipo de programa del estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'typeStudentProgram'
+                'parent_name' => 'typeStudentProgram',
+                'module_group' => 'academic'
             ],
             /**
              * Familia 214-219
@@ -1894,7 +2107,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los familiares',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'relatives'
+                'parent_name' => 'relatives',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'relatives-obtener-familiar',
@@ -1902,7 +2116,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un familiar por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'relatives'
+                'parent_name' => 'relatives',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'relatives-crear-familiar',
@@ -1910,7 +2125,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un familiar',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'relatives'
+                'parent_name' => 'relatives',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'relatives-actualizar-familiar',
@@ -1918,7 +2134,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un familiar por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'relatives'
+                'parent_name' => 'relatives',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'relatives-borrar-familiar',
@@ -1926,7 +2143,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un familiar por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'relatives'
+                'parent_name' => 'relatives',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'relatives-obtener-familiar-por-estudiante',
@@ -1934,7 +2152,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un familiar por estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'relatives'
+                'parent_name' => 'relatives',
+                'module_group' => 'academic'
             ],
             /**
              * Categoria Estados 220
@@ -1945,7 +2164,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las categorias de estados',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'categoryStatus'
+                'parent_name' => 'categoryStatus',
+                'module_group' => 'academic'
             ],
             /**
              * Estudiantes 221-224
@@ -1956,7 +2176,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'student'
+                'parent_name' => 'student',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-crear-estudiante',
@@ -1964,7 +2185,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Crear un estudiante',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'student'
+                'parent_name' => 'student',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-update-estudiante',
@@ -1972,7 +2194,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'student'
+                'parent_name' => 'student',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-delete-estudiante',
@@ -1980,7 +2203,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Eliminar un estudiante por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'student'
+                'parent_name' => 'student',
+                'module_group' => 'academic'
             ],
             /**
              * Materia Malla 225-226
@@ -1991,7 +2215,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Asignar dependecias de materias por mallas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterMesh'
+                'parent_name' => 'matterMesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'mattermesh-listar-dependencias-por-materias-mallas',
@@ -1999,7 +2224,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Lista todas las dependecias de materias por mallas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterMesh'
+                'parent_name' => 'matterMesh',
+                'module_group' => 'academic'
             ],
             /**
              * Persona 227
@@ -2010,7 +2236,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Configura una persona como un estudiante',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'person'
+                'parent_name' => 'person',
+                'module_group' => 'academic'
             ],
             /**
              * Materia Malla 228
@@ -2021,7 +2248,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener todas las materias por el identificador de su malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mesh'
+                'parent_name' => 'mesh',
+                'module_group' => 'academic'
             ],
             /**
              * Simbology 229-233
@@ -2032,7 +2260,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las simbologias',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'simbology'
+                'parent_name' => 'simbology',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'simbology-obtener-simbologia',
@@ -2040,7 +2269,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener una simbologia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'simbology'
+                'parent_name' => 'simbology',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'simbology-crear-simbologia',
@@ -2048,7 +2278,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar una simbologia',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'simbology'
+                'parent_name' => 'simbology',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'simbology-actualizar-simbologia',
@@ -2056,7 +2287,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una simbologia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'simbology'
+                'parent_name' => 'simbology',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'simbology-eliminar-simbologia',
@@ -2064,7 +2296,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar una simbologia por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'simbology'
+                'parent_name' => 'simbology',
+                'module_group' => 'academic'
             ],
             /**
              * Simbologia Oferta 234-235
@@ -2075,7 +2308,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las simbologias por ofertas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offer'
+                'parent_name' => 'offer',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'offers-asignar-simbologias-por-oferta',
@@ -2083,7 +2317,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Asignacion masiva de simbologia a la oferta',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offer'
+                'parent_name' => 'offer',
+                'module_group' => 'academic'
             ],
             /**
              * Record de Programa Estudiantil 236-241
@@ -2094,7 +2329,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los records de programa estudiantil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPrograms'
+                'parent_name' => 'StudentRecordPrograms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-record-programs-obtener-programa-registro-estudiantil',
@@ -2102,7 +2338,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un record de programa estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPrograms'
+                'parent_name' => 'StudentRecordPrograms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-record-programs-crear-programa-registro-estudiantil',
@@ -2110,7 +2347,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un record de programa estudiantil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPrograms'
+                'parent_name' => 'StudentRecordPrograms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-record-programs-actualizar-programa-registro-estudiantil',
@@ -2118,7 +2356,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un record de programa estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPrograms'
+                'parent_name' => 'StudentRecordPrograms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-record-programs-borrar-programa-registro-estudiantil',
@@ -2126,7 +2365,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un record de programa estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPrograms'
+                'parent_name' => 'StudentRecordPrograms',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-records-and-type-student-programs-listar-programa-registro-estudiantil-asociado-record-estudiante',
@@ -2134,7 +2374,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los record de programa estudiantil y registros asociados',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecord'
+                'parent_name' => 'StudentRecord',
+                'module_group' => 'academic'
             ],
             /**
              * Record de Periodo Estudiantil 242-246
@@ -2145,7 +2386,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los records de periodo estudiantil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPeriod'
+                'parent_name' => 'StudentRecordPeriod',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-records-period-obtener-student-record-period',
@@ -2153,7 +2395,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un record de periodo estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPeriod'
+                'parent_name' => 'StudentRecordPeriod',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-records-period-crear-student-record-period',
@@ -2161,7 +2404,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un record de periodo estudiantil',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPeriod'
+                'parent_name' => 'StudentRecordPeriod',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-records-period-actualizar-student-record-period',
@@ -2169,7 +2413,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un record de periodo estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPeriod'
+                'parent_name' => 'StudentRecordPeriod',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-records-period-borrar-student-record-period',
@@ -2177,7 +2422,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un record de periodo estudiantil por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'StudentRecordPeriod'
+                'parent_name' => 'StudentRecordPeriod',
+                'module_group' => 'academic'
             ],
             /**
              * Tipo Aulas 247-251
@@ -2188,7 +2434,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los tipos de aulas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classroomType'
+                'parent_name' => 'classroomType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classroomType-obtener-tipo-aula',
@@ -2196,7 +2443,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un tipo de aula por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classroomType'
+                'parent_name' => 'classroomType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classroomType-crear-tipo-aula',
@@ -2204,7 +2452,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un nuevo tipo de aula',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classroomType'
+                'parent_name' => 'classroomType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classroomType-actualizar-tipo-aula',
@@ -2212,7 +2461,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un tipo de aula por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classroomType'
+                'parent_name' => 'classroomType',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'classroomType-eliminar-tipo-aula',
@@ -2220,7 +2470,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un tipo de aula por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'classroomType'
+                'parent_name' => 'classroomType',
+                'module_group' => 'academic'
             ],
             /**
              * Estudiante 252-253
@@ -2231,7 +2482,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los estudiantes',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'student'
+                'parent_name' => 'student',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'student-update-photo-estudiante',
@@ -2239,7 +2491,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar una foto de un estudiante',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'student'
+                'parent_name' => 'student',
+                'module_group' => 'academic'
             ],
             /**
              * Cargo 254-260
@@ -2250,7 +2503,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los cargos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'position'
+                'parent_name' => 'position',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'positions-obtener-cargo',
@@ -2258,7 +2512,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un cargo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'position'
+                'parent_name' => 'position',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'positions-crear-cargo',
@@ -2266,7 +2521,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un cargo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'position'
+                'parent_name' => 'position',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'positions-actualizar-cargo',
@@ -2274,7 +2530,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un cargo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'position'
+                'parent_name' => 'position',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'positions-eliminar-cargo',
@@ -2282,7 +2539,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un cargo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'position'
+                'parent_name' => 'position',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-listar-usuarios',
@@ -2290,7 +2548,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los usuarios',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'users-obtener-usuario',
@@ -2298,7 +2557,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un usuario por id',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'users'
+                'parent_name' => 'users',
+                'module_group' => 'academic'
             ],
             /**
              * Componente 261-265
@@ -2309,7 +2569,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los componentes',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'component'
+                'parent_name' => 'component',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'components-obtener-componente',
@@ -2317,7 +2578,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un componente por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'component'
+                'parent_name' => 'component',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'components-crear-componente',
@@ -2325,7 +2587,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un componente',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'component'
+                'parent_name' => 'component',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'components-actualizar-componente',
@@ -2333,7 +2596,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un componente por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'component'
+                'parent_name' => 'component',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'components-borrar-componente',
@@ -2341,7 +2605,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un componente por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'component'
+                'parent_name' => 'component',
+                'module_group' => 'academic'
             ],
             /**
              * Detalle Materia Malla 266-270
@@ -2352,7 +2617,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los detalle materia mallas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'detailMatterMesh'
+                'parent_name' => 'detailMatterMesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'details_matter_mesh-obtener-detalle-materiamalla',
@@ -2360,7 +2626,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un detalle materia malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'detailMatterMesh'
+                'parent_name' => 'detailMatterMesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'details_matter_mesh-crear-detalle-materiamalla',
@@ -2368,7 +2635,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un detalle materia malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'detailMatterMesh'
+                'parent_name' => 'detailMatterMesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'details_matter_mesh-actualizar-detalle-materiamalla',
@@ -2376,7 +2644,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un detalle materia malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'detailMatterMesh'
+                'parent_name' => 'detailMatterMesh',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'details_matter_mesh-borrar-detalle-materiamalla',
@@ -2384,7 +2653,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un detalle materia malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'detailMatterMesh'
+                'parent_name' => 'detailMatterMesh',
+                'module_group' => 'academic'
             ],
             /**
              * Componente Aprendizaje 271-275
@@ -2395,7 +2665,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los componente aprendizajes',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'learningComponent'
+                'parent_name' => 'learningComponent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'learning_components-obtener-componente-aprendizaje',
@@ -2403,7 +2674,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un componente aprendizaje por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'learningComponent'
+                'parent_name' => 'learningComponent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'learning_components-crear-componente-aprendizaje',
@@ -2411,7 +2683,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un componente aprendizaje',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'learningComponent'
+                'parent_name' => 'learningComponent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'learning_components-actualizar-componente-aprendizaje',
@@ -2419,7 +2692,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un componente aprendizaje por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'learningComponent'
+                'parent_name' => 'learningComponent',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'learning_components-borrar-componente-aprendizaje',
@@ -2427,7 +2701,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un componente aprendizaje por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'learningComponent'
+                'parent_name' => 'learningComponent',
+                'module_group' => 'academic'
             ],
             /**
              * Modelo Calificacion 276-280
@@ -2438,7 +2713,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los modelo calificacion',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'calificationModel'
+                'parent_name' => 'calificationModel',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'calification-models-obtener-modelo-calificacion',
@@ -2446,7 +2722,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un modelo calificacion por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'calificationModel'
+                'parent_name' => 'calificationModel',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'calification-models-crear-modelo-calificacion',
@@ -2454,7 +2731,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un modelo calificacion',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'calificationModel'
+                'parent_name' => 'calificationModel',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'calification-models-actualizar-modelo-calificacion',
@@ -2462,7 +2740,8 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un modelo calificacion por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'calificationModel'
+                'parent_name' => 'calificationModel',
+                'module_group' => 'academic'
             ],
             [
                 'name' => 'calification-models-borrar-modelo-calificacion',
@@ -2470,7 +2749,65 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un modelo calificacion por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'calificationModel'
+                'parent_name' => 'calificationModel',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Convenios 281-286
+             */
+            [
+                'name' => 'agreement-listar-convenios',
+                'alias' => 'Listar convenios',
+                'description' => 'Listar todos los convenios',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'agreement',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'agreement-obtener-convenio',
+                'alias' => 'Obtener convenio',
+                'description' => 'Obtener un convenio por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'agreement',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'agreement-crear-convenio',
+                'alias' => 'Crear convenio',
+                'description' => 'Agregar un convenio',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'agreement',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'agreement-actualizar-convenio',
+                'alias' => 'Actualizar convenio',
+                'description' => 'Actualizar un convenio por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'agreement',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'agreement-activar-convenio',
+                'alias' => 'Activar convenio',
+                'description' => 'Activar un convenio por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'agreement',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'agreement-desactivar-convenio',
+                'alias' => 'Desactivar convenio',
+                'description' => 'Desactivar un convenio por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'agreement',
+                'module_group' => 'academic'
             ],
         ]);
 
@@ -2715,112 +3052,205 @@ class RoleSeeder extends Seeder
             ['permission_id' => 148, 'role_id' => 1],
             ['permission_id' => 149, 'role_id' => 1],
             /**
-             * Tipos Discapacidad 150-152
+             * Tipos Discapacidad 150-151
              */
             ['permission_id' => 150, 'role_id' => 1],
             ['permission_id' => 151, 'role_id' => 1],
+            /**
+             * Tipo sangre 152-153
+             */
             ['permission_id' => 152, 'role_id' => 1],
             ['permission_id' => 153, 'role_id' => 1],
+            /**
+             * Tipo Educacion 154-155
+             */
             ['permission_id' => 154, 'role_id' => 1],
             ['permission_id' => 155, 'role_id' => 1],
+            /**
+             * Persona Trabajo 156-161
+             */
             ['permission_id' => 156, 'role_id' => 1],
             ['permission_id' => 157, 'role_id' => 1],
             ['permission_id' => 158, 'role_id' => 1],
             ['permission_id' => 159, 'role_id' => 1],
             ['permission_id' => 160, 'role_id' => 1],
             ['permission_id' => 161, 'role_id' => 1],
+            /**
+             * Tenant 162
+             */
             ['permission_id' => 162, 'role_id' => 1],
+            /**
+             * Criterio Estudiante 163-167
+             */
             ['permission_id' => 163, 'role_id' => 1],
             ['permission_id' => 164, 'role_id' => 1],
             ['permission_id' => 165, 'role_id' => 1],
             ['permission_id' => 166, 'role_id' => 1],
             ['permission_id' => 167, 'role_id' => 1],
+            /**
+             * Record Estudiantil 168-172
+             */
             ['permission_id' => 168, 'role_id' => 1],
             ['permission_id' => 169, 'role_id' => 1],
             ['permission_id' => 170, 'role_id' => 1],
             ['permission_id' => 171, 'role_id' => 1],
             ['permission_id' => 172, 'role_id' => 1],
+            /**
+             * Oferta 173-174
+             */
             ['permission_id' => 173, 'role_id' => 1],
             ['permission_id' => 174, 'role_id' => 1],
+            /**
+             * Periodo 175-176
+             */
             ['permission_id' => 175, 'role_id' => 1],
             ['permission_id' => 176, 'role_id' => 1],
+            /**
+             * Persona 177-181
+             */
             ['permission_id' => 177, 'role_id' => 1],
             ['permission_id' => 178, 'role_id' => 1],
             ['permission_id' => 179, 'role_id' => 1],
             ['permission_id' => 180, 'role_id' => 1],
             ['permission_id' => 181, 'role_id' => 1],
+            /**
+             * Contacto Emergencia 182-186
+             */
             ['permission_id' => 182, 'role_id' => 1],
             ['permission_id' => 183, 'role_id' => 1],
             ['permission_id' => 184, 'role_id' => 1],
             ['permission_id' => 185, 'role_id' => 1],
             ['permission_id' => 186, 'role_id' => 1],
+            /**
+             * Periodos 187-188
+             */
             ['permission_id' => 187, 'role_id' => 1],
             ['permission_id' => 188, 'role_id' => 1],
+            /**
+             * Etiqueta Estudiante 189-193
+             */
             ['permission_id' => 189, 'role_id' => 1],
             ['permission_id' => 190, 'role_id' => 1],
             ['permission_id' => 191, 'role_id' => 1],
             ['permission_id' => 192, 'role_id' => 1],
             ['permission_id' => 193, 'role_id' => 1],
+            /**
+             * Persona 194
+             */
             ['permission_id' => 194, 'role_id' => 1],
+            /**
+             * Catalogar 195-199
+             */
             ['permission_id' => 195, 'role_id' => 1],
             ['permission_id' => 196, 'role_id' => 1],
             ['permission_id' => 197, 'role_id' => 1],
             ['permission_id' => 198, 'role_id' => 1],
             ['permission_id' => 199, 'role_id' => 1],
+            /**
+             * Documentos Estudiante 200-205
+             */
             ['permission_id' => 200, 'role_id' => 1],
             ['permission_id' => 201, 'role_id' => 1],
             ['permission_id' => 202, 'role_id' => 1],
             ['permission_id' => 203, 'role_id' => 1],
             ['permission_id' => 204, 'role_id' => 1],
             ['permission_id' => 205, 'role_id' => 1],
+            /**
+             * Estados 206
+             */
             ['permission_id' => 206, 'role_id' => 1],
+            /**
+             * Mencion 207-208
+             */
             ['permission_id' => 207, 'role_id' => 1],
             ['permission_id' => 208, 'role_id' => 1],
+            /**
+             * Tipo progama estudiante 209-213
+             */
             ['permission_id' => 209, 'role_id' => 1],
             ['permission_id' => 210, 'role_id' => 1],
             ['permission_id' => 211, 'role_id' => 1],
             ['permission_id' => 212, 'role_id' => 1],
             ['permission_id' => 213, 'role_id' => 1],
             ['permission_id' => 214, 'role_id' => 1],
+            /**
+             * Familia 214-219
+             */
             ['permission_id' => 215, 'role_id' => 1],
             ['permission_id' => 216, 'role_id' => 1],
             ['permission_id' => 217, 'role_id' => 1],
             ['permission_id' => 218, 'role_id' => 1],
             ['permission_id' => 219, 'role_id' => 1],
+            /**
+             * Categoria Estados 220
+             */
             ['permission_id' => 220, 'role_id' => 1],
+            /**
+             * Estudiantes 221-224
+             */
             ['permission_id' => 221, 'role_id' => 1],
             ['permission_id' => 222, 'role_id' => 1],
             ['permission_id' => 223, 'role_id' => 1],
             ['permission_id' => 224, 'role_id' => 1],
+            /**
+             * Materia Malla 225-226
+             */
             ['permission_id' => 225, 'role_id' => 1],
             ['permission_id' => 226, 'role_id' => 1],
+            /**
+             * Persona 227
+             */
             ['permission_id' => 227, 'role_id' => 1],
+            /**
+             * Materia Malla 228
+             */
             ['permission_id' => 228, 'role_id' => 1],
+            /**
+             * Simbology 229-233
+             */
             ['permission_id' => 229, 'role_id' => 1],
             ['permission_id' => 230, 'role_id' => 1],
             ['permission_id' => 231, 'role_id' => 1],
             ['permission_id' => 232, 'role_id' => 1],
             ['permission_id' => 233, 'role_id' => 1],
+            /**
+             * Simbologia Oferta 234-235
+             */
             ['permission_id' => 234, 'role_id' => 1],
             ['permission_id' => 235, 'role_id' => 1],
+            /**
+             * Record de Programa Estudiantil 236-241
+             */
             ['permission_id' => 236, 'role_id' => 1],
             ['permission_id' => 237, 'role_id' => 1],
             ['permission_id' => 238, 'role_id' => 1],
             ['permission_id' => 239, 'role_id' => 1],
             ['permission_id' => 240, 'role_id' => 1],
             ['permission_id' => 241, 'role_id' => 1],
+            /**
+             * Record de Periodo Estudiantil 242-246
+             */
             ['permission_id' => 242, 'role_id' => 1],
             ['permission_id' => 243, 'role_id' => 1],
             ['permission_id' => 244, 'role_id' => 1],
             ['permission_id' => 245, 'role_id' => 1],
             ['permission_id' => 246, 'role_id' => 1],
+            /**
+             * Tipo Aulas 247-251
+             */
             ['permission_id' => 247, 'role_id' => 1],
             ['permission_id' => 248, 'role_id' => 1],
             ['permission_id' => 249, 'role_id' => 1],
             ['permission_id' => 250, 'role_id' => 1],
             ['permission_id' => 251, 'role_id' => 1],
+            /**
+             * Estudiante 252-253
+             */
             ['permission_id' => 252, 'role_id' => 1],
             ['permission_id' => 253, 'role_id' => 1],
+            /**
+             * Cargo 254-260
+             */
             ['permission_id' => 254, 'role_id' => 1],
             ['permission_id' => 255, 'role_id' => 1],
             ['permission_id' => 256, 'role_id' => 1],
@@ -2828,26 +3258,47 @@ class RoleSeeder extends Seeder
             ['permission_id' => 258, 'role_id' => 1],
             ['permission_id' => 259, 'role_id' => 1],
             ['permission_id' => 260, 'role_id' => 1],
+            /**
+             * Componente 261-265
+             */
             ['permission_id' => 261, 'role_id' => 1],
             ['permission_id' => 262, 'role_id' => 1],
             ['permission_id' => 263, 'role_id' => 1],
             ['permission_id' => 264, 'role_id' => 1],
             ['permission_id' => 265, 'role_id' => 1],
+            /**
+             * Detalle Materia Malla 266-270
+             */
             ['permission_id' => 266, 'role_id' => 1],
             ['permission_id' => 267, 'role_id' => 1],
             ['permission_id' => 268, 'role_id' => 1],
             ['permission_id' => 269, 'role_id' => 1],
             ['permission_id' => 270, 'role_id' => 1],
+            /**
+             * Componente Aprendizaje 271-275
+             */
             ['permission_id' => 271, 'role_id' => 1],
             ['permission_id' => 272, 'role_id' => 1],
             ['permission_id' => 273, 'role_id' => 1],
             ['permission_id' => 274, 'role_id' => 1],
             ['permission_id' => 275, 'role_id' => 1],
+            /**
+             * Modelo Calificacion 276-280
+             */
             ['permission_id' => 276, 'role_id' => 1],
             ['permission_id' => 277, 'role_id' => 1],
             ['permission_id' => 278, 'role_id' => 1],
             ['permission_id' => 279, 'role_id' => 1],
             ['permission_id' => 280, 'role_id' => 1],
+            /**
+             * Convenios 281-286
+             */
+            ['permission_id' => 281, 'role_id' => 1],
+            ['permission_id' => 282, 'role_id' => 1],
+            ['permission_id' => 283, 'role_id' => 1],
+            ['permission_id' => 284, 'role_id' => 1],
+            ['permission_id' => 285, 'role_id' => 1],
+            ['permission_id' => 286, 'role_id' => 1],
 
             /**
              *
@@ -3095,111 +3546,201 @@ class RoleSeeder extends Seeder
             ['permission_id' => 148, 'role_id' => 2],
             ['permission_id' => 149, 'role_id' => 2],
             /**
-             * Tipos Discapacidad 150-152
+             * Tipos Discapacidad 150-151
              */
             ['permission_id' => 150, 'role_id' => 2],
             ['permission_id' => 151, 'role_id' => 2],
+            /**
+             * Tipo sangre 152-153
+             */
             ['permission_id' => 152, 'role_id' => 2],
             ['permission_id' => 153, 'role_id' => 2],
+            /**
+             * Tipo Educacion 154-155
+             */
             ['permission_id' => 154, 'role_id' => 2],
             ['permission_id' => 155, 'role_id' => 2],
+            /**
+             * Persona Trabajo 156-161
+             */
             ['permission_id' => 156, 'role_id' => 2],
             ['permission_id' => 157, 'role_id' => 2],
             ['permission_id' => 158, 'role_id' => 2],
             ['permission_id' => 159, 'role_id' => 2],
             ['permission_id' => 160, 'role_id' => 2],
             ['permission_id' => 161, 'role_id' => 2],
+            /**
+             * Criterio Estudiante 163-167
+             */
             ['permission_id' => 163, 'role_id' => 2],
             ['permission_id' => 164, 'role_id' => 2],
             ['permission_id' => 165, 'role_id' => 2],
             ['permission_id' => 166, 'role_id' => 2],
             ['permission_id' => 167, 'role_id' => 2],
+            /**
+             * Record Estudiantil 168-172
+             */
             ['permission_id' => 168, 'role_id' => 2],
             ['permission_id' => 169, 'role_id' => 2],
             ['permission_id' => 170, 'role_id' => 2],
             ['permission_id' => 171, 'role_id' => 2],
             ['permission_id' => 172, 'role_id' => 2],
+            /**
+             * Oferta 173-174
+             */
             ['permission_id' => 173, 'role_id' => 2],
             ['permission_id' => 174, 'role_id' => 2],
+            /**
+             * Periodo 175-176
+             */
             ['permission_id' => 175, 'role_id' => 2],
             ['permission_id' => 176, 'role_id' => 2],
+            /**
+             * Persona 177-181
+             */
             ['permission_id' => 177, 'role_id' => 2],
             ['permission_id' => 178, 'role_id' => 2],
             ['permission_id' => 179, 'role_id' => 2],
             ['permission_id' => 180, 'role_id' => 2],
             ['permission_id' => 181, 'role_id' => 2],
+            /**
+             * Contacto Emergencia 182-186
+             */
             ['permission_id' => 182, 'role_id' => 2],
             ['permission_id' => 183, 'role_id' => 2],
             ['permission_id' => 184, 'role_id' => 2],
             ['permission_id' => 185, 'role_id' => 2],
             ['permission_id' => 186, 'role_id' => 2],
+            /**
+             * Periodos 187-188
+             */
             ['permission_id' => 187, 'role_id' => 2],
             ['permission_id' => 188, 'role_id' => 2],
+            /**
+             * Etiqueta Estudiante 189-193
+             */
             ['permission_id' => 189, 'role_id' => 2],
             ['permission_id' => 190, 'role_id' => 2],
             ['permission_id' => 191, 'role_id' => 2],
             ['permission_id' => 192, 'role_id' => 2],
             ['permission_id' => 193, 'role_id' => 2],
+            /**
+             * Persona 194
+             */
             ['permission_id' => 194, 'role_id' => 2],
+            /**
+             * Catalogar 195-199
+             */
             ['permission_id' => 195, 'role_id' => 2],
             ['permission_id' => 196, 'role_id' => 2],
             ['permission_id' => 197, 'role_id' => 2],
             ['permission_id' => 198, 'role_id' => 2],
             ['permission_id' => 199, 'role_id' => 2],
+            /**
+             * Documentos Estudiante 200-205
+             */
             ['permission_id' => 200, 'role_id' => 2],
             ['permission_id' => 201, 'role_id' => 2],
             ['permission_id' => 202, 'role_id' => 2],
             ['permission_id' => 203, 'role_id' => 2],
             ['permission_id' => 204, 'role_id' => 2],
             ['permission_id' => 205, 'role_id' => 2],
+            /**
+             * Estados 206
+             */
             ['permission_id' => 206, 'role_id' => 2],
+            /**
+             * Mencion 207-208
+             */
             ['permission_id' => 207, 'role_id' => 2],
             ['permission_id' => 208, 'role_id' => 2],
+            /**
+             * Tipo progama estudiante 209-213
+             */
             ['permission_id' => 209, 'role_id' => 2],
             ['permission_id' => 210, 'role_id' => 2],
             ['permission_id' => 211, 'role_id' => 2],
             ['permission_id' => 212, 'role_id' => 2],
             ['permission_id' => 213, 'role_id' => 2],
             ['permission_id' => 214, 'role_id' => 2],
+            /**
+             * Familia 214-219
+             */
             ['permission_id' => 215, 'role_id' => 2],
             ['permission_id' => 216, 'role_id' => 2],
             ['permission_id' => 217, 'role_id' => 2],
             ['permission_id' => 218, 'role_id' => 2],
             ['permission_id' => 219, 'role_id' => 2],
+            /**
+             * Categoria Estados 220
+             */
             ['permission_id' => 220, 'role_id' => 2],
+            /**
+             * Estudiantes 221-224
+             */
             ['permission_id' => 221, 'role_id' => 2],
             ['permission_id' => 222, 'role_id' => 2],
             ['permission_id' => 223, 'role_id' => 2],
             ['permission_id' => 224, 'role_id' => 2],
+            /**
+             * Materia Malla 225-226
+             */
             ['permission_id' => 225, 'role_id' => 2],
             ['permission_id' => 226, 'role_id' => 2],
+            /**
+             * Persona 227
+             */
             ['permission_id' => 227, 'role_id' => 2],
+            /**
+             * Materia Malla 228
+             */
             ['permission_id' => 228, 'role_id' => 2],
+            /**
+             * Simbology 229-233
+             */
             ['permission_id' => 229, 'role_id' => 2],
             ['permission_id' => 230, 'role_id' => 2],
             ['permission_id' => 231, 'role_id' => 2],
             ['permission_id' => 232, 'role_id' => 2],
             ['permission_id' => 233, 'role_id' => 2],
+            /**
+             * Simbologia Oferta 234-235
+             */
             ['permission_id' => 234, 'role_id' => 2],
             ['permission_id' => 235, 'role_id' => 2],
+            /**
+             * Record de Programa Estudiantil 236-241
+             */
             ['permission_id' => 236, 'role_id' => 2],
             ['permission_id' => 237, 'role_id' => 2],
             ['permission_id' => 238, 'role_id' => 2],
             ['permission_id' => 239, 'role_id' => 2],
             ['permission_id' => 240, 'role_id' => 2],
             ['permission_id' => 241, 'role_id' => 2],
+            /**
+             * Record de Periodo Estudiantil 242-246
+             */
             ['permission_id' => 242, 'role_id' => 2],
             ['permission_id' => 243, 'role_id' => 2],
             ['permission_id' => 244, 'role_id' => 2],
             ['permission_id' => 245, 'role_id' => 2],
             ['permission_id' => 246, 'role_id' => 2],
+            /**
+             * Tipo Aulas 247-251
+             */
             ['permission_id' => 247, 'role_id' => 2],
             ['permission_id' => 248, 'role_id' => 2],
             ['permission_id' => 249, 'role_id' => 2],
             ['permission_id' => 250, 'role_id' => 2],
             ['permission_id' => 251, 'role_id' => 2],
+            /**
+             * Estudiante 252-253
+             */
             ['permission_id' => 252, 'role_id' => 2],
             ['permission_id' => 253, 'role_id' => 2],
+            /**
+             * Cargo 254-260
+             */
             ['permission_id' => 254, 'role_id' => 2],
             ['permission_id' => 255, 'role_id' => 2],
             ['permission_id' => 256, 'role_id' => 2],
@@ -3207,26 +3748,47 @@ class RoleSeeder extends Seeder
             ['permission_id' => 258, 'role_id' => 2],
             ['permission_id' => 259, 'role_id' => 2],
             ['permission_id' => 260, 'role_id' => 2],
+            /**
+             * Componente 261-265
+             */
             ['permission_id' => 261, 'role_id' => 2],
             ['permission_id' => 262, 'role_id' => 2],
             ['permission_id' => 263, 'role_id' => 2],
             ['permission_id' => 264, 'role_id' => 2],
             ['permission_id' => 265, 'role_id' => 2],
+            /**
+             * Detalle Materia Malla 266-270
+             */
             ['permission_id' => 266, 'role_id' => 2],
             ['permission_id' => 267, 'role_id' => 2],
             ['permission_id' => 268, 'role_id' => 2],
             ['permission_id' => 269, 'role_id' => 2],
             ['permission_id' => 270, 'role_id' => 2],
+            /**
+             * Componente Aprendizaje 271-275
+             */
             ['permission_id' => 271, 'role_id' => 2],
             ['permission_id' => 272, 'role_id' => 2],
             ['permission_id' => 273, 'role_id' => 2],
             ['permission_id' => 274, 'role_id' => 2],
             ['permission_id' => 275, 'role_id' => 2],
+            /**
+             * Modelo Calificacion 276-280
+             */
             ['permission_id' => 276, 'role_id' => 2],
             ['permission_id' => 277, 'role_id' => 2],
             ['permission_id' => 278, 'role_id' => 2],
             ['permission_id' => 279, 'role_id' => 2],
             ['permission_id' => 280, 'role_id' => 2],
+            /**
+             * Convenios 281-286
+             */
+            ['permission_id' => 281, 'role_id' => 2],
+            ['permission_id' => 282, 'role_id' => 2],
+            ['permission_id' => 283, 'role_id' => 2],
+            ['permission_id' => 284, 'role_id' => 2],
+            ['permission_id' => 285, 'role_id' => 2],
+            ['permission_id' => 286, 'role_id' => 2],
         ]);
     }
 }
