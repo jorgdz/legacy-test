@@ -61,7 +61,6 @@ class StoreStudentRequest extends FormRequest
             'education_level_id' => 'required|integer|exists:tenant.education_levels,id',
             'mesh_id' => 'required|integer|exists:tenant.meshs,id',
             'type_student_id' => 'required|integer|exists:tenant.type_students,id',
-            'period_id' => 'required|integer|exists:tenant.periods,id',
             'economic_group_id' => 'required|integer|exists:tenant.economic_groups,id',
             'status_id' => 'exists:tenant.status,id',
         

@@ -77,7 +77,6 @@ class StudentRecord extends Model implements AuditableContract
         //'pensum_id',
         'mesh_id',
         'type_student_id',
-        'period_id',
         'economic_group_id',
         'status_id',
     ];
@@ -161,16 +160,6 @@ class StudentRecord extends Model implements AuditableContract
     public function typeStudent(): BelongsTo
     {
         return $this->belongsTo(TypeStudent::class, 'type_student_id');
-    }
-
-    /**
-     * period
-     *
-     * @return BelongsTo
-     */
-    public function period(): BelongsTo
-    {
-        return $this->belongsTo(Period::class, 'period_id');
     }
 
     /**

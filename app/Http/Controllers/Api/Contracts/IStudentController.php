@@ -279,11 +279,6 @@ interface IStudentController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="period_id",
-     *           description="Id del periodo",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="economic_group_id",
      *           description="Id del grupo economico",
      *           type="integer",
@@ -326,7 +321,6 @@ interface IStudentController
      *          "education_level_id" : "required|integer|exists:tenant.education_levels,id",
      *          "mesh_id" : "required|integer|exists:tenant.meshs,id",
      *          "type_student_id" : "required|integer|exists:tenant.type_students,id",
-     *          "period_id" : "required|integer|exists:tenant.periods,id",
      *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id"
      *      },
      *   )),

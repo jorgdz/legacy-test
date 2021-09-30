@@ -554,7 +554,6 @@ return [
 		'education_level_id' => 'nivel educativo',
 		'pensum_id' => 'pensum',
 		'type_student_id' => 'tipo de estudiante',
-		'period_id' => 'periodo',
 		'economic_group_id' => 'grupo economico',
 		/**
 		 * criteria_student_records
