@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Permission\Models\Role as RolePersonalized;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
@@ -26,7 +25,7 @@ class Role extends RolePersonalized
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'guard_name', 'status_id'];
+    protected $fillable = ['name', 'keyword', 'description', 'guard_name', 'status_id'];
 
     /**
      * hidden

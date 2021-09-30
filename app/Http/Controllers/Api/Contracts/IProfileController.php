@@ -113,6 +113,11 @@ interface IProfileController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="keyword",
+     *           description="Palabra clave del perfil",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="pro_description",
      *           description="Descripción del perfil",
      *           type="string",
@@ -129,7 +134,8 @@ interface IProfileController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "pro_name" : "required|string|unique:profiles,pro_name|max:255",
+     *          "pro_name"  : "required|string|unique:profiles,pro_name|max:255",
+     *          "keyword"   : "required|string|unique:profiles,keyword",
      *          "status_id" : "required|integer|exists:status,id"
      *      },
      *   )),
@@ -217,6 +223,11 @@ interface IProfileController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="keyword",
+     *           description="Palabra clave del perfil",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="pro_description",
      *           description="Descripción del perfil",
      *           type="string",
@@ -233,7 +244,8 @@ interface IProfileController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "pro_name" : "required|string|unique:profiles,pro_name,profile->id|max:255",
+     *          "pro_name"  : "required|string|unique:tenant.profiles,pro_name,profile->id|max:255",
+     *          "keyword"   : "required|string|unique:tenant.profiles,keyword, $profile->id",
      *          "status_id" : "required|integer|exists:status,id"
      *      },
      *   )),

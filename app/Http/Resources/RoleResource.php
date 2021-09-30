@@ -17,6 +17,7 @@ class RoleResource extends JsonResource
         return [
             'id'          => $this->id ,
             'name'        => $this->name ,
+            'keyword'     => $this->keyword,
             'description' => $this->description ,
             'permissions' => PermissionResource::collection($this->permissions)->groupBy('parent_name'),
         ];

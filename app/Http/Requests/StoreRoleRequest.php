@@ -25,6 +25,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'name'      => 'required|string|unique:tenant.roles,name',
+            'keyword'   => 'required|string|unique:tenant.roles,keyword',
             'status_id' => 'required|integer',
         ];
     }

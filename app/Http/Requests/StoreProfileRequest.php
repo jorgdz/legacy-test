@@ -25,6 +25,7 @@ class StoreProfileRequest extends FormRequest
     {
         return [
             'pro_name' => 'required|string|unique:tenant.profiles,pro_name|max:255',
+            'keyword'   => 'required|string|unique:tenant.profiles,keyword',
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }

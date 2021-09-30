@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
 use App\Models\Profile;
 use App\Cache\ProfileCache;
-use App\Models\UserProfile;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
-use App\Exceptions\Custom\ConflictException;
-use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IProfileController;
 
 class ProfileController extends Controller implements IProfileController

@@ -113,6 +113,11 @@ interface IRoleController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="keyword",
+     *           description="Palabra clave del rol",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="description",
      *           description="Descripcion del rol",
      *           type="string",
@@ -129,8 +134,9 @@ interface IRoleController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *           "name"      : "required|string|unique:roles,name",
-     *       "status_id" : "required|integer",
+     *           "name"      : "required|string|unique:tenant.roles,name",
+     *           "keyword"   : "required|string|unique:tenant.roles,keyword",
+     *           "status_id" : "required|integer|unique:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -217,6 +223,11 @@ interface IRoleController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="keyword",
+     *           description="Palabra clave del rol",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="description",
      *           description="Descripcion del rol",
      *           type="string",
@@ -242,8 +253,9 @@ interface IRoleController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *           "name"      : "required|string|unique:roles,name",
-     *          "status_id" : "required|integer",
+     *           "name"      : "required|string",
+     *           "keyword"   : "required|string",
+     *           "status_id" : "required|integer|exists:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

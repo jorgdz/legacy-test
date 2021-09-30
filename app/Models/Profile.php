@@ -23,6 +23,7 @@ class Profile extends Model implements AuditableContract
      */
     protected $fillable = [
         'pro_name',
+        'keyword',
         'pro_description',
         'status_id',
     ];

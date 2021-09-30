@@ -46,19 +46,13 @@ class RoleController extends Controller implements IRoleController
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRoleRequest $request) {
-        DB::beginTransaction();
-        try {
-            $request['guard_name'] = 'api';
+        $request['guard_name'] = 'api';
 
-            $role = new Role($request->all());
-            $role = $this->repository->save($role);
+        $role = new Role($request->all());
+        $role = $this->repository->save($role);
 
-            DB::commit();
-            return $this->success($role, Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        return $this->success($role, Response::HTTP_CREATED);
+
     }
 
     /**
@@ -80,23 +74,17 @@ class RoleController extends Controller implements IRoleController
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRoleRequest $request, Role $role) {
-        DB::beginTransaction();
-        try {
-            $role->fill($request->all());
 
-            if ($role->isClean() && !isset($request['permissions']))
-                return $this->information(__('messages.nochange'));
+        $role->fill($request->all());
 
-            $response = $this->repository->save($role);
+        if ($role->isClean() && !isset($request['permissions']))
+            return $this->information(__('messages.nochange'));
 
-            if (isset($request['permissions'])) $role->syncPermissions($request['permissions']);
+        $response = $this->repository->save($role);
 
-            DB::commit();
-            return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        if (isset($request['permissions'])) $role->syncPermissions($request['permissions']);
+
+        return $this->success($response);
     }
 
     /**
@@ -106,16 +94,9 @@ class RoleController extends Controller implements IRoleController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Role $role) {
-        DB::beginTransaction();
-        try {
-            $this->repository->deleteModelHasRole($role->id);
-            $role->revokePermissionTo($role->getAllPermissions()->pluck('name')->toArray());
-            $response = $this->repository->destroy($role);
-            DB::commit();
-            return $response;
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        $this->repository->deleteModelHasRole($role->id);
+        $role->revokePermissionTo($role->getAllPermissions()->pluck('name')->toArray());
+        $response = $this->repository->destroy($role);
+        return $response;
     }
 }

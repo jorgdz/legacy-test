@@ -25,6 +25,7 @@ class UpdateRoleRequest extends FormRequest
     {
         return [
             'name'      => 'required|string',
+            'keyword'   => 'required|string',
             'status_id' => 'required|integer|exists:tenant.status,id',
         ];
     }

@@ -26,6 +26,7 @@ class UpdateProfileRequest extends FormRequest
         $profile = $this->route()->parameter('profile');
         return [
             'pro_name' => 'required|string|unique:tenant.profiles,pro_name,'.$profile->id.'|max:255',
+            'keyword' => 'required|string|unique:tenant.profiles,keyword,'. $profile->id,
             'status_id' => 'required|integer|exists:tenant.status,id'
         ];
     }
