@@ -29,7 +29,8 @@ class TypeMatter extends Model implements AuditableContract
 
     protected $dates = ['deleted_at'];
 
-    protected $softCascade = ['matters'];
+    // ¿Se deberia eliminar las materias en cascada cuando se elimina un tipo materia?. No lo creo...
+    // protected $softCascade = ['matter'];
 
     /**
      * status
@@ -47,5 +48,9 @@ class TypeMatter extends Model implements AuditableContract
      */
     public function matterStatus() : HasMany {
         return $this->hasMany(MatterStatus::class, 'type_matter_id');
+    }
+
+    public function matter() : HasMany {
+        return $this->hasMany(Matter::class);
     }
 }

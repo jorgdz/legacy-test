@@ -34,7 +34,6 @@ class StudentRecord extends Model implements AuditableContract
         // 'pensum_id',
         'mesh_id',
         'type_student_id',
-        'period_id',
         'economic_group_id',
         'status_id'
     ];

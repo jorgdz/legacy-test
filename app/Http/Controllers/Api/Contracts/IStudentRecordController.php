@@ -128,11 +128,6 @@ interface IStudentRecordController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="period_id",
-     *           description="Id del periodo",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="economic_group_id",
      *           description="Id del grupo economico",
      *           type="integer",
@@ -255,11 +250,6 @@ interface IStudentRecordController
      *         @OA\Property(
      *           property="type_student_id",
      *           description="Id del tipo de estudiante",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="period_id",
-     *           description="Id del periodo",
      *           type="integer",
      *         ),
      *         @OA\Property(
