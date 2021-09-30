@@ -105,7 +105,7 @@ class ParallelController extends Controller implements IParallelController
     public function enabled(Parallel $parallel)
     {
         if($parallel->status_id == 1)
-            throw new UnprocessableException(__('messages.is-active', ['model' => class_basename(Parallel::class)]));
+            return $this->information(__('messages.is-active'), Response::HTTP_UNPROCESSABLE_ENTITY);
 
         $parallel->status_id = 1;
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Parallel::class)));
@@ -121,7 +121,7 @@ class ParallelController extends Controller implements IParallelController
     public function disabled(Parallel $parallel)
     {
         if($parallel->status_id == 2)
-            throw new UnprocessableException(__('messages.is-inactive', ['model' => class_basename(Parallel::class)]));
+            return $this->information(__('messages.is-inactive'), Response::HTTP_UNPROCESSABLE_ENTITY);
 
         $parallel->status_id = 2;
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Parallel::class)));

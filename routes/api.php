@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AgreementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
@@ -398,7 +399,7 @@ Route::put('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshControlle
 Route::delete('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-borrar-detalle-materiamalla']);
 
 /**
- * Learning Component 
+ * Learning Component
  */
 Route::get('/learning-components', [LearningComponentController::class, 'index'])->middleware(['auth:sanctum', 'permission:learning_components-listar-componente-aprendizaje']);
 Route::get('/learning-components/{learningcomponent}', [LearningComponentController::class, 'show'])->middleware(['auth:sanctum', 'permission:learning_components-obtener-componente-aprendizaje']);
@@ -407,7 +408,7 @@ Route::put('/learning-components/{learningcomponent}', [LearningComponentControl
 Route::delete('/learning-components/{learningcomponent}', [LearningComponentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:learning_components-borrar-componente-aprendizaje']);
 
 Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);
-/** 
+/**
  * Student
  */
 Route::get('students', [StudentController::class, 'index'])->middleware(['auth:sanctum', 'permission:student-listar-estudiante']);
@@ -445,4 +446,13 @@ Route::get('/positions/{position}', [PositionController::class, 'show'])->middle
 Route::post('/positions', [PositionController::class, 'store'])->middleware(['auth:sanctum', 'permission:positions-crear-cargo']);
 Route::put('/positions/{position}', [PositionController::class, 'update'])->middleware(['auth:sanctum', 'permission:positions-actualizar-cargo']);
 Route::delete('/positions/{position}', [PositionController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:positions-eliminar-cargo']);
+/**
+ * Agreements (Convenios)
+ */
+Route::get('/agreements', [AgreementController::class, 'index'])->middleware(['auth:sanctum']);// permission:agreement-listar-convenios
+Route::get('/agreements/{agreement}', [AgreementController::class, 'show'])->middleware(['auth:sanctum']);// permission:agreement-obtener-convenio
+Route::post('/agreements', [AgreementController::class, 'store'])->middleware(['auth:sanctum']);// permission:agreement-crear-convenio
+Route::put('/agreements/{agreement}', [AgreementController::class, 'update'])->middleware(['auth:sanctum']);// permission:agreement-actualizar-convenio
+Route::post('/agreements/{agreement}/enabled', [AgreementController::class, 'enabled'])->middleware(['auth:sanctum']); // permission:agreement-activar-convenio
+Route::post('/agreements/{agreement}/disabled', [AgreementController::class, 'disabled'])->middleware(['auth:sanctum']); // permission:agreement-desactivar-convenio
 

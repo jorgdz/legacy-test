@@ -9,13 +9,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassRoomFormRequest;
 use App\Http\Requests\UpdateClassRoomRequest;
 use App\Models\ClassRoom;
+use App\Traits\Auditor;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ClassRoomController extends Controller implements IClassRoomController
 {
-    use RestResponse;
+    use RestResponse, Auditor;
 
     private $classRoomCache;
 
@@ -82,23 +83,35 @@ class ClassRoomController extends Controller implements IClassRoomController
         return $this->success($this->classRoomCache->destroy($classroom));
     }
 
+    /**
+     * enabled
+     *
+     * @param  mixed $classroom
+     * @return void
+     */
     public function enabled(Classroom $classroom)
     {
         if($classroom->status_id == 1)
-            throw new UnprocessableException(__('messages.is-active', ['model' => class_basename(ClassRoom::class)]));
+            return $this->information(__('messages.is-active'), Response::HTTP_UNPROCESSABLE_ENTITY);
 
         $classroom->status_id = 1;
-
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(ClassRoom::class)));
         return $this->success($this->classRoomCache->save($classroom));
     }
 
+    /**
+     * disabled
+     *
+     * @param  mixed $classroom
+     * @return void
+     */
     public function disabled(ClassRoom $classroom)
     {
         if($classroom->status_id == 2)
-            throw new UnprocessableException(__('messages.is-inactive', ['model' => class_basename(ClassRoom::class)]));
+            return $this->information(__('messages.is-inactive'), Response::HTTP_UNPROCESSABLE_ENTITY);
 
         $classroom->status_id = 2;
-
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(ClassRoom::class)));
         return $this->success($this->classRoomCache->save($classroom));
     }
 }

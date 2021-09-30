@@ -319,36 +319,48 @@ return [
 		 * matters
 		 */
 		'mat_name' => 'nombre de materia',
-		'mat_description' => 'descripción de materia',
-		'mat_acronym' => 'acrónimo de materia',
 		'cod_matter_migration' => 'codigo de materia migrado',
 		'cod_old_migration' => 'codigo de migración de materia antigua',
+		'mat_acronym' => 'acrónimo de materia',
+        'mat_translate' => 'traducción de la materia',
+        'mat_description' => 'descripción de materia',
 		'type_matter_id' => 'tipo de materia',
-		'type_calification_id' => 'tipo de calificación',
-		'min_note' => 'nota minima',
+		'education_level_id' => 'nivel educativo',
+		'area_id' => 'área',
 		/**
 		 * matter_mesh
 		 */
 		'matter_id' => 'malla de materia',
 		'mesh_id' => 'malla',
         'simbology_id' => 'simbologia',
-		'calification_type' => 'tipo de calificación',
+        'can_homologate' => 'homologación',
+        'min_note' => 'mínima nota',
 		'min_calification' => 'calificación minima',
 		'max_calification' => 'calificación maxima',
 		'num_fouls' => 'numero de faltas',
 		'matter_rename' => 'cambiar el nombre de la materia',
+        'group' => 'grupo',
+		'calification_models_id' => 'modelo de calificación',
         'matterMesh' => 'las opciones de los materias y mallas',
-		/**
-		 * matter_status
-		 */
-		'type' => 'tipo',
 		/**
 		 * meshs
 		 */
 		'mes_name' => 'nombre de malla',
-		'mes_description' => 'descriptición de malla',
+        'mes_res_cas' => 'resolución CAS',
+        'mes_res_ocas' => 'resolución OCAS',
+        'mes_cod_career' => 'código de carrera',
+        'mes_title' => 'título de la malla',
+        'mes_itinerary' => 'itinerario de la malla',
+        'mes_number_matter' => 'número de materias',
+        'mes_number_period' => 'numero de periodos',
+        'mes_quantity_external_matter_homologate' => 'cantidad de materias externas a homologar',
+        'mes_quantity_internal_matter_homologate' => 'cantidad de materias internas a homologar',
+        'mes_creation_date' => 'fecha de creación de la malla',
 		'mes_acronym' => 'acrónimo de malla',
-		'pensum_id' => 'pensum',
+        'anio' => 'año',
+		'mes_description' => 'descriptición de malla',
+		'mes_modality_id' => 'modalidad',
+        'type_calification_id' => 'tipo de calificación',
 		'level_edu_id' => 'nivel educativo',
 		/**
 		 * offers
@@ -382,15 +394,38 @@ return [
 		'per_due_year' => 'períodos de vencimiento anual',
 		'per_min_matter_enrollment' => 'minimo de materia de matrícula por período',
 		'per_max_matter_enrollment' => 'maximo de materia de matrícula por período',
-		'campus' => 'sedes',
+		'per_num_fees' => 'número de cuotas',
+        'per_fees_enrollment' => 'cuota de inscripción',
+        'per_pay_enrollment' => 'cobro de matrícula',
+        'campus' => 'sedes',
 		'type_period_id' => 'tipo de periodo',
 		'offers' => 'las opciones de ofertas',
 		'hourhands' => 'las opciones de los horarios',
 		/**
 		 * hourhands
 		 */
-		'hour_start_time' => 'hora de inicio',
-		'hour_end_time' => 'hora final',
+        'hour_monday' => 'horario del lunes',
+        'hour_tuesday' => 'horario del martes',
+        'hour_wednesday' => 'horario del miércoles',
+        'hour_thursday' => 'horario del jueves',
+        'hour_friday' => 'horario del viernes',
+        'hour_saturday' => 'horario del sábado',
+        'hour_sunday' => 'horario del domingo',
+		'hour_start_time_monday' => 'hora de inicio del lunes',
+        'hour_end_time_monday' => 'hora final del lunes',
+        'hour_start_time_tuesday' => 'hora de inicio del martes',
+        'hour_end_time_tuesday' => 'hora final del martes',
+        'hour_start_time_wednesday' => 'hora de inicio del miércoles',
+        'hour_end_time_wednesday' => 'hora final del miércoles',
+        'hour_start_time_thursday' => 'hora de inicio del jueves',
+        'hour_end_time_thursday' => 'hora final del jueves',
+        'hour_start_time_friday' => 'hora de inicio del viernes',
+        'hour_end_time_friday' => 'hora final del viernes',
+        'hour_start_time_saturday' => 'hora de inicio del sábado',
+        'hour_end_time_saturday' => 'hora final del sábado',
+        'hour_start_time_sunday' => 'hora de inicio del domingo',
+        'hour_end_time_sunday' => 'hora final del domingo',
+        'hour_description' => 'descripción del horario',
 		/**
 		 * period_stages
 		 */
@@ -422,17 +457,19 @@ return [
 		'pers_study_reason' => 'motivo de estudio',
 		'pers_num_taxpayers_household' => 'número de contribuyentes en el hogar',
 		'pers_has_vehicle' => 'Tiene vehiculo propio',
-		'city_id' => 'ciudad natal',
 		'vivienda_id' => 'vivienda',
 		'type_identification_id' => 'tipo de identificación de la persona',
-		'user_id' => 'usuario',
 		'type_religion_id' => 'tipo de religión',
 		'status_marital_id' => 'estado civil',
+		'city_id' => 'ciudad natal',
 		'current_city_id' => 'ciudad actual',
 		'sector_id' => 'sector',
 		'ethnic_id' => 'étnica',
+		'user_id' => 'usuario',
 		'languages' => 'lenguajes',
-
+        'pers_has_disability' => 'discapacidad',
+        'pers_disability_identification' => 'número de identificación de discapacidad',
+        'pers_disability_percent' => 'porcentaje de discapacidad',
 		/**
 		 * PersonalAccessToken
 		 */
@@ -652,7 +689,12 @@ return [
 		'cal_mod_name' => 'nombre del modelo de calificación',
 		'cal_mod_acronym' => 'sigla del modelo de calificación',
 		'cal_mod_equivalence' => 'equivalencia del modelo de calificación',
-		'calification_models_id' => 'modelo de calificación' 
+		'calification_models_id' => 'modelo de calificación',
+        /**
+         * Agreements (Convenios)
+         */
+        'agr_name' => 'nombre del convenio',
+        'agr_num_matter_homologate' => 'cantidad de materias a homologar',
 
 	],
 
