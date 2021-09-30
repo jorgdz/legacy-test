@@ -2809,6 +2809,54 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'agreement',
                 'module_group' => 'academic'
             ],
+            /**
+             * Areas 287-291
+             */
+            [
+                'name' => 'areas-listar-areas',
+                'alias' => 'Listar areas',
+                'description' => 'Listar todos los areas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'areas-obtener-area',
+                'alias' => 'Obtener area',
+                'description' => 'Obtener un area por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'areas-crear-area',
+                'alias' => 'Crear area',
+                'description' => 'Agregar un area',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'areas-actualizar-area',
+                'alias' => 'Actualizar area',
+                'description' => 'Actualizar un area por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'areas-borrar-area',
+                'alias' => 'Borrar area',
+                'description' => 'Eliminar un area por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'area',
+                'module_group' => 'academic'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -3299,6 +3347,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 284, 'role_id' => 1],
             ['permission_id' => 285, 'role_id' => 1],
             ['permission_id' => 286, 'role_id' => 1],
+            /**
+             * Areas 287-291
+             */
+            ['permission_id' => 287, 'role_id' => 1],
+            ['permission_id' => 288, 'role_id' => 1],
+            ['permission_id' => 289, 'role_id' => 1],
+            ['permission_id' => 290, 'role_id' => 1],
+            ['permission_id' => 291, 'role_id' => 1],
 
             /**
              *
@@ -3789,6 +3845,14 @@ class RoleSeeder extends Seeder
             ['permission_id' => 284, 'role_id' => 2],
             ['permission_id' => 285, 'role_id' => 2],
             ['permission_id' => 286, 'role_id' => 2],
+            /**
+             * Areas 287-291
+             */
+            ['permission_id' => 287, 'role_id' => 2],
+            ['permission_id' => 288, 'role_id' => 2],
+            ['permission_id' => 289, 'role_id' => 2],
+            ['permission_id' => 290, 'role_id' => 2],
+            ['permission_id' => 291, 'role_id' => 2],
         ]);
     }
 }
