@@ -294,6 +294,11 @@ interface ITenantController
      *           description="Número de estudiantes matriculados",
      *           type="string",
      *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Id del estado del inquilino",
+     *           type="integer",
+     *         ),
      *       ),
      *     ),
      *   ),
@@ -316,6 +321,7 @@ interface ITenantController
      *          "domain_client": "string",
      *          "color": "string",
      *          "students_number": "string",
+     *          "status_id": "nullable|integer|exists:landlord.status,id",
      *      },
      *   )),
      *   @OA\Response(response=403, description="No autorizado"),
@@ -494,7 +500,7 @@ interface ITenantController
 
     /**
      * @OA\Put(
-     *   path="/api/restore-tenant/{id}",
+     *   path="/api/enable-tenant/{id}",
      *   tags={"Inquilinos (Endpoints del dueño de la aplicación)"},
      *   security={
      *      {"api_key_security": {}},
@@ -520,5 +526,5 @@ interface ITenantController
      * )
      *
      */
-    public function restoreTenant($id);
+    public function EnableTenant($id);
 }

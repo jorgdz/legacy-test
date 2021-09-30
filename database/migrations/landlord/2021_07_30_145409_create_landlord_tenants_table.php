@@ -29,6 +29,9 @@ class CreateLandlordTenantsTable extends Migration
             $table->string('color',255)->nullable();
 
             $table->string('students_number')->nullable();
+
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
           
             $table->timestamps();
             $table->softDeletes();

@@ -12,7 +12,7 @@ class MatterRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'typeMatter', 'educationLevel', 'matterMesh'];
+    protected $relations = ['status', 'typeMatter', 'educationLevel', 'matterMesh', 'area'];
 
     /**
      * parents
@@ -41,7 +41,7 @@ class MatterRepository extends BaseRepository
      */
     protected $selfFieldsAndParents = [
         'mat_name', 'mat_acronym', 'cod_matter_migration', 'cod_old_migration',
-        'tm_name', 'tm_acronym', 'edu_name', 'edu_alias', 'edu_order', 'st_name'
+        'tm_name', 'tm_acronym', 'edu_name', 'edu_alias', 'edu_order', 'ar_name', 'st_name'
     ];
 
 

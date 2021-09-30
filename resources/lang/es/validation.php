@@ -159,7 +159,7 @@ return [
 			'integer'  => 'El campo parentesco debe ser un entero.',
 			'exists'   => 'El campo parentesco seleccionado es inválido.'
 		],
-		'emergencyContacts.*.person_id'=> [
+		'emergencyContacts.*.person_id' => [
 			'required' => 'El campo nombre de contacto emergencia es requerido',
 			'integer'   => 'El campo nombre de contacto emergencia debe ser un entero.',
 			'exists'   => 'El campo persona es inválido.'
@@ -213,20 +213,20 @@ return [
 			'integer' => 'El valor del campo lenguaje debe ser un entero.',
 			'distinct' => 'El valor del campo lenguaje tiene un valor duplicado.'
 		],
-        'matterMesh.*' => [
+		'matterMesh.*' => [
 			'exists' => 'El valor del campo materia malla seleccionado es inválido.',
 			'integer' => 'El valor del campo materia malla debe ser un entero.',
 			'distinct' => 'El valor del campo materia malla tiene un valor duplicado.'
 		],
-        'campus.*' => [
-            'exists' => 'El valor del campo sede seleccionado es inválido.',
+		'campus.*' => [
+			'exists' => 'El valor del campo sede seleccionado es inválido.',
 			'integer' => 'El valor del campo sede debe ser un entero.',
-        ],
-        'simbologies.*' => [
-            'exists' => 'El valor del campo simbologia seleccionado es inválido.',
+		],
+		'simbologies.*' => [
+			'exists' => 'El valor del campo simbologia seleccionado es inválido.',
 			'integer' => 'El valor del campo simbologia debe ser un entero.',
-            'distinct' => 'El valor del campo simbologia tiene un valor duplicado.'
-        ],
+			'distinct' => 'El valor del campo simbologia tiene un valor duplicado.'
+		],
 
 	],
 
@@ -243,8 +243,8 @@ return [
 
 
 	'attributes' => [
-        'hourhand' => 'horario',
-	    'offer' => 'oferta',
+		'hourhand' => 'horario',
+		'offer' => 'oferta',
 		'blo_typ_name' => 'nombre del tipo de sangre',
 		'blo_typ_description' => 'descripción del tipo de sangre',
 		'status_id' => 'estado',
@@ -294,7 +294,6 @@ return [
 		'city_id' => 'ciudad',
 		'type_institute_id' => 'instituto',
 
-
 		/**
 		 * tenant
 		 */
@@ -302,9 +301,16 @@ return [
 		'logo_path' => 'Ruta del logo',
 
 		/**
+		 * TenantModule
+		 */
+		'tenant_id' => 'Inquilino',
+		'module_id' => 'Modulo',
+
+		/**
 		 * type_institutes
 		 */
 		'tin_name' => 'nombre del tipo instituto',
+
 		/**
 		 * mails
 		 */
@@ -314,7 +320,6 @@ return [
 		'encryption' => 'encriptación',
 		'username' => 'nombre de usuario',
 
-		//tenant_id
 		/**
 		 * matters
 		 */
@@ -327,6 +332,7 @@ return [
 		'type_matter_id' => 'tipo de materia',
 		'education_level_id' => 'nivel educativo',
 		'area_id' => 'área',
+
 		/**
 		 * matter_mesh
 		 */
@@ -339,9 +345,15 @@ return [
 		'max_calification' => 'calificación maxima',
 		'num_fouls' => 'numero de faltas',
 		'matter_rename' => 'cambiar el nombre de la materia',
-        'group' => 'grupo',
+		'group' => 'grupo',
 		'calification_models_id' => 'modelo de calificación',
         'matterMesh' => 'las opciones de los materias y mallas',
+
+		/**
+		 * matter_status
+		 */
+		'type' => 'tipo',
+        
 		/**
 		 * meshs
 		 */
@@ -362,22 +374,26 @@ return [
 		'mes_modality_id' => 'modalidad',
         'type_calification_id' => 'tipo de calificación',
 		'level_edu_id' => 'nivel educativo',
+
 		/**
 		 * offers
 		 */
 		'off_name' => 'nombre de oferta',
 		'off_description' => 'descripcion de oferta',
-        'simbologies' => 'simbologias',
+		'simbologies' => 'simbologias',
+
 		/**
 		 * offer_period
 		 */
 		'period_id' => 'periodo',
+
 		/**
 		 * parallels
 		 */
 		'par_name' => 'nombre del paralelo',
 		'par_description' => 'descripción del paralelo',
 		'par_acronym' => 'acrónimo de paralelo',
+
 		/**
 		 * pensums
 		 */
@@ -385,6 +401,7 @@ return [
 		'pen_description' => 'descripción de pensums',
 		'pen_acronym' => 'acrónimo de pensums',
 		'anio' => 'año',
+
 		/**
 		 * periods
 		 */
@@ -401,6 +418,7 @@ return [
 		'type_period_id' => 'tipo de periodo',
 		'offers' => 'las opciones de ofertas',
 		'hourhands' => 'las opciones de los horarios',
+
 		/**
 		 * hourhands
 		 */
@@ -426,18 +444,21 @@ return [
         'hour_start_time_sunday' => 'hora de inicio del domingo',
         'hour_end_time_sunday' => 'hora final del domingo',
         'hour_description' => 'descripción del horario',
+
 		/**
 		 * period_stages
 		 */
 		'stage_id' => 'etapa',
 		'start_date' => 'fecha de inicio',
 		'end_date' => 'fecha de fin',
+
 		/**
 		 * permissions
 		 */
 		'alias' => 'alias',
 		'guard_name' => 'nombre guardado',
 		'parent_name' => 'nombre perfil padre',
+
 		/**
 		 * persons
 		 */
@@ -489,60 +510,72 @@ return [
 		'sec_name' => 'nombre del sector',
 		'sec_description' => 'descripción del sector',
 		'sec_acronym' => 'acrónimo sectorial',
+
 		/**
 		 * stages
 		 */
 		'stg_name' => 'nombre de etapa',
 		'stg_description' => 'descripción de etapa',
 		'stg_acronym' => 'acrónimo de etapa',
+
 		/**
 		 * status
 		 */
 		'st_name' => 'nombre del estado',
+
 		/**
 		 * status_marital
 		 */
 		'sta_mar_name' => 'nombre de estado civil',
 		'sta_mar_description' => 'descripción estado civil',
+
 		/**
 		 * type_califications
 		 */
 		'tc_name' => 'nombre de tipo calcificaciones',
 		'tc_description' => 'descripción de tipo calcificaciones',
+
 		/**
 		 * type_daytrip
 		 */
 		'typ_day_name' => 'nombre de jornada academica',
 		'typ_day_description' => 'descripción de jornada academica',
+
 		/**
 		 * type_disabilities
 		 */
 		'typ_dis_name' => 'nombre del tipo discapacidad',
 		'typ_dis_description' => 'descripción del tipo discapacidad',
+
 		/**
 		 * type_document
 		 */
 		'typ_doc_name' => 'nombre del tipo documento',
 		'typ_doc_description' => 'descripción del tipo documento',
+
 		/**
 		 * type_education
 		 */
 		'typ_edu_name' => 'nombre del tipo educación',
 		'typ_edu_description' => 'descripción del tipo de educación',
+
 		/**
 		 * type_identifications
 		 */
 		'ti_name' => 'nombre del tipo indentificaion',
+
 		/**
 		 * type_kinship
 		 */
 		'typ_kin_name' => 'nombre del tipo parentesco',
 		'typ_kin_description' => 'descripción del tipo parentesco',
+
 		/**
 		 * type_languages
 		 */
 		'typ_lan_name' => 'nombre del tipo idioma ',
 		'typ_lan_description' => 'descripción del tipo idioma',
+
 		/**
 		 * type_matters
 		 */
@@ -552,6 +585,7 @@ return [
 		'tm_order' => 'orden del tipo materia',
 		'tm_cobro' => 'cobro del tipo materia',
 		'tm_matter_count' => 'recuento de materia del tipo materia',
+
 		/**
 		 * type_periods
 		 */
@@ -559,20 +593,24 @@ return [
 		'tp_description' => 'descripción del tipo período',
 		'tp_min_matter_enrollment' => 'inscripción minima del tipo período',
 		'tp_max_matter_enrollment' => 'inscripción maxima del tipo período',
+
 		/**
 		 * type_religions
 		 */
 		'typ_rel_name' => 'nombre del tipo religión',
 		'typ_rel_description' => 'descripción del tipo religión',
+	
 		/*
 		* type_students
 		*/
 		'te_name' => 'nombre del tipo estudiante',
 		'te_description' => 'descripción del tipo estudiante',
+
 		/*
 		* user_profiles
 		*/
 		'profile_id' => 'perfil usuario',
+
 		/*
 		* Emergency Contact
 		*/
@@ -580,10 +618,12 @@ return [
 		'em_ct_first_phone' => 'número teléfono principal',
 		'type_kinship_id'	=> 'Parentesco',
 		'person_id'			=> 'Persona',
+
 		/*
 		* Tags Student
 		*/
 		'tg_name' 		=> 'nombre de etiqueta del estudiente',
+
 		/**
 		 * student_records
 		 */
@@ -592,12 +632,14 @@ return [
 		'pensum_id' => 'pensum',
 		'type_student_id' => 'tipo de estudiante',
 		'economic_group_id' => 'grupo economico',
+
 		/**
 		 * criteria_student_records
 		 */
 		'qualification' => 'calificación',
 		'type_criteria_id' => 'tipo de criterio',
 		'student_record_id' => 'récord estudiantil',
+
 		/**
 		 * person_jobs
 		 */
@@ -648,12 +690,14 @@ return [
 		'typ_stu_pro_name' => 'nombre del tipo programa para estudiantes',
 		'typ_stu_pro_description' => 'descripción del tipo programa para estudiantes',
 		'typ_stu_pro_acronym' => 'Acrónimo programa para estudiantes',
+
 		/**
 		 * Component
 		 */
 		'com_acronym' => 'abreviatura del componente de aprendizaje',
 		'com_name' 	  => 'nombre del componente de aprendizaje',
-		'component_id'=> 'componente',
+		'component_id' => 'componente',
+
 		/**
 		 * Details MatterMesh
 		 */
@@ -661,27 +705,28 @@ return [
 		'components_id'  => 'componente aprendizaje',
 		'dem_workload'   => 'carga horaria',
 
-        /**
-         * Simbologies
-         */
-        'sim_color' => 'color de la simbologia',
-        'sim_description' => 'nombre de la simbologia',
+		/**
+		 * Simbologies
+		 */
+		'sim_color' => 'color de la simbologia',
+		'sim_description' => 'nombre de la simbologia',
 
 		/**
 		 * Student Record Programs
 		 */
 		'type_student_program_id' => 'tipo programa para estudiantes',
 
-        /**
-         * Classroom Type
-         */
-        'clt_name' => 'nombre del tipo de aula',
-        'clt_description' => 'descripcion del tipo de aula',
-        /**
-         * Positions
-         */
-        'pos_name' => 'nombre del cargo',
-        'pos_description' => 'descripcion del cargo',
+		/**
+		 * Classroom Type
+		 */
+		'clt_name' => 'nombre del tipo de aula',
+		'clt_description' => 'descripcion del tipo de aula',
+
+		/**
+		 * Positions
+		 */
+		'pos_name' => 'nombre del cargo',
+		'pos_description' => 'descripcion del cargo',
 
 		/**
 		 * Calification Models
@@ -690,12 +735,12 @@ return [
 		'cal_mod_acronym' => 'sigla del modelo de calificación',
 		'cal_mod_equivalence' => 'equivalencia del modelo de calificación',
 		'calification_models_id' => 'modelo de calificación',
+
         /**
          * Agreements (Convenios)
          */
         'agr_name' => 'nombre del convenio',
         'agr_num_matter_homologate' => 'cantidad de materias a homologar',
-
 	],
 
 ];

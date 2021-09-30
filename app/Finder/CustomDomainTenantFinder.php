@@ -19,7 +19,8 @@ class CustomDomainTenantFinder extends TenantFinder
         $key = $host . '_current_tenant';
 
         return Cache::remember($key, now()->addMinutes(150), function () use ($host) {
-            return $this->getTenantModel()::with('mail')
+            return $this->getTenantModel()::with(['mail', 'status'])
+                /* ->whereIn('status_id', [1, 3]) */
                 ->whereDomain($host)->first();
         });
     }
