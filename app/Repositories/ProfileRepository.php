@@ -26,7 +26,7 @@ class ProfileRepository extends BaseRepository
      *
      * @var array
      */
-    protected $fields = ['pro_name'];
+    protected $fields = ['pro_name', 'pro_description'];
 
     /**
      * selfFieldsAndParents

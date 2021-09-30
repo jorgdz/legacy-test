@@ -113,6 +113,11 @@ interface IProfileController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="pro_description",
+     *           description="Descripción del perfil",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del perfil",
      *           type="integer",
@@ -209,6 +214,11 @@ interface IProfileController
      *         @OA\Property(
      *           property="pro_name",
      *           description="Nombre del perfil",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="pro_description",
+     *           description="Descripción del perfil",
      *           type="string",
      *         ),
      *         @OA\Property(
