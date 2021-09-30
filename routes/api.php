@@ -45,6 +45,7 @@ use App\Http\Controllers\Api\SimbologyController;
 
 
 /* Import routes */
+
 require __DIR__ . "/channels/roles.php";
 require __DIR__ . "/channels/permissions.php";
 require __DIR__ . "/channels/pensums.php";
@@ -65,6 +66,7 @@ require __DIR__ . "/channels/filesystems.php";
 require __DIR__ . "/channels/student-records-period.php";
 require __DIR__ . "/channels/student-record-programs.php";
 require __DIR__ . "/channels/calification-models.php";
+require __DIR__ . "/channels/areas.php";
 
 
 
@@ -96,6 +98,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/olvidar-clave', [ForgotPasswordController::class, 'sendResetLinkResponse'])->name('passwords.send');
 Route::get('/restablecer-clave/{token}', [ResetPasswordController::class, 'verifyToken'])->name('passwords.verify');
 Route::post('/restablecer-clave', [ResetPasswordController::class, 'sendResetResponse'])->name('passwords.reset');
+
 /**
  *
  * Current tenant
@@ -113,6 +116,7 @@ Route::get('/whoami', [AuthController::class, 'whoami'])->middleware('auth:sanct
  */
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('/logout/all-devices', [AuthController::class, 'logout_all_devices'])->middleware('auth:sanctum');
+
 /**
  * Users
  */
@@ -128,16 +132,15 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware([
 /**
  * UserProfiles
  */
-Route::get('/users/{user}/profiles', [UserController::class, 'showProfiles'])->middleware(['auth:sanctum' , 'permission:users-listar-perfiles-usuario']);
-Route::get('/users/{user}/profiles/{profile}', [UserController::class, 'showProfilesById'])->middleware(['auth:sanctum' , 'permission:users-mostrar-perfil-especifico-por-usuario']);
-Route::post('/users/{user}/profiles', [UserController::class, 'saveProfiles'])->middleware(['auth:sanctum' , 'permission:users-guardar-perfil-por-usuario']);
+Route::get('/users/{user}/profiles', [UserController::class, 'showProfiles'])->middleware(['auth:sanctum', 'permission:users-listar-perfiles-usuario']);
+Route::get('/users/{user}/profiles/{profile}', [UserController::class, 'showProfilesById'])->middleware(['auth:sanctum', 'permission:users-mostrar-perfil-especifico-por-usuario']);
+Route::post('/users/{user}/profiles', [UserController::class, 'saveProfiles'])->middleware(['auth:sanctum', 'permission:users-guardar-perfil-por-usuario']);
 Route::put('/users/{user}/profiles/{profile}', [UserController::class, 'updateProfileById'])->middleware(['auth:sanctum', 'permission:users-actualizar-perfil-por-usuario']);
-Route::delete('/users/{user}/profiles/{profile}', [UserController::class, 'destroyProfilesById'])->middleware(['auth:sanctum' , 'permission:users-borrar-perfiles-por-usuario']);
-Route::delete('/users/{user}/profiles', [UserController::class, 'destroyProfiles'])->middleware(['auth:sanctum' , 'permission:users-borrar-perfil-especifico-por-usuario']);
-Route::get('/users/{user}/roles', [UserController::class, 'showRolesbyUser'])->middleware(['auth:sanctum' , 'permission:users-listar-roles-por-usuario']);
-Route::get('/users/{user}/profiles/{profile}/roles', [UserController::class, 'showRolesbyUserProfile'])->middleware(['auth:sanctum' , 'permission:users-listar-roles-por-usuario-y-perfil']);
-Route::post('/users/{user}/profiles/{profile}/roles', [UserController::class, 'saveRolesbyUserProfile'])->middleware(['auth:sanctum' , 'permission:users-sincronizar-roles-por-usuario-y-perfil']);
-
+Route::delete('/users/{user}/profiles/{profile}', [UserController::class, 'destroyProfilesById'])->middleware(['auth:sanctum', 'permission:users-borrar-perfiles-por-usuario']);
+Route::delete('/users/{user}/profiles', [UserController::class, 'destroyProfiles'])->middleware(['auth:sanctum', 'permission:users-borrar-perfil-especifico-por-usuario']);
+Route::get('/users/{user}/roles', [UserController::class, 'showRolesbyUser'])->middleware(['auth:sanctum', 'permission:users-listar-roles-por-usuario']);
+Route::get('/users/{user}/profiles/{profile}/roles', [UserController::class, 'showRolesbyUserProfile'])->middleware(['auth:sanctum', 'permission:users-listar-roles-por-usuario-y-perfil']);
+Route::post('/users/{user}/profiles/{profile}/roles', [UserController::class, 'saveRolesbyUserProfile'])->middleware(['auth:sanctum', 'permission:users-sincronizar-roles-por-usuario-y-perfil']);
 
 /**
  * Profiles
@@ -148,6 +151,7 @@ Route::post('/profiles', [ProfileController::class, 'store'])->middleware(['auth
 Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->middleware(['auth:sanctum', 'permission:profiles-actualizar-perfil']);
 Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:profiles-borrar-un-perfil']);
 Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])->middleware(['auth:sanctum', 'permission:profiles-listar-usuarios-por-perfil']);
+
 /**
  *
  * Companies
@@ -158,6 +162,7 @@ Route::post('/companies', [CompanyController::class, 'store'])->middleware(['aut
 Route::patch('/companies/{company}', [CompanyController::class, 'update'])->middleware(['auth:sanctum', 'permission:companies-actualizar-compania']);
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->middleware(['auth:sanctum', 'permission:companies-actualizar-compania']);
 Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:companies-borrar-compania']);
+
 /**
  *
  * Campus
@@ -225,8 +230,6 @@ Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffe
 Route::get('/periods/{period}/hourhands', [PeriodController::class, 'showHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-horarios-por-periodo']);
 Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-horarios-por-periodo']);
 
-
-
 /**
  * MatterMesh
  */
@@ -238,7 +241,8 @@ Route::post('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::cla
 Route::put('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
 Route::patch('/matter-mesh/{id}', [MatterMeshController::class, 'restoreMatterMesh'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
 Route::delete('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
-Route::get('/matter-mesh/{mattermesh}/prerequisites', [MatterMeshController::class, 'showPrerequisites'])->middleware(['auth:sanctum' ,'permission:mattermesh-listar-dependencias-por-materias-mallas']);
+Route::get('/matter-mesh/{mattermesh}/prerequisites', [MatterMeshController::class, 'showPrerequisites'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-dependencias-por-materias-mallas']);
+
 /*
  *
  * PeriodStages
@@ -271,6 +275,7 @@ Route::get('/hourhands/{hourhand}', [HourhandController::class, 'show'])->middle
 Route::post('/hourhands', [HourhandController::class, 'store'])->middleware(['auth:sanctum', 'permission:hourhands-crear-horario']);
 Route::put('/hourhands/{hourhand}', [HourhandController::class, 'update'])->middleware(['auth:sanctum', 'permission:hourhands-actualizar-horario']);
 Route::delete('/hourhands/{hourhand}', [HourhandController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:hourhands-borrar-horario']);
+
 /**
  * Tipos de Instituto
  */
@@ -279,6 +284,7 @@ Route::post('institutetypes', [InstituteTypeController::class, 'store'])->middle
 Route::get('institutetypes/{institutetype}', [InstituteTypeController::class, 'show'])->middleware(['auth:sanctum', 'permission:institutetype-obtener-tipo-de-instituto']);
 Route::put('institutetypes/{institutetype}', [InstituteTypeController::class, 'update'])->middleware(['auth:sanctum', 'permission:institutetype-actualizar-tipo-de-instituto']);
 Route::delete('institutetypes/{institutetype}', [InstituteTypeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:institutetype-eliminar-tipo-de-instituto']);
+
 /**
  * Institutos
  */
@@ -311,6 +317,7 @@ Route::get('blood-types/{bloodtype}', [BloodTypeController::class, 'show'])->mid
  */
 Route::get('type-educations', [TypeEducationController::class, 'index'])->middleware(['auth:sanctum', 'permission:type_education-listar-tipo-educacion']);
 Route::get('type-educations/{typeeducation}', [TypeEducationController::class, 'show'])->middleware(['auth:sanctum', 'permission:type_education-obtener-tipo-educacion']);
+
 /**
  * Grupo Economico
  */
@@ -328,6 +335,7 @@ Route::get('emergency-contact/{emergencycontact}', [EmergencyContactController::
 Route::post('emergency-contact', [EmergencyContactController::class, 'store'])->middleware(['auth:sanctum', 'permission:emergency_contact-crear-contacto-emergencia']);
 Route::put('emergency-contact/{emergencycontact}', [EmergencyContactController::class, 'update'])->middleware(['auth:sanctum', 'permission:emergency_contact-actualizar-contacto-emergencia']);
 Route::delete('emergency-contact/{emergencycontact}', [EmergencyContactController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:emergency_contact-eliminar-contacto-emergencia']);
+
 /**
  * Student Record
  */
@@ -337,6 +345,7 @@ Route::get('student-records/{studentRecordProgram}/type-student-programs', [Stud
 Route::get('student-records/{studentRecord}', [StudentRecordController::class, 'show'])->middleware(['auth:sanctum', 'permission:student_records-obtener-record-estudiantil']);
 Route::put('student-records/{studentRecord}', [StudentRecordController::class, 'update'])->middleware(['auth:sanctum', 'permission:student_records-actualizar-record-estudiantil']);
 Route::delete('student-records/{studentRecord}', [StudentRecordController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:student_records-eliminar-record-estudiantil']);
+
 /**
  * CriteriaStudentRecord
  */
@@ -345,6 +354,7 @@ Route::post('criteria-students-records', [CriteriaStudentRecordController::class
 Route::get('criteria-students-records/{criteriaStudentRecord}', [CriteriaStudentRecordController::class, 'show'])->middleware(['auth:sanctum', 'permission:criteria_students_records-obtener-criterio-record-estudiantil']);
 Route::put('criteria-students-records/{criteriaStudentRecord}', [CriteriaStudentRecordController::class, 'update'])->middleware(['auth:sanctum', 'permission:criteria_students_records-actualizar-criterio-record-estudiantil']);
 Route::delete('criteria-students-records/{criteriaStudentRecord}', [CriteriaStudentRecordController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:criteria_students_records-eliminar-criterio-record-estudiantil']);
+
 /*
  * CurrentTenant
  */
@@ -359,6 +369,7 @@ Route::get('tags-student/{tagstudent}', [TagStudentController::class, 'show'])->
 Route::post('tags-student', [TagStudentController::class, 'store'])->middleware(['auth:sanctum', 'permission:tags_student-crear-etiqueta']);
 Route::put('tags-student/{tagstudent}', [TagStudentController::class, 'update'])->middleware(['auth:sanctum', 'permission:tags_student-actualizar-etiqueta']);
 Route::delete('tags-student/{tagstudent}', [TagStudentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:tags_student-eliminar-etiqueta']);
+
 /**
  * Persona Trabajo
  */
@@ -367,10 +378,12 @@ Route::get('person-job/{personjob}', [PersonJobController::class, 'show'])->midd
 Route::post('person-job', [PersonJobController::class, 'store'])->middleware(['auth:sanctum', 'permission:person_job-crear-persona-trabajo']);
 Route::put('person-job/{personjob}', [PersonJobController::class, 'update'])->middleware(['auth:sanctum', 'permission:person_job-actualizar-persona-trabajo']);
 Route::delete('person-job/{personjob}', [PersonJobController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:person_job-eliminar-persona-trabajo']);
+
 /**
  * Status
  */
 Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);
+
 /**
  * Relative
  */
@@ -408,6 +421,7 @@ Route::put('/learning-components/{learningcomponent}', [LearningComponentControl
 Route::delete('/learning-components/{learningcomponent}', [LearningComponentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:learning_components-borrar-componente-aprendizaje']);
 
 Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);
+
 /**
  * Student
  */
@@ -417,10 +431,12 @@ Route::post('students', [StudentController::class, 'store'])->middleware(['auth:
 Route::put('students/{student}', [StudentController::class, 'update'])->middleware(['auth:sanctum', 'permission:student-update-estudiante']);
 Route::post('students/photo', [StudentController::class, 'updatePhoto'])->middleware(['auth:sanctum', 'permission:student-update-photo-estudiante']);
 Route::delete('students/{student}', [StudentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:student-delete-estudiante']);
+
 /**
  * Categoria Status
  */
 Route::get('category-status', [CategoryStatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:category-status-listar-categoria-estado']);
+
 /**
  * Simbologies
  */
@@ -438,6 +454,7 @@ Route::get('/classroom-types/{classroomType}', [ClassroomTypeController::class, 
 Route::post('/classroom-types', [ClassroomTypeController::class, 'store'])->middleware(['auth:sanctum', 'permission:classroomType-crear-tipo-aula']);
 Route::put('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'update'])->middleware(['auth:sanctum', 'permission:classroomType-actualizar-tipo-aula']);
 //Route::delete('/classroom-types/{classroomType}', [ClassroomTypeController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classroomType-eliminar-tipo-aula']);
+
 /**
  * Positions
  */
@@ -446,13 +463,13 @@ Route::get('/positions/{position}', [PositionController::class, 'show'])->middle
 Route::post('/positions', [PositionController::class, 'store'])->middleware(['auth:sanctum', 'permission:positions-crear-cargo']);
 Route::put('/positions/{position}', [PositionController::class, 'update'])->middleware(['auth:sanctum', 'permission:positions-actualizar-cargo']);
 Route::delete('/positions/{position}', [PositionController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:positions-eliminar-cargo']);
+
 /**
  * Agreements (Convenios)
  */
-Route::get('/agreements', [AgreementController::class, 'index'])->middleware(['auth:sanctum']);// permission:agreement-listar-convenios
-Route::get('/agreements/{agreement}', [AgreementController::class, 'show'])->middleware(['auth:sanctum']);// permission:agreement-obtener-convenio
-Route::post('/agreements', [AgreementController::class, 'store'])->middleware(['auth:sanctum']);// permission:agreement-crear-convenio
-Route::put('/agreements/{agreement}', [AgreementController::class, 'update'])->middleware(['auth:sanctum']);// permission:agreement-actualizar-convenio
+Route::get('/agreements', [AgreementController::class, 'index'])->middleware(['auth:sanctum']); // permission:agreement-listar-convenios
+Route::get('/agreements/{agreement}', [AgreementController::class, 'show'])->middleware(['auth:sanctum']); // permission:agreement-obtener-convenio
+Route::post('/agreements', [AgreementController::class, 'store'])->middleware(['auth:sanctum']); // permission:agreement-crear-convenio
+Route::put('/agreements/{agreement}', [AgreementController::class, 'update'])->middleware(['auth:sanctum']); // permission:agreement-actualizar-convenio
 Route::post('/agreements/{agreement}/enabled', [AgreementController::class, 'enabled'])->middleware(['auth:sanctum']); // permission:agreement-activar-convenio
 Route::post('/agreements/{agreement}/disabled', [AgreementController::class, 'disabled'])->middleware(['auth:sanctum']); // permission:agreement-desactivar-convenio
-

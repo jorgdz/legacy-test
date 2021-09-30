@@ -23,6 +23,10 @@ class Area extends Model implements AuditableContract
         'status_id'
     ];
 
+    protected $relations = [
+        'status_id'
+    ];
+
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $dates = ['deleted_at'];
