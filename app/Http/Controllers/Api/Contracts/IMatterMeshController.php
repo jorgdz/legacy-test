@@ -100,7 +100,7 @@ interface IMatterMeshController
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
@@ -126,7 +126,7 @@ interface IMatterMeshController
      *           property="can_homologate",
      *           description="Se puede homologar",
      *           type="boolean",
-     *           example="1",
+     *           example="true"
      *         ),
      *         @OA\Property(
      *           property="min_note",
@@ -161,6 +161,11 @@ interface IMatterMeshController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="calification_models_id",
+     *           description="Id modelo calificación",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado",
      *           type="integer",
@@ -182,6 +187,7 @@ interface IMatterMeshController
      *          "num_fouls": "required|integer",
      *          "matter_rename": "nullable|string",
      *          "group": "nullable|integer",
+     *          "calification_models_id" : "required|integer|exists:tenant.calification_models,id",
      *          "status_id": "required|integer|exists:tenant.status,id",
      *      },
      *   )),
@@ -416,6 +422,11 @@ interface IMatterMeshController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="calification_models_id",
+     *           description="Id modelo calificación",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado",
      *           type="integer",
@@ -437,6 +448,7 @@ interface IMatterMeshController
      *          "num_fouls": "required|integer",
      *          "matter_rename": "nullable|string",
      *          "group": "nullable|integer",
+     *          "calification_models_id" : "required|integer|exists:tenant.calification_models,id",
      *          "status_id": "required|integer|exists:tenant.status,id",
      *      },
      *   )),

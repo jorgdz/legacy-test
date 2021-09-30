@@ -163,12 +163,12 @@ class MatterMesh extends Model implements AuditableContract
     }
 
 
-       /**
-     * positions
+    /**
+     * calificationModel
      *
      * @return BelongsTo
      */
-    public function calificationModel() : BelongsTo
+    public function calificationModel(): BelongsTo
     {
         return $this->belongsTo(CalificationModel::class, 'calification_models_id');
     }

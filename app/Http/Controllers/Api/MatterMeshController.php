@@ -86,8 +86,9 @@ class MatterMeshController extends Controller implements IMatterMeshController
         }
 
         $matterMeshFound = MatterMesh::where('matter_id', $request->matter_id)->where('mesh_id', $request->mesh_id)->first();
-
+        
         if($matterMeshFound) {
+           
             throw new ConflictException(__('messages.exist-instance'));
         }
 

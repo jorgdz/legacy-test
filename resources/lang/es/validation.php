@@ -652,7 +652,8 @@ return [
 		 */
 		'cal_mod_name' => 'nombre del modelo de calificación',
 		'cal_mod_acronym' => 'sigla del modelo de calificación',
-		'cal_mod_equivalence' => 'equivalencia del modelo de calificación', 
+		'cal_mod_equivalence' => 'equivalencia del modelo de calificación',
+		'calification_models_id' => 'modelo de calificación' 
 
 	],
 

@@ -34,6 +34,7 @@ class MatterMeshRequest extends FormRequest
             'num_fouls'         => 'required|integer',
             'matter_rename'     => 'nullable|string',
             'group'             => 'nullable|integer',
+            'calification_models_id' => 'required|integer|exists:tenant.calification_models,id',
             'status_id'         => 'required|integer|exists:tenant.status,id'
         ];
         if (in_array($this->method(), ['PUT', 'PATCH'])) {

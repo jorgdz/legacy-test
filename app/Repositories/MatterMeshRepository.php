@@ -16,7 +16,7 @@ class MatterMeshRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'mesh', 'matter', 'simbology', 'matterMeshDependencies'];
+    protected $relations = ['status', 'mesh', 'matter', 'simbology', 'matterMeshDependencies','calificationModel'];
 
     /**
      * parents
