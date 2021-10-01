@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\CustomStatus;
 use Illuminate\Http\Request;
 use App\Traits\RestResponse;
 use App\Models\CustomTenant;
 use App\Models\CustomModules;
 use App\Models\TenantModules;
+use App\Traits\CustomAuditor;
 use App\Cache\TenantModuleCache;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -16,10 +18,11 @@ use App\Repositories\PermissionRepository;
 use App\Exceptions\Custom\ConflictException;
 use App\Repositories\TenantModuleRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Http\Controllers\Api\Contracts\ITenantModuleController;
 
-class TenantModuleController extends Controller
+class TenantModuleController extends Controller implements ITenantModuleController
 {
-    use RestResponse;
+    use RestResponse, CustomAuditor;
 
     private $repository;
     private $permissionRepository;
@@ -69,6 +72,7 @@ class TenantModuleController extends Controller
             if ($request->tenant_id == $tenant_pri->id)
                 throw new ModelNotFoundException();
 
+            $request['status_id'] = 4;
             $repository = new TenantModules($request->all());
 
             $conditionals = [
@@ -90,6 +94,52 @@ class TenantModuleController extends Controller
             $params = [
                 'status_id' => 1,
             ];
+            $this->permissionRepository->assignPermissionsByModule($tenant_cli->database, $conditionals, $params);
+
+            DB::commit();
+            return $this->success($response);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
+        }
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\TenantModules  $tenant_module
+     * @return \Illuminate\Http\Response
+     */
+    public function update(TenantModuleRequest $request, TenantModules $tenant_module)
+    {
+        DB::beginTransaction();
+        try {
+            $tenant_pri = CustomTenant::where('domain', $this->domain)->first();
+
+            if ($request->tenant_id == $tenant_pri->id)
+                throw new ModelNotFoundException();
+
+            $tenant_module->fill($request->all());
+
+            if ($tenant_module->isClean())
+                return $this->information(__('messages.nochange'));
+
+            $status = CustomStatus::where([
+                ['id', $request->status_id],
+                ['keyword', 'general-inactivo'],
+            ])->first();
+
+            $tenant_cli = CustomTenant::where('id', $tenant_module->tenant_id)->first();
+            $module = CustomModules::where('id', $tenant_module->module_id)->first();
+
+            $conditionals = [
+                ['module_group', $module->group]
+            ];
+            $params = (!$status) ? array('status_id' => 1) : array('status_id' => 2);
+
+            $response = $this->tenantModuleCache->save($tenant_module);
             $this->permissionRepository->assignPermissionsByModule($tenant_cli->database, $conditionals, $params);
 
             DB::commit();

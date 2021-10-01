@@ -2,6 +2,7 @@
 
 namespace App\Finder;
 
+use App\Models\CustomStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Multitenancy\Models\Tenant;
@@ -18,9 +19,11 @@ class CustomDomainTenantFinder extends TenantFinder
 
         $key = $host . '_current_tenant';
 
-        return Cache::remember($key, now()->addMinutes(150), function () use ($host) {
+        $status = CustomStatus::whereIn('keyword', ['acceso-activo', 'acceso-fata_pago'])->get()->pluck('id')->toArray();
+
+        return Cache::remember($key, now()->addMinutes(150), function () use ($host, $status) {
             return $this->getTenantModel()::with(['mail', 'status'])
-                /* ->whereIn('status_id', [1, 3]) */
+                ->whereIn('status_id', $status)
                 ->whereDomain($host)->first();
         });
     }

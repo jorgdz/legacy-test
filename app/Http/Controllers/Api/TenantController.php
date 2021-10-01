@@ -6,26 +6,24 @@ use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\FailLocalStorageRequestException;
 use App\Models\Mail;
 use App\Jobs\ProcessTenant;
-use Illuminate\Support\Str;
 use App\Models\CustomTenant;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateTenantRequest;
-use Illuminate\Support\Facades\File as FileFacade;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Api\Contracts\ITenantController;
 use App\Http\Requests\UpdateLogoCurrentTenantRequest;
+use App\Models\CustomStatus;
 use App\Services\FilesystemService;
+use App\Traits\CustomAuditor;
 use Illuminate\Support\Facades\DB;
 
 class TenantController extends Controller implements ITenantController
 {
-    use RestResponse;
+    use RestResponse, CustomAuditor;
 
     private $domain;
     protected $key;
@@ -183,6 +181,11 @@ class TenantController extends Controller implements ITenantController
 
         if ($tenant->isClean())
             $this->information(__('messages.nochange'));
+
+        $status = CustomStatus::where([
+            ['id', $request->status_id],
+        ])->first();
+        $this->setAudit($this->formatToAudit(__FUNCTION__, CustomTenant::class, $status['name'], $tenant->getOriginal(), $tenant->getAttributes()));
 
         $tenant->save();
         $this->cache::flush();

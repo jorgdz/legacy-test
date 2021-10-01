@@ -28,15 +28,11 @@ class TenantModuleRequest extends FormRequest
             'module_id' => 'required|integer|exists:landlord.modules,id',
         ];
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
-            $rules['tenant_id'] = [
-                'nullable',
+            unset($rules['tenant_id'], $rules['module_id']);
+            $rules['status_id'] = [
+                'required',
                 'integer',
-                'exists:landlord.tenants,id',
-            ];
-            $rules['module_id'] = [
-                'nullable',
-                'integer',
-                'exists:landlord.tenants,id',
+                'exists:landlord.status,id',
             ];
         }
         return $rules;
