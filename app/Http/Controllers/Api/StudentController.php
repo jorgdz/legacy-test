@@ -92,7 +92,7 @@ class StudentController extends Controller implements IStudentController
 
         $student->save();
 
-       
+
         $studentRecord = new StudentRecord($request->only(['education_level_id', 'mesh_id','type_student_id', 'economic_group_id']));
         $studentRecord->student_id =  $student->id;
         $studentRecord->status_id = 1;
@@ -102,7 +102,7 @@ class StudentController extends Controller implements IStudentController
 
         Mail::to($request->get('email'))->send(new EmailRegister($user,$password ));
 
-        return $this->success(__('messages.model-saved-successfully', ['model' => class_basename(Student::class)]));
+        return $this->information(__('messages.model-saved-successfully', ['model' => 'Estudiante']));
 
         }catch(Exception $ex){
             DB::rollback();
@@ -162,7 +162,7 @@ class StudentController extends Controller implements IStudentController
             throw new NotFoundException(__('messages.no-exist-instance-resource'));
 
         $response = $this->filesystemService->store($request);
-        
+
         $request->replace(['stud_photo' => $response[0]['route']]);
 
         $student->fill($request->all());
