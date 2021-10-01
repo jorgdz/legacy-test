@@ -209,7 +209,7 @@ interface IEducationLevelController
 
         /**
      * @OA\Get(
-     *   path="/api/education-levels/{id}/children",
+     *   path="/api/education-levels/parents",
      *   tags={"Niveles Educativos"},
      *   security={
      *      {"api_key_security": {}},
