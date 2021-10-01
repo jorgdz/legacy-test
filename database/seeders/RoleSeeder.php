@@ -31,6 +31,7 @@ class RoleSeeder extends Seeder
             ['name' => 'COORD. ACADEMICA', 'keyword' => 'coord-academica', 'description' => 'Rol de Coordinacion Academica', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'IDIOMA', 'keyword' => 'idioma', 'description' => 'Rol de Idioma', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'RECURSOS HUMANOS', 'keyword' => 'recursos-humanos', 'description' => 'Rol de Recursos Humanos', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'DOCENTES', 'keyword' => 'docente', 'description' => 'Rol de Docentes', 'guard_name' => 'api', 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('permissions')->insert([
@@ -2857,6 +2858,78 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'area',
                 'module_group' => 'academic'
             ],
+            /**
+             * Areas 292-296
+             */
+            [
+                'name' => 'departments-listar-departamentos',
+                'alias' => 'Listar departamentos',
+                'description' => 'Listar todos los departamentos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'department',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'departments-obtener-departamento',
+                'alias' => 'Obtener departamento',
+                'description' => 'Obtener un departamento por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'department',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'departments-crear-departamento',
+                'alias' => 'Crear departamento',
+                'description' => 'Agregar un departamento',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'department',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'departments-actualizar-departamento',
+                'alias' => 'Actualizar departamento',
+                'description' => 'Actualizar un departamento por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'department',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'departments-actualizar-estado-departamento',
+                'alias' => 'Actualizar estado departamento',
+                'description' => 'Actualiza el estado de un departamento por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'department',
+                'module_group' => 'academic'
+            ],
+        ]);
+
+        DB::connection('tenant')->table('permissions')->insert([
+            /**
+             * Colaboradores 297-298
+             */
+            [
+                'name' => 'collaborators-obtener-colaborador',
+                'alias' => 'Obtener colaborador',
+                'description' => 'Obtener un colaborador por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaborator',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'collaborators-crear-colaborador',
+                'alias' => 'Crear colaborador',
+                'description' => 'Agregar un colaborador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaborator',
+                'module_group' => 'academic'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -3355,20 +3428,35 @@ class RoleSeeder extends Seeder
             ['permission_id' => 289, 'role_id' => 1],
             ['permission_id' => 290, 'role_id' => 1],
             ['permission_id' => 291, 'role_id' => 1],
-
             /**
-             *
-             *
-             *
-             * Permisos de Administrador
-             *
-             *
-             *
+             * Areas 292-296
              */
-
+            ['permission_id' => 292, 'role_id' => 1],
+            ['permission_id' => 293, 'role_id' => 1],
+            ['permission_id' => 294, 'role_id' => 1],
+            ['permission_id' => 295, 'role_id' => 1],
+            ['permission_id' => 296, 'role_id' => 1],
             /**
-             * Perfiles
+             * Colaboradores 297-298
              */
+            ['permission_id' => 297, 'role_id' => 1],
+            ['permission_id' => 298, 'role_id' => 1],
+        ]);
+
+        /**
+         *
+         *
+         *
+         * Permisos de Administrador
+         *
+         *
+         *
+         */
+
+        DB::connection('tenant')->table('role_has_permissions')->insert([
+        /**
+         * Perfiles
+         */
             ['permission_id' => 1, 'role_id' => 2],
             ['permission_id' => 2, 'role_id' => 2],
             ['permission_id' => 3, 'role_id' => 2],
@@ -3853,6 +3941,53 @@ class RoleSeeder extends Seeder
             ['permission_id' => 289, 'role_id' => 2],
             ['permission_id' => 290, 'role_id' => 2],
             ['permission_id' => 291, 'role_id' => 2],
+            /**
+             * Areas 292-296
+             */
+            ['permission_id' => 292, 'role_id' => 2],
+            ['permission_id' => 293, 'role_id' => 2],
+            ['permission_id' => 294, 'role_id' => 2],
+            ['permission_id' => 295, 'role_id' => 2],
+            ['permission_id' => 296, 'role_id' => 2],
+            /**
+             * Colaboradores 297-298
+             */
+            ['permission_id' => 297, 'role_id' => 2],
+            ['permission_id' => 298, 'role_id' => 2],
+        ]);
+
+        /**
+         *
+         *
+         *
+         * Permisos de RRHH
+         *
+         *
+         *
+         */
+        DB::connection('tenant')->table('role_has_permissions')->insert([
+            /**
+             * Colaboradores 297-298
+             */
+            ['permission_id' => 297, 'role_id' => 16],
+            ['permission_id' => 298, 'role_id' => 16],
+        ]);
+
+        
+        /**
+         *
+         *
+         *
+         * Permisos de Docente
+         *
+         *
+         *
+         */
+        DB::connection('tenant')->table('role_has_permissions')->insert([
+            /**
+             * Estudiante 252
+             */
+            ['permission_id' => 252, 'role_id' => 17],
         ]);
     }
 }
