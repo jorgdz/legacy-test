@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'sync'),
+    'default' => env('QUEUE_CONNECTION', 'landlord'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,11 +94,9 @@ return [
     */
 
     'failed' => [
-        'driver' => env('QUEUE_FAILED_DRIVER', 'database'),
-        'database' => [
-            'connection' => env('DB_CONNECTION', 'mysql'),
-            'table' => 'failed_jobs',
-        ],
+        'driver' => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
+        'database' => env('QUEUE_CONNECTION','landlord'),
+        'table' => 'failed_jobs',
     ],
 
 ];

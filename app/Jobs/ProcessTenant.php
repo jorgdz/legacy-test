@@ -4,14 +4,15 @@ namespace App\Jobs;
 
 use App\Models\CustomTenant;
 use App\Models\Mail;
+use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class ProcessTenant implements ShouldQueue
@@ -57,6 +58,11 @@ class ProcessTenant implements ShouldQueue
                 $this->runMigrationsSeeders($this->customTenant);
             }
         }
+    }
+
+    public function failed(Throwable $exception)
+    {
+        dump($exception->getMessage());
     }
 
     /**
