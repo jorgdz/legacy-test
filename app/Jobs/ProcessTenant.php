@@ -62,7 +62,7 @@ class ProcessTenant implements ShouldQueue
 
     public function failed(Throwable $exception)
     {
-        dump($exception->getMessage());
+        dump($exception);
     }
 
     /**
