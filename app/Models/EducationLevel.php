@@ -77,7 +77,7 @@ class EducationLevel extends Model implements AuditableContract
      * @return HasMany
      */
     public function meshs() :  HasMany{
-        return $this->hasMany(Mesh::class, 'level_edu_id');
+        return $this->hasMany(Curriculum::class, 'level_edu_id');
     }
 
     /**
@@ -111,6 +111,6 @@ class EducationLevel extends Model implements AuditableContract
     }
 
     public function matter() {
-        return $this->hasMany(Matter::class, 'education_level_id');
+        return $this->hasMany(Subject::class, 'education_level_id');
     }
 }

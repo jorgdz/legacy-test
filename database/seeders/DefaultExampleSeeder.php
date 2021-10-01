@@ -54,7 +54,7 @@ class DefaultExampleSeeder extends Seeder
             ['edu_name' => 'Carrera de Derecho', 'edu_alias' => NULL, 'edu_order' => 2, 'principal_id' => 1, 'offer_id' => 1, 'status_id' => 1],
         ]);
 
-        DB::connection('tenant')->table('matters')->insert([
+        DB::connection('tenant')->table('subjects')->insert([
             ['mat_name' => 'Derecho Romano', 'mat_description' => NULL, 'mat_acronym' => 'mat', 'cod_matter_migration' => 'COD-MAT001', 'cod_old_migration' => 'COD-OLD-MAT001', 'mat_translate' => NULL, 'type_matter_id' => 1, 'education_level_id' => 1, 'area_id' => 1, 'status_id' => 1],
             ['mat_name' => 'Ciencias Políticas', 'mat_description' => NULL, 'mat_acronym' => 'lco', 'cod_matter_migration' => 'COD-MAT002', 'cod_old_migration' => 'COD-OLD-MAT002', 'mat_translate' => NULL, 'type_matter_id' => 1, 'education_level_id' => 1, 'area_id' => 1, 'status_id' => 1],
             ['mat_name' => 'Introducción y Fundamentos del Derecho', 'mat_description' => NULL, 'mat_acronym' => 'his', 'cod_matter_migration' => 'COD-MAT003', 'cod_old_migration' => 'COD-OLD-MAT003', 'mat_translate' => NULL, 'type_matter_id' => 1, 'education_level_id' => 1, 'area_id' => 1, 'status_id' => 1],
@@ -100,7 +100,7 @@ class DefaultExampleSeeder extends Seeder
             ['mat_name' => 'Asignatura III del Itinerario', 'mat_description' => NULL, 'mat_acronym' => 'ihc', 'cod_matter_migration' => 'COD-MAT043', 'cod_old_migration' => 'COD-OLD-MAT043', 'mat_translate' => NULL, 'type_matter_id' => 1, 'education_level_id' => 1, 'area_id' => 1, 'status_id' => 1],
         ]);
 
-        DB::connection('tenant')->table('meshs')->insert([
+        DB::connection('tenant')->table('curriculums')->insert([
             [
                 'mes_name' => 'Malla Curricular', 'mes_res_cas' => NULL, 'mes_res_ocas' => NULL, 'mes_cod_career' => 'QWERTY.Q1', 'mes_title' => 'Malla Titulo', 'mes_itinerary' => NULL,
                 'mes_number_matter' => 43, 'mes_number_period' => 8, 'mes_quantity_external_matter_homologate' => 1, 'mes_quantity_internal_matter_homologate' => 2,'mes_creation_date' => '1995-07-21', 'mes_acronym' => 'MS1', 'anio' => '2018',
@@ -141,7 +141,7 @@ class DefaultExampleSeeder extends Seeder
             ],
         ]);
 
-        DB::connection('tenant')->table('matter_mesh')->insert([
+        DB::connection('tenant')->table('subject_curriculum')->insert([
             ['mesh_id' => 1, 'matter_id' => 1,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Matemática básica', 'group' => 1, 'order' => 1, 'status_id' => 1],
             ['mesh_id' => 1, 'matter_id' => 2,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Lenguaje y comunicación', 'group' => 1, 'order' => 2, 'status_id' => 1],
             ['mesh_id' => 1, 'matter_id' => 3,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Historia del Ecuador', 'group' => 1, 'order' => 3, 'status_id' => 1],
@@ -194,7 +194,7 @@ class DefaultExampleSeeder extends Seeder
             ['mesh_id' => 1, 'matter_id' => 43, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Asignatura II del Itinerario', 'group' => 8, 'order' => 43, 'status_id' => 1],
         ]);
 
-        DB::connection('tenant')->table('mat_mesh_dependencies')->insert([
+        DB::connection('tenant')->table('subject_curriculum_dependencies')->insert([
             ['parent_matter_mesh_id' => 1, 'child_matter_mesh_id' => 7],
             ['parent_matter_mesh_id' => 2, 'child_matter_mesh_id' => 7],
 

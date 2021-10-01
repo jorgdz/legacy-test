@@ -25,7 +25,7 @@ class CreateCourseStudentTable extends Migration
 
             $table->foreign('status_id')->references('id')->on('status');
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('matter_status_id')->references('id')->on('matter_status');        
+            $table->foreign('matter_status_id')->references('id')->on('subject_status');        
 
             $table->timestamps();
             $table->softDeletes();

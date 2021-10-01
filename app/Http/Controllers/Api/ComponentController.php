@@ -7,7 +7,7 @@ use App\Models\Component;
 use App\Models\LearningComponent;
 use Illuminate\Http\Request;
 use App\Cache\ComponentCache;
-use App\Cache\MeshCache;
+use App\Cache\CurriculumCache;
 use App\Traits\RestResponse;
 use App\Http\Requests\ComponentFormRequest;
 use App\Http\Requests\UpdateComponentRequest;
@@ -31,7 +31,7 @@ class ComponentController extends Controller implements IComponentController
      *
      * @return void
      */
-    public function __construct (ComponentCache $componentCache, MeshCache $meshCache) {
+    public function __construct (ComponentCache $componentCache, CurriculumCache $meshCache) {
         $this->componentCache = $componentCache;
         $this->meshCache = $meshCache;
     }

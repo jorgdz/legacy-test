@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\LearningComponent;
 use App\Repositories\Base\BaseRepository;
-use App\Models\MatterMesh;
+use App\Models\SubjectCurriculum;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -24,11 +24,11 @@ class LearningComponentRepository extends BaseRepository
 
     public function calculateWorkLoad($mesh_id,$component_id)
     {
-        $sum =  MatterMesh::selectRaw('ISNULL(SUM(d.dem_workload),0) as total')
+        $sum =  SubjectCurriculum::selectRaw('ISNULL(SUM(d.dem_workload),0) as total')
                 ->where([
-                    ['matter_mesh.mesh_id',$mesh_id],
+                    ['subject_curriculum.mesh_id',$mesh_id],
                     ['d.components_id',$component_id],
-                ])->whereNull('matter_mesh.deleted_at')->whereNull('d.deleted_at')->join('detail_matter_meshes as d','matter_mesh.id', '=', 'd.matter_mesh_id')
+                ])->whereNull('subject_curriculum.deleted_at')->whereNull('d.deleted_at')->join('detail_subject_curriculum as d','subject_curriculum.id', '=', 'd.matter_mesh_id')
                 ->first();
                 
         return $sum->total;

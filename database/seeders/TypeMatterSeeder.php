@@ -14,7 +14,7 @@ class TypeMatterSeeder extends Seeder
      */
     public function run()
     {
-        DB::connection('tenant')->table('type_matters')->insert([
+        DB::connection('tenant')->table('type_subjects')->insert([
             ['tm_name' => 'Materias',           'tm_acronym' => 'mtr',  'tm_description' => 'Tipo Materia',             'tm_order' => 1,   'tm_cobro' => 1, 'tm_matter_count' => 1,   'status_id' => 1],
             ['tm_name' => 'Talleres',           'tm_acronym' => 'tll',  'tm_description' => 'Tipo Taller',              'tm_order' => 2,   'tm_cobro' => 1, 'tm_matter_count' => 1,   'status_id' => 1],
             ['tm_name' => 'Practicas',          'tm_acronym' => 'pra',  'tm_description' => 'Tipo Practicas',           'tm_order' => 3,   'tm_cobro' => 1, 'tm_matter_count' => 1,   'status_id' => 1],

@@ -88,6 +88,6 @@ class Simbology extends Model implements AuditableContract
      */
     public function matterMesh() : HasMany
     {
-        return $this->hasMany(MatterMesh::class);
+        return $this->hasMany(SubjectCurriculum::class);
     }
 }

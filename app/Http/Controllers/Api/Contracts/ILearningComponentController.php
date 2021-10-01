@@ -143,7 +143,7 @@ interface ILearningComponentController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "mesh_id"      : "required|integer|exists:tenant.meshs,id",
+     *          "mesh_id"      : "required|integer|exists:tenant.curriculums,id",
      *          "component_id" : "required|integer|exists:tenant.components,id",
      *          "status_id"    : "required|integer",
      *      },
@@ -253,7 +253,7 @@ interface ILearningComponentController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "mesh_id"      : "required|integer|exists:tenant.meshs,id",
+     *          "mesh_id"      : "required|integer|exists:tenant.curriculums,id",
      *          "component_id" : "required|integer|exists:tenant.components,id",
      *          "status_id"    : "required|integer",
      *      },

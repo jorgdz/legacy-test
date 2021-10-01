@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\LearningComponent;
 use Illuminate\Http\Request;
 use App\Cache\LearningComponentCache;
-use App\Cache\MeshCache;
-use App\Cache\DetailMatterMeshCache;
+use App\Cache\CurriculumCache;
+use App\Cache\DetailSubjectCurriculumCache;
 use App\Traits\RestResponse;
 use App\Http\Requests\LearningComponentFormRequest;
 use App\Http\Requests\UpdateLearningComponentRequest;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Api\Contracts\ILearningComponentController;
-use App\Models\MatterMesh;
-use App\Models\Mesh;
+use App\Models\SubjectCurriculum;
+use App\Models\Curriculum;
 use App\Exceptions\Custom\ConflictException;
 use OpenApi\Annotations\Items;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +35,7 @@ class LearningComponentController extends Controller implements ILearningCompone
      *
      * @return void
      */
-    public function __construct (LearningComponentCache $learningComponentCache,MeshCache $meshCache,DetailMatterMeshCache $detailMatterMeshCache) {
+    public function __construct (LearningComponentCache $learningComponentCache,CurriculumCache $meshCache,DetailSubjectCurriculumCache $detailMatterMeshCache) {
         $this->learningComponentCache = $learningComponentCache;
         $this->meshCache = $meshCache;
         $this->detailMatterMeshCache = $detailMatterMeshCache;

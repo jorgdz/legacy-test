@@ -17,7 +17,7 @@ class CreateLearningComponentsTable extends Migration
             $table->increments('id');
 
             $table->integer('mesh_id')->unsigned();
-            $table->foreign('mesh_id')->references('id')->on('meshs');
+            $table->foreign('mesh_id')->references('id')->on('curriculums');
 
              $table->integer('component_id')->unsigned();
              $table->foreign('component_id')->references('id')->on('components');

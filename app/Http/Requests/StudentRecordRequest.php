@@ -26,7 +26,7 @@ class StudentRecordRequest extends FormRequest
         return [
             'student_id' => 'required|integer|exists:tenant.students,id',
             'education_level_id' => 'required|integer|exists:tenant.education_levels,id',
-            'mesh_id' => 'required|integer|exists:tenant.meshs,id',
+            'mesh_id' => 'required|integer|exists:tenant.curriculums,id',
             // 'pensum_id' => 'required|integer|exists:tenant.pensums,id',
             'type_student_id' => 'required|integer|exists:tenant.type_students,id',
             'economic_group_id' => 'required|integer|exists:tenant.economic_groups,id',

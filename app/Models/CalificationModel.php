@@ -70,6 +70,6 @@ class CalificationModel extends Model implements AuditableContract
      */
     public function matterMesh(): HasOne
     {
-        return $this->hasOne(matterMesh::class);
+        return $this->hasOne(SubjectCurriculum::class);
     }
 }

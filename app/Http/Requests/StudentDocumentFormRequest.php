@@ -81,7 +81,7 @@ class StudentDocumentFormRequest extends FormRequest
                     'student_id' => 'required|integer|exists:tenant.students,id',
                     'status_id' => 'required|integer|exists:tenant.status,id'
 
-                    // 'mes_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,//
+                    // 'mes_name' => 'required|max:255|unique:tenant.curriculums,mes_name,' . $this->mesh->id,//
                 ];
                 break;
 

@@ -43,7 +43,7 @@ class Component extends Model implements AuditableContract
      * @return void
      */
     public function detailMatterMesh () {
-        return $this->hasMany(DetailMatterMesh::class,'components_id');
+        return $this->hasMany(DetailSubjectCurriculum::class,'components_id');
     }
 
     /**

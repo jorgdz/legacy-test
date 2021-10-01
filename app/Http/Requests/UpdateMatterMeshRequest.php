@@ -24,8 +24,8 @@ class UpdateMatterMeshRequest extends FormRequest
     public function rules()
     {
         return [
-            'matter_id' => "required|integer|exists:tenant.matters,id|unique:tenant.matter_mesh,matter_id, {$this->route('mattermesh')->id}",
-            'mesh_id'   => 'required|integer|exists:tenant.meshs,id',
+            'matter_id' => "required|integer|exists:tenant.subjects,id|unique:tenant.matter_mesh,matter_id, {$this->route('mattermesh')->id}",
+            'mesh_id'   => 'required|integer|exists:tenant.curriculums,id',
             'group'     => 'nullable|integer',
             'simbology_id' => 'integer|exists:tenant.simbologies,id',
         ];

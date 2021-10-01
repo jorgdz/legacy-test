@@ -37,7 +37,7 @@ class TypeStudentProgramFormRequest extends FormRequest
                     'typ_stu_pro_name' => 'required|max:255|unique:tenant.type_student_programs,typ_stu_pro_name,'. $this->typeStudentProgram->id,
                     'typ_stu_pro_acronym' => 'required|max:10|unique:tenant.type_student_programs,typ_stu_pro_acronym,'. $this->typeStudentProgram->id,
                     'status_id' => 'required|integer|exists:tenant.status,id'
-                    //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
+                    //'edu_name' => 'required|max:255|unique:tenant.curriculums,mes_name,' . $this->mesh->id,
                 ];
                 break;
 
@@ -46,7 +46,7 @@ class TypeStudentProgramFormRequest extends FormRequest
                     'typ_stu_pro_name' => 'required|max:255|unique:tenant.type_student_programs,typ_stu_pro_name,'. $this->typeStudentProgram->typ_stu_pro_name,
                     'typ_stu_pro_acronym' => 'required|max:10|unique:tenant.type_student_programs,typ_stu_pro_acronym,'. $this->typeStudentProgram->typ_stu_pro_acronym,
                     'status_id' => 'required|integer|exists:tenant.status,id'
-                    //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
+                    //'edu_name' => 'required|max:255|unique:tenant.curriculums,mes_name,' . $this->mesh->id,
                 ];
                 break;
 

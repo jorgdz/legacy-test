@@ -20,7 +20,7 @@ use App\Http\Controllers\Api\BloodTypeController;
 use App\Http\Controllers\Api\ClassRoomController;
 use App\Http\Controllers\Api\InstituteController;
 use App\Http\Controllers\Api\PersonJobController;
-use App\Http\Controllers\Api\MatterMeshController;
+use App\Http\Controllers\Api\SubjectCurriculumController;
 use App\Http\Controllers\Api\TagStudentController;
 use App\Http\Controllers\Api\TypePeriodController;
 use App\Http\Controllers\Api\PeriodStageController;
@@ -39,7 +39,7 @@ use App\Http\Controllers\Api\CriteriaStudentRecordController;
 use App\Http\Controllers\Api\PositionController;
 use App\Http\Controllers\Api\RelativeController;
 use App\Http\Controllers\Api\ComponentController;
-use App\Http\Controllers\Api\DetailMatterMeshController;
+use App\Http\Controllers\Api\DetailSubjectCurriculumController;
 use App\Http\Controllers\Api\LearningComponentController;
 use App\Http\Controllers\Api\SimbologyController;
 
@@ -50,11 +50,11 @@ require __DIR__ . "/channels/roles.php";
 require __DIR__ . "/channels/permissions.php";
 require __DIR__ . "/channels/pensums.php";
 require __DIR__ . "/channels/type-califications.php";
-require __DIR__ . "/channels/type-matters.php";
-require __DIR__ . "/channels/meshs.php";
-require __DIR__ . "/channels/matters.php";
+require __DIR__ . "/channels/type-subjects.php";
+require __DIR__ . "/channels/curriculums.php";
+require __DIR__ . "/channels/subjects.php";
 require __DIR__ . "/channels/mails.php";
-require __DIR__ . "/channels/matter-status.php";
+require __DIR__ . "/channels/subject-status.php";
 require __DIR__ . "/channels/education-levels.php";
 require __DIR__ . "/channels/type-document.php";
 require __DIR__ . "/channels/persons.php";
@@ -230,19 +230,30 @@ Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffe
 Route::get('/periods/{period}/hourhands', [PeriodController::class, 'showHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-horarios-por-periodo']);
 Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-horarios-por-periodo']);
 
+
 /**
  * MatterMesh
  */
-Route::get('/matter-mesh', [MatterMeshController::class, 'index'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-materias-mallas']);
-Route::get('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'show'])->middleware(['auth:sanctum', 'permission:mattermesh-obtener-materias-mallas']);
-Route::get('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'showDependencies'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-dependencias-por-materias-mallas']);
-Route::post('/matter-mesh', [MatterMeshController::class, 'store'])->middleware(['auth:sanctum', 'permission:mattermesh-crear-materias-mallas']);
-Route::post('/matter-mesh/{mattermesh}/dependencies', [MatterMeshController::class, 'asignDependencies'])->middleware(['auth:sanctum', 'permission:mattermesh-asignar-dependencias-por-materias-mallas']);
-Route::put('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
-Route::patch('/matter-mesh/{id}', [MatterMeshController::class, 'restoreMatterMesh'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
-Route::delete('/matter-mesh/{mattermesh}', [MatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
-Route::get('/matter-mesh/{mattermesh}/prerequisites', [MatterMeshController::class, 'showPrerequisites'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-dependencias-por-materias-mallas']);
-
+Route::get('/matter-mesh', [SubjectCurriculumController::class, 'index'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-materias-mallas']);
+Route::get('/matter-mesh/{subjectcurriculum}', [SubjectCurriculumController::class, 'show'])->middleware(['auth:sanctum', 'permission:mattermesh-obtener-materias-mallas']);
+Route::get('/matter-mesh/{subjectcurriculum}/dependencies', [SubjectCurriculumController::class, 'showDependencies'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-dependencias-por-materias-mallas']);
+Route::post('/matter-mesh', [SubjectCurriculumController::class, 'store'])->middleware(['auth:sanctum', 'permission:mattermesh-crear-materias-mallas']);
+Route::post('/matter-mesh/{subjectcurriculum}/dependencies', [SubjectCurriculumController::class, 'asignDependencies'])->middleware(['auth:sanctum', 'permission:mattermesh-asignar-dependencias-por-materias-mallas']);
+Route::put('/matter-mesh/{subjectcurriculum}', [SubjectCurriculumController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
+Route::patch('/matter-mesh/{id}', [SubjectCurriculumController::class, 'restoreSubjectRepository'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
+Route::delete('/matter-mesh/{subjectcurriculum}', [SubjectCurriculumController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:mattermesh-borrar-materias-mallas']);
+Route::get('/matter-mesh/{subjectcurriculum}/prerequisites', [SubjectCurriculumController::class, 'showPrerequisites'])->middleware(['auth:sanctum' /*,'permission:mattermesh-listar-dependencias-por-materias-mallas'*/]);
+//Subject Curriculum
+Route::get('/subject-curriculum', [SubjectCurriculumController::class, 'index'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-materias-mallas']);
+Route::get('/subject-curriculum/{subjectcurriculum}', [SubjectCurriculumController::class, 'show'])->middleware(['auth:sanctum', 'permission:mattermesh-obtener-materias-mallas']);
+Route::get('/subject-curriculum/{subjectcurriculum}/dependencies', [SubjectCurriculumController::class, 'showDependencies'])->middleware(['auth:sanctum', 'permission:mattermesh-listar-dependencias-por-materias-mallas']);
+Route::post('/subject-curriculum', [SubjectCurriculumController::class, 'store'])->middleware(['auth:sanctum', 'permission:mattermesh-crear-materias-mallas']);
+Route::post('/subject-curriculum/{subjectcurriculum}/dependencies', [SubjectCurriculumController::class, 'asignDependencies'])->middleware(['auth:sanctum'/*, 'permission:mattermesh-asignar-dependencias-por-materias-mallas'*/]);
+Route::put('/subject-curriculum/{subjectcurriculum}', [SubjectCurriculumController::class, 'update'])->middleware(['auth:sanctum', 'permission:mattermesh-actualizar-materias-mallas']);
+Route::patch('/subject-curriculum/{id}', [SubjectCurriculumController::class, 'restoreSubjectRepository'])->middleware(['auth:sanctum'/*, 'permission:mattermesh-actualizar-materias-mallas'*/]);
+Route::delete('/subject-curriculum/{subjectcurriculum}', [SubjectCurriculumController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:mattermesh-borrar-materias-mallas'*/]);
+Route::get('/subject-curriculum/{subjectcurriculum}/prerequisites', [SubjectCurriculumController::class, 'showPrerequisites'])->middleware(['auth:sanctum' /*,'permission:mattermesh-listar-dependencias-por-materias-mallas'*/]);
+ 
 /*
  *
  * PeriodStages
@@ -405,11 +416,18 @@ Route::delete('/components/{component}', [ComponentController::class, 'destroy']
 /**
  * Details MatterMesh
  */
-Route::get('/details-matter-mesh', [DetailMatterMeshController::class, 'index'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-listar-detalle-materiamalla']);
-Route::get('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'show'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-obtener-detalle-materiamalla']);
-Route::post('/details-matter-mesh', [DetailMatterMeshController::class, 'store'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-crear-detalle-materiamalla']);
-Route::put('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'update'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-actualizar-detalle-materiamalla']);
-Route::delete('/details-matter-mesh/{detailmattermesh}', [DetailMatterMeshController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-borrar-detalle-materiamalla']);
+Route::get('/details-matter-mesh', [DetailSubjectCurriculumController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-listar-detalle-materiamalla'*/]);
+Route::get('/details-matter-mesh/{detailsubjectcurriculum}', [DetailSubjectCurriculumController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-obtener-detalle-materiamalla'*/]);
+Route::post('/details-matter-mesh', [DetailSubjectCurriculumController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-crear-detalle-materiamalla'*/]);
+Route::put('/details-matter-mesh/{detailsubjectcurriculum}', [DetailSubjectCurriculumController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-actualizar-detalle-materiamalla'*/]);
+Route::delete('/details-matter-mesh/{detailsubjectcurriculum}', [DetailSubjectCurriculumController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-borrar-detalle-materiamalla'*/]);
+
+Route::get('/details-subject-curriculum', [DetailSubjectCurriculumController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-listar-detalle-materiamalla'*/]);
+Route::get('/details-subject-curriculum/{detailsubjectcurriculum}', [DetailSubjectCurriculumController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-obtener-detalle-materiamalla'*/]);
+Route::post('/details-subject-curriculum', [DetailSubjectCurriculumController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-crear-detalle-materiamalla'*/]);
+Route::put('/details-subject-curriculum/{detailsubjectcurriculum}', [DetailSubjectCurriculumController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-actualizar-detalle-materiamalla'*/]);
+Route::delete('/details-subject-curriculum/{detailsubjectcurriculum}', [DetailSubjectCurriculumController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:details_matter_mesh-borrar-detalle-materiamalla'*/]);
+
 
 /**
  * Learning Component

@@ -93,6 +93,7 @@ class RelativeController extends Controller implements IRelativeController
      */
     public function destroy(Relative $relative)
     {
+        dd($relative->id);
         return $this->success($this->relativeCache->destroy($relative));
         //return $this->success($response);
     }

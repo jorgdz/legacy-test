@@ -78,7 +78,7 @@ class Pensum extends Model implements AuditableContract
     //  * @return HasMany
     //  */
     // public function meshs() : HasMany {
-    //     return $this->hasMany(Mesh::class);
+    //     return $this->hasManyCurriculum::class);
     // }
 
     // /**

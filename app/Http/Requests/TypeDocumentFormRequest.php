@@ -34,7 +34,7 @@ class TypeDocumentFormRequest extends FormRequest
                 return [
                     'typ_doc_name' => 'required|max:255',
                     'status_id' => 'required|integer|exists:tenant.status,id'
-                    //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
+                    //'edu_name' => 'required|max:255|unique:tenant.curriculums,mes_name,' . $this->mesh->id,
                 ];
                 break;
 
@@ -42,7 +42,7 @@ class TypeDocumentFormRequest extends FormRequest
                 return [
                     'typ_doc_name' => 'required|max:255',
                     'status_id' => 'required|integer|exists:tenant.status,id'
-                    //'edu_name' => 'required|max:255|unique:tenant.meshs,mes_name,' . $this->mesh->id,
+                    //'edu_name' => 'required|max:255|unique:tenant.curriculums,mes_name,' . $this->mesh->id,
                 ];
                 break;
 

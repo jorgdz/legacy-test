@@ -46,6 +46,6 @@ class TypeCalification extends Model implements AuditableContract
      * @return HasMany
      */
     public function matters() : HasMany {
-        return $this->hasMany(Matter::class, 'type_calification_id');
+        return $this->hasMany(Subject::class, 'type_calification_id');
     }
 }

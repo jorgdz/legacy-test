@@ -149,7 +149,7 @@ class StudentRecord extends Model implements AuditableContract
      */
     public function mesh(): BelongsTo
     {
-        return $this->belongsTo(Mesh::class, 'mesh_id');
+        return $this->belongsTo(Curriculum::class, 'mesh_id');
     }
 
     /**

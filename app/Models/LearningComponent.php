@@ -34,7 +34,7 @@ class LearningComponent extends Model implements AuditableContract
      * @return void
      */
     public function mesh () {
-        return $this->belongsTo(Mesh::class, 'mesh_id','id');
+        return $this->belongsTo(Curriculum::class, 'mesh_id','id');
     }
 
     /**

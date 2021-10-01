@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->integer('max_capacity');
 
             $table->integer('matter_id')->unsigned();
-            $table->foreign('matter_id')->references('id')->on('matters');
+            $table->foreign('matter_id')->references('id')->on('subjects');
 
             $table->integer('parallel_id')->unsigned();
             $table->foreign('parallel_id')->references('id')->on('parallels');
