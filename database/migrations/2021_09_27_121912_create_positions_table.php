@@ -17,10 +17,15 @@ class CreatePositionsTable extends Migration
             $table->increments('id');
             $table->string('pos_name');
             $table->string('pos_description')->nullable();
+            
+            $table->string('pos_keyword')->nullable(); 
 
             $table->bigInteger('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');
 
+            $table->bigInteger('department_id')->nullable();//unsigned();
+            $table->foreign('department_id')->references('id')->on('departments');
+      
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

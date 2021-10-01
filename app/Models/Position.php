@@ -45,16 +45,26 @@ class Position extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * role
      *
      * @return BelongsTo
      */
-    public function role() : BelongsTo
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    /**
+     * Department
+     *
+     * @return BelongsTo
+     */
+    public function deparment(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
     }
 
     /**
@@ -62,7 +72,7 @@ class Position extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function status() : BelongsTo
+    public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
