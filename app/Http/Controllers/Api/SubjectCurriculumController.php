@@ -93,7 +93,7 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
         }
 
         $subjectcurriculum = new SubjectCurriculum($request->all());
-        $subjectcurriculum = $this->matterMeshCache->save($subjectcurriculum);
+        $subjectcurriculum = $this->subjectCurriculumCache->save($subjectcurriculum);
 
         if($subjectcurriculum) {
             Curriculum::findOrFail($subjectcurriculum->mesh_id)->increment('mes_number_matter');

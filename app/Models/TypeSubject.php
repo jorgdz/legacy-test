@@ -59,11 +59,8 @@ class TypeSubject extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function matter() : HasOne {
-        return $this->hasOne(Subject::class, 'type_matter_id');
+    public function matter() : HasMany {
+        return $this->hasMany(Subject::class, 'type_matter_id');
     }
 
-    public function matter() : HasMany {
-        return $this->hasMany(Matter::class);
-    }
 }

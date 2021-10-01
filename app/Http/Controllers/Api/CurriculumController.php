@@ -77,8 +77,7 @@ class CurriculumController extends Controller implements ICurriculumController
      * @return \Illuminate\Http\Response
      */
     public function update(CurriculumRequest $request, Curriculum $curriculum) {
-        DB::beginTransaction();
-        try {
+    
             $curriculum->fill($request->all());
 
             if ($curriculum->isClean())

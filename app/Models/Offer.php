@@ -60,7 +60,7 @@ class Offer extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $softCascade = ['educationLevels', 'typeCriterias', 'typeStudents','educationLevels'];
+    protected $softCascade = ['typeCriterias','educationLevels'];
 
     /**
      * periods
@@ -109,9 +109,9 @@ class Offer extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function typeStudents(): HasMany {
-        return $this->hasMany(TypeStudent::class);
-    }
+    // public function typeStudents(): HasMany {
+    //     return $this->hasMany(TypeStudent::class);
+    // }
 
     /**
      * status
