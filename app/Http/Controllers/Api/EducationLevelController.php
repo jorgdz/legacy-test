@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Cache\EducationLevelCache;
+use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Controller;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
@@ -60,7 +61,27 @@ class EducationLevelController extends Controller implements IEducationLevelCont
     {
         return $this->success($this->educationLevelCache->find($id));
     }
+        
+    /**
+     * getChildren
+     *
+     * Buscara unicamente niveles educativos Padres.
+     * Devolvera a sus hijos en array.
+     * 
+     * @param  mixed $id
+     * @return void
+     */
+    public function getOnlyParents() {
 
+        $educationlevel = EducationLevel::with('children')->where('principal_id', null)->get();
+
+        // dd($educationlevel->count());
+
+        if(!$educationlevel)
+            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => class_basename(EducationLevel::class)]));
+
+        return $this->success($educationlevel);
+    }
 
     /**
      * Update the specified resource in storage.
