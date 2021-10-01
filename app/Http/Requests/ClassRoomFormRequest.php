@@ -26,7 +26,7 @@ class ClassRoomFormRequest extends FormRequest
         return [
             'cl_name' => 'required|unique:tenant.classrooms,cl_name',
             'cl_cap_max' => 'integer',
-            'cl_acronym' => 'max:4',
+            'cl_acronym' => 'nullable|between:1,4',
             'campus_id' => 'integer|exists:tenant.campus,id',
             'classroom_type_id' => 'integer|exists:tenant.classroom_types,id',
             'status_id' => 'integer|exists:tenant.status,id'
