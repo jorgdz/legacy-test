@@ -18,6 +18,7 @@ class CreateCatalogsTable extends Migration
             $table->string('cat_name', 255)->unique();
             $table->string('cat_description', 255)->nullable();
             $table->string('cat_acronym', 4)->nullable();
+            $table->string('cat_keyword')->nullable();
             $table->integer('parent_id')->nullable();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

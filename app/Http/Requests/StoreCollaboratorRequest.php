@@ -76,9 +76,9 @@ class StoreCollaboratorRequest extends FormRequest
             //Collaborator
             'coll_email'       => 'required|email|unique:tenant.users,email',
             'coll_type'       => 'required|string|max:1|'.Rule::in(['D', 'A']),
-            'coll_journey_description'       => 'required|string|max:3|'.Rule::in(['TC', 'MT','TH']),
+            'coll_journey_description'       => 'required|string|max:3|'.Rule::in(['TC', 'MT','TP']),
             'coll_dependency'       => 'required_if:coll_journey_description,==,"MT"|nullable|digits_between:0,1',
-            'coll_journey_hours'       => 'required_if:coll_journey_description,==,"TH"|nullable|integer',
+            'coll_journey_hours'       => 'required_if:coll_journey_description,==,"TP"|nullable|integer',
             'position_company_id'       => 'required|integer|exists:tenant.positions,id',
             'coll_entering_date' => 'required|date',
             'coll_leaving_date' => 'nullable|date',

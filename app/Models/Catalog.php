@@ -30,6 +30,7 @@ class Catalog extends Model implements AuditableContract
         'cat_name',
         'cat_acronym',
         'cat_description',
+        'cat_keyword',
         'parent_id',
         'status_id',
     ];

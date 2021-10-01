@@ -27,6 +27,12 @@ class PositionSeeder extends Seeder
                 'role_id' => 2,
                 'status_id' => 1,
             ],
+            [
+                'pos_name' => 'Docente',
+                'pos_description' => 'Es quien se encarga de las actividades extracurriculares y curriculares en el módulo académico',
+                'role_id' => 17,
+                'status_id' => 1,
+            ],
         ]);
     }
 }

@@ -266,9 +266,9 @@ interface ICollaboratorController
      *         ),
      *         @OA\Property(
      *           property="coll_journey_description",
-     *           description="Tipo de jornada laboral: TC=Tiempo completo & MT=Medio tiempo & TH=Tiempo por Hora",
+     *           description="Tipo de jornada laboral: TC=Tiempo completo & MT=Medio tiempo & TP=Tiempo por Hora",
      *           type="string",
-     *           example="TC/MT/TH",
+     *           example="TC/MT/TP",
      *         ),
      *         @OA\Property(
      *           property="coll_dependency",
@@ -278,7 +278,7 @@ interface ICollaboratorController
      *         ),
      *         @OA\Property(
      *           property="coll_journey_hours",
-     *           description="Tiempo de jornada en horas, es requerido con el tipo de jornada laboral TH(Tiempo por Hora)",
+     *           description="Tiempo de jornada en horas, es requerido con el tipo de jornada laboral TP(Tiempo por Hora)",
      *           type="integer",
      *           example="12",
      *         ),
@@ -424,7 +424,7 @@ interface ICollaboratorController
      *          "coll_type"       : "required|string|max:1",
      *          "coll_journey_description"       : "required|string|max:3",
      *          "coll_dependency"       : "required_if:coll_journey_description,==,'MT'|nullable|digits_between:0,1",
-     *          "coll_journey_hours"       : "required_if:coll_journey_description,==,'TH'|nullable|integer",
+     *          "coll_journey_hours"       : "required_if:coll_journey_description,==,'TP'|nullable|integer",
      *          "position_company_id"       : "required|integer|exists:tenant.positions,id",
      *          "coll_entering_date" : "required|date",
      *          "coll_leaving_date" : "nullable|date",
