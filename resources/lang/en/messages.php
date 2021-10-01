@@ -39,5 +39,6 @@ return [
     'max' => 'The maximum number of records is :max.',
     'number-of-allowed-files' => 'Only one file can be uploaded.',
     'no-roles-assign' => 'There are no roles assigned for this user',
+    'subjects-error-saved' => 'Error when saving the academic offer.',
 ];
 ?>

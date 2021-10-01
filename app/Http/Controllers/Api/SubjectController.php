@@ -47,7 +47,7 @@ class SubjectController extends Controller implements ISubjectController
         $educationLevel = EducationLevel::findOrFail($request->education_level_id);
 
         if ($educationLevel->principal_id != null)
-            throw new ConflictException(__('messages.error-saving-model', ['model' => class_basename(Subject::class)]));
+            throw new ConflictException(__('messages.subjects-error-saved'));
 
         $subject = new Subject($request->all());
         $subject = $this->subjectCache->save($subject);
