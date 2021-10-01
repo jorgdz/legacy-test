@@ -17,35 +17,40 @@ class CustomStatus extends Tenant implements AuditableContract
 
     protected $fillable = [
         'name',
+        'group',
+        'keyword',
         'description',
     ];
 
     protected $hidden = ['created_at', 'updated_at'];
-    
+
     /**
      * tenant
      *
      * @return void
      */
-    public function tenants(): HasMany {
+    public function tenants(): HasMany
+    {
         return $this->hasMany(CustomTenant::class, 'status_id');
     }
-    
+
     /**
      * modules
      *
      * @return void
      */
-    public function modules(): HasMany {
+    public function modules(): HasMany
+    {
         return $this->hasMany(CustomModules::class, 'status_id');
     }
-    
+
     /**
      * tenant_modules
      *
      * @return void
      */
-    public function tenant_modules(): HasMany {
+    public function tenant_modules(): HasMany
+    {
         return $this->hasMany(TenantModules::class, 'status_id');
     }
 }

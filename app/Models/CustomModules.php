@@ -26,6 +26,10 @@ class CustomModules extends Tenant implements AuditableContract
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
+    protected $relations = [
+        'status_id'
+    ];
+
     /**
      * status
      *
