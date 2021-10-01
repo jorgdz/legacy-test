@@ -63,6 +63,8 @@ class Person extends Model implements AuditableContract
         'pers_study_reason',
         'pers_num_taxpayers_household',
         'pers_has_vehicle',
+        'pers_nationality',
+        'pers_is_provider',
         'vivienda_id',
         'type_identification_id',
         'type_religion_id',
@@ -81,7 +83,7 @@ class Person extends Model implements AuditableContract
     protected $dates = ['deleted_at'];
 
     /* TODO: Verificar tablas intermedias */
-    protected $softCascade = ['user','emergencyContact', 'personJob','personStudents'];
+    protected $softCascade = ['user','emergencyContact', 'personJob','associatedPerson'];
 
     /**
      * typeIdentifications
@@ -203,12 +205,22 @@ class Person extends Model implements AuditableContract
     }
 
     /**
-     * person_student
+     * associatedPerson
      *
      * @return void
      */
-    public function personStudents () {
-        return $this->hasMany(Relative::class,'person_id_student');
-
+    public function associatedPerson () {
+        return $this->hasMany(Relative::class,'person_id');
     }
+
+    /**
+     * disabilities
+     *
+     * @return BelongsToMany
+     */
+    public function disabilities (): BelongsToMany
+    {
+        return $this->belongsToMany(TypeDisability::class,'disability_person','person_id','type_disability_id');
+    }
+
 }

@@ -47,7 +47,7 @@ class Relative extends Model implements AuditableContract
      */
     protected $fillable = [
         'person_id_relative',
-        'person_id_student',
+        'person_id',
         'type_kinship_id',
         'rel_description',
         'status_id',
@@ -80,7 +80,7 @@ class Relative extends Model implements AuditableContract
      */
     public function personStudent () : BelongsTo
     {
-        return $this->belongsTo(Person::class, 'person_id_student');
+        return $this->belongsTo(Person::class, 'person_id');
     }
 
     /**

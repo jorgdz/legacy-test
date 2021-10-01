@@ -478,6 +478,12 @@ return [
 		'pers_study_reason' => 'motivo de estudio',
 		'pers_num_taxpayers_household' => 'número de contribuyentes en el hogar',
 		'pers_has_vehicle' => 'Tiene vehiculo propio',
+		'pers_nationality' => 'nacionalidad',
+		'pers_has_disability' => 'tiene capacidad especial',
+		'pers_disability_identification' => 'número de identificación del registro de capacidad especial',
+		'pers_disability_percent' => 'porcentaje de capacidad especial',
+		'pers_disabilities' => 'lista de capacidades especiales',
+		'city_id' => 'ciudad natal',
 		'vivienda_id' => 'vivienda',
 		'type_identification_id' => 'tipo de identificación de la persona',
 		'type_religion_id' => 'tipo de religión',
@@ -491,6 +497,34 @@ return [
 		'pers_has_disability' => 'discapacidad',
 		'pers_disability_identification' => 'número de identificación de discapacidad',
 		'pers_disability_percent' => 'porcentaje de discapacidad',
+		/**
+		 * Relatives
+		 */
+		'type_identification_id_relatives_person' => 'tipo de identificación del familiar',
+		'pers_identification_relatives_person' => 'número de identificación del familiar',
+		'pers_firstname_relatives_person' => 'primer nombre de la persona',
+		'pers_secondname_relatives_person' => 'segundo nombre de la person',
+		'pers_first_lastname_relatives_person' => 'primer apellido de la persona',
+		'pers_second_lastname_relatives_person' => 'segundo apellido de la persona',
+		'pers_relatives_person_desc' => 'descripción de la relación con el familiar',
+
+		/**
+		 * Collaborators
+		 */
+		'coll_email' => 'correo empresarial del colaborador',
+		'coll_type' => 'tipo de colaborador',
+		'coll_journey_description' => 'jornada laboral',
+		'coll_dependency' => 'relación de dependencia',
+		'coll_journey_hours' => 'horas en la jornada laboral',
+		'position_company_id' => 'posición del colaborador',
+		'coll_entering_date' => 'fecha de ingreso del colaborador',
+		'coll_leaving_date' => 'fecha de salida del colaborador',
+		'coll_membership_num' => 'número de afilicación',
+		'coll_contract_num' => 'número de contrato',
+		'coll_has_nomination' => 'tiene nombremiento',
+		'coll_nomination_entering_date' => 'fecha de ingreso del nombramiento',
+		'coll_nomination_leaving_date' => 'fecha de fin del nombremiento',
+		
 		/**
 		 * PersonalAccessToken
 		 */

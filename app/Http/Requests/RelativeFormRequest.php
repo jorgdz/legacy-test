@@ -25,7 +25,7 @@ class RelativeFormRequest extends FormRequest
     {
         return [
             'person_id_relative' => 'required|integer|exists:tenant.persons,id',
-            'person_id_student'  => 'required|integer|exists:tenant.persons,id',
+            'person_id'  => 'required|integer|exists:tenant.persons,id',
             'type_kinship_id'    => 'required|integer|exists:tenant.catalogs,id',
             'status_id'          => 'required|integer|exists:tenant.status,id',
         ];

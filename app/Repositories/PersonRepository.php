@@ -28,7 +28,8 @@ class PersonRepository extends BaseRepository
         'languages',
         'emergencyContact',
         'personRelatives',
-        'personStudents'
+        'associatedPerson',
+        'disabilities'
     ];
 
     /**
@@ -95,7 +96,8 @@ class PersonRepository extends BaseRepository
                         'ethnic', 'user',
                         'livingPlace', 'personJob',
                         'languages', 'emergencyContact',
-                        'personRelatives', 'personStudents'
+                        'personRelatives', 'associatedPerson',
+                        'disabilities'
                     ]);
 
         $collectQueryString = collect($request->all())

@@ -764,7 +764,7 @@ interface IPersonController {
      *   ),
      *   @OA\Parameter(
      *     name="person",
-     *     description="Id de la persona (estudiante)",
+     *     description="Id de la persona",
      *     in="path",
      *     required=true,
      *     @OA\Schema(

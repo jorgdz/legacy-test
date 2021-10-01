@@ -123,7 +123,7 @@ class PersonController extends Controller implements IPersonController
      * @return void
      */
     public function showRelativeByPerson (Person $person ) {
-        $relatives = Person::with('personStudents.personRelative')->find($person->id);
+        $relatives = Person::with('associatedPerson.personRelative')->find($person->id);
         return $this->success($relatives);
     }
 

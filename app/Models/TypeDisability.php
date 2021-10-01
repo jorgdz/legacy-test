@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use OwenIt\Auditing\Auditable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class TypeDisability extends Model implements AuditableContract
@@ -39,5 +40,15 @@ class TypeDisability extends Model implements AuditableContract
      */
     public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    /**
+     * persons
+     *
+     * @return BelongsToMany
+     */
+    public function persons (): BelongsToMany
+    {
+        return $this->belongsToMany(Person::class);
     }
 }

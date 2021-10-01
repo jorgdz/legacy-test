@@ -114,7 +114,7 @@ interface IRelativeController
      *           type="integer",
      *         ),
      *        @OA\Property(
-     *           property="person_id_student",
+     *           property="person_id",
      *           description="Id de persona (estudiante)",
      *           type="integer",
      *         ),
@@ -142,7 +142,7 @@ interface IRelativeController
      *   @OA\JsonContent(
      *      example={
      *          "person_id_relative" : "required|integer|exists:tenant.persons,id",
-     *          "person_id_student"  : "required|integer|exists:tenant.persons,id",
+     *          "person_id"  : "required|integer|exists:tenant.persons,id",
      *          "type_kinship_id"    : "required|integer|exists:tenant.catalogs,id",
      *          "status_id"          : "required|integer|exists:tenant.status,id",
      *      },
@@ -218,7 +218,7 @@ interface IRelativeController
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
@@ -231,7 +231,7 @@ interface IRelativeController
      *           type="integer",
      *         ),
      *        @OA\Property(
-     *           property="person_id_student",
+     *           property="person_id",
      *           description="Id de persona (estudiante)",
      *           type="integer",
      *         ),
@@ -259,7 +259,7 @@ interface IRelativeController
      *   @OA\JsonContent(
      *      example={
      *          "person_id_relative" : "required|integer|exists:tenant.persons,id",
-     *          "person_id_student"  : "required|integer|exists:tenant.persons,id",
+     *          "person_id"  : "required|integer|exists:tenant.persons,id",
      *          "type_kinship_id"    : "required|integer|exists:tenant.catalogs,id",
      *          "status_id"          : "required|integer|exists:tenant.status,id",
      *      },
@@ -283,7 +283,7 @@ interface IRelativeController
      *   description="Eliminar una familiar por Id",
      *   operationId="deleteRelative",
      *   @OA\Parameter(
-     *     name="relative_id",
+     *     name="relative",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
