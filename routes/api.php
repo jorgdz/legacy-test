@@ -42,6 +42,7 @@ use App\Http\Controllers\Api\ComponentController;
 use App\Http\Controllers\Api\DetailSubjectCurriculumController;
 use App\Http\Controllers\Api\LearningComponentController;
 use App\Http\Controllers\Api\SimbologyController;
+use App\Http\Controllers\Api\ClassroomEducationLevelController;
 
 
 /* Import routes */
@@ -493,3 +494,13 @@ Route::post('/agreements', [AgreementController::class, 'store'])->middleware(['
 Route::put('/agreements/{agreement}', [AgreementController::class, 'update'])->middleware(['auth:sanctum', 'permission:agreement-actualizar-convenio']);
 Route::post('/agreements/{agreement}/enabled', [AgreementController::class, 'enabled'])->middleware(['auth:sanctum', 'permission:agreement-activar-convenio']);
 Route::post('/agreements/{agreement}/disabled', [AgreementController::class, 'disabled'])->middleware(['auth:sanctum', 'permission:agreement-desactivar-convenio']);
+
+/**
+ * Classroom Education Level 
+ */
+Route::get('/classroom-education-levels', [ClassroomEducationLevelController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-listar-aula-niveleconomico'*/]);
+Route::get('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-obtener-aula-niveleconomico'*/]);
+Route::post('/classroom-education-levels', [ClassroomEducationLevelController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-crear-aula-niveleconomico'*/]);
+Route::put('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-actualizar-aula-niveleconomico'*/]);
+Route::delete('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-borrar-aula-niveleconomico'*/]);
+Route::patch('/classroom-education-levels/{classroomeducationlevel}/changestatus', [ClassroomEducationLevelController::class, 'changeStatus'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-actualizar-aula-niveleconomico'*/]);

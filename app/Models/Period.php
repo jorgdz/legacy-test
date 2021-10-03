@@ -150,4 +150,13 @@ class Period extends Model implements AuditableContract
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+     /**
+     * Classroom Education Level 
+     *
+     * @return void
+     */
+    public function classroomEducationLevel(): HasMany {
+        return $this->hasMany(ClassroomEducationLevel::class,'period_id');
+    }
 }

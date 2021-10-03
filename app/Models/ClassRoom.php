@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -82,5 +83,14 @@ class ClassRoom extends Model implements AuditableContract
     public function status () : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+      /**
+     * Classroom Education Level 
+     *
+     * @return void
+     */
+    public function classroomEducationLevel(): HasMany {
+        return $this->hasMany(ClassroomEducationLevel::class,'classroom_id');
     }
 }

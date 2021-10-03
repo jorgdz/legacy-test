@@ -227,7 +227,11 @@ return [
 			'integer' => 'El valor del campo simbologia debe ser un entero.',
 			'distinct' => 'El valor del campo simbologia tiene un valor duplicado.'
 		],
-
+		'classrooms.*' => [
+			'exists' => 'El valor del campo aula seleccionado es inválido.',
+			'integer' => 'El valor del campo aula debe ser un entero.',
+			'distinct' => 'El valor del campo aula tiene un valor duplicado.'
+		]
 	],
 
 	/*
