@@ -116,10 +116,10 @@ class Period extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function studentRecords (): HasMany
+    /* public function studentRecords (): HasMany
     {
         return $this->hasMany(StudentRecord::class);
-    }
+    } */
 
     /**
      * campus
@@ -152,7 +152,7 @@ class Period extends Model implements AuditableContract
     }
 
      /**
-     * Classroom Education Level 
+     * Classroom Education Level
      *
      * @return void
      */
