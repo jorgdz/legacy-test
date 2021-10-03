@@ -12,7 +12,7 @@ class PeriodRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['campus', 'typePeriod', 'status','offers','periodStages', 'hourhands', 'studentRecords']; // 'courses'
+    protected $relations = ['campus', 'typePeriod', 'status','offers','periodStages', 'hourhands']; // 'courses'
 
     /**
      * parents
