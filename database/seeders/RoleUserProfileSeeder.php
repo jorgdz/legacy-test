@@ -19,6 +19,7 @@ class RoleUserProfileSeeder extends Seeder
             ['role_id' => 2, 'model_type' => 'App\Models\UserProfile', 'model_id' => 2],
             ['role_id' => 16, 'model_type' => 'App\Models\UserProfile', 'model_id' => 2],
             ['role_id' => 17, 'model_type' => 'App\Models\UserProfile', 'model_id' => 3],
+            ['role_id' => 16, 'model_type' => 'App\Models\UserProfile', 'model_id' => 1],
         ]);
     }
 }

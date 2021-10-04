@@ -16,6 +16,8 @@ use App\Http\Requests\UpdateTenantRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Api\Contracts\ITenantController;
 use App\Http\Requests\UpdateLogoCurrentTenantRequest;
+use App\Http\Resources\TenantCollection;
+use App\Http\Resources\TenantResource;
 use App\Models\CustomStatus;
 use App\Services\FilesystemService;
 use App\Traits\CustomAuditor;
@@ -59,24 +61,23 @@ class TenantController extends Controller implements ITenantController
      */
     private function getTenantCached(Request $request, $search)
     {
-        if ($search == '') {
-            $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
-                return CustomTenant::where('domain', '<>', $this->domain)
+        if (!$search) {
+            return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($request) {
+                return new TenantCollection(CustomTenant::where('domain', '<>', $this->domain)
                     ->with('status')
                     ->orderBy('id', 'desc')
-                    ->paginate($request->size ?: 10);
-            });
-        } else {
-            $tenant = $this->cache::remember($this->key, now()->addMinutes(120), function () use ($search) {
-                return CustomTenant::where('domain', '<>', $this->domain)
-                    ->where('name', $search)
-                    ->orWhere('domain', $search)
-                    ->orWhere('domain_client', $search)
-                    ->with('status')
-                    ->first();
+                    ->paginate($request->size ?: 10));
             });
         }
-        return $tenant;
+            
+        return $this->cache::remember($this->key, now()->addMinutes(120), function () use ($search) {
+            return new TenantResource(CustomTenant::where('domain', '<>', $this->domain)
+                ->where('name', $search)
+                ->orWhere('domain', $search)
+                ->orWhere('domain_client', $search)
+                ->with('status')
+                ->first());
+        });
     }
 
     /**
