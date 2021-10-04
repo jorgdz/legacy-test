@@ -49,6 +49,6 @@ class TypeDisability extends Model implements AuditableContract
      */
     public function persons (): BelongsToMany
     {
-        return $this->belongsToMany(Person::class);
+        return $this->belongsToMany(Person::class, 'disability_person','person_id','type_disability_id');
     }
 }

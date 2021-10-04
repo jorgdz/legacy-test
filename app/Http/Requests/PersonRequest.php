@@ -89,9 +89,9 @@ class PersonRequest extends FormRequest
             $rules['pers_identification'] = [
                 'unique:tenant.persons,pers_identification,' . $this->person->id
             ];
-            $rules['pers_disability_identification'] = [
+            /* $rules['pers_disability_identification'] = [
                 'unique:tenant.persons,pers_disability_identification,' . $this->person->id
-            ];
+            ]; */
 
             switch($typeIdentification) {
                 case $typeIdentification == 66 || $typeIdentification == 68:

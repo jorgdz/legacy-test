@@ -16,6 +16,7 @@ class TenantResource extends JsonResource
     {
         return [
             'name'          => $this->name,
+            'domain'        => $this->domain,
             'domain_client' => $this->domain_client,
             'logo_name'     => $this->logo_name,
             'logo_path'     => $this->logo_path,
