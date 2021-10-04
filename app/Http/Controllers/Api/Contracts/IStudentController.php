@@ -372,7 +372,7 @@ interface IStudentController
      * )
      *
      */
-    public function show(Request $request,Student $student);
+    public function show(Request $request, Student $student);
 
     /**
      * @OA\Put(
@@ -556,4 +556,70 @@ interface IStudentController
      *
      */
     public function updatePhoto(StudentPhotoRequest $request);
+
+    /**
+     * @OA\Post(
+     *   path="/api/students/{student}/photo",
+     *   tags={"Estudiantes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Actualizar la foto de perfil de estudiante por ID",
+     *   description="Actualizar la foto de perfil de estudiante.",
+     *   operationId="updatePhotoStudentByID",
+     *   @OA\Parameter(
+     *     name="student",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="files[]",
+     *           description="Foto de perfil",
+     *           type="array",
+     *           @OA\Items(
+     *              type="file"
+     *           ),
+     *         ),
+     *         @OA\Property(
+     *           property="period",
+     *           description="Periodo de actualizacion (Opcional)",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="type_document",
+     *           description="tipo de documento",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *          "files" : "required|file",
+     *          "type_document" : "required|integer|exists:landlord.type_documents,id"
+     *      },
+     *   )),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updatePhotoByStudent(StudentPhotoRequest $request, Student $student);
 }

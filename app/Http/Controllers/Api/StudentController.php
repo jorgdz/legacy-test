@@ -8,29 +8,25 @@ use App\Models\Person;
 use App\Traits\Helper;
 use App\Models\Student;
 use App\Cache\StudentCache;
-use App\Mail\EmailRegister;
 use Illuminate\Support\Str;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreStudentRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\DatabaseException;
 use App\Exceptions\Custom\NotFoundException;
-use App\Exceptions\Custom\SendMailException;
-use App\Http\Controllers\Api\Contracts\IStudentController;
 use App\Http\Requests\StudentPhotoRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Models\Curriculum;
 use App\Models\EducationLevel;
 use App\Models\StudentRecord;
 use App\Services\FilesystemService;
 use Illuminate\Http\Response;
 use App\Models\CustomTenant;
 use App\Services\MailService;
+use App\Http\Controllers\Api\Contracts\IStudentController;
 
 class StudentController extends Controller implements IStudentController
 {
@@ -80,13 +76,12 @@ class StudentController extends Controller implements IStudentController
         DB::beginTransaction();
         try {
 
-            $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function($query) {
+            $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function ($query) {
                 $query->where('status_id', 7);
             })->first();
 
-            if($educationLevel) {
-                DB::commit();
-                $person = new Person($request->except(['email','campus_id','modalidad_id','jornada_id']));
+            if ($educationLevel) {
+                $person = new Person($request->except(['email', 'campus_id', 'modalidad_id', 'jornada_id']));
                 $person->save();
                 $user = new User($request->only(['email']));
 
@@ -97,10 +92,10 @@ class StudentController extends Controller implements IStudentController
                 $user->status_id = 1;
                 $user->save();
 
-                if(!is_null(Student::where('user_id', $user->id)->first()))
+                if (!is_null(Student::where('user_id', $user->id)->first()))
                     throw new ConflictException(__('messages.exist-instance'));
 
-                $student = new Student($request->only(['campus_id','modalidad_id','jornada_id']));
+                $student = new Student($request->only(['campus_id', 'modalidad_id', 'jornada_id']));
                 $student->stud_code = $this->stud_code_avaliable();
                 $student->user_id = $user->id;
                 $student->status_id = 1;
@@ -130,12 +125,13 @@ class StudentController extends Controller implements IStudentController
 
                 $this->mailService->SendEmail($params);
 
+                DB::commit();
+
                 return $this->information(__('messages.student-saved'));
             }
 
             return $this->information(__('messages.meshs-not-vigent'), Response::HTTP_CONFLICT);
-        }
-        catch(Exception $ex) {
+        } catch (Exception $ex) {
             DB::rollback();
             throw new DatabaseException($ex->getInfo[2]);
         }
@@ -194,12 +190,45 @@ class StudentController extends Controller implements IStudentController
 
         $response = $this->filesystemService->store($request);
 
-        $request->replace(['stud_photo' => $response[0]['route']]);
+        $request['stud_photo'] = $response[0]['name'];
+        $request['stud_photo_path'] = $response[0]['route'];
 
         $student->fill($request->all());
+
         if ($student->isClean())
             return $this->information(__('messages.nochange'));
 
         return $this->success($this->studentCache->save($student));
+    }
+
+    /**
+     * updatePhotoByStudent
+     *
+     * @param  mixed $request
+     * @param  mixed $student
+     * @return void
+     */
+    public function updatePhotoByStudent(StudentPhotoRequest $request, Student $student)
+    {
+        DB::beginTransaction();
+        try {
+            $response = $this->filesystemService->store($request);
+
+            $request['stud_photo'] = $response[0]['name'];
+            $request['stud_photo_path'] = $response[0]['route'];
+
+            $student->fill($request->all());
+
+            if ($student->isClean())
+                return $this->information(__('messages.nochange'));
+
+            $response = $this->studentCache->save($student);
+
+            DB::commit();
+            return $this->success($response);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
+        }
     }
 }
