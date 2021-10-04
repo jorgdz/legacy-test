@@ -30,6 +30,7 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'Jornada', 'parent_id' => NULL, 'cat_description' => NULL, 'cat_acronym' => 'J', 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Parentesco', 'parent_id' => NULL, 'cat_description' => NULL, 'cat_acronym' => 'P', 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Idiomas', 'parent_id' => NULL, 'cat_description' => NULL, 'cat_acronym' => 'I', 'cat_keyword' => NULL , 'status_id' => 1],
+            ['cat_name' => 'Nacionalidad', 'parent_id' => NULL, 'cat_description' => NULL, 'cat_acronym' => 'NA', 'cat_keyword' => NULL , 'status_id' => 1],
 
             ['cat_name' => 'Casa', 'parent_id' => 1, 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Apartamento', 'parent_id' => 1, 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
@@ -114,6 +115,14 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'Inglés', 'parent_id' => 15, 'cat_description' => 'Habla idioma inglés', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Francés', 'parent_id' => 15, 'cat_description' => 'Habla idioma francés', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Chino', 'parent_id' => 15, 'cat_description' => 'Habla idioma chino mandarin', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+            
+            ['cat_name' => 'Ecuatoriana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad ecuatoriana', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+            ['cat_name' => 'Venezolana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad venezolana', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+            ['cat_name' => 'Colombiana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad colombiana', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+            ['cat_name' => 'Boliviana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad boliviana', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+            ['cat_name' => 'Mexicana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad mexicana', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+            ['cat_name' => 'Española', 'parent_id' => 16, 'cat_description' => 'Nacionalidad española', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+            ['cat_name' => 'Noruega', 'parent_id' => 16, 'cat_description' => 'Nacionalidad noruega', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
         ]);
     }
 }

@@ -2930,6 +2930,54 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'collaborator',
                 'module_group' => 'academic'
             ],
+            /**
+             * Nivel Educativo Aula 299-303
+             */
+            [
+                'name' => 'classroom_education_levels-listar-aula-niveleconomico',
+                'alias' => 'Listar niveles educativos aulas',
+                'description' => 'Listar todos los niveles educativos aulas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomEducationLevel',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'classroom_education_levels-obtener-aula-niveleconomico',
+                'alias' => 'Obtener nivel educativo aula',
+                'description' => 'Obtener un nivel educativo aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomEducationLevel',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'classroom_education_levels-crear-aula-niveleconomico',
+                'alias' => 'Crear nivel educativo aula',
+                'description' => 'Agregar un nivel educativo aula',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomEducationLevel',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'classroom_education_levels-actualizar-aula-niveleconomico',
+                'alias' => 'Actualizar nivel educativo aula',
+                'description' => 'Actualizar un nivel educativo aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomEducationLevel',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'classroom_education_levels-borrar-aula-niveleconomico',
+                'alias' => 'Borrar estado nivel educativo aula',
+                'description' => 'Elimina el estado de un nivel educativo aula por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomEducationLevel',
+                'module_group' => 'academic'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -3441,6 +3489,14 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 297, 'role_id' => 1],
             ['permission_id' => 298, 'role_id' => 1],
+            /**
+             * Nivel Educativo Aula 299-303
+             */
+            ['permission_id' => 299, 'role_id' => 1],
+            ['permission_id' => 300, 'role_id' => 1],
+            ['permission_id' => 301, 'role_id' => 1],
+            ['permission_id' => 302, 'role_id' => 1],
+            ['permission_id' => 303, 'role_id' => 1],
         ]);
 
         /**
@@ -3954,6 +4010,14 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 297, 'role_id' => 2],
             ['permission_id' => 298, 'role_id' => 2],
+            /**
+             * Nivel Educativo Aula 299-303
+             */
+            ['permission_id' => 299, 'role_id' => 2],
+            ['permission_id' => 300, 'role_id' => 2],
+            ['permission_id' => 301, 'role_id' => 2],
+            ['permission_id' => 302, 'role_id' => 2],
+            ['permission_id' => 303, 'role_id' => 2],
         ]);
 
         /**

@@ -498,9 +498,9 @@ Route::post('/agreements/{agreement}/disabled', [AgreementController::class, 'di
 /**
  * Classroom Education Level 
  */
-Route::get('/classroom-education-levels', [ClassroomEducationLevelController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-listar-aula-niveleconomico'*/]);
-Route::get('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-obtener-aula-niveleconomico'*/]);
-Route::post('/classroom-education-levels', [ClassroomEducationLevelController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-crear-aula-niveleconomico'*/]);
-Route::put('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-actualizar-aula-niveleconomico'*/]);
-Route::delete('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-borrar-aula-niveleconomico'*/]);
-Route::patch('/classroom-education-levels/{classroomeducationlevel}/changestatus', [ClassroomEducationLevelController::class, 'changeStatus'])->middleware(['auth:sanctum'/*, 'permission:classroom_education_levels-actualizar-aula-niveleconomico'*/]);
+Route::get('/classroom-education-levels', [ClassroomEducationLevelController::class, 'index'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-listar-aula-niveleconomico']);
+Route::get('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'show'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-obtener-aula-niveleconomico']);
+Route::post('/classroom-education-levels', [ClassroomEducationLevelController::class, 'store'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-crear-aula-niveleconomico']);
+Route::put('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'update'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-actualizar-aula-niveleconomico']);
+Route::delete('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-borrar-aula-niveleconomico']);
+Route::patch('/classroom-education-levels/{classroomeducationlevel}/changestatus', [ClassroomEducationLevelController::class, 'changeStatus'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-actualizar-aula-niveleconomico']);
