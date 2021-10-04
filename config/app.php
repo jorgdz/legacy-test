@@ -56,6 +56,8 @@ return [
 
     'api_doc_url' => env('URI_API_DOC', ''),
 
+    'api_sendiblue' => env('API_KEY_SENDINBLUE', ''),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*

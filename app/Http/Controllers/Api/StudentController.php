@@ -20,21 +20,25 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\DatabaseException;
 use App\Exceptions\Custom\NotFoundException;
+use App\Exceptions\Custom\SendMailException;
 use App\Http\Controllers\Api\Contracts\IStudentController;
 use App\Http\Requests\StudentPhotoRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\CustomTenant;
 use App\Models\StudentRecord;
 use App\Services\FilesystemService;
+use App\Services\MailService;
 
 class StudentController extends Controller implements IStudentController
 {
-    use RestResponse,Helper;
+    use RestResponse, Helper;
 
     /**
      * studentCache
      *
      * @var mixed
      */
+    private $mailService;
     private $studentCache;
     private $filesystemService;
 
@@ -44,9 +48,10 @@ class StudentController extends Controller implements IStudentController
      * @param  mixed $studentCache
      * @return void
      */
-    public function __construct(StudentCache $studentCache,FilesystemService $filesystemService)
+    public function __construct(StudentCache $studentCache, FilesystemService $filesystemService, MailService $mailService)
     {
         $this->studentCache = $studentCache;
+        $this->mailService = $mailService;
         $this->filesystemService = $filesystemService;
     }
 
@@ -71,42 +76,53 @@ class StudentController extends Controller implements IStudentController
     {
         DB::beginTransaction();
         try {
-        $person = new Person($request->except(['email','campus_id','modalidad_id','jornada_id']));
-        $person->save();
-        $user = new User($request->only(['email']));
+            $person = new Person($request->except(['email', 'campus_id', 'modalidad_id', 'jornada_id']));
+            $person->save();
+            $user = new User($request->only(['email']));
 
-        $user->us_username = $request->get('pers_identification');
-        $password = Str::random(8);
-        $user->password = Hash::make($password);
-        $user->person_id = $person->id;
-        $user->status_id = 1;
-        $user->save();
+            $user->us_username = $request->get('pers_identification');
+            $password = Str::random(8);
+            $user->password = Hash::make($password);
+            $user->person_id = $person->id;
+            $user->status_id = 1;
+            $user->save();
 
-        if(!is_null(Student::where('user_id',$user->id)->first()))
-            throw new ConflictException(__('messages.exist-instance'));
+            if (!is_null(Student::where('user_id', $user->id)->first()))
+                throw new ConflictException(__('messages.exist-instance'));
 
-        $student = new Student($request->only(['campus_id','modalidad_id','jornada_id']));
-        $student->stud_code = $this->stud_code_avaliable();
-        $student->user_id = $user->id;
-        $student->status_id = 1;
+            $student = new Student($request->only(['campus_id', 'modalidad_id', 'jornada_id']));
+            $student->stud_code = $this->stud_code_avaliable();
+            $student->user_id = $user->id;
+            $student->status_id = 1;
 
-        $student->save();
+            $student->save();
 
+            $studentRecord = new StudentRecord($request->only(['education_level_id', 'mesh_id', 'type_student_id', 'economic_group_id']));
+            $studentRecord->student_id =  $student->id;
+            $studentRecord->status_id = 1;
+            $studentRecord->save();
 
-        $studentRecord = new StudentRecord($request->only(['education_level_id', 'mesh_id','type_student_id', 'economic_group_id']));
-        $studentRecord->student_id =  $student->id;
-        $studentRecord->status_id = 1;
-        $studentRecord->save();
+            DB::commit();
 
-        DB::commit();
+            $params = [
+                "template"  => 23,
+                "subject"   => "Registro de usuario",
+                "view"      => "mails.register",
+                "to" => array(
+                    ["name" => NULL, "email" => $request->get('email')]
+                ),
+                "params" => [
+                    "USERNAME" => $user->us_username,
+                    "PASSWORD" => $password,
+                    "LINK" => CustomTenant::current()->domain_client,
+                ],
+            ];
+            $this->mailService->SendEmail($params);
 
-        Mail::to($request->get('email'))->send(new EmailRegister($user,$password ));
-
-        return $this->information(__('messages.model-saved-successfully', ['model' => 'Estudiante']));
-
-        }catch(Exception $ex){
+            return $this->information(__('messages.model-saved-successfully', ['model' => 'Estudiante']));
+        } catch (Exception $ex) {
             DB::rollback();
-            throw new DatabaseException($ex->errorInfo[2]);
+            throw new SendMailException(__('messages.send-error-mail'));
         }
     }
 
@@ -116,7 +132,7 @@ class StudentController extends Controller implements IStudentController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,Student $student)
+    public function show(Request $request, Student $student)
     {
         return $this->success($this->studentCache->find($student->id));
     }
@@ -157,8 +173,8 @@ class StudentController extends Controller implements IStudentController
      */
     public function updatePhoto(StudentPhotoRequest $request)
     {
-        $student=Student::where('user_id',$request->user()->id)->first();
-        if(is_null($student))
+        $student = Student::where('user_id', $request->user()->id)->first();
+        if (is_null($student))
             throw new NotFoundException(__('messages.no-exist-instance-resource'));
 
         $response = $this->filesystemService->store($request);

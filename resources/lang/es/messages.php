@@ -40,5 +40,5 @@ return [
     'number-of-allowed-files' => 'Solo se permite subir un archivo.',
     'no-roles-assign' => 'No hay roles asignados para este usuario',
     'subjects-error-saved' => 'Error al guardar la oferta academica.',
+    'send-error-mail' => 'hubo un inconveniente al enviar el correo, intente luego.',
 ];
-?>

@@ -40,5 +40,6 @@ return [
     'number-of-allowed-files' => 'Only one file can be uploaded.',
     'no-roles-assign' => 'There are no roles assigned for this user',
     'subjects-error-saved' => 'Error when saving the academic offer.',
+    'send-error-mail' => 'there was a problem sending the mail, please try again later..',
 ];
 ?>

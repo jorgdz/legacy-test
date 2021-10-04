@@ -185,6 +185,11 @@ interface IMailController
      *           description="Contraseña",
      *           type="string",
      *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Estado del correo",
+     *           type="integer",
+     *         ),
      *       ),
      *     ),
      *   ),

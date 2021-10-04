@@ -15,11 +15,11 @@ class DefaultLandlordSeeder extends Seeder
     public function run()
     {
         DB::connection('landlord')->table('status')->insert([
-            ['name' => 'Activo', 'description' => NULL, 'group' => 'acceso','keyword' => 'acceso-activo'],
-            ['name' => 'Suspendido', 'description' => NULL, 'group' => 'acceso','keyword' => 'acceso-supendido'],
-            ['name' => 'Falta de pago', 'description' => NULL, 'group' => 'acceso','keyword' => 'acceso-fata_pago'],
-            ['name' => 'Activo', 'description' => NULL, 'group' => 'general','keyword' => 'general-activo'],
-            ['name' => 'Inactivo', 'description' => NULL, 'group' => 'general','keyword' => 'general-inactivo'],
+            ['name' => 'Activo', 'description' => NULL, 'group' => 'acceso', 'keyword' => 'acceso-activo'],
+            ['name' => 'Suspendido', 'description' => NULL, 'group' => 'acceso', 'keyword' => 'acceso-supendido'],
+            ['name' => 'Falta de pago', 'description' => NULL, 'group' => 'acceso', 'keyword' => 'acceso-fata_pago'],
+            ['name' => 'Activo', 'description' => NULL, 'group' => 'general', 'keyword' => 'general-activo'],
+            ['name' => 'Inactivo', 'description' => NULL, 'group' => 'general', 'keyword' => 'general-inactivo'],
         ]);
 
         DB::connection('landlord')->table('type_documents')->insert([
@@ -45,6 +45,11 @@ class DefaultLandlordSeeder extends Seeder
             ['tenant_id' => 2, 'module_id' => 2, 'status_id' => 4],
             ['tenant_id' => 3, 'module_id' => 1, 'status_id' => 4],
             ['tenant_id' => 3, 'module_id' => 2, 'status_id' => 4],
+        ]);
+
+        DB::connection('landlord')->table('type_mails')->insert([
+            ['name' => 'Recuperación de contraseña', 'template' => 22, 'description' => NULL, 'status_id' => 4],
+            ['name' => 'Registro de usuario', 'template' => 22, 'description' => NULL, 'status_id' => 4],
         ]);
     }
 }

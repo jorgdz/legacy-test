@@ -7,20 +7,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EmailRegister extends Mailable
+class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $user, $password;
+    public $view, $subj, $params;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user, $password)
+    public function __construct(string $view, string $subject, array $params = [])
     {
-        $this->user = $user;
-        $this->password = $password;
+        $this->view = $view;
+        $this->subj = $subject;
+        $this->params = $params;
     }
 
     /**
@@ -30,10 +32,6 @@ class EmailRegister extends Mailable
      */
     public function build()
     {
-        return  $this->view('mails.register')
-            ->with([
-                'user' => $this->user->us_username,
-                'pass' => $this->password,
-            ]);
+        return $this->subject($this->subj)->view($this->view)->with($this->params);
     }
 }

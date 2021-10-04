@@ -299,7 +299,7 @@
                                             <p
                                                 style="margin: 1em 0px; margin-bottom: 0px; margin-top: 0px; text-align: justify;">
                                                 Hace poco recibimos una solicitud para recuperar la cuenta de
-                                                {{ $email }}.
+                                                {{ $EMAIL }}.
                                             </p>
                                         </td>
                                     </tr>
@@ -335,7 +335,7 @@
                                                             width="auto" valign="middle" bgcolor="#bfbfbf"
                                                             align="center"><a
                                                                 style="text-decoration: none; font-weight: normal; color: #ffffff; font-size: 22px; font-family: Arial, Helvetica, sans-serif;"
-                                                                target="_new" href="{{ $url }}">CONFIRMAR</a></td>
+                                                                target="_new" href="{{ $LINK }}">CONFIRMAR</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -426,7 +426,7 @@
                                             style="font-weight: normal; color: #153344; font-size: 15px; text-align: left; line-height: 150%;">
                                             <p class="hash-container">
                                                 <a style="color: #153344; text-decoration: underline;"
-                                                    href="{{ $url }}">{{ $url }}
+                                                    href="{{ $LINK }}">{{ $LINK }}
                                                 </a>
                                             </p>
                                         </td>
@@ -484,7 +484,7 @@
                                         <td class="long-text links-color" width="100%" valign="top" align="center"
                                             style="font-weight: normal; color: #0E1119; font-size: 13px; text-align: center; line-height: 150%;">
                                             <strong>Copyright &copy; {{ Date('Y') }}. </strong>
-                                            <strong>{{ $tenant->name}}</strong>
+                                            <strong>{{ $TENANT }}</strong>
                                             <span>All rights reserved.</span>
                                         </td>
                                     </tr>

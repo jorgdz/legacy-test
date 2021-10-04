@@ -70,6 +70,7 @@ require __DIR__ . "/channels/calification-models.php";
 require __DIR__ . "/channels/areas.php";
 require __DIR__ . "/channels/departments.php";
 require __DIR__ . "/channels/collaborators.php";
+require __DIR__ . "/channels/testing.php";
 
 
 
