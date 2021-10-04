@@ -93,7 +93,7 @@ class Handler extends ExceptionHandler
                 return $this->error($request->getPathInfo(), $exception, __('messages.method-not-allowed'), $code);
             }
 
-            if ($exception instanceof AuthenticationException) {       
+            if ($exception instanceof AuthenticationException) {
                 return $this->error($request->getPathInfo(), $exception,
                     $exception->getMessage(), Response::HTTP_UNAUTHORIZED);
             }
@@ -112,7 +112,7 @@ class Handler extends ExceptionHandler
             if ($exception instanceof DatabaseException) {
                 if (config('app.debug')) {
                     return $this->error($request->getPathInfo(), $exception, $exception->getMessage(), $exception->getStatusCode());
-                }   
+                }
                 return $this->error($request->getPathInfo(), $exception, __('messages.error-database'), $exception->getStatusCode());
             }
 

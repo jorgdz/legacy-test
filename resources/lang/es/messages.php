@@ -40,5 +40,8 @@ return [
     'number-of-allowed-files' => 'Solo se permite subir un archivo.',
     'no-roles-assign' => 'No hay roles asignados para este usuario',
     'subjects-error-saved' => 'Error al guardar la oferta academica.',
-    'send-error-mail' => 'hubo un inconveniente al enviar el correo, intente luego.',
+    'meshs-vigent' => '¡No se puede crear una nueva malla porque ya existe una malla vigente!',
+    'meshs-not-vigent' => '¡No se encontró una carrera con una malla curricular vigente!',
+    'student-saved' => '¡Los datos del estudiante han sido guardados correctamente!',
+    'send-error-mail' => 'Hubo un inconveniente al enviar el correo, intente luego.',
 ];

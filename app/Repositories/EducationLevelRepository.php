@@ -61,6 +61,54 @@ class EducationLevelRepository extends BaseRepository
         parent::__construct($educationLevel);
     }
 
+    // /**
+    //  * get all information
+    //  *
+    //  * @return model
+    //  *
+    //  */
+    // public function all ($request) {
+    //     if (isset($request['data']))
+    //         return ($request['data'] === 'all') ? $this->data->withOutPaginate($this->selected)->getCollection() : [];
+
+    //     return $this->data
+    //         ->withModelRelations(['status', 'offer', 'meshs' => function($query) {
+    //             $query->where('status_id', 7);
+    //         }])
+    //         ->searchWithColumnNames($request)
+    //         ->searchWithConditions($request)
+    //         ->filter($request, $this->fields,
+    //             $this->model->getRelations(),
+    //             $this->model->getKeyName(),
+    //             $this->model->getTable())
+    //         ->paginated($request, $this->model->getTable());
+    // }
+
+    /**
+     * find information by conditionals
+     *
+     * @return model
+     *
+     */
+    public function find($id) {
+        $query = $this->model;
+
+        if (!empty($this->relations)) {
+            $query = $query->with(['status', 'offer', 'meshs' => function($query) {
+                $query->where('status_id', 7);
+            }]);
+        }
+
+        return $query->findOrFail($id);
+    }
+
+    /**
+     * setEducationLevel
+     *
+     * @param  mixed $conditions
+     * @param  mixed $params
+     * @return void
+     */
     public function setEducationLevel($conditions, $params) {
         return EducationLevel::where($conditions)->update($params);
     }

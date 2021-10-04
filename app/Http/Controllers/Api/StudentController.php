@@ -24,9 +24,12 @@ use App\Exceptions\Custom\SendMailException;
 use App\Http\Controllers\Api\Contracts\IStudentController;
 use App\Http\Requests\StudentPhotoRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Models\CustomTenant;
+use App\Models\Curriculum;
+use App\Models\EducationLevel;
 use App\Models\StudentRecord;
 use App\Services\FilesystemService;
+use Illuminate\Http\Response;
+use App\Models\CustomTenant;
 use App\Services\MailService;
 
 class StudentController extends Controller implements IStudentController
@@ -76,53 +79,65 @@ class StudentController extends Controller implements IStudentController
     {
         DB::beginTransaction();
         try {
-            $person = new Person($request->except(['email', 'campus_id', 'modalidad_id', 'jornada_id']));
-            $person->save();
-            $user = new User($request->only(['email']));
 
-            $user->us_username = $request->get('pers_identification');
-            $password = Str::random(8);
-            $user->password = Hash::make($password);
-            $user->person_id = $person->id;
-            $user->status_id = 1;
-            $user->save();
+            $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function($query) {
+                $query->where('status_id', 7);
+            })->first();
 
-            if (!is_null(Student::where('user_id', $user->id)->first()))
-                throw new ConflictException(__('messages.exist-instance'));
+            if($educationLevel) {
+                DB::commit();
+                $person = new Person($request->except(['email','campus_id','modalidad_id','jornada_id']));
+                $person->save();
+                $user = new User($request->only(['email']));
 
-            $student = new Student($request->only(['campus_id', 'modalidad_id', 'jornada_id']));
-            $student->stud_code = $this->stud_code_avaliable();
-            $student->user_id = $user->id;
-            $student->status_id = 1;
+                $user->us_username = $request->get('pers_identification');
+                $password = Str::random(8);
+                $user->password = Hash::make($password);
+                $user->person_id = $person->id;
+                $user->status_id = 1;
+                $user->save();
 
-            $student->save();
+                if(!is_null(Student::where('user_id', $user->id)->first()))
+                    throw new ConflictException(__('messages.exist-instance'));
 
-            $studentRecord = new StudentRecord($request->only(['education_level_id', 'mesh_id', 'type_student_id', 'economic_group_id']));
-            $studentRecord->student_id =  $student->id;
-            $studentRecord->status_id = 1;
-            $studentRecord->save();
+                $student = new Student($request->only(['campus_id','modalidad_id','jornada_id']));
+                $student->stud_code = $this->stud_code_avaliable();
+                $student->user_id = $user->id;
+                $student->status_id = 1;
 
-            DB::commit();
+                $student->save();
 
-            $params = [
-                "template"  => 23,
-                "subject"   => "Registro de usuario",
-                "view"      => "mails.register",
-                "to" => array(
-                    ["name" => NULL, "email" => $request->get('email')]
-                ),
-                "params" => [
-                    "USERNAME" => $user->us_username,
-                    "PASSWORD" => $password,
-                    "LINK" => CustomTenant::current()->domain_client,
-                ],
-            ];
-            $this->mailService->SendEmail($params);
+                $studentRecord = new StudentRecord($request->only(['type_student_id', 'economic_group_id']));
+                $studentRecord->education_level_id = $educationLevel->id;
+                $studentRecord->mesh_id = $educationLevel->meshs[0]['id'];
+                $studentRecord->student_id =  $student->id;
+                $studentRecord->status_id = 1;
+                $studentRecord->save();
 
-            return $this->information(__('messages.model-saved-successfully', ['model' => 'Estudiante']));
-        } catch (Exception $ex) {
+                $params = [
+                    "template"  => 23,
+                    "subject"   => "Registro de usuario",
+                    "view"      => "mails.register",
+                    "to" => array(
+                        ["name" => NULL, "email" => $request->get('email')]
+                    ),
+                    "params" => [
+                        "USERNAME" => $user->us_username,
+                        "PASSWORD" => $password,
+                        "LINK" => CustomTenant::current()->domain_client,
+                    ],
+                ];
+
+                $this->mailService->SendEmail($params);
+
+                return $this->information(__('messages.student-saved'));
+            }
+
+            return $this->information(__('messages.meshs-not-vigent'), Response::HTTP_CONFLICT);
+        }
+        catch(Exception $ex) {
             DB::rollback();
-            throw new SendMailException(__('messages.send-error-mail'));
+            throw new DatabaseException($ex->getInfo[2]);
         }
     }
 

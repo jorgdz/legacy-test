@@ -39,7 +39,9 @@ return [
     'max' => 'The maximum number of records is :max.',
     'number-of-allowed-files' => 'Only one file can be uploaded.',
     'no-roles-assign' => 'There are no roles assigned for this user',
-    'subjects-error-saved' => 'Error when saving the academic offer.',
-    'send-error-mail' => 'there was a problem sending the mail, please try again later..',
+    'subjects-error-saved' => 'Error when saving the academic offer.',    'meshs-vigent' => 'Cannot create a new mesh because a current mesh already exists!',
+    'meshs-not-vigent' => 'A career with a current curriculum was not found!',
+    'student-saved' => 'Student data has been saved correctly!',
+    'send-error-mail' => 'There was a problem sending the mail, please try again later..',
 ];
 ?>

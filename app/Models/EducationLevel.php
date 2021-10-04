@@ -99,7 +99,9 @@ class EducationLevel extends Model implements AuditableContract
     }
 
     public function children() {
-        return $this->hasMany(EducationLevel::class, 'principal_id')->with('offer')->with('status')->with('children')->with('meshs')->where(function($query) {
+        return $this->hasMany(EducationLevel::class, 'principal_id')->with(['status', 'offer', 'meshs' => function($query) {
+            $query->where('status_id', 7);
+        }, 'children'])->where(function($query) {
             if (isset(request()->query()['data'])) $query->where('status_id', 1);
         });
     }

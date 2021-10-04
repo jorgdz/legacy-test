@@ -5,16 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Cache\SubjectCurriculumCache;
 use App\Models\Curriculum;
 use App\Cache\CurriculumCache;
-use App\Exceptions\Custom\UnprocessableException;
 use App\Traits\RestResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\CurriculumRequest;
-use App\Exceptions\Custom\ConflictException;
 use App\Http\Controllers\Api\Contracts\ICurriculumController;
-use App\Models\LearningComponent;
 
 //class MeshsController extends Controller implements IMeshsController
 class CurriculumController extends Controller implements ICurriculumController
@@ -45,17 +42,12 @@ class CurriculumController extends Controller implements ICurriculumController
      * @return \Illuminate\Http\Response
      */
     public function store(CurriculumRequest $request) {
-        DB::beginTransaction();
-        try {
-            $curriculum = new Curriculum($request->all());
-            $curriculum = $this->curriculumCache->save($curriculum);
+        $curriculums = Curriculum::where('status_id', 7)->get();
+        if(count($curriculums) > 0)
+            return $this->information(__('messages.meshs-vigent'), Response::HTTP_CONFLICT);
 
-            DB::commit();
-            return $this->success($curriculum, Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error($request->getPathInfo(), $ex, $ex->getMessage(), $ex->getCode());
-        }
+        $curriculum = new Curriculum($request->all());
+        return $this->success($this->curriculumCache->save($curriculum), Response::HTTP_CREATED);
     }
 
     /**
@@ -77,13 +69,13 @@ class CurriculumController extends Controller implements ICurriculumController
      * @return \Illuminate\Http\Response
      */
     public function update(CurriculumRequest $request, Curriculum $curriculum) {
-    
-            $curriculum->fill($request->all());
 
-            if ($curriculum->isClean())
-                return $this->information(__('messages.nochange'));
+        $curriculum->fill($request->all());
 
-            $response = $this->curriculumCache->save($curriculum);
+        if ($curriculum->isClean())
+            return $this->information(__('messages.nochange'));
+
+        $response = $this->curriculumCache->save($curriculum);
         return $this->success($response);
     }
 
@@ -94,20 +86,12 @@ class CurriculumController extends Controller implements ICurriculumController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Curriculum $curriculum) {
-        DB::beginTransaction();
-        try {
-            $response = $this->curriculumCache->destroy($curriculum);
-            DB::commit();
-            return $this->success($response);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
-
-        }
+        $response = $this->curriculumCache->destroy($curriculum);
+        return $this->success($response);
     }
 
     public function learningComponentByMesh(Curriculum $curriculum)
-    {   
+    {
         return $this->success(Curriculum::with('learningComponent.component')->find($curriculum->id));
     }
 
