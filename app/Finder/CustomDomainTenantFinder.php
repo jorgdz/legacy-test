@@ -20,7 +20,7 @@ class CustomDomainTenantFinder extends TenantFinder
         $key = $host . '_current_tenant';
 
         $status = CustomStatus::whereIn('keyword', ['acceso-activo', 'acceso-fata_pago'])->get()->pluck('id')->toArray();
-
+        
         return Cache::remember($key, now()->addMinutes(150), function () use ($host, $status) {
             return $this->getTenantModel()::with(['mail', 'status'])
                 ->whereIn('status_id', $status)

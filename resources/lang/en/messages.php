@@ -43,5 +43,10 @@ return [
     'meshs-not-vigent' => 'A career with a current curriculum was not found!',
     'student-saved' => 'Student data has been saved correctly!',
     'send-error-mail' => 'There was a problem sending the mail, please try again later..',
+    'subjects-error-saved' => 'Error when saving the academic offer.',
+    'send-error-mail' => 'there was a problem sending the mail, please try again later..',
+    'sum-hour-collaborator'=>"Workday type :type_journey_dep must be exactly :hours horas. Currently you only have :sum_hour_collaborator hours!",
+    'collaborator-is-inactive'=>'El colaborador no se encuentra activo.',
+
 ];
 ?>

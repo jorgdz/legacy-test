@@ -784,6 +784,35 @@ return [
 		 */
 		'dep_name' => 'nombre del departamento',
 		'dep_description' => 'descripcion del departamento',
+
+		/**
+		 * Collaborator Hour
+		 */
+		'ch_working_time' => 'tiempo dedicacion',
+
+		/**
+		 * Hours summaries
+		 */
+		'collaborator_id' => 'colaborador',
+		'hs_classes' => 'horas de clases',
+		'hs_classes_examns_preparation' => 'horas de preparacion de clases y examenes',
+		'hs_tutoring' => 'horas de tutorias',
+		'hs_bonding' => 'horas de vinculacion',
+		'hs_academic_management' => 'horas de gestion academica',
+		'hs_research' => 'horas de investigacion',
+		'hs_total' => 'total',
+		'collaborator_hour_id'=>'horas de colaborador'
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	],
 
 ];

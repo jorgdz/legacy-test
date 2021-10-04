@@ -124,6 +124,7 @@ class Handler extends ExceptionHandler
                 || $exception instanceof FailLocalStorageRequestException
                 || $exception instanceof StudentRecordProgramRequestException
                 || $exception instanceof SendMailException
+                || $exception instanceof StudentRecordProgramRequestException
                 ) {
 
                 $code = $exception->getStatusCode();
