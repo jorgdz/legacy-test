@@ -61,13 +61,13 @@ class EducationLevelController extends Controller implements IEducationLevelCont
     {
         return $this->success($this->educationLevelCache->find($id));
     }
-        
+
     /**
      * getChildren
      *
      * Buscara unicamente niveles educativos Padres.
      * Devolvera a sus hijos en array.
-     * 
+     *
      * @param  mixed $id
      * @return void
      */

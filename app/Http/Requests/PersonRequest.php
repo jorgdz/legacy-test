@@ -50,7 +50,8 @@ class PersonRequest extends FormRequest
             'sector_id'         => 'required|integer|exists:tenant.catalogs,id',
             'ethnic_id'         => 'required|integer|exists:tenant.catalogs,id',
             'type_identification_id' => 'required|integer|exists:tenant.catalogs,id',
-            'pers_disability_identification' => 'nullable|unique:tenant.persons,pers_disability_identification|required_if:pers_has_disability,true|required_if:pers_has_disability,1',
+            //'pers_disability_identification' => 'nullable|unique:tenant.persons,pers_disability_identification|required_if:pers_has_disability,true|required_if:pers_has_disability,1',
+            'pers_disability_identification' => 'nullable|required_if:pers_has_disability,true|required_if:pers_has_disability,1',
             'pers_disability_percent' => 'nullable|integer|required_if:pers_has_disability,true|required_if:pers_has_disability,1',
         ];
 
