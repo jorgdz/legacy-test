@@ -80,4 +80,11 @@ class ClassroomEducationLevelCache extends BaseCache
         return $this->repository->changeStatus($id,$status);
     }
 
+    public function getClassroomAssigned($request)
+    {
+        $this->forgetCache('classroom-education-levels');
+        return $this->repository->getClassroomAssigned($request);
+    }
+    
+
 }

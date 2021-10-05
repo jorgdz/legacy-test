@@ -51,19 +51,23 @@ class ClassroomEducationLevelController extends Controller implements IClassroom
      */
     public function store(ClassroomEducationLevelRequest $request)
     {    
+        //return $this->classroomEducationLevelCache->getClassroomAssigned($request);
+        //Validar que no este asignada a otro facultad
+        
         $isFacultad = EducationLevel::whereNull('principal_id')->find($request->education_level_id);
         if(!isset($isFacultad))
             throw new NotFoundException(__("No existe la facultad"));
 
-        $classrooms = $this->classroomEducationLevelCache->validateRegister($request);
-        if(!is_array($classrooms))
+        $classrooms = $this->classroomEducationLevelCache->getClassroomAssigned($request);
+        //$classrooms = $this->classroomEducationLevelCache->validateRegister($request);
+        if(!is_array($classrooms->classrooms_asiggned))
             throw new NotFoundException(__("messages.no-content"));
 
         $classroomLists = [];
-        foreach ($classrooms as $classRoom)
+        foreach ($classrooms->classrooms_asiggned as $classRoom)
         {
             $model = [
-                "classroom_id" => $classRoom,
+                "classroom_id"        => $classRoom,
                 "period_id"           => $request->period_id,
                 "education_level_id"  => $request->education_level_id,
                 "status_id"           => $request->status_id,
@@ -71,7 +75,7 @@ class ClassroomEducationLevelController extends Controller implements IClassroom
             array_push($classroomLists,$model);
         }
         $this->classroomEducationLevelCache->saveMultiple($classroomLists);
-        return $this->information(__('messages.success'));
+        return  $this->success($classrooms);
     }
 
     /**
