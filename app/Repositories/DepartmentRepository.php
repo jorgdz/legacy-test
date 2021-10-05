@@ -46,11 +46,18 @@ class DepartmentRepository extends BaseRepository
  
      
 
-        if (isset($request['data']) && ($request->search || $request->data)) {
+        if (isset($request['data']) && $request->data) {
+         
+            $data = ($request['data'] === 'all') ?  $this->data    
+            ->getCollection() : [];
+            return $data->whereNull('parent_id')->values()->all();
+        }
+
+        if (isset($request['data']) && $request->search) {
          
             return ($request['data'] === 'all') ?  $this->data
                 ->withOutPaginate($this->selected)
-                ->withModelRelations($this->relations)
+                 ->withModelRelations($this->relations)
                 ->filter($request, $this->fields, $this->model->getRelations(), $this->model->getKeyName(), $this->model->getTable())
                 ->getCollection() : [];
         }

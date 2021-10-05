@@ -765,6 +765,7 @@ return [
 		 */
 		'pos_name' => 'nombre del cargo',
 		'pos_description' => 'descripcion del cargo',
+		'role_id'=>'rol',
 
 		/**
 		 * Calification Models

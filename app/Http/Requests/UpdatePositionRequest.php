@@ -26,7 +26,7 @@ class UpdatePositionRequest extends FormRequest
         return [
             'pos_name' => "required|unique:tenant.positions,pos_name,{$this->route('position')->id}",
             "pos_keyword"    => "required|string|max:255|unique:tenant.positions,pos_keyword,{$this->route('position')->id}",
-            'role_id' => 'integer|exists:tenant.roles,id',
+            'role_id' => 'required|integer|exists:tenant.roles,id',
             'department_id' => 'integer|exists:tenant.departments,id',
             'status_id' => 'integer|exists:tenant.status,id'
         ];

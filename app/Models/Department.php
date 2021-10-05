@@ -42,7 +42,7 @@ class Department extends Model  implements AuditableContract
         'created_at',
         'updated_at',
         'deleted_at',
-        'parent_id',
+        //'parent_id',
         // 'pivot',
     ];
 
