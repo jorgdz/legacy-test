@@ -36,7 +36,9 @@ class Position extends Model implements AuditableContract
     protected $fillable = [
         'pos_name',
         'pos_description',
+        'pos_keyword',
         'role_id',
+        'department_id',
         'status_id',
     ];
 
@@ -64,7 +66,7 @@ class Position extends Model implements AuditableContract
      */
     public function deparment(): BelongsTo
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class,'department_id');
     }
 
     /**

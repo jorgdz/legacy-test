@@ -23,7 +23,7 @@ class CreatePositionsTable extends Migration
             $table->bigInteger('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');
 
-            $table->bigInteger('department_id')->nullable();//unsigned();
+            $table->bigInteger('department_id')->unsigned();//nullable();
             $table->foreign('department_id')->references('id')->on('departments');
       
             $table->integer('status_id')->unsigned();

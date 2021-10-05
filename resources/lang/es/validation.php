@@ -782,6 +782,7 @@ return [
 		/**
 		 * Deparments
 		 */
+		'department_id'=>'departamento',
 		'dep_name' => 'nombre del departamento',
 		'dep_description' => 'descripcion del departamento',
 

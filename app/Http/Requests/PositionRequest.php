@@ -25,7 +25,10 @@ class PositionRequest extends FormRequest
     {
         return [
             'pos_name' => 'required|unique:tenant.positions,pos_name',
+            //'pos_description'    => 'string|max:255|',
+            'pos_keyword'    => 'required|string|max:255|unique:tenant.roles,keyword',
             'role_id' => 'integer|exists:tenant.roles,id',
+            'department_id' => 'integer|exists:tenant.departments,id',
             'status_id' => 'integer|exists:tenant.status,id'
         ];
     }

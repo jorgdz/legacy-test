@@ -13,7 +13,7 @@ class DepartmentRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'children', 'position'];
+    protected $relations = ['status', 'children', 'positions'];
 
     /**
      * fields

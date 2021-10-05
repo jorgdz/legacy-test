@@ -58,13 +58,13 @@ class Department extends Model  implements AuditableContract
     }
 
     /**
-     * position 
+     * positions 
      *
      * @return HasMany
      */
-    public function position(): HasMany
+    public function positions(): HasMany
     {
-        return $this->hasMany(Position::class, 'department_id');
+        return $this->hasMany(Position::class);
     }
 
 

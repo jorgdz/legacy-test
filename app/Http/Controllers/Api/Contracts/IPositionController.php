@@ -119,8 +119,18 @@ interface IPositionController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="pos_keyword",
+     *           description="Palabra clave del cargo",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="role_id",
      *           description="ID del role",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="department_id",
+     *           description="ID del departamento",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -135,9 +145,11 @@ interface IPositionController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "pos_name"  : "required|unique:tenant.positions,pos_name",
-     *          "role_id"   : "integer|exists:tenant.roles,id",
-     *          "status_id" : "integer|exists:tenant.status,id",
+     *          "pos_name" : "required|unique:tenant.positions,pos_name",
+     *          "pos_keyword"    : "required|string|max:255|unique:tenant.roles,keyword",
+     *          "role_id" : "integer|exists:tenant.roles,id",
+     *          "department_id" : "integer|exists:tenant.departments,id",
+     *          "status_id" : "integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -228,9 +240,19 @@ interface IPositionController
      *           description="Descripcion del cargo",
      *           type="string",
      *         ),
+     *        @OA\Property(
+     *           property="pos_keyword",
+     *           description="Palabra clave del cargo",
+     *           type="string",
+     *         ),
      *         @OA\Property(
      *           property="role_id",
      *           description="ID del role",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="department_id",
+     *           description="ID del departamento",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -245,8 +267,10 @@ interface IPositionController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "pos_name"  : "required|unique:tenant.positions,pos_name,{$this->route('position')->id}",
-     *          "role_id"   : "integer|exists:tenant.roles,id",
+     *          "pos_name" : "required|unique:tenant.positions,pos_name,{$this->route('position')->id}",
+     *          "pos_keyword"    : "required|string|max:255|unique:tenant.positions,pos_keyword,{$this->route('position')->id}",
+     *          "role_id" : "integer|exists:tenant.roles,id",
+     *          "department_id" : "integer|exists:tenant.departments,id",
      *          "status_id" : "integer|exists:tenant.status,id",
      *      },
      *   )),
