@@ -28,7 +28,7 @@ class StorePeriodRequest extends FormRequest
     {
         return [
             'per_name' => 'required|string|unique:tenant.periods,per_name|max:255',
-            'per_reference' => 'required|string|unique:tenant.periods,per_reference|max:100',
+            // 'per_reference' => 'required|string|unique:tenant.periods,per_reference|max:100',
             'per_min_matter_enrollment' => 'required|integer',
             'per_max_matter_enrollment' => 'required|integer',
             'campus' => 'array',

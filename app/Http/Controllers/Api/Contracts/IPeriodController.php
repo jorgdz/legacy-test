@@ -113,11 +113,6 @@ interface IPeriodController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="per_reference",
-     *           description="Referencia del periodo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
      *           property="per_min_matter_enrollment",
      *           description="Mínimo numero de materias a matricular",
      *           type="integer",
@@ -212,6 +207,71 @@ interface IPeriodController
      *
      */
     public function store (StorePeriodRequest $request);
+
+    /**
+     * @OA\Post(
+     *   path="/api/periods/copie-period",
+     *   tags={"Periodos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Copiar periodos",
+     *   description="Copia un periodo anterior asignandole un nuevo año.",
+     *   operationId="copiePeriod",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="period_year",
+     *           description="Anio de los periodos a copiar",
+     *           type="string",
+     *           format="date",
+     *           example="2018",
+     *         ),
+     *         @OA\Property(
+     *           property="new_current_year",
+     *           description="Anio que tomaran los periodos copiados",
+     *           type="string",
+     *           format="date",
+     *           example="2021",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *        "per_name" : "required|string|unique:periods,per_name|max:255",
+     *        "per_reference" : "required|string|unique:periods,per_reference|max:100",
+     *        "per_min_matter_enrollment" : "required|integer",
+     *        "per_max_matter_enrollment" : "required|integer",
+     *        "campus" : "array",
+     *        "campus.*" : "integer|exists:tenant.campus,id",
+     *        "per_num_fees" : "nullable|integer",
+     *        "per_fees" : "numeric|required_if:per_pay_enrollment,true|required_if:per_pay_enrollment,1",
+     *        "type_period_id" : "required|integer|exists:type_periods,id",
+     *        "status_id" : "required|integer|exists:status,id",
+     *        "offers" : "array",
+     *        "offers.*" : "integer|exists:offers,id|distinct",
+     *        "hourhands" : "array",
+     *        "hourhands.*" : "integer|exists:hourhands,id|distinct"
+     *      },
+     *   )),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function copiePeriod (Request $request);
 
     /**
      * @OA\Get(
@@ -366,11 +426,6 @@ interface IPeriodController
      *         @OA\Property(
      *           property="per_name",
      *           description="Nombre del periodo",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="per_reference",
-     *           description="Referencia del periodo",
      *           type="string",
      *         ),
      *         @OA\Property(

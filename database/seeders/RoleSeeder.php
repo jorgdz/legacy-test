@@ -2978,6 +2978,114 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'classroomEducationLevel',
                 'module_group' => 'academic'
             ],
+            /**
+             * Actualizar Foto Estudiante 304
+             */
+            [
+                'name' => 'users-actualizar-foto-por-estudiante',
+                'alias' => 'actualizar foto estudiante',
+                'description' => 'Actualiza la foto de un estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'student',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Horas Colaborador 305-309
+             */
+            [
+                'name' => 'collaborator-hours-listar-horas-colaborador',
+                'alias' => 'Listar horas colaborador',
+                'description' => 'Listar todas las horas colaborador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaboratorHours',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'collaborator-hours-obtener-hora-colaborador',
+                'alias' => 'Obtener hora colaborador',
+                'description' => 'Obtener una hora colaborador por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaboratorHours',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'collaborator-hours-crear-hora-colaborador',
+                'alias' => 'Crear hora colaborador',
+                'description' => 'Agregar una hora colaborador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaboratorHours',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'collaborator-hours-actualizar-hora-colaborador',
+                'alias' => 'Actualizar hora colaborador',
+                'description' => 'Actualizar una hora colaborador por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaboratorHours',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'collaborator-hours-borrar-hora-colaborador',
+                'alias' => 'Borrar hora colaborador',
+                'description' => 'Eliminar una hora colaborador por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaboratorHours',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Resumen Horas 310-314
+             */
+            [
+                'name' => 'hours-summaries-listar-resumen-horas-colaborador',
+                'alias' => 'Listar resumen horas colaborador',
+                'description' => 'Listar todos los resumenes horas colaborador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourSummary',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'hours-summaries-obtener-resumen-horas-colaborador',
+                'alias' => 'Obtener resumen horas colaborador',
+                'description' => 'Obtener un resumen horas colaborador por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourSummary',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'hours-summaries-crear-resumen-horas-colaborador',
+                'alias' => 'Crear resumen horas colaborador',
+                'description' => 'Agregar un resumen horas colaborador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourSummary',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'hours-summaries-actualizar-resumen-horas-colaborador',
+                'alias' => 'Actualizar resumen horas colaborador',
+                'description' => 'Actualizar un resumen horas colaborador por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourSummary',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'hours-summaries-borrar-resumen-horas-colaborador',
+                'alias' => 'Borrar resumen horas colaborador',
+                'description' => 'Eliminar un resumen horas colaborador por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'hourSummary',
+                'module_group' => 'academic'
+            ],
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -3497,6 +3605,26 @@ class RoleSeeder extends Seeder
             ['permission_id' => 301, 'role_id' => 1],
             ['permission_id' => 302, 'role_id' => 1],
             ['permission_id' => 303, 'role_id' => 1],
+            /**
+             * Actualizar Foto Estudiante 304
+             */
+            ['permission_id' => 304, 'role_id' => 1],
+            /**
+             * Horas Colaborador 305-309
+             */
+            ['permission_id' => 305, 'role_id' => 1],
+            ['permission_id' => 306, 'role_id' => 1],
+            ['permission_id' => 307, 'role_id' => 1],
+            ['permission_id' => 308, 'role_id' => 1],
+            ['permission_id' => 309, 'role_id' => 1],
+            /**
+             * Resumen Horas 310-314
+             */
+            ['permission_id' => 310, 'role_id' => 1],
+            ['permission_id' => 311, 'role_id' => 1],
+            ['permission_id' => 312, 'role_id' => 1],
+            ['permission_id' => 313, 'role_id' => 1],
+            ['permission_id' => 314, 'role_id' => 1],
         ]);
 
         /**
@@ -4018,6 +4146,26 @@ class RoleSeeder extends Seeder
             ['permission_id' => 301, 'role_id' => 2],
             ['permission_id' => 302, 'role_id' => 2],
             ['permission_id' => 303, 'role_id' => 2],
+            /**
+             * Actualizar Foto Estudiante 304
+             */
+            ['permission_id' => 304, 'role_id' => 2],
+            /**
+             * Horas Colaborador 305-309
+             */
+            ['permission_id' => 305, 'role_id' => 2],
+            ['permission_id' => 306, 'role_id' => 2],
+            ['permission_id' => 307, 'role_id' => 2],
+            ['permission_id' => 308, 'role_id' => 2],
+            ['permission_id' => 309, 'role_id' => 2],
+            /**
+             * Resumen Horas 310-314
+             */
+            ['permission_id' => 310, 'role_id' => 2],
+            ['permission_id' => 311, 'role_id' => 2],
+            ['permission_id' => 312, 'role_id' => 2],
+            ['permission_id' => 313, 'role_id' => 2],
+            ['permission_id' => 314, 'role_id' => 2],
         ]);
 
         /**

@@ -229,6 +229,7 @@ Route::delete('/type-periods/{typePeriod}', [TypePeriodController::class, 'destr
 Route::get('/periods', [PeriodController::class, 'index'])->middleware(['auth:sanctum', 'permission:periods-listar-periodos']);
 Route::get('/periods/{period}', [PeriodController::class, 'show'])->middleware(['auth:sanctum', 'permission:periods-obtener-periodo']);
 Route::post('/periods', [PeriodController::class, 'store'])->middleware(['auth:sanctum', 'permission:periods-crear-periodo']);
+Route::post('/periods/copie-period', [PeriodController::class, 'copiePeriod'])->middleware(['auth:sanctum', 'permission:periods-crear-periodo']);
 Route::put('/periods/{period}', [PeriodController::class, 'update'])->middleware(['auth:sanctum', 'permission:periods-actualizar-periodo']);
 Route::delete('/periods/{period}', [PeriodController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:periods-borrar-periodo']);
 Route::get('/periods/{period}/offers', [PeriodController::class, 'showOffersByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-ofertas-por-periodo']);
@@ -458,7 +459,7 @@ Route::post('students', [StudentController::class, 'store'])->middleware(['auth:
 Route::put('students/{student}', [StudentController::class, 'update'])->middleware(['auth:sanctum', 'permission:student-update-estudiante']);
 Route::post('students/photo', [StudentController::class, 'updatePhoto'])->middleware(['auth:sanctum', 'permission:student-update-photo-estudiante']);
 Route::delete('students/{student}', [StudentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:student-delete-estudiante']);
-Route::post('/students/{student}/photo', [StudentController::class, 'updatePhotoByStudent'])->middleware(['auth:sanctum'/* , 'permission:users-actualizar-foto-por-estudiante' */]);
+Route::post('/students/{student}/photo', [StudentController::class, 'updatePhotoByStudent'])->middleware(['auth:sanctum', 'permission:users-actualizar-foto-por-estudiante']);
 
 /**
  * Categoria Status

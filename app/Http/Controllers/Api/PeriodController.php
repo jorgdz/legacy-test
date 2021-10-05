@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePeriodRequest;
 use App\Http\Requests\UpdatePeriodRequest;
+use App\Models\Campus;
 use App\Traits\Auditor;
-use Illuminate\Http\Response;
 
 class PeriodController extends Controller implements IPeriodController
 {
@@ -70,7 +70,10 @@ class PeriodController extends Controller implements IPeriodController
 
         for($i = 0; $i < count($request->campus); $i++) {
 
+            $campusLetra = Campus::findOrFail($request->campus[$i]);
+
             $periodRequest = array_merge(
+                ['per_reference' => $currentYear . substr($campusLetra->cam_name, 0, 1) . Period::withTrashed()->count() + 1],
                 ['per_current_year' => $currentYear],
                 ['per_due_year' => $perDueYear],
                 ['campus_id' => $campus[$i]],
@@ -82,6 +85,33 @@ class PeriodController extends Controller implements IPeriodController
             $period->offers()->sync($request->offers, false);
             $period->hourhands()->sync($request->hourhands, false);
 
+        }
+
+        return $this->information(__('messages.success'));
+    }
+
+    public function copiePeriod (Request $request) {
+        $request->validate([
+            'period_year' => 'date_format:Y',
+            'new_current_year' => 'date_format:Y|after:period_year',
+        ]);
+
+        $periods = Period::where('per_current_year', $request->period_year)->get();
+
+        if (!$periods->first())
+            return $this->information(__('messages.nochange'));
+
+        foreach ($periods as $period) {
+
+            $new_period = $period->replicate()->fill([
+                'per_reference' => $request->new_current_year . substr($period->campus->cam_name, 0, 1) . Period::withTrashed()->count() + 1,
+                'per_current_year' => $request->new_current_year,
+                'per_due_year' => intval($request->new_current_year) + 1,
+                'status_id' => 1,
+            ]);
+
+            $new_period->save();
+            $new_period->offers()->attach($period->offers);
         }
 
         return $this->information(__('messages.success'));

@@ -28,7 +28,7 @@ class UpdatePeriodRequest extends FormRequest
 
         return [
             'per_name' => 'required|string|unique:tenant.periods,per_name,'.$period->id.'|max:255',
-            'per_reference' => 'required|string|unique:tenant.periods,per_reference,'.$period->id.'|max:100',
+            // 'per_reference' => 'required|string|unique:tenant.periods,per_reference,'.$period->id.'|max:100',
             'per_min_matter_enrollment' => 'required|integer',
             'per_max_matter_enrollment' => 'required|integer',
             'per_num_fees' => 'nullable|integer',
