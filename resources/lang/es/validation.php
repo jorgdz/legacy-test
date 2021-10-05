@@ -231,7 +231,34 @@ return [
 			'exists' => 'El valor del campo aula seleccionado es inválido.',
 			'integer' => 'El valor del campo aula debe ser un entero.',
 			'distinct' => 'El valor del campo aula tiene un valor duplicado.'
-		]
+		],
+		'signatures.*.sign_position' => [
+			'required' => 'El campo posicion es requerido.',
+			'string'   => 'El campo posicion debe ser una cadena.'
+		],
+		'signatures.*.sign_person' => [
+			'required' => 'El campo persona es requerido.',
+			'string'   => 'El campo persona debe ser una cadena.'
+		],
+		'signatures.*.sign_reference' => [
+			'required' => 'El campo referencia es requerido.',
+			'string'   => 'El campo referencia debe ser una cadena.'
+		],
+		'signatures.*.status_id' => [
+			'required' => 'El campo estado es requerido.',
+			'exists' => 'El valor del campo estado seleccionado es inválido.',
+			'integer' => 'El valor del campo estado debe ser un entero.',
+		],
+		'signatures.*.collaborator_id' => [
+			'required' => 'El campo colaborador es requerido.',
+			'exists' => 'El valor del campo colaborador seleccionado es inválido.',
+			'integer' => 'El valor del campo colaborador debe ser un entero.',
+		],
+		'signatures.*.position_id' => [
+			'required' => 'El campo posicion es requerido.',
+			'exists' => 'El valor del campo posicion seleccionado es inválido.',
+			'integer' => 'El valor del campo posicion debe ser un entero.',
+		],
 	],
 
 	/*
@@ -528,7 +555,7 @@ return [
 		'coll_has_nomination' => 'tiene nombremiento',
 		'coll_nomination_entering_date' => 'fecha de ingreso del nombramiento',
 		'coll_nomination_leaving_date' => 'fecha de fin del nombremiento',
-		
+
 		/**
 		 * PersonalAccessToken
 		 */
@@ -765,7 +792,7 @@ return [
 		 */
 		'pos_name' => 'nombre del cargo',
 		'pos_description' => 'descripcion del cargo',
-		'role_id'=>'rol',
+		'role_id' => 'rol',
 
 		/**
 		 * Calification Models
@@ -783,7 +810,7 @@ return [
 		/**
 		 * Departments
 		 */
-		'department_id'=>'departamento',
+		'department_id' => 'departamento',
 		'dep_name' => 'nombre del departamento',
 		'dep_description' => 'descripcion del departamento',
 
@@ -803,18 +830,14 @@ return [
 		'hs_academic_management' => 'horas de gestion academica',
 		'hs_research' => 'horas de investigacion',
 		'hs_total' => 'total',
-		'collaborator_hour_id'=>'horas de colaborador'
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		'collaborator_hour_id' => 'horas de colaborador',
+
+		/**
+		 * Signatures
+		 */
+		'signatures' => 'firmas',
+		'acronym' => 'sigla',
+		'rrhh' => 'recursos humanos'
 	],
 
 ];

@@ -73,6 +73,7 @@ require __DIR__ . "/channels/collaborators.php";
 require __DIR__ . "/channels/testing.php";
 require __DIR__ . "/channels/collaborator-hours.php";
 require __DIR__ . "/channels/hours-summaries.php";
+require __DIR__ . "/channels/type-reports.php";
 
 
 
