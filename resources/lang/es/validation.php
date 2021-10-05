@@ -780,7 +780,7 @@ return [
 		'agr_name' => 'nombre del convenio',
 		'agr_num_matter_homologate' => 'cantidad de materias a homologar',
 		/**
-		 * Deparments
+		 * Departments
 		 */
 		'department_id'=>'departamento',
 		'dep_name' => 'nombre del departamento',

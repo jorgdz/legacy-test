@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
                 RoleUserProfileSeeder::class,
                 StudentSeeder::class,
                 ClassroomTypeSeeder::class,
-                DeparmentSeeder::class,
+                DepartmentSeeder::class,
                 PositionSeeder::class,
                 AreasSeeder::class,
             ]);

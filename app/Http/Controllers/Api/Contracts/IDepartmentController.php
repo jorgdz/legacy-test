@@ -17,7 +17,7 @@ interface IDepartmentController
      *   },
      *   summary="Listar los departamentos",
      *   description="Muestra todos los departamentos con sus hijos en formato JSON",
-     *   operationId="getAllDeparments",
+     *   operationId="getAllDepartments",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -176,7 +176,7 @@ interface IDepartmentController
      *   },
      *   summary="Obtener un departamento",
      *   description="Muestra información específica de un departamento por Id.",
-     *   operationId="getDeparment",
+     *   operationId="getDepartment",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -217,7 +217,7 @@ interface IDepartmentController
      *   },
      *   summary="Actualizar departamento",
      *   description="Actualizar un departamento.",
-     *   operationId="updateDeparment",
+     *   operationId="updateDepartment",
      *   @OA\Parameter(
      *     name="department",
      *     description="Id del departamento",
@@ -289,7 +289,7 @@ interface IDepartmentController
      *   },
      *   summary="Actualizar estado de departamento",
      *   description="Actualizar estado de departamento.",
-     *   operationId="updateDeparment",
+     *   operationId="updateDepartment",
      *   @OA\Parameter(
      *     name="department",
      *     description="Id del departamento",

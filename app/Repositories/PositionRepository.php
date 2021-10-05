@@ -12,7 +12,7 @@ class PositionRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'role', 'deparment'];
+    protected $relations = ['status', 'role', 'department'];
     /**
      * parents
      *

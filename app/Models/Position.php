@@ -64,7 +64,7 @@ class Position extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function deparment(): BelongsTo
+    public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class,'department_id');
     }
