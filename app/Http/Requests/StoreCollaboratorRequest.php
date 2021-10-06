@@ -57,7 +57,6 @@ class StoreCollaboratorRequest extends FormRequest
             'ethnic_id'         => 'required|integer|exists:tenant.catalogs,id',
             //user
             'email'       => 'required|email|unique:tenant.users,email',
-            'user_status_id' => 'required|integer|exists:tenant.status,id',
             //relatives
             'type_identification_id_relatives_person' => 'required_if:status_marital_id,==,35|nullable|integer|exists:tenant.catalogs,id',
             'pers_identification_relatives_person' => 'required_if:status_marital_id,==,35|nullable|unique:tenant.persons,pers_identification',
@@ -66,7 +65,6 @@ class StoreCollaboratorRequest extends FormRequest
             'pers_first_lastname_relatives_person'  => 'required_if:status_marital_id,==,35|nullable|string|max:255',
             'pers_second_lastname_relatives_person' => 'required_if:status_marital_id,==,35|nullable|string|max:255',
             'pers_relatives_person_desc' => 'required_if:status_marital_id,==,35|nullable|string|max:255',
-            'relative_status_id' => 'required|integer|exists:tenant.status,id',
             //disabilities
             'pers_disability_identification' => 'required_if:pers_has_disability,==,1|nullable|integer',
             'pers_disability_percent'  => 'required_if:pers_has_disability,==,1|nullable|integer',
@@ -83,22 +81,20 @@ class StoreCollaboratorRequest extends FormRequest
             'coll_entering_date' => 'required|date',
             'coll_leaving_date' => 'nullable|date',
             'coll_membership_num'       => 'nullable|integer',
+            'status_id' => 'integer|exists:tenant.status,id',
             //'coll_contract_num'       => 'nullable|integer',
             'coll_has_nomination'  => 'nullable|digits_between:0,1',
             'coll_nomination_entering_date' => 'nullable|date',
             'coll_nomination_leaving_date' => 'nullable|date',
-            'coll_status_id' => 'required|integer|exists:tenant.status,id',
             'education_level_principal_id'=>'required|integer|exists:tenant.education_levels,id',
-            
+
             //Asociación de niveles de educacion para el colaborador
             'education_levels'=>'required|array',
             'education_levels.*'=>'required|integer|exists:tenant.education_levels,id',
-            'coll_education_level_status_id' => 'required|integer|exists:tenant.status,id',
 
             //Asociación de campus para el colaborador
             'campus'=>'required|array',
             'campus.*'=>'required|integer|exists:tenant.campus,id',
-            'coll_camp_status_id' => 'required|integer|exists:tenant.status,id',
         ];
 
         $typeIdentification = intval($this->request->get('type_identification_id'));

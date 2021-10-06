@@ -84,7 +84,7 @@ interface ICollaboratorController
      *   @OA\Response(response=500, description="Error interno del servidor")
      * )
      *
-     */        
+     */
     public function index(Request $request);
 
     /**
@@ -282,12 +282,6 @@ interface ICollaboratorController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="user_status_id",
-     *           description="Estado del usuario",
-     *           type="integer",
-     *           example="1",
-     *         ),
-     *         @OA\Property(
      *           property="type_identification_id_relatives_person",
      *           description="Tipo de indentificación del familiar, es requerido con el estatus marital de casado",
      *           type="integer",
@@ -322,12 +316,6 @@ interface ICollaboratorController
      *           property="pers_relatives_person_desc",
      *           description="Descripción de la relación, es requerido con el estatus marital de casado",
      *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="relative_status_id",
-     *           description="Estado de la relación, es requerido con el estatus marital de casado",
-     *           type="integer",
-     *           example="1",
      *         ),
      *         @OA\Property(
      *           property="coll_email",
@@ -405,7 +393,7 @@ interface ICollaboratorController
      *           example="YYYY-MM-DD"
      *         ),
      *         @OA\Property(
-     *           property="coll_status_id",
+     *           property="status_id",
      *           description="Estado del colaborador",
      *           type="integer",
      *           example="1",
@@ -427,12 +415,6 @@ interface ICollaboratorController
      *           uniqueItems=true
      *         ),
      *         @OA\Property(
-     *           property="coll_education_level_status_id",
-     *           description="Estado de los niveles de educacion asociados al colaborador",
-     *           type="integer",
-     *           example="1",
-     *         ),
-     *         @OA\Property(
      *           property="campus[]",
      *           description="Identificadores de los campus",
      *           type="array",
@@ -441,12 +423,6 @@ interface ICollaboratorController
      *           ),
      *           example="[1, 2]",
      *           uniqueItems=true
-     *         ),
-     *         @OA\Property(
-     *           property="coll_camp_status_id",
-     *           description="Estado de los campus asociados al colaborador",
-     *           type="integer",
-     *           example="1",
      *         ),
      *       ),
      *     ),
@@ -487,7 +463,6 @@ interface ICollaboratorController
      *          "ethnic_id"         : "required|integer|exists:catalogs,id",
      *          "type_identification_id" : "required|integer|exists:tenant.catalogs,id",
      *          "email"      : "required|email|unique:tenant.users,email",
-     *          "user_status_id"      : "required|integer|exists:tenant.status,id",
      *          "type_identification_id_relatives_person": "required_if:status_marital_id,==,35|nullable|integer|exists:tenant.catalogs,id",
      *          "pers_identification_relatives_person" : "required_if:status_marital_id,==,35|nullable|unique:tenant.persons,pers_identification",
      *          "pers_firstname_relatives_person"       : "required_if:status_marital_id,==,35|nullable|string|max:255",
@@ -495,7 +470,6 @@ interface ICollaboratorController
      *          "pers_first_lastname_relatives_person"  : "required_if:status_marital_id,==,35|nullable|string|max:255",
      *          "pers_second_lastname_relatives_person" : "required_if:status_marital_id,==,35|nullable|string|max:255",
      *          "pers_relatives_person_desc" : "required_if:status_marital_id,==,35|nullable|string|max:255",
-     *          "relative_status_id" : "required|integer|exists:tenant.status,id",
      *          "coll_email"       : "required|email|unique:tenant.users,email",
      *          "coll_type"       : "required|string|max:1",
      *          "coll_journey_description"       : "required|string|max:3",
@@ -508,14 +482,12 @@ interface ICollaboratorController
      *          "coll_has_nomination"  : "nullable|digits_between:0,1",
      *          "coll_nomination_entering_date" : "nullable|date",
      *          "coll_nomination_leaving_date" : "nullable|date",
-     *          "coll_status_id" : "required|integer|exists:tenant.status,id",
+     *          "status_id" : "integer|exists:tenant.status,id",
      *          "education_level_principal_id":"required|integer|exists:tenant.education_levels,id",
      *          "education_levels":"required|array",
      *          "education_levels.*":"required|integer|exists:tenant.education_levels,id",
-     *          "coll_education_level_status_id" : "required|integer|exists:tenant.status,id",
      *          "campus":"required|array",
      *          "campus.*":"required|integer|exists:tenant.campus,id",
-     *          "coll_camp_status_id" : "required|integer|exists:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -742,7 +714,7 @@ interface ICollaboratorController
      *
      */
     public function changeStatus(Request $request, Collaborator $collaborator);
-    
+
     /**
      * @OA\Delete(
      *   path="/api/collaborators/{collaborator}",

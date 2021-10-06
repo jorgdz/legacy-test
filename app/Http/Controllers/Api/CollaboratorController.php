@@ -84,15 +84,15 @@ class CollaboratorController extends Controller implements ICollaboratorControll
     public function store(StoreCollaboratorRequest $request)
     {
         DB::beginTransaction();
-        try {        
+        try {
         //Person
         $person = new Person($request->all());
         $person->pers_is_provider = $request->get('coll_journey_description')=="TP"?1:$request->get('pers_is_provider');
         $this->personCache->save($person);
-        
+
         //si tiene discapacidad
         if($request->get('pers_has_disability')){
-            $person->disabilities()->sync($request->get('pers_disabilities'));             
+            $person->disabilities()->sync($request->get('pers_disabilities'));
         }
 
         //si esta casado
@@ -112,8 +112,8 @@ class CollaboratorController extends Controller implements ICollaboratorControll
             $relative->person_id = $person->id;
             $relative->type_kinship_id = $request->get('status_marital_id');
             $relative->rel_description = $request->get('pers_relatives_person_desc');
-            $relative->status_id = $request->get('relative_status_id');
-            $this->relativeCache->save($relative); 
+            $relative->status_id = $request->get('status_id');
+            $this->relativeCache->save($relative);
         }
 
         //Usuario
@@ -122,23 +122,23 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $password = Str::random(8);
         $user->password = Hash::make($password);
         $user->person_id = $person->id;
-        $user->status_id = $request->get('user_status_id');
+        $user->status_id = $request->get('status_id');
         $this->userCache->save($user);
-        
+
         if($request->get('coll_type')=="D"){
-            $profile = Profile::whereIn('keyword', ['docente'])->first();   
-            $roles = Role::whereIn('keyword', ['docente'])->get()->pluck('id')->toArray(); 
+            $profile = Profile::whereIn('keyword', ['docente'])->first();
+            $roles = Role::whereIn('keyword', ['docente'])->get()->pluck('id')->toArray();
             $activity = 'DOCENCIA';
         }else{
-            $profile = Profile::whereIn('keyword', ['administrativo'])->first();   
-            $roles = Role::whereIn('keyword', ['administrador'])->get()->pluck('id')->toArray(); 
+            $profile = Profile::whereIn('keyword', ['administrativo'])->first();
+            $roles = Role::whereIn('keyword', ['administrador'])->get()->pluck('id')->toArray();
             $activity = 'ADMINISTRATIVO';
         }
 
         //user-profile
         $userProfile = new UserProfile(['user_id'=>$user->id]);
         $userProfile->profile_id = $profile->id;
-        $userProfile->status_id = $request->get('user_status_id');
+        $userProfile->status_id = $request->get('status_id');
         $this->userProfileCache->save($userProfile);
 
         //Colaborador
@@ -148,7 +148,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $collaborator->coll_dependency = $request->get('coll_journey_description')=="TC"?1:$request->get('coll_dependency');
         $collaborator->coll_journey_hours = $request->get('coll_journey_description')=="TC"?40:($request->get('coll_journey_description')=="MT"?20:$request->get('position_company_id'));
         $collaborator->education_level_principal_id = $request->education_level_principal_id;
-        $collaborator->status_id = $request->get('coll_status_id');
+        $collaborator->status_id = $request->get('status_id');
         $collaborator = $this->collaboratorCache->save($collaborator);
         Collaborator::where('id', $collaborator->id)->update(['coll_contract_num' => $collaborator->id]);
 
@@ -157,7 +157,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
             $collaboratorEducationLevels = new CollaboratorEducationLevel();
             $collaboratorEducationLevels->collaborator_id = $collaborator->id;
             $collaboratorEducationLevels->education_level_id = $value;
-            $collaboratorEducationLevels->status_id = $request->get('coll_education_level_status_id');
+            $collaboratorEducationLevels->status_id = $request->get('status_id');
             $collaboratorEducationLevels->save();
         }
 
@@ -166,15 +166,15 @@ class CollaboratorController extends Controller implements ICollaboratorControll
             $collaboratorCampus = new CollaboratorCampus();
             $collaboratorCampus->collaborator_id = $collaborator->id;
             $collaboratorCampus->campus_id = $value;
-            $collaboratorCampus->status_id = $request->get('coll_camp_status_id');
+            $collaboratorCampus->status_id = $request->get('status_id');
             $collaboratorCampus->save();
         }
-        
+
 
         DB::commit();
 
         $userProfile->syncRoles($roles);
-        
+
         Mail::to($request->get('email'))->send(new EmailRegister($user,$password));
 
         return $this->success(__('messages.model-saved-successfully', ['model' => class_basename(Collaborator::class)]));
