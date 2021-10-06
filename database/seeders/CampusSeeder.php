@@ -15,7 +15,7 @@ class CampusSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('campus')->insert(
-            ['cam_name' => 'Prosperina' ,'cam_description' => 'Prosperina' ,'cam_direction' => 'Prosperina' ,'cam_initials' => 'pros' ,'status_id' => 1 ,'company_id' => 1]
+            ['cam_name' => 'Prosperina' ,'cam_description' => 'Prosperina' ,'cam_direction' => 'Prosperina' ,'cam_initials' => 'pros' ,'status_id' => 1]
         );
     }
 }

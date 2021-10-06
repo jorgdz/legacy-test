@@ -78,16 +78,6 @@ class Company extends Model implements AuditableContract
     protected $hidden = ['created_at','updated_at','deleted_at'];
 
     /**
-     * campus
-     *
-     * @return HasMany
-     */
-    public function campus () : HasMany
-    {
-    	return $this->hasMany(Campus::class);
-    }
-
-    /**
      * status
      *
      * @return BelongsTo

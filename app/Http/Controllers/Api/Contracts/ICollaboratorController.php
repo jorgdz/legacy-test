@@ -199,8 +199,9 @@ interface ICollaboratorController
      *         ),
      *         @OA\Property(
      *           property="pers_nationality",
-     *           description="Nacionalidad",
-     *           type="string",
+     *           description="ID Catalogo Nacionalidad",
+     *           type="integer",
+     *           example="86 al 92",
      *         ),
      *         @OA\Property(
      *           property="pers_is_provider",

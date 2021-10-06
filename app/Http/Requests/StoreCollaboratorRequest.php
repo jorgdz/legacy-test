@@ -45,7 +45,7 @@ class StoreCollaboratorRequest extends FormRequest
             'pers_study_reason'   => 'nullable|string|max:255',
             'pers_num_taxpayers_household'  => 'nullable|integer',
             'pers_has_vehicle'  => 'nullable|digits_between:0,1',
-            'pers_nationality'   => 'nullable|string|max:255',
+            'pers_nationality'   => 'required|integer|exists:tenant.catalogs,id',
             'pers_is_provider'  => 'nullable|digits_between:0,1',
             'pers_has_disability'  => 'nullable|digits_between:0,1',
             'vivienda_id'  => 'required|integer|exists:tenant.catalogs,id',

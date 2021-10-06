@@ -141,11 +141,6 @@ interface ICampusController
      *           description="Estado de la sede",
      *           type="integer",
      *         ),
-     *         @OA\Property(
-     *           property="company_id",
-     *           description="Compañia",
-     *           type="integer",
-     *         ),
      *       ),
      *     ),
      *   ),
@@ -156,7 +151,6 @@ interface ICampusController
      *         "cam_name"          : "required",
      *       "cam_direction"     : "required",
      *       "status_id"         : "required|integer|exists:tenant.status,id",
-     *       "company_id"        : "required|integer|exists:tenant.companies,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -260,11 +254,6 @@ interface ICampusController
      *         @OA\Property(
      *           property="status_id",
      *           description="Estado de la sede",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="company_id",
-     *           description="Compañia de la sede",
      *           type="integer",
      *         ),
      *       ),

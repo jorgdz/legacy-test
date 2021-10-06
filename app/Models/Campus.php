@@ -31,7 +31,7 @@ class Campus extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['company_id', 'status_id'];
+    protected $relations = ['status_id'];
 
     /**
      * dates
@@ -51,10 +51,9 @@ class Campus extends Model implements AuditableContract
         'cam_direction',
         'cam_initials',
         'status_id',
-        'company_id',
     ];
 
-    /* protected $auiditInclude = ['cam_name', 'cam_description', 'cam_direction', 'cam_initials', 'status_id','company_id']; */
+    /* protected $auiditInclude = ['cam_name', 'cam_description', 'cam_direction', 'cam_initials', 'status_id']; */
 
     /**
      * hidden
@@ -78,16 +77,6 @@ class Campus extends Model implements AuditableContract
     public function periods () : HasMany
     {
         return $this->hasMany(Period::class);
-    }
-
-    /**
-     * company
-     *
-     * @return BelongsTo
-     */
-    public function company () : BelongsTo
-    {
-        return $this->belongsTo(Company::class, 'company_id');
     }
 
     /**
