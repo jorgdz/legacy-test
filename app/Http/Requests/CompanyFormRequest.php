@@ -28,7 +28,7 @@ class CompanyFormRequest extends FormRequest
             'co_website' => 'required',
             'co_email'   => 'required:unique:tenant.companies,co_email',
             'status_id'  => 'required',
-            'co_ruc '    => 'required',
+            'co_ruc'    => 'required',
         ];
     }
 }
