@@ -46,5 +46,5 @@ return [
     'send-error-mail' => 'Hubo un inconveniente al enviar el correo, intente luego.',
     'send-error-mail' => 'hubo un inconveniente al enviar el correo, intente luego.',
     'sum-hour-collaborator'=>"Tipo de jornada :type_journey_dep debe tener exactamente :hours horas. Actualmente solo tiene :sum_hour_collaborator horas!",
-    'collaborator-is-inactive'=>'The collaborator is not active.',
+    'collaborator-is-inactive'=>'El colaborador no se encuentra activo.',
 ];

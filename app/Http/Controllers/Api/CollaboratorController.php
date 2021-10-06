@@ -28,11 +28,13 @@ use App\Http\Requests\UpdateCollaboratorRequest;
 use App\Models\Catalog;
 use App\Models\CollaboratorCampus;
 use App\Models\CollaboratorEducationLevel;
+use App\Models\CustomTenant;
 use App\Models\EducationLevel;
 use App\Models\Profile;
 use App\Models\Relative;
 use App\Models\Role;
 use App\Models\UserProfile;
+use App\Services\MailService;
 
 class CollaboratorController extends Controller implements ICollaboratorController
 {
@@ -48,6 +50,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
     private $userCache;
     private $userProfileCache;
     private $relativeCache;
+    private $mailService;
 
     /**
      * __construct
@@ -55,13 +58,14 @@ class CollaboratorController extends Controller implements ICollaboratorControll
      * @param  mixed $collaboratorCache
      * @return void
      */
-    public function __construct(CollaboratorCache $collaboratorCache,PersonCache $personCache,RelativeCache $relativeCache,UserCache $userCache, UserProfileCache $userProfileCache)
+    public function __construct(CollaboratorCache $collaboratorCache,PersonCache $personCache,RelativeCache $relativeCache,UserCache $userCache, UserProfileCache $userProfileCache, MailService $mailService)
     {
         $this->collaboratorCache = $collaboratorCache;
         $this->personCache = $personCache;
         $this->relativeCache = $relativeCache;
         $this->userCache = $userCache;
         $this->userProfileCache = $userProfileCache;
+        $this->mailService = $mailService;
     }
 
     /**
@@ -83,8 +87,6 @@ class CollaboratorController extends Controller implements ICollaboratorControll
      */
     public function store(StoreCollaboratorRequest $request)
     {
-        DB::beginTransaction();
-        try {
         //Person
         $person = new Person($request->all());
         $person->pers_is_provider = $request->get('coll_journey_description')=="TP"?1:$request->get('pers_is_provider');
@@ -170,19 +172,25 @@ class CollaboratorController extends Controller implements ICollaboratorControll
             $collaboratorCampus->save();
         }
 
-
-        DB::commit();
-
         $userProfile->syncRoles($roles);
 
-        Mail::to($request->get('email'))->send(new EmailRegister($user,$password));
+        $params = [
+            "template"  => 23,
+            "subject"   => "Registro de usuario",
+            "view"      => "mails.register",
+            "to" => array(
+                ["name" => NULL, "email" => $request->get('email')]
+            ),
+            "params" => [
+                "USERNAME" => $user->us_username,
+                "PASSWORD" => $password,
+                "LINK" => CustomTenant::current()->domain_client,
+            ],
+        ];
 
-        return $this->success(__('messages.model-saved-successfully', ['model' => class_basename(Collaborator::class)]));
+        $this->mailService->SendEmail($params);
 
-        }catch(Exception $ex){
-            DB::rollback();
-            throw new DatabaseException($ex->errorInfo[2]);
-        }
+        return $this->success(__('messages.success'));
     }
 
     /**
