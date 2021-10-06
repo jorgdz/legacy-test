@@ -3415,6 +3415,105 @@ class RoleSeeder extends Seeder
                 'parent_name_translated' => 'resumen de horas del colaborador',
                 'module_group' => 'academic'
             ],
+            /**
+            * Colaboradores 315-317
+            */
+            [
+               'name' => 'collaborators-listar-colaborador',
+               'alias' => 'Listar colaborador',
+               'description' => 'Listar todos los colaboradores',
+               'guard_name' => 'api',
+               'status_id' => 1,
+               'parent_name' => 'collaborator',
+               'parent_name_translated' => 'colaboradores',
+               'module_group' => 'academic'
+            ],
+            [
+               'name' => 'collaborators-actualizar-colaborador',
+               'alias' => 'Actualizar colaborador',
+               'description' => 'Actualiza un colaborador',
+               'guard_name' => 'api',
+               'status_id' => 1,
+               'parent_name' => 'collaborator',
+               'parent_name_translated' => 'colaboradores',
+               'module_group' => 'academic'
+            ],
+            [
+               'name' => 'collaborators-eliminar-colaborador',
+               'alias' => 'Eliminar colaborador',
+               'description' => 'Elimina un colaborador',
+               'guard_name' => 'api',
+               'status_id' => 1,
+               'parent_name' => 'collaborator',
+               'parent_name_translated' => 'colaboradores',
+               'module_group' => 'academic'
+            ],
+            /**
+            * Tipo Reportes 318-322
+            */
+            [
+               'name' => 'type-reports-listar-type-reports',
+               'alias' => 'Listar tipos de reportes',
+               'description' => 'Listar todos los departamentos',
+               'guard_name' => 'api',
+               'status_id' => 1,
+               'parent_name' => 'typeReport',
+               'parent_name_translated' => 'tipos de reportes',
+               'module_group' => 'academic'
+            ],
+            [
+               'name' => 'type-reports-obtener-type-report',
+               'alias' => 'Obtener tipo reporte',
+               'description' => 'Obtener un tipo reporte por su identificador',
+               'guard_name' => 'api',
+               'status_id' => 1,
+               'parent_name' => 'typeReport',
+               'parent_name_translated' => 'tipos de reportes',
+               'module_group' => 'academic'
+            ],
+            [
+               'name' => 'type-reports-crear-type-report',
+               'alias' => 'Crear tipo reporte',
+               'description' => 'Agregar un tipo reporte',
+               'guard_name' => 'api',
+               'status_id' => 1,
+               'parent_name' => 'typeReport',
+               'parent_name_translated' => 'tipos de reportes',
+               'module_group' => 'academic'
+            ],
+            [
+               'name' => 'type-reports-actualizar-type-report',
+               'alias' => 'Actualizar tipo reporte',
+               'description' => 'Actualizar un tipo reporte por su identificador',
+               'guard_name' => 'api',
+               'status_id' => 1,
+               'parent_name' => 'typeReport',
+               'parent_name_translated' => 'tipos de reportes',
+               'module_group' => 'academic'
+            ],
+            [
+               'name' => 'type-reports-borrar-type-report',
+               'alias' => 'Eliminar tipo reporte',
+               'description' => 'Eliminar tipo reporte por su identificador',
+               'guard_name' => 'api',
+               'status_id' => 1,
+               'parent_name' => 'typeReport',
+               'parent_name_translated' => 'tipos de reportes',
+               'module_group' => 'academic'
+            ],
+            /**
+            * Permisos 323
+            */
+            [
+                'name' => 'permissions-listar-permisos-traducidos',
+                'alias' => 'Listar permisos traducidos',
+                'description' => 'Lista todos los permisos traducidos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'permissions',
+                'parent_name_translated' => 'permisos',
+                'module_group' => 'configuration'
+             ],
         ]);
 
         /**
@@ -3932,7 +4031,7 @@ class RoleSeeder extends Seeder
             ['permission_id' => 290, 'role_id' => 1],
             ['permission_id' => 291, 'role_id' => 1],
             /**
-             * Areas 292-296
+             * Departamentos 292-296
              */
             ['permission_id' => 292, 'role_id' => 1],
             ['permission_id' => 293, 'role_id' => 1],
@@ -3944,7 +4043,6 @@ class RoleSeeder extends Seeder
              */
             ['permission_id' => 297, 'role_id' => 1],
             ['permission_id' => 298, 'role_id' => 1],
-
         ]);
 
         DB::connection('tenant')->table('role_has_permissions')->insert([
@@ -3976,9 +4074,585 @@ class RoleSeeder extends Seeder
             ['permission_id' => 312, 'role_id' => 1],
             ['permission_id' => 313, 'role_id' => 1],
             ['permission_id' => 314, 'role_id' => 1],
+            /**
+            * Colaboradores 315-317
+            */
+            ['permission_id' => 315, 'role_id' => 1],
+            ['permission_id' => 316, 'role_id' => 1],
+            ['permission_id' => 317, 'role_id' => 1],
+            /**
+            * Tipo Reportes 318-322
+            */
+            ['permission_id' => 318, 'role_id' => 1],
+            ['permission_id' => 319, 'role_id' => 1],
+            ['permission_id' => 320, 'role_id' => 1],
+            ['permission_id' => 321, 'role_id' => 1],
+            ['permission_id' => 322, 'role_id' => 1],
+            /**
+            * Permisos 323
+            */
+            ['permission_id' => 323, 'role_id' => 1],
         ]);
 
+        /**
+         *
+         *
+         *
+         * Permisos de Administrador
+         *
+         *
+         *
+         */
 
+        DB::connection('tenant')->table('role_has_permissions')->insert([
+            /**
+             * Perfiles
+             */
+            ['permission_id' => 1, 'role_id' => 2],
+            ['permission_id' => 2, 'role_id' => 2],
+            ['permission_id' => 3, 'role_id' => 2],
+            ['permission_id' => 4, 'role_id' => 2],
+            ['permission_id' => 5, 'role_id' => 2],
+            ['permission_id' => 6, 'role_id' => 2],
+            /**
+             * Roles
+             * (solo listar y obtener)
+             */
+            ['permission_id' => 7, 'role_id' => 2],
+            ['permission_id' => 8, 'role_id' => 2],
+            /**
+             * Permisos
+             * (solo listar y obtener)
+             */
+            ['permission_id' => 12, 'role_id' => 2],
+            ['permission_id' => 13, 'role_id' => 2],
+            /**
+             * Compañias
+             */
+            ['permission_id' => 17, 'role_id' => 2],
+            ['permission_id' => 18, 'role_id' => 2],
+            ['permission_id' => 19, 'role_id' => 2],
+            ['permission_id' => 20, 'role_id' => 2],
+            ['permission_id' => 21, 'role_id' => 2],
+            /**
+             * Sedes
+             */
+            ['permission_id' => 22, 'role_id' => 2],
+            ['permission_id' => 23, 'role_id' => 2],
+            ['permission_id' => 24, 'role_id' => 2],
+            ['permission_id' => 25, 'role_id' => 2],
+            ['permission_id' => 26, 'role_id' => 2],
+            /**
+             * Usuarios
+             */
+            ['permission_id' => 27, 'role_id' => 2],
+            ['permission_id' => 28, 'role_id' => 2],
+            ['permission_id' => 29, 'role_id' => 2],
+            ['permission_id' => 30, 'role_id' => 2],
+            ['permission_id' => 31, 'role_id' => 2],
+            ['permission_id' => 32, 'role_id' => 2],
+            ['permission_id' => 33, 'role_id' => 2],
+            ['permission_id' => 34, 'role_id' => 2],
+            ['permission_id' => 35, 'role_id' => 2],
+            /**
+             * Paralelos
+             */
+            ['permission_id' => 36, 'role_id' => 2],
+            ['permission_id' => 37, 'role_id' => 2],
+            ['permission_id' => 38, 'role_id' => 2],
+            ['permission_id' => 39, 'role_id' => 2],
+            ['permission_id' => 40, 'role_id' => 2],
+            ['permission_id' => 41, 'role_id' => 2],
+            ['permission_id' => 42, 'role_id' => 2],
+            /**
+             * Aulas
+             */
+            ['permission_id' => 43, 'role_id' => 2],
+            ['permission_id' => 44, 'role_id' => 2],
+            ['permission_id' => 45, 'role_id' => 2],
+            ['permission_id' => 46, 'role_id' => 2],
+            ['permission_id' => 47, 'role_id' => 2],
+            ['permission_id' => 48, 'role_id' => 2],
+            ['permission_id' => 49, 'role_id' => 2],
+            /**
+             * Pensum
+             */
+            ['permission_id' => 50, 'role_id' => 2],
+            ['permission_id' => 51, 'role_id' => 2],
+            ['permission_id' => 52, 'role_id' => 2],
+            ['permission_id' => 53, 'role_id' => 2],
+            ['permission_id' => 54, 'role_id' => 2],
+            /**
+             * Etapas
+             */
+            ['permission_id' => 55, 'role_id' => 2],
+            ['permission_id' => 56, 'role_id' => 2],
+            ['permission_id' => 57, 'role_id' => 2],
+            ['permission_id' => 58, 'role_id' => 2],
+            ['permission_id' => 59, 'role_id' => 2],
+            /**
+             * Tipos de Periodos
+             */
+            ['permission_id' => 60, 'role_id' => 2],
+            ['permission_id' => 61, 'role_id' => 2],
+            ['permission_id' => 62, 'role_id' => 2],
+            ['permission_id' => 63, 'role_id' => 2],
+            ['permission_id' => 64, 'role_id' => 2],
+            /**
+             * Mallas Academicas [Meshs] JS
+             */
+            ['permission_id' => 65, 'role_id' => 2],
+            ['permission_id' => 66, 'role_id' => 2],
+            ['permission_id' => 67, 'role_id' => 2],
+            ['permission_id' => 68, 'role_id' => 2],
+            ['permission_id' => 69, 'role_id' => 2],
+            /**
+             * Tipo Calificaciones
+             */
+            ['permission_id' => 70, 'role_id' => 2],
+            ['permission_id' => 71, 'role_id' => 2],
+            ['permission_id' => 72, 'role_id' => 2],
+            ['permission_id' => 73, 'role_id' => 2],
+            ['permission_id' => 74, 'role_id' => 2],
+            /**
+             * Tipos de Materias
+             */
+            ['permission_id' => 75, 'role_id' => 2],
+            ['permission_id' => 76, 'role_id' => 2],
+            ['permission_id' => 77, 'role_id' => 2],
+            ['permission_id' => 78, 'role_id' => 2],
+            ['permission_id' => 79, 'role_id' => 2],
+            /**
+             * Materias
+             */
+            ['permission_id' => 80, 'role_id' => 2],
+            ['permission_id' => 81, 'role_id' => 2],
+            ['permission_id' => 82, 'role_id' => 2],
+            ['permission_id' => 83, 'role_id' => 2],
+            ['permission_id' => 84, 'role_id' => 2],
+            /**
+             * Periodos por Etapas
+             */
+            ['permission_id' => 85, 'role_id' => 2],
+            ['permission_id' => 86, 'role_id' => 2],
+            ['permission_id' => 87, 'role_id' => 2],
+            ['permission_id' => 88, 'role_id' => 2],
+            ['permission_id' => 89, 'role_id' => 2],
+            /**
+             * User Colaboradores
+             */
+            ['permission_id' => 90, 'role_id' => 2],
+            ['permission_id' => 91, 'role_id' => 2],
+            /**
+             * Periodos
+             */
+            ['permission_id' => 92, 'role_id' => 2],
+            ['permission_id' => 93, 'role_id' => 2],
+            ['permission_id' => 94, 'role_id' => 2],
+            ['permission_id' => 95, 'role_id' => 2],
+            ['permission_id' => 96, 'role_id' => 2],
+            /**
+             * Materias por Malla
+             */
+            ['permission_id' => 97, 'role_id' => 2],
+            ['permission_id' => 98, 'role_id' => 2],
+            ['permission_id' => 99, 'role_id' => 2],
+            ['permission_id' => 100, 'role_id' => 2],
+            ['permission_id' => 101, 'role_id' => 2],
+            /**
+             * Ofertas
+             */
+            ['permission_id' => 102, 'role_id' => 2],
+            ['permission_id' => 103, 'role_id' => 2],
+            ['permission_id' => 104, 'role_id' => 2],
+            ['permission_id' => 105, 'role_id' => 2],
+            ['permission_id' => 106, 'role_id' => 2],
+            /**
+             * Horarios 107-111
+             */
+            ['permission_id' => 107, 'role_id' => 2],
+            ['permission_id' => 108, 'role_id' => 2],
+            ['permission_id' => 109, 'role_id' => 2],
+            ['permission_id' => 110, 'role_id' => 2],
+            ['permission_id' => 111, 'role_id' => 2],
+            /**
+             * Institutos 112-116
+             */
+            ['permission_id' => 112, 'role_id' => 2],
+            ['permission_id' => 113, 'role_id' => 2],
+            ['permission_id' => 114, 'role_id' => 2],
+            ['permission_id' => 115, 'role_id' => 2],
+            ['permission_id' => 116, 'role_id' => 2],
+            ['permission_id' => 117, 'role_id' => 2],
+            /**
+             * Tipo Institutos 117-121
+             */
+            ['permission_id' => 118, 'role_id' => 2],
+            ['permission_id' => 119, 'role_id' => 2],
+            ['permission_id' => 120, 'role_id' => 2],
+            ['permission_id' => 121, 'role_id' => 2],
+            /**
+             * Mail 122-124
+             */
+            ['permission_id' => 122, 'role_id' => 2],
+            ['permission_id' => 123, 'role_id' => 2],
+            ['permission_id' => 124, 'role_id' => 2],
+            /**
+             * Estado Materia 125-129
+             */
+            ['permission_id' => 125, 'role_id' => 2],
+            ['permission_id' => 126, 'role_id' => 2],
+            ['permission_id' => 127, 'role_id' => 2],
+            ['permission_id' => 128, 'role_id' => 2],
+            ['permission_id' => 129, 'role_id' => 2],
+            /**
+             * Usuario 130-132
+             */
+            ['permission_id' => 130, 'role_id' => 2],
+            ['permission_id' => 131, 'role_id' => 2],
+            ['permission_id' => 132, 'role_id' => 2],
+            /**
+             * Niveles Educativos 133-137
+             */
+            ['permission_id' => 133, 'role_id' => 2],
+            ['permission_id' => 134, 'role_id' => 2],
+            ['permission_id' => 135, 'role_id' => 2],
+            ['permission_id' => 136, 'role_id' => 2],
+            ['permission_id' => 137, 'role_id' => 2],
+            /**
+             * Tipo Estudiante 138-139
+             */
+            ['permission_id' => 138, 'role_id' => 2],
+            ['permission_id' => 139, 'role_id' => 2],
+            /**
+             * Tipo Documento 140-144
+             */
+            ['permission_id' => 140, 'role_id' => 2],
+            ['permission_id' => 141, 'role_id' => 2],
+            ['permission_id' => 142, 'role_id' => 2],
+            ['permission_id' => 143, 'role_id' => 2],
+            ['permission_id' => 144, 'role_id' => 2],
+            /**
+             * Grupo Economico 145-149
+             */
+            ['permission_id' => 145, 'role_id' => 2],
+            ['permission_id' => 146, 'role_id' => 2],
+            ['permission_id' => 147, 'role_id' => 2],
+            ['permission_id' => 148, 'role_id' => 2],
+            ['permission_id' => 149, 'role_id' => 2],
+            /**
+             * Tipos Discapacidad 150-151
+             */
+            ['permission_id' => 150, 'role_id' => 2],
+            ['permission_id' => 151, 'role_id' => 2],
+            /**
+             * Tipo sangre 152-153
+             */
+            ['permission_id' => 152, 'role_id' => 2],
+            ['permission_id' => 153, 'role_id' => 2],
+            /**
+             * Tipo Educacion 154-155
+             */
+            ['permission_id' => 154, 'role_id' => 2],
+            ['permission_id' => 155, 'role_id' => 2],
+            /**
+             * Persona Trabajo 156-161
+             */
+            ['permission_id' => 156, 'role_id' => 2],
+            ['permission_id' => 157, 'role_id' => 2],
+            ['permission_id' => 158, 'role_id' => 2],
+            ['permission_id' => 159, 'role_id' => 2],
+            ['permission_id' => 160, 'role_id' => 2],
+            ['permission_id' => 161, 'role_id' => 2],
+            /**
+             * Criterio Estudiante 163-167
+             */
+            ['permission_id' => 163, 'role_id' => 2],
+            ['permission_id' => 164, 'role_id' => 2],
+            ['permission_id' => 165, 'role_id' => 2],
+            ['permission_id' => 166, 'role_id' => 2],
+            ['permission_id' => 167, 'role_id' => 2],
+            /**
+             * Record Estudiantil 168-172
+             */
+            ['permission_id' => 168, 'role_id' => 2],
+            ['permission_id' => 169, 'role_id' => 2],
+            ['permission_id' => 170, 'role_id' => 2],
+            ['permission_id' => 171, 'role_id' => 2],
+            ['permission_id' => 172, 'role_id' => 2],
+            /**
+             * Oferta 173-174
+             */
+            ['permission_id' => 173, 'role_id' => 2],
+            ['permission_id' => 174, 'role_id' => 2],
+            /**
+             * Periodo 175-176
+             */
+            ['permission_id' => 175, 'role_id' => 2],
+            ['permission_id' => 176, 'role_id' => 2],
+            /**
+             * Persona 177-181
+             */
+            ['permission_id' => 177, 'role_id' => 2],
+            ['permission_id' => 178, 'role_id' => 2],
+            ['permission_id' => 179, 'role_id' => 2],
+            ['permission_id' => 180, 'role_id' => 2],
+            ['permission_id' => 181, 'role_id' => 2],
+            /**
+             * Contacto Emergencia 182-186
+             */
+            ['permission_id' => 182, 'role_id' => 2],
+            ['permission_id' => 183, 'role_id' => 2],
+            ['permission_id' => 184, 'role_id' => 2],
+            ['permission_id' => 185, 'role_id' => 2],
+            ['permission_id' => 186, 'role_id' => 2],
+            /**
+             * Periodos 187-188
+             */
+            ['permission_id' => 187, 'role_id' => 2],
+            ['permission_id' => 188, 'role_id' => 2],
+            /**
+             * Etiqueta Estudiante 189-193
+             */
+            ['permission_id' => 189, 'role_id' => 2],
+            ['permission_id' => 190, 'role_id' => 2],
+            ['permission_id' => 191, 'role_id' => 2],
+            ['permission_id' => 192, 'role_id' => 2],
+            ['permission_id' => 193, 'role_id' => 2],
+            /**
+             * Persona 194
+             */
+            ['permission_id' => 194, 'role_id' => 2],
+            /**
+             * Catalogar 195-199
+             */
+            ['permission_id' => 195, 'role_id' => 2],
+            ['permission_id' => 196, 'role_id' => 2],
+            ['permission_id' => 197, 'role_id' => 2],
+            ['permission_id' => 198, 'role_id' => 2],
+            ['permission_id' => 199, 'role_id' => 2],
+            /**
+             * Documentos Estudiante 200-205
+             */
+            ['permission_id' => 200, 'role_id' => 2],
+            ['permission_id' => 201, 'role_id' => 2],
+            ['permission_id' => 202, 'role_id' => 2],
+            ['permission_id' => 203, 'role_id' => 2],
+            ['permission_id' => 204, 'role_id' => 2],
+            ['permission_id' => 205, 'role_id' => 2],
+            /**
+             * Estados 206
+             */
+            ['permission_id' => 206, 'role_id' => 2],
+            /**
+             * Mencion 207-208
+             */
+            ['permission_id' => 207, 'role_id' => 2],
+            ['permission_id' => 208, 'role_id' => 2],
+            /**
+             * Tipo progama estudiante 209-213
+             */
+            ['permission_id' => 209, 'role_id' => 2],
+            ['permission_id' => 210, 'role_id' => 2],
+            ['permission_id' => 211, 'role_id' => 2],
+            ['permission_id' => 212, 'role_id' => 2],
+            ['permission_id' => 213, 'role_id' => 2],
+            ['permission_id' => 214, 'role_id' => 2],
+            /**
+             * Familia 214-219
+             */
+            ['permission_id' => 215, 'role_id' => 2],
+            ['permission_id' => 216, 'role_id' => 2],
+            ['permission_id' => 217, 'role_id' => 2],
+            ['permission_id' => 218, 'role_id' => 2],
+            ['permission_id' => 219, 'role_id' => 2],
+            /**
+             * Categoria Estados 220
+             */
+            ['permission_id' => 220, 'role_id' => 2],
+            /**
+             * Estudiantes 221-224
+             */
+            ['permission_id' => 221, 'role_id' => 2],
+            ['permission_id' => 222, 'role_id' => 2],
+            ['permission_id' => 223, 'role_id' => 2],
+            ['permission_id' => 224, 'role_id' => 2],
+            /**
+             * Materia Malla 225-226
+             */
+            ['permission_id' => 225, 'role_id' => 2],
+            ['permission_id' => 226, 'role_id' => 2],
+            /**
+             * Persona 227
+             */
+            ['permission_id' => 227, 'role_id' => 2],
+            /**
+             * Materia Malla 228
+             */
+            ['permission_id' => 228, 'role_id' => 2],
+            /**
+             * Simbology 229-233
+             */
+            ['permission_id' => 229, 'role_id' => 2],
+            ['permission_id' => 230, 'role_id' => 2],
+            ['permission_id' => 231, 'role_id' => 2],
+            ['permission_id' => 232, 'role_id' => 2],
+            ['permission_id' => 233, 'role_id' => 2],
+            /**
+             * Simbologia Oferta 234-235
+             */
+            ['permission_id' => 234, 'role_id' => 2],
+            ['permission_id' => 235, 'role_id' => 2],
+            /**
+             * Record de Programa Estudiantil 236-241
+             */
+            ['permission_id' => 236, 'role_id' => 2],
+            ['permission_id' => 237, 'role_id' => 2],
+            ['permission_id' => 238, 'role_id' => 2],
+            ['permission_id' => 239, 'role_id' => 2],
+            ['permission_id' => 240, 'role_id' => 2],
+            ['permission_id' => 241, 'role_id' => 2],
+            /**
+             * Record de Periodo Estudiantil 242-246
+             */
+            ['permission_id' => 242, 'role_id' => 2],
+            ['permission_id' => 243, 'role_id' => 2],
+            ['permission_id' => 244, 'role_id' => 2],
+            ['permission_id' => 245, 'role_id' => 2],
+            ['permission_id' => 246, 'role_id' => 2],
+            /**
+             * Tipo Aulas 247-251
+             */
+            ['permission_id' => 247, 'role_id' => 2],
+            ['permission_id' => 248, 'role_id' => 2],
+            ['permission_id' => 249, 'role_id' => 2],
+            ['permission_id' => 250, 'role_id' => 2],
+            ['permission_id' => 251, 'role_id' => 2],
+            /**
+             * Estudiante 252-253
+             */
+            ['permission_id' => 252, 'role_id' => 2],
+            ['permission_id' => 253, 'role_id' => 2],
+            /**
+             * Cargo 254-260
+             */
+            ['permission_id' => 254, 'role_id' => 2],
+            ['permission_id' => 255, 'role_id' => 2],
+            ['permission_id' => 256, 'role_id' => 2],
+            ['permission_id' => 257, 'role_id' => 2],
+            ['permission_id' => 258, 'role_id' => 2],
+            ['permission_id' => 259, 'role_id' => 2],
+            ['permission_id' => 260, 'role_id' => 2],
+            /**
+             * Componente 261-265
+             */
+            ['permission_id' => 261, 'role_id' => 2],
+            ['permission_id' => 262, 'role_id' => 2],
+            ['permission_id' => 263, 'role_id' => 2],
+            ['permission_id' => 264, 'role_id' => 2],
+            ['permission_id' => 265, 'role_id' => 2],
+            /**
+             * Detalle Materia Malla 266-270
+             */
+            ['permission_id' => 266, 'role_id' => 2],
+            ['permission_id' => 267, 'role_id' => 2],
+            ['permission_id' => 268, 'role_id' => 2],
+            ['permission_id' => 269, 'role_id' => 2],
+            ['permission_id' => 270, 'role_id' => 2],
+            /**
+             * Componente Aprendizaje 271-275
+             */
+            ['permission_id' => 271, 'role_id' => 2],
+            ['permission_id' => 272, 'role_id' => 2],
+            ['permission_id' => 273, 'role_id' => 2],
+            ['permission_id' => 274, 'role_id' => 2],
+            ['permission_id' => 275, 'role_id' => 2],
+            /**
+             * Modelo Calificacion 276-280
+             */
+            ['permission_id' => 276, 'role_id' => 2],
+            ['permission_id' => 277, 'role_id' => 2],
+            ['permission_id' => 278, 'role_id' => 2],
+            ['permission_id' => 279, 'role_id' => 2],
+            ['permission_id' => 280, 'role_id' => 2],
+            /**
+             * Convenios 281-286
+             */
+            ['permission_id' => 281, 'role_id' => 2],
+            ['permission_id' => 282, 'role_id' => 2],
+            ['permission_id' => 283, 'role_id' => 2],
+            ['permission_id' => 284, 'role_id' => 2],
+            ['permission_id' => 285, 'role_id' => 2],
+            ['permission_id' => 286, 'role_id' => 2],
+            /**
+             * Areas 287-291
+             */
+            ['permission_id' => 287, 'role_id' => 2],
+            ['permission_id' => 288, 'role_id' => 2],
+            ['permission_id' => 289, 'role_id' => 2],
+            ['permission_id' => 290, 'role_id' => 2],
+            ['permission_id' => 291, 'role_id' => 2],
+            /**
+             * Areas 292-296
+             */
+            ['permission_id' => 292, 'role_id' => 2],
+            ['permission_id' => 293, 'role_id' => 2],
+            ['permission_id' => 294, 'role_id' => 2],
+            ['permission_id' => 295, 'role_id' => 2],
+            ['permission_id' => 296, 'role_id' => 2],
+            /**
+             * Colaboradores 297-298
+             */
+            ['permission_id' => 297, 'role_id' => 2],
+            ['permission_id' => 298, 'role_id' => 2],
+            /**
+             * Nivel Educativo Aula 299-303
+             */
+            ['permission_id' => 299, 'role_id' => 2],
+            ['permission_id' => 300, 'role_id' => 2],
+            ['permission_id' => 301, 'role_id' => 2],
+            ['permission_id' => 302, 'role_id' => 2],
+            ['permission_id' => 303, 'role_id' => 2],
+            /**
+             * Actualizar Foto Estudiante 304
+             */
+            ['permission_id' => 304, 'role_id' => 2],
+            /**
+             * Horas Colaborador 305-309
+             */
+            ['permission_id' => 305, 'role_id' => 2],
+            ['permission_id' => 306, 'role_id' => 2],
+            ['permission_id' => 307, 'role_id' => 2],
+            ['permission_id' => 308, 'role_id' => 2],
+            ['permission_id' => 309, 'role_id' => 2],
+            /**
+             * Resumen Horas 310-314
+             */
+            ['permission_id' => 310, 'role_id' => 2],
+            ['permission_id' => 311, 'role_id' => 2],
+            ['permission_id' => 312, 'role_id' => 2],
+            ['permission_id' => 313, 'role_id' => 2],
+            ['permission_id' => 314, 'role_id' => 2],
+            /**
+            * Colaboradores 315-317
+            */
+            ['permission_id' => 315, 'role_id' => 2],
+            ['permission_id' => 316, 'role_id' => 2],
+            ['permission_id' => 317, 'role_id' => 2],
+            /**
+            * Tipo Reportes 318-322
+            */
+            ['permission_id' => 318, 'role_id' => 2],
+            ['permission_id' => 319, 'role_id' => 2],
+            ['permission_id' => 320, 'role_id' => 2],
+            ['permission_id' => 321, 'role_id' => 2],
+            ['permission_id' => 322, 'role_id' => 2],
+            /**
+            * Permisos 323
+            * (Solo listar y obtener)
+            */
+            ['permission_id' => 323, 'role_id' => 2],
+        ]);
 
         /**
          *
@@ -3991,12 +4665,14 @@ class RoleSeeder extends Seeder
          */
         DB::connection('tenant')->table('role_has_permissions')->insert([
             /**
-             * Colaboradores 297-298
+             * Colaboradores 297-298 // 315-317
              */
             ['permission_id' => 297, 'role_id' => 16],
             ['permission_id' => 298, 'role_id' => 16],
+            ['permission_id' => 315, 'role_id' => 16],
+            ['permission_id' => 316, 'role_id' => 16],
+            ['permission_id' => 317, 'role_id' => 16],
         ]);
-
 
         /**
          *
