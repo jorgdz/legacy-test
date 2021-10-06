@@ -26,7 +26,7 @@ class CompanyFormRequest extends FormRequest
         return [
             'co_name'    => 'required',
             'co_website' => 'required',
-            'co_email'   => 'required:unique:tenant.companies,co_email',
+            'co_email'   => "required:unique:tenant.companies,co_email,{$this->route('company')->id}",
             'status_id'  => 'required',
             'co_ruc'    => 'required',
         ];

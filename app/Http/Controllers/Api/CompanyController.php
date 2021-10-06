@@ -6,11 +6,9 @@ use App\Models\Company;
 use App\Cache\CompanyCache;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CompanyFormRequest;
-use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\ICompanyController;
+use App\Http\Requests\CompanyFormRequest;
 
 /**
  * CompanyController
@@ -43,19 +41,6 @@ class CompanyController extends Controller implements ICompanyController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CompanyFormRequest $request)
-    {
-        $company = new Company($request->all());
-        $company = $this->companyCache->save($company);
-        return $this->success($company, Response::HTTP_CREATED);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -73,7 +58,7 @@ class CompanyController extends Controller implements ICompanyController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyFormRequest $request, Company $company)
     {
         $company->fill($request->all());
 
@@ -81,16 +66,5 @@ class CompanyController extends Controller implements ICompanyController
             return $this->information(__('messages.nochange'));
 
         return $this->success($this->companyCache->save($company));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy (Company $company)
-    {
-        return $this->success($this->companyCache->destroy($company));
     }
 }

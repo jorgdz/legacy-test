@@ -42,7 +42,7 @@ class ListBaseRepository
     public function withModelRelations (array $relations) : ListBaseRepository {
         if (count($relations)>0){
             $this->model = $this->model->with($relations);
-        }      
+        }
         return $this;
     }
 
@@ -87,11 +87,11 @@ class ListBaseRepository
                     $query = $query->where(function ($query) use ($request, $fields) {
                         for($i = 0; $i < count($fields); $i++) {
                             $query->orwhere($fields[$i], 'like',  '%' . strtolower($request->search) .'%');
-                        }              
+                        }
                     });
                 } else {
                     if(count($relations) > 0) {
-                
+
                         for($i = 0; $i < count($this->getParents()); $i++) {
 
                             $query->select($table.'.*')->join($this->getParent($i), function($join) use ($i, $keyName, $table, $relations) {
@@ -137,6 +137,15 @@ class ListBaseRepository
         $type_sort = $request->type_sort ? $request->type_sort : 'desc';
 
         return $this->model->orderBy($sort, $type_sort)->paginate($request->size ? $request->size : 100);
+    }
+
+    /**
+     * first
+     *
+     * @return void
+     */
+    public function first() {
+        return $this->model->first();
     }
 
     /**

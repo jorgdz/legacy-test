@@ -17,10 +17,6 @@ class DefaultExampleSeeder extends Seeder
      */
     public function run()
     {
-        DB::connection('tenant')->table('companies')->insert([
-            ['co_name' => 'com1 name', 'co_description' => 'com1 desc', 'co_website' => 'comp1.test.com', 'co_assigned_site' => 'comp1.v2.test.com', 'co_facebook' => 'com1fb', 'co_instagram' => 'com1ig', 'co_linkedin' => 'com1link', 'co_youtube' => 'comp1yt', 'co_info_mail' => 'com1@gmail.com', 'co_matrix' => 'comp1 matrix', 'co_logo' => 'logo.png', 'co_color' => '#f2f2f2', 'co_pay_notification' => 'not1', 'co_ruc' => '0943909034001', 'co_business_name' => 'comp 1rs', 'co_comercial_name' => 'name', 'co_legal_identification' => '0989239045', 'co_agent_legal' => '0989239045', 'co_person_type' => 'per1', 'co_direction' => 'nfierio', 'co_phone' => '0945656563', 'co_email' => 'emai@gmail.com', 'status_id' => 1],
-        ]);
-
         DB::connection('tenant')->table('campus')->insert([
             ['cam_name' => 'La mejor sede', 'cam_description' => 'Descripción de la mejor sede', 'cam_direction' => NULL, 'cam_initials' => 'mse', 'status_id' => 1, 'company_id' => 1],
             ['cam_name' => 'Nuevo', 'cam_description' => 'Nueva sede', 'cam_direction' => NULL, 'cam_initials' => 'nse', 'status_id' => 1, 'company_id' => 1],

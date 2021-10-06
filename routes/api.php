@@ -165,10 +165,10 @@ Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])
  */
 Route::get('/companies', [CompanyController::class, 'index'])->middleware(['auth:sanctum', 'permission:companies-listar-companias']);
 Route::get('/companies/{company}', [CompanyController::class, 'show'])->middleware(['auth:sanctum', 'permission:companies-obtener-compania']);
-Route::post('/companies', [CompanyController::class, 'store'])->middleware(['auth:sanctum', 'permission:companies-crear-compania']);
+//Route::post('/companies', [CompanyController::class, 'store'])->middleware(['auth:sanctum', 'permission:companies-crear-compania']);
 Route::patch('/companies/{company}', [CompanyController::class, 'update'])->middleware(['auth:sanctum', 'permission:companies-actualizar-compania']);
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->middleware(['auth:sanctum', 'permission:companies-actualizar-compania']);
-Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:companies-borrar-compania']);
+//Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:companies-borrar-compania']);
 
 /**
  *
@@ -505,7 +505,7 @@ Route::post('/agreements/{agreement}/enabled', [AgreementController::class, 'ena
 Route::post('/agreements/{agreement}/disabled', [AgreementController::class, 'disabled'])->middleware(['auth:sanctum', 'permission:agreement-desactivar-convenio']);
 
 /**
- * Classroom Education Level 
+ * Classroom Education Level
  */
 Route::get('/classroom-education-levels', [ClassroomEducationLevelController::class, 'index'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-listar-aula-niveleconomico']);
 Route::get('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'show'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-obtener-aula-niveleconomico']);

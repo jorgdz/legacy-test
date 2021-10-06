@@ -89,4 +89,19 @@ class CompanyRepository extends BaseRepository
     public function __construct (Company $company) {
         parent::__construct($company);
     }
+
+    /**
+     * get all information
+     *
+     * @return model
+     *
+     */
+    public function all ($request) {
+        if (isset($request['data']))
+            return ($request['data'] === 'all') ? $this->data->first() : [];
+
+        return $this->data
+            ->withModelRelations($this->relations)
+            ->first();
+        }
 }
