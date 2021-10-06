@@ -126,4 +126,15 @@ class PermissionController extends Controller implements IPermissionController
             return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
+
+
+     /**
+     * Display a listing of the resource grouped.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showPermissionsGroupedParentNameTraslate(Request $request){
+        $permissions = $this->repository->all($request)->groupBy('parent_name_translated');
+        return $this->success($permissions);
+    }
 }
