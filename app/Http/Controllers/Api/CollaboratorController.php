@@ -24,9 +24,11 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailRegister;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\DatabaseException;
+use App\Http\Requests\UpdateCollaboratorRequest;
 use App\Models\Catalog;
 use App\Models\CollaboratorCampus;
 use App\Models\CollaboratorEducationLevel;
+use App\Models\EducationLevel;
 use App\Models\Profile;
 use App\Models\Relative;
 use App\Models\Role;
@@ -201,13 +203,61 @@ class CollaboratorController extends Controller implements ICollaboratorControll
      * @param  mixed $collaborator
      * @return void
      */
-    public function update(Request $request, Collaborator $collaborator)
+    public function update(UpdateCollaboratorRequest $request, Collaborator $collaborator)
     {
+        // if($collaborator->coll_type == "D"){
+        //     $old_profile = Profile::whereIn('keyword', ['docente'])->first();
+        // }else{
+        //     $old_profile = Profile::whereIn('keyword', ['administrativo'])->first();
+        // }
+
+        // if($request->get('coll_type')=="D"){
+        //     $profile = Profile::whereIn('keyword', ['docente'])->first();   
+        //     $roles = Role::whereIn('keyword', ['docente'])->first(); 
+        //     $activity = 'DOCENCIA';
+        // }else{
+        //     $profile = Profile::whereIn('keyword', ['administrativo'])->first();   
+        //     $roles = Role::whereIn('keyword', ['administrador'])->first(); 
+        //     $activity = 'ADMINISTRATIVO';
+        // }
+
         $collaborator->fill($request->all());
+
         if ($collaborator->isClean())
             return $this->information(__('messages.nochange'));
 
+        // $userProfile = $collaborator->user->userProfiles->where('profile_id', $old_profile->id)->first();
+
+        // $userProfile->profile_id = $profile->id;
+
+        // $userProfile->roles()->sync($roles->id);
+
         return $this->success($this->collaboratorCache->save($collaborator));
+    }
+    
+    /**
+     * changeStatus
+     *
+     * @param  mixed $request
+     * @param  mixed $collaborator
+     * @return void
+     */
+    public function changeStatus(Request $request, Collaborator $collaborator)
+    {
+        $collaborator->status_id == 1 ? $collaborator->status_id = 2 : $collaborator->status_id = 1;
+        $collaborator->coll_disabled_reason = $request->coll_disabled_reason;
+
+        return $this->success($this->collaboratorCache->save($collaborator));
+    }
+    
+    /**
+     * getCollaboratorsPerEducationLvl
+     *
+     * @param  mixed $educationlevel
+     * @return void
+     */
+    public function getCollaboratorsPerEducationLvl ($educationlevel) {
+        return $this->success($this->collaboratorCache->getCollaboratorsPerEducationLvl($educationlevel));
     }
 
     /**

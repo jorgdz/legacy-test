@@ -2,6 +2,7 @@
 
 namespace App\Cache;
 
+use App\Models\Collaborator;
 use App\Repositories\CollaboratorRepository;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,6 +37,12 @@ class CollaboratorCache extends BaseCache
     public function find ($id) {
         return $this->cache::remember($this->key, now()->addMinutes($this->ttl), function () use ($id) {
             return $this->repository->find($id);
+        });
+    }
+
+    public function getCollaboratorsPerEducationLvl ($educationlevel) {
+        return $this->cache::remember($this->key, now()->addMinutes($this->ttl), function () use ($educationlevel) {
+            return Collaborator::where('education_level_principal_id', $educationlevel)->paginate();
         });
     }
 

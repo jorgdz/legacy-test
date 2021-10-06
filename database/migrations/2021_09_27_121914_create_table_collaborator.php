@@ -45,6 +45,7 @@ class CreateTableCollaborator extends Migration
             $table->boolean('coll_has_nomination')->nullable();
             $table->timestamp('coll_nomination_entering_date')->nullable();
             $table->timestamp('coll_nomination_leaving_date')->nullable();
+            $table->timestamp('coll_disabled_reason')->nullable();
 
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

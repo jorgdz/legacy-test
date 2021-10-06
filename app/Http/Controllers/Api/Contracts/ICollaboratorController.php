@@ -5,10 +5,86 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Models\Collaborator;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCollaboratorRequest;
+use App\Http\Requests\UpdateCollaboratorRequest;
 
 interface ICollaboratorController
 {
-    
+    /**
+     * @OA\Get(
+     *   path="/api/collaborators",
+     *   tags={"Colaboradores"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Listar los colaboradores",
+     *   description="Muestra todos los colaboradores en formato JSON",
+     *   operationId="getAllCollaborators",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="size",
+     *     description="Numero de elementos por pagina",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="10"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="sort",
+     *     description="Ordenar por el campo",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="id"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_sort",
+     *     description="Tipo de orden",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="asc"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */        
     public function index(Request $request);
 
     /**
@@ -489,10 +565,262 @@ interface ICollaboratorController
      */
     public function show(Request $request,Collaborator $student);
 
-    
-    public function update(Request $request, Collaborator $student);
+    /**
+     * @OA\Put(
+     *   path="/api/collaborators/{collaborator}",
+     *   tags={"Colaboradores"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Actualizar colaborador",
+     *   description="Actualizar un colaborador.",
+     *   operationId="updateCollaborator",
+     *   @OA\Parameter(
+     *     name="collaborator",
+     *     description="Id del colaborador",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="coll_email",
+     *           description="Correo electronico del colaborador",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="coll_journey_description",
+     *           description="Tipo de jornada laboral: TC=Tiempo completo & MT=Medio tiempo & TP=Tiempo por Hora",
+     *           type="string",
+     *           example="TC/MT/TP",
+     *         ),
+     *         @OA\Property(
+     *           property="coll_dependency",
+     *           description="Trabaja bajo dependencia, es opcional para MT(Medio tiempo)",
+     *           type="integer",
+     *           example="1/0"
+     *         ),
+     *         @OA\Property(
+     *           property="coll_journey_hours",
+     *           description="Tiempo de jornada en horas, es requerido con el tipo de jornada laboral TP(Tiempo por Hora)",
+     *           type="integer",
+     *           example="12",
+     *         ),
+     *         @OA\Property(
+     *           property="position_company_id",
+     *           description="Cargo o posición",
+     *           type="integer",
+     *           example="1",
+     *         ),
+     *         @OA\Property(
+     *           property="coll_entering_date",
+     *           description="Fecha de ingreso del colaborador",
+     *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
+     *         ),
+     *         @OA\Property(
+     *           property="coll_leaving_date",
+     *           description="Fecha de salida del colaborador",
+     *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
+     *         ),
+     *         @OA\Property(
+     *           property="coll_membership_num",
+     *           description="Número de afiliación",
+     *           type="integer",
+     *           example="1",
+     *         ),
+     *         @OA\Property(
+     *           property="coll_has_nomination",
+     *           description="Tiene nombramiento",
+     *           type="integer",
+     *           example="1/0"
+     *         ),
+     *         @OA\Property(
+     *           property="coll_nomination_entering_date",
+     *           description="Fecha de inicio del nombramiento",
+     *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
+     *         ),
+     *         @OA\Property(
+     *           property="coll_nomination_leaving_date",
+     *           description="Fecha fin del nombramiento",
+     *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
+     *         ),
+     *         @OA\Property(
+     *           property="status_id",
+     *           description="Estado del colaborador",
+     *           type="integer",
+     *           example="1",
+     *         ),
+     *         @OA\Property(
+     *           property="education_level_principal_id",
+     *           description="Nivel de educacion principal asociado al colaborador",
+     *           type="integer",
+     *           example="1",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *           "clt_name" : "requierd|string",
+     *           "status_id" : "integer|exists:tenant.status,id",
+     *      },
+     *   )),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function update(UpdateCollaboratorRequest $request, Collaborator $collaborator);
 
+        /**
+     * @OA\Patch(
+     *   path="/api/collaborators/{collaborator}",
+     *   tags={"Colaboradores"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Cambiar estado Colaborador",
+     *   description="Alterna el estado del colaborador entre activo o inactivo por Id",
+     *   operationId="statusCollaborator",
+     *   @OA\Parameter(
+     *     name="collaborator",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="coll_disabled_reason",
+     *           description="Rason de la  desactivacion",
+     *           type="string",
+     *           example="muy vago este bro",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function changeStatus(Request $request, Collaborator $collaborator);
     
-    public function destroy(Collaborator $student);
+    /**
+     * @OA\Delete(
+     *   path="/api/collaborators/{collaborator}",
+     *   tags={"Colaboradores"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Eliminar Colaborador",
+     *   description="Eliminar colaborador por Id",
+     *   operationId="deleteCollaborator",
+     *   @OA\Parameter(
+     *     name="collaborator",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function destroy(Collaborator $collaborator);
 
+    /**
+     * @OA\Get(
+     *   path="/api/collaborators/{educationlevel}/per-education-level",
+     *   tags={"Colaboradores"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener colaboradores por nivel educativo",
+     *   description="Obtener todos los colaboradores por nivel educativo",
+     *   operationId="getCollaboratorPerEducationLvl",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="educationlevel",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function getCollaboratorsPerEducationLvl ($educationlevel);
 }

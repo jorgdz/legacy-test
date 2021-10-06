@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Collaborator extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection,Auditable;
+    use HasFactory, UsesTenantConnection, Auditable, SoftDeletes, SoftCascadeTrait;
 
     /**
      * table
@@ -20,6 +22,13 @@ class Collaborator extends Model implements AuditableContract
      * @var string
      */
     protected $table = 'collaborators';
+
+    /**
+     * softCascade
+     *
+     * @var array
+     */
+    // protected $softCascade = ['EducationLevelPrincipal'];
 
     /**
      * fillable
@@ -41,6 +50,7 @@ class Collaborator extends Model implements AuditableContract
         'coll_has_nomination',
         'coll_nomination_entering_date',
         'coll_nomination_leaving_date',
+        'coll_disabled_reason',
         'education_level_principal_id',
         'status_id',
         'user_id',
