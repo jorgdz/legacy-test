@@ -42,7 +42,7 @@ class Company extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $softCascade = ['campus'];
+    protected $softCascade = [''];
 
     protected $fillable = [
         'co_name',

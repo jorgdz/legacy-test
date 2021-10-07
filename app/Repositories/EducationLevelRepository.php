@@ -94,7 +94,7 @@ class EducationLevelRepository extends BaseRepository
         $query = $this->model;
 
         if (!empty($this->relations)) {
-            $query = $query->with(['status', 'offer', 'meshs' => function($query) {
+            $query = $query->with(['status', 'offer', 'classroomEducationLevel', 'meshs' => function($query) {
                 $query->where('status_id', 7);
             }]);
         }

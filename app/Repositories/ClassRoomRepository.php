@@ -12,7 +12,7 @@ class ClassRoomRepository extends BaseRepository {
      *
      * @var array
      */
-    protected $relations = ['campus','classroomType','status'];
+    protected $relations = ['campus','classroomType', 'classroomEducationLevel', 'status'];
 
     /**
      * parents

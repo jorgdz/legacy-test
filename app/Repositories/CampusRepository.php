@@ -16,7 +16,7 @@ class CampusRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['company', 'status', 'periods'];
+    protected $relations = ['status', 'periods'];
 
     /**
      * parents

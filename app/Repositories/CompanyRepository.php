@@ -16,7 +16,7 @@ class CompanyRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'campus'];
+    protected $relations = ['status'];
 
     /**
      * parents
