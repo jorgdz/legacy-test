@@ -60,6 +60,9 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'api_external_student' => env('EXTERNAL_STUDENT_API_TOKEN', ''),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

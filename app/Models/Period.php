@@ -69,7 +69,7 @@ class Period extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $softCascade = ['periodStages', 'studentRecords']; //courses
+    protected $softCascade = ['periodStages']; //, 'studentRecords' , courses
 
     /**
      * hourhands
