@@ -112,14 +112,18 @@ interface InterfaceInstituteController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="city_id",
-     *           description="Ciudad del instituto",
+     *           property="province_id",
+     *           description="Provincia del instituto",
      *           type="integer",
-     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="type_institute_id",
      *           description="Tipo de instituto",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="economic_group_id",
+     *           description="Grupo economico del instituto",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -138,6 +142,7 @@ interface InterfaceInstituteController
      *          "city_id"   : "required|integer|exists:tenant.catalogs,id",
      *          "status_id" : "required|integer|exists:tenant.status,id",
      *          "type_institute_id" : "required|integer|exists:tenant.type_institutes,id",
+     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -224,14 +229,18 @@ interface InterfaceInstituteController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="city_id",
-     *           description="Ciudad del instituto",
+     *           property="province_id",
+     *           description="Provincia del instituto",
      *           type="integer",
-     *           example="49 - 53",
      *         ),
      *         @OA\Property(
      *           property="type_institute_id",
      *           description="Tipo de instituto",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="economic_group_id",
+     *           description="Grupo economico del instituto",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -250,6 +259,7 @@ interface InterfaceInstituteController
      *          "city_id"   : "required|integer|exists:tenant.catalogs,id",
      *          "status_id" : "required|integer|exists:tenant.status,id",
      *          "type_institute_id" : "required|integer|exists:tenant.type_institutes,id",
+     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

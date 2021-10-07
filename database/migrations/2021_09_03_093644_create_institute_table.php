@@ -16,8 +16,10 @@ class CreateInstituteTable extends Migration
         Schema::create('institutes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('inst_name')->nullable();
-            $table->integer('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('catalogs');
+            $table->integer('province_id')->unsigned();
+            $table->foreign('province_id')->references('id')->on('catalogs');
+            $table->integer('economic_group_id')->unsigned();
+            $table->foreign('economic_group_id')->references('id')->on('economic_groups');
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->integer('type_institute_id')->unsigned();

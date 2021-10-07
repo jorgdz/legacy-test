@@ -13,14 +13,14 @@ class InstituteRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'city', 'typeInstitute'];
+    protected $relations = ['status', 'province', 'typeInstitute', 'economicGroup'];
 
     /**
      * parents
      *
      * @var array
      */
-    protected $parents = ['catalogs', 'type_institutes', 'status'];
+    protected $parents = ['catalogs', 'type_institutes', 'status', 'economic_groups'];
 
     /**
      * fields
@@ -39,7 +39,8 @@ class InstituteRepository extends BaseRepository
         'cat_name',
         'cat_acronym',
         'tin_name',
-        'st_name'
+        'st_name',
+        'eco_gro_name'
     ];
 
     /**

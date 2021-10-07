@@ -19,7 +19,8 @@ class CatalogController extends Controller implements ICatalogController
 
     private $catalogCache;
 
-    public function __construct(CatalogCache $catalogCache) {
+    public function __construct(CatalogCache $catalogCache)
+    {
         $this->catalogCache = $catalogCache;
     }
 
@@ -28,7 +29,8 @@ class CatalogController extends Controller implements ICatalogController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $request['conditions'] = [
             ['parent_id', NULL],
         ];
@@ -41,7 +43,8 @@ class CatalogController extends Controller implements ICatalogController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CatalogRequest $request) {
+    public function store(CatalogRequest $request)
+    {
         $catalog = new Catalog($request->all());
         $catalog = $this->catalogCache->save($catalog);
 
@@ -54,20 +57,22 @@ class CatalogController extends Controller implements ICatalogController
      * @param  int  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         return $this->success($this->catalogCache->find($id));
     }
-    
+
     /**
      * getChildren
      *
      * @param  string $acronym
      * @return void
      */
-    public function getChildren(string $acronym) {
+    public function getChildren(string $acronym)
+    {
         $catalog = Catalog::where('cat_acronym', $acronym)->first();
 
-        if(!$catalog)
+        if (!$catalog)
             throw new UnprocessableException(__('messages.no-exist-instance', ['model' => class_basename(Catalog::class)]));
 
         return $this->success($this->catalogCache->find($catalog->id));
@@ -80,12 +85,29 @@ class CatalogController extends Controller implements ICatalogController
      * @param  \App\Models\Catalog  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function update(CatalogRequest $request, Catalog $catalog) {
+    public function update(CatalogRequest $request, Catalog $catalog)
+    {
         $catalog->fill($request->all());
 
         if ($catalog->isClean())
             return $this->information(__('messages.nochange'));
 
         return $this->success($this->catalogCache->save($catalog));
+    }
+
+    /**
+     * getChildrenByKeywork
+     *
+     * @param  mixed $keyword
+     * @return void
+     */
+    public function getChildrenByKeywork(string $keyword)
+    {
+        $catalog = Catalog::where('cat_keyword', $keyword)->first();
+
+        if (!$catalog)
+            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => class_basename(Catalog::class)]));
+
+        return $this->success($this->catalogCache->find($catalog->id));
     }
 }

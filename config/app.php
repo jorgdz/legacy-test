@@ -58,6 +58,8 @@ return [
 
     'api_sendiblue' => env('API_KEY_SENDINBLUE', ''),
 
+    'api_external' => env('EXTERNAL_API_TOKEN', ''),
+
     'asset_url' => env('ASSET_URL', null),
 
     'api_external_student' => env('EXTERNAL_STUDENT_API_TOKEN', ''),

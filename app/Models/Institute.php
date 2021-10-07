@@ -26,7 +26,7 @@ class Institute extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['city_id', 'type_institute_id','status_id'];
+    protected $relations = ['province_id', 'type_institute_id', 'status_id', 'economic_group_id'];
 
     /**
      * dates
@@ -42,9 +42,10 @@ class Institute extends Model implements AuditableContract
      */
     protected $fillable = [
         'inst_name',
-        'city_id',
+        'province_id',
         'status_id',
-        'type_institute_id'
+        'type_institute_id',
+        'economic_group_id',
     ];
 
     /**
@@ -52,7 +53,7 @@ class Institute extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * status
@@ -69,18 +70,28 @@ class Institute extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function typeInstitute (): BelongsTo
+    public function typeInstitute(): BelongsTo
     {
         return $this->belongsTo(InstituteType::class, 'type_institute_id');
     }
 
     /**
-     * city
+     * province
      *
      * @return BelongsTo
      */
-    public function city (): BelongsTo
+    public function province(): BelongsTo
     {
-        return $this->belongsTo(Catalog::class, 'city_id');
+        return $this->belongsTo(Catalog::class, 'province_id');
+    }
+
+    /**
+     * economicGroup
+     *
+     * @return BelongsTo
+     */
+    public function economicGroup(): BelongsTo
+    {
+        return $this->belongsTo(EconomicGroup::class, 'economic_group_id');
     }
 }
