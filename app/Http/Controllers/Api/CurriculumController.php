@@ -42,8 +42,8 @@ class CurriculumController extends Controller implements ICurriculumController
      * @return \Illuminate\Http\Response
      */
     public function store(CurriculumRequest $request) {
-        $curriculums = Curriculum::where('status_id', 7)->get();
-        if(count($curriculums) > 0)
+        $curriculumFound = Curriculum::where('status_id', 7)->where('level_edu_id', $request['level_edu_id'])->first();
+        if($curriculumFound)
             return $this->information(__('messages.meshs-vigent'), Response::HTTP_CONFLICT);
 
         $curriculum = new Curriculum($request->all());

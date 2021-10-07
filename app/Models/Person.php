@@ -25,23 +25,6 @@ class Person extends Model implements AuditableContract
     protected $table = 'persons';
 
     /**
-     * relations
-     *
-     * @var array
-     */
-    /*
-    protected $relations = [
-        'type_identification_id',
-        'city_id',
-        'sector_id',
-        'ethnic_id',
-        'vivienda_id',
-        'type_religion_id',
-        'status_marital_id'
-    ];
-    */
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array

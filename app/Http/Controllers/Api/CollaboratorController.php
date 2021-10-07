@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use Exception;
 use App\Cache\CollaboratorCache;
 use App\Cache\PersonCache;
-use App\Cache\ProfileCache;
 use App\Cache\RelativeCache;
 use App\Cache\UserCache;
 use App\Cache\UserProfileCache;
@@ -17,30 +15,22 @@ use App\Http\Requests\StoreCollaboratorRequest;
 use App\Http\Controllers\Api\Contracts\ICollaboratorController;
 use App\Models\Person;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\EmailRegister;
-use App\Exceptions\Custom\ConflictException;
-use App\Exceptions\Custom\DatabaseException;
 use App\Http\Requests\UpdateCollaboratorRequest;
 use App\Models\Catalog;
 use App\Models\CollaboratorCampus;
 use App\Models\CollaboratorEducationLevel;
 use App\Models\CustomTenant;
-use App\Models\EducationLevel;
 use App\Models\Profile;
 use App\Models\Relative;
 use App\Models\Role;
 use App\Models\UserProfile;
 use App\Services\MailService;
-use Illuminate\Http\Response;
-use Throwable;
-
+use App\Traits\SavePerson;
 class CollaboratorController extends Controller implements ICollaboratorController
 {
-    use RestResponse;
+    use RestResponse, SavePerson;
 
     /**
      * studentCache
@@ -110,6 +100,8 @@ class CollaboratorController extends Controller implements ICollaboratorControll
             $sector,
             $ethnic
         );
+        $person->pers_is_provider = $request->get('coll_journey_description') == "TP" ? 1 : $request->get('pers_is_provider');
+        $this->personCache->save($person);
 
         //si esta casado
         if($statusMarital->cat_keyword=='casado') {
@@ -216,48 +208,6 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $this->mailService->SendEmail($params);
 
         return $this->information(__('messages.success'));
-    }
-
-    public function savePerson($request,
-        Catalog $nacionality,
-        Catalog $statusMarital,
-        Catalog $typeIdentification,
-        Catalog $typeReligion,
-        Catalog $livingPlace,
-        Catalog $city,
-        Catalog $currentCity,
-        Catalog $sector,
-        Catalog $ethnic)
-    {
-        //Person
-        $person = new Person($request->except('pers_nacionality_keyword',
-            'status_martital_keyword',
-            'type_identification_keyword',
-            'type_religion_keyword',
-            'vivienda_keyword',
-            'city_keyword',
-            'current_city_keyword',
-            'sector_keyword',
-            'ethnic_keyword',
-        ));
-
-        $person->pers_nationality = $nacionality->id;
-        $person->status_marital_id = $statusMarital->id;
-        $person->type_identification_id = $typeIdentification->id;
-        $person->type_religion_id = $typeReligion->id;
-        $person->vivienda_id = $livingPlace->id;
-        $person->city_id = $city->id;
-        $person->current_city_id = $currentCity->id;
-        $person->sector_id = $sector->id;
-        $person->ethnic_id = $ethnic->id;
-        $person->pers_is_provider = $request->get('coll_journey_description') == "TP" ? 1 : $request->get('pers_is_provider');
-        //si tiene discapacidad
-        if($request->get('pers_has_disability'))
-            $person->disabilities()->sync($request->get('pers_disabilities'));
-
-        $this->personCache->save($person);
-
-        return $person;
     }
 
     /**

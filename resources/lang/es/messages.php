@@ -46,7 +46,6 @@ return [
     'meshs-not-vigent' => '¡No se encontró una carrera con una malla curricular vigente!',
     'student-saved' => '¡Los datos del estudiante han sido guardados correctamente!',
     'send-error-mail' => 'Hubo un inconveniente al enviar el correo, intente luego.',
-    'send-error-mail' => 'hubo un inconveniente al enviar el correo, intente luego.',
     'sum-hour-collaborator'=>"Tipo de jornada :type_journey_dep debe tener exactamente :hours horas. Actualmente solo tiene :sum_hour_collaborator horas!",
     'classroom-has-course'=>'El aula tiene curso(s) asignados',
     'collaborator-is-inactive'=>'El colaborador no se encuentra activo.',

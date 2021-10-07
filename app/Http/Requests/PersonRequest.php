@@ -26,7 +26,7 @@ class PersonRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'pers_identification'  => ['nullable','unique:tenant.persons,pers_identification'],
+            'pers_identification'  => ['nullable'],
             'pers_firstname'       => 'required|string',
             'pers_secondname'      => 'required|string',
             'pers_first_lastname'  => 'required|string',
@@ -42,25 +42,26 @@ class PersonRequest extends FormRequest
             'pers_study_reason'   => 'string',
             'pers_num_taxpayers_household'  => 'integer',
             'pers_has_vehicle'  => 'digits_between:0,1',
-            'vivienda_id' => 'required|integer|exists:tenant.catalogs,id',
-            'type_religion_id'  => 'required|integer|exists:tenant.catalogs,id',
-            'status_marital_id' => 'required|integer|exists:tenant.catalogs,id',
-            'city_id'           => 'required|integer|exists:tenant.catalogs,id',
-            'current_city_id'   => 'required|integer|exists:tenant.catalogs,id',
-            'sector_id'         => 'required|integer|exists:tenant.catalogs,id',
-            'ethnic_id'         => 'required|integer|exists:tenant.catalogs,id',
-            'type_identification_id' => 'required|integer|exists:tenant.catalogs,id',
+            'pers_nationality_keyword' => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'vivienda_keyword' => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'type_identification_keyword' => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'type_religion_keyword'  => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'status_marital_keyword' => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'city_keyword'           => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'current_city_keyword'   => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'sector_keyword'         => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'ethnic_keyword'         => 'required|string|exists:tenant.catalogs,cat_keyword',
             //'pers_disability_identification' => 'nullable|unique:tenant.persons,pers_disability_identification|required_if:pers_has_disability,true|required_if:pers_has_disability,1',
             'pers_disability_identification' => 'nullable|required_if:pers_has_disability,true|required_if:pers_has_disability,1',
             'pers_disability_percent' => 'nullable|integer|required_if:pers_has_disability,true|required_if:pers_has_disability,1',
         ];
 
-        $typeIdentification = intval($this->request->get('type_identification_id'));
+        $typeIdentification = $this->request->get('type_identification_keyword');
         $persIdentification = $this->request->get('pers_identification');
 
         if(in_array($this->method(), ['POST'])) {
             switch($typeIdentification) {
-                case $typeIdentification == 66 || $typeIdentification == 68:
+                case $typeIdentification == 'cedula' || $typeIdentification == 'dni':
                     if($persIdentification==null) {
                         $rules['pers_identification'] = [
                             'required', new ValidateCiRule(""),
@@ -69,9 +70,12 @@ class PersonRequest extends FormRequest
                         $rules['pers_identification'] = [
                             'string', new ValidateCiRule($this->request->get('pers_identification'))
                         ];
+                        $rules['pers_identification'] = [
+                            'unique:tenant.persons,pers_identification', new ValidateCiRule($persIdentification)
+                        ];
                     }
                     break;
-                case $typeIdentification == 67:
+                case $typeIdentification == 'ruc':
                     if($persIdentification==null) {
                         $rules['pers_identification'] = [
                             'required', new ValidateRucRule(""),
@@ -79,6 +83,9 @@ class PersonRequest extends FormRequest
                     } else {
                         $rules['pers_identification'] = [
                             'string', new ValidateRucRule($this->request->get('pers_identification'))
+                        ];
+                        $rules['pers_identification'] = [
+                            'unique:tenant.persons,pers_identification', new ValidateCiRule($persIdentification)
                         ];
                     }
             }
@@ -86,15 +93,12 @@ class PersonRequest extends FormRequest
 
 
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
-            $rules['pers_identification'] = [
-                'unique:tenant.persons,pers_identification,' . $this->person->id
-            ];
             /* $rules['pers_disability_identification'] = [
                 'unique:tenant.persons,pers_disability_identification,' . $this->person->id
             ]; */
 
             switch($typeIdentification) {
-                case $typeIdentification == 66 || $typeIdentification == 68:
+                case $typeIdentification == 'cedula' || $typeIdentification == 'dni':
                     if($persIdentification==null) {
                         $rules['pers_identification'] = [
                             'required', new ValidateCiRule(""),
@@ -103,9 +107,12 @@ class PersonRequest extends FormRequest
                         $rules['pers_identification'] = [
                             'string', new ValidateCiRule($this->request->get('pers_identification'))
                         ];
+                        $rules['pers_identification'] = [
+                            'unique:tenant.persons,pers_identification,' . $this->person->id
+                        ];
                     }
                     break;
-                case $typeIdentification == 67:
+                case $typeIdentification == 'ruc':
                     if($persIdentification==null) {
                         $rules['pers_identification'] = [
                             'required', new ValidateRucRule(""),
@@ -113,6 +120,9 @@ class PersonRequest extends FormRequest
                     } else {
                         $rules['pers_identification'] = [
                             'string', new ValidateRucRule($this->request->get('pers_identification'))
+                        ];
+                        $rules['pers_identification'] = [
+                            'unique:tenant.persons,pers_identification,' . $this->person->id
                         ];
                     }
             }

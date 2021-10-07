@@ -109,8 +109,8 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'Tio/a', 'parent_id' => 14, 'cat_description' => 'Tio/a', 'cat_acronym' => NULL, 'cat_keyword' => 'tio' , 'status_id' => 1],
             ['cat_name' => 'Abuelo/a', 'parent_id' => 14, 'cat_description' => 'Abuelo/a', 'cat_acronym' => NULL,'cat_keyword' => 'abuelo' , 'status_id' => 1],
             ['cat_name' => 'Primo/a', 'parent_id' => 14, 'cat_description' => 'Primo/a', 'cat_acronym' => NULL, 'cat_keyword' => 'primo' , 'status_id' => 1],
-            ['cat_name' => 'Esposo/a', 'parent_id' => 14, 'cat_description' => 'Primo/a', 'cat_acronym' => NULL, 'cat_keyword' => 'esposo' , 'status_id' => 1],
-            ['cat_name' => 'Amigo/a', 'parent_id' => 14, 'cat_description' => 'Primo/a', 'cat_acronym' => NULL, 'cat_keyword' => 'amigo' , 'status_id' => 1],
+            ['cat_name' => 'Esposo/a', 'parent_id' => 14, 'cat_description' => 'Esposo/a', 'cat_acronym' => NULL, 'cat_keyword' => 'esposo' , 'status_id' => 1],
+            ['cat_name' => 'Amigo/a', 'parent_id' => 14, 'cat_description' => 'Amigo/a', 'cat_acronym' => NULL, 'cat_keyword' => 'amigo' , 'status_id' => 1],
             ['cat_name' => 'Otro/a', 'parent_id' => 14, 'cat_description' => 'Otro/a', 'cat_acronym' => NULL, 'cat_keyword' => 'otro' , 'status_id' => 1],
 
             ['cat_name' => 'Español', 'parent_id' => 15, 'cat_description' => 'Habla idioma español', 'cat_acronym' => NULL, 'cat_keyword' => 'espaniol' , 'status_id' => 1],

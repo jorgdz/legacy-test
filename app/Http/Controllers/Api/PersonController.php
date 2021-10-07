@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Exception;
 use App\Models\Person;
 use App\Traits\Helper;
 use App\Models\Student;
@@ -18,10 +17,12 @@ use App\Exceptions\Custom\ConflictException;
 use App\Http\Requests\StoreAssignPersonJobsRequest;
 use App\Http\Requests\UpdateLanguagesPersonRequest;
 use App\Http\Controllers\Api\Contracts\IPersonController;
+use App\Models\Catalog;
+use App\Traits\SavePerson;
 
 class PersonController extends Controller implements IPersonController
 {
-    use RestResponse, Auditor, Helper;
+    use RestResponse, Auditor, Helper, SavePerson;
 
     private $personCache;
     private $studentCache;
@@ -47,7 +48,30 @@ class PersonController extends Controller implements IPersonController
      * @return \Illuminate\Http\Response
      */
     public function store(PersonRequest $request) {
-        $person = new Person($request->all());
+
+        $nacionality = Catalog::getKeyword($request['pers_nacionality_keyword'])->first();
+        $statusMarital = Catalog::getKeyword($request['status_marital_keyword'])->first();
+        $typeIdentification = Catalog::getKeyword($request['type_identification_keyword'])->first();
+        $typeReligion = Catalog::getKeyword($request['type_religion_keyword'])->first();
+        $livingPlace = Catalog::getKeyword($request['vivienda_keyword'])->first();
+        $city = Catalog::getKeyword($request['city_keyword'])->first();
+        $currentCity = Catalog::getKeyword($request['current_city_keyword'])->first();
+        $sector = Catalog::getKeyword($request['sector_keyword'])->first();
+        $ethnic = Catalog::getKeyword($request['ethnic_keyword'])->first();
+
+        $person = $this->savePerson(
+            $request,
+            $nacionality,
+            $statusMarital,
+            $typeIdentification,
+            $typeReligion,
+            $livingPlace,
+            $city,
+            $currentCity,
+            $sector,
+            $ethnic
+        );
+
         return $this->success($this->personCache->save($person), Response::HTTP_CREATED);
     }
 
