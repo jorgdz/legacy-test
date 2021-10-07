@@ -53,4 +53,16 @@ class InstituteRepository extends BaseRepository
     {
         parent::__construct($institute);
     }
+
+    /**
+     * @override
+     * findByConditionals
+     *
+     * @param  mixed $conditionals
+     * @return void
+     */
+    public function findByConditionals($conditionals)
+    {
+        return $this->model->where($conditionals)->firstOrFail();
+    }
 }

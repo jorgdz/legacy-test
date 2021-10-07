@@ -74,7 +74,7 @@ class InstituteController extends Controller implements InterfaceInstituteContro
     {
         $institute->fill($request->all());
 
-        if($institute->isClean())
+        if ($institute->isClean())
             return $this->information(__('messages.nochange'));
 
         return $this->success($this->instituteCache->save($institute));
@@ -89,5 +89,20 @@ class InstituteController extends Controller implements InterfaceInstituteContro
     public function destroy(Institute $institute)
     {
         return $this->success($this->instituteCache->destroy($institute));
+    }
+
+    /**
+     * searchInstituteByProvince
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function searchInstituteByProvince($id)
+    {
+        $conditionals = [
+            ['province_id', $id],
+            ['status_id', 1]
+        ];
+        return $this->success($this->instituteCache->findByConditionals($conditionals));
     }
 }

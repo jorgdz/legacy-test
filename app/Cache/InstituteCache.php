@@ -62,9 +62,22 @@ class InstituteCache extends BaseCache
      * @param  mixed $model
      * @return void
      */
-    public function destroy (Model $model)
+    public function destroy(Model $model)
     {
         $this->forgetCache('institutes');
         return $this->repository->destroy($model);
+    }
+
+    /**
+     * findByConditionals
+     *
+     * @param  mixed $conditionals
+     * @return void
+     */
+    public function findByConditionals($conditionals)
+    {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($conditionals) {
+            return $this->repository->findByConditionals($conditionals);
+        });
     }
 }
