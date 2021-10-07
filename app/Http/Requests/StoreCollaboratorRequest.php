@@ -28,8 +28,9 @@ class StoreCollaboratorRequest extends FormRequest
     {
         $rules = [
             //person
-            'type_identification_id' => 'required|integer|exists:tenant.catalogs,id',
-            'pers_identification' => 'required|unique:tenant.persons,pers_identification',
+            'type_identification_keyword' => 'required|string|exists:tenant.catalogs,cat_keyword',
+
+            'pers_identification' => 'required',
             'pers_firstname'       => 'required|string|max:255',
             'pers_secondname'      => 'required|string|max:255',
             'pers_first_lastname'  => 'required|string|max:255',
@@ -45,26 +46,29 @@ class StoreCollaboratorRequest extends FormRequest
             'pers_study_reason'   => 'nullable|string|max:255',
             'pers_num_taxpayers_household'  => 'nullable|integer',
             'pers_has_vehicle'  => 'nullable|digits_between:0,1',
-            'pers_nationality'   => 'required|integer|exists:tenant.catalogs,id',
+            'pers_nationality_keyword'   => 'required|string|exists:tenant.catalogs,cat_keyword',
             'pers_is_provider'  => 'nullable|digits_between:0,1',
             'pers_has_disability'  => 'nullable|digits_between:0,1',
-            'vivienda_id'  => 'required|integer|exists:tenant.catalogs,id',
-            'type_religion_id'  => 'required|integer|exists:tenant.catalogs,id',
-            'status_marital_id' => 'required|integer|exists:tenant.catalogs,id',
-            'city_id'           => 'required|integer|exists:tenant.catalogs,id',
-            'current_city_id'   => 'required|integer|exists:tenant.catalogs,id',
-            'sector_id'         => 'required|integer|exists:tenant.catalogs,id',
-            'ethnic_id'         => 'required|integer|exists:tenant.catalogs,id',
+            'vivienda_keyword'  => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'type_religion_keyword'  => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'status_marital_keyword' => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'city_keyword'           => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'current_city_keyword'   => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'sector_keyword'         => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'ethnic_keyword'         => 'required|string|exists:tenant.catalogs,cat_keyword',
             //user
             'email'       => 'required|email|unique:tenant.users,email',
             //relatives
-            'type_identification_id_relatives_person' => 'required_if:status_marital_id,==,35|nullable|integer|exists:tenant.catalogs,id',
-            'pers_identification_relatives_person' => 'required_if:status_marital_id,==,35|nullable|unique:tenant.persons,pers_identification',
-            'pers_firstname_relatives_person'       => 'required_if:status_marital_id,==,35|nullable|string|max:255',
-            'pers_secondname_relatives_person'      => 'required_if:status_marital_id,==,35|nullable|string|max:255',
-            'pers_first_lastname_relatives_person'  => 'required_if:status_marital_id,==,35|nullable|string|max:255',
-            'pers_second_lastname_relatives_person' => 'required_if:status_marital_id,==,35|nullable|string|max:255',
-            'pers_relatives_person_desc' => 'required_if:status_marital_id,==,35|nullable|string|max:255',
+            'type_identification_keyword_relatives_person' => 'required_if:status_marital_keyword,==,casado|nullable|string|exists:tenant.catalogs,cat_keyword',
+            'type_religion_relative_keyword'  => 'required_if:status_marital_keyword,==,casado|nullable|string|exists:tenant.catalogs,cat_keyword',
+            'ethnic_relative_keyword'         => 'required_if:status_marital_keyword,==,casado|nullable|string|exists:tenant.catalogs,cat_keyword',
+            'pers_identification_relatives_person' => 'required_if:status_marital_keyword,==,casado|nullable|unique:tenant.persons,pers_identification',
+            'pers_firstname_relatives_person'       => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
+            'pers_secondname_relatives_person'      => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
+            'pers_first_lastname_relatives_person'  => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
+            'pers_second_lastname_relatives_person' => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
+            'pers_gender_relative'     => 'required_if:status_marital_keyword,==,casado|string|max:255',
+            'pers_relatives_person_desc' => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
             //disabilities
             'pers_disability_identification' => 'required_if:pers_has_disability,==,1|nullable|integer',
             'pers_disability_percent'  => 'required_if:pers_has_disability,==,1|nullable|integer',
@@ -72,7 +76,7 @@ class StoreCollaboratorRequest extends FormRequest
             'pers_disabilities.*'  => 'required_if:pers_has_disability,==,1|nullable|integer|exists:tenant.type_disabilities,id',
 
             //Collaborator
-            'coll_email'       => 'required|email|unique:tenant.users,email',
+            'coll_email' => 'required|email|unique:tenant.collaborators,coll_email',
             'coll_type'       => 'required|string|max:1|'.Rule::in(['D', 'A']),
             'coll_journey_description'       => 'required|string|max:3|'.Rule::in(['TC', 'MT','TP']),
             'coll_dependency'       => 'required_if:coll_journey_description,==,"MT"|nullable|digits_between:0,1',
@@ -97,22 +101,25 @@ class StoreCollaboratorRequest extends FormRequest
             'campus.*'=>'required|integer|exists:tenant.campus,id',
         ];
 
-        $typeIdentification = intval($this->request->get('type_identification_id'));
+        $typeIdentification = $this->request->get('type_identification_keyword');
         $persIdentification = $this->request->get('pers_identification');
 
         switch($typeIdentification) {
-            case $typeIdentification == 66 || $typeIdentification == 68:
+            case $typeIdentification == 'cedula' || $typeIdentification == 'dni':
                 if($persIdentification==null) {
                     $rules['pers_identification'] = [
                         'required', new ValidateCiRule(""),
                     ];
                 } else {
                     $rules['pers_identification'] = [
-                        'string', new ValidateCiRule($persIdentification)
+                        'string', new ValidateCiRule($persIdentification),
+                    ];
+                    $rules['pers_identification'] = [
+                        'unique:tenant.persons,pers_identification', new ValidateCiRule($persIdentification)
                     ];
                 }
                 break;
-            case $typeIdentification == 67:
+            case $typeIdentification == 'ruc':
                 if($persIdentification==null) {
                     $rules['pers_identification'] = [
                         'required', new ValidateRucRule(""),
@@ -123,7 +130,6 @@ class StoreCollaboratorRequest extends FormRequest
                     ];
                 }
         }
-
         return $rules;
     }
 }

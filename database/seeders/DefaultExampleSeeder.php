@@ -18,8 +18,8 @@ class DefaultExampleSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('campus')->insert([
-            ['cam_name' => 'La mejor sede', 'cam_description' => 'Descripción de la mejor sede', 'cam_direction' => NULL, 'cam_initials' => 'mse', 'status_id' => 1, 'company_id' => 1],
-            ['cam_name' => 'Nuevo', 'cam_description' => 'Nueva sede', 'cam_direction' => NULL, 'cam_initials' => 'nse', 'status_id' => 1, 'company_id' => 1],
+            ['cam_name' => 'La mejor sede', 'cam_description' => 'Descripción de la mejor sede', 'cam_direction' => NULL, 'cam_initials' => 'mse', 'status_id' => 1],
+            ['cam_name' => 'Nuevo', 'cam_description' => 'Nueva sede', 'cam_direction' => NULL, 'cam_initials' => 'nse', 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('periods')->insert([

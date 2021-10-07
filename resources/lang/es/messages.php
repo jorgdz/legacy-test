@@ -50,5 +50,7 @@ return [
     'sum-hour-collaborator'=>"Tipo de jornada :type_journey_dep debe tener exactamente :hours horas. Actualmente solo tiene :sum_hour_collaborator horas!",
     'classroom-has-course'=>'El aula tiene curso(s) asignados',
     'collaborator-is-inactive'=>'El colaborador no se encuentra activo.',
+    'collaborator-email-found' => 'No se puede registrar el colaborador porque ya existe un colaborador con ese correo electronico',
+    'user-username-found' => 'No se puede registrar un usuario porque ya existe un usuario con el mismo numero de identificacion',
 
 ];

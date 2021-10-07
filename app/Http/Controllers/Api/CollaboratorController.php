@@ -35,6 +35,8 @@ use App\Models\Relative;
 use App\Models\Role;
 use App\Models\UserProfile;
 use App\Services\MailService;
+use Illuminate\Http\Response;
+use Throwable;
 
 class CollaboratorController extends Controller implements ICollaboratorController
 {
@@ -87,21 +89,44 @@ class CollaboratorController extends Controller implements ICollaboratorControll
      */
     public function store(StoreCollaboratorRequest $request)
     {
-        //Person
-        $person = new Person($request->all());
-        $person->pers_is_provider = $request->get('coll_journey_description')=="TP"?1:$request->get('pers_is_provider');
-        $this->personCache->save($person);
+        $nacionality = Catalog::getKeyword($request['pers_nacionality_keyword'])->first();
+        $statusMarital = Catalog::getKeyword($request['status_marital_keyword'])->first();
+        $typeIdentification = Catalog::getKeyword($request['type_identification_keyword'])->first();
+        $typeReligion = Catalog::getKeyword($request['type_religion_keyword'])->first();
+        $livingPlace = Catalog::getKeyword($request['vivienda_keyword'])->first();
+        $city = Catalog::getKeyword($request['city_keyword'])->first();
+        $currentCity = Catalog::getKeyword($request['current_city_keyword'])->first();
+        $sector = Catalog::getKeyword($request['sector_keyword'])->first();
+        $ethnic = Catalog::getKeyword($request['ethnic_keyword'])->first();
 
-        //si tiene discapacidad
-        if($request->get('pers_has_disability')){
-            $person->disabilities()->sync($request->get('pers_disabilities'));
-        }
+        $person = $this->savePerson($request,
+            $nacionality,
+            $statusMarital,
+            $typeIdentification,
+            $typeReligion,
+            $livingPlace,
+            $city,
+            $currentCity,
+            $sector,
+            $ethnic
+        );
 
         //si esta casado
-        $estadoCivilCasado = Catalog::whereIn('cat_keyword', ['casado/unión'])->first();
-        if($request->get('status_marital_id')==$estadoCivilCasado->id){
-            $personRelative = new Person($request->only(['vivienda_id','type_religion_id','status_marital_id','city_id','current_city_id','sector_id','ethnic_id']));
-            $personRelative->type_identification_id = $request->get('type_identification_id_relatives_person');
+        if($statusMarital->cat_keyword=='casado') {
+            $typeIdentificationRelative = Catalog::getKeyword($request['type_identification_keyword_relatives_person'])->first();
+            $typeReligionRelative = Catalog::getKeyword($request['type_religion_relative_keyword'])->first();
+            $ethnicRelative = Catalog::getKeyword($request['ethnic_relative_keyword'])->first();
+            $typeKinship = Catalog::getKeyword($request['typeKinship_keyword'])->first();
+
+            $personRelative = new Person($request->only('pers_gender_relative'));
+            $personRelative->status_marital_id = $statusMarital->id;
+            $personRelative->type_identification_id = $typeIdentificationRelative->id;
+            $personRelative->vivienda_id = $livingPlace->id;
+            $personRelative->city_id = $city->id;
+            $personRelative->current_city_id = $currentCity->id;
+            $personRelative->sector_id = $sector->id;
+            $personRelative->type_religion_id = $typeReligionRelative->id;
+            $personRelative->ethnic_id = $ethnicRelative->id;
             $personRelative->pers_identification = $request->get('pers_identification_relatives_person');
             $personRelative->pers_firstname = $request->get('pers_firstname_relatives_person');
             $personRelative->pers_secondname = $request->get('pers_secondname_relatives_person');
@@ -112,7 +137,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
             $relative = new Relative();
             $relative->person_id_relative = $personRelative->id;
             $relative->person_id = $person->id;
-            $relative->type_kinship_id = $request->get('status_marital_id');
+            $relative->type_kinship_id = $typeKinship->id;
             $relative->rel_description = $request->get('pers_relatives_person_desc');
             $relative->status_id = $request->get('status_id');
             $this->relativeCache->save($relative);
@@ -127,7 +152,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $user->status_id = $request->get('status_id');
         $this->userCache->save($user);
 
-        if($request->get('coll_type')=="D"){
+        if($request->get('coll_type') == "D"){
             $profile = Profile::whereIn('keyword', ['docente'])->first();
             $roles = Role::whereIn('keyword', ['docente'])->get()->pluck('id')->toArray();
             $activity = 'DOCENCIA';
@@ -138,7 +163,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         }
 
         //user-profile
-        $userProfile = new UserProfile(['user_id'=>$user->id]);
+        $userProfile = new UserProfile(['user_id' => $user->id]);
         $userProfile->profile_id = $profile->id;
         $userProfile->status_id = $request->get('status_id');
         $this->userProfileCache->save($userProfile);
@@ -147,12 +172,12 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $collaborator = new Collaborator($request->all());
         $collaborator->user_id = $user->id;
         $collaborator->coll_activity = $activity;
-        $collaborator->coll_dependency = $request->get('coll_journey_description')=="TC"?1:$request->get('coll_dependency');
-        $collaborator->coll_journey_hours = $request->get('coll_journey_description')=="TC"?40:($request->get('coll_journey_description')=="MT"?20:$request->get('position_company_id'));
+        $collaborator->coll_dependency = $request->get('coll_journey_description') == "TC" ? 1 : $request->get('coll_dependency');
+        $collaborator->coll_journey_hours = $request->get('coll_journey_description') == "TC" ? 40 : ($request->get('coll_journey_description') == "MT" ? 20 : $request->get('position_company_id'));
         $collaborator->education_level_principal_id = $request->education_level_principal_id;
         $collaborator->status_id = $request->get('status_id');
         $collaborator = $this->collaboratorCache->save($collaborator);
-        Collaborator::where('id', $collaborator->id)->update(['coll_contract_num' => $collaborator->id]);
+        $collaborator->update(['coll_contract_num' => strval($collaborator->id)]);
 
         //Ofertas y nivel de educacion
         foreach ($request->education_levels as  $value) {
@@ -190,7 +215,49 @@ class CollaboratorController extends Controller implements ICollaboratorControll
 
         $this->mailService->SendEmail($params);
 
-        return $this->success(__('messages.success'));
+        return $this->information(__('messages.success'));
+    }
+
+    public function savePerson($request,
+        Catalog $nacionality,
+        Catalog $statusMarital,
+        Catalog $typeIdentification,
+        Catalog $typeReligion,
+        Catalog $livingPlace,
+        Catalog $city,
+        Catalog $currentCity,
+        Catalog $sector,
+        Catalog $ethnic)
+    {
+        //Person
+        $person = new Person($request->except('pers_nacionality_keyword',
+            'status_martital_keyword',
+            'type_identification_keyword',
+            'type_religion_keyword',
+            'vivienda_keyword',
+            'city_keyword',
+            'current_city_keyword',
+            'sector_keyword',
+            'ethnic_keyword',
+        ));
+
+        $person->pers_nationality = $nacionality->id;
+        $person->status_marital_id = $statusMarital->id;
+        $person->type_identification_id = $typeIdentification->id;
+        $person->type_religion_id = $typeReligion->id;
+        $person->vivienda_id = $livingPlace->id;
+        $person->city_id = $city->id;
+        $person->current_city_id = $currentCity->id;
+        $person->sector_id = $sector->id;
+        $person->ethnic_id = $ethnic->id;
+        $person->pers_is_provider = $request->get('coll_journey_description') == "TP" ? 1 : $request->get('pers_is_provider');
+        //si tiene discapacidad
+        if($request->get('pers_has_disability'))
+            $person->disabilities()->sync($request->get('pers_disabilities'));
+
+        $this->personCache->save($person);
+
+        return $person;
     }
 
     /**
@@ -220,12 +287,12 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         // }
 
         // if($request->get('coll_type')=="D"){
-        //     $profile = Profile::whereIn('keyword', ['docente'])->first();   
-        //     $roles = Role::whereIn('keyword', ['docente'])->first(); 
+        //     $profile = Profile::whereIn('keyword', ['docente'])->first();
+        //     $roles = Role::whereIn('keyword', ['docente'])->first();
         //     $activity = 'DOCENCIA';
         // }else{
-        //     $profile = Profile::whereIn('keyword', ['administrativo'])->first();   
-        //     $roles = Role::whereIn('keyword', ['administrador'])->first(); 
+        //     $profile = Profile::whereIn('keyword', ['administrativo'])->first();
+        //     $roles = Role::whereIn('keyword', ['administrador'])->first();
         //     $activity = 'ADMINISTRATIVO';
         // }
 
@@ -242,7 +309,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
 
         return $this->success($this->collaboratorCache->save($collaborator));
     }
-    
+
     /**
      * changeStatus
      *
@@ -257,7 +324,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
 
         return $this->success($this->collaboratorCache->save($collaborator));
     }
-    
+
     /**
      * getCollaboratorsPerEducationLvl
      *

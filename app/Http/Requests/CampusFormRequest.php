@@ -26,6 +26,7 @@ class CampusFormRequest extends FormRequest
         return [
             'cam_name'          => 'required',
             'cam_direction'     => 'required',
+            'cam_initials'      => 'required',
             'status_id'         => 'required|integer|exists:tenant.status,id',
         ];
     }

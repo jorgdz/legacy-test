@@ -149,6 +149,7 @@ interface ICampusController
      *   @OA\JsonContent(
      *      example={
      *       "cam_name"          : "required",
+     *       "cam_initials"      : "required",
      *       "cam_direction"     : "required",
      *       "cam_description"   : "string,nullable",
      *       "cam_initials"      : "string,nullable",

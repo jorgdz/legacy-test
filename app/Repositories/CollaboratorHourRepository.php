@@ -6,9 +6,9 @@ use App\Models\CollaboratorHour;
 use App\Repositories\Base\BaseRepository;
 
 /**
- * collaboratorHourRepository
+ * CollaboratorHourRepository
  */
-class collaboratorHourRepository extends BaseRepository
+class CollaboratorHourRepository extends BaseRepository
 {
 
     protected $relations = [

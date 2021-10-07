@@ -108,10 +108,16 @@ interface ICollaboratorController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="type_identification_id",
+     *           property="coll_type",
+     *           description="Tipo de colaborador: D=DOCENCIA & A=ADMINISTRATIVO",
+     *           type="string",
+     *           example="D/A",
+     *         ),
+     *         @OA\Property(
+     *           property="type_identification_keyword",
      *           description="Tipo de indentificación",
-     *           type="integer",
-     *           example="66 - 69",
+     *           type="string",
+     *           example="cedula",
      *         ),
      *         @OA\Property(
      *           property="pers_identification",
@@ -139,21 +145,54 @@ interface ICollaboratorController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="email",
+     *           description="Correo electronico del usuario",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="status_marital_keyword",
+     *           description="Keyword catalogo del estado marital",
+     *           type="string",
+     *           example="soltero",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_nationality_keyword",
+     *           description="Keyword Catalogo Nacionalidad",
+     *           type="string",
+     *           example="ecuatoriana",
+     *         ),
+     *         @OA\Property(
+     *           property="city_keyword",
+     *           description="Keyword catalogo de la ciudad natal",
+     *           type="string",
+     *           example="ciudad-guayaquil",
+     *         ),
+     *         @OA\Property(
+     *           property="current_city_keyword",
+     *           description="Keyword catalogo de la ciudad que actualmente se encuentra",
+     *           type="string",
+     *           example="ciudad-guayaquil",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_direction",
+     *           description="Dirección domiciliaria",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="sector_keyword",
+     *           description="Keyword de catalogo del sector",
+     *           type="string",
+     *           example="sector-ximena",
+     *         ),
+     *         @OA\Property(
      *           property="pers_gender",
      *           description="Genero",
      *           type="string",
      *           example="Masculino/Femenino"
      *         ),
      *         @OA\Property(
-     *           property="pers_date_birth",
-     *           description="Fecha de nacimiento",
-     *           type="string",
-     *           format="date",
-     *           example="YYYY-MM-DD"
-     *         ),
-     *         @OA\Property(
-     *           property="pers_direction",
-     *           description="Dirección domiciliaria",
+     *           property="pers_cell",
+     *           description="Teléfono móvil",
      *           type="string",
      *         ),
      *         @OA\Property(
@@ -162,9 +201,11 @@ interface ICollaboratorController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="pers_cell",
-     *           description="Teléfono móvil",
+     *           property="pers_date_birth",
+     *           description="Fecha de nacimiento",
      *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
      *         ),
      *         @OA\Property(
      *           property="pers_num_child",
@@ -196,12 +237,6 @@ interface ICollaboratorController
      *           description="Tiene vehiculo propio",
      *           type="integer",
      *           example="1/0"
-     *         ),
-     *         @OA\Property(
-     *           property="pers_nationality",
-     *           description="ID Catalogo Nacionalidad",
-     *           type="integer",
-     *           example="86 al 92",
      *         ),
      *         @OA\Property(
      *           property="pers_is_provider",
@@ -236,57 +271,40 @@ interface ICollaboratorController
      *           uniqueItems=true
      *         ),
      *         @OA\Property(
-     *           property="vivienda_id",
-     *           description="ID catalogo",
-     *           type="integer",
-     *           example="16 al 19",
-     *         ),
-     *         @OA\Property(
-     *           property="type_religion_id",
-     *           description="ID del tipo de religion",
-     *           type="integer",
-     *           example="39 - 47",
-     *         ),
-     *         @OA\Property(
-     *           property="status_marital_id",
-     *           description="ID del estado marital",
-     *           type="integer",
-     *           example="35 - 38",
-     *         ),
-     *         @OA\Property(
-     *           property="city_id",
-     *           description="ID de la ciudad natal",
-     *           type="integer",
-     *           example="49 - 53",
-     *         ),
-     *         @OA\Property(
-     *           property="current_city_id",
-     *           description="ID de la ciudad que actualmente se encuentra",
-     *           type="integer",
-     *           example="49 - 53",
-     *         ),
-     *         @OA\Property(
-     *           property="sector_id",
-     *           description="ID del sector",
-     *           type="integer",
-     *           example="54 - 59",
-     *         ),
-     *         @OA\Property(
-     *           property="ethnic_id",
-     *           description="ID de etnia",
-     *           type="integer",
-     *           example="60 - 65",
-     *         ),
-     *         @OA\Property(
-     *           property="email",
-     *           description="Correo electronico del usuario",
+     *           property="vivienda_keyword",
+     *           description="Keyword catalogo vivienda",
      *           type="string",
+     *           example="vivienda-casa",
      *         ),
      *         @OA\Property(
-     *           property="type_identification_id_relatives_person",
+     *           property="type_religion_keyword",
+     *           description="Keyword catalogo religion",
+     *           type="string",
+     *           example="cristiano",
+     *         ),
+     *         @OA\Property(
+     *           property="ethnic_keyword",
+     *           description="Keyword de catalogo de etnia",
+     *           type="string",
+     *           example="mestizo",
+     *         ),
+     *         @OA\Property(
+     *           property="type_identification_keyword_relatives_person",
      *           description="Tipo de indentificación del familiar, es requerido con el estatus marital de casado",
-     *           type="integer",
-     *           example="66 - 69",
+     *           type="string",
+     *           example="cedula",
+     *         ),
+     *         @OA\Property(
+     *           property="type_religion_relative_keyword",
+     *           description="Tipo de religion del familiar, es requerido con el estatus marital de casado",
+     *           type="string",
+     *           example="cristiano",
+     *         ),
+     *         @OA\Property(
+     *           property="ethnic_relative_keyword",
+     *           description="Tipo de etnia del familiar, es requerido con el estatus marital de casado",
+     *           type="string",
+     *           example="mestizo",
      *         ),
      *         @OA\Property(
      *           property="pers_identification_relatives_person",
@@ -319,15 +337,21 @@ interface ICollaboratorController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="typeKinship_keyword",
+     *           description="Keyword de catalogo del parentesco, es requerido con el estatus marital de casado",
+     *           type="string",
+     *           example="esposo/a",
+     *         ),
+     *         @OA\Property(
+     *           property="pers_gender_relative",
+     *           description="Genero del familiar, es requerido con el estatus marital de casado",
+     *           type="string",
+     *           example="Masculino/Femenino"
+     *         ),
+     *         @OA\Property(
      *           property="coll_email",
      *           description="Correo electronico del colaborador",
      *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="coll_type",
-     *           description="Tipo de colaborador: D=DOCENCIA & A=ADMINISTRATIVO",
-     *           type="string",
-     *           example="D/A",
      *         ),
      *         @OA\Property(
      *           property="coll_journey_description",

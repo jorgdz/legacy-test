@@ -47,6 +47,7 @@ return [
     'send-error-mail' => 'there was a problem sending the mail, please try again later..',
     'sum-hour-collaborator'=>"Workday type :type_journey_dep must be exactly :hours horas. Currently you only have :sum_hour_collaborator hours!",
     'collaborator-is-inactive'=>'The collaborator is not active.',
-
+    'collaborator-email-found' => 'The collaborator cannot be registered because there is already a collaborator with that email',
+    'user-username-found' => 'A user cannot be registered because a user with the same identification number already exists',
 ];
 ?>

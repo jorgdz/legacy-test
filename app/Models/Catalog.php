@@ -50,6 +50,18 @@ class Catalog extends Model implements AuditableContract
     ];
 
     /**
+     * scopeGetKeyword
+     *
+     * @param  mixed $query
+     * @param  mixed $keyword
+     * @return void
+     */
+    public function scopeGetKeyword($query, mixed $keyword)
+    {
+        return $query->where('cat_keyword', $keyword);
+    }
+
+    /**
      * status
      *
      * @return BelongsTo
