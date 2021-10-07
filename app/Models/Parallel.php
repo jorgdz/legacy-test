@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
@@ -59,5 +60,14 @@ class Parallel extends Model implements AuditableContract
     public function status() : BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    /**
+     * Course
+     *
+     * @return void
+     */
+    public function course(): HasMany {
+        return $this->hasMany(Course::class,'parallel_id');
     }
 }

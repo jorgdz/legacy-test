@@ -232,6 +232,11 @@ return [
 			'integer' => 'El valor del campo aula debe ser un entero.',
 			'distinct' => 'El valor del campo aula tiene un valor duplicado.'
 		],
+		'collaborators.*' => [
+			'exists' => 'El valor del campo docente seleccionado es inválido.',
+			'integer' => 'El valor del campo docente debe ser un entero.',
+			'distinct' => 'El valor del campo docente tiene un valor duplicado.'
+		],
 		'signatures.*.sign_position' => [
 			'required' => 'El campo posicion es requerido.',
 			'string'   => 'El campo posicion debe ser una cadena.'
@@ -367,7 +372,7 @@ return [
 		/**
 		 * matter_mesh
 		 */
-		'matter_id' => 'malla de materia',
+		'matter_id' => 'materia',
 		'mesh_id' => 'malla',
 		'simbology_id' => 'simbologia',
 		'can_homologate' => 'homologación',
@@ -813,12 +818,18 @@ return [
 		'department_id' => 'departamento',
 		'dep_name' => 'nombre del departamento',
 		'dep_description' => 'descripcion del departamento',
+		/**
+		 * Course
+		 */
+		'hourhand_id' => 'horario',
+		'classroom_id'=> 'aula',
+		'parallel_id'=>'paralelo',
+
 
 		/**
 		 * Collaborator Hour
 		 */
 		'ch_working_time' => 'tiempo dedicacion',
-
 		/**
 		 * Hours summaries
 		 */
@@ -831,13 +842,13 @@ return [
 		'hs_research' => 'horas de investigacion',
 		'hs_total' => 'total',
 		'collaborator_hour_id' => 'horas de colaborador',
-
 		/**
 		 * Signatures
 		 */
 		'signatures' => 'firmas',
 		'acronym' => 'sigla',
 		'rrhh' => 'recursos humanos'
+
 	],
 
 ];

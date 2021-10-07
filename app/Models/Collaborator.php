@@ -114,4 +114,13 @@ class Collaborator extends Model implements AuditableContract
     public function status() : BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+    /**
+     * Course
+     *
+     * @return void
+     */
+    public function course(): HasMany {
+        return $this->hasMany(Course::class,'collaborator_id');
+    }
 }

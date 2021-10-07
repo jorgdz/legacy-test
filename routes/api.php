@@ -43,6 +43,7 @@ use App\Http\Controllers\Api\DetailSubjectCurriculumController;
 use App\Http\Controllers\Api\LearningComponentController;
 use App\Http\Controllers\Api\SimbologyController;
 use App\Http\Controllers\Api\ClassroomEducationLevelController;
+use App\Http\Controllers\Api\CourseController;
 
 
 /* Import routes */
@@ -513,3 +514,15 @@ Route::post('/classroom-education-levels', [ClassroomEducationLevelController::c
 Route::put('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'update'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-actualizar-aula-niveleconomico']);
 Route::delete('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-borrar-aula-niveleconomico']);
 Route::patch('/classroom-education-levels/{classroomeducationlevel}/changestatus', [ClassroomEducationLevelController::class, 'changeStatus'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-actualizar-aula-niveleconomico']);
+
+/**
+ * Courses  
+ */
+Route::get('/courses', [CourseController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:courses-listar-curso'*/]);
+Route::get('/courses/{course}', [CourseController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:courses-obtener-curso'*/]);
+Route::post('/courses', [CourseController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:courses-crear-curso'*/]);
+Route::put('/courses/{course}', [CourseController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:courses-actualizar-curso'*/]);
+Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:courses-borrar-curso'*/]);
+Route::patch('/courses/{course}/changestatus', [CourseController::class, 'changeStatus'])->middleware(['auth:sanctum'/*, 'permission:courses-actualizar-curso'*/]);
+
+

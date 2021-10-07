@@ -148,8 +148,10 @@ interface ICampusController
      *    @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *         "cam_name"          : "required",
+     *       "cam_name"          : "required",
      *       "cam_direction"     : "required",
+     *       "cam_description"   : "string,nullable",
+     *       "cam_initials"      : "string,nullable",
      *       "status_id"         : "required|integer|exists:tenant.status,id",
      *      },
      *   )),
@@ -265,6 +267,8 @@ interface ICampusController
      *      example={
      *         "cam_name"          : "required",
      *         "cam_direction"     : "required",
+     *         "cam_description"   : "string,nullable",
+     *         "cam_initials"      : "string,nullable",
      *         "status_id"         : "required|integer|exists:tenant.status,id",
      *         "company_id"        : "required|integer|exists:tenant.companies,id",
      *      },

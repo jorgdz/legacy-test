@@ -77,21 +77,28 @@ class ClassroomEducationLevelRepository extends BaseRepository
         return $classRoom;
     }
 
+     /**
+     * validateRegister
+     *
+     * Registro Unico por :Materia,horario,modalidad,paralelo)
+     */
+
     public function getClassroomAssigned($request){
         $currentClassrooms = $this->model
                                     ->distinct()
                                     ->pluck('classroom_id')
                                     ->toArray();
 
-        $classroomsAsiggned    = array_merge(array_diff($request->classrooms, $currentClassrooms));
-        $classroomsNotAsiggned = array_merge(array_intersect($request->classrooms, $currentClassrooms));
+        $classroomsAssigned    = array_merge(array_diff($request->classrooms, $currentClassrooms));
+        $classroomsNotAssigned = array_merge(array_intersect($request->classrooms, $currentClassrooms));
 
         $classrooms = new \stdClass();
-        $classrooms->classrooms_asiggned   = $classroomsAsiggned;
-        $classrooms->classrooms_not_asiggned = $classroomsNotAsiggned;
+        $classrooms->classrooms_assigned   = $classroomsAssigned;
+        $classrooms->classrooms_not_assigned = $classroomsNotAssigned;
         
         return $classrooms;
     }
+
 
     public function validateRegister($request){
         $currentClassrooms = $this->model
@@ -106,5 +113,5 @@ class ClassroomEducationLevelRepository extends BaseRepository
         return $classrooms;
     }
 
-    
+
 }

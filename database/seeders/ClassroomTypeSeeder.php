@@ -30,6 +30,11 @@ class ClassroomTypeSeeder extends Seeder
                 'clt_description' => 'Un aula grande',
                 'status_id' => 1,
             ],
+            [
+                'clt_name' => 'Virtual',
+                'clt_description' => 'Un aula virtual',
+                'status_id' => 1,
+            ],
         ]);
     }
 }

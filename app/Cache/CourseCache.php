@@ -2,11 +2,11 @@
 
 namespace App\Cache;
 
-use App\Repositories\ClassroomEducationLevelRepository;
+use App\Repositories\CourseRepository;
 use Illuminate\Database\Eloquent\Model;
 
 //class DetailMatterMeshCache extends BaseCache
-class ClassroomEducationLevelCache extends BaseCache
+class CourseCache extends BaseCache
 {
 
     /**
@@ -14,8 +14,8 @@ class ClassroomEducationLevelCache extends BaseCache
      *
      * @return void
      */
-    public function __construct(ClassroomEducationLevelRepository $classroomEducationLevelRepository) {
-        parent::__construct($classroomEducationLevelRepository);
+    public function __construct(CourseRepository $courseRepository) {
+        parent::__construct($courseRepository);
     }
 
     /**
@@ -39,7 +39,7 @@ class ClassroomEducationLevelCache extends BaseCache
      */
     public function save(Model $model)
     {
-        $this->forgetCache('classroom-education-levels');
+        $this->forgetCache('courses');
         return $this->repository->save($model);
     }
 
@@ -58,32 +58,38 @@ class ClassroomEducationLevelCache extends BaseCache
 
     public function destroy (Model $model)
     {
-        $this->forgetCache('classroom-education-levels');
+        $this->forgetCache('courses');
         return $this->repository->destroy($model);
     }
 
-    public function saveMultiple($classrooms)
-    {
-        $this->forgetCache('classroom-education-levels');
-        return $this->repository->saveMultiple($classrooms);
-    }
-
-    public function validateRegister($request)
-    {
-        $this->forgetCache('classroom-education-levels');
-        return $this->repository->validateRegister($request);
-    }
-    
     public function changeStatus($id,$status)
     {
-        $this->forgetCache('classroom-education-levels');
+        $this->forgetCache('courses');
         return $this->repository->changeStatus($id,$status);
     }
 
-    public function getClassroomAssigned($request)
+    
+    public function validateCourseUnique($request,$courseId = null)
     {
-        $this->forgetCache('classroom-education-levels');
-        return $this->repository->getClassroomAssigned($request);
+        $this->forgetCache('courses');
+        return $this->repository->validateCourseUnique($request,$courseId);
     }
 
+    public function getCollaboratorsInCourse($request)
+    {
+        $this->forgetCache('courses');
+        return $this->repository->getCollaboratorsInCourse($request);
+    }
+
+    public function saveMultiple($courses)
+    {
+        $this->forgetCache('courses');
+        return $this->repository->saveMultiple($courses);
+    }
+
+    public function classroomHasCourses($classroomId)
+    {
+        $this->forgetCache('courses');
+        return $this->repository->classroomHasCourses($classroomId);
+    }
 }

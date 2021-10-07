@@ -159,4 +159,13 @@ class Period extends Model implements AuditableContract
     public function classroomEducationLevel(): HasMany {
         return $this->hasMany(ClassroomEducationLevel::class,'period_id');
     }
+
+     /**
+     * Course
+     *
+     * @return void
+     */
+    public function course(): HasMany {
+        return $this->hasMany(Course::class,'period_id');
+    }
 }

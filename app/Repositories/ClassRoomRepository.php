@@ -48,5 +48,4 @@ class ClassRoomRepository extends BaseRepository {
     public function __construct (ClassRoom $classRoom) {
         parent::__construct($classRoom);
     }
-
 }

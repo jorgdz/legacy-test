@@ -28,7 +28,7 @@ class ClassroomEducationLevelRequest extends FormRequest
         $rules = [
             'period_id'   => 'required|integer|exists:tenant.periods,id',
             'education_level_id'      => 'integer|exists:tenant.education_levels,id',
-            'classrooms.*'   => 'array',
+            'classrooms'   => 'array',
             'classrooms.*'   => 'required|integer|exists:tenant.classrooms,id',
             'status_id'         => 'required|integer|exists:tenant.status,id'
         ];

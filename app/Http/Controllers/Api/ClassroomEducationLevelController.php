@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Cache\ClassroomEducationLevelCache;
+use App\Cache\CourseCache;
 use App\Http\Controllers\Controller;
 use App\Models\ClassroomEducationLevel;
 use App\Http\Requests\ClassroomEducationLevelRequest;
@@ -13,6 +14,7 @@ use App\Exceptions\Custom\NotFoundException;
 use App\Traits\Auditor;
 use App\Http\Controllers\Api\Contracts\IClassroomEducationLevelController;
 use App\Models\EducationLevel;
+use App\Exceptions\Custom\ConflictException;
 
 class ClassroomEducationLevelController extends Controller implements IClassroomEducationLevelController
 {
@@ -23,15 +25,16 @@ class ClassroomEducationLevelController extends Controller implements IClassroom
      *
      * @var mixed
      */
-    private $classroomEducationLevelCache;
+    private $classroomEducationLevelCache,$courseCache;
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct (ClassroomEducationLevelCache $classroomEducationLevelCache) {
+    public function __construct (ClassroomEducationLevelCache $classroomEducationLevelCache, CourseCache $courseCache) {
         $this->classroomEducationLevelCache = $classroomEducationLevelCache;
+        $this->courseCache = $courseCache;
     }
     /**
      * Display a listing of the resource.
@@ -56,7 +59,7 @@ class ClassroomEducationLevelController extends Controller implements IClassroom
         
         $isFacultad = EducationLevel::whereNull('principal_id')->find($request->education_level_id);
         if(!isset($isFacultad))
-            throw new NotFoundException(__("No existe la facultad"));
+            throw new NotFoundException(__('messages.not-exist-educationlevel'));
 
         $classrooms = $this->classroomEducationLevelCache->getClassroomAssigned($request);
         //$classrooms = $this->classroomEducationLevelCache->validateRegister($request);
@@ -100,7 +103,7 @@ class ClassroomEducationLevelController extends Controller implements IClassroom
     {
         $isFacultad = EducationLevel::whereNull('principal_id')->find($request->education_level_id);
         if(!isset($isFacultad))
-            throw new NotFoundException(__("No existe la facultad"));
+            throw new NotFoundException(__('messages.not-exist-educationlevel'));
 
         $classroomeducationlevel->fill($request->all());
 
@@ -118,6 +121,11 @@ class ClassroomEducationLevelController extends Controller implements IClassroom
      */
     public function destroy(ClassroomEducationLevel $classroomeducationlevel)
     {
+        $classroom = ClassroomEducationLevel::where('id',$classroomeducationlevel->id)->first();
+        $courses = $this->courseCache->classroomHasCourses($classroom->classroom_id);
+        if($courses >= 1)
+            throw new ConflictException(__('messages.classroom-has-course'));
+            
         return $this->success($this->classroomEducationLevelCache->destroy($classroomeducationlevel));
     }
 

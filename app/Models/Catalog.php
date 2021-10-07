@@ -5,6 +5,7 @@ namespace App\Models;
 use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
@@ -66,5 +67,14 @@ class Catalog extends Model implements AuditableContract
         return $this->hasMany(Catalog::class, 'parent_id')->with('status')->with('children')->where(function($query) {
             if (isset(request()->query()['data'])) $query->where('status_id', 1);
         });
+    }
+
+    /**
+     * Course
+     *
+     * @return void
+     */
+    public function course(): HasMany {
+        return $this->hasMany(Course::class,'modality_id');
     }
 }

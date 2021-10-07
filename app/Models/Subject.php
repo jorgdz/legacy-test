@@ -124,4 +124,13 @@ class Subject extends Model implements AuditableContract
     /* public function courses(): HasMany {
         return $this->hasMany(Course::class, 'matter_id');
     } */
+
+    /**
+     * Course
+     *
+     * @return void
+     */
+    public function course(): HasMany {
+        return $this->hasMany(Course::class,'matter_id');
+    }
 }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Cache\ClassRoomCache;
+use App\Cache\CourseCache;
 use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IClassRoomController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassRoomFormRequest;
 use App\Http\Requests\UpdateClassRoomRequest;
+use App\Exceptions\Custom\ConflictException;
 use App\Models\ClassRoom;
 use App\Traits\Auditor;
 use App\Traits\RestResponse;
@@ -18,7 +20,7 @@ class ClassRoomController extends Controller implements IClassRoomController
 {
     use RestResponse, Auditor;
 
-    private $classRoomCache;
+    private $classRoomCache,$courseCache;
 
     /**
      * __construct
@@ -26,9 +28,10 @@ class ClassRoomController extends Controller implements IClassRoomController
      * @param  mixed $companyCache
      * @return void
      */
-    public function __construct(ClassRoomCache $classRoomCache)
+    public function __construct(ClassRoomCache $classRoomCache, CourseCache $courseCache)
     {
         $this->classRoomCache = $classRoomCache;
+        $this->courseCache = $courseCache;
     }
 
     public function index(Request $request)
@@ -80,7 +83,12 @@ class ClassRoomController extends Controller implements IClassRoomController
      */
     public function destroy(ClassRoom $classroom)
     {
-        return $this->success($this->classRoomCache->destroy($classroom));
+        $courses = $this->courseCache->classroomHasCourses($classroom->id);
+        if($courses >= 1)
+            throw new ConflictException(__('messages.classroom-has-course'));
+
+        $response = $this->classRoomCache->destroy($classroom);
+        return $this->success($response);
     }
 
     /**

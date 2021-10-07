@@ -106,4 +106,13 @@ class Hourhand extends Model implements AuditableContract
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+     /**
+     * Course
+     *
+     * @return void
+     */
+    public function course(): HasMany {
+        return $this->hasMany(Course::class,'hourhand_id');
+    }
 }

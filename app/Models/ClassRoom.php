@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class ClassRoom extends Model implements AuditableContract
 {
-    use HasFactory, UsesTenantConnection, SoftDeletes, Auditable;
+    use HasFactory, UsesTenantConnection, SoftDeletes,SoftCascadeTrait, Auditable;
 
     /**
      * table
@@ -55,6 +56,12 @@ class ClassRoom extends Model implements AuditableContract
         'deleted_at'
     ];
 
+
+    protected $softCascade = [
+        'classroomEducationLevel'
+    ];
+
+
     /**
      * campus
      *
@@ -92,5 +99,14 @@ class ClassRoom extends Model implements AuditableContract
      */
     public function classroomEducationLevel(): HasMany {
         return $this->hasMany(ClassroomEducationLevel::class,'classroom_id');
+    }
+
+    /**
+     * Course
+     *
+     * @return void
+     */
+    public function course(): HasMany {
+        return $this->hasMany(Course::class,'classroom_id');
     }
 }

@@ -115,7 +115,10 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'Inglés', 'parent_id' => 15, 'cat_description' => 'Habla idioma inglés', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Francés', 'parent_id' => 15, 'cat_description' => 'Habla idioma francés', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Chino', 'parent_id' => 15, 'cat_description' => 'Habla idioma chino mandarin', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
-            
+
+            ['cat_name' => 'Virtual', 'parent_id' => 12, 'cat_description' => 'Modalidad Online', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+            ['cat_name' => 'Híbrida ', 'parent_id' => 12, 'cat_description' => 'Modalidad Online', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
+         
             ['cat_name' => 'Ecuatoriana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad ecuatoriana', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Venezolana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad venezolana', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],
             ['cat_name' => 'Colombiana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad colombiana', 'cat_acronym' => NULL, 'cat_keyword' => NULL , 'status_id' => 1],

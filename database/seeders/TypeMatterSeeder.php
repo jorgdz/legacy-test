@@ -22,6 +22,7 @@ class TypeMatterSeeder extends Seeder
             ['tm_name' => 'Seminario',          'tm_acronym' => 'smr',  'tm_description' => 'Tipo Seminario',           'tm_order' => 5,   'tm_cobro' => 1, 'tm_matter_count' => 1,   'status_id' => 1],
             ['tm_name' => 'Materia Pre',        'tm_acronym' => 'mtp',  'tm_description' => 'Tipo Materia pre',         'tm_order' => 6,   'tm_cobro' => 1, 'tm_matter_count' => 1,   'status_id' => 1],
             ['tm_name' => 'Laboratorio',        'tm_acronym' => 'lbt',  'tm_description' => 'Tipo Laboratorio',         'tm_order' => 7,   'tm_cobro' => 1, 'tm_matter_count' => 1,   'status_id' => 1],
+            ['tm_name' => 'Online',             'tm_acronym' => 'onl',  'tm_description' => 'Tipo Online',              'tm_order' => 8,   'tm_cobro' => 1, 'tm_matter_count' => 1,   'status_id' => 1],
         ]);
     }
 }
