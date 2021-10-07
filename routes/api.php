@@ -519,11 +519,11 @@ Route::patch('/classroom-education-levels/{classroomeducationlevel}/changestatus
 /**
  * Courses  
  */
-Route::get('/courses', [CourseController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:courses-listar-curso'*/]);
-Route::get('/courses/{course}', [CourseController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:courses-obtener-curso'*/]);
-Route::post('/courses', [CourseController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:courses-crear-curso'*/]);
-Route::put('/courses/{course}', [CourseController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:courses-actualizar-curso'*/]);
-Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:courses-borrar-curso'*/]);
-Route::patch('/courses/{course}/changestatus', [CourseController::class, 'changeStatus'])->middleware(['auth:sanctum'/*, 'permission:courses-actualizar-curso'*/]);
+Route::get('/courses', [CourseController::class, 'index'])->middleware(['auth:sanctum', 'permission:courses-listar-curso']);
+Route::get('/courses/{course}', [CourseController::class, 'show'])->middleware(['auth:sanctum', 'permission:courses-obtener-curso']);
+Route::post('/courses', [CourseController::class, 'store'])->middleware(['auth:sanctum', 'permission:courses-crear-curso']);
+Route::put('/courses/{course}', [CourseController::class, 'update'])->middleware(['auth:sanctum', 'permission:courses-actualizar-curso']);
+Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:courses-borrar-curso']);
+Route::patch('/courses/{course}/changestatus', [CourseController::class, 'changeStatus'])->middleware(['auth:sanctum', 'permission:courses-actualizar-curso']);
 
 

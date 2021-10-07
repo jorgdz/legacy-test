@@ -3513,7 +3513,60 @@ class RoleSeeder extends Seeder
                 'parent_name' => 'permissions',
                 'parent_name_translated' => 'permisos',
                 'module_group' => 'configuration'
-             ],
+            ],
+            /**
+             * Cursos 324-328
+             */
+            [
+                'name' => 'courses-listar-curso',
+                'alias' => 'Listar cursos',
+                'description' => 'Listar todos los cursos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'course',
+                'parent_name_translated' => 'cursos',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'courses-obtener-curso',
+                'alias' => 'Obtener curso',
+                'description' => 'Obtener un curso por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'course',
+                'parent_name_translated' => 'cursos',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'courses-crear-curso',
+                'alias' => 'Crear curso',
+                'description' => 'Agregar un curso',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'course',
+                'parent_name_translated' => 'cursos',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'courses-actualizar-curso',
+                'alias' => 'Actualizar curso',
+                'description' => 'Actualizar un curso por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'course',
+                'parent_name_translated' => 'cursos',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'courses-borrar-curso',
+                'alias' => 'Eliminar curso',
+                'description' => 'Eliminar curso por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'course',
+                'parent_name_translated' => 'cursos',
+                'module_group' => 'academic'
+            ],
         ]);
 
         /**
@@ -4092,6 +4145,14 @@ class RoleSeeder extends Seeder
             * Permisos 323
             */
             ['permission_id' => 323, 'role_id' => 1],
+            /**
+             * Cursos 324-328
+             */
+            ['permission_id' => 324, 'role_id' => 1],
+            ['permission_id' => 325, 'role_id' => 1],
+            ['permission_id' => 326, 'role_id' => 1],
+            ['permission_id' => 327, 'role_id' => 1],
+            ['permission_id' => 328, 'role_id' => 1],
         ]);
 
         /**
@@ -4652,6 +4713,14 @@ class RoleSeeder extends Seeder
             * (Solo listar y obtener)
             */
             ['permission_id' => 323, 'role_id' => 2],
+            /**
+             * Cursos 324-328
+             */
+            ['permission_id' => 324, 'role_id' => 2],
+            ['permission_id' => 325, 'role_id' => 2],
+            ['permission_id' => 326, 'role_id' => 2],
+            ['permission_id' => 327, 'role_id' => 2],
+            ['permission_id' => 328, 'role_id' => 2],
         ]);
 
         /**
