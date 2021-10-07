@@ -847,7 +847,11 @@ return [
 		 */
 		'signatures' => 'firmas',
 		'acronym' => 'sigla',
-		'rrhh' => 'recursos humanos'
+		'rrhh' => 'recursos humanos',
+		/**
+		 * cambio contraseña
+		 */
+		'current_password' => 'contraseña',
 
 	],
 

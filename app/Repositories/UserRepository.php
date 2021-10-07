@@ -21,11 +21,13 @@ class UserRepository extends BaseRepository
      *
      * @return void
      */
-    public function __construct (User $user) {
+    public function __construct(User $user)
+    {
         parent::__construct($user);
     }
 
-    public function all ($request) {
+    public function all($request)
+    {
         $query = $this->model;
 
         if (!empty($this->relations)) {
@@ -33,7 +35,7 @@ class UserRepository extends BaseRepository
         }
 
         $collectQueryString = collect($request->all())
-        ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search'])->all();
+            ->except(['page', 'size', 'sort', 'type_sort', 'user_profile_id', 'search'])->all();
 
         if (!empty($collectQueryString)) {
             $query = $query->where($collectQueryString);
@@ -41,9 +43,9 @@ class UserRepository extends BaseRepository
 
         if ($request->search) {
             $fields = $this->fields;
-            $query= $query->where(function ($query) use($fields, $request) {
-                for ($i = 0; $i < count($fields); $i++){
-                    $query->orwhere($fields[$i], 'like',  '%' . $request->search .'%');
+            $query = $query->where(function ($query) use ($fields, $request) {
+                for ($i = 0; $i < count($fields); $i++) {
+                    $query->orwhere($fields[$i], 'like',  '%' . $request->search . '%');
                 }
             });
         }
@@ -63,7 +65,8 @@ class UserRepository extends BaseRepository
      *
      * @return void
      */
-    public function save (Model $user) {
+    public function save(Model $user)
+    {
         $user->password = Hash::make($user->password);
         $user->save();
         return $user;
@@ -75,10 +78,10 @@ class UserRepository extends BaseRepository
      * @return void
      *
      */
-    public function showProfiles (User $user) {
+    public function showProfiles(User $user)
+    {
 
         return $user->with(['userProfiles', 'userProfiles.profile'])->findOrFail($user->id);
-
     }
 
     /**
@@ -87,13 +90,14 @@ class UserRepository extends BaseRepository
      * @return void
      *
      */
-    public function showProfilesById ( $user_id , $profile_id ) {
-        $response = $this->model->with(['userProfiles' => function($query) use($profile_id) {
-            $query->with('profile')->where('profile_id',$profile_id);
+    public function showProfilesById($user_id, $profile_id)
+    {
+        $response = $this->model->with(['userProfiles' => function ($query) use ($profile_id) {
+            $query->with('profile')->where('profile_id', $profile_id);
         }])->find($user_id);
-        if($response == null)
+        if ($response == null)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
-        if($response->userProfiles->count()==0)
+        if ($response->userProfiles->count() == 0)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Profile::class)]));
         return $response->userProfiles[0];
     }
@@ -104,22 +108,23 @@ class UserRepository extends BaseRepository
      * @return void
      *
      */
-    public function showRolesbyUser ($user_id) {
-        $query = $this->model->with(['userProfiles' => function($query) {
+    public function showRolesbyUser($user_id)
+    {
+        $query = $this->model->with(['userProfiles' => function ($query) {
             $query->with('roles.permissions');
         }])->find($user_id);
 
         if ($query == null)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
 
-        if ($query->userProfiles->count()==0)
+        if ($query->userProfiles->count() == 0)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
 
-        if ($query->userProfiles[0]->roles->count()==0)
+        if ($query->userProfiles[0]->roles->count() == 0)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
 
-        $query->userProfiles[0]->roles->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
-        $query->userProfiles[0]->roles[0]->permissions->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
+        $query->userProfiles[0]->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'deleted_at', 'pivot']);
+        $query->userProfiles[0]->roles[0]->permissions->makeHidden(['guard_name', 'created_at', 'updated_at', 'deleted_at', 'pivot']);
         //unset($array2['pivot']['created_at']);
         return $query->userProfiles;
     }
@@ -130,22 +135,23 @@ class UserRepository extends BaseRepository
      * @return void
      *
      */
-    public function showRolesbyUserProfile ($user_id, $profile_id) {
-        $query = $this->model->with(['userProfiles' => function($query) use ($profile_id) {
-            $query->with('roles.permissions')->where('profile_id',$profile_id);
+    public function showRolesbyUserProfile($user_id, $profile_id)
+    {
+        $query = $this->model->with(['userProfiles' => function ($query) use ($profile_id) {
+            $query->with('roles.permissions')->where('profile_id', $profile_id);
         }])->find($user_id);
 
         if ($query == null)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
 
-        if ($query->userProfiles->count()==0)
+        if ($query->userProfiles->count() == 0)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
 
-        if ($query->userProfiles[0]->roles->count()==0)
+        if ($query->userProfiles[0]->roles->count() == 0)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
 
-        $query->userProfiles[0]->roles->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
-        $query->userProfiles[0]->roles[0]->permissions->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
+        $query->userProfiles[0]->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'deleted_at', 'pivot']);
+        $query->userProfiles[0]->roles[0]->permissions->makeHidden(['guard_name', 'created_at', 'updated_at', 'deleted_at', 'pivot']);
         return $query->userProfiles[0];
     }
 
@@ -154,9 +160,10 @@ class UserRepository extends BaseRepository
      *
      * @return void
      */
-    public function saveRolesbyUserProfile ($array_roles,$userProfile) {
+    public function saveRolesbyUserProfile($array_roles, $userProfile)
+    {
         $userProfile->syncRoles($array_roles);
-        if($userProfile->roles->count()==0)
+        if ($userProfile->roles->count() == 0)
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
         $userProfile->with('roles.permissions')->get();
         //$userProfile->roles->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
@@ -170,7 +177,8 @@ class UserRepository extends BaseRepository
      * @return void
      *
      */
-    public function showNotColaborador () {
+    public function showNotColaborador()
+    {
         $response =  collect($this->model::with('collaborator')->get())
             ->whereNull('collaborator')->values()->all();
 
@@ -183,18 +191,19 @@ class UserRepository extends BaseRepository
      * @param  mixed $request
      * @return void
      */
-    public function changePasswordUserRepository($user) {
+    public function changePasswordUserRepository($user)
+    {
         $id_user = $user->id;
 
         //Si el id de usuario es 0
-        if($id_user==0)
+        if ($id_user == 0)
             throw new ConflictException(__('error-parameter-id-required'));
 
 
         $user = User::where('id', $id_user)->count();
 
         //Si el usuario no existe en BD
-        if($user==0 || $user=='')
+        if ($user == 0 || $user == '')
             throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
 
         //generar nueva password
@@ -220,11 +229,13 @@ class UserRepository extends BaseRepository
      * @param  mixed $length //longitud de la cadena aleatoria
      * @return $passwordNew
      */
-    public function generatePasswordAlert($length){
+    public function generatePasswordAlert($length)
+    {
 
-        $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890');//!$%^&!$%^&');
+        $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890'); //!$%^&!$%^&');
         $passwordNew = substr($random, 0, 10);
 
         return $passwordNew;
     }
+
 }

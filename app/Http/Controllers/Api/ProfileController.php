@@ -4,17 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Profile;
 use App\Cache\ProfileCache;
+use App\Traits\Auditor;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Controllers\Api\Contracts\IProfileController;
+use App\Http\Requests\UserChangePasswordLoggedFormRequest;
 
 class ProfileController extends Controller implements IProfileController
 {
     //
-    use RestResponse;
+    use RestResponse, Auditor;
 
     /**
      * repoProfile
@@ -28,7 +30,8 @@ class ProfileController extends Controller implements IProfileController
      *
      * @return void
      */
-    public function __construct (ProfileCache $repoProfile) {
+    public function __construct(ProfileCache $repoProfile)
+    {
         $this->repoProfile = $repoProfile;
     }
 
@@ -38,7 +41,8 @@ class ProfileController extends Controller implements IProfileController
      * List all profiles
      * @return void
      */
-    public function index (Request $request) {
+    public function index(Request $request)
+    {
         return $this->success($this->repoProfile->all($request));
     }
 
@@ -49,7 +53,8 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $profile
      * @return void
      */
-    public function show (Request $request,Profile $profile) {
+    public function show(Request $request, Profile $profile)
+    {
         return $this->success($this->repoProfile->find($profile->id));
     }
 
@@ -60,7 +65,8 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $profile
      * @return void
      */
-    public function store (StoreProfileRequest $request) {
+    public function store(StoreProfileRequest $request)
+    {
         $profileRequest = $request->all();
 
         $profile = new Profile($profileRequest);
@@ -74,7 +80,8 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $profile
      * @return void
      */
-    public function update (UpdateProfileRequest $request, Profile $profile) {
+    public function update(UpdateProfileRequest $request, Profile $profile)
+    {
         $profileRequest = $request->all();
 
         $profile->fill($profileRequest);
@@ -90,7 +97,8 @@ class ProfileController extends Controller implements IProfileController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile) {
+    public function destroy(Profile $profile)
+    {
         return $this->success($this->repoProfile->destroy($profile));
     }
 
@@ -101,7 +109,23 @@ class ProfileController extends Controller implements IProfileController
      * @param  mixed $profile
      * @return void
      */
-    public function showUsers (Request $request, Profile $profile) {
+    public function showUsers(Request $request, Profile $profile)
+    {
         return $this->success($this->repoProfile->showUsers($profile));
+    }
+
+    /**
+     * changePasswordLogged
+     *
+     *  Change Password user
+     * @param  mixed $request
+     * @return void
+     */
+    public function changePasswordLogged(UserChangePasswordLoggedFormRequest $request)
+    {
+        
+        $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(User::class)));
+       
+        return $this->success($this->repoProfile->changePasswordUserLogged($request));
     }
 }

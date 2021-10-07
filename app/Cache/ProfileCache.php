@@ -5,14 +5,16 @@ namespace App\Cache;
 use App\Repositories\ProfileRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class ProfileCache extends BaseCache {
+class ProfileCache extends BaseCache
+{
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct(ProfileRepository $profileRepository) {
+    public function __construct(ProfileRepository $profileRepository)
+    {
         parent::__construct($profileRepository);
     }
 
@@ -35,7 +37,8 @@ class ProfileCache extends BaseCache {
      * @param  mixed $id
      * @return void
      */
-    public function find ($id) {
+    public function find($id)
+    {
         return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
             return $this->repository->find($id);
         });
@@ -58,7 +61,8 @@ class ProfileCache extends BaseCache {
      *
      * @return void
      */
-    public function destroy (Model $model) {
+    public function destroy(Model $model)
+    {
         $this->forgetCache('profiles');
         return $this->repository->destroy($model);
     }
@@ -69,9 +73,22 @@ class ProfileCache extends BaseCache {
      * @param  mixed $model
      * @return void
      */
-    public function showUsers (Model $model) {
+    public function showUsers(Model $model)
+    {
         return $this->cache::remember($this->key, $this->ttl, function () use ($model) {
             return $this->repository->showUsers($model);
         });
+    }
+
+
+    /**
+     * changePasswordUserLogged
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function changePasswordUserLogged($request)
+    {
+        return $this->repository->changePasswordUserLoggedRepository($request);
     }
 }

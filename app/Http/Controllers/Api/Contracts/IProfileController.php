@@ -6,6 +6,7 @@ use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UserChangePasswordLoggedFormRequest;
 
 interface IProfileController
 {
@@ -338,4 +339,54 @@ interface IProfileController
      *
      */
     public function showUsers ( Request $request,Profile $profile);
+
+    /**
+     * @OA\Put(
+     *   path="/api/profile/change-password",
+     *   tags={"Perfiles"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Cambiar contraseña del usuario que se encuentra logeado",
+     *   description="Cambiar contraseña del usuario logeado.",
+     *   operationId="updatechangePasswordLogged",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="current_password",
+     *           description="contraseña actual",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="password",
+     *           description="nueva contraseña",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="password_confirmation",
+     *           description="confirmar nueva contraseña",
+     *           type="string",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
+     *   @OA\JsonContent(
+     *      example={
+     *            "current_password" : "required|validatePasswordCurrent",
+     *            "password" : "required| min:6| max:8 |confirmed|La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 numérico y 1 carácter especial: #?!@$%^&*-. (el signo punto tambien es un carácter especial)",
+     *            "password_confirmation" : "required| min:6"
+     *      },
+     *   )),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function changePasswordLogged(UserChangePasswordLoggedFormRequest $request);
 }

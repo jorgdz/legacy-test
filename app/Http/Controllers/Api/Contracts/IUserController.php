@@ -10,6 +10,7 @@ use App\Http\Requests\StoreUserProfileRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
 use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Requests\UserChangePasswordFormRequest;
+use App\Http\Requests\UserChangePasswordLoggedFormRequest;
 
 interface IUserController
 {
@@ -859,4 +860,7 @@ interface IUserController
      *
      */
     public function changePassword(UserChangePasswordFormRequest $request, User $user);
+
+
+    
 }

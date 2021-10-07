@@ -161,7 +161,7 @@ Route::post('/profiles', [ProfileController::class, 'store'])->middleware(['auth
 Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->middleware(['auth:sanctum', 'permission:profiles-actualizar-perfil']);
 Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:profiles-borrar-un-perfil']);
 Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])->middleware(['auth:sanctum', 'permission:profiles-listar-usuarios-por-perfil']);
-
+Route::put('/profile/change-password', [ProfileController::class, 'changePasswordLogged'])->middleware(['auth:sanctum']);
 /**
  *
  * Companies
