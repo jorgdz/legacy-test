@@ -26,6 +26,7 @@ class CreateSubjectCurriculumTable extends Migration
             $table->foreign('simbology_id')->references('id')->on('simbologies');
 
             $table->boolean('can_homologate')->nullable();
+            $table->boolean('is_prerequisite')->nullable();
             $table->float('min_note', 8, 4)->nullable()->unsigned();
             $table->float('min_calification', 8, 4)->nullable();
             $table->float('max_calification', 8, 4)->nullable();

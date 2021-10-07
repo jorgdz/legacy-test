@@ -43,7 +43,7 @@ class SubjectCurriculumRequest extends FormRequest
                 'required',
                 'integer',
                 'exists:tenant.subjects,id',
-                'unique:tenant.subject_curriculum,matter_id,' . $this->route('subjectcurriculum')->id
+                //'unique:tenant.subject_curriculum,matter_id,' . $this->route('subjectcurriculum')->id
             ];
         }
 

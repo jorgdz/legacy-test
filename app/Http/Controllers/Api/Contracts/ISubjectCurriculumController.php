@@ -129,6 +129,12 @@ interface ISubjectCurriculumController
      *           example="true"
      *         ),
      *         @OA\Property(
+     *           property="is_prerequisite",
+     *           description="Es prerequisto",
+     *           type="boolean",
+     *           example="true",
+     *         ),
+     *         @OA\Property(
      *           property="min_note",
      *           description="Nota mínima",
      *           type="number",
@@ -387,7 +393,13 @@ interface ISubjectCurriculumController
      *           property="can_homologate",
      *           description="Se puede homologar",
      *           type="boolean",
-     *           example="1",
+     *           example="true",
+     *         ),
+     *         @OA\Property(
+     *           property="is_prerequisite",
+     *           description="Es prerequisto",
+     *           type="boolean",
+     *           example="true",
      *         ),
      *         @OA\Property(
      *           property="min_note",
