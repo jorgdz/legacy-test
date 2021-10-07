@@ -71,6 +71,7 @@ class SubjectCurriculum extends Model implements AuditableContract
         'mesh_id',
         'simbology_id',
         'can_homologate',
+        'is_prerequisite',
         'min_note',
         'min_calification',
         'max_calification',
