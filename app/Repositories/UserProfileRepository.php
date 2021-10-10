@@ -87,6 +87,8 @@ class UserProfileRepository extends BaseRepository
     public function validationUserProfile($conditionals, $permission) {
         return $this->model::where($conditionals)->with('roles.permissions')
             ->whereHas('roles', fn ($query) => $query->where('status_id', 1))
-            ->whereHas('roles.permissions', fn ($query) => $query->where('name', $permission))->first();
+            ->whereHas('roles.permissions',
+                fn ($query) => $query->where('name', $permission)->where('status_id', 1))
+            ->first();
     }
 }

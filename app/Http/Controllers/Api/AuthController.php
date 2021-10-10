@@ -12,7 +12,10 @@ use App\Http\Requests\UserFormRequest;
 use Illuminate\Auth\AuthenticationException;
 use App\Http\Controllers\Api\Contracts\IAuthController;
 use App\Http\Resources\UserResource as UserResource;
+use App\Models\PersonalAccessToken;
 use App\Traits\Auditor;
+use App\Traits\Helper;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * AuthController
@@ -20,7 +23,7 @@ use App\Traits\Auditor;
 class AuthController extends Controller implements IAuthController
 {
 
-    use RestResponse;
+    use RestResponse, Helper;
     use Auditor;
 
     private $userCache;
@@ -39,10 +42,14 @@ class AuthController extends Controller implements IAuthController
         if (!Auth::attempt(['us_username' => $request->us_username, 'password' => $request->password, 'status_id' => 1]))
             throw new AuthenticationException(__('messages.no-credentials'));
 
-        $user = User::with(['userProfiles' => fn ($query) =>
+        $user = User::with([
+            'userProfiles.status',
+            'userProfiles.profile',
+            'person.identification',
+            'userProfiles.roles.permissions',
+            'userProfiles' => fn ($query) =>
                 $query->whereHas('roles', fn ($query) => $query->where('status_id', 1))
-            ])
-            ->where('us_username', $request['us_username'])->firstOrFail();
+        ])->where('us_username', $request['us_username'])->firstOrFail();
 
         if (!$user->userProfiles || count($user->userProfiles) <= 0)
             throw new AuthenticationException(__('messages.no-roles-assign'));
@@ -50,12 +57,26 @@ class AuthController extends Controller implements IAuthController
         $user = new UserResource($user);
 
         $token = $user->createToken('auth_token')->plainTextToken;
+
+        [$id, $aux_token] = explode('|', $token, 2);
+
+        $key = request()->getHost(). "_find_token_{$id}";
+        Cache::remember($key, now()->addMinutes(150), function () use ($id) {
+            return PersonalAccessToken::find($id);
+        });
+
+        $userAuth = Cache::remember($this->generateKeyUserAuth($token), now()->addMinutes(150),
+            function () use ($user) {
+                return $user;
+            }
+        );
+
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(User::class)));
 
         return $this->success([
             'token_type' => 'Bearer',
             'access_token' => $token,
-            'user' => $user,
+            'user' => $userAuth,
         ]);
     }
 
@@ -65,8 +86,15 @@ class AuthController extends Controller implements IAuthController
      * @return void
      */
     public function whoami (Request $request) {
-        $user = User::findOrFail($request->user()->id);
-        return new UserResource($user);
+        [$typeToken, $token] = explode('Bearer ', $request->header('Authorization'));
+        return Cache::remember($this->generateKeyUserAuth($token), now()->addMinutes(150), function () use ($request) {
+            return new UserResource(User::with([
+                'userProfiles.roles.permissions',
+                'userProfiles.status',
+                'userProfiles.profile',
+                'person.identification'
+            ])->findOrFail($request->user()->id));
+        });
     }
 
     /**

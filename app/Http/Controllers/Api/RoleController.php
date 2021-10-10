@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Cache\RoleCache;
 use App\Models\Role;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Repositories\RoleRepository;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
-use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IRoleController;
+use App\Repositories\RoleRepository;
+use App\Traits\Helper;
 
 class RoleController extends Controller implements IRoleController
 {
-    use RestResponse;
+    use RestResponse, Helper;
 
+    private $roleCache;
     private $repository;
 
     /**
@@ -25,7 +26,8 @@ class RoleController extends Controller implements IRoleController
      *
      * @return void
      */
-    public function __construct (RoleRepository $repository) {
+    public function __construct (RoleRepository $repository, RoleCache $roleCache) {
+        $this->roleCache = $roleCache;
         $this->repository = $repository;
     }
 
@@ -35,8 +37,7 @@ class RoleController extends Controller implements IRoleController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $users = $this->repository->all($request);
-        return $this->success($users);
+        return $this->success($this->roleCache->all($request));
     }
 
     /**
@@ -49,10 +50,7 @@ class RoleController extends Controller implements IRoleController
         $request['guard_name'] = 'api';
 
         $role = new Role($request->all());
-        $role = $this->repository->save($role);
-
-        return $this->success($role, Response::HTTP_CREATED);
-
+        return $this->success($this->roleCache->save($role), Response::HTTP_CREATED);
     }
 
     /**
@@ -61,9 +59,8 @@ class RoleController extends Controller implements IRoleController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        $role = $this->repository->find($id);
-        return $this->success($role);
+    public function show ($id) {
+        return $this->success($this->roleCache->find($id));
     }
 
     /**
@@ -74,15 +71,15 @@ class RoleController extends Controller implements IRoleController
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRoleRequest $request, Role $role) {
-
         $role->fill($request->all());
 
         if ($role->isClean() && !isset($request['permissions']))
             return $this->information(__('messages.nochange'));
 
-        $response = $this->repository->save($role);
+        $response = $this->roleCache->save($role);
 
-        if (isset($request['permissions'])) $role->syncPermissions($request['permissions']);
+        if (isset($request['permissions']))
+            $role->syncPermissions($request['permissions']);
 
         return $this->success($response);
     }
@@ -96,7 +93,7 @@ class RoleController extends Controller implements IRoleController
     public function destroy(Role $role) {
         $this->repository->deleteModelHasRole($role->id);
         $role->revokePermissionTo($role->getAllPermissions()->pluck('name')->toArray());
-        $response = $this->repository->destroy($role);
+        $response = $this->roleCache->destroy($role);
         return $response;
     }
 }

@@ -30,11 +30,12 @@ class PermissionMiddleware
             throw new AuthenticationException(__('messages.no-credentials'));
         }
 
-        if (!isset($request['user_profile_id'])) throw new BadRequestException(__("messages.bad-request"));
+        if (!isset($request['user_profile_id'])) throw new BadRequestException(__('messages.bad-request'));
 
         $conditionals = [
             ['id', $request['user_profile_id']]
         ];
+
         $response = $this->userProfileCache->validationUserProfile($conditionals, $request['user_profile_id'], $permission);
 
         if (!$response) throw new AuthorizationException();

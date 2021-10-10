@@ -13,7 +13,7 @@ class UserResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    
+
     public function toArray($request)
     {
          return [
@@ -24,7 +24,7 @@ class UserResource extends JsonResource
             'us_first_lastname'  => $this->person->pers_first_lastname,
             'us_second_lastname' => $this->person->pers_second_lastname,
             'us_date_birth'      => $this->person->pers_date_birth,
-            'us_gender'          => $this->person->pers_gender, 
+            'us_gender'          => $this->person->pers_gender,
             'identification'     => $this->person->identification,
             'us_username'        => $this->us_username,
             'email'              => $this->email,

@@ -141,7 +141,8 @@ class TenantModuleController extends Controller implements ITenantModuleControll
 
             $response = $this->tenantModuleCache->save($tenant_module);
             $this->permissionRepository->assignPermissionsByModule($tenant_cli->database, $conditionals, $params);
-
+            //$this->tenantModuleCache->forgetAllCacheTenant($tenant_cli);
+            Cache::flush();
             DB::commit();
             return $this->success($response);
         } catch (\Exception $ex) {

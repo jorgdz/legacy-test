@@ -27,4 +27,19 @@ class PersonalAccessToken extends SanctumPersonalAccessToken
             return hash_equals($instance->token, hash('sha256', $token)) ? $instance : null;
         }
     }
+
+    /**
+     * save
+     *
+     * @param  mixed $options
+     * @return void
+     */
+    public function save(array $options = []) {
+        $changes = $this->getDirty();
+        if (!array_key_exists('last_used_at', $changes) || count($changes) > 2) {
+            parent::save();
+        }
+
+        return false;
+    }
 }

@@ -31,7 +31,7 @@ abstract class BaseCache implements IBaseRepository {
         $this->repository = $baseRepository;
         $this->key = $fullUrl;
         $this->cache = new Cache();
-        $this->ttl = now()->addMinutes(env('TTL_CACHE'));
+        $this->ttl = now()->addMinutes(config('app.ttl_cache'));
     }
 
     public function forgetCache($resource = NULL) {
@@ -48,6 +48,23 @@ abstract class BaseCache implements IBaseRepository {
 
     public function forgetToken($tenant) {
         $content = request()->getHost() . "_find_token";
+        $keys = Redis::connection('cache')->keys("**{$content}**");
+        foreach ($keys as $k => $v) {
+            $splitKey = explode($tenant, $keys[$k]);
+            if (count($splitKey) === 2) $this->cache::forget($splitKey[1]);
+        }
+    }
+
+    /**
+     * forgetAllCacheTenant
+     *
+     * @param  mixed $tenant
+     * @return void
+     */
+    public function forgetAllCacheTenant (CustomTenant $tenant) {
+        $domain = $tenant->domain;
+        $tenant = Str::slug(env('APP_NAME', 'sistema_de_planificacion_de_recursos'), '_') . '_database_tenant_id_' . $tenant->id . ':';
+        $content = "{$domain}/api";
         $keys = Redis::connection('cache')->keys("**{$content}**");
         foreach ($keys as $k => $v) {
             $splitKey = explode($tenant, $keys[$k]);

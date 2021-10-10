@@ -46,4 +46,9 @@ trait Helper
             }
         }
     }
+
+    function generateKeyUserAuth ($token) {
+        $url = request()->getHost();
+        return "{$url}/api/whoami?token={$token}";
+    }
 }

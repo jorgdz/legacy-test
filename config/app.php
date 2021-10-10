@@ -56,6 +56,8 @@ return [
 
     'api_doc_url' => env('URI_API_DOC', ''),
 
+    'ttl_cache' => env('TTL_CACHE', 2),
+
     'api_sendiblue' => env('API_KEY_SENDINBLUE', ''),
 
     'api_external' => env('EXTERNAL_API_TOKEN', ''),
