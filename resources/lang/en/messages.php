@@ -49,7 +49,7 @@ return [
     'collaborator-email-found' => 'The collaborator cannot be registered because there is already a collaborator with that email',
     'user-username-found' => 'A user cannot be registered because a user with the same identification number already exists',
     'error-change-password-logged' => 'Error. Password does not match the one stored in the system.',
-    'validate-format-new-password' => 'Error. Error. The password must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character: #?!@$%^&*-.  ',
+    'validate-format-new-password' => 'Error. Error. The password must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',
 
 ];
 ?>

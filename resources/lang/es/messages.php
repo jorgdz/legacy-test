@@ -52,6 +52,6 @@ return [
     'collaborator-email-found' => 'No se puede registrar el colaborador porque ya existe un colaborador con ese correo electronico',
     'user-username-found' => 'No se puede registrar un usuario porque ya existe un usuario con el mismo numero de identificacion',
     'error-change-password-logged' => 'Error. Contraseña no coincide con la almacenda en el sistema.',
-    'validate-format-new-password' => 'Error. La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 numérico y 1 carácter especial: #?!@$%^&*-. ',
+    'validate-format-new-password' => 'Error. La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 numérico y 1 carácter especial: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',  
 
 ];

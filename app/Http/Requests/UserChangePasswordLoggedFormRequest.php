@@ -63,7 +63,8 @@ class UserChangePasswordLoggedFormRequest extends FormRequest
             //'user_profile_id'=>'required|integer',
             // 'status_id' => 'required|integer|exists:tenant.status,id'
             'current_password' => 'required|validatePasswordCurrent',
-            'password' => 'required| min:6| max:8 |confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{6,}$/',
+          //'password' => 'required| min:6| confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[,+:;<=>_`{}~#?!@$%^&*-.()\/\"\']).{6,}$/',
+            'password' => array('required', 'min:6','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[|,+:;<=>_`{}~#?!@$%^&*-.()\/\"\']).{6,}$/'),
             'password_confirmation' => 'required| min:6'
 
         ];

@@ -79,7 +79,7 @@ class StudentController extends Controller implements IStudentController
             $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function ($query) {
                 $query->where('status_id', 7);
             })->first();
-
+   
             if ($educationLevel) {
                 $person = new Person($request->except(['email', 'campus_id', 'modalidad_id', 'jornada_id']));
                 $person->save();
