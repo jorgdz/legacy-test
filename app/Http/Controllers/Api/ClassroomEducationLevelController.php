@@ -63,11 +63,11 @@ class ClassroomEducationLevelController extends Controller implements IClassroom
 
         $classrooms = $this->classroomEducationLevelCache->getClassroomAssigned($request);
         //$classrooms = $this->classroomEducationLevelCache->validateRegister($request);
-        if(!is_array($classrooms->classrooms_asiggned))
+        if(!is_array($classrooms->classrooms_assigned))
             throw new NotFoundException(__("messages.no-content"));
 
         $classroomLists = [];
-        foreach ($classrooms->classrooms_asiggned as $classRoom)
+        foreach ($classrooms->classrooms_assigned as $classRoom)
         {
             $model = [
                 "classroom_id"        => $classRoom,
