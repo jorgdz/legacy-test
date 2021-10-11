@@ -136,4 +136,40 @@ class Curriculum extends Model implements AuditableContract
     public function learningComponent(): HasMany {
         return $this->hasMany(LearningComponent::class,'mesh_id');
     }
+
+    public function getMesNumberMatterAttribute () {
+        return (int) ($this->attributes['mes_number_matter']);
+    }
+
+    public function getMesNumberPeriodAttribute () {
+        return (int) ($this->attributes['mes_number_period']);
+    }
+
+    public function getMesQuantityExternalMatterHomologateAttribute () {
+        return (int) ($this->attributes['mes_quantity_external_matter_homologate']);
+    }
+
+    public function getMesQuantityInternalMatterHomologateAttribute () {
+        return (int) ($this->attributes['mes_quantity_internal_matter_homologate']);
+    }
+
+    public function getAnioAttribute () {
+        return (int) ($this->attributes['anio']);
+    }
+
+    public function getMesModalityIdAttribute () {
+        return (int) ($this->attributes['mes_modality_id']);
+    }
+
+    public function getTypeCalificationIdAttribute () {
+        return (int) ($this->attributes['type_calification_id']);
+    }
+
+    public function getLevelEduIdAttribute () {
+        return (int) ($this->attributes['level_edu_id']);
+    }
+
+    public function getStatusIdAttribute () {
+        return (int) ($this->attributes['status_id']);
+    }
 }

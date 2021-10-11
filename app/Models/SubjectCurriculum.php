@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use PhpParser\Node\Expr\Cast\Double;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 //class MatterMesh extends Model implements AuditableContract
@@ -166,5 +167,37 @@ class SubjectCurriculum extends Model implements AuditableContract
     public function calificationModel(): BelongsTo
     {
         return $this->belongsTo(CalificationModel::class, 'calification_models_id');
+    }
+
+    public function getMinNoteAttribute () {
+        return (float) ($this->attributes['min_note']);
+    }
+
+    public function getMinCalificationAttribute () {
+        return (float) ($this->attributes['min_calification']);
+    }
+
+    public function getMaxCalificationAttribute () {
+        return (float) ($this->attributes['max_calification']);
+    }
+
+    public function getNumFoulsAttribute () {
+        return (int) ($this->attributes['num_fouls']);
+    }
+
+    public function getGroupAttribute () {
+        return (int) ($this->attributes['group']);
+    }
+
+    public function getOrderAttribute () {
+        return (int) ($this->attributes['order']);
+    }
+
+    public function getCalificationModelsIdAttribute () {
+        return (int) ($this->attributes['calification_models_id']);
+    }
+
+    public function getStatusIdAttribute () {
+        return (int) ($this->attributes['status_id']);
     }
 }
