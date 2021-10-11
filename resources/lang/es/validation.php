@@ -863,6 +863,11 @@ return [
 		 * cambio contraseña
 		 */
 		'current_password' => 'contraseña',
+        /**
+         * EducationLevelSubject
+         */
+        'subject_id' => 'materia',
+        'group_area_id' => 'area',
 
 	],
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Cache\SubjectCurriculumCache;
 use App\Models\Curriculum;
 use App\Cache\CurriculumCache;
+use App\Exceptions\Custom\ConflictException;
 use App\Traits\RestResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +45,7 @@ class CurriculumController extends Controller implements ICurriculumController
     public function store(CurriculumRequest $request) {
         $curriculumFound = Curriculum::where('status_id', 7)->where('level_edu_id', $request['level_edu_id'])->first();
         if($curriculumFound)
-            return $this->information(__('messages.meshs-vigent'), Response::HTTP_CONFLICT);
+            throw new ConflictException(__('messages.meshs-vigent'));
 
         $curriculum = new Curriculum($request->all());
         return $this->success($this->curriculumCache->save($curriculum), Response::HTTP_CREATED);

@@ -124,4 +124,14 @@ class EducationLevel extends Model implements AuditableContract
     public function classroomEducationLevel(): HasMany {
         return $this->hasMany(ClassroomEducationLevel::class,'education_level_id');
     }
+
+    /**
+     * educationLevelSubject
+     *
+     * @return HasMany
+     */
+    public function educationLevelSubject() : HasMany
+    {
+        return $this->hasMany(EducationLevelSubject::class, 'education_level_id');
+    }
 }

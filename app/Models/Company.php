@@ -54,7 +54,6 @@ class Company extends Model implements AuditableContract
         'co_youtube',
         'co_info_mail',
         'co_matrix',
-        'co_logo',
         'co_color',
         'co_pay_notification',
         'co_ruc',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Cache\AgreementCache;
+use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\IAgreementController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AgreementRequest;
@@ -83,7 +84,7 @@ class AgreementController extends Controller implements IAgreementController
     public function enabled(Agreement $agreement)
     {
         if($agreement->status_id == 1)
-            return $this->information(__('messages.is-active'), Response::HTTP_UNPROCESSABLE_ENTITY);
+            throw new UnprocessableException(__('messages.is-active'));
 
         $agreement->status_id = 1;
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Agreement::class)));
@@ -99,7 +100,7 @@ class AgreementController extends Controller implements IAgreementController
     public function disabled(Agreement $agreement)
     {
         if($agreement->status_id == 2)
-            return $this->information(__('messages.is-inactive'), Response::HTTP_UNPROCESSABLE_ENTITY);
+            throw new UnprocessableException(__('messages.is-inactive'));
 
         $agreement->status_id = 2;
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Agreement::class)));

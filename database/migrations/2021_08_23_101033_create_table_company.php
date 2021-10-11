@@ -25,7 +25,6 @@ class CreateTableCompany extends Migration
             $table->string('co_youtube', 255)->nullable();
             $table->string('co_info_mail', 255)->nullable();
             $table->string('co_matrix', 255)->nullable();
-            $table->string('co_logo', 255)->nullable();
             $table->string('co_color', 255)->nullable();
             $table->string('co_pay_notification', 255)->nullable();
             $table->string('co_ruc', 20)->nullable();

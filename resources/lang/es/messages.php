@@ -52,6 +52,9 @@ return [
     'collaborator-email-found' => 'No se puede registrar el colaborador porque ya existe un colaborador con ese correo electronico',
     'user-username-found' => 'No se puede registrar un usuario porque ya existe un usuario con el mismo numero de identificacion',
     'error-change-password-logged' => 'Error. Contraseña no coincide con la almacenda en el sistema.',
-    'validate-format-new-password' => 'Error. La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 numérico y 1 carácter especial: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',  
+    'career-not-found' => 'No se puede asociar una materia a un nivel educativo que no sea una carrera',
+    'subject-found-with-career' => 'No se puede asociar una materia que ya existe con esta carrera',
+    'type-subject-not-nivelation' => 'No se puede asignar una materia que no sea de tipo nivelación',
+    'validate-format-new-password' => 'Error. La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 numérico y 1 carácter especial: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',
 
 ];

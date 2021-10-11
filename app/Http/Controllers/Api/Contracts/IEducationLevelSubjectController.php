@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Models\Subject;
+use App\Http\Requests\EducationLevelSubjectRequest;
+use App\Models\EducationLevelSubject;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreSubjectRequest;
 
-interface ISubjectController {
-
+interface IEducationLevelSubjectController
+{
     /**
      * @OA\Get(
-     *   path="/api/subjects",
-     *   tags={"Materias"},
+     *   path="/api/education-level-subject",
+     *   tags={"Carreras y Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar las materias",
-     *   description="Muestra todos las materias en formato JSON",
-     *   operationId="getAllSubject",
+     *   summary="Listar materias de tipo nivelacion de carreras",
+     *   description="Muestra todas los materias de tipo nivelacion de las carreras en formato JSON",
+     *   operationId="getAllEducationLevelSubject",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -88,14 +88,14 @@ interface ISubjectController {
 
     /**
      * @OA\Post(
-     *   path="/api/subjects",
-     *   tags={"Materias"},
+     *   path="/api/education-level-subject",
+     *   tags={"Carreras y Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear una materia",
-     *   description="Crear una nueva materia.",
-     *   operationId="addSubject",
+     *   summary="Asignar materias de tipo nivelacion a una carrera",
+     *   description="Asignar una nueva materia de tipo nivelacion a la carrera",
+     *   operationId="addEducationLevelSubject",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -107,59 +107,23 @@ interface ISubjectController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="mat_name",
-     *           description="Nombre de la materia",
-     *           type="string",
+     *           property="period_id",
+     *           description="Periodo a la que pertenece",
+     *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="cod_matter_migration",
-     *           description="Código de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="cod_old_migration",
-     *           description="Código anterior de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_acronym",
-     *           description="Siglas de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_translate",
-     *           description="Traduccion de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_description",
-     *           description="Descripción de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_payment_type",
-     *           description="Tipo de pago de la materia",
-     *           type="string",
-     *           example="credito/horas"
-     *         ),
-     *         @OA\Property(
-     *           property="type_matter_id",
-     *           description="Tipo de materia",
+     *           property="group_area_id",
+     *           description="Grupo de area a la que pertenece",
      *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="education_level_id",
-     *           description="Tipo de calificación",
+     *           description="Carrera para asociar materias",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="area_id",
-     *           description="Tipo de area",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="status_id",
-     *           description="Estado de la materia",
+     *           property="subject_id",
+     *           description="Materia de tipo nivelacion",
      *           type="integer",
      *         ),
      *       ),
@@ -169,16 +133,10 @@ interface ISubjectController {
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "mat_name": "required|string|unique:tenant.subjects,mat_name",
-     *          "cod_matter_migration": "nullable|string",
-     *          "cod_old_migration": "nullable|string",
-     *          "mat_acronym": "nullable|string|max:3",
-     *          "mat_translate": "nullable|string",
-     *          "mat_payment_type": "in:credito,horas",
-     *          "type_matter_id": "required|integer|exists:tenant.type_subjects,id",
-     *          "education_level_id": "required|integer|exists:tenant.education_levels,id",
-     *          "area_id": "required|integer|exists:tenant.areas,id",
-     *          "status_id": "required|integer|exists:tenant.status,id"
+     *           "group_area_id"        : "integer|exists:tenant.group_area,id",
+     *           "education_level_id"   : "integer|exists:tenant.education_levels,id",
+     *           "period_id"            : "integer|exists:tenant.periods,id",
+     *           "subject_id"           : "integer|exists:tenant.subjects,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -187,18 +145,18 @@ interface ISubjectController {
      * )
      *
      */
-    public function store(StoreSubjectRequest $request);
+    public function store(EducationLevelSubjectRequest $educationLevelSubject);
 
     /**
      * @OA\Get(
-     *   path="/api/subjects/{id}",
-     *   tags={"Materias"},
+     *   path="/api/education-level-subject/{id}",
+     *   tags={"Carreras y Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener una materia",
-     *   description="Muestra información específica de una materia por Id.",
-     *   operationId="getSubjects",
+     *   summary="Obtener una carrera con materias de tipo nivelacion",
+     *   description="Muestra información específica de una carrera por Id.",
+     *   operationId="getEducationLevelSubject",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -211,12 +169,12 @@ interface ISubjectController {
      *   ),
      *   @OA\Parameter(
      *     name="id",
-     *     description="Id de la materia",
+     *     description="Id de la carrera",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="2"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -231,22 +189,22 @@ interface ISubjectController {
 
     /**
      * @OA\Put(
-     *   path="/api/subjects/{subject}",
-     *   tags={"Materias"},
+     *   path="/api/education-level-subject/{educationLevelSubject}",
+     *   tags={"Carreras y Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar la materia",
-     *   description="Actualizar una materia.",
-     *   operationId="updateSubjects",
+     *   summary="Actualizar carrera con materias de tipo nivelacion",
+     *   description="Actualizar una carrera.",
+     *   operationId="updateEducationLevelSubject",
      *   @OA\Parameter(
-     *     name="subject",
-     *     description="Id de la materia",
+     *     name="educationLevelSubject",
+     *     description="Id de la carrera",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="2"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -260,78 +218,36 @@ interface ISubjectController {
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="mat_name",
-     *           description="Nombre de la materia",
-     *           type="string",
+     *           property="period_id",
+     *           description="Periodo a la que pertenece",
+     *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="cod_matter_migration",
-     *           description="Código de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="cod_old_migration",
-     *           description="Código anterior de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_acronym",
-     *           description="Siglas de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_translate",
-     *           description="Traduccion de la materia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="mat_description",
-     *           description="Descripción de la materia",
-     *           type="string",
-     *         ),
-     *        @OA\Property(
-     *           property="mat_payment_type",
-     *           description="Tipo de pago de la materia",
-     *           type="string",
-     *           example="credito/horas"
-     *         ),
-     *         @OA\Property(
-     *           property="type_matter_id",
-     *           description="Tipo de materia",
+     *           property="group_area_id",
+     *           description="Grupo de area a la que pertenece",
      *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="education_level_id",
-     *           description="Tipo de calificación",
+     *           description="Carrera para asociar materias",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="area_id",
-     *           description="Tipo de area",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="status_id",
-     *           description="Estado de la materia",
+     *           property="subject_id",
+     *           description="Materia de tipo nivelacion",
      *           type="integer",
      *         ),
      *       ),
      *     ),
      *   ),
-     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "mat_name": "required|string|unique:tenant.subjects,mat_name",
-     *          "cod_matter_migration": "nullable|string",
-     *          "cod_old_migration": "nullable|string",
-     *          "mat_acronym": "nullable|string|max:3",
-     *          "mat_translate": "nullable|string",
-     *          "mat_payment_type": "in:credito,horas",
-     *          "type_matter_id": "required|integer|exists:tenant.type_subjects,id",
-     *          "education_level_id": "required|integer|exists:tenant.education_levels,id",
-     *          "area_id": "required|integer|exists:tenant.areas,id",
-     *          "status_id": "required|integer|exists:tenant.status,id"
+     *           "group_area_id"        : "integer|exists:tenant.group_area,id",
+     *           "education_level_id"   : "integer|exists:tenant.education_levels,id",
+     *           "period_id"            : "integer|exists:tenant.periods,id",
+     *           "subject_id"           : "integer|exists:tenant.subjects,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -340,25 +256,25 @@ interface ISubjectController {
      * )
      *
      */
-    public function update(StoreSubjectRequest $request, Subject $subject);
+    public function update(EducationLevelSubjectRequest $request, EducationLevelSubject $educationLevelSubject);
 
     /**
      * @OA\Delete(
-     *   path="/api/subjects/{subject}",
-     *   tags={"Materias"},
+     *   path="/api/education-level-subject/{educationLevelSubject}",
+     *   tags={"Carreras y Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar una materia",
-     *   description="Eliminar una materia por Id",
-     *   operationId="deleteSubjects",
+     *   summary="Eliminar carrera",
+     *   description="Eliminar carrera por Id",
+     *   operationId="deleteEducationLevelSubject",
      *   @OA\Parameter(
-     *     name="subject",
+     *     name="educationLevelSubject",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
      *       type="integer",
-     *       example="2"
+     *       example="1"
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -382,5 +298,5 @@ interface ISubjectController {
      * )
      *
      */
-    public function destroy(Subject $subject);
+    public function destroy (EducationLevelSubject $educationLevelSubject);
 }

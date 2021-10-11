@@ -44,7 +44,8 @@ use App\Http\Controllers\Api\LearningComponentController;
 use App\Http\Controllers\Api\SimbologyController;
 use App\Http\Controllers\Api\ClassroomEducationLevelController;
 use App\Http\Controllers\Api\CourseController;
-
+use App\Http\Controllers\Api\EducationLevelSubjectController;
+use App\Http\Controllers\Api\GroupAreaController;
 
 /* Import routes */
 
@@ -518,7 +519,7 @@ Route::delete('/classroom-education-levels/{classroomeducationlevel}', [Classroo
 Route::patch('/classroom-education-levels/{classroomeducationlevel}/changestatus', [ClassroomEducationLevelController::class, 'changeStatus'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-actualizar-aula-niveleconomico']);
 
 /**
- * Courses  
+ * Courses
  */
 Route::get('/courses', [CourseController::class, 'index'])->middleware(['auth:sanctum', 'permission:courses-listar-curso']);
 Route::get('/courses/{course}', [CourseController::class, 'show'])->middleware(['auth:sanctum', 'permission:courses-obtener-curso']);
@@ -527,4 +528,16 @@ Route::put('/courses/{course}', [CourseController::class, 'update'])->middleware
 Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:courses-borrar-curso']);
 Route::patch('/courses/{course}/changestatus', [CourseController::class, 'changeStatus'])->middleware(['auth:sanctum', 'permission:courses-actualizar-curso']);
 
+/**
+ * EducationLevelSubject
+ */
+Route::get('/education-level-subject', [EducationLevelSubjectController::class, 'index'])->middleware(['auth:sanctum']); //permission:education-level-subject-listar-materias-tipo-nivelacion-de-carreras
+Route::get('/education-level-subject/{educationLevelSubject}', [EducationLevelSubjectController::class, 'show'])->middleware(['auth:sanctum']); //permission:education-level-subject-obtener-materias-tipo-nivelacion-de-carrera
+Route::post('/education-level-subject', [EducationLevelSubjectController::class, 'store'])->middleware(['auth:sanctum']); //permission:education-level-subject-asignar-materias-tipo-nivelacion-a-carrera
+Route::put('/education-level-subject/{educationLevelSubject}', [EducationLevelSubjectController::class, 'update'])->middleware(['auth:sanctum']);//permission:education-level-subject-actualizar-materias-tipo-nivelacion-a-carrera
+Route::delete('/education-level-subject/{educationLevelSubject}', [EducationLevelSubjectController::class, 'destroy'])->middleware(['auth:sanctum']);//permission:education-level-subject-eliminar-materias-tipo-nivelacion-a-carrera
 
+/**
+ * GroupArea
+ */
+Route::get('group-area', [GroupAreaController::class, 'index'])->middleware(['auth:sanctum']); //permission-group-area-listar-grupo-areas;

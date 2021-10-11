@@ -28,6 +28,7 @@ class StoreSubjectRequest extends FormRequest
             'cod_old_migration'    => 'nullable|string',
             'mat_acronym'   => 'nullable|string|max:3',
             'mat_translate' => 'nullable|string',
+            'mat_payment_type' => 'in:credito,horas',
             'type_matter_id'     => 'required|integer|exists:tenant.type_subjects,id',
             'education_level_id' => 'required|integer|exists:tenant.education_levels,id',
             'area_id'   => 'required|integer|exists:tenant.areas,id',

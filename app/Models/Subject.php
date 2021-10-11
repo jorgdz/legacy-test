@@ -50,6 +50,7 @@ class Subject extends Model implements AuditableContract
         'mat_acronym',
         'mat_translate',
         'mat_description',
+        'mat_payment_type',
         'type_matter_id',
         'education_level_id',
         'area_id',
@@ -106,7 +107,7 @@ class Subject extends Model implements AuditableContract
     public function matterMesh(): HasMany {
         return $this->hasMany(SubjectCurriculum::class,'matter_id');
     }
-    
+
     /**
      * area
      *
@@ -115,15 +116,6 @@ class Subject extends Model implements AuditableContract
     public function area(): BelongsTo {
         return $this->belongsTo(Area::class, 'area_id');
     }
-
-    /**
-     * courses
-     *
-     * @return void
-     */
-    /* public function courses(): HasMany {
-        return $this->hasMany(Course::class, 'matter_id');
-    } */
 
     /**
      * Course

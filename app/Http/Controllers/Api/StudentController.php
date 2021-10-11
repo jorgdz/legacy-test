@@ -79,7 +79,7 @@ class StudentController extends Controller implements IStudentController
             $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function ($query) {
                 $query->where('status_id', 7);
             })->first();
-   
+
             if ($educationLevel) {
                 $person = new Person($request->except(['email', 'campus_id', 'modalidad_id', 'jornada_id']));
                 $person->save();
@@ -106,7 +106,7 @@ class StudentController extends Controller implements IStudentController
                 $studentRecord->education_level_id = $educationLevel->id;
                 $studentRecord->mesh_id = $educationLevel->meshs[0]['id'];
                 $studentRecord->student_id =  $student->id;
-                $studentRecord->status_id = 1;
+                $studentRecord->status_id = 2;
                 $studentRecord->save();
 
                 $params = [
@@ -130,7 +130,7 @@ class StudentController extends Controller implements IStudentController
                 return $this->information(__('messages.student-saved'));
             }
 
-            return $this->information(__('messages.meshs-not-vigent'), Response::HTTP_CONFLICT);
+            throw new ConflictException(__('messages.meshs-not-vigent'));
         } catch (Exception $ex) {
             DB::rollback();
             throw new DatabaseException($ex->getInfo[2]);

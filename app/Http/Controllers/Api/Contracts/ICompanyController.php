@@ -159,11 +159,6 @@ interface ICompanyController
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="co_logo",
-     *           description="Logo de la compañia",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
      *           property="co_color",
      *           description="Color de la compañia",
      *           type="string",

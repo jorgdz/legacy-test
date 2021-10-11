@@ -100,7 +100,7 @@ class ClassRoomController extends Controller implements IClassRoomController
     public function enabled(Classroom $classroom)
     {
         if($classroom->status_id == 1)
-            return $this->information(__('messages.is-active'), Response::HTTP_UNPROCESSABLE_ENTITY);
+            throw new UnprocessableException(__('messages.is-active'));
 
         $classroom->status_id = 1;
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(ClassRoom::class)));
@@ -116,7 +116,7 @@ class ClassRoomController extends Controller implements IClassRoomController
     public function disabled(ClassRoom $classroom)
     {
         if($classroom->status_id == 2)
-            return $this->information(__('messages.is-inactive'), Response::HTTP_UNPROCESSABLE_ENTITY);
+            throw new UnprocessableException(__('messages.is-inactive'));
 
         $classroom->status_id = 2;
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(ClassRoom::class)));
