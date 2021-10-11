@@ -24,7 +24,8 @@ class EducationLevelCache extends BaseCache
      * @param  mixed $request
      * @return void
      */
-    public function all($request) {
+    public function all($request)
+    {
         return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
             return $this->repository->all($request);
         });
@@ -36,7 +37,8 @@ class EducationLevelCache extends BaseCache
      * @param  mixed $id
      * @return void
      */
-    public function find($id) {
+    public function find($id)
+    {
         return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
             return $this->repository->find($id);
         });
@@ -48,7 +50,8 @@ class EducationLevelCache extends BaseCache
      * @param  mixed $model
      * @return void
      */
-    public function save(Model $model) {
+    public function save(Model $model)
+    {
         $this->forgetCache('education-levels');
 
         $method = request()->method();
@@ -76,7 +79,8 @@ class EducationLevelCache extends BaseCache
      *
      * @return void
      */
-    public function destroy(Model $model) {
+    public function destroy(Model $model)
+    {
         $this->forgetCache('education-levels');
         return $this->repository->destroy($model);
     }

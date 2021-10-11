@@ -57,7 +57,7 @@ class EducationLevelController extends Controller implements IEducationLevelCont
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request  $request,$id)
+    public function show($id)
     {
         return $this->success($this->educationLevelCache->find($id));
     }
@@ -71,13 +71,11 @@ class EducationLevelController extends Controller implements IEducationLevelCont
      * @param  mixed $id
      * @return void
      */
-    public function getOnlyParents() {
-
+    public function getOnlyParents()
+    {
         $educationlevel = EducationLevel::with('children')->where('principal_id', null)->get();
 
-        // dd($educationlevel->count());
-
-        if(!$educationlevel)
+        if (!$educationlevel)
             throw new UnprocessableException(__('messages.no-exist-instance', ['model' => class_basename(EducationLevel::class)]));
 
         return $this->success($educationlevel);
@@ -117,17 +115,14 @@ class EducationLevelController extends Controller implements IEducationLevelCont
      */
     public function destroy(EducationLevel $educationLevel)
     {
-
         DB::beginTransaction();
-        try{
+        try {
             $response = $this->educationLevelCache->destroy($educationLevel);
             DB::commit();
             return $this->success($response);
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             DB::rollBack();
             return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
-
-
 }

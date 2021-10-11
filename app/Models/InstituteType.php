@@ -36,6 +36,7 @@ class InstituteType extends Model implements AuditableContract
      */
     protected $fillable = [
         'tin_name',
+        'ti_keyword',
         'status_id'
     ];
 

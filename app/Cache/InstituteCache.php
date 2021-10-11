@@ -74,10 +74,10 @@ class InstituteCache extends BaseCache
      * @param  mixed $conditionals
      * @return void
      */
-    public function findByConditionals($conditionals)
+    public function findByConditionals($conditionals, $keywords)
     {
-        return $this->cache::remember($this->key, $this->ttl, function () use ($conditionals) {
-            return $this->repository->findByConditionals($conditionals);
+        return $this->cache::remember($this->key, $this->ttl, function () use ($conditionals, $keywords) {
+            return $this->repository->searchByConditionals($conditionals, $keywords);
         });
     }
 }

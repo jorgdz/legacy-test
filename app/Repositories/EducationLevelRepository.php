@@ -17,7 +17,7 @@ class EducationLevelRepository extends BaseRepository
      * @var array
      */
     protected $relations = [
-        'status','offer', 'meshs', 'children'
+        'status', 'offer', 'meshs', 'children'
     ];
 
     /**
@@ -57,32 +57,10 @@ class EducationLevelRepository extends BaseRepository
      *
      * @return void
      */
-    public function __construct(EducationLevel $educationLevel) {
+    public function __construct(EducationLevel $educationLevel)
+    {
         parent::__construct($educationLevel);
     }
-
-    // /**
-    //  * get all information
-    //  *
-    //  * @return model
-    //  *
-    //  */
-    // public function all ($request) {
-    //     if (isset($request['data']))
-    //         return ($request['data'] === 'all') ? $this->data->withOutPaginate($this->selected)->getCollection() : [];
-
-    //     return $this->data
-    //         ->withModelRelations(['status', 'offer', 'meshs' => function($query) {
-    //             $query->where('status_id', 7);
-    //         }])
-    //         ->searchWithColumnNames($request)
-    //         ->searchWithConditions($request)
-    //         ->filter($request, $this->fields,
-    //             $this->model->getRelations(),
-    //             $this->model->getKeyName(),
-    //             $this->model->getTable())
-    //         ->paginated($request, $this->model->getTable());
-    // }
 
     /**
      * find information by conditionals
@@ -90,11 +68,12 @@ class EducationLevelRepository extends BaseRepository
      * @return model
      *
      */
-    public function find($id) {
+    public function find($id)
+    {
         $query = $this->model;
 
         if (!empty($this->relations)) {
-            $query = $query->with(['status', 'offer', 'classroomEducationLevel', 'meshs' => function($query) {
+            $query = $query->with(['status', 'offer', 'classroomEducationLevel', 'children', 'meshs' => function ($query) {
                 $query->where('status_id', 7);
             }]);
         }
@@ -109,7 +88,8 @@ class EducationLevelRepository extends BaseRepository
      * @param  mixed $params
      * @return void
      */
-    public function setEducationLevel($conditions, $params) {
+    public function setEducationLevel($conditions, $params)
+    {
         return EducationLevel::where($conditions)->update($params);
     }
 }

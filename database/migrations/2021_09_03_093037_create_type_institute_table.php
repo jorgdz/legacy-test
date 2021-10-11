@@ -16,6 +16,7 @@ class CreateTypeInstituteTable extends Migration
         Schema::create('type_institutes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tin_name')->nullable();
+            $table->string('ti_keyword')->nullable();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();

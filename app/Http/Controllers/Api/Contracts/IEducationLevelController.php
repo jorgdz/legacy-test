@@ -99,7 +99,6 @@ interface IEducationLevelController
      */
     public function index(Request $request);
 
-
     /**
      * @OA\Post(
      *   path="/api/education-levels",
@@ -166,7 +165,6 @@ interface IEducationLevelController
      */
     public function store(EducationLevelFormRequest $educationLevelFormRequest);
 
-
     /**
      * @OA\Get(
      *   path="/api/education-levels/{id}",
@@ -205,9 +203,9 @@ interface IEducationLevelController
      * )
      *
      */
-    public function show(EducationLevelFormRequest $request, $id);
+    public function show($id);
 
-        /**
+    /**
      * @OA\Get(
      *   path="/api/education-levels/parents",
      *   tags={"Niveles Educativos"},
@@ -317,7 +315,6 @@ interface IEducationLevelController
      *
      */
     public function update(EducationLevelFormRequest $request, EducationLevel $educationLevel);
-
 
     /**
      * @OA\Delete(

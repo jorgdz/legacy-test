@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Cache\InstituteCache;
+use App\Exceptions\Custom\ConflictException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InstituteRequest;
 use App\Models\Institute;
@@ -103,6 +104,32 @@ class InstituteController extends Controller implements InterfaceInstituteContro
             ['province_id', $id],
             ['status_id', 1]
         ];
-        return $this->success($this->instituteCache->findByConditionals($conditionals));
+        $keywords = ['educacion-institutos'];
+        $institutes = $this->instituteCache->findByConditionals($conditionals, $keywords);
+
+        if (!$institutes)
+            throw new ConflictException(__('messages.no-exist-instance-resource'));
+
+        return $this->success($institutes);
+    }
+
+    /**
+     * searchHigherInstitutes
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function searchHigherInstitutes(Request $request)
+    {
+        $conditionals = [
+            ['status_id', 1]
+        ];
+        $keywords = ['educacion-tecnologicos', 'educacion-universitaria'];
+        $institutes = $this->instituteCache->findByConditionals($conditionals, $keywords);
+
+        if (!$institutes)
+            throw new ConflictException(__('messages.no-exist-instance-resource'));
+
+        return $this->success($institutes);
     }
 }

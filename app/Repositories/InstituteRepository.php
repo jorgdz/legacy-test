@@ -55,14 +55,18 @@ class InstituteRepository extends BaseRepository
     }
 
     /**
-     * @override
-     * findByConditionals
+     * searchByConditionals
      *
      * @param  mixed $conditionals
+     * @param  mixed $keywords
      * @return void
      */
-    public function findByConditionals($conditionals)
+    public function searchByConditionals($conditionals, $keywords)
     {
-        return $this->model->where($conditionals)->firstOrFail();
+        $response = $this->model->where($conditionals)->with('typeInstitute')
+            ->whereHas('typeInstitute', function ($query) use ($keywords) {
+                $query->whereIn('ti_keyword', $keywords);
+            })->get();
+        return json_decode(json_encode($response), true);
     }
 }

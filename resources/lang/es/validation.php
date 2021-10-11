@@ -348,6 +348,7 @@ return [
 		 * type_institutes
 		 */
 		'tin_name' => 'nombre del tipo instituto',
+		'ti_keyword' => 'palabra clave del tipo instituto',
 
 		/**
 		 * mails

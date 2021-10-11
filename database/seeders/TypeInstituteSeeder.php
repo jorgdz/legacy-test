@@ -15,10 +15,9 @@ class TypeInstituteSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('type_institutes')->insert([
-            ['tin_name' => 'Ecotec',        'status_id' => 1],
-            ['tin_name' => 'Ecomundo',      'status_id' => 1],
-            ['tin_name' => 'Uni. Estatal',  'status_id' => 1],
-            ['tin_name' => 'Espol',         'status_id' => 1],
+            ['tin_name' => 'Institutos', 'ti_keyword' => 'educacion-institutos', 'status_id' => 1],
+            ['tin_name' => 'Tecnológicos', 'ti_keyword' => 'educacion-tecnologicos', 'status_id' => 1],
+            ['tin_name' => 'Universidad', 'ti_keyword' => 'educacion-universitaria', 'status_id' => 1],
         ]);
     }
 }
