@@ -64,14 +64,12 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
         DB::beginTransaction();
         try {
 
-        /*     $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function ($query) {
+            $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function ($query) {
                 $query->where('status_id', 7);
             })->first();
-            dd($educationLevel); */
-            // if ($educationLevel) {
-           
+   
+            if ($educationLevel) {
                 $person = new Person($request->except(['email', 'campus_id', 'modalidad_id', 'jornada_id']));
-                
                 $person->save();
                 $user = new User($request->only(['email']));
 
@@ -92,9 +90,9 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
 
                 $student->save();
 
-                $studentRecord = new StudentRecord($request->only(['type_student_id', 'economic_group_id','education_level_id']));
-                // $studentRecord->education_level_id = $educationLevel->id;
-                // $studentRecord->mesh_id = $educationLevel->meshs[0]['id'];
+                $studentRecord = new StudentRecord($request->only(['type_student_id', 'economic_group_id']));
+                $studentRecord->education_level_id = $educationLevel->id;
+                $studentRecord->mesh_id = $educationLevel->meshs[0]['id'];
                 $studentRecord->student_id =  $student->id;
                 $studentRecord->status_id = 1;
                 $studentRecord->save();
@@ -118,12 +116,12 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
                 DB::commit();
 
                 return $this->information(__('messages.student-saved'));
-            // }
+            }
 
-            // return $this->information(__('messages.meshs-not-vigent'), Response::HTTP_CONFLICT);
+            return $this->information(__('messages.meshs-not-vigent'), Response::HTTP_CONFLICT);
         } catch (Exception $ex) {
             DB::rollback();
-            throw new DatabaseException($ex);
+            throw new DatabaseException($ex->getInfo[2]);
         }
     }
 }
