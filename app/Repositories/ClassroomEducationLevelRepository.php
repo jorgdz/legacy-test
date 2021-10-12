@@ -86,8 +86,10 @@ class ClassroomEducationLevelRepository extends BaseRepository
     public function getClassroomAssigned($request){
         $currentClassrooms = $this->model
                                     ->distinct()
+                                    ->where('period_id',$request->period_id)
                                     ->pluck('classroom_id')
                                     ->toArray();
+        //1
 
         $classroomsAssigned    = array_merge(array_diff($request->classrooms, $currentClassrooms));
         $classroomsNotAssigned = array_merge(array_intersect($request->classrooms, $currentClassrooms));
