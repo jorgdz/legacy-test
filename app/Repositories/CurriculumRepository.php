@@ -90,6 +90,7 @@ class CurriculumRepository extends BaseRepository
             'status',
             'matterMesh',
             'learningComponent',
+            'learningComponent.component',
             'matterMesh.matter',
             'matterMesh.simbology',
             'matterMesh.matter.typeMatter',
