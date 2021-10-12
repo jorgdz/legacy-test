@@ -113,8 +113,9 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
                 $this->mailService->SendEmail($params);
 
                 DB::commit();
-
-                return $this->information(__('messages.student-saved'));
+                
+                return $student;
+                //return $this->information(__('messages.student-saved'));
             }
 
             return $this->information(__('messages.meshs-not-vigent'), Response::HTTP_CONFLICT);
