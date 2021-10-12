@@ -60,8 +60,6 @@ class SubjectCurriculum extends Model implements AuditableContract
      */
     protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'pivot'];
 
-    protected $appends = ['total_hours_workload'];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -138,16 +136,6 @@ class SubjectCurriculum extends Model implements AuditableContract
      */
     public function detailMatterMesh () {
         return $this->hasMany(DetailSubjectCurriculum::class,'matter_mesh_id');
-    }
-
-    /**
-     * Total of hours grouped by Matter mesh
-     *
-     * @return void
-     */
-    public function getTotalHoursWorkloadAttribute() {
-        //return DetailSubjectCurriculum::where('matter_mesh_id','=',$this->id)->groupBy('matter_mesh_id')->sum('dem_workload');
-        return collect($this->detailMatterMesh)->sum('dem_workload');
     }
 
     /**

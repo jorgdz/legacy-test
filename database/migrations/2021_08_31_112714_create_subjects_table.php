@@ -22,7 +22,7 @@ class CreateSubjectsTable extends Migration
             $table->string('mat_acronym', 3)->nullable();
             $table->string('mat_translate')->nullable();
             $table->string('mat_description', 255)->nullable();
-            $table->enum('mat_payment_type', ['horas', 'creditos']);
+            $table->enum('mat_payment_type', ['horas', 'creditos', 'Ninguno']);
 
             $table->integer('type_matter_id')->unsigned();
             $table->foreign('type_matter_id')->references('id')->on('type_subjects');
