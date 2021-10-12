@@ -37,7 +37,7 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
      * @var mixed
      */
     private $mailService;
-    
+
 
     /**
      * __construct
@@ -45,11 +45,10 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
      * @param  mixed $mailService
      * @return void
      */
-    public function __construct( MailService $mailService)
+    public function __construct(MailService $mailService)
     {
-        
+
         $this->mailService = $mailService;
-     
     }
 
     /**
@@ -124,4 +123,6 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
             throw new DatabaseException($ex->getInfo[2]);
         }
     }
+
+    
 }

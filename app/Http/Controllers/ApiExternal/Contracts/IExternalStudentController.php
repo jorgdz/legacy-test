@@ -2,21 +2,15 @@
 
 namespace App\Http\Controllers\ApiExternal\Contracts;
 
-use App\Models\Student;
-use Illuminate\Http\Request;
-use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\StudentPhotoRequest;
-use App\Http\Requests\UpdateStudentRequest;
 
 interface IExternalStudentController
 {
 
-
     /**
      * @OA\Post(
      *   path="/api/external/students",
-     *   tags={"Estudiantes Externos"},
+     *   tags={"Registrar Estudiantes"},
      *   security={
      *      {"api_key_security": {}},
      *   },
@@ -28,11 +22,6 @@ interface IExternalStudentController
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
      *       @OA\Schema(
-     *         @OA\Property(
-     *           property="user_profile_id",
-     *           description="Id del perfil de usuario",
-     *           type="integer",
-     *         ),
      *         @OA\Property(
      *           property="type_identification_id",
      *           description="Tipo de indentificación",
@@ -255,7 +244,4 @@ interface IExternalStudentController
      *
      */
     public function store(StoreStudentRequest $request);
-
-
-   
 }
