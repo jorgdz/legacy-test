@@ -77,6 +77,24 @@ interface ISubjectController {
      *       type="string",
      *     ),
      *   ),
+     *  @OA\Parameter(
+     *     name="data",
+     *     description="Listar todas las materias sin paginar sin incluir las de nivelacion",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *  @OA\Parameter(
+     *     name="nivelation",
+     *     description="Listar todas las materias de nivelacion sin paginar",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),

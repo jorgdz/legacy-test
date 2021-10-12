@@ -54,4 +54,42 @@ class SubjectRepository extends BaseRepository
     public function __construct (Subject $subject) {
         parent::__construct($subject);
     }
+
+    /**
+     * all subjects no nivelation
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function findSubjectsBySpecificTypeSubject ($compare = '=') {
+        $subjects = Subject::whereHas('typeMatter', function ($query) use ($compare) {
+            $query->where('tm_acronym', $compare, 'nv');
+        });
+
+        return $subjects->get();
+    }
+
+    /**
+     * all
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function all ($request) {
+        if (isset($request['data']))
+            return ($request['data'] === 'all') ? $this->findSubjectsBySpecificTypeSubject('<>') : [];
+
+        if (isset($request['nivelation']))
+            return ($request['nivelation'] === 'all') ? $this->findSubjectsBySpecificTypeSubject() : [];
+
+        return $this->data
+            ->withModelRelations($this->relations)
+            ->searchWithColumnNames($request)
+            ->searchWithConditions($request)
+            ->filter($request, $this->fields,
+                $this->model->getRelations(),
+                $this->model->getKeyName(),
+                $this->model->getTable())
+            ->paginated($request, $this->model->getTable());
+    }
 }
