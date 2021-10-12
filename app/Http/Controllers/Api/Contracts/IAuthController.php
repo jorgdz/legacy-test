@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Contracts;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserFormRequest;
+use App\Http\Requests\UserLoginGmailFormRequest;
 
 interface IAuthController
 {
@@ -100,4 +101,36 @@ interface IAuthController
      *
      */
     public function logout_all_devices(Request $request);
+
+
+    /**
+     * @OA\Post(
+     *   path="/api/login-gmail",
+     *   tags={"Autenticación Gmail"},
+     *   security={},
+     *   summary="Iniciar sesion con gmail",
+     *   description="Crear token para usuario autenticado",
+     *   operationId="addSessionUserGmail",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="email",
+     *           description="correo",
+     *           type="string",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function loginGmail(UserLoginGmailFormRequest $request);
 }

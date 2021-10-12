@@ -104,6 +104,12 @@ require __DIR__ . "/external-channels/external-student.php";
 Route::post('/login', [AuthController::class, 'login']);
 
 /**
+ *
+ * Login Gmail
+ */
+Route::post('/login-gmail', [AuthController::class, 'loginGmail']);
+
+/**
  * Reset Password
  */
 Route::post('/olvidar-clave', [ForgotPasswordController::class, 'sendResetLinkResponse'])->name('passwords.send');

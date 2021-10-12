@@ -21,6 +21,8 @@ class CreateTableUserProfile extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('profile_id')->references('id')->on('profiles');
 
+            $table->string('email')->unique();
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             

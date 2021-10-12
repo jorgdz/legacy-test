@@ -53,6 +53,7 @@ return [
     'subject-found-with-career' => 'You cannot associate a subject that already exists with this career',
     'type-subject-not-nivelation' => 'You cannot assign a subject that is not a leveling type',
     'validate-format-new-password' => 'Error. Error. The password must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',
+    'not-registered-email' => 'Error. Email is not registered.',
 
 ];
 ?>

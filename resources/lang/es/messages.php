@@ -56,5 +56,6 @@ return [
     'subject-found-with-career' => 'No se puede asociar una materia que ya existe con esta carrera',
     'type-subject-not-nivelation' => 'No se puede asignar una materia que no sea de tipo nivelación',
     'validate-format-new-password' => 'Error. La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 numérico y 1 carácter especial: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',
+    'not-registered-email' => 'Error. Correo no se encuentra registrado.',
 
 ];
