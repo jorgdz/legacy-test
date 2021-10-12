@@ -88,7 +88,7 @@ class UserProfileCache extends BaseCache {
      */
     public function validationUserProfile($conditionals, $user_profile, $permission) {
         $this->key = url('/') . "/api/middleware_permission?usr_prof={$user_profile}";
-        return $this->cache::remember($this->key, $this->ttl, function () use ($conditionals, $permission) {
+        return $this->cache::remember($this->key, now()->addMinutes(150), function () use ($conditionals, $permission) {
             return $this->repository->validationUserProfile($conditionals, $permission);
         });
     }

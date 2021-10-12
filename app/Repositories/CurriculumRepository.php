@@ -83,12 +83,17 @@ class CurriculumRepository extends BaseRepository
 
         $query = $query->with([
             'educationLevel',
+            'modality',
             'educationLevel.offer',
             'status',
             'matterMesh',
             'learningComponent',
             'matterMesh.matter',
+            'matterMesh.simbology',
             'matterMesh.matter.typeMatter',
+            'matterMesh.matterMeshPrerequisites',
+            'matterMesh.matterMeshPrerequisites.matter',
+            'matterMesh.matterMeshDependencies',
             'matterMesh.matterMeshDependencies.matter',
             'matterMesh.detailMatterMesh.component',    
         ]);

@@ -23,6 +23,7 @@ class MatterMeshResource extends JsonResource
             'mes_title' => $this->mes_title,
             'mes_itinerary' => $this->mes_itinerary,
             'mes_number_matter' => $this->mes_number_matter,
+            'mes_number_matter' => $this->simbology,
             'mes_number_period' => $this->mes_number_period,
             'mes_quantity_external_matter_homologate' => $this->mes_quantity_external_matter_homologate,
             'mes_quantity_internal_matter_homologate' => $this->mes_quantity_internal_matter_homologate,
@@ -35,7 +36,6 @@ class MatterMeshResource extends JsonResource
             'education_level' => $this->educationLevel,
             'learningComponent' => $this->learningComponent,
             'matter_mesh'       => collect($this->matterMesh)->where('status_id', 1)->sortBy('order')->values()->all(),
-
         ];
     }
 }

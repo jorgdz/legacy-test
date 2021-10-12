@@ -60,7 +60,8 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'Soltero/a', 'parent_id' => 6, 'cat_description' => 'Persona soltera', 'cat_acronym' => NULL, 'cat_keyword' => 'soltero', 'status_id' => 1],
             ['cat_name' => 'Viudo/a', 'parent_id' => 6, 'cat_description' => 'Persona viuda', 'cat_acronym' => NULL, 'cat_keyword' => 'viudo', 'status_id' => 1],
             ['cat_name' => 'Divorciado/a', 'parent_id' => 6, 'cat_description' => 'Persona divorciada', 'cat_acronym' => NULL, 'cat_keyword' => 'divorciado', 'status_id' => 1],
-
+        ]);
+        DB::connection('tenant')->table('catalogs')->insert([
             ['cat_name' => 'Cristiano', 'parent_id' => 7, 'cat_description' => 'Cristanismo', 'cat_acronym' => NULL, 'cat_keyword' => 'cristiano', 'status_id' => 1],
             ['cat_name' => 'Catolico', 'parent_id' => 7, 'cat_description' => 'Catolicismo', 'cat_acronym' => NULL, 'cat_keyword' => 'catolico', 'status_id' => 1],
             ['cat_name' => 'Islam', 'parent_id' => 7, 'cat_description' => 'Islam', 'cat_acronym' => NULL, 'cat_keyword' => 'islam', 'status_id' => 1],
@@ -125,8 +126,10 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'Mexicana', 'parent_id' => 16, 'cat_description' => 'Nacionalidad mexicana', 'cat_acronym' => NULL, 'cat_keyword' => 'mexicana', 'status_id' => 1],
             ['cat_name' => 'Española', 'parent_id' => 16, 'cat_description' => 'Nacionalidad española', 'cat_acronym' => NULL, 'cat_keyword' => 'espaniola', 'status_id' => 1],
             ['cat_name' => 'Noruega', 'parent_id' => 16, 'cat_description' => 'Nacionalidad noruega', 'cat_acronym' => NULL, 'cat_keyword' => 'noruega', 'status_id' => 1],
+        ]);
 
-            /* Paises - Provincia - Canton */
+        /* Paises - Provincia - Canton */
+        DB::connection('tenant')->table('catalogs')->insert([
             ['cat_name' => 'Paises', 'cat_description' => NULL, 'cat_acronym' => 'PS', 'cat_keyword' => 'paises', 'parent_id' => NULL, 'status_id' => 1],
             ['cat_name' => 'Ecuador', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'pais-ec', 'parent_id' => 95, 'status_id' => 1],
             ['cat_name' => 'Esmeraldas', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'provincia-ec-esmeralda', 'parent_id' => 96, 'status_id' => 1],
@@ -373,8 +376,10 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'Isabela', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'canton-ec-isabela', 'parent_id' => 120, 'status_id' => 1],
             ['cat_name' => 'San Cristobal', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'canton-ec-san-cristobal', 'parent_id' => 120, 'status_id' => 1],
             ['cat_name' => 'Santa Cruz', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'canton-ec-santa-cruz', 'parent_id' => 120, 'status_id' => 1],
+        ]);
 
-            /* Niveles Educativos */
+        /* Niveles Educativos */
+        DB::connection('tenant')->table('catalogs')->insert([
             ['cat_name' => 'Niveles Educativos', 'cat_description' => NULL, 'cat_acronym' => 'NE', 'cat_keyword' => 'niveles-educativos', 'parent_id' => NULL, 'status_id' => 1],
             ['cat_name' => 'Ninguno', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'nivel-educativo-ninguno', 'parent_id' => 341, 'status_id' => 1],
             ['cat_name' => 'Centro alfabetizacion', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'nivel-educativo-centro-alfabetizacion', 'parent_id' => 341, 'status_id' => 1],

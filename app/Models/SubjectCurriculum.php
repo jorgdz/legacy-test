@@ -146,7 +146,8 @@ class SubjectCurriculum extends Model implements AuditableContract
      * @return void
      */
     public function getTotalHoursWorkloadAttribute() {
-        return DetailSubjectCurriculum::where('matter_mesh_id','=',$this->id)->groupBy('matter_mesh_id')->sum('dem_workload');
+        //return DetailSubjectCurriculum::where('matter_mesh_id','=',$this->id)->groupBy('matter_mesh_id')->sum('dem_workload');
+        return collect($this->detailMatterMesh)->sum('dem_workload');
     }
 
     /**
