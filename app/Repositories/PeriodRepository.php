@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\ClassroomEducationLevel;
 use App\Models\Period;
 use App\Repositories\Base\BaseRepository;
 
@@ -136,5 +137,22 @@ class PeriodRepository extends BaseRepository
         $period->hourhands()->detach();
         return $period;
     }
+
+
+    
+
+     /**
+     * showPeriodsByClasEduLev
+     *
+     * @param  mixed $period
+     * @return void
+     */
+    public function showPeriodsByClasEduLev(Period $period) {
+        
+        return  $period->classroomEducationLevel->
+        where('period_id', $period->id); 
+        
+    }
+
 
 }

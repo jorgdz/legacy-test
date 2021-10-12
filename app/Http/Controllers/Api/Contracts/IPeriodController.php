@@ -640,4 +640,45 @@ interface IPeriodController
      *
      */
     public function destroyHourhandsByPeriod(Period $period);
+
+
+        /**
+     * @OA\Get(
+     *   path="/api/periods/{period}/classroom-education-levels",
+     *   tags={"Periodos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener aulas asociadas a las facultades por periodos",
+     *   description="Muestra aulas asociadas a las facultades por periodos.",
+     *   operationId="getshowPeriodsByClasEduLev",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="period",
+     *     description="Id del periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function showPeriodsByClasEduLev(Period $period);
 }

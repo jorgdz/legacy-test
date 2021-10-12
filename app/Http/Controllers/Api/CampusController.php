@@ -86,4 +86,14 @@ class CampusController extends Controller implements ICampusController
     {
         return $this->success($this->campusCache->destroy($campus));
     }
+
+    /**
+     * getClassromsByCampus
+     *
+     * @param  mixed $campus
+     * @return void
+     */
+    public function getClassromsByCampus (Campus $campus) {
+        return $this->success($this->campusCache->getClassromsByCampusCache($campus));
+    }
 }

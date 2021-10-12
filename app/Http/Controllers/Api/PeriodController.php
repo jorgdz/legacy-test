@@ -29,7 +29,8 @@ class PeriodController extends Controller implements IPeriodController
      *
      * @return void
      */
-    public function __construct (PeriodCache $periodCache) {
+    public function __construct(PeriodCache $periodCache)
+    {
         $this->periodCache = $periodCache;
     }
 
@@ -39,7 +40,8 @@ class PeriodController extends Controller implements IPeriodController
      * List all periods
      * @return void
      */
-    public function index (Request $request) {
+    public function index(Request $request)
+    {
         return $this->success($this->periodCache->all($request));
     }
 
@@ -50,7 +52,8 @@ class PeriodController extends Controller implements IPeriodController
      * @param  mixed $period
      * @return void
      */
-    public function show ($id) {
+    public function show($id)
+    {
         return $this->success($this->periodCache->find($id));
     }
 
@@ -61,14 +64,15 @@ class PeriodController extends Controller implements IPeriodController
      * @param  mixed $request
      * @return void
      */
-    public function store (StorePeriodRequest $request) {
+    public function store(StorePeriodRequest $request)
+    {
 
         $currentYear = intval(date('Y'));
         $perDueYear = date('Y') + 1;
         $campus = $request->campus;
 
 
-        for($i = 0; $i < count($request->campus); $i++) {
+        for ($i = 0; $i < count($request->campus); $i++) {
 
             $campusLetra = Campus::findOrFail($request->campus[$i]);
 
@@ -84,13 +88,13 @@ class PeriodController extends Controller implements IPeriodController
             $this->periodCache->save($period);
             $period->offers()->sync($request->offers, false);
             $period->hourhands()->sync($request->hourhands, false);
-
         }
 
         return $this->information(__('messages.success'));
     }
 
-    public function copiePeriod (Request $request) {
+    public function copiePeriod(Request $request)
+    {
         $request->validate([
             'period_year' => 'date_format:Y',
             'new_current_year' => 'date_format:Y|after:period_year',
@@ -124,7 +128,8 @@ class PeriodController extends Controller implements IPeriodController
      * @param  mixed $period
      * @return void
      */
-    public function update (UpdatePeriodRequest $request, Period $period) {
+    public function update(UpdatePeriodRequest $request, Period $period)
+    {
 
         $currentYear = intval(date('Y'));
         $perDueYear = date('Y') + 1;
@@ -137,15 +142,15 @@ class PeriodController extends Controller implements IPeriodController
 
         $period->fill($periodRequest);
 
-        if ($period->isClean() && !isset($request['hourhands']) && !isset($request['offers']) )
+        if ($period->isClean() && !isset($request['hourhands']) && !isset($request['offers']))
             return $this->information(__('messages.nochange'));
 
         if (isset($request['offers']))
             $period->offers()->sync($request->offers);
-            
+
         if (isset($request['hourhands']))
             $period->hourhands()->sync($request->hourhands);
-    
+
         return $this->success($this->periodCache->save($period));
     }
 
@@ -155,7 +160,8 @@ class PeriodController extends Controller implements IPeriodController
      * @param  mixed  $period
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Period $period) {
+    public function destroy(Period $period)
+    {
         $period->offers()->detach();
         $period->hourhands()->detach();
         return $this->success($this->periodCache->destroy($period));
@@ -167,7 +173,8 @@ class PeriodController extends Controller implements IPeriodController
      * @param  mixed $id
      * @return void
      */
-    public function showOffersByPeriod (Period $period) {
+    public function showOffersByPeriod(Period $period)
+    {
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Period::class)));
         return $this->success($this->periodCache->showOffersByPeriod($period));
     }
@@ -178,7 +185,8 @@ class PeriodController extends Controller implements IPeriodController
      * @param  mixed $period
      * @return void
      */
-    public function destroyOffersByPeriod(Period $period) {
+    public function destroyOffersByPeriod(Period $period)
+    {
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Period::class)));
         return $this->success($this->periodCache->destroyOffersByPeriod($period));
     }
@@ -189,7 +197,8 @@ class PeriodController extends Controller implements IPeriodController
      * @param  mixed $period
      * @return void
      */
-    public function showHourhandsByPeriod (Period $period) {
+    public function showHourhandsByPeriod(Period $period)
+    {
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Period::class)));
         return $this->success($this->periodCache->showHourhandsByPeriod($period));
     }
@@ -200,9 +209,23 @@ class PeriodController extends Controller implements IPeriodController
      * @param  mixed $period
      * @return void
      */
-    public function destroyHourhandsByPeriod(Period $period) {
+    public function destroyHourhandsByPeriod(Period $period)
+    {
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(Period::class)));
         return $this->success($this->periodCache->destroyHourhandsByPeriod($period));
     }
 
+
+
+    /**
+     * showPeriodsByClasEduLev
+     *
+     * @param  mixed $period
+     * @return void
+     */
+    public function showPeriodsByClasEduLev(Period $period)
+    {
+        return $this->success($this->periodCache->showPeriodsByClasEduLevCache($period));
+       
+    }
 }

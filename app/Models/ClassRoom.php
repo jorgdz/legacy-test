@@ -109,4 +109,9 @@ class ClassRoom extends Model implements AuditableContract
     public function course(): HasMany {
         return $this->hasMany(Course::class,'classroom_id');
     }
+
+
+
+
+    
 }

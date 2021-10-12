@@ -2,6 +2,7 @@
 
 namespace App\Cache;
 
+use App\Models\ClassRoom;
 use App\Repositories\CampusRepository;
 use Illuminate\Database\Eloquent\Model;
 
@@ -62,4 +63,16 @@ class CampusCache extends BaseCache {
         $this->forgetCache('campus');
         return $this->repository->destroy($model);
     }
+
+
+
+    
+    public function getClassromsByCampusCache ($campus) {
+        return $this->cache::remember($this->key, now()->addMinutes($this->ttl), function () use ($campus) {
+             return ClassRoom::where('campus_id', $campus->id)->paginate();
+            //return $this->repository->all($campus);
+        });
+    }
+
+
 }

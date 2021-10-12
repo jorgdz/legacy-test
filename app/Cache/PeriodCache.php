@@ -2,6 +2,8 @@
 
 namespace App\Cache;
 
+use App\Models\ClassRoom;
+use App\Models\ClassroomEducationLevel;
 use App\Models\Period;
 use App\Repositories\PeriodRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -108,6 +110,23 @@ class PeriodCache extends BaseCache {
     public function destroyHourhandsByPeriod(Model $model) {
         $this->forgetCache('periods');
         return $this->repository->destroyHourhandsByPeriod($model);
+    }
+
+    
+
+     /**
+     * getClassromsByCampus
+     *
+     * @param  mixed $campus
+     * @return void
+     */
+    public function showPeriodsByClasEduLevCache (Period $period) {
+        return $this->cache::remember($this->key, now()->addMinutes($this->ttl), function () use ($period) {
+            //return $this->repository->showPeriodsByClasEduLev($period);
+            return ClassroomEducationLevel::where('period_id', $period->id)->paginate();
+       });
+        
+        
     }
 
 }

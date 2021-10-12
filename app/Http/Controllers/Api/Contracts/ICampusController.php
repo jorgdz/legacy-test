@@ -322,5 +322,44 @@ interface ICampusController
      * )
      *
      */
-    public function destroy (Campus $company);
+    public function destroy(Campus $company);
+
+    /**
+     * @OA\Get(
+     *   path="/api/campus/{campus}/classrooms",
+     *   tags={"Sedes"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener las aulas por sedes",
+     *   description="Obtener las aulas por sedes",
+     *   operationId="getClassromsByCampus",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="campus",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function getClassromsByCampus(Campus $campus);
 }

@@ -48,7 +48,7 @@ class Period extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['campus_id', 'type_period_id', 'status_id'];
+    protected $relations = ['campus_id', 'type_period_id', 'status_id','classroomEducationLevel'];
 
     /**
      * dates

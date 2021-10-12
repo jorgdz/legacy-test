@@ -184,6 +184,7 @@ Route::post('/campus', [CampusController::class, 'store'])->middleware(['auth:sa
 Route::patch('/campus/{campus}', [CampusController::class, 'update'])->middleware(['auth:sanctum', 'permission:campus-actualizar-sede']);
 Route::put('/campus/{campus}', [CampusController::class, 'update'])->middleware(['auth:sanctum', 'permission:campus-actualizar-sede']);
 Route::delete('/campus/{campus}', [CampusController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:campus-borrar-sede']);
+Route::get('/campus/{campus}/classrooms', [CampusController::class, 'getClassromsByCampus'])->middleware(['auth:sanctum',/*  'permission:campus-obtener-aulas-filtradas-sedes' */]);
 
 /**
  * Parallels
@@ -241,6 +242,7 @@ Route::get('/periods/{period}/offers', [PeriodController::class, 'showOffersByPe
 Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffersByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-ofertas-por-periodo']);
 Route::get('/periods/{period}/hourhands', [PeriodController::class, 'showHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-horarios-por-periodo']);
 Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-horarios-por-periodo']);
+Route::get('/periods/{period}/classroom-education-levels', [PeriodController::class, 'showPeriodsByClasEduLev'])->middleware(['auth:sanctum',/*  'permission:periods-aulas-asociadas-a-facultades-por-periodos.' */]);
 
 
 /**
