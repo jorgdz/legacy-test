@@ -81,13 +81,23 @@ class CurriculumController extends Controller implements ICurriculumController
         if ($curriculum->isClean() && !isset($request['components']))
             return $this->information(__('messages.nochange'));
 
+        $plucked = $curriculum->learningComponent()->pluck('component_id');
         if(isset($request['components'])) {
-            $plucked = $curriculum->learningComponent()->pluck('component_id');
-            foreach($request['components'] as $component) {
-                $component_id[] = $component['component_id'];
+
+            foreach($request['components'] as $learningComponent) {
+                LearningComponent::withTrashed()->where('mesh_id', $curriculum->id)->where('component_id', $learningComponent['component_id'])->restore();
+                $curriculum->learningComponent()->updateOrCreate([
+                    'component_id' => $learningComponent['component_id']
+                ]);
+                $component_id[] = $learningComponent['component_id'];
             }
-            $componentIdsWillBeDeleted = $plucked->diff($component_id)->values()->all();
-            LearningComponent::destroy($componentIdsWillBeDeleted);
+            $componentIdsWillBeDeleted = collect($plucked->diff($component_id)->values()->all());
+            if(count($componentIdsWillBeDeleted) > 0) {
+                foreach($componentIdsWillBeDeleted as $component) {
+                    LearningComponent::where('mesh_id', $curriculum->id)->where('component_id', $component)->delete();
+                }
+            }
+
         }
 
         $response = $this->curriculumCache->save($curriculum);
