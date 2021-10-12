@@ -264,6 +264,11 @@ return [
 			'exists' => 'El valor del campo posicion seleccionado es inválido.',
 			'integer' => 'El valor del campo posicion debe ser un entero.',
 		],
+        'components.*.component_id' => [
+            'exists' => 'El valor del campo componente de aprendizaje seleccionado es inválido.',
+			'integer' => 'El valor del campo componente de aprendizaje debe ser un entero.',
+            'distinct' => 'El valor del campo componente de aprendizaje tiene un valor duplicado.'
+        ],
 	],
 
 	/*
@@ -414,7 +419,7 @@ return [
 		'mes_modality_keyword' => 'modalidad',
 		'type_calification_id' => 'tipo de calificación',
 		'level_edu_id' => 'nivel educativo',
-
+        'components' => 'componentes de aprendizaje',
 		/**
 		 * offers
 		 */

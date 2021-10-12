@@ -2,6 +2,7 @@
 
 namespace App\Cache;
 
+use App\Models\Component;
 use App\Repositories\CurriculumRepository;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,7 +46,7 @@ class CurriculumCache extends BaseCache
      * save
      *
      * @param  mixed $model
-     * @return void
+     * @return Model
      */
     public function save(Model $model) {
         $this->forgetCache('curriculums');
@@ -62,13 +63,32 @@ class CurriculumCache extends BaseCache
         return $this->repository->destroy($model);
     }
 
-    public function checkComponentInMeshsPublished($componentId)
+    public function learningComponentByMesh(Model $model)
     {
-        return $this->repository->checkComponentInMeshsPublished($componentId);
+        return $this->cache::remember($this->key, $this->ttl, function() use ($model) {
+            return $this->repository->learningComponentByMesh($model);
+        });
     }
 
-    public function checkMeshPublished($meshId)
+    /**
+     * checkComponentInMeshsPublished
+     *
+     * @param  mixed $component
+     * @return void
+     */
+    public function checkComponentInMeshsPublished(Component $component)
     {
-        return $this->repository->checkMeshPublished($meshId);
+        return $this->repository->checkComponentInMeshsPublished($component);
+    }
+
+    /**
+     * checkMeshPublished
+     *
+     * @param  mixed $model
+     * @return void
+     */
+    public function checkMeshPublished(Model $model)
+    {
+        return $this->repository->checkMeshPublished($model);
     }
 }

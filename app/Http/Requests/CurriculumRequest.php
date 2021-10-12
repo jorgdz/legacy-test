@@ -36,6 +36,8 @@ class CurriculumRequest extends FormRequest
             'mes_quantity_internal_matter_homologate' => 'nullable|integer',
             'mes_creation_date' => 'nullable|date',
             'mes_acronym'       => 'nullable|string|max:3',
+            'components'        => 'nullable|array',
+            'components.*.component_id' => 'integer|exists:tenant.components,id|distinct',
             'anio'              => 'required|integer',
             'mes_description'   => 'nullable|string',
             'mes_modality_id'   => 'required|integer|exists:tenant.catalogs,id',

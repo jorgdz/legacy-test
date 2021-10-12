@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\CurriculumRequest;
 use App\Http\Controllers\Api\Contracts\ICurriculumController;
+use App\Models\LearningComponent;
 
 //class MeshsController extends Controller implements IMeshsController
 class CurriculumController extends Controller implements ICurriculumController
@@ -47,8 +48,12 @@ class CurriculumController extends Controller implements ICurriculumController
         if($curriculumFound)
             throw new ConflictException(__('messages.meshs-vigent'));
 
-        $curriculum = new Curriculum($request->all());
-        return $this->success($this->curriculumCache->save($curriculum), Response::HTTP_CREATED);
+        $curriculum = new Curriculum($request->except('components'));
+        $curriculum = $this->curriculumCache->save($curriculum);
+        if(isset($request['components']))
+            $curriculum->learningComponent()->createMany($request['components']);
+
+        return $this->success($curriculum, Response::HTTP_CREATED);
     }
 
     /**
@@ -71,10 +76,19 @@ class CurriculumController extends Controller implements ICurriculumController
      */
     public function update(CurriculumRequest $request, Curriculum $curriculum) {
 
-        $curriculum->fill($request->all());
+        $curriculum->fill($request->except('components'));
 
-        if ($curriculum->isClean())
+        if ($curriculum->isClean() && !isset($request['components']))
             return $this->information(__('messages.nochange'));
+
+        if(isset($request['components'])) {
+            $plucked = $curriculum->learningComponent()->pluck('component_id');
+            foreach($request['components'] as $component) {
+                $component_id[] = $component['component_id'];
+            }
+            $componentIdsWillBeDeleted = $plucked->diff($component_id)->values()->all();
+            LearningComponent::destroy($componentIdsWillBeDeleted);
+        }
 
         $response = $this->curriculumCache->save($curriculum);
         return $this->success($response);
@@ -91,9 +105,15 @@ class CurriculumController extends Controller implements ICurriculumController
         return $this->success($response);
     }
 
+    /**
+     * learningComponentByMesh
+     *
+     * @param  mixed $curriculum
+     * @return void
+     */
     public function learningComponentByMesh(Curriculum $curriculum)
     {
-        return $this->success(Curriculum::with('learningComponent.component')->find($curriculum->id));
+        return $this->success($this->curriculumCache->learningComponentByMesh($curriculum));
     }
 
     /**

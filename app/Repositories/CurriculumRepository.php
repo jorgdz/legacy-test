@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Curriculum;
 use App\Http\Resources\MatterMeshResource;
+use App\Models\Component;
+use App\Models\Subject;
 use App\Repositories\Base\BaseRepository;
 
 /**
@@ -59,7 +61,7 @@ class CurriculumRepository extends BaseRepository
      * @var array
      */
     protected $selfFieldsAndParents = [
-        'mes_name', 'mes_res_cas', 'mes_res_ocas', 'mes_cod_career', 'mes_title', 'mes_itinerary', 'mes_creation_date', 
+        'mes_name', 'mes_res_cas', 'mes_res_ocas', 'mes_cod_career', 'mes_title', 'mes_itinerary', 'mes_creation_date',
         'mes_acronym', 'anio', 'cat_name', 'cat_acronym', 'tc_name', 'edu_name', 'edu_alias', 'edu_order', 'st_name'
     ];
 
@@ -95,7 +97,7 @@ class CurriculumRepository extends BaseRepository
             'matterMesh.matterMeshPrerequisites.matter',
             'matterMesh.matterMeshDependencies',
             'matterMesh.matterMeshDependencies.matter',
-            'matterMesh.detailMatterMesh.component',    
+            'matterMesh.detailMatterMesh.component',
         ]);
 
         return new MatterMeshResource($query->findOrFail($id));
@@ -115,13 +117,13 @@ class CurriculumRepository extends BaseRepository
     /**
      * checkComponentInMeshsPublished
      *
-     * @param  mixed $componentId
+     * @param  mixed $component
      * @return void
      */
-    public function checkComponentInMeshsPublished($componentId) {
-        return $this->model->where('status_id','=','7')
-            ->whereHas('learningComponent', function ($query) use($componentId) {
-                $query->where('component_id', '=', $componentId);
+    public function checkComponentInMeshsPublished(Component $component) {
+        return $this->model->where('status_id', 7)
+            ->whereHas('learningComponent', function ($query) use($component) {
+                $query->where('component_id', '=', $component->id);
             })->first();
     }
 
@@ -131,7 +133,19 @@ class CurriculumRepository extends BaseRepository
      * @param  mixed $meshId
      * @return void
      */
-    public function checkMeshPublished($meshId) {
-        return Curriculum::where('id',$meshId)->where('status_id','7')->first();
+    public function checkMeshPublished(Curriculum $curriculum) {
+        return $curriculum->where('status_id', 7)->first();
+    }
+
+    /**
+     * learningComponentByMesh
+     *
+     * @param  mixed $curriculum
+     * @return void
+     */
+    public function learningComponentByMesh(Curriculum $curriculum)
+    {
+        $query = $curriculum->learningComponent()->with('component');
+        return $query->paginate(isset(request()->query()['size']) ? request()->query()['size'] : 100);
     }
 }

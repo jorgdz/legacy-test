@@ -100,7 +100,7 @@ interface ICurriculumController
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
@@ -188,6 +188,19 @@ interface ICurriculumController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="components",
+     *           description="Array de componentes",
+     *           type="array",
+     *          items={
+     *             "type" : "object",
+     *             "properties" : {
+     *                  "component_id" : {
+     *                      "type" : "integer",
+     *                  },
+     *              },
+     *          },
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado de la malla",
      *           type="integer",
@@ -210,6 +223,8 @@ interface ICurriculumController
      *          "mes_quantity_internal_matter_homologate": "nullable|integer",
      *          "mes_creation_date": "nullable|date",
      *          "mes_acronym": "nullable|string|max:3",
+     *          "components"        : "nullable|array",
+     *          "components.*.component_id" : "integer|exists:tenant.components,id|distinct",
      *          "anio": "required|integer",
      *          "mes_description": "nullable|string",
      *          "mes_modality_id": "required|integer|exists:tenant.catalogs,id",
@@ -377,6 +392,19 @@ interface ICurriculumController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="components",
+     *           description="Array de componentes",
+     *           type="array",
+     *          items={
+     *             "type" : "object",
+     *             "properties" : {
+     *                  "component_id" : {
+     *                      "type" : "integer",
+     *                  },
+     *              },
+     *          },
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado de la malla",
      *           type="integer",
@@ -399,6 +427,8 @@ interface ICurriculumController
      *          "mes_number_period": "nullable|integer",
      *          "mes_creation_date": "nullable|date",
      *          "mes_acronym": "nullable|string|max:3",
+     *          "components"        : "nullable|array",
+     *          "components.*.component_id" : "integer|exists:tenant.components,id|distinct",
      *          "anio": "required|integer",
      *          "mes_description": "nullable|string",
      *          "mes_modality_id": "required|integer|exists:tenant.catalogs,id",
@@ -545,4 +575,44 @@ interface ICurriculumController
      *
      */
     public function showMattersByMesh(Request $request, Curriculum $curriculum);
+
+    /**
+     * @OA\Get(
+     *   path="/api/curriculums/{curriculum}/components",
+     *   tags={"Mallas"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener componentes de aprendizaje a partir de la malla",
+     *   description="Muestra los componentes de aprendizaje asociados a una malla.",
+     *   operationId="getComponentByCurriculum",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="curriculum",
+     *     description="Id de la malla",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function learningComponentByMesh(Curriculum $curriculum);
 }

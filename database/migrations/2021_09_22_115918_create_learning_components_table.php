@@ -22,9 +22,9 @@ class CreateLearningComponentsTable extends Migration
              $table->integer('component_id')->unsigned();
              $table->foreign('component_id')->references('id')->on('components');
 
-            $table->integer('lea_workload')->nullable();
+            $table->integer('lea_workload')->default(0);
 
-            $table->integer('status_id')->unsigned();
+            $table->integer('status_id')->default(1);
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();
