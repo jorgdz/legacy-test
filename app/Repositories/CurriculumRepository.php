@@ -95,6 +95,7 @@ class CurriculumRepository extends BaseRepository
             'matterMesh.matter',
             'matterMesh.simbology',
             'matterMesh.matter.typeMatter',
+            'matterMesh.matter.area',
             'matterMesh.matterMeshPrerequisites',
             'matterMesh.matterMeshPrerequisites.matter',
             'matterMesh.matterMeshDependencies',

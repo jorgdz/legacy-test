@@ -20,6 +20,7 @@ class Area extends Model implements AuditableContract
     protected $fillable = [
         'ar_name',
         'ar_description',
+        'ar_keywords',
         'status_id'
     ];
 

@@ -26,6 +26,7 @@ class AreaRequest extends FormRequest
         $rules = [
             'ar_name'        => 'required|string|unique:tenant.areas,ar_name',
             'ar_description' => 'nullable|string',
+            'ar_keywords'        => 'required|string|unique:tenant.areas,ar_keywords',
             'status_id'      => 'required|integer|exists:tenant.status,id',
         ];
         if (in_array($this->method(), ['PUT', 'PATCH'])) {

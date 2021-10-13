@@ -126,6 +126,11 @@ interface IAreaController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="ar_keywords",
+     *           description="Keyword del área",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del catalogo",
      *           type="integer",
@@ -134,11 +139,12 @@ interface IAreaController
      *     ),
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos", 
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *      @OA\JsonContent(
      *          example={
      *              "ar_name": "required|string|unique:tenant.areas,ar_name",
      *              "ar_description": "nullable|string",
+     *              "ar_keywords": "required|string|unique:tenant.areas,ar_keywords",
      *              "status_id": "required|integer|exists:tenant.status,id",
      *          },
      *      ),
@@ -232,6 +238,11 @@ interface IAreaController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="ar_keywords",
+     *           description="Keyword del área",
+     *           type="string",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del catalogo",
      *           type="integer",
@@ -240,11 +251,12 @@ interface IAreaController
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos", 
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *      @OA\JsonContent(
      *          example={
      *              "ar_name": "required|string|unique:tenant.areas,ar_name",
      *              "ar_description": "nullable|string",
+     *              "ar_keywords": "required|string|unique:tenant.areas,ar_keywords",
      *              "status_id": "required|integer|exists:tenant.status,id",
      *          },
      *      ),
