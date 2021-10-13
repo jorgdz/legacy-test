@@ -3567,6 +3567,98 @@ class RoleSeeder extends Seeder
                 'parent_name_translated' => 'cursos',
                 'module_group' => 'academic'
             ],
+            /**
+             * Nivel Carrera Materia 329-333
+             */
+            [
+                'name' => 'education-level-subject-listar-materias-tipo-nivelacion-de-carreras',
+                'alias' => 'Listar materias tipo nivelacion de carreras',
+                'description' => 'Listar todas las materias tipo nivelacion de carreras',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevelSubject',
+                'parent_name_translated' => 'materias tipo nivelacion de carreras',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'education-level-subject-obtener-materias-tipo-nivelacion-de-carrera',
+                'alias' => 'Obtener materias tipo nivelacion de carreras',
+                'description' => 'Obtener un materias tipo nivelacion de carreras por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevelSubject',
+                'parent_name_translated' => 'materias tipo nivelacion de carreras',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'education-level-subject-asignar-materias-tipo-nivelacion-a-carrera',
+                'alias' => 'Crear materias tipo nivelacion de carreras',
+                'description' => 'Agregar un materias tipo nivelacion de carreras',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevelSubject',
+                'parent_name_translated' => 'materias tipo nivelacion de carreras',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'education-level-subject-actualizar-materias-tipo-nivelacion-a-carrera',
+                'alias' => 'Actualizar materias tipo nivelacion de carreras',
+                'description' => 'Actualizar un materias tipo nivelacion de carreras por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevelSubject',
+                'parent_name_translated' => 'materias tipo nivelacion de carreras',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'education-level-subject-eliminar-materias-tipo-nivelacion-a-carrera',
+                'alias' => 'Eliminar materias tipo nivelacion de carreras',
+                'description' => 'Eliminar materias tipo nivelacion de carreras por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'educationLevelSubject',
+                'parent_name_translated' => 'materias tipo nivelacion de carreras',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Grupo Area 334
+             */
+            [
+                'name' => 'group-area-listar-grupo-areas',
+                'alias' => 'Listar grupo area',
+                'description' => 'Listar todos los grupo area',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'groupArea',
+                'parent_name_translated' => 'grupo area',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Periodo 335
+             */
+            [
+                'name' => 'periods-aulas-asociadas-a-facultades-por-periodos',
+                'alias' => 'Listar facultades por periodo',
+                'description' => 'Listar todas las facultades por periodo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'period',
+                'parent_name_translated' => 'periodos',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Campus 336
+             */
+            [
+                'name' => 'campus-obtener-aulas-filtradas-sedes',
+                'alias' => 'Listar aulas filtradas sedes',
+                'description' => 'Listar todas las aulas filtradas por sede',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'campus',
+                'parent_name_translated' => 'campus',
+                'module_group' => 'academic'
+            ],
         ]);
 
         /**
@@ -4153,6 +4245,26 @@ class RoleSeeder extends Seeder
             ['permission_id' => 326, 'role_id' => 1],
             ['permission_id' => 327, 'role_id' => 1],
             ['permission_id' => 328, 'role_id' => 1],
+            /**
+             * Nivel Carrera Materia 329-334
+             */
+            ['permission_id' => 329, 'role_id' => 1],
+            ['permission_id' => 330, 'role_id' => 1],
+            ['permission_id' => 331, 'role_id' => 1],
+            ['permission_id' => 332, 'role_id' => 1],
+            ['permission_id' => 333, 'role_id' => 1],
+            /**
+             * Nivel Carrera Materia 334
+             */
+            ['permission_id' => 334, 'role_id' => 1],
+            /**
+             * Nivel Carrera Materia 335
+             */
+            ['permission_id' => 335, 'role_id' => 1],
+            /**
+             * Nivel Carrera Materia 336
+             */
+            ['permission_id' => 336, 'role_id' => 1],
         ]);
 
         /**
@@ -4721,6 +4833,26 @@ class RoleSeeder extends Seeder
             ['permission_id' => 326, 'role_id' => 2],
             ['permission_id' => 327, 'role_id' => 2],
             ['permission_id' => 328, 'role_id' => 2],
+            /**
+             * Nivel Carrera Materia 329-334
+             */
+            ['permission_id' => 329, 'role_id' => 2],
+            ['permission_id' => 330, 'role_id' => 2],
+            ['permission_id' => 331, 'role_id' => 2],
+            ['permission_id' => 332, 'role_id' => 2],
+            ['permission_id' => 333, 'role_id' => 2],
+            /**
+             * Nivel Carrera Materia 334
+             */
+            ['permission_id' => 334, 'role_id' => 2],
+            /**
+             * Nivel Carrera Materia 335
+             */
+            ['permission_id' => 335, 'role_id' => 2],
+            /**
+             * Nivel Carrera Materia 336
+             */
+            ['permission_id' => 336, 'role_id' => 2],
         ]);
 
         /**
