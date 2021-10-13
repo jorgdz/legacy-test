@@ -87,6 +87,7 @@ class CurriculumRepository extends BaseRepository
             'educationLevel',
             'modality',
             'educationLevel.offer',
+            'educationLevel.offer.simbologies',
             'status',
             'matterMesh',
             'learningComponent',
