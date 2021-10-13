@@ -172,6 +172,32 @@ interface ISubjectCurriculumController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="prerequisites",
+     *           description="Prerequisitos de la materia malla",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1,2,3]",
+     *           uniqueItems=true
+     *         ),
+     *         @OA\Property(
+     *           property="components",
+     *           description="Array de componentes",
+     *           type="array",
+     *          items={
+     *             "type" : "object",
+     *             "properties" : {
+     *                  "component_id" : {
+     *                      "type" : "integer",
+     *                  },
+     *                  "lea_workload" : {
+     *                      "type" : "integer",
+     *                  },
+     *              },
+     *          },
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado",
      *           type="integer",
@@ -194,6 +220,11 @@ interface ISubjectCurriculumController
      *          "matter_rename": "nullable|string",
      *          "group": "nullable|integer",
      *          "calification_models_id" : "required|integer|exists:tenant.calification_models,id",
+     *          "prerequisites" :  "nullable|array",
+     *          "prerequisites.*" :  "integer|exists:tenant.subject_curriculum,id|distinct",
+     *          "components" :  "nullable|array",
+     *          "components.*.component_id" :  "integer|exists:tenant.components,id|distinct",
+     *          "components.*.lea_workload" :  "integer",
      *          "status_id": "required|integer|exists:tenant.status,id",
      *      },
      *   )),
@@ -439,6 +470,32 @@ interface ISubjectCurriculumController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="prerequisites",
+     *           description="Prerequisitos de la materia malla",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1,2,3]",
+     *           uniqueItems=true
+     *         ),
+     *         @OA\Property(
+     *           property="components",
+     *           description="Array de componentes",
+     *           type="array",
+     *          items={
+     *             "type" : "object",
+     *             "properties" : {
+     *                  "component_id" : {
+     *                      "type" : "integer",
+     *                  },
+     *                  "lea_workload" : {
+     *                      "type" : "integer",
+     *                  },
+     *              },
+     *          },
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado",
      *           type="integer",
@@ -461,6 +518,11 @@ interface ISubjectCurriculumController
      *          "matter_rename": "nullable|string",
      *          "group": "nullable|integer",
      *          "calification_models_id" : "required|integer|exists:tenant.calification_models,id",
+     *          "prerequisites" :  "nullable|array",
+     *          "prerequisites.*" :  "integer|exists:tenant.subject_curriculum,id|distinct",
+     *          "components" :  "nullable|array",
+     *          "components.*.component_id" :  "integer|exists:tenant.components,id|distinct",
+     *          "components.*.lea_workload" :  "integer",
      *          "status_id": "required|integer|exists:tenant.status,id",
      *      },
      *   )),

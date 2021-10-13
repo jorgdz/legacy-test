@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Cache\DetailSubjectCurriculumCache;
+use App\Cache\LearningComponentCache;
 use App\Cache\SubjectCurriculumCache;
 use App\Exceptions\Custom\ConflictException;
 use App\Http\Controllers\Api\Contracts\ISubjectCurriculumController;
@@ -10,6 +12,7 @@ use App\Http\Requests\SubjectCurriculumDependenciesRequest;
 use App\Http\Requests\SubjectCurriculumRequest;
 use App\Http\Requests\UpdateMatterMeshRequest;
 use App\Models\Curriculum;
+use App\Models\DetailSubjectCurriculum;
 use App\Models\SubjectCurriculum;
 use App\Repositories\CurriculumRepository;
 use App\Traits\Auditor;
@@ -27,16 +30,22 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
      * @var mixed
      */
     private $subjectCurriculumCache;
-    private $curriculumRepository;
+    private $learningComponentCache;
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct (SubjectCurriculumCache $subjectCurriculumCache, CurriculumRepository $curriculumRepository) {
+    public function __construct (
+        SubjectCurriculumCache $subjectCurriculumCache,
+        LearningComponentCache $learningComponentCache
+        )
+    {
+
         $this->subjectCurriculumCache = $subjectCurriculumCache;
-        $this->curriculumRepository  = $curriculumRepository;
+        $this->learningComponentCache = $learningComponentCache;
+
     }
 
 
@@ -59,15 +68,14 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
         /*$conditionals = [
             ['id', $request->mesh_id]
         ];
-        
+
         $meshs = $this->curriculumRepository->findByConditionals($conditionals);
-        
+
         if (!$meshs) {
             throw new ConflictException(__('messages.no-exist-instance-resource'));
         } elseif (count($meshs['matter_mesh']) >= $meshs['mes_number_matter']) {
             throw new ConflictException(__('messages.max', ['max' => $meshs['mes_number_matter']]));
         }*/
-
         $data = DB::connection('tenant')->table('subject_curriculum')
                 ->whereNotNull('deleted_at')
                 ->where('matter_id', $request->matter_id)
@@ -77,29 +85,40 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
         if ($data) {
             SubjectCurriculum::withTrashed()->find($data->id)->restore();
 
-            $subjectcurriculum = SubjectCurriculum::findOrFail($data->id);
-            $subjectcurriculum->fill($request->all());
-            $subjectcurriculum->save();
+            $subjectCurriculum = SubjectCurriculum::findOrFail($data->id);
+            $subjectCurriculum->fill($request->all());
+            $subjectCurriculum->save();
 
-            Curriculum::findOrFail($subjectcurriculum->mesh_id)->increment('mes_number_matter');
+            Curriculum::findOrFail($subjectCurriculum->mesh_id)->increment('mes_number_matter');
 
-            return $this->success($subjectcurriculum);
+            return $this->success($subjectCurriculum);
         }
 
         $matterMeshFound = SubjectCurriculum::where('matter_id', $request->matter_id)->where('mesh_id', $request->mesh_id)->first();
 
-        if($matterMeshFound) {
+        if($matterMeshFound)
             throw new ConflictException(__('messages.exist-instance'));
+
+        $subjectCurriculum = new SubjectCurriculum($request->except('components'));
+        $subjectCurriculum = $this->subjectCurriculumCache->save($subjectCurriculum);
+        $subjectCurriculum->matterMeshPrerequisites()->sync($request['prerequisites'], false);
+
+        if($subjectCurriculum)
+            Curriculum::findOrFail($subjectCurriculum->mesh_id)->increment('mes_number_matter');
+
+        $meshId = $subjectCurriculum->mesh->id;
+
+        foreach($request['components'] as $component) {
+            DetailSubjectCurriculum::create([
+                'matter_mesh_id' => $subjectCurriculum->id,
+                'components_id' => $component['components_id'],
+                'dem_workload' => $component['lea_workload'],
+                'status_id' => 1
+            ]);
+            $this->calculateMeshWorkLoad($meshId, $component['components_id']);
         }
 
-        $subjectcurriculum = new SubjectCurriculum($request->all());
-        $subjectcurriculum = $this->subjectCurriculumCache->save($subjectcurriculum);
-
-        if($subjectcurriculum) {
-            Curriculum::findOrFail($subjectcurriculum->mesh_id)->increment('mes_number_matter');
-        }
-
-        return $this->success($subjectcurriculum);
+        return $this->success($subjectCurriculum);
     }
 
     /**
@@ -145,12 +164,80 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
      */
     public function update(SubjectCurriculumRequest $request, SubjectCurriculum $subjectcurriculum) {
 
-        $subjectcurriculum->fill($request->all());
+        $subjectcurriculum->fill($request->except('components'));
 
-        if ($subjectcurriculum->isClean())
+        if ($subjectcurriculum->isClean() && !isset($request['components']) && !isset($request['prerequisites']))
             return $this->information(__('messages.nochange'));
 
-        return $this->success($this->subjectCurriculumCache->save($subjectcurriculum));
+        $subjectCurriculum = $this->subjectCurriculumCache->save($subjectcurriculum);
+        $subjectCurriculum->matterMeshPrerequisites()->sync($request['prerequisites']);
+        $meshId = $subjectCurriculum->mesh->id;
+
+        $plucked = $subjectcurriculum->detailMatterMesh()->pluck('components_id');
+        if(isset($request['components'])) {
+            foreach($request['components'] as $learningComponent) {
+                DetailSubjectCurriculum::withTrashed()->where('matter_mesh_id', $subjectCurriculum->id)->where('components_id', $learningComponent['components_id'])->restore();
+
+                $subjectCurriculum->detailMatterMesh()->updateOrCreate([
+                    'components_id' => $learningComponent['components_id'],
+                    'dem_workload' => $learningComponent['lea_workload'],
+                    'status_id' => 1
+                ]);
+
+                $component_id[] = $learningComponent['components_id'];
+                $this->calculateMeshWorkLoad($meshId, $learningComponent['components_id']);
+            }
+
+            $componentIdsWillBeDeleted = collect($plucked->diff($component_id)->values()->all());
+
+            if(count($componentIdsWillBeDeleted) > 0) {
+                foreach($componentIdsWillBeDeleted as $component) {
+                    DetailSubjectCurriculum::where('matter_mesh_id', $subjectCurriculum->id)->where('components_id', $component)->delete();
+                    $this->calculateMeshWorkLoad($meshId, $component);
+                }
+            }
+        }
+        return $this->success($subjectcurriculum);
+    }
+
+    /**
+     * Calculate the total hours of components by Mesh
+     *
+     * @param  int $meshId
+     * @param int $componentId
+     * @return mixed|false
+     */
+    private function calculateMeshWorkLoad(int $meshId, int $componentId)
+    {
+        if(isset($meshId)){
+            $sum = $this->calculateWorkLoad($meshId,$componentId);
+            $learningComponent = array(
+                "mesh_id"      => $meshId,
+                "component_id" => $componentId,
+                "lea_workload" => $sum,
+            );
+            return $this->learningComponentCache->updateMeshWorkLoad($learningComponent);
+        }
+        return false;
+    }
+
+    /**
+     * calculateWorkLoad
+     *
+     * @param  mixed $meshId
+     * @param  mixed $componentId
+     * @return int
+     */
+    private function calculateWorkLoad(int $meshId, int $componentId) : int
+    {
+        $sum =  SubjectCurriculum::selectRaw('ISNULL(SUM(d.dem_workload),0) as total')
+                ->where([
+                    ['subject_curriculum.mesh_id',$meshId],
+                    ['d.components_id',$componentId],
+                ])->whereNull('subject_curriculum.deleted_at')->whereNull('d.deleted_at')->join('detail_subject_curriculum as d','subject_curriculum.id', '=', 'd.matter_mesh_id')
+                ->first();
+
+        return $sum->total;
     }
 
     /**
@@ -164,6 +251,12 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
 
         if($curriculum->mes_number_matter > 0) {
             $curriculum->decrement('mes_number_matter');
+        }
+        $subjectcurriculum->matterMeshPrerequisites()->detach();
+        $components = $subjectcurriculum->detailMatterMesh()->pluck('components_id');
+        foreach($components as $component) {
+            DetailSubjectCurriculum::where('matter_mesh_id', $subjectcurriculum->id)->where('components_id', $component)->delete();
+            $this->calculateMeshWorkLoad($subjectcurriculum->mesh->id, $component);
         }
         return $this->success($this->subjectCurriculumCache->destroy($subjectcurriculum));
     }
@@ -188,7 +281,7 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
      * @param  mixed $mattermesh
      * @return void
      */
-    public function showPrerequisites(SubjectCurriculum $subjectcurriculum) 
+    public function showPrerequisites(SubjectCurriculum $subjectcurriculum)
     {
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(SubjectCurriculum::class)));
         return $this->success($this->subjectCurriculumCache->showPrerequisites($subjectcurriculum));

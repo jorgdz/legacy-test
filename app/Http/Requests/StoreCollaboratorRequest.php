@@ -67,7 +67,7 @@ class StoreCollaboratorRequest extends FormRequest
             'pers_secondname_relatives_person'      => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
             'pers_first_lastname_relatives_person'  => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
             'pers_second_lastname_relatives_person' => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
-            'pers_gender_relative'     => 'required_if:status_marital_keyword,==,casado|string|max:255',
+            'pers_gender_relative'     => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
             'pers_relatives_person_desc' => 'required_if:status_marital_keyword,==,casado|nullable|string|max:255',
             //disabilities
             'pers_disability_identification' => 'required_if:pers_has_disability,==,1|nullable|integer',

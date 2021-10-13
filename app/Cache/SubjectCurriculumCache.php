@@ -33,8 +33,8 @@ class SubjectCurriculumCache extends BaseCache
     /**
      * save
      *
-     * @param  mixed $model
-     * @return void
+     * @param  Model $model
+     * @return model
      */
     public function save(Model $model) {
         $this->forgetCache('subject-curriculum');
@@ -44,16 +44,16 @@ class SubjectCurriculumCache extends BaseCache
         if (in_array($method, ['POST'])) {
 
             $model->order = $model->max('order') + 1;
-            
+
         } elseif (in_array($method, ['PATCH', 'PUT'])) {
 
             $old = $model->getOriginal('order');
-            
+
             $new = $model->getAttributes()['order'];
 
             if ($old <> $new) {
                 $this->repository->setMatterMesh($model->id, $old, $new);
-                
+
                 $model->order = $model->getOriginal('order');
             }
 

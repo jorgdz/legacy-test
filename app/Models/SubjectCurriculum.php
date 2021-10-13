@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Http\Requests\CalificationModelFormRequest;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use PhpParser\Node\Expr\Cast\Double;
@@ -132,9 +134,9 @@ class SubjectCurriculum extends Model implements AuditableContract
     /**
      * Detail Matter Mesh
      *
-     * @return void
+     * @return HasMany
      */
-    public function detailMatterMesh () {
+    public function detailMatterMesh () : HasMany {
         return $this->hasMany(DetailSubjectCurriculum::class,'matter_mesh_id');
     }
 

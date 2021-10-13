@@ -101,7 +101,10 @@ class CollaboratorController extends Controller implements ICollaboratorControll
             $ethnic
         );
         $person->pers_is_provider = $request->get('coll_journey_description') == "TP" ? 1 : $request->get('pers_is_provider');
-        $this->personCache->save($person);
+        $person = $this->personCache->save($person);
+        //si tiene discapacidad
+        if($request->get('pers_has_disability') == true)
+            $person->disabilities()->sync($request->get('pers_disabilities'));
 
         //si esta casado
         if($statusMarital->cat_keyword=='casado') {
@@ -142,7 +145,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $user->password = Hash::make($password);
         $user->person_id = $person->id;
         $user->status_id = $request->get('status_id');
-        $this->userCache->save($user);
+        $user = $this->userCache->save($user);
 
         if($request->get('coll_type') == "D"){
             $profile = Profile::whereIn('keyword', ['docente'])->first();
@@ -158,6 +161,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $userProfile = new UserProfile(['user_id' => $user->id]);
         $userProfile->profile_id = $profile->id;
         $userProfile->status_id = $request->get('status_id');
+        $userProfile->email = $user->email;
         $this->userProfileCache->save($userProfile);
 
         //Colaborador

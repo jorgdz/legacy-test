@@ -71,8 +71,12 @@ class PersonController extends Controller implements IPersonController
             $sector,
             $ethnic
         );
+        $person = $this->personCache->save($person);
+        //si tiene discapacidad
+        if($request->get('pers_has_disability') == true)
+            $person->disabilities()->sync($request->get('pers_disabilities'));
 
-        return $this->success($this->personCache->save($person), Response::HTTP_CREATED);
+        return $this->success($person, Response::HTTP_CREATED);
     }
 
     /**

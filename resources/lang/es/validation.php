@@ -269,6 +269,14 @@ return [
 			'integer' => 'El valor del campo componente de aprendizaje debe ser un entero.',
             'distinct' => 'El valor del campo componente de aprendizaje tiene un valor duplicado.'
         ],
+        'components.*.lea_workload' => [
+            'integer' => 'El valor de la carga horaria debe ser un entero.',
+        ],
+        'prerequisites.*' => [
+			'exists' => 'El valor del campo materia malla seleccionado es inválido.',
+			'integer' => 'El valor del campo materia malla debe ser un entero.',
+			'distinct' => 'El valor del campo materia malla tiene un valor duplicado.'
+		],
 	],
 
 	/*
@@ -392,7 +400,7 @@ return [
 		'group' => 'grupo',
 		'calification_models_id' => 'modelo de calificación',
 		'matterMesh' => 'las opciones de los materias y mallas',
-
+        'prerequisites' => 'las opciones de las materias y mallas',
 		/**
 		 * matter_status
 		 */

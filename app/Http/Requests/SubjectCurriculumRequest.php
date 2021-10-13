@@ -36,6 +36,11 @@ class SubjectCurriculumRequest extends FormRequest
             'matter_rename'     => 'nullable|string',
             'group'             => 'nullable|integer',
             'calification_models_id' => 'required|integer|exists:tenant.calification_models,id',
+            'prerequisites' => 'nullable|array',
+            'prerequisites.*' => 'integer|exists:tenant.subject_curriculum,id|distinct',
+            'components' => 'nullable|array',
+            'components.*.component_id' => 'integer|exists:tenant.components,id|distinct',
+            'components.*.lea_workload' => 'integer',
             'status_id'         => 'required|integer|exists:tenant.status,id'
         ];
         if (in_array($this->method(), ['PUT', 'PATCH'])) {

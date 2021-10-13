@@ -48,7 +48,7 @@ class UserCache extends BaseCache
      * save
      *
      * @param  mixed $model
-     * @return void
+     * @return model
      */
     public function save(Model $model)
     {

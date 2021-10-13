@@ -39,10 +39,6 @@ trait SavePerson
         $person->current_city_id = $currentCity->id;
         $person->sector_id = $sector->id;
         $person->ethnic_id = $ethnic->id;
-        //si tiene discapacidad
-        if($request->get('pers_has_disability'))
-            $person->disabilities()->sync($request->get('pers_disabilities'));
-
         return $person;
     }
 }
