@@ -62,4 +62,13 @@ class ClassRoomCache extends BaseCache {
         $this->forgetCache('classrooms');
         return $this->repository->destroy($model);
     }
+
+    public function getClassromsByCampusCache ($campus) {
+
+        
+        return $this->cache::remember($this->key, $this->ttl, function () use ($campus) {
+           return $this->repository->getClassromsByCampusRepository($campus);
+        }); 
+
+    }
 }

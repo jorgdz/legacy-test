@@ -6,14 +6,16 @@ use App\Models\ClassRoom;
 use App\Repositories\CampusRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class CampusCache extends BaseCache {
+class CampusCache extends BaseCache
+{
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct(CampusRepository $campusRepository) {
+    public function __construct(CampusRepository $campusRepository)
+    {
         parent::__construct($campusRepository);
     }
 
@@ -36,7 +38,8 @@ class CampusCache extends BaseCache {
      * @param  mixed $id
      * @return void
      */
-    public function find ($id) {
+    public function find($id)
+    {
         return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
             return $this->repository->find($id);
         });
@@ -59,20 +62,28 @@ class CampusCache extends BaseCache {
      *
      * @return void
      */
-    public function destroy (Model $model) {
+    public function destroy(Model $model)
+    {
         $this->forgetCache('campus');
         return $this->repository->destroy($model);
     }
 
 
 
-    
-    public function getClassromsByCampusCache ($campus) {
+
+    public function getClassromsByCampusCache($campus)
+    {
+
         return $this->cache::remember($this->key, now()->addMinutes($this->ttl), function () use ($campus) {
-             return ClassRoom::where('campus_id', $campus->id)->paginate();
-            //return $this->repository->all($campus);
+            //return ClassRoom::where('campus_id', $campus->id)->paginate();
+            $page = isset(request()->query()['size']) ? request()->query()['size'] : 100;
+            $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
+
+            return ClassRoom::where('campus_id', $campus->id)
+
+                ->with('classroomType', 'campus', 'classroomEducationLevel')
+
+                ->paginate($page);
         });
     }
-
-
 }

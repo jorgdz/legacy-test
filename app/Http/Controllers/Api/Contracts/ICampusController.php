@@ -335,6 +335,15 @@ interface ICampusController
      *   description="Obtener las aulas por sedes",
      *   operationId="getClassromsByCampus",
      *   @OA\Parameter(
+     *     name="campus",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
      *     in="query",
@@ -345,12 +354,61 @@ interface ICampusController
      *     ),
      *   ),
      *   @OA\Parameter(
-     *     name="campus",
-     *     in="path",
-     *     required=true,
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false,
      *     @OA\Schema(
      *       type="integer",
      *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="size",
+     *     description="Numero de elementos por pagina",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="10"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="sort",
+     *     description="Ordenar por el campo",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="id"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_sort",
+     *     description="Tipo de orden",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="asc"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="data",
+     *     description="mostrar todos los datos sin paginacion (enviar all)",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
      *     ),
      *   ),
      *   @OA\Response(response=200, description="Success"),

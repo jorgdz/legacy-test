@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Campus;
+use App\Models\ClassRoom;
 use App\Repositories\Base\BaseRepository;
 
 /**
@@ -61,4 +62,5 @@ class CampusRepository extends BaseRepository
     public function __construct (Campus $campus) {
         parent::__construct($campus);
     }
+
 }

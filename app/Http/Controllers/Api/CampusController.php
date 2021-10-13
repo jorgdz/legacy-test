@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Campus;
 use App\Cache\CampusCache;
+use App\Cache\ClassRoomCache;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,9 +20,11 @@ class CampusController extends Controller implements ICampusController
     use RestResponse;
 
     private $campusCache;
+    private $classRoomCache;
 
-    public function __construct(CampusCache $campusCache)
+    public function __construct(CampusCache $campusCache, ClassRoomCache $classRoomCache)
     {
+        $this->classRoomCache = $classRoomCache;
         $this->campusCache = $campusCache;
     }
 
@@ -94,6 +97,7 @@ class CampusController extends Controller implements ICampusController
      * @return void
      */
     public function getClassromsByCampus (Campus $campus) {
-        return $this->success($this->campusCache->getClassromsByCampusCache($campus));
+        return $this->success($this->classRoomCache->getClassromsByCampusCache($campus));
+       // return $this->success($this->campusCache->getClassromsByCampusCache($campus));
     }
 }
