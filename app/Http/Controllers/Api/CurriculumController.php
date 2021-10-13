@@ -75,6 +75,9 @@ class CurriculumController extends Controller implements ICurriculumController
      * @return \Illuminate\Http\Response
      */
     public function update(CurriculumRequest $request, Curriculum $curriculum) {
+        $curriculumFound = Curriculum::where('status_id', 7)->where('level_edu_id', $request['level_edu_id'])->first();
+        if($curriculumFound)
+            throw new ConflictException(__('messages.meshs-vigent'));
 
         $curriculum->fill($request->except('components'));
 

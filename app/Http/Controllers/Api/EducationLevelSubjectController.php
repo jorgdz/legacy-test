@@ -57,7 +57,7 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
         if(!$educationLevel)
             throw new ConflictException(__('messages.career-not-found'));
 
-        if($subject->typeMatter->tm_acronym == 'mtp') {
+        if($subject->typeMatter->tm_acronym == 'nv') {
 
             $educationLevelSubject = new EducationLevelSubject($request->all());
 
@@ -105,7 +105,7 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
         if(!$educationLevel)
             throw new ConflictException(__('messages.career-not-found'));
 
-        if($subject->typeMatter->tm_acronym == 'mtp') {
+        if($subject->typeMatter->tm_acronym == 'nv') {
 
             $educationLevelSubjectFound = EducationLevelSubject::where('id', '!=', $educationLevelSubject->id)
                 ->where('group_area_id', $request['group_area_id'])
