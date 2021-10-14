@@ -15,19 +15,21 @@ class ClassroomTypeSeeder extends Seeder
     public function run()
     {
         ClassroomType::insert([
+
+         
             [
-                'clt_name' => 'Pequeña',
-                'clt_description' => 'Un aula pequeña',
+                'clt_name' => 'Aula Magna',
+                'clt_description' => 'Un aula Aula Magna',
                 'status_id' => 1,
             ],
             [
-                'clt_name' => 'Mediana',
-                'clt_description' => 'Un aula mediana',
+                'clt_name' => 'Laboratorio de Computación',
+                'clt_description' => 'Un aula Laboratorio de Computación',
                 'status_id' => 1,
             ],
             [
-                'clt_name' => 'Grande',
-                'clt_description' => 'Un aula grande',
+                'clt_name' => 'Laboratorio de Química',
+                'clt_description' => 'Un aula Laboratorio de Química',
                 'status_id' => 1,
             ],
             [
