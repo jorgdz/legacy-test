@@ -14,21 +14,21 @@ class EducationLevelSubjectRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['groupArea', 'period', 'educationLevel', 'subject'];
+    protected $relations = ['groupArea', 'educationLevel', 'subject'];
 
     /**
      * parents
      *
      * @var array
      */
-    protected $parents = ['group_area', 'periods', 'education_levels', 'subjects'];
+    protected $parents = ['catalogs', 'education_levels', 'subjects'];
 
     /**
      * selfFieldsAndParents
      *
      * @var array
      */
-    protected $selfFieldsAndParents = ['ga_name', 'per_name', 'edu_name', 'mat_name'];
+    protected $selfFieldsAndParents = ['cat_name','ga_name', 'per_name', 'edu_name', 'mat_name'];
 
     /**
      * __construct

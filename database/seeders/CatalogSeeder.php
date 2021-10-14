@@ -396,5 +396,12 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'Especialidad', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'nivel-educativo-especialidad', 'parent_id' => 341, 'status_id' => 1],
             ['cat_name' => 'No registra', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'nivel-educativo-no-registra', 'parent_id' => 341, 'status_id' => 1],
         ]);
+
+        /* Grupo de Nivelacion */
+        DB::connection('tenant')->table('catalogs')->insert([
+            [
+                'cat_name' => 'Sistemas', 'cat_description' => NULL, 'cat_acronym' => 'G1', 'cat_keyword' => 'G1', 'parent_id' => NULL, 'status_id' => 1,
+            ]
+        ]);
     }
 }

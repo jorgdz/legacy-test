@@ -16,14 +16,11 @@ class CreateEducationLevelSubjectTable extends Migration
         Schema::create('education_level_subject', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('group_area_id')->unsigned();
-            $table->foreign('group_area_id')->on('group_area')->references('id');
+            $table->integer('group_nivelation_id')->unsigned();
+            $table->foreign('group_nivelation_id')->on('catalogs')->references('id');
 
             $table->integer('education_level_id')->unsigned();
             $table->foreign('education_level_id')->on('education_levels')->references('id');
-
-            $table->integer('period_id')->unsigned();
-            $table->foreign('period_id')->on('periods')->references('id');
 
             $table->integer('subject_id')->unsigned();
             $table->foreign('subject_id')->on('subjects')->references('id');

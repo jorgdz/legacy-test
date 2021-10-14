@@ -107,14 +107,10 @@ interface IEducationLevelSubjectController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="period_id",
-     *           description="Periodo a la que pertenece",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="group_area_id",
-     *           description="Grupo de area a la que pertenece",
-     *           type="integer",
+     *           property="group_area_keyword",
+     *           description="Keyword del grupo de area a la que pertenece",
+     *           type="string",
+     *           example="G1"
      *         ),
      *         @OA\Property(
      *           property="education_level_id",
@@ -133,9 +129,8 @@ interface IEducationLevelSubjectController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *           "group_area_id"        : "integer|exists:tenant.group_area,id",
+     *           "group_area_keyword"        : "required|string|exists:tenant.catalogs,cat_keyword",
      *           "education_level_id"   : "integer|exists:tenant.education_levels,id",
-     *           "period_id"            : "integer|exists:tenant.periods,id",
      *           "subject_id"           : "integer|exists:tenant.subjects,id",
      *      },
      *   )),
@@ -223,9 +218,10 @@ interface IEducationLevelSubjectController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="group_area_id",
-     *           description="Grupo de area a la que pertenece",
-     *           type="integer",
+     *           property="group_area_keyword",
+     *           description="Keyword del grupo de area a la que pertenece",
+     *           type="string",
+     *           example="G1"
      *         ),
      *         @OA\Property(
      *           property="education_level_id",
@@ -244,9 +240,8 @@ interface IEducationLevelSubjectController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *           "group_area_id"        : "integer|exists:tenant.group_area,id",
+     *           "group_area_keyword"        : "required|string|exists:tenant.catalogs,cat_keyword",
      *           "education_level_id"   : "integer|exists:tenant.education_levels,id",
-     *           "period_id"            : "integer|exists:tenant.periods,id",
      *           "subject_id"           : "integer|exists:tenant.subjects,id",
      *      },
      *   )),

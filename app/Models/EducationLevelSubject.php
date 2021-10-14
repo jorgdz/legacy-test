@@ -26,7 +26,7 @@ class EducationLevelSubject extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['group_area_id', 'education_level_id', 'period_id', 'subject_id'];
+    protected $relations = ['group_area_id', 'education_level_id', 'subject_id'];
 
     /**
      * dates
@@ -50,9 +50,9 @@ class EducationLevelSubject extends Model implements AuditableContract
     protected $fillable = [
         'group_area_id',
         'education_level_id',
-        'period_id',
         'subject_id',
     ];
+
 
     /**
      * groupArea
@@ -61,7 +61,7 @@ class EducationLevelSubject extends Model implements AuditableContract
      */
     public function groupArea() : BelongsTo
     {
-        return $this->belongsTo(GroupArea::class, 'group_area_id');
+        return $this->belongsTo(Catalog::class, 'group_area_id');
     }
 
     /**
@@ -74,15 +74,6 @@ class EducationLevelSubject extends Model implements AuditableContract
         return $this->belongsTo(EducationLevel::class, 'education_level_id');
     }
 
-    /**
-     * period
-     *
-     * @return BelongsTo
-     */
-    public function period() : BelongsTo
-    {
-        return $this->belongsTo(Period::class, 'period_id');
-    }
 
     /**
      * subject

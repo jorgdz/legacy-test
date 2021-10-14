@@ -7,6 +7,7 @@ use App\Exceptions\Custom\ConflictException;
 use App\Http\Controllers\Api\Contracts\IEducationLevelSubjectController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EducationLevelSubjectRequest;
+use App\Models\Catalog;
 use App\Models\EducationLevel;
 use App\Models\EducationLevelSubject;
 use App\Models\Subject;
@@ -58,11 +59,11 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
             throw new ConflictException(__('messages.career-not-found'));
 
         if($subject->typeMatter->tm_acronym == 'nv') {
-
-            $educationLevelSubject = new EducationLevelSubject($request->all());
+            $groupNivelation = Catalog::getKeyWord($request['group_nivelation_keyword']);
+            $educationLevelSubject = new EducationLevelSubject($request->except('group_nivelation_keyword'));
+            $educationLevelSubject->group_area_id = $groupNivelation->id;
 
             $educationLevelFound = EducationLevelSubject::where('education_level_id', $educationLevel->id)
-                ->where('group_area_id', $request['group_area_id'])
                 ->where('subject_id', $subject->id)
                 ->first();
 
@@ -108,7 +109,6 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
         if($subject->typeMatter->tm_acronym == 'nv') {
 
             $educationLevelSubjectFound = EducationLevelSubject::where('id', '!=', $educationLevelSubject->id)
-                ->where('group_area_id', $request['group_area_id'])
                 ->where('education_level_id', $educationLevel->id)
                 ->where('subject_id', $subject->id)
                 ->first();
@@ -116,7 +116,10 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
             if($educationLevelSubjectFound)
                 throw new ConflictException(__('messages.subject-found-with-career'));
 
-            $educationLevelSubject->fill($request->all());
+            $groupNivelation = Catalog::getKeyWord($request['group_nivelation_keyword']);
+
+            $educationLevelSubject->fill($request->except('group_nivelation_keyword'));
+            $educationLevelSubject->group_area_id = $groupNivelation->id;
 
             if ($educationLevelSubject->isClean())
                 return $this->information(__('messages.nochange'));

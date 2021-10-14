@@ -45,7 +45,6 @@ use App\Http\Controllers\Api\SimbologyController;
 use App\Http\Controllers\Api\ClassroomEducationLevelController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\EducationLevelSubjectController;
-use App\Http\Controllers\Api\GroupAreaController;
 
 /* Import routes */
 
@@ -548,4 +547,5 @@ Route::delete('/education-level-subject/{educationLevelSubject}', [EducationLeve
 /**
  * GroupArea
  */
-Route::get('group-area', [GroupAreaController::class, 'index'])->middleware(['auth:sanctum', 'permission:group-area-listar-grupo-areas']);
+/************************** Se elimina este permiso **************************************/
+// Route::get('group-area', [GroupAreaController::class, 'index'])->middleware(['auth:sanctum', 'permission:group-area-listar-grupo-areas']);
