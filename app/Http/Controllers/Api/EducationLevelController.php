@@ -11,13 +11,14 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Api\Contracts\IEducationLevelController;
 use App\Http\Requests\EducationLevelFormRequest;
 use App\Models\EducationLevel;
+use App\Traits\TranslateException;
 use Exception;
 
 use Illuminate\Support\Facades\DB;
 
 class EducationLevelController extends Controller implements IEducationLevelController
 {
-    use RestResponse;
+    use RestResponse, TranslateException;
 
     private $educationLevelCache;
 
@@ -76,7 +77,7 @@ class EducationLevelController extends Controller implements IEducationLevelCont
         $educationlevel = EducationLevel::with('children')->where('principal_id', null)->get();
 
         if (!$educationlevel)
-            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => class_basename(EducationLevel::class)]));
+            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(EducationLevel::class)) ]));
 
         return $this->success($educationlevel);
     }

@@ -15,12 +15,13 @@ use App\Exceptions\Custom\UnprocessableException;
 use App\Http\Controllers\Api\Contracts\ISubjectController;
 use App\Models\EducationLevel;
 use App\Models\SubjectCurriculum;
+use App\Traits\TranslateException;
 use Exception;
 
 //class MatterController extends Controller implements IMatterController
 class SubjectController extends Controller implements ISubjectController
 {
-    use RestResponse;
+    use RestResponse, TranslateException;
 
     private $subjectCache;
 
@@ -76,7 +77,7 @@ class SubjectController extends Controller implements ISubjectController
         $educationLevel = EducationLevel::findOrFail($request->education_level_id);
 
         if ($educationLevel->principal_id != null)
-            throw new ConflictException(__('messages.error-saving-model', ['model' => class_basename(Subject::class)]));
+            throw new ConflictException(__('messages.error-saving-model', ['model' => $this->translateNameModel(class_basename(Subject::class))]));
 
         $subject->fill($request->all());
         if ($subject->isClean())
@@ -95,7 +96,7 @@ class SubjectController extends Controller implements ISubjectController
      */
     public function destroy(Subject $subject) {
         if($subject->matterMesh->first())
-            return $this->information(__('messages.error-dependency-model', ['model' => class_basename(Subject::class), 'model1' => class_basename(SubjectCurriculum::class)]), Response::HTTP_BAD_REQUEST);
+            return $this->information(__('messages.error-dependency-model', ['model' => $this->translateNameModel(class_basename(Subject::class)) , 'model1' => $this->translateNameModel(class_basename(SubjectCurriculum::class)) ]), Response::HTTP_BAD_REQUEST);
 
         return $this->success($this->subjectCache->destroy($subject));
     }

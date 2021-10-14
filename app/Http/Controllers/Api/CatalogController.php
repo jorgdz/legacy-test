@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\Contracts\ICatalogController;
 use App\Http\Requests\CatalogRequest;
+use App\Traits\TranslateException;
 
 class CatalogController extends Controller implements ICatalogController
 {
-    use RestResponse;
+    use RestResponse, TranslateException;
 
     private $catalogCache;
 
@@ -73,7 +74,7 @@ class CatalogController extends Controller implements ICatalogController
         $catalog = Catalog::where('cat_acronym', $acronym)->first();
 
         if (!$catalog)
-            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => class_basename(Catalog::class)]));
+            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(Catalog::class)) ]));
 
         return $this->success($this->catalogCache->find($catalog->id));
     }
@@ -106,7 +107,7 @@ class CatalogController extends Controller implements ICatalogController
         $catalog = Catalog::where('cat_keyword', $keyword)->first();
 
         if (!$catalog)
-            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => class_basename(Catalog::class)]));
+            throw new UnprocessableException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(Catalog::class)) ]));
 
         return $this->success($this->catalogCache->find($catalog->id));
     }

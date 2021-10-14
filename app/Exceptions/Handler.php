@@ -22,6 +22,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Exceptions\Custom\FailLocalStorageRequestException;
 use App\Exceptions\Custom\SendMailException;
 use App\Exceptions\Custom\StudentRecordProgramRequestException;
+use App\Traits\TranslateException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -30,7 +31,7 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 class Handler extends ExceptionHandler
 {
 
-    use RestResponse;
+    use RestResponse,TranslateException;
 
     /**
      * A list of the exception types that are not reported.
@@ -72,7 +73,7 @@ class Handler extends ExceptionHandler
             if ($exception instanceof ModelNotFoundException) {
                 $model = strtolower(class_basename($exception->getModel()));
                 return $this->error($request->getPathInfo(), $exception,
-                    __('messages.no-exist-instance', ['model' => $model]), Response::HTTP_NOT_FOUND);
+                    __('messages.no-exist-instance', ['model' => $this->translateNameModel($model)]), Response::HTTP_NOT_FOUND);
             }
 
             if ($exception instanceof NotFoundHttpException) {

@@ -7,10 +7,14 @@ use App\Exceptions\Custom\NotFoundException;
 use App\Models\Profile;
 use App\Models\User;
 use App\Repositories\Base\BaseRepository;
+use App\Traits\TranslateException;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileRepository extends BaseRepository
 {
+    
+    use TranslateException;
+
     /**
      * relations
      *
@@ -77,7 +81,7 @@ class ProfileRepository extends BaseRepository
 
         //Si el usuario no existe en BD
         if ($user == 0 || $user == '')
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(User::class))]));
 
 
         //generar nueva password

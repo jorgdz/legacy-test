@@ -10,9 +10,17 @@ use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Base\BaseRepository;
 use App\Exceptions\Custom\NotFoundException;
 use App\Exceptions\Custom\ConflictException;
+use App\Traits\TranslateException;
 
 class UserRepository extends BaseRepository
 {
+    /**
+     * Traits 
+     * contiene una funcion que recibe el nombre del Modelo
+     * return nombre del modelo traducido a es
+     */
+    use TranslateException;
+
     protected $relations = ['status', 'person.religion', 'person.statusMarital', 'person.city', 'person.currentCity', 'person.sector', 'person.ethnic', 'person.identification'];
     protected $fields = ['us_username', 'email'];
 
@@ -96,9 +104,9 @@ class UserRepository extends BaseRepository
             $query->with('profile')->where('profile_id', $profile_id);
         }])->find($user_id);
         if ($response == null)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(User::class)) ]));
         if ($response->userProfiles->count() == 0)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Profile::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(Profile::class)) ]));
         return $response->userProfiles[0];
     }
 
@@ -115,13 +123,13 @@ class UserRepository extends BaseRepository
         }])->find($user_id);
 
         if ($query == null)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(User::class)) ]));
 
         if ($query->userProfiles->count() == 0)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(UserProfile::class)) ]));
 
         if ($query->userProfiles[0]->roles->count() == 0)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(Role::class)) ]));
 
         $query->userProfiles[0]->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'deleted_at', 'pivot']);
         $query->userProfiles[0]->roles[0]->permissions->makeHidden(['guard_name', 'created_at', 'updated_at', 'deleted_at', 'pivot']);
@@ -142,13 +150,13 @@ class UserRepository extends BaseRepository
         }])->find($user_id);
 
         if ($query == null)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(User::class)) ]));
 
         if ($query->userProfiles->count() == 0)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(UserProfile::class)) ]));
 
         if ($query->userProfiles[0]->roles->count() == 0)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(Role::class)) ]));
 
         $query->userProfiles[0]->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'deleted_at', 'pivot']);
         $query->userProfiles[0]->roles[0]->permissions->makeHidden(['guard_name', 'created_at', 'updated_at', 'deleted_at', 'pivot']);
@@ -164,7 +172,7 @@ class UserRepository extends BaseRepository
     {
         $userProfile->syncRoles($array_roles);
         if ($userProfile->roles->count() == 0)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(Role::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(Role::class)) ]));
         $userProfile->with('roles.permissions')->get();
         //$userProfile->roles->makeHidden(['guard_name','created_at','updated_at','deleted_at','pivot']);
         return $userProfile;
@@ -201,11 +209,11 @@ class UserRepository extends BaseRepository
 
 
         $user = User::where('id', $id_user)->count();
-
+       
         //Si el usuario no existe en BD
         if ($user == 0 || $user == '')
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(User::class)]));
-
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(User::class))]));
+        
         //generar nueva password
         $passwordNew = $this->generatePasswordAlert(10);
         $passwordNewHash = Hash::make($passwordNew);

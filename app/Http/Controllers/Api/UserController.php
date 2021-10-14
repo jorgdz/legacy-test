@@ -22,10 +22,12 @@ use App\Http\Requests\StoreRoleUserProfileRequest;
 use App\Http\Requests\UserChangePasswordFormRequest;
 use App\Http\Controllers\Api\Contracts\IUserController;
 use App\Http\Requests\UserChangePasswordLoggedFormRequest;
+use App\Traits\TranslateException;
 
 class UserController extends Controller implements IUserController
 {
-    use RestResponse, Auditor;
+    use RestResponse, Auditor, TranslateException;
+
 
     /**
      * repoUser
@@ -196,7 +198,7 @@ class UserController extends Controller implements IUserController
         $matchTheseNew = [['user_id', '=', $user['id']], ['profile_id', '=', $profile['id']]];
         $userProfile = UserProfile::where($matchTheseNew)->first();
         if ($userProfile == null)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(UserProfile::class)) ]));
 
         $userProfileRequest = array_merge(['user_id' => "" . $user['id']], $request->all());
 
@@ -221,7 +223,7 @@ class UserController extends Controller implements IUserController
         $matchThese = [['user_id', '=', $user['id']], ['profile_id', '=', $profile['id']]];
         $userProfile = UserProfile::where($matchThese)->first();
         if ($userProfile == null)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(UserProfile::class)) ]));
 
 
         $userProfile = $this->repoUserProfile->destroy($userProfile);
@@ -238,7 +240,7 @@ class UserController extends Controller implements IUserController
     {
         $userProfiles = UserProfile::where('user_id', $user['id'])->get();
         if ($userProfiles->count() == 0)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(UserProfile::class)) ]));
 
         // iterate through the Collection
         foreach ($userProfiles as $userProfile) {
@@ -281,7 +283,7 @@ class UserController extends Controller implements IUserController
         $matchTheseNew = [['user_id', '=', $user_id], ['profile_id', '=', $profile_id]];
         $userProfile = UserProfile::where($matchTheseNew)->first();
         if ($userProfile == null)
-            throw new NotFoundException(__('messages.no-exist-instance', ['model' => class_basename(UserProfile::class)]));
+            throw new NotFoundException(__('messages.no-exist-instance', ['model' => $this->translateNameModel(class_basename(UserProfile::class)) ]));
 
         $this->setAudit($this->formatToAudit(__FUNCTION__, class_basename(UserProfile::class)));
         $array_roles = $request['roles'];
