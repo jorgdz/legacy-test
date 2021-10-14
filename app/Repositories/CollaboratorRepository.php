@@ -28,4 +28,29 @@ class CollaboratorRepository extends BaseRepository
     {
         parent::__construct($collaborator);
     }
+
+    /**
+     * find
+     *
+     * @param  mixed $id
+     * @return subjects by id mesh
+     */
+    public function find ($id) {
+        $query = $this->model;
+
+        $query = $query->with([
+            'user',
+            'user.person',
+            'position',
+            'EducationLevelPrincipal',
+            'status',
+            'status',
+            'educationLevels',
+            'campus',
+            'course',
+        ]);
+
+        return $query->findOrFail($id);
+    }
+
 }
