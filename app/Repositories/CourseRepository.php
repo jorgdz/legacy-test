@@ -70,7 +70,7 @@ class CourseRepository extends BaseRepository
                             //'pe.pers_secondname',
                             'pe.pers_first_lastname',
                             //'pe.pers_second_lastname',
-                            'pe.pers_identification',
+                            'pe.pers_identification'
                         )
                         ->join('subjects as s','s.id','=','courses.matter_id')
                         ->join('periods as p','p.id','=','courses.period_id')

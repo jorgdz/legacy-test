@@ -64,7 +64,7 @@ class Course extends Model implements AuditableContract
      * @return void
      */
     public function classroom () {
-        return $this->belongsTo(Classroom::class, 'classroom_id');
+        return $this->belongsTo(ClassRoom::class, 'classroom_id');
     }
 
     /**
