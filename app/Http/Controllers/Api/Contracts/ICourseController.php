@@ -147,9 +147,19 @@ interface ICourseController
      *            description="ID Horario",
      *            type="integer",
      *         ),
+     *          @OA\Property(
+     *           property="collaborators",
+     *           description="Array de id de Colaboradores docentes",
+     *           type="array",
+     *           @OA\Items(
+     *              type="integer"
+     *           ),
+     *           example="[1, 2]",
+     *           uniqueItems=true
+     *         ),
      *         @OA\Property(
-     *           property="collaborator_id",
-     *            description="ID Colaborador",
+     *           property="curriculum_id",
+     *            description="ID Malla",
      *            type="integer",
      *         ),
      *         @OA\Property(
@@ -169,14 +179,17 @@ interface ICourseController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *        "matter_id"    : "required|integer|exists:tenant.subjects,id",
-     *       "max_capacity" : "required|integer",
-     *       "parallel_id"  : "required|integer|exists:tenant.parallels,id",
-     *       "classroom_id" : "required|integer|exists:tenant.classrooms,id",
-     *       "modality_id"  : "required|integer|exists:tenant.catalogs,id",
-     *       "hourhand_id"  : "required|integer|exists:tenant.hourhands,id",
-     *       "period_id"    : "required|integer|exists:tenant.periods,id",
-     *       "status_id"    : "required|integer|exists:tenant.status,id"
+     *       "matter_id"      : "required|integer|exists:tenant.subjects,id",
+     *       "max_capacity"   : "required|integer",
+     *       "parallel_id"    : "required|integer|exists:tenant.parallels,id",
+     *       "classroom_id"   : "required|integer|exists:tenant.classrooms,id",
+     *       "modality_id"    : "required|integer|exists:tenant.catalogs,id",
+     *       "hourhand_id"    : "required|integer|exists:tenant.hourhands,id",
+     *       "period_id"      : "required|integer|exists:tenant.periods,id",
+     *       "collaborators": "array",
+     *       "collaborators.*": "required|integer|exists:tenant.collaborators,id",
+     *       "curriculum_id" : "required|integer|exists:tenant.curriculums,id",
+     *       "status_id"      : "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -293,6 +306,11 @@ interface ICourseController
      *            description="ID Colaborador",
      *            type="integer",
      *         ),
+     *        @OA\Property(
+     *           property="curriculum_id",
+     *            description="ID Malla",
+     *            type="integer",
+     *         ),
      *         @OA\Property(
      *           property="period_id",
      *            description="ID Periodo",
@@ -310,10 +328,15 @@ interface ICourseController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "period_id"  :  "required|integer|exists:tenant.periods,id",
-     *          "education_level_id"     :  "integer|exists:tenant.education_levels,id",
-     *          "classroom_id*"  :  "required|integer|exists:tenant.classrooms,id",
-     *          "status_id"        :  "required|integer|exists:tenant.status,id"
+     *            "matter_id"    : "required|integer|exists:tenant.subjects,id",
+     *            "max_capacity" : "required|integer",
+     *            "parallel_id"  : "required|integer|exists:tenant.parallels,id",
+     *            "classroom_id" : "required|integer|exists:tenant.classrooms,id",
+     *            "modality_id"  : "required|integer|exists:tenant.catalogs,id",
+     *            "hourhand_id"  : "required|integer|exists:tenant.hourhands,id",
+     *            "curriculum_id": "required|integer|exists:tenant.curriculums,id",
+     *            "period_id"    : "required|integer|exists:tenant.periods,id",
+     *            "status_id"    : "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

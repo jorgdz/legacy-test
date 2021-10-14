@@ -36,8 +36,8 @@ class CreateCoursesTable extends Migration
             $table->integer('collaborator_id')->nullable()->unsigned();
             $table->foreign('collaborator_id')->references('id')->on('collaborators');
 
-            //$table->integer('calification_model_id')->unsigned();
-            //$table->foreign('calification_model_id')->references('id')->on('calification_models');
+            $table->integer('curriculum_id')->unsigned();
+            $table->foreign('curriculum_id')->references('id')->on('curriculums');
 
             $table->integer('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');

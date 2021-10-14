@@ -129,6 +129,15 @@ class Curriculum extends Model implements AuditableContract
     }
 
     /**
+     * Course
+     *
+     * @return void
+     */
+    public function course(): HasMany {
+        return $this->hasMany(Course::class,'curriculum_id');
+    }
+
+    /**
      * Learning Components
      *
      * @return void

@@ -35,6 +35,7 @@ class Course extends Model implements AuditableContract
         'modality_id',
         'hourhand_id',
         'collaborator_id',
+        'curriculum_id',
         'period_id',
         'status_id',
     ];
@@ -100,6 +101,15 @@ class Course extends Model implements AuditableContract
      */
     public function period () {
         return $this->belongsTo(Period::class, 'period_id');
+    }
+
+    /**
+     * Period 
+     *
+     * @return void
+     */
+    public function curriculum () {
+        return $this->belongsTo(Curriculum::class, 'curriculum_id');
     }
 
     /**
