@@ -7,7 +7,7 @@ use App\Repositories\Base\BaseRepository;
 
 class CollaboratorRepository extends BaseRepository
 {
-    protected $relations = ['educationLevels','campus','user','position','educationLevelPrincipal','status'];//,'offersEducationLevels'
+    protected $relations = ['user','user.person', 'educationLevelPrincipal', 'position', 'status', 'educationLevels','campus', 'course'];//,'offersEducationLevels'
 
     /**
      * fields
@@ -15,7 +15,7 @@ class CollaboratorRepository extends BaseRepository
      * @var array
      */
     protected $fields = [
-        'user_id',
+        'coll_email', 'coll_activity',
     ];
 
     /**
@@ -27,30 +27,6 @@ class CollaboratorRepository extends BaseRepository
     public function __construct(Collaborator $collaborator)
     {
         parent::__construct($collaborator);
-    }
-
-    /**
-     * find
-     *
-     * @param  mixed $id
-     * @return subjects by id mesh
-     */
-    public function find ($id) {
-        $query = $this->model;
-
-        $query = $query->with([
-            'user',
-            'user.person',
-            'position',
-            'EducationLevelPrincipal',
-            'status',
-            'status',
-            'educationLevels',
-            'campus',
-            'course',
-        ]);
-
-        return $query->findOrFail($id);
     }
 
 }
