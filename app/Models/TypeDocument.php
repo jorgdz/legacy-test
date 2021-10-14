@@ -17,23 +17,14 @@ class TypeDocument extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes, SoftCascadeTrait, Auditable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'type_document';
+
     protected $fillable = [
         'typ_doc_name',
         'typ_doc_description',
+        'keyword',
         'status_id'
     ];
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'type_document';
 
     protected $dates = ['deleted_at'];
 
@@ -52,7 +43,7 @@ class TypeDocument extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function studentDocuments() : HasMany
+    public function studentDocuments(): HasMany
     {
         return $this->hasMany(StudentDocument::class);
     }
@@ -63,7 +54,7 @@ class TypeDocument extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function status() : BelongsTo
+    public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

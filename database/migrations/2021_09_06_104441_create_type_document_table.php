@@ -17,6 +17,7 @@ class CreateTypeDocumentTable extends Migration
             $table->increments('id');
             $table->string('typ_doc_name')->nullable();
             $table->string('typ_doc_description')->nullable();
+            $table->string('keyword')->nullable();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();

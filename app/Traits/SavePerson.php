@@ -7,8 +7,9 @@ use App\Models\Person;
 
 trait SavePerson
 {
-    public function savePerson($request,
-        Catalog $nacionality,
+    public function savePerson(
+        $request,
+        Catalog $nacionality = NULL,
         Catalog $statusMarital,
         Catalog $typeIdentification,
         Catalog $typeReligion,
@@ -16,10 +17,11 @@ trait SavePerson
         Catalog $city,
         Catalog $currentCity,
         Catalog $sector,
-        Catalog $ethnic)
-    {
+        Catalog $ethnic
+    ) {
         //Person
-        $person = new Person($request->except('pers_nacionality_keyword',
+        $person = new Person($request->except(
+            'pers_nacionality_keyword',
             'status_martital_keyword',
             'type_identification_keyword',
             'type_religion_keyword',
@@ -30,7 +32,7 @@ trait SavePerson
             'ethnic_keyword',
         ));
 
-        $person->pers_nationality = $nacionality->id;
+        $person->pers_nationality = ($nacionality <> NULL) ? $nacionality->id : NULL;
         $person->status_marital_id = $statusMarital->id;
         $person->type_identification_id = $typeIdentification->id;
         $person->type_religion_id = $typeReligion->id;

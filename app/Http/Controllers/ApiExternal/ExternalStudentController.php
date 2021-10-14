@@ -3,25 +3,28 @@
 namespace App\Http\Controllers\ApiExternal;
 
 use App\Cache\StudentCache;
+use App\Cache\StudentDocumentCache;
 use App\Exceptions\Custom\ConflictException;
 use App\Exceptions\Custom\DatabaseException;
 use App\Http\Controllers\ApiExternal\Contracts\IExternalStudentController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudentRequest;
+use App\Models\Catalog;
 use App\Models\CustomTenant;
 use App\Models\EducationLevel;
-use App\Models\Person;
 use App\Models\Student;
+use App\Models\StudentDocument;
 use App\Models\StudentRecord;
+use App\Models\TypeDocument;
 use App\Models\User;
 use App\Services\FilesystemService;
 use App\Services\MailService;
 use App\Traits\Helper;
 use App\Traits\RestResponse;
+use App\Traits\SavePerson;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -29,7 +32,7 @@ use Illuminate\Support\Str;
 class ExternalStudentController extends Controller implements IExternalStudentController
 {
 
-    use RestResponse, Helper;
+    use RestResponse, Helper, SavePerson;
 
     /**
      * mailService
@@ -37,7 +40,8 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
      * @var mixed
      */
     private $mailService;
-
+    private $filesystem;
+    private $studentDocumentCache;
 
     /**
      * __construct
@@ -45,10 +49,11 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
      * @param  mixed $mailService
      * @return void
      */
-    public function __construct(MailService $mailService)
+    public function __construct(MailService $mailService, FilesystemService $filesystem, StudentDocumentCache $studentDocumentCache)
     {
-
         $this->mailService = $mailService;
+        $this->filesystem = $filesystem;
+        $this->studentDocumentCache = $studentDocumentCache;
     }
 
     /**
@@ -59,17 +64,41 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
      */
     public function store(StoreStudentRequest $request)
     {
-
         DB::beginTransaction();
         try {
+            $livingPlace = Catalog::getKeyword($request['vivienda_id'])->first();
+            $typeReligion = Catalog::getKeyword($request['type_religion_id'])->first();
+            $statusMarital = Catalog::getKeyword($request['status_marital_id'])->first();
+            $city = Catalog::getKeyword($request['city_id'])->first();
+            $currentCity = Catalog::getKeyword($request['current_city_id'])->first();
+            $sector = Catalog::getKeyword($request['sector_id'])->first();
+            $ethnic = Catalog::getKeyword($request['ethnic_id'])->first();
+            $typeIdentification = Catalog::getKeyword($request['type_identification_id'])->first();
+            $modalidad = Catalog::getKeyword($request['modalidad_id'])->first();
+            $jornada = Catalog::getKeyword($request['jornada_id'])->first();
 
             $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function ($query) {
                 $query->where('status_id', 7);
             })->first();
-   
+
             if ($educationLevel) {
-                $person = new Person($request->except(['email', 'campus_id', 'modalidad_id', 'jornada_id']));
+                $person = $this->savePerson(
+                    $request,
+                    NULL,
+                    $statusMarital,
+                    $typeIdentification,
+                    $typeReligion,
+                    $livingPlace,
+                    $city,
+                    $currentCity,
+                    $sector,
+                    $ethnic
+                );
                 $person->save();
+
+                if ($request->get('pers_has_disability'))
+                    $person->disabilities()->sync($request->get('pers_disabilities'));
+
                 $user = new User($request->only(['email']));
 
                 $user->us_username = $request->get('pers_identification');
@@ -85,6 +114,8 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
                 $student = new Student($request->only(['campus_id', 'modalidad_id', 'jornada_id']));
                 $student->stud_code = $this->stud_code_avaliable();
                 $student->user_id = $user->id;
+                $student->modalidad_id = $modalidad->id;
+                $student->jornada_id = $jornada->id;
                 $student->status_id = 1;
 
                 $student->save();
@@ -113,9 +144,9 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
                 $this->mailService->SendEmail($params);
 
                 DB::commit();
-                
+
                 return $student;
-                //return $this->information(__('messages.student-saved'));
+                /* return $this->information(__('messages.student-saved')); */
             }
 
             return $this->information(__('messages.meshs-not-vigent'), Response::HTTP_CONFLICT);
@@ -125,5 +156,26 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
         }
     }
 
-    
+    /**
+     * StorageFile
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function StorageFile(Request $request)
+    {
+        $files = $this->filesystem->storage($request, "Admisiones estudiantes");
+
+        for ($i = 0; $i < count($request->documents); $i++) {
+            $document = TypeDocument::where([
+                ['keyword', $request->documents[$i]]
+            ])->first();
+            StudentDocument::insert([
+                [
+                    'stu_doc_url' => $files[$i]["route"], 'stu_doc_name_file' => $files[$i]["name"],
+                    'type_document_id' => $document->id, 'student_id' => $request->student, 'status_id' => 1
+                ]
+            ]);
+        }
+    }
 }

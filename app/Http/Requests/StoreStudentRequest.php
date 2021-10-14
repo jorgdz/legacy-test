@@ -43,35 +43,34 @@ class StoreStudentRequest extends FormRequest
             'pers_study_reason'   => 'string',
             'pers_num_taxpayers_household'  => 'integer',
             'pers_has_vehicle'  => 'digits_between:0,1',
-            'vivienda_id'  => 'required|integer|exists:tenant.catalogs,id',
-            'type_religion_id'  => 'required|integer|exists:tenant.catalogs,id',
-            'status_marital_id' => 'required|integer|exists:tenant.catalogs,id',
-            'city_id'           => 'required|integer|exists:tenant.catalogs,id',
-            'current_city_id'   => 'required|integer|exists:tenant.catalogs,id',
-            'sector_id'         => 'required|integer|exists:tenant.catalogs,id',
-            'ethnic_id'         => 'required|integer|exists:tenant.catalogs,id',
-            'type_identification_id' => 'required|integer|exists:tenant.catalogs,id',
+            'vivienda_id'  => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'type_religion_id'  => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'status_marital_id' => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'city_id'           => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'current_city_id'   => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'sector_id'         => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'ethnic_id'         => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'type_identification_id' => 'required|string|exists:tenant.catalogs,cat_keyword',
             //user
             'email'       => 'required|email|unique:tenant.users,email',
             //student
             'campus_id' => 'required|integer|exists:tenant.campus,id',
-            'modalidad_id' => 'required|integer|exists:tenant.catalogs,id',
-            'jornada_id' => 'required|integer|exists:tenant.catalogs,id',
+            'modalidad_id' => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'jornada_id' => 'required|string|exists:tenant.catalogs,cat_keyword',
             //student_record
             'education_level_id' => 'required|integer|exists:tenant.education_levels,id',
             'type_student_id' => 'required|integer|exists:tenant.type_students,id',
             'economic_group_id' => 'required|integer|exists:tenant.economic_groups,id',
             'status_id' => 'exists:tenant.status,id',
-
         ];
 
-        $typeIdentification = intval($this->request->get('type_identification_id'));
+        $typeIdentification = $this->request->get('type_identification_id');
         $persIdentification = $this->request->get('pers_identification');
 
-        if(in_array($this->method(), ['POST'])) {
-            switch($typeIdentification) {
-                case $typeIdentification == 66 || $typeIdentification == 68:
-                    if($persIdentification==null) {
+        if (in_array($this->method(), ['POST'])) {
+            switch ($typeIdentification) {
+                case $typeIdentification == 'cedula' || $typeIdentification == 'dni':
+                    if ($persIdentification == null) {
                         $rules['pers_identification'] = [
                             'required', new ValidateCiRule(""),
                         ];
@@ -81,8 +80,8 @@ class StoreStudentRequest extends FormRequest
                         ];
                     }
                     break;
-                case $typeIdentification == 67:
-                    if($persIdentification==null) {
+                case $typeIdentification == 'ruc':
+                    if ($persIdentification == null) {
                         $rules['pers_identification'] = [
                             'required', new ValidateRucRule(""),
                         ];
@@ -100,9 +99,9 @@ class StoreStudentRequest extends FormRequest
                 'unique:tenant.persons,pers_identification,' . $this->person->id
             ];
 
-            switch($typeIdentification) {
-                case $typeIdentification == 66 || $typeIdentification == 68:
-                    if($persIdentification==null) {
+            switch ($typeIdentification) {
+                case $typeIdentification == 'cedula' || $typeIdentification == 'dni':
+                    if ($persIdentification == null) {
                         $rules['pers_identification'] = [
                             'required', new ValidateCiRule(""),
                         ];
@@ -112,8 +111,8 @@ class StoreStudentRequest extends FormRequest
                         ];
                     }
                     break;
-                case $typeIdentification == 67:
-                    if($persIdentification==null) {
+                case $typeIdentification == 'ruc':
+                    if ($persIdentification == null) {
                         $rules['pers_identification'] = [
                             'required', new ValidateRucRule(""),
                         ];

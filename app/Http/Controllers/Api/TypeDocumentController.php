@@ -35,8 +35,6 @@ class TypeDocumentController extends Controller implements ITypeDocumentControll
         return $this->success($this->typeDocumentCache->all($request));
     }
 
-   
-
     /**
      * Store a newly created resource in storage.
      *
@@ -47,7 +45,7 @@ class TypeDocumentController extends Controller implements ITypeDocumentControll
     {
         DB::beginTransaction();
         try {
-            $typeDoc= new TypeDocument($request->all());
+            $typeDoc = new TypeDocument($request->all());
             $typeDoc = $this->typeDocumentCache->save($typeDoc);
 
             DB::commit();
@@ -69,8 +67,6 @@ class TypeDocumentController extends Controller implements ITypeDocumentControll
         return $this->success($this->typeDocumentCache->find($id));
     }
 
- 
-
     /**
      * Update the specified resource in storage.
      *
@@ -83,7 +79,7 @@ class TypeDocumentController extends Controller implements ITypeDocumentControll
         DB::beginTransaction();
         try {
             $typeDocument->fill($request->all());
-         
+
             if ($typeDocument->isClean())
                 return $this->information(__('messages.nochange'));
 
@@ -106,11 +102,11 @@ class TypeDocumentController extends Controller implements ITypeDocumentControll
     public function destroy(TypeDocument $typeDocument)
     {
         DB::beginTransaction();
-        try{
+        try {
             $response = $this->typeDocumentCache->destroy($typeDocument);
             DB::commit();
             return $this->success($response);
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             DB::rollBack();
             return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }

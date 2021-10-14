@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File as FileFacade;
 
-class FilesystemService {
+class FilesystemService
+{
 
     use RestResponse;
 
@@ -22,7 +23,8 @@ class FilesystemService {
      *
      * @return void
      */
-    public function __construct(GuzzleService $guzzle) {
+    public function __construct(GuzzleService $guzzle)
+    {
         $this->http = $guzzle;
     }
 
@@ -32,7 +34,8 @@ class FilesystemService {
      * @param  mixed $request
      * @return void
      */
-    public function show(Request $request) {
+    public function show(Request $request)
+    {
         $currentTenant = CustomTenant::has('filesystem')
             ->where('id', CustomTenant::current()->id)->first();
 
@@ -51,12 +54,13 @@ class FilesystemService {
      * @param  mixed $request
      * @return void
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $currentTenant = CustomTenant::has('filesystem')
             ->where('id', CustomTenant::current()->id)->first();
 
         if ($currentTenant) {
-            if(!$request->period)
+            if (!$request->period)
                 throw new BadRequestException(__('messages.not-period'));
             $params = [
                 "id_usuario"  => $currentTenant->filesystem->user_id,
@@ -87,7 +91,7 @@ class FilesystemService {
 
         $response = array();
         foreach ($request->file('files') as $key => $value) {
-            $name = time() . '_'. uniqid() . '.'. $request->file('files')[$key]->getClientOriginalExtension();
+            $name = time() . '_' . uniqid() . '.' . $request->file('files')[$key]->getClientOriginalExtension();
             $upload = Storage::put("{$path}/{$name}", FileFacade::get($request->file('files')[$key]));
 
             if ($upload) {
@@ -108,7 +112,8 @@ class FilesystemService {
      * @param  mixed $request
      * @return void
      */
-    public function download(Request $request) {
+    public function download(Request $request)
+    {
         $currentTenant = CustomTenant::has('filesystem')
             ->where('id', CustomTenant::current()->id)->first();
 
@@ -119,5 +124,61 @@ class FilesystemService {
         };
 
         return Storage::download($request->name);
+    }
+
+    /**
+     * storage
+     *
+     * @param  mixed $request
+     * @param  mixed $folder
+     * @return void
+     */
+    public function storage($request, $folder = NULL)
+    {
+        $currentTenant = CustomTenant::has('filesystem')
+            ->where('id', CustomTenant::current()->id)->first();
+
+        if ($currentTenant) {
+            if (!$request->period)
+                throw new BadRequestException(__('messages.not-period'));
+            $params = [
+                "id_usuario"  => $currentTenant->filesystem->user_id,
+                "id_cliente"  => $currentTenant->filesystem->client_id,
+                "periodo"     => $request->period,
+                "convert_pdf" => false,
+                "files"       => $request->file('files'),
+                "id_tipo_documento" => $request->type_document,
+                "fecha_subida"      => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            ];
+            $guzzle = $this->http->uploadFileApiDocument(config('app.api_doc_url') . "v1/archivos/subir-archivo", $currentTenant->filesystem->token, $params);
+
+            $response = array();
+            foreach ($guzzle["datosAdicionales"] as $key => $value) {
+                array_push($response, [
+                    'route' => $value,
+                    'name'  => $value,
+                    'url'   => "",
+                ]);
+            }
+            return $response;
+        }
+
+        $tenant   = CustomTenant::findOrFail(CustomTenant::current()->id);
+        $path = $tenant->name . (($request->period) ? "/{$request->period}" : "") . (($folder) ? "/{$folder}" : "");
+
+        $response = array();
+        foreach ($request->file('files') as $key => $value) {
+            $name = time() . '_' . uniqid() . '.' . $request->file('files')[$key]->getClientOriginalExtension();
+            $upload = Storage::put("{$path}/{$name}", FileFacade::get($request->file('files')[$key]));
+
+            if ($upload) {
+                array_push($response, [
+                    'route' => "{$path}/{$name}",
+                    'name'  => $name,
+                    'url'   => Storage::url("{$path}/{$name}"),
+                ]);
+            }
+        }
+        return $response;
     }
 }
