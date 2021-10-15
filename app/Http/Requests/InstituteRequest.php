@@ -29,6 +29,7 @@ class InstituteRequest extends FormRequest
             'status_id' => 'required|integer|exists:tenant.status,id',
             'type_institute_id' => 'required|integer|exists:tenant.type_institutes,id',
             'economic_group_id' => 'required|integer|exists:tenant.economic_groups,id',
+            'has_agreement' => 'required|boolean',
         ];
     }
 }

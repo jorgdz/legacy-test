@@ -80,6 +80,8 @@ require __DIR__ . "/channels/type-reports.php";
 require __DIR__ . "/channels/commons.php";
 require __DIR__ . "/channels/type-application-status.php";
 require __DIR__ . "/external-channels/external-student.php";
+require __DIR__ . "/channels/institution-subjects.php";
+require __DIR__ . "/channels/external-homologations.php";
 require __DIR__ . "/channels/area-group.php";
 require __DIR__ . "/channels/config-type-application.php";
 
@@ -172,6 +174,7 @@ Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->middlew
 Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:profiles-borrar-un-perfil']);
 Route::get('/profiles/{profile}/users', [ProfileController::class, 'showUsers'])->middleware(['auth:sanctum', 'permission:profiles-listar-usuarios-por-perfil']);
 Route::put('/profile/change-password', [ProfileController::class, 'changePasswordLogged'])->middleware(['auth:sanctum']);
+
 /**
  *
  * Companies
@@ -254,7 +257,6 @@ Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffe
 Route::get('/periods/{period}/hourhands', [PeriodController::class, 'showHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-horarios-por-periodo']);
 Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-horarios-por-periodo']);
 Route::get('/periods/{period}/classroom-education-levels', [PeriodController::class, 'showPeriodsByClasEduLev'])->middleware(['auth:sanctum', 'permission:periods-aulas-asociadas-a-facultades-por-periodos.']);
-
 Route::get('/periods/{period}/stages', [PeriodController::class, 'stagesByPeriod'])->middleware(['auth:sanctum'/* , 'permission:periods-listar-etapas-por-periodo' */]);
 
 /**
@@ -457,7 +459,6 @@ Route::post('/details-subject-curriculum', [DetailSubjectCurriculumController::c
 Route::put('/details-subject-curriculum/{detailsubjectcurriculum}', [DetailSubjectCurriculumController::class, 'update'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-actualizar-detalle-materiamalla']);
 Route::delete('/details-subject-curriculum/{detailsubjectcurriculum}', [DetailSubjectCurriculumController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:details_matter_mesh-borrar-detalle-materiamalla']);
 
-
 /**
  * Learning Component
  */
@@ -467,7 +468,6 @@ Route::post('/learning-components', [LearningComponentController::class, 'store'
 Route::put('/learning-components/{learningcomponent}', [LearningComponentController::class, 'update'])->middleware(['auth:sanctum', 'permission:learning_components-actualizar-componente-aprendizaje']);
 Route::delete('/learning-components/{learningcomponent}', [LearningComponentController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:learning_components-borrar-componente-aprendizaje']);
 
-Route::get('status', [StatusController::class, 'index'])->middleware(['auth:sanctum', 'permission:status-listar-status']);
 
 /**
  * Student

@@ -264,15 +264,15 @@ return [
 			'exists' => 'El valor del campo posicion seleccionado es inválido.',
 			'integer' => 'El valor del campo posicion debe ser un entero.',
 		],
-        'components.*.component_id' => [
-            'exists' => 'El valor del campo componente de aprendizaje seleccionado es inválido.',
+		'components.*.component_id' => [
+			'exists' => 'El valor del campo componente de aprendizaje seleccionado es inválido.',
 			'integer' => 'El valor del campo componente de aprendizaje debe ser un entero.',
-            'distinct' => 'El valor del campo componente de aprendizaje tiene un valor duplicado.'
-        ],
-        'components.*.lea_workload' => [
-            'integer' => 'El valor de la carga horaria debe ser un entero.',
-        ],
-        'prerequisites.*' => [
+			'distinct' => 'El valor del campo componente de aprendizaje tiene un valor duplicado.'
+		],
+		'components.*.lea_workload' => [
+			'integer' => 'El valor de la carga horaria debe ser un entero.',
+		],
+		'prerequisites.*' => [
 			'exists' => 'El valor del campo materia malla seleccionado es inválido.',
 			'integer' => 'El valor del campo materia malla debe ser un entero.',
 			'distinct' => 'El valor del campo materia malla tiene un valor duplicado.'
@@ -341,7 +341,7 @@ return [
 		'eth_description' => 'descripción de etnia',
 		'inst_name' => 'nombre de la institución',
 		'city_id' => 'ciudad',
-        'city_keyword' => 'ciudad',
+		'city_keyword' => 'ciudad',
 		'type_institute_id' => 'instituto',
 		'type_institute_keyword' => 'instituto',
 
@@ -384,7 +384,7 @@ return [
 		'type_matter_id' => 'tipo de materia',
 		'education_level_id' => 'nivel educativo',
 		'area_id' => 'área',
-		'mat_payment_type'=>'tipo de pago de materia',
+		'mat_payment_type' => 'tipo de pago de materia',
 
 		/**
 		 * matter_mesh
@@ -401,7 +401,8 @@ return [
 		'group' => 'grupo',
 		'calification_models_id' => 'modelo de calificación',
 		'matterMesh' => 'las opciones de los materias y mallas',
-        'prerequisites' => 'las opciones de las materias y mallas',
+		'prerequisites' => 'las opciones de las materias y mallas',
+
 		/**
 		 * matter_status
 		 */
@@ -428,7 +429,8 @@ return [
 		'mes_modality_keyword' => 'modalidad',
 		'type_calification_id' => 'tipo de calificación',
 		'level_edu_id' => 'nivel educativo',
-        'components' => 'componentes de aprendizaje',
+		'components' => 'componentes de aprendizaje',
+
 		/**
 		 * offers
 		 */
@@ -512,9 +514,9 @@ return [
 		'alias' => 'alias',
 		'guard_name' => 'nombre guardado',
 		'parent_name' => 'nombre perfil padre',
-		'description'=>'descripción',
-		'module_group'=>'grupo de módulos',
-		'name'=>'nombre',
+		'description' => 'descripción',
+		'module_group' => 'grupo de módulos',
+		'name' => 'nombre',
 		'parent_name_translated' => 'nombre perfil traducido',
 
 		/**
@@ -558,29 +560,29 @@ return [
 		'pers_has_disability' => 'discapacidad',
 		'pers_disability_identification' => 'número de identificación de discapacidad',
 		'pers_disability_percent' => 'porcentaje de discapacidad',
-		'pers_is_provider'=>'persona es proveedor',
-		'sector_id'=>'sector',
-		'current_city_id'=>'ciudad actual',
-		'ethnic_id'=>'étnica',
-		'sector_id'=>'sector',
-		'vivienda_id'=>'vivienda',
+		'pers_is_provider' => 'persona es proveedor',
+		'sector_id' => 'sector',
+		'current_city_id' => 'ciudad actual',
+		'ethnic_id' => 'étnica',
+		'sector_id' => 'sector',
+		'vivienda_id' => 'vivienda',
 
 		/**
 		 * Relatives
 		 */
 		'type_identification_id_relatives_person' => 'tipo de identificación del familiar',
 		'type_identification_keyword_relatives_person' => 'tipo de identificación del familiar',
-        'typeKinship_keyword' => 'parentesco',
-        'ethnic_relative_keyword' => 'tipo de etnia del familiar',
+		'typeKinship_keyword' => 'parentesco',
+		'ethnic_relative_keyword' => 'tipo de etnia del familiar',
 		'pers_identification_relatives_person' => 'número de identificación del familiar',
-        'pers_gender_relative' => 'tipo de genero del familiar',
+		'pers_gender_relative' => 'tipo de genero del familiar',
 		'pers_firstname_relatives_person' => 'primer nombre de la persona',
 		'pers_secondname_relatives_person' => 'segundo nombre de la person',
 		'pers_first_lastname_relatives_person' => 'primer apellido de la persona',
 		'pers_second_lastname_relatives_person' => 'segundo apellido de la persona',
 		'pers_relatives_person_desc' => 'descripción de la relación con el familiar',
-		'person_id_relative'=>'codigo de persona (familiar)',
-		'rel_description'=>'descripcion del parentesco',
+		'person_id_relative' => 'codigo de persona (familiar)',
+		'rel_description' => 'descripcion del parentesco',
 
 
 		/**
@@ -599,7 +601,7 @@ return [
 		'coll_has_nomination' => 'tiene nombremiento',
 		'coll_nomination_entering_date' => 'fecha de ingreso del nombramiento',
 		'coll_nomination_leaving_date' => 'fecha de fin del nombremiento',
-		'coll_activity'=>'actividad del colaborador',
+		'coll_activity' => 'actividad del colaborador',
 		'coll_disabled_reason' => 'razón de la  desactivación ',
 		'education_level_principal_id' => 'nivel de educacion principal asociado al colaborador',
 		/**
@@ -610,8 +612,8 @@ return [
 		 * profiles
 		 */
 		'pro_name' => 'nombre del perfil',
-		'keyword'=>'palabra clave',
-		'pro_description'=>'descripción del perfil',
+		'keyword' => 'palabra clave',
+		'pro_description' => 'descripción del perfil',
 
 		/**
 		 * roles
@@ -635,7 +637,7 @@ return [
 		 * status
 		 */
 		'st_name' => 'nombre del estado',
-		'category_status_id'=>'estado de la categoría',
+		'category_status_id' => 'estado de la categoría',
 		/**
 		 * status_marital
 		 */
@@ -659,7 +661,7 @@ return [
 		 */
 		'typ_dis_name' => 'nombre del tipo discapacidad',
 		'typ_dis_description' => 'descripción del tipo discapacidad',
-		'keyword'=>'palabra clave del tipo discapacidad',
+		'keyword' => 'palabra clave del tipo discapacidad',
 
 		/**
 		 * type_document
@@ -707,9 +709,9 @@ return [
 		'tp_description' => 'descripción del tipo período',
 		'tp_min_matter_enrollment' => 'inscripción minima del tipo período',
 		'tp_max_matter_enrollment' => 'inscripción maxima del tipo período',
-		'tp_num_fees'=>'número de cuotas de la matricula',
-		'tp_pay_enrollment'=>'paga o no paga matricula',
-		'tp_fees_enrollment'=>'valor total de la matricula',
+		'tp_num_fees' => 'número de cuotas de la matricula',
+		'tp_pay_enrollment' => 'paga o no paga matricula',
+		'tp_fees_enrollment' => 'valor total de la matricula',
 
 		/**
 		 * type_religions
@@ -805,7 +807,7 @@ return [
 		/**
 		 * catalog_person
 		 */
-		'catalog_id'=> 'catalogo',
+		'catalog_id' => 'catalogo',
 
 		/**
 		 * Type Student Programs
@@ -844,7 +846,7 @@ return [
 		 */
 		'clt_name' => 'nombre del tipo de aula',
 		'clt_description' => 'descripcion del tipo de aula',
-		'classroom_type_id'=>'tipo de aula',
+		'classroom_type_id' => 'tipo de aula',
 
 		/**
 		 * Positions
@@ -852,7 +854,7 @@ return [
 		'pos_name' => 'nombre del cargo',
 		'pos_description' => 'descripcion del cargo',
 		'role_id' => 'rol',
-		'pos_keyword'=>'palabras clave del área del cargo',
+		'pos_keyword' => 'palabras clave del área del cargo',
 
 		/**
 		 * Calification Models
@@ -867,6 +869,7 @@ return [
 		 */
 		'agr_name' => 'nombre del convenio',
 		'agr_num_matter_homologate' => 'cantidad de materias a homologar',
+
 		/**
 		 * Departments
 		 */
@@ -877,15 +880,16 @@ return [
 		 * Course
 		 */
 		'hourhand_id' => 'horario',
-		'classroom_id'=> 'aula',
-		'parallel_id'=>'paralelo',
-		'max_capacity'=>'capacidad maxima del curso',
-		'modality_id'=>'modalidad',
+		'classroom_id' => 'aula',
+		'parallel_id' => 'paralelo',
+		'max_capacity' => 'capacidad maxima del curso',
+		'modality_id' => 'modalidad',
 
 		/**
 		 * Collaborator Hour
 		 */
 		'ch_working_time' => 'tiempo dedicación',
+
 		/**
 		 * Hours summaries
 		 */
@@ -898,210 +902,259 @@ return [
 		'hs_research' => 'horas de investigacion',
 		'hs_total' => 'total',
 		'collaborator_hour_id' => 'horas de colaborador',
+
 		/**
 		 * Signatures
 		 */
 		'signatures' => 'firmas',
 		'acronym' => 'sigla',
 		'rrhh' => 'recursos humanos',
+
 		/**
 		 * cambio contraseña
 		 */
 		'current_password' => 'contraseña',
-        /**
-         * EducationLevelSubject
-         */
-        'subject_id' => 'materia',
-        'group_area_id' => 'area',
+
+		/**
+		 * EducationLevelSubject
+		 */
+		'subject_id' => 'materia',
+		'group_area_id' => 'area',
+
 		/**
 		 * areas
 		 */
-		'ar_name'=> 'nombre del área',
-        'ar_description'=> 'descripcion del área',
-		'ar_keywords'=>'palabras clave del área',
+		'ar_name' => 'nombre del área',
+		'ar_description' => 'descripcion del área',
+		'ar_keywords' => 'palabras clave del área',
+
 		/**
 		 * audits (Auditoria)
 		 */
-		'auditable_id'=>'auditoría',
-		'auditable_type'=>'tipo de auditoría',
-		'event'=>'evento',
-		'ip_address'=>'dirección IP',
-		'new_values'=>'nuevos valores',
-		'old_values'=>'viejos valores',
-		'tags'=>'etiquetas',
-		'url'=>'URL',
-		'user_agent'=>'agente de usuario',
-		'user_type'=>'tipo de usuario',
+		'auditable_id' => 'auditoría',
+		'auditable_type' => 'tipo de auditoría',
+		'event' => 'evento',
+		'ip_address' => 'dirección IP',
+		'new_values' => 'nuevos valores',
+		'old_values' => 'viejos valores',
+		'tags' => 'etiquetas',
+		'url' => 'URL',
+		'user_agent' => 'agente de usuario',
+		'user_type' => 'tipo de usuario',
+
 		/**
 		 * classrooms (aulas)
 		 */
-		'campus_id'=>'sede',
-		'cl_cap_max'=>'capacidad máxima de aulas',
+		'campus_id' => 'sede',
+		'cl_cap_max' => 'capacidad máxima de aulas',
+
 		/**
 		 * sign_reference
 		 */
-		'sign_reference'=>'referencia de colaboradores',
-		'type_report_id'=> 'tipo de reporte',
+		'sign_reference' => 'referencia de colaboradores',
+		'type_report_id' => 'tipo de reporte',
+
 		/**
 		 * components - componentes
 		 */
-		'com_acronym'=> 'abreviatura del componente',
+		'com_acronym' => 'abreviatura del componente',
 		'com_name' => 'nombre del componente',
+
 		/**
 		 * course_student - curso del estudiante
 		 */
-		'course_id'=>'curso',
-		'final_note'=>'nota final',
-		'matter_status_id'=>'estado de la materia',
+		'course_id' => 'curso',
+		'final_note' => 'nota final',
+		'matter_status_id' => 'estado de la materia',
 		'observation' => 'observación',
+
 		/**
 		 * disability_person
 		 */
-		'type_disability_id'=>'tipo discapacidad',
+		'type_disability_id' => 'tipo discapacidad',
+
 		/**
 		 * entry_types - tipos de entrada
 		 */
-		'ent_ty_acronym'=>'abreviatura del tipo de entrada',
-		'ent_ty_description'=>'descripcion del tipo de entrada',
-		'ent_ty_name'=>'nombre del tipo de entrada',
+		'ent_ty_acronym' => 'abreviatura del tipo de entrada',
+		'ent_ty_description' => 'descripcion del tipo de entrada',
+		'ent_ty_name' => 'nombre del tipo de entrada',
+
 		/**
 		 * failed_jobs
 		 */
-		'connection'=>'conexión',
-		'exception'=>'excepción',
-		'failed_at'=>'fallado',
-		'payload'=>'identificación',
-		'queue'=>'cola',
-		'uuid'=>'uuid',
+		'connection' => 'conexión',
+		'exception' => 'excepción',
+		'failed_at' => 'fallado',
+		'payload' => 'identificación',
+		'queue' => 'cola',
+		'uuid' => 'uuid',
+
 		/**
 		 * group_area
 		 */
-		'ga_description'=>'descripción del área del grupo',
-		'ga_name'=>'nombre del área del grupo',
+		'ga_description' => 'descripción del área del grupo',
+		'ga_name' => 'nombre del área del grupo',
+
 		/**
 		 * institutes
 		 */
-		'province_id'=>'provincia',
+		'province_id' => 'provincia',
+
 		/**
 		 * learning_components  componentes de aprendizaje
 		 */
-		'lea_workload'=>'carga horaria del componente de aprendizaje',
+		'lea_workload' => 'carga horaria del componente de aprendizaje',
+
 		/**
 		 * mentions
 		 */
 		'ment_acronym' => 'acrónimo de mención',
 		'ment_description' => 'descripción de mención',
 		'ment_name' => 'nombre de mención',
+
 		/**
 		 * model_has_permissions
 		 */
 		'model_id' => 'modelo',
 		'model_type' => 'tipo de modelo',
 		'permission_id' => 'permiso',
+
 		/**
 		 * model_has_roles
 		 */
-		'role_id'=>'rol',
+		'role_id' => 'rol',
+
 		/**
 		 * other_signatures -  otras firmas
 		 */
-		'sign_person'=>'otras firmas de persona',
+		'sign_person' => 'otras firmas de persona',
+
 		/**
 		 * password_resets
 		 */
-		'token'=>'token',
+		'token' => 'token',
+
 		/**
 		 * person_educations
 		 */
-		'institute_id'=>'instituto',
-		'pers_edu_calification'=>'calificación',
-		'pers_edu_graduation_date'=>'fecha de graduación',
-		'pers_edu_observation'=>'observación',
-		'type_education_id'=>'tipo de educación',
+		'institute_id' => 'instituto',
+		'pers_edu_calification' => 'calificación',
+		'pers_edu_graduation_date' => 'fecha de graduación',
+		'pers_edu_observation' => 'observación',
+		'type_education_id' => 'tipo de educación',
+
 		/**
 		 * status_students - estado del estudiante
 		 */
-		'sts_description'=>'descripción del estado estudiante',
-		'sts_let_pay'=>'pagos del estudiante',
-		'sts_name'=>'nombre del estado del estudiante',
+		'sts_description' => 'descripción del estado estudiante',
+		'sts_let_pay' => 'pagos del estudiante',
+		'sts_name' => 'nombre del estado del estudiante',
+
 		/**
 		 * student_recods_period
 		 */
-		'periodo_id'=>'período',
+		'periodo_id' => 'período',
+
 		/**
 		 * student_recods_period_status
 		 */
-		'student_record_period_id'=>'período del récord estudiantil',
-		'student_status_id'=> 'estado del estudiante',
+		'student_record_period_id' => 'período del récord estudiantil',
+		'student_status_id' => 'estado del estudiante',
+
 		/**
 		 * student_recods_period_tags
 		 */
-		'student_tags_id'=>'etiquetas de estudiantes',
+		'student_tags_id' => 'etiquetas de estudiantes',
+
 		/**
 		 * students
 		 */
-		'jornada_id'=>'jornada',
-		'modalidad_id'=>'modalidad',
-		'stud_code'=>'código del estudiante',
-		'stud_observation'=>'observación del estudiante',
-		'stud_photo'=>'foto del estudiante',
-		'stud_photo_path'=>'ruta de la foto del estudiante',
+		'jornada_id' => 'jornada',
+		'modalidad_id' => 'modalidad',
+		'stud_code' => 'código del estudiante',
+		'stud_observation' => 'observación del estudiante',
+		'stud_photo' => 'foto del estudiante',
+		'stud_photo_path' => 'ruta de la foto del estudiante',
+
 		/**
 		 * subject_curriculum
 		 */
-		'is_prerequisite'=>'prerequisto de materia malla',
-		'order'=>'orden de materias mallas',
+		'is_prerequisite' => 'prerequisto de materia malla',
+		'order' => 'orden de materias mallas',
+
 		/**
 		 * subject_curriculum_dependencies
 		 */
-		'child_matter_mesh_id'=>'registro hijo de materia malla',
-		'parent_matter_mesh_id'=>'padre de materia malla',
+		'child_matter_mesh_id' => 'registro hijo de materia malla',
+		'parent_matter_mesh_id' => 'padre de materia malla',
+
 		/**
 		 * subject_status
 		 */
-		'description'=>'descripción',
-		'name'=>'nombre',
+		'description' => 'descripción',
+		'name' => 'nombre',
+
 		/**
 		 * tags
 		 */
 		'tg_description' => 'descripción de etiqueta',
 		'tg_name' => 'nombre de etiqueta',
+
 		/**
 		 * type_criterias
 		 */
-		'crit_acronym'=>'sigla de tipo criterio',
-		'crit_description'=>'descripción de tipo criterio',
-		'crit_name'=>'nombre de tipo criterio',
-		'crit_parent_id'=>'padre de tipo criterio',
-		'crit_qualifity'=>'calificación de tipo criterio',
+		'crit_acronym' => 'sigla de tipo criterio',
+		'crit_description' => 'descripción de tipo criterio',
+		'crit_name' => 'nombre de tipo criterio',
+		'crit_parent_id' => 'padre de tipo criterio',
+		'crit_qualifity' => 'calificación de tipo criterio',
+
 		/**
 		 * type_modality
 		 */
-		'typ_mod_description'=>'descripción del tipo modalidad',
-		'typ_mod_name'=>'nombre del tipo modalidad',
+		'typ_mod_description' => 'descripción del tipo modalidad',
+		'typ_mod_name' => 'nombre del tipo modalidad',
+
 		/**
 		 * type_reports
 		 */
-		'acronym'=>'sigla',
-		'description'=>'descripción',
-		'name'=>'nombre',
-		'rrhh'=>'recursos humanos',
+		'acronym' => 'sigla',
+		'description' => 'descripción',
+		'name' => 'nombre',
+		'rrhh' => 'recursos humanos',
+
 		/**
 		 * type_student_programs - tipo programa para estudiantes
 		 */
-		'typ_stu_pro_acronym'=>'acrónimo de tipo programa para estudiantes',
-		'typ_stu_pro_description'=>'descripción de tipo programa para estudiantes',
-		'typ_stu_pro_name'=>'nombre del tipo programa para estudiantes',
+		'typ_stu_pro_acronym' => 'acrónimo de tipo programa para estudiantes',
+		'typ_stu_pro_description' => 'descripción de tipo programa para estudiantes',
+		'typ_stu_pro_name' => 'nombre del tipo programa para estudiantes',
+
 		/**
 		 * user
 		 */
-		'email_verified_at'=>'correo electrónico de verificación',
-		'password'=>'contraseña',
-		'us_username'=>'nombre de usuario',
+		'email_verified_at' => 'correo electrónico de verificación',
+		'password' => 'contraseña',
+		'us_username' => 'nombre de usuario',
 
+		/**
+		 * EducationLevelSubject
+		 */
+		'subject_id' => 'materia',
+		'group_area_id' => 'area',
 
+		/**
+		 * Institution Subjects
+		 */
+		'institute_id' => 'instituto',
 
-
+		/**
+		 * External Homologations
+		 */
+		'inst_subject_id' => 'materia del instituto',
+		'comments' => 'comentarios',
+		'relation_pct' => 'porcentaje',
 	],
 
 	/*
@@ -1114,13 +1167,13 @@ return [
 	|
 	*/
 	'modelNameTraslate' => [
-		'User'=>'Usuario',
-		'Profile'=>'Perfil',
-		'UserProfile'=>'Perfil Usuario',
-		'Role'=>'Rol',
-		'EducationLevel'=>'Nivel Educativo',
-		'Catalog'=>'Catálogo',
-		'Subject'=>'Materias',
-		'SubjectCurriculum'=>'Materias Mallas',
+		'User' => 'Usuario',
+		'Profile' => 'Perfil',
+		'UserProfile' => 'Perfil Usuario',
+		'Role' => 'Rol',
+		'EducationLevel' => 'Nivel Educativo',
+		'Catalog' => 'Catálogo',
+		'Subject' => 'Materias',
+		'SubjectCurriculum' => 'Materias Mallas',
 	],
 ];

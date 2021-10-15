@@ -285,10 +285,10 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('application_details')->insert([
-            ['value' => "{'student_id' : '1', 'carrera_id' : 1}", 'application_id' => 1, 'config_type_application_id' => 1],
+            ['value' => 1, 'application_id' => 1, 'config_type_application_id' => 1],
             ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 2],
             ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 3],
-            ['value' => "{'student_id' : '1', 'carrera_id' : 1}", 'application_id' => 2, 'config_type_application_id' => 4],
+            ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 4],
         ]);
 
         DB::connection('tenant')->table('type_application_status')->insert([

@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Http\Requests\InstituteRequest;
-use App\Models\Institute;
 use Illuminate\Http\Request;
+use App\Models\ExternalHomologation;
+use App\Http\Requests\ExternalHomologationRequest;
 
-interface InterfaceInstituteController
+interface IExternalHomologationController
 {
     /**
      * @OA\Get(
-     *   path="/api/institutes",
-     *   tags={"Institutos"},
+     *   path="/api/external-homologations",
+     *   tags={"Homologacion Externa"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar los institutos",
-     *   description="Muestra todos los institutos en formato JSON",
-     *   operationId="getAllInstitutes",
+     *   summary="Listar las homologaciones externas",
+     *   description="Muestra todas las homologaciones externas en formato JSON",
+     *   operationId="getAllExternalHomologations",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -88,18 +88,18 @@ interface InterfaceInstituteController
 
     /**
      * @OA\Post(
-     *   path="/api/institutes",
-     *   tags={"Institutos"},
+     *   path="/api/external-homologations",
+     *   tags={"Homologacion Externa"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear un instituto",
-     *   description="Crear un nuevo instituto.",
-     *   operationId="addInstitute",
+     *   summary="Crear una homologacion externa",
+     *   description="Crear una nueva homologacion externa.",
+     *   operationId="addExternalHomologation",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="application/json",
+     *       mediaType="multipart/form-data",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
@@ -107,33 +107,28 @@ interface InterfaceInstituteController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="inst_name",
-     *           description="Nombre del instituto",
+     *           property="inst_subject_id",
+     *           description="ID materia de la institucion (Externa)",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="subject_id",
+     *           description="ID materia (Interna)",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="relation_pct",
+     *           description="porcentaje de relacion",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="comments",
+     *           description="comentarios",
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="province_id",
-     *           description="Provincia del instituto",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="type_institute_id",
-     *           description="Tipo de instituto",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="economic_group_id",
-     *           description="Grupo economico del instituto",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="has_agreement",
-     *           description="Tiene convenio (0 o 1)",
-     *           type="boolean",
-     *         ),
-     *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del instituto",
+     *           description="Estado del paralelo",
      *           type="integer",
      *         ),
      *       ),
@@ -143,12 +138,11 @@ interface InterfaceInstituteController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "inst_name" : "required",
-     *          "city_id"   : "required|integer|exists:tenant.catalogs,id",
-     *          "status_id" : "required|integer|exists:tenant.status,id",
-     *          "type_institute_id" : "required|integer|exists:tenant.type_institutes,id",
-     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id",
-     *          "has_agreement" : "required|boolean",
+     *          "inst_subject_id": "required|integer|exists:tenant.institution_subjects,id",
+     *          "subject_id": "required|integer|exists:tenant.subjects,id",
+     *          "relation_pct": "required|integer",
+     *          "comments": "nullable|string|max:500",
+     *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -157,18 +151,19 @@ interface InterfaceInstituteController
      * )
      *
      */
-    public function store(InstituteRequest $request);
+
+    public function store(ExternalHomologationRequest $request);
 
     /**
      * @OA\Get(
-     *   path="/api/institutes/{id}",
-     *   tags={"Institutos"},
+     *   path="/api/external-homologations/{id}",
+     *   tags={"Homologacion Externa"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener un instituto",
-     *   description="Muestra información específica de un instituto por Id.",
-     *   operationId="getInstitutes",
+     *   summary="Obtener una homologacion externa",
+     *   description="Muestra información específica de una homologacion external por Id.",
+     *   operationId="getExternalHomologation",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -181,7 +176,7 @@ interface InterfaceInstituteController
      *   ),
      *   @OA\Parameter(
      *     name="id",
-     *     description="Id del instituto",
+     *     description="Id de la homologacion externa",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -201,17 +196,17 @@ interface InterfaceInstituteController
 
     /**
      * @OA\Put(
-     *   path="/api/institutes/{institute}",
-     *   tags={"Institutos"},
+     *   path="/api/external-homologations/{externalHomologation}",
+     *   tags={"Homologacion Externa"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar instituto",
-     *   description="Actualizar un instituto.",
-     *   operationId="updateInstitute",
+     *   summary="Actualizar homologacion externa",
+     *   description="Actualizar una homologacion externa.",
+     *   operationId="updateExternalHomologation",
      *   @OA\Parameter(
-     *     name="institute",
-     *     description="Id del instituto",
+     *     name="externalHomologation",
+     *     description="Id de la homologacion externa",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -230,33 +225,28 @@ interface InterfaceInstituteController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="inst_name",
-     *           description="Nombre del instituto",
+     *           property="inst_subject_id",
+     *           description="ID materia de la institucion (Externa)",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="subject_id",
+     *           description="ID materia (Interna)",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="relation_pct",
+     *           description="porcentaje de relacion",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="comments",
+     *           description="comentarios",
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="province_id",
-     *           description="Provincia del instituto",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="type_institute_id",
-     *           description="Tipo de instituto",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="economic_group_id",
-     *           description="Grupo economico del instituto",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="has_agreement",
-     *           description="Tiene convenio (0 o 1)",
-     *           type="boolean",
-     *         ),
-     *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del instituto",
+     *           description="Estado del paralelo",
      *           type="integer",
      *         ),
      *       ),
@@ -266,12 +256,11 @@ interface InterfaceInstituteController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "inst_name" : "required",
-     *          "city_id"   : "required|integer|exists:tenant.catalogs,id",
-     *          "status_id" : "required|integer|exists:tenant.status,id",
-     *          "type_institute_id" : "required|integer|exists:tenant.type_institutes,id",
-     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id",
-     *          "has_agreement" : "required|boolean",
+     *          "inst_subject_id": "required|integer|exists:tenant.institution_subjects,id",
+     *          "subject_id": "required|integer|exists:tenant.subjects,id",
+     *          "relation_pct": "required|integer",
+     *          "comments": "nullable|string|max:500",
+     *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -280,20 +269,20 @@ interface InterfaceInstituteController
      * )
      *
      */
-    public function update(InstituteRequest $request, Institute $institute);
+    public function update(ExternalHomologationRequest $request, ExternalHomologation $externalHomologation);
 
     /**
      * @OA\Delete(
-     *   path="/api/institutes/{institute}",
-     *   tags={"Institutos"},
+     *   path="/api/external-homologations/{externalHomologation}",
+     *   tags={"Homologacion Externa"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un instituto",
-     *   description="Eliminar un instituto por Id",
-     *   operationId="deleteInstitutes",
+     *   summary="Eliminar una homologacion externa",
+     *   description="Eliminar una homologacion externa por Id",
+     *   operationId="deleteExternalHomologation",
      *   @OA\Parameter(
-     *     name="institute",
+     *     name="externalHomologation",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -322,5 +311,5 @@ interface InterfaceInstituteController
      * )
      *
      */
-    public function destroy(Institute $institute);
+    public function destroy(ExternalHomologation $externalHomologation);
 }

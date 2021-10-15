@@ -15,7 +15,7 @@ class CreateApplicationDetailTable extends Migration
     {
         Schema::create('application_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('value')->nullable();
+            $table->text('value')->nullable();
             
             $table->integer('application_id')->unsigned();
             $table->foreign('application_id')->references('id')->on('applications');

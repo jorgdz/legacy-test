@@ -46,6 +46,7 @@ class Institute extends Model implements AuditableContract
         'status_id',
         'type_institute_id',
         'economic_group_id',
+        'has_agreement'
     ];
 
     /**

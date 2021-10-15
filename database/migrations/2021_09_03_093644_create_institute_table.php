@@ -24,6 +24,7 @@ class CreateInstituteTable extends Migration
             $table->foreign('status_id')->references('id')->on('status');
             $table->integer('type_institute_id')->unsigned();
             $table->foreign('type_institute_id')->references('id')->on('type_institutes');
+            $table->boolean('has_agreement');
             $table->timestamps();
             $table->softDeletes();
         });

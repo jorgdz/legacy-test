@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Api\Contracts;
 
-use App\Http\Requests\InstituteRequest;
-use App\Models\Institute;
 use Illuminate\Http\Request;
+use App\Models\InstitutionSubject;
+use App\Http\Requests\InstitutionSubjectRequest;
 
-interface InterfaceInstituteController
+interface IInstitutionSubjectController
 {
     /**
      * @OA\Get(
-     *   path="/api/institutes",
-     *   tags={"Institutos"},
+     *   path="/api/institution-subjects",
+     *   tags={"Materias de Instituciones"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar los institutos",
-     *   description="Muestra todos los institutos en formato JSON",
-     *   operationId="getAllInstitutes",
+     *   summary="Listar las materias de instituciones",
+     *   description="Muestra todas las materias de instituciones en formato JSON",
+     *   operationId="getAllInstitutionSubjects",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -88,18 +88,18 @@ interface InterfaceInstituteController
 
     /**
      * @OA\Post(
-     *   path="/api/institutes",
-     *   tags={"Institutos"},
+     *   path="/api/institution-subjects",
+     *   tags={"Materias de Instituciones"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Crear un instituto",
-     *   description="Crear un nuevo instituto.",
-     *   operationId="addInstitute",
+     *   summary="Crear una materia para institucion",
+     *   description="Crear una nueva materia para institucion.",
+     *   operationId="addInstitutionSubject",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="application/json",
+     *       mediaType="multipart/form-data",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
@@ -107,33 +107,23 @@ interface InterfaceInstituteController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="inst_name",
-     *           description="Nombre del instituto",
+     *           property="name",
+     *           description="Nombre de la materia",
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="province_id",
-     *           description="Provincia del instituto",
-     *           type="integer",
+     *           property="description",
+     *           description="Descripcion de la materia",
+     *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="type_institute_id",
-     *           description="Tipo de instituto",
+     *           property="institute_id",
+     *           description="ID del instituto",
      *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="economic_group_id",
-     *           description="Grupo economico del instituto",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="has_agreement",
-     *           description="Tiene convenio (0 o 1)",
-     *           type="boolean",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del instituto",
+     *           description="Estado del paralelo",
      *           type="integer",
      *         ),
      *       ),
@@ -143,12 +133,10 @@ interface InterfaceInstituteController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "inst_name" : "required",
-     *          "city_id"   : "required|integer|exists:tenant.catalogs,id",
-     *          "status_id" : "required|integer|exists:tenant.status,id",
-     *          "type_institute_id" : "required|integer|exists:tenant.type_institutes,id",
-     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id",
-     *          "has_agreement" : "required|boolean",
+     *          "name": "nullable|string",
+     *          "description": "nullable|string",
+     *          "institute_id": "required|integer|exists:tenant.institutes,id",
+     *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -157,18 +145,19 @@ interface InterfaceInstituteController
      * )
      *
      */
-    public function store(InstituteRequest $request);
+
+    public function store(InstitutionSubjectRequest $request);
 
     /**
      * @OA\Get(
-     *   path="/api/institutes/{id}",
-     *   tags={"Institutos"},
+     *   path="/api/institution-subjects/{id}",
+     *   tags={"Materias de Instituciones"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener un instituto",
-     *   description="Muestra información específica de un instituto por Id.",
-     *   operationId="getInstitutes",
+     *   summary="Obtener una materia de institucion",
+     *   description="Muestra información específica de una materia de institucion por Id.",
+     *   operationId="getInstitutionSubject",
      *   @OA\Parameter(
      *     name="user_profile_id",
      *     description="Id del perfil de usuario",
@@ -181,7 +170,7 @@ interface InterfaceInstituteController
      *   ),
      *   @OA\Parameter(
      *     name="id",
-     *     description="Id del instituto",
+     *     description="Id de la materia por institucion",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -201,17 +190,17 @@ interface InterfaceInstituteController
 
     /**
      * @OA\Put(
-     *   path="/api/institutes/{institute}",
-     *   tags={"Institutos"},
+     *   path="/api/institution-subjects/{institutionSubject}",
+     *   tags={"Materias de Instituciones"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar instituto",
-     *   description="Actualizar un instituto.",
-     *   operationId="updateInstitute",
+     *   summary="Actualizar materia por institucion",
+     *   description="Actualizar una materia por institucion.",
+     *   operationId="updateInstitutionSubject",
      *   @OA\Parameter(
-     *     name="institute",
-     *     description="Id del instituto",
+     *     name="institutionSubject",
+     *     description="Id de la materia por institucion",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -230,33 +219,23 @@ interface InterfaceInstituteController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="inst_name",
-     *           description="Nombre del instituto",
+     *           property="name",
+     *           description="Nombre de la materia",
      *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="province_id",
-     *           description="Provincia del instituto",
-     *           type="integer",
+     *           property="description",
+     *           description="Descripcion de la materia",
+     *           type="string",
      *         ),
      *         @OA\Property(
-     *           property="type_institute_id",
-     *           description="Tipo de instituto",
+     *           property="institute_id",
+     *           description="ID del instituto",
      *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="economic_group_id",
-     *           description="Grupo economico del instituto",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="has_agreement",
-     *           description="Tiene convenio (0 o 1)",
-     *           type="boolean",
      *         ),
      *         @OA\Property(
      *           property="status_id",
-     *           description="Estado del instituto",
+     *           description="Estado del paralelo",
      *           type="integer",
      *         ),
      *       ),
@@ -266,12 +245,10 @@ interface InterfaceInstituteController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *          "inst_name" : "required",
-     *          "city_id"   : "required|integer|exists:tenant.catalogs,id",
-     *          "status_id" : "required|integer|exists:tenant.status,id",
-     *          "type_institute_id" : "required|integer|exists:tenant.type_institutes,id",
-     *          "economic_group_id" : "required|integer|exists:tenant.economic_groups,id",
-     *          "has_agreement" : "required|boolean",
+     *          "name": "nullable|string",
+     *          "description": "nullable|string",
+     *          "institute_id": "required|integer|exists:tenant.institutes,id",
+     *          "status_id": "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -280,20 +257,20 @@ interface InterfaceInstituteController
      * )
      *
      */
-    public function update(InstituteRequest $request, Institute $institute);
+    public function update(InstitutionSubjectRequest $request, InstitutionSubject $institutionSubject);
 
     /**
      * @OA\Delete(
-     *   path="/api/institutes/{institute}",
-     *   tags={"Institutos"},
+     *   path="/api/institution-subjects/{institutionSubject}",
+     *   tags={"Materias de Instituciones"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar un instituto",
-     *   description="Eliminar un instituto por Id",
-     *   operationId="deleteInstitutes",
+     *   summary="Eliminar una materia por institucion",
+     *   description="Eliminar una materia por institucion por Id",
+     *   operationId="deleteParallels",
      *   @OA\Parameter(
-     *     name="institute",
+     *     name="institutionSubject",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -322,5 +299,5 @@ interface InterfaceInstituteController
      * )
      *
      */
-    public function destroy(Institute $institute);
+    public function destroy(InstitutionSubject $institutionSubject);
 }
