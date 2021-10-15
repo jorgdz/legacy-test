@@ -14,14 +14,14 @@ class CreateInstitutionSubjectsTable extends Migration
     public function up()
     {
         Schema::create('institution_subjects', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
 
-            $table->integer('institute_id')->unsigned();
+            $table->bigInteger('institute_id')->unsigned();
             $table->foreign('institute_id')->references('id')->on('institutes');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

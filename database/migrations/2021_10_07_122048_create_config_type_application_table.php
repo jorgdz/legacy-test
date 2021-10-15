@@ -14,16 +14,16 @@ class CreateConfigTypeApplicationTable extends Migration
     public function up()
     {
         Schema::create('config_type_applications', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('conf_typ_description')->nullable();
             $table->string('conf_typ_data_type')->nullable();
             $table->string('conf_typ_object_name')->nullable();
             $table->string('conf_typ_object_id')->nullable();
             $table->string('conf_typ_file_path')->nullable();
  
-            $table->integer('type_application_id')->unsigned();
+            $table->bigInteger('type_application_id')->unsigned();
             $table->foreign('type_application_id')->references('id')->on('type_applications');
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

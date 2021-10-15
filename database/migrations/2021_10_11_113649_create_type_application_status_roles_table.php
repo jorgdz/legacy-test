@@ -14,13 +14,13 @@ class CreateTypeApplicationStatusRolesTable extends Migration
     public function up()
     {
         Schema::create('type_application_status_roles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->integer('type_application_status_id')->unsigned();
+            $table->bigInteger('type_application_status_id')->unsigned();
             $table->foreign('type_application_status_id')->references('id')->on('type_application_status');
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

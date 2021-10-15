@@ -231,7 +231,7 @@ Route::delete('/classrooms/{classroom}', [ClassRoomController::class, 'destroy']
 Route::post('/classrooms/{classroom}/enabled', [ClassRoomController::class, 'enabled'])->middleware(['auth:sanctum', 'permission:classrooms-activar-aula']);
 Route::post('/classrooms/{classroom}/disabled', [ClassRoomController::class, 'disabled'])->middleware(['auth:sanctum', 'permission:classrooms-desactivar-aula']);
 
-Route::get('/classrooms/{id}/courses', [ClassRoomController::class, 'findCoursesByClassroom'])->middleware(['auth:sanctum'/* , 'permission:classrooms-listar-cursos-por-aula' */]);
+Route::get('/classrooms/{id}/courses', [ClassRoomController::class, 'findCoursesByClassroom'])->middleware(['auth:sanctum', 'permission:classrooms-listar-cursos-por-aula']);
 
 /**
  * TypePeriods
@@ -257,9 +257,8 @@ Route::delete('/periods/{period}/offers', [PeriodController::class, 'destroyOffe
 Route::get('/periods/{period}/hourhands', [PeriodController::class, 'showHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-horarios-por-periodo']);
 Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-horarios-por-periodo']);
 Route::get('/periods/{period}/classroom-education-levels', [PeriodController::class, 'showPeriodsByClasEduLev'])->middleware(['auth:sanctum', 'permission:periods-aulas-asociadas-a-facultades-por-periodos.']);
-Route::get('/periods/{period}/stages', [PeriodController::class, 'stagesByPeriod'])->middleware(['auth:sanctum'/* , 'permission:periods-listar-etapas-por-periodo' */]);
-Route::get('/periods/{id}/courses', [PeriodController::class, 'coursesByPeriod'])->middleware(['auth:sanctum'/* , 'permission:periods-listar-cursos-por-periodo' */]);
-
+Route::get('/periods/{id}/courses', [PeriodController::class, 'coursesByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-cursos-por-periodo']);
+Route::get('/periods/{period}/stages', [PeriodController::class, 'stagesByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-etapas-por-periodo']);
 /**
  * MatterMesh
  */

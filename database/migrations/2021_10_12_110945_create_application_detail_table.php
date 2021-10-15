@@ -14,12 +14,12 @@ class CreateApplicationDetailTable extends Migration
     public function up()
     {
         Schema::create('application_details', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->text('value')->nullable();
             
-            $table->integer('application_id')->unsigned();
+            $table->bigInteger('application_id')->unsigned();
             $table->foreign('application_id')->references('id')->on('applications');
-            $table->integer('config_type_application_id')->unsigned();
+            $table->bigInteger('config_type_application_id')->unsigned();
             $table->foreign('config_type_application_id')->references('id')->on('config_type_applications');
 
             $table->timestamps();

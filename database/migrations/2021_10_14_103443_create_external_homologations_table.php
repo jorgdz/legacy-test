@@ -14,18 +14,18 @@ class CreateExternalHomologationsTable extends Migration
     public function up()
     {
         Schema::create('external_homologations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
-            $table->integer('inst_subject_id')->unsigned();
+            $table->bigInteger('inst_subject_id')->unsigned();
             $table->foreign('inst_subject_id')->references('id')->on('institution_subjects');
 
-            $table->integer('subject_id')->unsigned();
+            $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
 
-            $table->integer('relation_pct');
+            $table->bigInteger('relation_pct');
             $table->string('comments', 500)->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

@@ -3869,6 +3869,105 @@ class RoleSeeder extends Seeder
                 'parent_name_translated' => 'estados del orden de tipo solicitudes',
                 'module_group' => 'academic'
             ],
+            /**
+             * Grupo Area 357-362
+             */
+            [
+                'name' => 'group-areas-listar-areas',
+                'alias' => 'Listar grupo area',
+                'description' => 'Listar todos los grupo area',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'areaGroup',
+                'parent_name_translated' => 'grupo area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'group-areas-obtener-area',
+                'alias' => 'Obtener grupo area',
+                'description' => 'Obtener un grupo area por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'areaGroup',
+                'parent_name_translated' => 'grupo area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'group-areas-crear-area',
+                'alias' => 'Crear grupo area',
+                'description' => 'Agregar un grupo area',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'areaGroup',
+                'parent_name_translated' => 'grupo area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'group-areas-actualizar-area',
+                'alias' => 'Actualizar grupo area',
+                'description' => 'Actualizar un grupo area por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'areaGroup',
+                'parent_name_translated' => 'grupo area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'group-areas-borrar-area',
+                'alias' => 'Eliminar grupo area',
+                'description' => 'Eliminar grupo area por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'areaGroup',
+                'parent_name_translated' => 'grupo area',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'group-areas-asignar-carreras-materias',
+                'alias' => 'Asignar grupo area a carreras',
+                'description' => 'Asignar a un grupo area una carrera',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'areaGroup',
+                'parent_name_translated' => 'grupo area',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Etapa Periodo 363-364
+             */
+            [
+                'name' => 'periods-listar-etapas-por-periodo',
+                'alias' => 'Listar etapa periodo',
+                'description' => 'Listar todas las etapas por periodo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'period',
+                'parent_name_translated' => 'etapa periodo',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'periods-listar-cursos-por-periodo',
+                'alias' => 'Listar cursos periodo',
+                'description' => 'Listar todos los cursos por periodo',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'period',
+                'parent_name_translated' => 'etapa periodo',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Aula 365
+             */
+            [
+                'name' => 'classrooms-listar-cursos-por-aula',
+                'alias' => 'Listar curso aula',
+                'description' => 'Listar todos los cursos por aula',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classrooms',
+                'parent_name_translated' => 'aulas',
+                'module_group' => 'academic'
+            ],
         ]);
 
         /**
@@ -4504,6 +4603,24 @@ class RoleSeeder extends Seeder
             ['permission_id' => 354, 'role_id' => 1],
             ['permission_id' => 355, 'role_id' => 1],
             ['permission_id' => 356, 'role_id' => 1],
+            /**
+             * Grupo Area 357-362
+             */
+            ['permission_id' => 357, 'role_id' => 1],
+            ['permission_id' => 358, 'role_id' => 1],
+            ['permission_id' => 359, 'role_id' => 1],
+            ['permission_id' => 360, 'role_id' => 1],
+            ['permission_id' => 361, 'role_id' => 1],
+            ['permission_id' => 362, 'role_id' => 1],
+            /**
+             * Etapa Periodo 363-364
+             */
+            ['permission_id' => 363, 'role_id' => 1],
+            ['permission_id' => 364, 'role_id' => 1],
+            /**
+             * Aula 365
+             */
+            ['permission_id' => 365, 'role_id' => 1],
         ]);
 
         /**
@@ -5113,6 +5230,24 @@ class RoleSeeder extends Seeder
             ['permission_id' => 354, 'role_id' => 2],
             ['permission_id' => 355, 'role_id' => 2],
             ['permission_id' => 356, 'role_id' => 2],
+            /**
+             * Grupo Area 357-362
+             */
+            ['permission_id' => 357, 'role_id' => 2],
+            ['permission_id' => 358, 'role_id' => 2],
+            ['permission_id' => 359, 'role_id' => 2],
+            ['permission_id' => 360, 'role_id' => 2],
+            ['permission_id' => 361, 'role_id' => 2],
+            ['permission_id' => 362, 'role_id' => 2],
+            /**
+             * Etapa Periodo 363-364
+             */
+            ['permission_id' => 363, 'role_id' => 2],
+            ['permission_id' => 364, 'role_id' => 2],
+            /**
+             * Aula 365
+             */
+            ['permission_id' => 365, 'role_id' => 2],
         ]);
 
         /**

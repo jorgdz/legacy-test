@@ -14,14 +14,14 @@ class CreateTypeApplicationTable extends Migration
     public function up()
     {
         Schema::create('type_applications', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('typ_app_front_url')->nullable();
             $table->string('typ_app_name')->nullable();
             $table->string('typ_app_description')->nullable();
             $table->string('typ_app_acronym', 6)->nullable();
             $table->integer('parent_id')->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             
             $table->timestamps();

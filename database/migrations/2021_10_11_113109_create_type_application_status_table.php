@@ -14,12 +14,12 @@ class CreateTypeApplicationStatusTable extends Migration
     public function up()
     {
         Schema::create('type_application_status', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('order')->unsigned();
 
-            $table->integer('type_application_id')->unsigned();
+            $table->bigInteger('type_application_id')->unsigned();
             $table->foreign('type_application_id')->references('id')->on('type_applications');
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

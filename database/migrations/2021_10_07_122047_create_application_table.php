@@ -14,16 +14,16 @@ class CreateApplicationTable extends Migration
     public function up()
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('app_code');
             $table->string('app_description');
             $table->date('app_register_date');
             
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('type_application_id')->unsigned();
+            $table->bigInteger('type_application_id')->unsigned();
             $table->foreign('type_application_id')->references('id')->on('type_applications');
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             
             $table->timestamps();

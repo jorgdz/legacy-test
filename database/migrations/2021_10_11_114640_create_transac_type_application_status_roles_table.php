@@ -14,16 +14,16 @@ class CreateTransacTypeApplicationStatusRolesTable extends Migration
     public function up()
     {
         Schema::create('transac_type_application_status_roles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('transac_secuencial');
             // $table->integer('transac_status_reg');
             $table->dateTime('transac_register_date');
             $table->string('transac_comments')->nullable();
             $table->string('user');
 
-            $table->integer('type_application_status_roles_id')->unsigned();
+            $table->bigInteger('type_application_status_roles_id')->unsigned();
             $table->foreign('type_application_status_roles_id')->references('id')->on('type_application_status_roles');
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();
