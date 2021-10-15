@@ -68,6 +68,16 @@ class PeriodController extends Controller implements IPeriodController
     }
 
     /**
+     * coursesByPeriod
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function coursesByPeriod ($id) {
+        return $this->success($this->periodCache->findCoursesByPeriod($id));
+    }
+
+    /**
      * store
      *
      * Add new period

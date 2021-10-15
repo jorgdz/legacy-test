@@ -6,6 +6,7 @@ use App\Models\Stage;
 use App\Models\Period;
 use App\Models\PeriodStage;
 use App\Models\ClassroomEducationLevel;
+use App\Models\Course;
 use App\Repositories\Base\BaseRepository;
 
 class PeriodRepository extends BaseRepository
@@ -102,6 +103,28 @@ class PeriodRepository extends BaseRepository
             ->paginate(isset(request()->query()['size']) ? request()->query()['size'] : 100);
 
         return $stages;
+    }
+
+    /**
+     * getCoursesByPeriod
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function getCoursesByPeriod ($id) {
+        $courses = Course::with([
+            'matter',
+            'parallel',
+            'classroom',
+            'modality',
+            'hourhand',
+            'collaborator',
+            'period',
+            'curriculum',
+            'status'
+        ])->where('period_id', $id)->get();
+
+        return $courses;
     }
 
     /**

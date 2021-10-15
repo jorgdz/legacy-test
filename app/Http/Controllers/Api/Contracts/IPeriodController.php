@@ -396,6 +396,45 @@ interface IPeriodController
 
     /**
      * @OA\Get(
+     *   path="/api/periods/{id}/courses",
+     *   tags={"Cursos de un periodo"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Listar las etapas de un periodo",
+     *   description="Muestra todos las etapas paginadas en formato JSON de un periodo",
+     *   operationId="getAllCoursesByPeriod",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="id",
+     *     description="Periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function coursesByPeriod ($id);
+
+    /**
+     * @OA\Get(
      *   path="/api/periods/{period}",
      *   tags={"Periodos"},
      *   security={

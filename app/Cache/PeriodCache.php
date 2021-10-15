@@ -91,6 +91,18 @@ class PeriodCache extends BaseCache {
     }
 
     /**
+     * findCoursesByPeriod
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function findCoursesByPeriod ($id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
+            return $this->repository->getCoursesByPeriod($id);
+        });
+    }
+
+    /**
      * destroyOffersByPeriod
      *
      * @param  mixed $model
