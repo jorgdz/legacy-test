@@ -26,16 +26,19 @@ class CreateStudentRecordsTable extends Migration
             $table->foreign('mesh_id')->references('id')->on('curriculums');
             /* $table->integer('pensum_id')->unsigned();
             $table->foreign('pensum_id')->references('id')->on('pensums'); */
-            
+
             $table->integer('type_student_id')->unsigned();
             $table->foreign('type_student_id')->references('id')->on('type_students');
 
+            $table->integer('collaborator_id')->unsigned();
+            $table->foreign('collaborator_id')->references('id')->on('collaborators');
+
             $table->integer('economic_group_id')->unsigned();
             $table->foreign('economic_group_id')->references('id')->on('economic_groups');
-            
+
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

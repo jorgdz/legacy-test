@@ -15,6 +15,7 @@ class StudentRecordRepository extends BaseRepository
      */
     protected $relations = [
         'student',
+        'collaborator',
         'educationLevel',
         // 'pensum',
         'mesh',
@@ -34,12 +35,12 @@ class StudentRecordRepository extends BaseRepository
      * @var array
      */
     protected $parents = [
-        'students', 
-        'education_levels', 
-        // 'pensums', 
+        'students',
+        'education_levels',
+        // 'pensums',
         'meshs',
-        'type_students', 
-        'periods', 
+        'type_students',
+        'periods',
         'status'];
 
     /**

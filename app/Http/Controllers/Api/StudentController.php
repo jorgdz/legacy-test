@@ -27,6 +27,7 @@ use Illuminate\Http\Response;
 use App\Models\CustomTenant;
 use App\Services\MailService;
 use App\Http\Controllers\Api\Contracts\IStudentController;
+use App\Models\Collaborator;
 
 class StudentController extends Controller implements IStudentController
 {
@@ -102,10 +103,14 @@ class StudentController extends Controller implements IStudentController
 
                 $student->save();
 
+                $collaboratorId = Collaborator::where('coll_advice', 1)->get()->random()->id;
+
+
                 $studentRecord = new StudentRecord($request->only(['type_student_id', 'economic_group_id']));
                 $studentRecord->education_level_id = $educationLevel->id;
                 $studentRecord->mesh_id = $educationLevel->meshs[0]['id'];
                 $studentRecord->student_id =  $student->id;
+                $studentRecord->collaborator_id = $collaboratorId;
                 $studentRecord->status_id = 2;
                 $studentRecord->save();
 

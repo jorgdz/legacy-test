@@ -41,6 +41,7 @@ class Collaborator extends Model implements AuditableContract
         'coll_activity',
         'coll_journey_description',
         'coll_dependency',
+        'coll_advice', //booleano para saber si es consejero
         'coll_journey_hours',
         'position_company_id',
         'coll_entering_date',
@@ -122,5 +123,15 @@ class Collaborator extends Model implements AuditableContract
      */
     public function course(): HasMany {
         return $this->hasMany(Course::class,'collaborator_id');
+    }
+
+    /**
+     * studentRecords
+     *
+     * @return HasMany
+     */
+    public function studentRecords() : HasMany
+    {
+        return $this->hasMany(StudentRecord::class, 'collaborator_id');
     }
 }

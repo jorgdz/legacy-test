@@ -170,6 +170,11 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $collaborator->coll_activity = $activity;
         $collaborator->coll_dependency = $request->get('coll_journey_description') == "TC" ? 1 : $request->get('coll_dependency');
         $collaborator->coll_journey_hours = $request->get('coll_journey_description') == "TC" ? 40 : ($request->get('coll_journey_description') == "MT" ? 20 : $request->get('position_company_id'));
+
+        if($collaborator->coll_journey_hours == 40 && $collaborator->coll_activity == 'DOCENCIA')
+            $collaborator->coll_advice = 1;
+
+        $collaborator->coll_advice = 0;
         $collaborator->education_level_principal_id = $request->education_level_principal_id;
         $collaborator->status_id = $request->get('status_id');
         $collaborator = $this->collaboratorCache->save($collaborator);

@@ -74,6 +74,7 @@ class StudentRecord extends Model implements AuditableContract
     protected $fillable = [
         'student_id',
         'education_level_id',
+        'collaborator_id',
         //'pensum_id',
         'mesh_id',
         'type_student_id',
@@ -111,6 +112,16 @@ class StudentRecord extends Model implements AuditableContract
     // {
     //     return $this->hasMany(StudentRecordPeriod::class);
     // }
+
+    /**
+     * collaborator
+     *
+     * @return BelongsTo
+     */
+    public function collaborator() : BelongsTo
+    {
+        return $this->belongsTo(Collaborator::class, 'collaborator_id');
+    }
 
     /**
      * student

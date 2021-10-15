@@ -31,6 +31,7 @@ class CreateTableCollaborator extends Migration
             $table->string('coll_journey_description')->nullable();
 
             $table->boolean('coll_dependency')->nullable();
+            $table->boolean('coll_advice')->nullable(); //campo booleano para saber si es consejero
 
             $table->integer('position_company_id')->unsigned();
             $table->foreign('position_company_id')->references('id')->on('positions');

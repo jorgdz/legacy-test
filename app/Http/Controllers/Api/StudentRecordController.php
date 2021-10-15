@@ -7,6 +7,7 @@ use App\Cache\StudentRecordProgramsCache;
 use App\Http\Controllers\Api\Contracts\IStudentRecordController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRecordRequest;
+use App\Models\Collaborator;
 use App\Models\StudentRecord;
 use App\Models\StudentRecordProgram;
 use App\Traits\RestResponse;
@@ -62,6 +63,8 @@ class StudentRecordController extends Controller implements IStudentRecordContro
     public function store(StudentRecordRequest $request)
     {
         $studentRecord = new StudentRecord($request->all());
+        $collaboratorId = Collaborator::where('coll_advice', 1)->get('id')->random()->id;
+        $studentRecord->collaborator_id = $collaboratorId;
         return $this->success($this->studentRecordCache->save($studentRecord), Response::HTTP_CREATED);
     }
 
@@ -116,7 +119,7 @@ class StudentRecordController extends Controller implements IStudentRecordContro
         $request['conditions'] = [
             ['student_record_id', $SudentRecordId],
         ];
-   
+
         return $this->success($this->studentRecordProgramsCache->all($request));
     }
 
