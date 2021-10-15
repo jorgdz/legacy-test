@@ -43,6 +43,7 @@ return [
     'courses-exists' => 'El curso ya ha sido asignado.',
     'not-exist-educationlevel' => 'No existe la facultad.',
     'meshs-vigent' => '¡No se puede crear una nueva malla porque ya existe una malla vigente!',
+    'meshs-vigent-edit' => '¡No se puede editar la malla porque ya está vigente!',
     'meshs-not-vigent' => '¡No se encontró una carrera con una malla curricular vigente!',
     'student-saved' => '¡Los datos del estudiante han sido guardados correctamente!',
     'send-error-mail' => 'Hubo un inconveniente al enviar el correo, intente luego.',
@@ -57,5 +58,8 @@ return [
     'type-subject-not-nivelation' => 'No se puede asignar una materia que no sea de tipo nivelación',
     'validate-format-new-password' => 'Error. La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 numérico y 1 carácter especial: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',
     'not-registered-email' => 'Error. Correo no se encuentra registrado.',
-
+    'carrer-required' => 'Debes seleccionar carreras.',
+    'subjects-required' => 'Las materias de nivelacion son requeridas.',
+    'assign-subjects-nivelation' => 'Se asignaron materias de nivelacion a las carreras seleccionadas.',
+    'exist_education-level-subjects' => 'No pueden existir materias repetidas en la misma carrera para el mismo grupo.',
 ];

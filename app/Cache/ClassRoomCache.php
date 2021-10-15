@@ -42,6 +42,18 @@ class ClassRoomCache extends BaseCache {
     }
 
     /**
+     * findCoursesByClassroom
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function findCoursesByClassroom ($id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
+            return $this->repository->findCoursesByClassroom($id);
+        });
+    }
+
+    /**
      * save
      *
      * @param  mixed $model
@@ -65,10 +77,10 @@ class ClassRoomCache extends BaseCache {
 
     public function getClassromsByCampusCache ($campus) {
 
-        
+
         return $this->cache::remember($this->key, $this->ttl, function () use ($campus) {
            return $this->repository->getClassromsByCampusRepository($campus);
-        }); 
+        });
 
     }
 }

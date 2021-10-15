@@ -39,7 +39,7 @@ class StageCache extends BaseCache {
             return $this->repository->find($id);
         });
     }
-    
+
     /**
      * save
      *
@@ -48,6 +48,7 @@ class StageCache extends BaseCache {
      */
     public function save(Model $model)
     {
+        $this->forgetCache('periods');
         $this->forgetCache('stages');
         return $this->repository->save($model);
     }

@@ -22,6 +22,8 @@ class CurriculumRepository extends BaseRepository
     protected $relations = [
         'modality',
         'typeCalification',
+        'learningComponent',
+        'learningComponent.component',
         'educationLevel',
         'status',
     ];

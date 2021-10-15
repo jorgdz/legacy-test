@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\Custom\NotFoundException;
 use App\Models\ClassRoom;
+use App\Models\Course;
 use App\Repositories\Base\BaseRepository;
 
 class ClassRoomRepository extends BaseRepository
@@ -32,9 +34,9 @@ class ClassRoomRepository extends BaseRepository
         'cl_cap_max',
         'cl_acronym',
         'cl_description',
-        
-        
-       
+
+
+
     ];
 
     /**
@@ -82,7 +84,7 @@ class ClassRoomRepository extends BaseRepository
         }
 
         if (isset(request()->query()['search'])) {
-           
+
             $query = $query->where(function ($query) use ($fields) {
                 for ($i = 0; $i < count($fields); $i++) {
                     $query->orwhere($fields[$i], 'like',  '%' . strtolower(request()->query()['search']) . '%');
@@ -94,5 +96,28 @@ class ClassRoomRepository extends BaseRepository
         $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
         $page = isset(request()->query()['size']) ? request()->query()['size'] : 100;
         return $query->where("campus_id", $id)->orderBy($sort, $type_sort)->paginate($page);
+    }
+
+    /**
+     * findCoursesByClassroom
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function findCoursesByClassroom ($id) {
+        $courses = Course::with([
+            'parallel', 
+            'classroom', 
+            'modality', 'hourhand', 
+            'collaborator', 
+            'curriculum', 
+            'period', 
+            'status'
+        ])->where('classroom_id', $id);
+        
+        if ($courses->count() == 0)
+            throw new NotFoundException(__('messages.not-found'));
+        
+        return $courses->get();
     }
 }

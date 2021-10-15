@@ -77,6 +77,7 @@ require __DIR__ . "/channels/hours-summaries.php";
 require __DIR__ . "/channels/type-reports.php";
 require __DIR__ . "/channels/commons.php";
 require __DIR__ . "/external-channels/external-student.php";
+require __DIR__ . "/channels/area-group.php";
 
 
 
@@ -224,6 +225,8 @@ Route::delete('/classrooms/{classroom}', [ClassRoomController::class, 'destroy']
 Route::post('/classrooms/{classroom}/enabled', [ClassRoomController::class, 'enabled'])->middleware(['auth:sanctum', 'permission:classrooms-activar-aula']);
 Route::post('/classrooms/{classroom}/disabled', [ClassRoomController::class, 'disabled'])->middleware(['auth:sanctum', 'permission:classrooms-desactivar-aula']);
 
+Route::get('/classrooms/{id}/courses', [ClassRoomController::class, 'findCoursesByClassroom'])->middleware(['auth:sanctum'/* , 'permission:classrooms-listar-cursos-por-aula' */]);
+
 /**
  * TypePeriods
  */
@@ -249,6 +252,7 @@ Route::get('/periods/{period}/hourhands', [PeriodController::class, 'showHourhan
 Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyHourhandsByPeriod'])->middleware(['auth:sanctum', 'permission:periods-borrar-horarios-por-periodo']);
 Route::get('/periods/{period}/classroom-education-levels', [PeriodController::class, 'showPeriodsByClasEduLev'])->middleware(['auth:sanctum', 'permission:periods-aulas-asociadas-a-facultades-por-periodos.']);
 
+Route::get('/periods/{period}/stages', [PeriodController::class, 'stagesByPeriod'])->middleware(['auth:sanctum'/* , 'permission:periods-listar-etapas-por-periodo' */]);
 
 /**
  * MatterMesh

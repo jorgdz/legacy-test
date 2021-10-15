@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\ClassroomEducationLevel;
+use App\Models\Stage;
 use App\Models\Period;
+use App\Models\PeriodStage;
+use App\Models\ClassroomEducationLevel;
 use App\Repositories\Base\BaseRepository;
 
 class PeriodRepository extends BaseRepository
@@ -80,6 +82,29 @@ class PeriodRepository extends BaseRepository
     }
 
     /**
+     * getStagesByPeriod
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function getStagesByPeriod ($id) {
+        $sort = isset(request()->query()['sort']) ? request()->query()['sort'] : 'id';
+        $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
+
+        $search = isset(request()->query()['search']) ? request()->query()['search'] : '';
+        $stages = PeriodStage::with(['period', 'status', 'stage'])
+            ->where('period_id', $id)
+            ->whereHas('stage', function ($query) use ($search) {
+                $query->where('stg_name', 'like', '%'. $search. '%')
+                    ->orWhere('stg_description', 'like', '%' . $search . '%');
+            })
+            ->orderBy($sort, $type_sort)
+            ->paginate(isset(request()->query()['size']) ? request()->query()['size'] : 100);
+
+        return $stages;
+    }
+
+    /**
      * destroyOffersByPeriod
      *
      * @param  mixed $period
@@ -139,7 +164,7 @@ class PeriodRepository extends BaseRepository
     }
 
 
-    
+
 
      /**
      * showPeriodsByClasEduLev
@@ -148,10 +173,7 @@ class PeriodRepository extends BaseRepository
      * @return void
      */
     public function showPeriodsByClasEduLev(Period $period) {
-        
-        return  $period->classroomEducationLevel->
-        where('period_id', $period->id); 
-        
+        return  $period->classroomEducationLevel->where('period_id', $period->id);
     }
 
 

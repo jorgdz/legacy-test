@@ -39,7 +39,9 @@ return [
     'max' => 'The maximum number of records is :max.',
     'number-of-allowed-files' => 'Only one file can be uploaded.',
     'no-roles-assign' => 'There are no roles assigned for this user',
-    'subjects-error-saved' => 'Error when saving the academic offer.',    'meshs-vigent' => 'Cannot create a new mesh because a current mesh already exists!',
+    'subjects-error-saved' => 'Error when saving the academic offer.',    
+    'meshs-vigent' => 'Cannot create a new mesh because a current mesh already exists!',
+    'meshs-vigent-edit' => 'Cannot edit curriculum because already exists!',
     'meshs-not-vigent' => 'A career with a current curriculum was not found!',
     'student-saved' => 'Student data has been saved correctly!',
     'send-error-mail' => 'There was a problem sending the mail, please try again later..',
@@ -54,6 +56,9 @@ return [
     'type-subject-not-nivelation' => 'You cannot assign a subject that is not a leveling type',
     'validate-format-new-password' => 'Error. Error. The password must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',
     'not-registered-email' => 'Error. Email is not registered.',
-
+    'carrer-required' => 'Education levels is required.',
+    'subjects-required' => 'Subjects is required.',
+    'assign-subjects-nivelation' => 'Subjects nivelation assign.',
+    'exist_education-level-subjects' => 'The subjects is assign in this education levels with group.',
 ];
 ?>

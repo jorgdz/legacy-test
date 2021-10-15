@@ -73,8 +73,20 @@ class PeriodCache extends BaseCache {
      * @return void
      */
     public function showOffersByPeriod (Model $model) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($model) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($model) {
             return $this->repository->showOffersByPeriod($model);
+        });
+    }
+
+    /**
+     * findStagesByPeriod
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function findStagesByPeriod ($id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($id) {
+            return $this->repository->getStagesByPeriod($id);
         });
     }
 
@@ -96,7 +108,7 @@ class PeriodCache extends BaseCache {
      * @return void
      */
     public function showHourhandsByPeriod (Period $period) {
-        return $this->cache::remember($this->key, now()->addMinutes(env('TTL_CACHE')), function () use ($period) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($period) {
             return $this->repository->showHourhandsByPeriod($period);
         });
     }
@@ -112,7 +124,7 @@ class PeriodCache extends BaseCache {
         return $this->repository->destroyHourhandsByPeriod($model);
     }
 
-    
+
 
      /**
      * getClassromsByCampus
@@ -121,12 +133,12 @@ class PeriodCache extends BaseCache {
      * @return void
      */
     public function showPeriodsByClasEduLevCache (Period $period) {
-        return $this->cache::remember($this->key, now()->addMinutes($this->ttl), function () use ($period) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($period) {
             //return $this->repository->showPeriodsByClasEduLev($period);
             return ClassroomEducationLevel::where('period_id', $period->id)->paginate();
        });
-        
-        
+
+
     }
 
 }

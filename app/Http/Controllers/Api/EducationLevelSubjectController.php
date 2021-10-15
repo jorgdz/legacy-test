@@ -59,13 +59,11 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
             throw new ConflictException(__('messages.career-not-found'));
 
         if($subject->typeMatter->tm_acronym == 'nv') {
-            $groupNivelation = Catalog::getKeyWord($request['group_nivelation_keyword']);
-            $educationLevelSubject = new EducationLevelSubject($request->except('group_nivelation_keyword'));
-            $educationLevelSubject->group_area_id = $groupNivelation->id;
+            $educationLevelSubject = new EducationLevelSubject($request->all());
 
             $educationLevelFound = EducationLevelSubject::where('education_level_id', $educationLevel->id)
                 ->where('subject_id', $subject->id)
-                ->first();
+                ->where('group_nivelation_id', $educationLevelSubject->group_nivelation_id)->first();
 
             if($educationLevelFound)
                 throw new ConflictException(__('messages.subject-found-with-career'));
@@ -75,7 +73,6 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
         }
 
         throw new ConflictException(__('messages.type-subject-not-nivelation'));
-
     }
 
     /**
@@ -111,16 +108,14 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
             $educationLevelSubjectFound = EducationLevelSubject::where('id', '!=', $educationLevelSubject->id)
                 ->where('education_level_id', $educationLevel->id)
                 ->where('subject_id', $subject->id)
+                ->where('group_nivelation_id', $educationLevelSubject->group_nivelation_id)
                 ->first();
 
             if($educationLevelSubjectFound)
                 throw new ConflictException(__('messages.subject-found-with-career'));
 
-            $groupNivelation = Catalog::getKeyWord($request['group_nivelation_keyword']);
-
-            $educationLevelSubject->fill($request->except('group_nivelation_keyword'));
-            $educationLevelSubject->group_area_id = $groupNivelation->id;
-
+            $educationLevelSubject->fill($request->all());
+            
             if ($educationLevelSubject->isClean())
                 return $this->information(__('messages.nochange'));
 

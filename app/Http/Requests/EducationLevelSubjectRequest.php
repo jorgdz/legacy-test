@@ -24,7 +24,7 @@ class EducationLevelSubjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'group_nivelation_keyword' => 'required|string|exists:tenant.catalogs,cat_keyword',
+            'group_nivelation_id' => 'required|string|exists:tenant.group_areas,id',
             'education_level_id' => 'integer|exists:tenant.education_levels,id',
             'subject_id' => 'integer|exists:tenant.subjects,id'
         ];

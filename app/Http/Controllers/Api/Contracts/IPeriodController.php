@@ -275,6 +275,94 @@ interface IPeriodController
 
     /**
      * @OA\Get(
+     *   path="/api/periods/{id}/stages",
+     *   tags={"Etapas de un periodo"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Listar las etapas de un periodo",
+     *   description="Muestra todos las etapas paginadas en formato JSON de un periodo",
+     *   operationId="getAllStagesByPeriod",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="id",
+     *     description="Periodo",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="size",
+     *     description="Numero de elementos por pagina",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="10"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="sort",
+     *     description="Ordenar por columna",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="id"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_sort",
+     *     description="Sentido del Orden",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="desc"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function stagesByPeriod ($id);
+
+    /**
+     * @OA\Get(
      *   path="/api/periods/{period}",
      *   tags={"Periodos"},
      *   security={

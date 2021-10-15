@@ -59,6 +59,16 @@ class ClassRoomController extends Controller implements IClassRoomController
     }
 
     /**
+     * findCoursesByClassroom
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function findCoursesByClassroom ($id) {
+        return $this->success($this->classRoomCache->findCoursesByClassroom($id));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

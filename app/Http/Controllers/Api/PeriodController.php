@@ -58,6 +58,16 @@ class PeriodController extends Controller implements IPeriodController
     }
 
     /**
+     * stagesByPeriod
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function stagesByPeriod ($id) {
+        return $this->success($this->periodCache->findStagesByPeriod($id));
+    }
+
+    /**
      * store
      *
      * Add new period
@@ -226,6 +236,6 @@ class PeriodController extends Controller implements IPeriodController
     public function showPeriodsByClasEduLev(Period $period)
     {
         return $this->success($this->periodCache->showPeriodsByClasEduLevCache($period));
-       
+
     }
 }
