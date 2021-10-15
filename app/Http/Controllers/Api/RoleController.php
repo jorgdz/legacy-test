@@ -73,13 +73,16 @@ class RoleController extends Controller implements IRoleController
     public function update(UpdateRoleRequest $request, Role $role) {
         $role->fill($request->all());
 
-        if ($role->isClean() && !isset($request['permissions']))
+        if ($role->isClean() && !isset($request['add_permissions']) && !isset($request['del_permissions']))
             return $this->information(__('messages.nochange'));
 
         $response = $this->roleCache->save($role);
 
-        if (isset($request['permissions']))
-            $role->syncPermissions($request['permissions']);
+        if (isset($request['add_permissions']))
+            $role->givePermissionTo($request['add_permissions']);
+
+        if (isset($request['del_permissions']))
+            $role->revokePermissionTo($request['del_permissions']);
 
         return $this->success($response);
     }
