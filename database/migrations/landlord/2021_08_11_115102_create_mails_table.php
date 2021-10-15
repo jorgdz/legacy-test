@@ -17,12 +17,12 @@ class CreateMailsTable extends Migration
             $table->id();
             $table->string('transport');
             $table->string('host');
-            $table->integer('port');
+            $table->bigInteger('port');
             $table->string('encryption');
             $table->string('username');
             $table->string('password');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->unsignedBigInteger('tenant_id')->nullable()->index();

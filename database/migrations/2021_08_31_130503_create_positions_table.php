@@ -14,7 +14,7 @@ class CreatePositionsTable extends Migration
     public function up()
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('pos_name');
             $table->string('pos_description')->nullable();
             
@@ -26,7 +26,7 @@ class CreatePositionsTable extends Migration
             $table->bigInteger('department_id')->unsigned();//nullable();
             $table->foreign('department_id')->references('id')->on('departments');
       
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->softDeletes();

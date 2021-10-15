@@ -14,15 +14,15 @@ class CreateHourhandPeriodTable extends Migration
     public function up()
     {
         Schema::create('hourhand_period', function (Blueprint $table) {
-            /* $table->increments('id'); */
+            /* $table->bigIncrements('id'); */
 
-            $table->integer('period_id')->unsigned();
+            $table->bigInteger('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
 
-            $table->integer('hourhand_id')->unsigned();
+            $table->bigInteger('hourhand_id')->unsigned();
             $table->foreign('hourhand_id')->references('id')->on('hourhands');
 
-            /* $table->integer('status_id')->unsigned();
+            /* $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status'); */
 
             /* $table->timestamps();

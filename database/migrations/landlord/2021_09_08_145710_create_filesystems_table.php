@@ -15,8 +15,8 @@ class CreateFilesystemsTable extends Migration
     {
         Schema::create('filesystems', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('client_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('client_id')->unsigned();
             $table->text('token');
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->timestamps();

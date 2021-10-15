@@ -14,10 +14,10 @@ class CreateTypeInstituteTable extends Migration
     public function up()
     {
         Schema::create('type_institutes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('tin_name')->nullable();
             $table->string('ti_keyword')->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
             $table->softDeletes();

@@ -14,18 +14,18 @@ class CreateEducationLevelsTable extends Migration
     public function up()
     {
         Schema::create('education_levels', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->string('edu_name', 255)->nullable();
             $table->string('edu_alias', 255)->nullable();
-            $table->integer('edu_order')->nullable();
+            $table->bigInteger('edu_order')->nullable();
 
-            $table->integer('principal_id')->nullable();
+            $table->bigInteger('principal_id')->nullable();
 
-            $table->integer('offer_id')->unsigned();
+            $table->bigInteger('offer_id')->unsigned();
             $table->foreign('offer_id')->references('id')->on('offers');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

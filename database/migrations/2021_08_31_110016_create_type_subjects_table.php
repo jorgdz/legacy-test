@@ -14,16 +14,16 @@ class CreateTypeSubjectsTable extends Migration
     public function up()
     {
         Schema::create('type_subjects', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->string('tm_name', 255)->nullable();
             $table->string('tm_acronym', 3)->nullable();
             $table->string('tm_description', 255)->nullable();
-            $table->integer('tm_order')->nullable();
+            $table->bigInteger('tm_order')->nullable();
             $table->boolean('tm_cobro')->nullable();
             $table->boolean('tm_matter_count')->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

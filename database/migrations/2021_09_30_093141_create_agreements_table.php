@@ -14,10 +14,10 @@ class CreateAgreementsTable extends Migration
     public function up()
     {
         Schema::create('agreements', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('agr_name');
-            $table->integer('agr_num_matter_homologate')->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('agr_num_matter_homologate')->nullable();
+            $table->bigInteger('status_id')->unsigned();
 
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();

@@ -14,17 +14,17 @@ class CreateDetailSubjectCurriculumTable extends Migration
     public function up()
     {
         Schema::create('detail_subject_curriculum', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
-            $table->integer('matter_mesh_id')->unsigned();
+            $table->bigInteger('matter_mesh_id')->unsigned();
             $table->foreign('matter_mesh_id')->references('id')->on('subject_curriculum');
 
-             $table->integer('components_id')->unsigned();
+             $table->bigInteger('components_id')->unsigned();
              $table->foreign('components_id')->references('id')->on('components');
 
-            $table->integer('dem_workload')->nullable();
+            $table->bigInteger('dem_workload')->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

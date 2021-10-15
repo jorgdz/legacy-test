@@ -14,8 +14,8 @@ class CreateTableDisabilityPerson extends Migration
     public function up()
     {
         Schema::create('disability_person', function (Blueprint $table) {
-            $table->integer('person_id')->unsigned();
-            $table->integer('type_disability_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
+            $table->bigInteger('type_disability_id')->unsigned();
 
             $table->foreign('type_disability_id')->references('id')->on('type_disabilities');
             $table->foreign('person_id')->references('id')->on('persons');

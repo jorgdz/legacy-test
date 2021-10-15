@@ -14,8 +14,8 @@ class CreateCatalogPersonTable extends Migration
     public function up()
     {
         Schema::create('catalog_person', function (Blueprint $table) {
-            $table->integer('person_id')->unsigned();
-            $table->integer('catalog_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
+            $table->bigInteger('catalog_id')->unsigned();
 
             $table->foreign('person_id')->references('id')->on('persons');
             $table->foreign('catalog_id')->references('id')->on('catalogs');

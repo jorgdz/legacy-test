@@ -17,17 +17,17 @@ class CreateStudentDocumentsTable extends Migration
         
         Schema::create('student_documents', function (Blueprint $table) {
 
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('stu_doc_url')->nullable();
             $table->string('stu_doc_name_file')->nullable();
         
-            $table->integer('type_document_id')->unsigned();
+            $table->bigInteger('type_document_id')->unsigned();
             $table->foreign('type_document_id')->references('id')->on('type_document');
 
-            $table->integer('student_id')->unsigned();
+            $table->bigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

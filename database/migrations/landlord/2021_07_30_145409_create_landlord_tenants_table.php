@@ -30,7 +30,7 @@ class CreateLandlordTenantsTable extends Migration
 
             $table->string('students_number')->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
           
             $table->timestamps();

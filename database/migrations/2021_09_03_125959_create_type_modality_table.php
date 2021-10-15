@@ -14,10 +14,10 @@ class CreateTypeModalityTable extends Migration
     public function up()
     {
         Schema::create('type_modality', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('typ_mod_name')->nullable();
             $table->string('typ_mod_description')->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
             $table->softDeletes();

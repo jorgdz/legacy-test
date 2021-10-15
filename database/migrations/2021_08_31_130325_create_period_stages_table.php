@@ -14,18 +14,18 @@ class CreatePeriodStagesTable extends Migration
     public function up()
     {
         Schema::create('period_stages', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
 
-            $table->integer('stage_id')->unsigned();
+            $table->bigInteger('stage_id')->unsigned();
             $table->foreign('stage_id')->references('id')->on('stages');
 
-            $table->integer('period_id')->unsigned();
+            $table->bigInteger('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

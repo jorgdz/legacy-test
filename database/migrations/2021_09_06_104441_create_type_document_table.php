@@ -14,11 +14,11 @@ class CreateTypeDocumentTable extends Migration
     public function up()
     {
         Schema::create('type_document', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('typ_doc_name')->nullable();
             $table->string('typ_doc_description')->nullable();
             $table->string('keyword')->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
             $table->softDeletes();

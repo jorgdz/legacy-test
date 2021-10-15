@@ -14,11 +14,11 @@ class CreateStatusStudentTable extends Migration
     public function up()
     {
         Schema::create('status_students', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('sts_name')->nullable();
             $table->string('sts_description')->nullable();
             $table->boolean('sts_let_pay')->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
             $table->softDeletes();

@@ -14,20 +14,20 @@ class CreateCollaboratorSignaturesTable extends Migration
     public function up()
     {
         Schema::create('collaborator_signatures', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
-            $table->integer('collaborator_id')->unsigned();
+            $table->bigInteger('collaborator_id')->unsigned();
             $table->foreign('collaborator_id')->references('id')->on('collaborators');
 
-            $table->integer('position_id')->unsigned();
+            $table->bigInteger('position_id')->unsigned();
             $table->foreign('position_id')->references('id')->on('positions');
 
             $table->string('sign_reference');
 
-            $table->integer('type_report_id')->unsigned();
+            $table->bigInteger('type_report_id')->unsigned();
             $table->foreign('type_report_id')->references('id')->on('type_reports');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

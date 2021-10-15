@@ -14,12 +14,12 @@ class CreateEconomicGroupsTable extends Migration
     public function up()
     {
         Schema::create('economic_groups', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->string('eco_gro_name')->nullable();
             $table->string('eco_gro_description')->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

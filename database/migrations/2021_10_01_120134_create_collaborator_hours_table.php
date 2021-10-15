@@ -16,18 +16,18 @@ class CreateCollaboratorHoursTable extends Migration
     {
        
         Schema::create('collaborator_hours', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
 
-            $table->integer('period_id')->unsigned();
+            $table->bigInteger('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
 
-            $table->integer('education_level_id')->unsigned();
+            $table->bigInteger('education_level_id')->unsigned();
             $table->foreign('education_level_id')->references('id')->on('education_levels');
 
             $table->string('ch_working_time')->nullable();///tiempo de dedicacion TC/MT/TH
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

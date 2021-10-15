@@ -14,7 +14,7 @@ class CreateTablePersonJob extends Migration
     public function up()
     {
         Schema::create('person_jobs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('per_job_organization', 255)->nullable();
             $table->string('per_job_position', 255)->nullable();
             $table->string('per_job_direction', 255)->nullable();
@@ -24,13 +24,13 @@ class CreateTablePersonJob extends Migration
             $table->boolean('per_job_current')->nullable();
             $table->boolean('per_job_iess_affiliated')->nullable();
 
-            $table->integer('city_id')->unsigned();
+            $table->bigInteger('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('catalogs');
 
-            $table->integer('person_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

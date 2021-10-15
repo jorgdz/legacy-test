@@ -14,8 +14,8 @@ class CreateSimbologiesTable extends Migration
     public function up()
     {
         Schema::create('simbologies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('status_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->bigInteger('status_id')->unsigned();
             $table->string('sim_color', 255)->nullable();
             $table->string('sim_description', 255)->nullable();
             $table->timestamps();

@@ -14,13 +14,13 @@ class CreateCatalogsTable extends Migration
     public function up()
     {
         Schema::create('catalogs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('cat_name', 255);
             $table->string('cat_description', 255)->nullable();
             $table->string('cat_acronym', 4)->nullable();
             $table->string('cat_keyword')->nullable();
-            $table->integer('parent_id')->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('parent_id')->nullable();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
             $table->softDeletes();

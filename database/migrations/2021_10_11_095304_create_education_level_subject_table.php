@@ -14,15 +14,15 @@ class CreateEducationLevelSubjectTable extends Migration
     public function up()
     {
         Schema::create('education_level_subject', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
 
             $table->bigInteger('group_nivelation_id')->unsigned();
             $table->foreign('group_nivelation_id')->on('group_areas')->references('id');
 
-            $table->integer('education_level_id')->unsigned();
+            $table->bigInteger('education_level_id')->unsigned();
             $table->foreign('education_level_id')->on('education_levels')->references('id');
 
-            $table->integer('subject_id')->unsigned();
+            $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->on('subjects')->references('id');
 
             $table->timestamps();

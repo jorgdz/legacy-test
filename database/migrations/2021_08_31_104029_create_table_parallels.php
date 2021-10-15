@@ -14,12 +14,12 @@ class CreateTableParallels extends Migration
     public function up()
     {
         Schema::create('parallels', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('par_name', 255);
             $table->string('par_description', 255)->nullable();
             $table->string('par_acronym', 3)->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

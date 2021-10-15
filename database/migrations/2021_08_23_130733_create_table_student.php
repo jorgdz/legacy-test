@@ -14,26 +14,26 @@ class CreateTableStudent extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->string('stud_code')->nullable();
             $table->string('stud_photo')->nullable();
             $table->string('stud_photo_path')->nullable();
             $table->string('stud_observation')->nullable();
 
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('jornada_id')->unsigned();
+            $table->bigInteger('jornada_id')->unsigned();
             $table->foreign('jornada_id')->references('id')->on('catalogs');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
-            $table->integer('campus_id')->unsigned();
+            $table->bigInteger('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus');
 
-            $table->integer('modalidad_id')->unsigned();
+            $table->bigInteger('modalidad_id')->unsigned();
             $table->foreign('modalidad_id')->references('id')->on('catalogs');
 
             $table->timestamps();

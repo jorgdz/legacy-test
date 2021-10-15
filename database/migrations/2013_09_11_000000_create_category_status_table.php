@@ -14,7 +14,8 @@ class CreateCategoryStatusTable extends Migration
     public function up()
     {
         Schema::create('category_status', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
+            $table->bigIncrements('id');
             
             $table->string('cat_name')->nullable();
             $table->string('cat_description')->nullable();

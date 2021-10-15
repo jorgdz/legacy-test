@@ -14,17 +14,17 @@ class CreateLearningComponentsTable extends Migration
     public function up()
     {
         Schema::create('learning_components', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
-            $table->integer('mesh_id')->unsigned();
+            $table->bigInteger('mesh_id')->unsigned();
             $table->foreign('mesh_id')->references('id')->on('curriculums');
 
-             $table->integer('component_id')->unsigned();
+             $table->bigInteger('component_id')->unsigned();
              $table->foreign('component_id')->references('id')->on('components');
 
-            $table->integer('lea_workload')->default(0);
+            $table->bigInteger('lea_workload')->default(0);
 
-            $table->integer('status_id')->default(1);
+            $table->bigInteger('status_id')->default(1);
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

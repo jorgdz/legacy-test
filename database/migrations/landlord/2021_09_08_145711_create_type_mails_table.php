@@ -14,12 +14,12 @@ class CreateTypeMailsTable extends Migration
     public function up()
     {
         Schema::create('type_mails', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('template');
+            $table->bigInteger('template');
             $table->string('description')->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

@@ -14,7 +14,7 @@ class CreateHourhandsTable extends Migration
     public function up()
     {
         Schema::create('hourhands', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->boolean('hour_monday')->nullable();
             $table->boolean('hour_tuesday')->nullable();
             $table->boolean('hour_wednesday')->nullable();
@@ -38,7 +38,7 @@ class CreateHourhandsTable extends Migration
             $table->string('hour_end_time_sunday')->nullable();
             $table->string('hour_description')->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

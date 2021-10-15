@@ -14,15 +14,15 @@ class CreateOtherSignaturesTable extends Migration
     public function up()
     {
         Schema::create('other_signatures', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('sign_position');
             $table->string('sign_person');
             $table->string('sign_reference');
 
-            $table->integer('type_report_id')->unsigned();
+            $table->bigInteger('type_report_id')->unsigned();
             $table->foreign('type_report_id')->references('id')->on('type_reports');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

@@ -26,7 +26,7 @@ class CreatePermissionTables extends Migration
             $table->string('alias', 255)->nullable();
             $table->string('description')->nullable();
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->string('parent_name')->nullable();
             $table->string('parent_name_translated')->nullable();
             $table->string('module_group')->nullable();
@@ -43,7 +43,7 @@ class CreatePermissionTables extends Migration
             $table->string('keyword')->nullable();
             $table->string('description')->nullable();       // For MySQL 8.0 use string('name', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

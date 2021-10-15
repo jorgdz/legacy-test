@@ -14,25 +14,25 @@ class CreatePeriodsTable extends Migration
     public function up()
     {
         Schema::create('periods', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->string('per_name', 255)->nullable();
             $table->string('per_reference', 100)->nullable();
-            $table->integer('per_current_year')->nullable();
+            $table->bigInteger('per_current_year')->nullable();
             $table->string('per_due_year')->nullable();
-            $table->integer('per_min_matter_enrollment')->nullable();
-            $table->integer('per_max_matter_enrollment')->nullable();
-            $table->integer('per_num_fees')->nullable();
-            $table->integer('per_fees_enrollment')->nullable();
+            $table->bigInteger('per_min_matter_enrollment')->nullable();
+            $table->bigInteger('per_max_matter_enrollment')->nullable();
+            $table->bigInteger('per_num_fees')->nullable();
+            $table->bigInteger('per_fees_enrollment')->nullable();
             $table->boolean('per_pay_enrollment');
 
-            $table->integer('campus_id')->unsigned();
+            $table->bigInteger('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus');
 
-            $table->integer('type_period_id')->unsigned();
+            $table->bigInteger('type_period_id')->unsigned();
             $table->foreign('type_period_id')->references('id')->on('type_periods');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

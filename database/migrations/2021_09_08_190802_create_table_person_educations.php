@@ -14,25 +14,25 @@ class CreateTablePersonEducations extends Migration
     public function up()
     {
         Schema::create('person_educations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->date('pers_edu_graduation_date')->nullable();
             $table->float('pers_edu_calification', 8, 4)->nullable();
             $table->string('pers_edu_observation')->nullable();
 
-            $table->integer('institute_id')->unsigned();
+            $table->bigInteger('institute_id')->unsigned();
             $table->foreign('institute_id')->references('id')->on('institutes');
 
-            $table->integer('city_id')->unsigned();
+            $table->bigInteger('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('catalogs');
 
-            $table->integer('person_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons');
 
-            $table->integer('type_education_id')->unsigned();
+            $table->bigInteger('type_education_id')->unsigned();
             $table->foreign('type_education_id')->references('id')->on('type_education');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

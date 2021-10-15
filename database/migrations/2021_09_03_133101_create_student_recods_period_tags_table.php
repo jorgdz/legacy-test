@@ -14,10 +14,10 @@ class CreateStudentRecodsPeriodTagsTable extends Migration
     public function up()
     {
         Schema::create('student_recods_period_tags', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('student_record_period_id')->nullable();
             $table->string('student_tags_id')->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
             $table->softDeletes();

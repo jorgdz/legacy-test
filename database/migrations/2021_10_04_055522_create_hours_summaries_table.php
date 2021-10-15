@@ -15,23 +15,23 @@ class CreateHoursSummariesTable extends Migration
     {
         Schema::create('hours_summaries', function (Blueprint $table) {
              //resumen de horas
-             $table->increments('id');
+             $table->bigIncrements('id');
 
-             $table->integer('collaborator_id')->unsigned();
+             $table->bigInteger('collaborator_id')->unsigned();
              $table->foreign('collaborator_id')->references('id')->on('collaborators');
-             $table->integer('hs_classes')->unsigned();//horas de clases
-             $table->integer('hs_classes_examns_preparation')->unsigned();//preparacion de clases y departamentos
-             $table->integer('hs_tutoring')->unsigned();//horas de tutorias
-             $table->integer('hs_bonding')->unsigned();//horas de vinculacion
-             $table->integer('hs_academic_management')->unsigned();//gestion academica
-             $table->integer('hs_research')->unsigned();//horas de investigacion
-             $table->integer('hs_total')->unsigned();//total de horas
+             $table->bigInteger('hs_classes')->unsigned();//horas de clases
+             $table->bigInteger('hs_classes_examns_preparation')->unsigned();//preparacion de clases y departamentos
+             $table->bigInteger('hs_tutoring')->unsigned();//horas de tutorias
+             $table->bigInteger('hs_bonding')->unsigned();//horas de vinculacion
+             $table->bigInteger('hs_academic_management')->unsigned();//gestion academica
+             $table->bigInteger('hs_research')->unsigned();//horas de investigacion
+             $table->bigInteger('hs_total')->unsigned();//total de horas
  
              
-             $table->integer('collaborator_hour_id')->unsigned();
+             $table->bigInteger('collaborator_hour_id')->unsigned();
              $table->foreign('collaborator_hour_id')->references('id')->on('collaborator_hours');
  
-             $table->integer('status_id')->unsigned();
+             $table->bigInteger('status_id')->unsigned();
              $table->foreign('status_id')->references('id')->on('status');
  
              $table->timestamps();

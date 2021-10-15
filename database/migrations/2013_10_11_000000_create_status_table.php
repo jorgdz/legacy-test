@@ -14,10 +14,11 @@ class CreateStatusTable extends Migration
     public function up()
     {
         Schema::create('status', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
+            $table->bigIncrements('id');
             $table->string('st_name', 255)->nullable();
 
-            $table->integer('category_status_id')->unsigned();
+            $table->bigInteger('category_status_id')->unsigned();
             $table->foreign('category_status_id')->references('id')->on('category_status');
             
             $table->timestamps();

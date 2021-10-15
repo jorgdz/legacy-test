@@ -14,17 +14,17 @@ class CreateTypeCriteriasTable extends Migration
     public function up()
     {
         Schema::create('type_criterias', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('crit_name')->nullable();
             $table->string('crit_description')->nullable();
             $table->string('crit_acronym', 10)->nullable();
             $table->boolean('crit_qualifity')->nullable();
-            $table->integer('crit_parent_id')->nullable();
+            $table->bigInteger('crit_parent_id')->nullable();
 
-            $table->integer('offer_id')->unsigned();
+            $table->bigInteger('offer_id')->unsigned();
             $table->foreign('offer_id')->references('id')->on('offers');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

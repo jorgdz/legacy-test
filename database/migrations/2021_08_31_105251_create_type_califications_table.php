@@ -14,12 +14,12 @@ class CreateTypeCalificationsTable extends Migration
     public function up()
     {
         Schema::create('type_califications', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->string('tc_name', 255)->nullable();
             $table->string('tc_description', 255)->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

@@ -14,15 +14,15 @@ class CreateTenantModulesTable extends Migration
     public function up()
     {
         Schema::create('tenant_modules', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->bigInteger('tenant_id')->unsigned()->index();
             $table->foreign('tenant_id')->references('id')->on('tenants');
 
-            $table->integer('module_id')->unsigned()->index();
+            $table->bigInteger('module_id')->unsigned()->index();
             $table->foreign('module_id')->references('id')->on('modules');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

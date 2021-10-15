@@ -14,15 +14,15 @@ class CreateCollaboratorEducationLevelsTable extends Migration
     public function up()
     {
         Schema::create('collaborator_education_levels', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             
-            $table->integer('collaborator_id')->unsigned();
+            $table->bigInteger('collaborator_id')->unsigned();
             $table->foreign('collaborator_id')->references('id')->on('collaborators');
 
-            $table->integer('education_level_id')->unsigned();
+            $table->bigInteger('education_level_id')->unsigned();
             $table->foreign('education_level_id')->references('id')->on('education_levels');
             
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

@@ -14,10 +14,10 @@ class CreateTypeDisabilitiesTable extends Migration
     public function up()
     {
         Schema::create('type_disabilities', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('typ_dis_name')->nullable();
             $table->string('typ_dis_description', 500)->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
             $table->softDeletes();

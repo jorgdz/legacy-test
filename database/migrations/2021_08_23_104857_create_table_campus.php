@@ -14,13 +14,13 @@ class CreateTableCampus extends Migration
     public function up()
     {
         Schema::create('campus', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('cam_name', 255)->nullable();
             $table->string('cam_description', 255)->nullable();
             $table->string('cam_direction', 255)->nullable();
             $table->string('cam_initials', 255)->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

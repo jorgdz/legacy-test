@@ -14,12 +14,12 @@ class CreateTableMention extends Migration
     public function up()
     {
         Schema::create('mentions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('ment_name')->nullable();
             $table->string('ment_description')->nullable();
             $table->string('ment_acronym', 10)->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

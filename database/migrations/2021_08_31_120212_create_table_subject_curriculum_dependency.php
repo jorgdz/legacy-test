@@ -14,8 +14,8 @@ class CreateTableSubjectCurriculumDependency extends Migration
     public function up()
     {
         Schema::create('subject_curriculum_dependencies', function (Blueprint $table) {
-            $table->integer('parent_matter_mesh_id')->unsigned();
-            $table->integer('child_matter_mesh_id')->unsigned();
+            $table->bigInteger('parent_matter_mesh_id')->unsigned();
+            $table->bigInteger('child_matter_mesh_id')->unsigned();
 
             $table->foreign('parent_matter_mesh_id')
                 ->references('id')

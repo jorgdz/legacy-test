@@ -14,15 +14,15 @@ class CreateStudentRecodsPeriodTable extends Migration
     public function up()
     {
         Schema::create('student_recods_period', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
-            $table->integer('student_record_id')->unsigned();
+            $table->bigInteger('student_record_id')->unsigned();
             $table->foreign('student_record_id')->references('id')->on('student_records');
 
-            $table->integer('periodo_id')->unsigned();
+            $table->bigInteger('periodo_id')->unsigned();
             $table->foreign('periodo_id')->references('id')->on('periods');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

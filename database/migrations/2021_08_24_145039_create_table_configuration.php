@@ -14,11 +14,11 @@ class CreateTableConfiguration extends Migration
     public function up()
     {
         Schema::create('configurations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('co_name', 255)->nullable();
             $table->string('co_description', 255)->nullable();
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

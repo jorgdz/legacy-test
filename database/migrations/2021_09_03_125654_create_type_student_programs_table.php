@@ -14,11 +14,11 @@ class CreateTypeStudentProgramsTable extends Migration
     public function up()
     {
         Schema::create('type_student_programs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('typ_stu_pro_name')->nullable();
             $table->string('typ_stu_pro_description')->nullable();
             $table->string('typ_stu_pro_acronym', 10)->nullable();
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
             $table->timestamps();
             $table->softDeletes();

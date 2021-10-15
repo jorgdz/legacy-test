@@ -22,7 +22,7 @@ class ClassRoomRepository extends BaseRepository
      *
      * @var array
      */
-    protected $parents = ['campus', 'classroom_types' , 'status'];
+    protected $parents = ['campus', 'classroom_types', 'status'];
 
     /**
      * fields
@@ -61,26 +61,21 @@ class ClassRoomRepository extends BaseRepository
         parent::__construct($classRoom);
     }
 
+
     public function getClassromsByCampusRepository($campus)
     {
 
         $id = $campus->id;
-        $query = $this->model;
+        $query = ClassRoom::where('campus_id', $id)->with(['classroomType']);
         $fields = $this->fields;
-        $query = $query->with([
-            'classroomType',
-            /* 'campus',
-            'classroomEducationLevel', */
-
-        ]);
-
 
         if (isset(request()->query()['data'])) {
-            return (request()->query()['data'] === 'all') ?  $this->data
-               // ->withOutPaginate($this->selected)
+            return (request()->query()['data'] === 'all') ?  $query->get() : [];
+            /* return (request()->query()['data'] === 'all') ?  $this->data
+                // ->withOutPaginate($this->selected)
                 ->withModelRelations(['classroomType'])
                 //->filter(request()->query(), $this->fields, $this->model->getRelations(), $this->model->getKeyName(), $this->model->getTable())
-                ->getCollection() : [];
+                ->getCollection() : []; */
         }
 
         if (isset(request()->query()['search'])) {
@@ -89,13 +84,15 @@ class ClassRoomRepository extends BaseRepository
                 for ($i = 0; $i < count($fields); $i++) {
                     $query->orwhere($fields[$i], 'like',  '%' . strtolower(request()->query()['search']) . '%');
                 }
-            });
+            }); 
         }
 
         $sort = isset(request()->query()['sort']) ? request()->query()['sort'] : 'id';
         $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
         $page = isset(request()->query()['size']) ? request()->query()['size'] : 100;
-        return $query->where("campus_id", $id)->orderBy($sort, $type_sort)->paginate($page);
+        return $query->orderBy($sort, $type_sort)->paginate($page);
+
+       
     }
 
     /**

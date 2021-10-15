@@ -14,14 +14,14 @@ class CreateCollaboratorCampusTable extends Migration
     public function up()
     {
         Schema::create('collaborator_campus', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('collaborator_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->bigInteger('collaborator_id')->unsigned();
             $table->foreign('collaborator_id')->references('id')->on('collaborators');
 
-            $table->integer('campus_id')->unsigned();
+            $table->bigInteger('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

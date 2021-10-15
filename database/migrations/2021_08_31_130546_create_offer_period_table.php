@@ -14,15 +14,15 @@ class CreateOfferPeriodTable extends Migration
     public function up()
     {
         Schema::create('offer_period', function (Blueprint $table) {
-            /* $table->increments('id'); */
+            /* $table->bigIncrements('id'); */
 
-            $table->integer('period_id')->unsigned();
+            $table->bigInteger('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
 
-            $table->integer('offer_id')->unsigned();
+            $table->bigInteger('offer_id')->unsigned();
             $table->foreign('offer_id')->references('id')->on('offers');
 
-            /* $table->integer('status_id')->unsigned();
+            /* $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status'); */
 
             /* $table->timestamps();

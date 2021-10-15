@@ -14,15 +14,15 @@ class CreateInstituteTable extends Migration
     public function up()
     {
         Schema::create('institutes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('inst_name')->nullable();
-            $table->integer('province_id')->unsigned();
+            $table->bigInteger('province_id')->unsigned();
             $table->foreign('province_id')->references('id')->on('catalogs');
-            $table->integer('economic_group_id')->unsigned();
+            $table->bigInteger('economic_group_id')->unsigned();
             $table->foreign('economic_group_id')->references('id')->on('economic_groups');
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
-            $table->integer('type_institute_id')->unsigned();
+            $table->bigInteger('type_institute_id')->unsigned();
             $table->foreign('type_institute_id')->references('id')->on('type_institutes');
             $table->boolean('has_agreement');
             $table->timestamps();

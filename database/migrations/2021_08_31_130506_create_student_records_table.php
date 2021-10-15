@@ -14,29 +14,29 @@ class CreateStudentRecordsTable extends Migration
     public function up()
     {
         Schema::create('student_records', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
-            $table->integer('student_id')->unsigned();
+            $table->bigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students');
 
-            $table->integer('education_level_id')->unsigned();
+            $table->bigInteger('education_level_id')->unsigned();
             $table->foreign('education_level_id')->references('id')->on('education_levels');
 
-            $table->integer('mesh_id')->unsigned();
+            $table->bigInteger('mesh_id')->unsigned();
             $table->foreign('mesh_id')->references('id')->on('curriculums');
-            /* $table->integer('pensum_id')->unsigned();
+            /* $table->bigInteger('pensum_id')->unsigned();
             $table->foreign('pensum_id')->references('id')->on('pensums'); */
 
-            $table->integer('type_student_id')->unsigned();
+            $table->bigInteger('type_student_id')->unsigned();
             $table->foreign('type_student_id')->references('id')->on('type_students');
 
-            $table->integer('collaborator_id')->unsigned();
+            $table->bigInteger('collaborator_id')->unsigned();
             $table->foreign('collaborator_id')->references('id')->on('collaborators');
 
-            $table->integer('economic_group_id')->unsigned();
+            $table->bigInteger('economic_group_id')->unsigned();
             $table->foreign('economic_group_id')->references('id')->on('economic_groups');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

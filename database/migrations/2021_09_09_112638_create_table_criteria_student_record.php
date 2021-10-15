@@ -14,14 +14,14 @@ class CreateTableCriteriaStudentRecord extends Migration
     public function up()
     {
         Schema::create('criteria_student_records', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->string('qualification', 300)->nullable();
 
-            $table->integer('type_criteria_id')->unsigned();
+            $table->bigInteger('type_criteria_id')->unsigned();
             $table->foreign('type_criteria_id')->references('id')->on('type_criterias');
 
-            $table->integer('student_record_id')->unsigned();
+            $table->bigInteger('student_record_id')->unsigned();
             $table->foreign('student_record_id')->references('id')->on('student_records');
 
             $table->softDeletes();

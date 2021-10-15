@@ -14,35 +14,35 @@ class CreateCoursesTable extends Migration
     public function up()
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
-            $table->integer('max_capacity');
+            $table->bigInteger('max_capacity');
 
-            $table->integer('matter_id')->unsigned();
+            $table->bigInteger('matter_id')->unsigned();
             $table->foreign('matter_id')->references('id')->on('subjects');
 
-            $table->integer('parallel_id')->unsigned();
+            $table->bigInteger('parallel_id')->unsigned();
             $table->foreign('parallel_id')->references('id')->on('parallels');
 
-            $table->integer('classroom_id')->unsigned();
+            $table->bigInteger('classroom_id')->unsigned();
             $table->foreign('classroom_id')->references('id')->on('classrooms');
 
-            $table->integer('modality_id')->unsigned();
+            $table->bigInteger('modality_id')->unsigned();
             $table->foreign('modality_id')->references('id')->on('catalogs');
 
-            $table->integer('hourhand_id')->unsigned();
+            $table->bigInteger('hourhand_id')->unsigned();
             $table->foreign('hourhand_id')->references('id')->on('hourhands');
             
-            $table->integer('collaborator_id')->nullable()->unsigned();
+            $table->bigInteger('collaborator_id')->nullable()->unsigned();
             $table->foreign('collaborator_id')->references('id')->on('collaborators');
 
-            $table->integer('curriculum_id')->unsigned();
+            $table->bigInteger('curriculum_id')->unsigned();
             $table->foreign('curriculum_id')->references('id')->on('curriculums');
 
-            $table->integer('period_id')->unsigned();
+            $table->bigInteger('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
 
-            $table->integer('status_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();

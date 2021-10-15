@@ -14,7 +14,7 @@ class CreateTablePerson extends Migration
     public function up()
     {
         Schema::create('persons', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('pers_identification', 25)->nullable();
             $table->string('pers_firstname')->nullable();
             $table->string('pers_secondname')->nullable();
@@ -25,40 +25,40 @@ class CreateTablePerson extends Migration
             $table->string('pers_direction')->nullable();
             $table->string('pers_phone_home')->nullable();
             $table->string('pers_cell')->nullable();
-            $table->integer('pers_num_child')->nullable();
+            $table->bigInteger('pers_num_child')->nullable();
             $table->string('pers_profession')->nullable();
-            $table->integer('pers_num_bedrooms')->nullable();
+            $table->bigInteger('pers_num_bedrooms')->nullable();
             $table->string('pers_study_reason',255)->nullable();
-            $table->integer('pers_num_taxpayers_household')->nullable();//contribuyentes en el hogar
+            $table->bigInteger('pers_num_taxpayers_household')->nullable();//contribuyentes en el hogar
             $table->boolean('pers_has_vehicle')->nullable();
             $table->boolean('pers_has_disability')->nullable();
             $table->string('pers_disability_identification', 10)->nullable();
-            $table->integer('pers_disability_percent')->nullable();
+            $table->bigInteger('pers_disability_percent')->nullable();
             $table->string('pers_nationality')->nullable();
             $table->boolean('pers_is_provider')->nullable();
 
-            $table->integer('type_religion_id')->unsigned();
+            $table->bigInteger('type_religion_id')->unsigned();
             $table->foreign('type_religion_id')->references('id')->on('catalogs');
 
-            $table->integer('status_marital_id')->unsigned();
+            $table->bigInteger('status_marital_id')->unsigned();
             $table->foreign('status_marital_id')->references('id')->on('catalogs');
 
-            $table->integer('city_id')->unsigned();
+            $table->bigInteger('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('catalogs');
 
-            $table->integer('current_city_id')->unsigned();
+            $table->bigInteger('current_city_id')->unsigned();
             $table->foreign('current_city_id')->references('id')->on('catalogs');
 
-            $table->integer('sector_id')->unsigned();
+            $table->bigInteger('sector_id')->unsigned();
             $table->foreign('sector_id')->references('id')->on('catalogs');
 
-            $table->integer('type_identification_id')->unsigned();
+            $table->bigInteger('type_identification_id')->unsigned();
             $table->foreign('type_identification_id')->references('id')->on('catalogs');
 
-            $table->integer('ethnic_id')->unsigned();
+            $table->bigInteger('ethnic_id')->unsigned();
             $table->foreign('ethnic_id')->references('id')->on('catalogs');
 
-            $table->integer('vivienda_id')->unsigned();
+            $table->bigInteger('vivienda_id')->unsigned();
             $table->foreign('vivienda_id')->references('id')->on('catalogs');
 
             $table->timestamps();

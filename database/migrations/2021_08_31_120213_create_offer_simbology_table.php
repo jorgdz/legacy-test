@@ -15,10 +15,10 @@ class CreateOfferSimbologyTable extends Migration
     {
         Schema::create('offer_simbology', function (Blueprint $table) {
 
-            $table->integer('offer_id')->unsigned();
+            $table->bigInteger('offer_id')->unsigned();
             $table->foreign('offer_id')->references('id')->on('offers');
 
-            $table->integer('simbology_id')->unsigned();
+            $table->bigInteger('simbology_id')->unsigned();
             $table->foreign('simbology_id')->references('id')->on('simbologies');
 
 
