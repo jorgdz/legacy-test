@@ -34,8 +34,11 @@ class CreateTablePerson extends Migration
             $table->boolean('pers_has_disability')->nullable();
             $table->string('pers_disability_identification', 10)->nullable();
             $table->bigInteger('pers_disability_percent')->nullable();
-            $table->string('pers_nationality')->nullable();
+
             $table->boolean('pers_is_provider')->nullable();
+
+            $table->bigInteger('nationality_id')->unsigned();
+            $table->foreign('nationality_id')->references('id')->on('catalogs');
 
             $table->bigInteger('type_religion_id')->unsigned();
             $table->foreign('type_religion_id')->references('id')->on('catalogs');

@@ -9,7 +9,6 @@ trait SavePerson
 {
     public function savePerson(
         $request,
-        Catalog $nacionality = NULL,
         Catalog $statusMarital,
         Catalog $typeIdentification,
         Catalog $typeReligion,
@@ -30,9 +29,9 @@ trait SavePerson
             'current_city_keyword',
             'sector_keyword',
             'ethnic_keyword',
+            'email', 'campus_id', 'modalidad_id', 'jornada_id'
         ));
 
-        $person->pers_nationality = ($nacionality <> NULL) ? $nacionality->id : NULL;
         $person->status_marital_id = $statusMarital->id;
         $person->type_identification_id = $typeIdentification->id;
         $person->type_religion_id = $typeReligion->id;

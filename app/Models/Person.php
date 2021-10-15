@@ -46,8 +46,8 @@ class Person extends Model implements AuditableContract
         'pers_study_reason',
         'pers_num_taxpayers_household',
         'pers_has_vehicle',
-        'pers_nationality',
         'pers_is_provider',
+        'nationality_id',
         'vivienda_id',
         'type_identification_id',
         'type_religion_id',
@@ -156,6 +156,15 @@ class Person extends Model implements AuditableContract
      */
     public function ethnic () : BelongsTo {
         return $this->belongsTo(Catalog::class, 'ethnic_id');
+    }
+
+    /**
+     * nacionality
+     *
+     * @return BelongsTo
+     */
+    public function nationality() : BelongsTo {
+        return $this->belongsTo(Catalog::class, 'nationality_id');
     }
 
     /**

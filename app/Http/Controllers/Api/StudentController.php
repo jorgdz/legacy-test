@@ -27,11 +27,13 @@ use Illuminate\Http\Response;
 use App\Models\CustomTenant;
 use App\Services\MailService;
 use App\Http\Controllers\Api\Contracts\IStudentController;
+use App\Models\Catalog;
 use App\Models\Collaborator;
+use App\Traits\SavePerson;
 
 class StudentController extends Controller implements IStudentController
 {
-    use RestResponse, Helper;
+    use RestResponse, Helper, SavePerson;
 
     /**
      * studentCache
@@ -82,7 +84,37 @@ class StudentController extends Controller implements IStudentController
             })->first();
 
             if ($educationLevel) {
-                $person = new Person($request->except(['email', 'campus_id', 'modalidad_id', 'jornada_id']));
+
+                $livingPlace = Catalog::getKeyword($request['vivienda_id'])->first();
+                $typeReligion = Catalog::getKeyword($request['type_religion_id'])->first();
+                $statusMarital = Catalog::getKeyword($request['status_marital_id'])->first();
+                $city = Catalog::getKeyword($request['city_id'])->first();
+                $currentCity = Catalog::getKeyword($request['current_city_id'])->first();
+                $sector = Catalog::getKeyword($request['sector_id'])->first();
+                $ethnic = Catalog::getKeyword($request['ethnic_id'])->first();
+                $typeIdentification = Catalog::getKeyword($request['type_identification_id'])->first();
+                $modality = Catalog::getKeyword($request['modalidad_id'])->first();
+                $journey = Catalog::getKeyword($request['jornada_id'])->first();
+
+
+                if(isset($request['nationality_id']))
+                    $nationality = Catalog::getKeyWord($request['nationality'])->first();
+
+                $person = $this->savePerson(
+                    $request,
+                    $statusMarital,
+                    $typeIdentification,
+                    $typeReligion,
+                    $livingPlace,
+                    $city,
+                    $currentCity,
+                    $sector,
+                    $ethnic
+                );
+
+                if(isset($request['nationality_id']))
+                    $person->nationality_id = $nationality->id;
+
                 $person->save();
                 $user = new User($request->only(['email']));
 
@@ -96,9 +128,11 @@ class StudentController extends Controller implements IStudentController
                 if (!is_null(Student::where('user_id', $user->id)->first()))
                     throw new ConflictException(__('messages.exist-instance'));
 
-                $student = new Student($request->only(['campus_id', 'modalidad_id', 'jornada_id']));
+                $student = new Student($request->only(['campus_id']));
                 $student->stud_code = $this->stud_code_avaliable();
                 $student->user_id = $user->id;
+                $student->modalidad_id = $modality->id;
+                $student->jornada_id = $journey->id;
                 $student->status_id = 1;
 
                 $student->save();

@@ -61,7 +61,6 @@ class PersonController extends Controller implements IPersonController
 
         $person = $this->savePerson(
             $request,
-            $nacionality,
             $statusMarital,
             $typeIdentification,
             $typeReligion,
@@ -71,6 +70,7 @@ class PersonController extends Controller implements IPersonController
             $sector,
             $ethnic
         );
+        $person->nationality_id = $nacionality->id;
         $person = $this->personCache->save($person);
         //si tiene discapacidad
         if($request->get('pers_has_disability') == true)

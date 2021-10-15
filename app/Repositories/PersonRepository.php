@@ -24,6 +24,7 @@ class PersonRepository extends BaseRepository
         'ethnic',
         'user',
         'livingPlace',
+        'nationality',
         'personJob',
         'languages',
         'emergencyContact',
@@ -54,7 +55,8 @@ class PersonRepository extends BaseRepository
         'currentCity.cat_acronym',
         'sector.cat_name',
         'ethnic.cat_name',
-        'livingPlace.cat_name'
+        'livingPlace.cat_name',
+        'nationality.cat_name',
     ];
 
     /**
@@ -89,12 +91,14 @@ class PersonRepository extends BaseRepository
                     ->join('catalogs as sector', 'sector.id', '=', 'persons.sector_id')
                     ->join('catalogs as ethnic', 'ethnic.id', '=', 'persons.ethnic_id')
                     ->join('catalogs as livingPlace', 'livingPlace.id', '=', 'persons.vivienda_id')
+                    ->join('catalogs as nationality', 'nationality.id', '=', 'persons.nationality_id')
                     ->with([
                         'identification', 'religion',
                         'statusMarital', 'city',
                         'currentCity', 'sector',
                         'ethnic', 'user',
-                        'livingPlace', 'personJob',
+                        'livingPlace', 'nationality',
+                        'personJob',
                         'languages', 'emergencyContact',
                         'personRelatives', 'associatedPerson',
                         'disabilities'

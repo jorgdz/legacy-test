@@ -90,7 +90,6 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         $ethnic = Catalog::getKeyword($request['ethnic_keyword'])->first();
 
         $person = $this->savePerson($request,
-            $nacionality,
             $statusMarital,
             $typeIdentification,
             $typeReligion,
@@ -100,6 +99,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
             $sector,
             $ethnic
         );
+        $person->nationality_id = $nacionality->id;
         $person->pers_is_provider = $request->get('coll_journey_description') == "TP" ? 1 : $request->get('pers_is_provider');
         $person = $this->personCache->save($person);
         //si tiene discapacidad

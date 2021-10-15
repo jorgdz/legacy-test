@@ -74,8 +74,11 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
             $sector = Catalog::getKeyword($request['sector_id'])->first();
             $ethnic = Catalog::getKeyword($request['ethnic_id'])->first();
             $typeIdentification = Catalog::getKeyword($request['type_identification_id'])->first();
-            $modalidad = Catalog::getKeyword($request['modalidad_id'])->first();
-            $jornada = Catalog::getKeyword($request['jornada_id'])->first();
+            $modality = Catalog::getKeyword($request['modalidad_id'])->first();
+            $journey = Catalog::getKeyword($request['jornada_id'])->first();
+
+            if(isset($request['nationality_id']))
+                $nationality = Catalog::getKeyWord($request['nationality'])->first();
 
             $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function ($query) {
                 $query->where('status_id', 7);
@@ -84,7 +87,6 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
             if ($educationLevel) {
                 $person = $this->savePerson(
                     $request,
-                    NULL,
                     $statusMarital,
                     $typeIdentification,
                     $typeReligion,
@@ -94,6 +96,10 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
                     $sector,
                     $ethnic
                 );
+
+                if(isset($request['nationality_id']))
+                    $person->nationality_id = $nationality->id;
+
                 $person->save();
 
                 if ($request->get('pers_has_disability'))
@@ -111,11 +117,11 @@ class ExternalStudentController extends Controller implements IExternalStudentCo
                 if (!is_null(Student::where('user_id', $user->id)->first()))
                     throw new ConflictException(__('messages.exist-instance'));
 
-                $student = new Student($request->only(['campus_id', 'modalidad_id', 'jornada_id']));
+                $student = new Student($request->only(['campus_id']));
                 $student->stud_code = $this->stud_code_avaliable();
                 $student->user_id = $user->id;
-                $student->modalidad_id = $modalidad->id;
-                $student->jornada_id = $jornada->id;
+                $student->modalidad_id = $modality->id;
+                $student->jornada_id = $journey->id;
                 $student->status_id = 1;
 
                 $student->save();
