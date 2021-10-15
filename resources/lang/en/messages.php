@@ -60,5 +60,12 @@ return [
     'subjects-required' => 'Subjects is required.',
     'assign-subjects-nivelation' => 'Subjects nivelation assign.',
     'exist_education-level-subjects' => 'The subjects is assign in this education levels with group.',
+    'no-acronym' => 'There is no record with the application acronym',
+    'status-not-available' => 'This status is not avaible for this request',
+    'status-change-is-not-allowed' => 'This user cannot change the status of this request',
+    'delete-application-error' => 'The request can only be deleted in the sent state',
+    'no-pending-applications' => 'There are no pending requests for you',
+    'finished_application' => 'This request has ended or was rejected, no modifications are allowed',
+    'no-application-type-change' => 'The application Type cannot change'
 ];
 ?>

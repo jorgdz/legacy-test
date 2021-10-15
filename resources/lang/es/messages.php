@@ -62,4 +62,11 @@ return [
     'subjects-required' => 'Las materias de nivelacion son requeridas.',
     'assign-subjects-nivelation' => 'Se asignaron materias de nivelacion a las carreras seleccionadas.',
     'exist_education-level-subjects' => 'No pueden existir materias repetidas en la misma carrera para el mismo grupo.',
+    'no-acronym' => 'No hay ningún registro con el acrónimo solicitado',
+    'status-not-available' => 'Este estado no esta disponible para esta solicitud',
+    'status-change-is-not-allowed' => 'Este usuario no puede cambiar el estado de esta solicitud',
+    'delete-application-error' => 'La solicitud solo se puede eliminar en estado de enviado',
+    'no-pending-applications' => 'No hay solicitudes pendientes para ti',
+    'finished_application' => 'Esta solicitud ha finalizado o fue rechazada, no se permiten modificaciones.',
+    'no-application-type-change' => 'El tipo de solicitud no puede cambiar'
 ];

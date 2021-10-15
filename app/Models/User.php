@@ -84,6 +84,15 @@ class User extends Authenticatable implements AuditableContract
     public function userProfiles() : HasMany {
         return $this->hasMany(UserProfile::class);
     }
+    
+    /**
+     * application
+     *
+     * @return HasMany
+     */
+    public function application() : HasMany {
+        return $this->hasMany(Application::class);
+    }
 
     /**
      * status

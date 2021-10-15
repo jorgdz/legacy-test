@@ -263,5 +263,55 @@ class DefaultExampleSeeder extends Seeder
 
             ['parent_matter_mesh_id' => 34, 'child_matter_mesh_id' => 43],
         ]);
+
+        DB::connection('tenant')->table('type_applications')->insert([
+            ['typ_app_name' => 'Academicas', 'typ_app_description' => 'Solicitudes Academicas', 'typ_app_acronym' => 'ACAD', 'parent_id' => null, 'status_id' => 1],
+            ['typ_app_name' => 'Practicas Pre-profesionales', 'typ_app_description' => 'Solicitudes de practicas', 'typ_app_acronym' => 'PRACTP', 'parent_id' => null, 'status_id' => 1],
+            ['typ_app_name' => 'Cambio Carrera', 'typ_app_description' => 'Solicitudes de cambio de carrera o facultad', 'typ_app_acronym' => 'CAMCAR', 'parent_id' => 1, 'status_id' => 1],
+            ['typ_app_name' => 'Homologacion externa', 'typ_app_description' => 'Solicitudes de homologacion externa', 'typ_app_acronym' => 'HOMEXT', 'parent_id' => 1, 'status_id' => 1],
+            ['typ_app_name' => 'Ingreso de Practica Pre-profesional', 'typ_app_description' => 'Solicitudes de ingreso a practicas', 'typ_app_acronym' => 'INGPRA', 'parent_id' => 2, 'status_id' => 1],
+        ]);
+
+        DB::connection('tenant')->table('config_type_applications')->insert([
+            ['conf_typ_description' => 'Cambio de carrera - Json Data', 'conf_typ_data_type' => 'Json', 'conf_typ_object_name' => 'App\Models\Curriculum', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => '', 'type_application_id' => 3, 'status_id' => 1],
+            ['conf_typ_description' => 'Homologacion externa - id institucion proveniente', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Institute', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => '', 'type_application_id' => 4, 'status_id' => 1],
+            ['conf_typ_description' => 'Homologacion externa - id malla nueva', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Curriculum', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => '', 'type_application_id' => 4, 'status_id' => 1],
+            ['conf_typ_description' => 'Homologacion externa - Json Data', 'conf_typ_data_type' => 'Json', 'conf_typ_object_name' => 'App\Models\Curriculum', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => '', 'type_application_id' => 4, 'status_id' => 1],
+        ]);
+
+        DB::connection('tenant')->table('applications')->insert([
+            ['app_code' => 'CAMCAR-0000001', 'app_description' => 'Solicitud de cambio de carrera ejemplo', 'app_register_date' => '2021-10-11', 'user_id' => 1, 'type_application_id' => 3, 'status_id' => 1],
+            ['app_code' => 'HOMEXT-0000002', 'app_description' => 'Solicitud de homologacion externa ejemplo', 'app_register_date' => '2021-10-11', 'user_id' => 1, 'type_application_id' => 4, 'status_id' => 1],
+        ]);
+
+        DB::connection('tenant')->table('application_details')->insert([
+            ['value' => "{'student_id' : '1', 'carrera_id' : 1}", 'application_id' => 1, 'config_type_application_id' => 1],
+            ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 2],
+            ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 3],
+            ['value' => "{'student_id' : '1', 'carrera_id' : 1}", 'application_id' => 2, 'config_type_application_id' => 4],
+        ]);
+
+        DB::connection('tenant')->table('type_application_status')->insert([
+            ['order' => 0, 'type_application_id' => 3, 'status_id' => 10],  //Rechazado
+            ['order' => 1, 'type_application_id' => 3, 'status_id' => 11],  //Enviado
+            ['order' => 3, 'type_application_id' => 3, 'status_id' => 13],  //Aceptado
+            ['order' => 0, 'type_application_id' => 4, 'status_id' => 10],  //Rechazado
+            ['order' => 1, 'type_application_id' => 4, 'status_id' => 11],  //Enviado
+            ['order' => 2, 'type_application_id' => 4, 'status_id' => 15],  //Finalizado
+        ]);
+
+        DB::connection('tenant')->table('type_application_status_roles')->insert([
+            ['role_id' => 1, 'type_application_status_id' => 1, 'status_id' => 1],
+            ['role_id' => 1, 'type_application_status_id' => 2, 'status_id' => 1],
+            ['role_id' => 1, 'type_application_status_id' => 3, 'status_id' => 1],
+            ['role_id' => 1, 'type_application_status_id' => 4, 'status_id' => 1],
+            ['role_id' => 1, 'type_application_status_id' => 5, 'status_id' => 1],
+            ['role_id' => 1, 'type_application_status_id' => 6, 'status_id' => 1],
+        ]);
+
+        DB::connection('tenant')->table('transac_type_application_status_roles')->insert([
+            ['transac_secuencial' => 'CAMCAR-0000001', 'transac_register_date' => date('m-d-Y h:i:s a', time()), 'transac_comments' => 'Nueva solicitud cambio de carrera', 'user' => 'phoppe', 'type_application_status_roles_id' => 2, 'status_id' => 1],
+            ['transac_secuencial' => 'HOMEXT-0000002', 'transac_register_date' => date('m-d-Y h:i:s a', time()), 'transac_comments' => 'Nueva solicitud homologacion externa', 'user' => 'phoppe', 'type_application_status_roles_id' => 5, 'status_id' => 1],
+        ]);
     }
 }

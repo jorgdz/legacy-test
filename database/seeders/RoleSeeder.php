@@ -32,6 +32,7 @@ class RoleSeeder extends Seeder
             ['name' => 'IDIOMA', 'keyword' => 'idioma', 'description' => 'Rol de Idioma', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'RECURSOS HUMANOS', 'keyword' => 'recursos-humanos', 'description' => 'Rol de Recursos Humanos', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'DOCENTES', 'keyword' => 'docente', 'description' => 'Rol de Docentes', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'FINANZAS', 'keyword' => 'financiero', 'description' => 'Rol de Finanzas', 'guard_name' => 'api', 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('permissions')->insert([
@@ -3621,20 +3622,7 @@ class RoleSeeder extends Seeder
                 'module_group' => 'academic'
             ],
             /**
-             * Grupo Area 334
-             */
-            [
-                'name' => 'group-area-listar-grupo-areas',
-                'alias' => 'Listar grupo area',
-                'description' => 'Listar todos los grupo area',
-                'guard_name' => 'api',
-                'status_id' => 1,
-                'parent_name' => 'groupArea',
-                'parent_name_translated' => 'grupo area',
-                'module_group' => 'academic'
-            ],
-            /**
-             * Periodo 335
+             * Periodo 334
              */
             [
                 'name' => 'periods-aulas-asociadas-a-facultades-por-periodos',
@@ -3647,7 +3635,7 @@ class RoleSeeder extends Seeder
                 'module_group' => 'academic'
             ],
             /**
-             * Campus 336
+             * Campus 335
              */
             [
                 'name' => 'campus-obtener-aulas-filtradas-sedes',
@@ -3657,6 +3645,228 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'campus',
                 'parent_name_translated' => 'campus',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Tipo Solicitudes 336-341
+             */
+            [
+                'name' => 'type-application-listar-tipo-solicitudes',
+                'alias' => 'Listar tipo solicitudes',
+                'description' => 'Listar todos los tipos de solicitudes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplication',
+                'parent_name_translated' => 'tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-obtener-tipo-solicitudes',
+                'alias' => 'Obtener tipo solicitud',
+                'description' => 'Obtener un tipo de solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplication',
+                'parent_name_translated' => 'tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-crear-tipo-solicitudes',
+                'alias' => 'Crear tipo solicitud',
+                'description' => 'Agregar un tipo de solicitud',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplication',
+                'parent_name_translated' => 'tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-actualizar-tipo-solicitudes',
+                'alias' => 'Actualizar tipo solicitud',
+                'description' => 'Actualizar un tipo de solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplication',
+                'parent_name_translated' => 'tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-borrar-tipo-solicitudes',
+                'alias' => 'Eliminar tipo solicitud',
+                'description' => 'Eliminar tipo de solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplication',
+                'parent_name_translated' => 'tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-obtener-hijos',
+                'alias' => 'Obtener hijos tipo solicitud',
+                'description' => 'Obtener un tipo de solicitud con sus hijos por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplication',
+                'parent_name_translated' => 'tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Solicitudes 342-346
+             */
+            [
+                'name' => 'application-listar-solicitudes',
+                'alias' => 'Listar solicitudes',
+                'description' => 'Listar todas las solicitudes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'application',
+                'parent_name_translated' => 'solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'application-obtener-solicitudes',
+                'alias' => 'Obtener solicitud',
+                'description' => 'Obtener una solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'application',
+                'parent_name_translated' => 'solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'application-crear-solicitudes',
+                'alias' => 'Crear solicitud',
+                'description' => 'Agregar una solicitud',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'application',
+                'parent_name_translated' => 'solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'application-actualizar-solicitudes',
+                'alias' => 'Actualizar solicitud',
+                'description' => 'Actualizar un de solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'application',
+                'parent_name_translated' => 'solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'application-borrar-solicitudes',
+                'alias' => 'Eliminar solicitud',
+                'description' => 'Eliminar una solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'application',
+                'parent_name_translated' => 'solicitudes',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Configuracion tipo Solicitudes 347-351
+             */
+            [
+                'name' => 'config-type-application-listar-config-tipo-solicitudes',
+                'alias' => 'Listar configuracion tipo solicitudes',
+                'description' => 'Listar todas las configuraciones tipo solicitudes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'confTypeApplication',
+                'parent_name_translated' => 'configuracion de tipos de solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'config-type-application-obtener-config-tipo-solicitudes',
+                'alias' => 'Obtener configuracion tipo solicitud',
+                'description' => 'Obtener una configuracion de tipo solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'configTypeApplication',
+                'parent_name_translated' => 'configuracion de tipos de solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'config-type-application-crear-config-tipo-solicitudes',
+                'alias' => 'Crear configuracion tipo solicitud',
+                'description' => 'Agregar una configuracion del tipo solicitud',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'configTypeApplication',
+                'parent_name_translated' => 'configuracion de tipos de solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'config-type-application-actualizar-config-tipo-solicitudes',
+                'alias' => 'Actualizar configuracion tipo solicitud',
+                'description' => 'Actualizar una configuracion de tipo solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'configTypeApplication',
+                'parent_name_translated' => 'configuracion de tipos de solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'config-type-application-borrar-config-tipo-solicitudes',
+                'alias' => 'Eliminar configuracion tipo solicitud',
+                'description' => 'Eliminar una configuracion de tipo solicitud por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'configTypeApplication',
+                'parent_name_translated' => 'configuracion de tipos de solicitudes',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Tipo Solicitudes Estado 352-356
+             */
+            [
+                'name' => 'type-application-status-listar-estado-tipo-solicitudes',
+                'alias' => 'Listar estados orden tipos solicitudes',
+                'description' => 'Listar todos los estados del orden de tipo solicitudes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplicationStatus',
+                'parent_name_translated' => 'estados del orden de tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-status-obtener-estado-tipo-solicitudes',
+                'alias' => 'Obtener estados del orden de tipo solicitudes',
+                'description' => 'Obtener un estados del orden de tipo solicitudes por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplicationStatus',
+                'parent_name_translated' => 'estados del orden de tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-status-crear-estado-tipo-solicitudes',
+                'alias' => 'Crear estados del orden de tipo solicitudes',
+                'description' => 'Agregar un estado del orden de tipo solicitudes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplicationStatus',
+                'parent_name_translated' => 'estados del orden de tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-status-actualizar-estado-tipo-solicitudes',
+                'alias' => 'Actualizar estado del orden de tipo solicitudes',
+                'description' => 'Actualizar un estado del orden de tipo solicitudes por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplicationStatus',
+                'parent_name_translated' => 'estados del orden de tipo solicitudes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-application-status-borrar-estado-tipo-solicitudes',
+                'alias' => 'Eliminar estado del orden de tipo solicitudes',
+                'description' => 'Eliminar un estado del orden de tipo solicitudes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeApplicationStatus',
+                'parent_name_translated' => 'estados del orden de tipo solicitudes',
                 'module_group' => 'academic'
             ],
         ]);
@@ -4246,7 +4456,7 @@ class RoleSeeder extends Seeder
             ['permission_id' => 327, 'role_id' => 1],
             ['permission_id' => 328, 'role_id' => 1],
             /**
-             * Nivel Carrera Materia 329-334
+             * Nivel Carrera Materia 329-333
              */
             ['permission_id' => 329, 'role_id' => 1],
             ['permission_id' => 330, 'role_id' => 1],
@@ -4254,17 +4464,46 @@ class RoleSeeder extends Seeder
             ['permission_id' => 332, 'role_id' => 1],
             ['permission_id' => 333, 'role_id' => 1],
             /**
-             * Nivel Carrera Materia 334
+             * Periodo 334
              */
             ['permission_id' => 334, 'role_id' => 1],
             /**
-             * Nivel Carrera Materia 335
+             * Campus 335
              */
             ['permission_id' => 335, 'role_id' => 1],
             /**
-             * Nivel Carrera Materia 336
+             * Tipo Solicitudes 336-341
              */
             ['permission_id' => 336, 'role_id' => 1],
+            ['permission_id' => 337, 'role_id' => 1],
+            ['permission_id' => 338, 'role_id' => 1],
+            ['permission_id' => 339, 'role_id' => 1],
+            ['permission_id' => 340, 'role_id' => 1],
+            ['permission_id' => 341, 'role_id' => 1],
+            /**
+             * Solicitudes 342-346
+             */
+            ['permission_id' => 342, 'role_id' => 1],
+            ['permission_id' => 343, 'role_id' => 1],
+            ['permission_id' => 344, 'role_id' => 1],
+            ['permission_id' => 345, 'role_id' => 1],
+            ['permission_id' => 346, 'role_id' => 1],
+            /**
+             * Configuracion tipo Solicitudes 347-351
+             */
+            ['permission_id' => 347, 'role_id' => 1],
+            ['permission_id' => 348, 'role_id' => 1],
+            ['permission_id' => 349, 'role_id' => 1],
+            ['permission_id' => 350, 'role_id' => 1],
+            ['permission_id' => 351, 'role_id' => 1],
+            /**
+             * Tipo Solicitudes Estado 352-356
+             */
+            ['permission_id' => 352, 'role_id' => 1],
+            ['permission_id' => 353, 'role_id' => 1],
+            ['permission_id' => 354, 'role_id' => 1],
+            ['permission_id' => 355, 'role_id' => 1],
+            ['permission_id' => 356, 'role_id' => 1],
         ]);
 
         /**
@@ -4834,7 +5073,7 @@ class RoleSeeder extends Seeder
             ['permission_id' => 327, 'role_id' => 2],
             ['permission_id' => 328, 'role_id' => 2],
             /**
-             * Nivel Carrera Materia 329-334
+             * Nivel Carrera Materia 329-333
              */
             ['permission_id' => 329, 'role_id' => 2],
             ['permission_id' => 330, 'role_id' => 2],
@@ -4842,17 +5081,38 @@ class RoleSeeder extends Seeder
             ['permission_id' => 332, 'role_id' => 2],
             ['permission_id' => 333, 'role_id' => 2],
             /**
-             * Nivel Carrera Materia 334
+             * Periodo 334
              */
             ['permission_id' => 334, 'role_id' => 2],
             /**
-             * Nivel Carrera Materia 335
+             * Campus 335
              */
             ['permission_id' => 335, 'role_id' => 2],
             /**
-             * Nivel Carrera Materia 336
+             * Tipo Solicitudes 336-341
              */
             ['permission_id' => 336, 'role_id' => 2],
+            ['permission_id' => 337, 'role_id' => 2],
+            ['permission_id' => 338, 'role_id' => 2],
+            ['permission_id' => 339, 'role_id' => 2],
+            ['permission_id' => 340, 'role_id' => 2],
+            ['permission_id' => 341, 'role_id' => 2],
+            /**
+             * Solicitudes 342-346
+             */
+            ['permission_id' => 342, 'role_id' => 2],
+            ['permission_id' => 343, 'role_id' => 2],
+            ['permission_id' => 344, 'role_id' => 2],
+            ['permission_id' => 345, 'role_id' => 2],
+            ['permission_id' => 346, 'role_id' => 2],
+            /**
+             * Tipo Solicitudes Estado 352-356
+             */
+            ['permission_id' => 352, 'role_id' => 2],
+            ['permission_id' => 353, 'role_id' => 2],
+            ['permission_id' => 354, 'role_id' => 2],
+            ['permission_id' => 355, 'role_id' => 2],
+            ['permission_id' => 356, 'role_id' => 2],
         ]);
 
         /**
@@ -4873,6 +5133,24 @@ class RoleSeeder extends Seeder
             ['permission_id' => 315, 'role_id' => 16],
             ['permission_id' => 316, 'role_id' => 16],
             ['permission_id' => 317, 'role_id' => 16],
+            /**
+             * Cargo 254-260
+             */
+            ['permission_id' => 254, 'role_id' => 16],
+            ['permission_id' => 255, 'role_id' => 16],
+            ['permission_id' => 256, 'role_id' => 16],
+            ['permission_id' => 257, 'role_id' => 16],
+            ['permission_id' => 258, 'role_id' => 16],
+            ['permission_id' => 259, 'role_id' => 16],
+            ['permission_id' => 260, 'role_id' => 16],
+            /**
+             * Departamentos 292-296
+             */
+            ['permission_id' => 292, 'role_id' => 16],
+            ['permission_id' => 293, 'role_id' => 16],
+            ['permission_id' => 294, 'role_id' => 16],
+            ['permission_id' => 295, 'role_id' => 16],
+            ['permission_id' => 296, 'role_id' => 16],
         ]);
 
         /**
@@ -4889,6 +5167,26 @@ class RoleSeeder extends Seeder
              * Estudiante 252
              */
             ['permission_id' => 252, 'role_id' => 17],
+        ]);
+
+        /**
+         *
+         *
+         *
+         * Permisos de Finanza
+         *
+         *
+         *
+         */
+        DB::connection('tenant')->table('role_has_permissions')->insert([
+            /**
+             * Grupo Economico 145-149
+             */
+            ['permission_id' => 145, 'role_id' => 18],
+            ['permission_id' => 146, 'role_id' => 18],
+            ['permission_id' => 147, 'role_id' => 18],
+            ['permission_id' => 148, 'role_id' => 18],
+            ['permission_id' => 149, 'role_id' => 18],
         ]);
     }
 }

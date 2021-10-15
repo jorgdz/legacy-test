@@ -21,7 +21,7 @@ class UserRepository extends BaseRepository
      */
     use TranslateException;
 
-    protected $relations = ['status', 'person.religion', 'person.statusMarital', 'person.city', 'person.currentCity', 'person.sector', 'person.ethnic', 'person.identification'];
+    protected $relations = ['status', 'person.religion', 'person.statusMarital', 'person.city', 'person.currentCity', 'person.sector', 'person.ethnic', 'person.identification', 'application'];
     protected $fields = ['us_username', 'email'];
 
     /**

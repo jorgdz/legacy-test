@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AgreementController;
+use App\Http\Controllers\Api\ApplicationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
@@ -45,6 +46,7 @@ use App\Http\Controllers\Api\SimbologyController;
 use App\Http\Controllers\Api\ClassroomEducationLevelController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\EducationLevelSubjectController;
+use App\Http\Controllers\Api\TypeApplicationController;
 
 /* Import routes */
 
@@ -76,9 +78,10 @@ require __DIR__ . "/channels/collaborator-hours.php";
 require __DIR__ . "/channels/hours-summaries.php";
 require __DIR__ . "/channels/type-reports.php";
 require __DIR__ . "/channels/commons.php";
+require __DIR__ . "/channels/type-application-status.php";
 require __DIR__ . "/external-channels/external-student.php";
 require __DIR__ . "/channels/area-group.php";
-
+require __DIR__ . "/channels/config-type-application.php";
 
 
 /*
@@ -549,7 +552,23 @@ Route::put('/education-level-subject/{educationLevelSubject}', [EducationLevelSu
 Route::delete('/education-level-subject/{educationLevelSubject}', [EducationLevelSubjectController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:education-level-subject-eliminar-materias-tipo-nivelacion-a-carrera']);
 
 /**
- * GroupArea
+ * Type Application
  */
-/************************** Se elimina este permiso **************************************/
-// Route::get('group-area', [GroupAreaController::class, 'index'])->middleware(['auth:sanctum', 'permission:group-area-listar-grupo-areas']);
+Route::get('/type-application', [TypeApplicationController::class, 'index'])->middleware(['auth:sanctum', 'permission:type-application-listar-tipo-solicitudes']);
+Route::get('/type-application/{id}', [TypeApplicationController::class, 'show'])->middleware(['auth:sanctum', 'permission:type-application-obtener-tipo-solicitudes']);
+Route::post('/type-application', [TypeApplicationController::class, 'store'])->middleware(['auth:sanctum', 'permission:type-application-crear-tipo-solicitudes']);
+Route::put('/type-application/{typeapplication}', [TypeApplicationController::class, 'update'])->middleware(['auth:sanctum', 'permission:type-application-actualizar-tipo-solicitudes']);
+Route::delete('/type-application/{typeapplication}', [TypeApplicationController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:type-application-borrar-tipo-solicitudes']);
+Route::get('/type-application/{acronym}/children', [TypeApplicationController::class, 'getChildren'])->middleware(['auth:sanctum', 'permission:type-application-obtener-hijos']);
+
+/**
+ * Application
+ */
+Route::get('/application', [ApplicationController::class, 'index'])->middleware(['auth:sanctum', 'permission:application-listar-solicitudes']);
+Route::get('/application/{application}', [ApplicationController::class, 'show'])->middleware(['auth:sanctum', 'permission:application-obtener-solicitudes']);
+Route::get('/application/{role}/get-all-aplications', [ApplicationController::class, 'getAllApplicationStatus'])->middleware(['auth:sanctum', 'permission:application-obtener-solicitudes']);
+Route::get('/application/show-application-status/{code}', [ApplicationController::class, 'showApplicationStatus'])->middleware(['auth:sanctum', 'permission:application-obtener-solicitudes']);
+Route::post('/application', [ApplicationController::class, 'store'])->middleware(['auth:sanctum', 'permission:application-crear-solicitudes']);
+Route::post('/application/change-status', [ApplicationController::class, 'changeApplicationStatus'])->middleware(['auth:sanctum', 'permission:application-actualizar-solicitudes']);
+Route::put('/application/{application}', [ApplicationController::class, 'update'])->middleware(['auth:sanctum', 'permission:application-actualizar-solicitudes']);
+Route::delete('/application/{application}', [ApplicationController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:application-borrar-solicitudes']);
