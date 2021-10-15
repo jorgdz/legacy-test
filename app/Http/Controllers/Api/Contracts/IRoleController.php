@@ -238,13 +238,22 @@ interface IRoleController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="permissions",
+     *           property="add_permissions",
      *           type="array",
      *           @OA\Items(
      *             type="string",
-     *             example="Mantenimiento de xyz"
+     *             example="institutetype-obtener-tipo-de-instituto",
      *           ),
      *           description="Asignar los permisos al rol",
+     *         ),
+     *         @OA\Property(
+     *           property="del_permissions",
+     *           type="array",
+     *           @OA\Items(
+     *             type="string",
+     *             example="institutetype-crear-tipo-de-instituto"
+     *           ),
+     *           description="eliminar los permisos al rol",
      *         ),
      *       ),
      *     ),
