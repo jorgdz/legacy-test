@@ -177,6 +177,34 @@ interface IPeriodController
      *           example="[1,2,3]",
      *           uniqueItems=true
      *         ),
+     *         @OA\Property(
+     *           property="stages",
+     *           description="Array de objetos tipo Stages que se vincularan al periodo",
+     *           type="array",
+     *           items={
+     *               "type" : "object",
+     *               "properties" : {
+     *                   "stage_id" : {
+     *                       "type" : "integer",
+     *                       "example" : "1",
+     *                   },
+     *                   "start_date" : {
+     *                       "type" : "string",
+     *                       "format" : "date",
+     *                       "example" : "2021-10-15",
+     *                   },
+     *                   "end_date" : {
+     *                       "type" : "string",
+     *                       "format" : "date",
+     *                       "example" : "2022-10-15",
+     *                   },
+     *                   "status_id" : {
+     *                       "type" : "integer",
+     *                       "example" : "1",
+     *                   },
+     *               }
+     *           },
+     *         ),
      *       ),
      *     ),
      *   ),
@@ -196,6 +224,11 @@ interface IPeriodController
      *        "status_id" : "required|integer|exists:status,id",
      *        "offers" : "array",
      *        "offers.*" : "integer|exists:offers,id|distinct",
+     *        "stages" : "array",
+     *        "stages.*.stage_id" : "integer|exists:tenant.stages,id|distinct",
+     *        "stages.*.start_date" : "required|date",
+     *        "stages.*.end_date" : "required|date",
+     *        "stages.*.status_id" : "integer|exists:tenant.status,id",
      *        "hourhands" : "array",
      *        "hourhands.*" : "integer|exists:hourhands,id|distinct"
      *      },

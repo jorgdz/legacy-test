@@ -94,9 +94,9 @@ class Period extends Model implements AuditableContract
     /**
      * periodStages
      *
-     * @return void
+     * @return HasMany
      */
-    public function periodStages ()
+    public function periodStages () : HasMany
     {
         return $this->hasMany(PeriodStage::class);
     }

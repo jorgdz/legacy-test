@@ -40,6 +40,11 @@ class StorePeriodRequest extends FormRequest
             'status_id' => 'required|integer|exists:tenant.status,id',
             'offers' => 'array',
             'offers.*' => 'integer|exists:tenant.offers,id|distinct',
+            'stages' => 'array',
+            'stages.*.stage_id' => 'integer|exists:tenant.stages,id|distinct',
+            'stages.*.start_date' => 'required|date',
+            'stages.*.end_date' => 'required|date',
+            'stages.*.status_id' => 'integer|exists:tenant.status,id',
             'hourhands' => 'array',
             'hourhands.*' => 'integer|exists:tenant.hourhands,id|distinct'
         ];

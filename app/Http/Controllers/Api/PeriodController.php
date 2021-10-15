@@ -98,6 +98,7 @@ class PeriodController extends Controller implements IPeriodController
             $this->periodCache->save($period);
             $period->offers()->sync($request->offers, false);
             $period->hourhands()->sync($request->hourhands, false);
+            $period->periodStages()->createMany($request->stages);
         }
 
         return $this->information(__('messages.success'));
