@@ -25,7 +25,7 @@ class AreaGroup extends Model implements AuditableContract
     protected $dates = ['deleted_at'];
 
     protected $softCascade = [
-        'educationLevelSubjects'
+        'groupAreaSubjects'
     ];
 
     /**
@@ -36,13 +36,17 @@ class AreaGroup extends Model implements AuditableContract
     public function status(): BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
-    
+
     /**
-     * educationLevelSubjects
+     * groupAreaSubjects
      *
      * @return HasMany
      */
-    public function educationLevelSubjects () : HasMany {
-        return $this->hasMany(EducationLevelSubject::class, 'group_nivelation_id');
+    public function groupAreaSubjects () : HasMany {
+        return $this->hasMany(GroupAreaSubject::class, 'group_nivelation_id');
+    }
+
+    public function educationLevels () : HasMany {
+        return $this->hasMany(EducationLevel::class, 'group_area_id');
     }
 }

@@ -54,7 +54,7 @@ return [
     'user-username-found' => 'No se puede registrar un usuario porque ya existe un usuario con el mismo numero de identificacion',
     'error-change-password-logged' => 'Error. Contraseña no coincide con la almacenda en el sistema.',
     'career-not-found' => 'No se puede asociar una materia a un nivel educativo que no sea una carrera',
-    'subject-found-with-career' => 'No se puede asociar una materia que ya existe con esta carrera',
+    'subject-found-with-career' => 'No se puede asociar una materia que ya existe con este grupo.',
     'type-subject-not-nivelation' => 'No se puede asignar una materia que no sea de tipo nivelación',
     'validate-format-new-password' => 'Error. La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 numérico y 1 carácter especial: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',
     'not-registered-email' => 'Error. Correo no se encuentra registrado.',
@@ -66,7 +66,7 @@ return [
     'status-not-available' => 'Este estado no esta disponible para esta solicitud',
     'status-change-is-not-allowed' => 'Este usuario no puede cambiar el estado de esta solicitud',
     'delete-application-error' => 'La solicitud solo se puede eliminar en estado de enviado',
-    'no-pending-applications' => 'No hay solicitudes pendientes para ti',
+    'no-pending-applications' => 'No hay solicitudes pendientes.',
     'finished_application' => 'Esta solicitud ha finalizado o fue rechazada, no se permiten modificaciones.',
     'no-application-type-change' => 'El tipo de solicitud no puede cambiar'
 ];

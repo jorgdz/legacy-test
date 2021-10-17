@@ -39,7 +39,7 @@ return [
     'max' => 'The maximum number of records is :max.',
     'number-of-allowed-files' => 'Only one file can be uploaded.',
     'no-roles-assign' => 'There are no roles assigned for this user',
-    'subjects-error-saved' => 'Error when saving the academic offer.',    
+    'subjects-error-saved' => 'Error when saving the academic offer.',
     'meshs-vigent' => 'Cannot create a new mesh because a current mesh already exists!',
     'meshs-vigent-edit' => 'Cannot edit curriculum because already exists!',
     'meshs-not-vigent' => 'A career with a current curriculum was not found!',
@@ -52,7 +52,7 @@ return [
     'user-username-found' => 'A user cannot be registered because a user with the same identification number already exists',
     'error-change-password-logged' => 'Error. Password does not match the one stored in the system.',
     'career-not-found' => 'A subject cannot be associated with an educational level that is not a career',
-    'subject-found-with-career' => 'You cannot associate a subject that already exists with this career',
+    'subject-found-with-career' => 'You cannot associate a subject that already exists with this group',
     'type-subject-not-nivelation' => 'You cannot assign a subject that is not a leveling type',
     'validate-format-new-password' => 'Error. Error. The password must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character: \'|,+:;<=>_`{}~#"?!@$%^&*-.()/  ',
     'not-registered-email' => 'Error. Email is not registered.',
@@ -64,7 +64,7 @@ return [
     'status-not-available' => 'This status is not avaible for this request',
     'status-change-is-not-allowed' => 'This user cannot change the status of this request',
     'delete-application-error' => 'The request can only be deleted in the sent state',
-    'no-pending-applications' => 'There are no pending requests for you',
+    'no-pending-applications' => 'There are no pending requests.',
     'finished_application' => 'This request has ended or was rejected, no modifications are allowed',
     'no-application-type-change' => 'The application Type cannot change'
 ];

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,14 +18,66 @@ class DefaultExampleSeeder extends Seeder
      */
     public function run()
     {
-        DB::connection('tenant')->table('campus')->insert([
-            ['cam_name' => 'La mejor sede', 'cam_description' => 'Descripción de la mejor sede', 'cam_direction' => NULL, 'cam_initials' => 'mse', 'status_id' => 1],
-            ['cam_name' => 'Nuevo', 'cam_description' => 'Nueva sede', 'cam_direction' => NULL, 'cam_initials' => 'nse', 'status_id' => 1],
-        ]);
-
         DB::connection('tenant')->table('periods')->insert([
             ['per_name' => 'Periodo 1', 'per_reference' => 'Periodo 1 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'per_num_fees' => 20, 'per_fees_enrollment' => 6, 'per_pay_enrollment' => 0, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
             ['per_name' => 'Periodo 2', 'per_reference' => 'Periodo 2 Referencia', 'per_current_year' => 2021, 'per_due_year' => '2022', 'per_min_matter_enrollment' => 1, 'per_max_matter_enrollment' => 3, 'per_num_fees' => 10, 'per_fees_enrollment' => 3, 'per_pay_enrollment' => 1, 'campus_id' => 1, 'type_period_id' => 1, 'status_id' => 1],
+        ]);
+
+        DB::connection('tenant')->table('stages')->insert([
+            [
+                'stg_name'      => 'Estudiante Periodo General',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'A',
+                'status_id'         =>  1
+            ],
+            [
+                'stg_name'      => 'Administrativos Convalidaciones',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'C',
+                'status_id'         =>  1
+            ],
+            [
+                'stg_name'      => 'Docentes Periodo General',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'D',
+                'status_id'         =>  1
+            ],
+            [
+                'stg_name'      => 'Administrativos Homologaciones',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'H',
+                'status_id'         =>  1
+            ],
+            [
+                'stg_name'      => 'Inicio de Clases',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'I',
+                'status_id'         =>  1
+            ],
+            [
+                'stg_name'      => 'Administrativos Registro',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'M',
+                'status_id'         =>  1
+            ],
+            [
+                'stg_name'      => 'Estudiante Pagos',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'P',
+                'status_id'         =>  1
+            ],
+            [
+                'stg_name'      => 'Estudiante Registros',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'R',
+                'status_id'         =>  1
+            ],
+            [
+                'stg_name'      => 'Pagos en Caja',
+                'stg_description'   =>  '',
+                'stg_acronym'       =>  'T',
+                'status_id'         =>  1
+            ],
         ]);
 
         DB::connection('tenant')->table('type_califications')->insert([
@@ -32,12 +85,13 @@ class DefaultExampleSeeder extends Seeder
             ['tc_name' => 'Horas', 'tc_description' => NULL, 'status_id' => 1],
         ]);
 
-        DB::connection('tenant')->table('pensums')->insert([
-            ['pen_name' => 'Pensum del año', 'pen_description' => '', 'pen_acronym' => 'p01', 'anio' => 2021, 'status_id' => 1],
+        DB::connection('tenant')->table('period_stages')->insert([
+            ['stage_id' => 5, 'period_id' => 1, 'start_date' => '2021-05-11', 'end_date' => '2022-02-15', 'status_id' => 1],
+            ['stage_id' => 8, 'period_id' => 1, 'start_date' => '2022-02-20', 'end_date' => '2022-04-20', 'status_id' => 1],
         ]);
 
-        DB::connection('tenant')->table('offers')->insert([
-            ['off_name' => 'Oferta de ejemplo', 'off_description' => 'Descripción de dicha oferta', 'status_id' => 1],
+        DB::connection('tenant')->table('pensums')->insert([
+            ['pen_name' => 'Pensum del año', 'pen_description' => '', 'pen_acronym' => 'p01', 'anio' => 2021, 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('offer_period')->insert([
@@ -45,9 +99,21 @@ class DefaultExampleSeeder extends Seeder
             ['period_id' => 2, 'offer_id' => 1],
         ]);
 
+        DB::connection('tenant')->table('offer_simbology')->insert([
+            ['simbology_id' => 1, 'offer_id' => 1],
+            ['simbology_id' => 2, 'offer_id' => 1],
+            ['simbology_id' => 3, 'offer_id' => 1],
+        ]);
+
+        DB::connection('tenant')->table('group_areas')->insert([
+            ['arg_name' => 'CIENCIAS EMPRESARIALES Y AFINES', 'arg_description' => '', 'arg_keywords' => 'ciencias-empresariales-fines', 'status_id' => 1],
+            ['arg_name' => 'CIENCIAS SOCIALES Y AFINES', 'arg_description' => '', 'arg_keywords' => 'ciencias-sociales-fines', 'status_id' => 1],
+            ['arg_name' => 'CIENCIAS DE LA SALUD Y DESARROLLO HUMANO', 'arg_description' => '', 'arg_keywords' => 'ciencias-salud-desarrollo-humano', 'status_id' => 1]
+        ]);
+
         DB::connection('tenant')->table('education_levels')->insert([
-            ['edu_name' => 'Facultad de Derecho y Gobernabilidad', 'edu_alias' => NULL, 'edu_order' => 1, 'principal_id' => null, 'offer_id' => 1, 'status_id' => 1],
-            ['edu_name' => 'Carrera de Derecho', 'edu_alias' => NULL, 'edu_order' => 2, 'principal_id' => 1, 'offer_id' => 1, 'status_id' => 1],
+            ['edu_name' => 'Facultad de Derecho y Gobernabilidad', 'edu_alias' => NULL, 'edu_order' => 1, 'principal_id' => null, 'group_area_id' => null, 'offer_id' => 1, 'status_id' => 1],
+            ['edu_name' => 'Carrera de Derecho', 'edu_alias' => NULL, 'edu_order' => 2, 'principal_id' => 1, 'group_area_id' => 1, 'offer_id' => 1, 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('subjects')->insert([
@@ -94,14 +160,180 @@ class DefaultExampleSeeder extends Seeder
             ['mat_name' => 'Derecho Internacional Privado', 'mat_description' => NULL, 'mat_acronym' => 'ihc', 'cod_matter_migration' => 'COD-MAT041', 'cod_old_migration' => 'COD-OLD-MAT041', 'mat_translate' => NULL, 'mat_payment_type' => 'creditos', 'type_matter_id' => 1, 'education_level_id' => 1, 'area_id' => 1, 'status_id' => 1],
             ['mat_name' => 'Derecho de Recursos no Renovables', 'mat_description' => NULL, 'mat_acronym' => 'ihc', 'cod_matter_migration' => 'COD-MAT042', 'cod_old_migration' => 'COD-OLD-MAT042', 'mat_translate' => NULL, 'mat_payment_type' => 'creditos', 'type_matter_id' => 1, 'education_level_id' => 1, 'area_id' => 1, 'status_id' => 1],
             ['mat_name' => 'Asignatura III del Itinerario', 'mat_description' => NULL, 'mat_acronym' => 'ihc', 'cod_matter_migration' => 'COD-MAT043', 'cod_old_migration' => 'COD-OLD-MAT043', 'mat_translate' => NULL, 'mat_payment_type' => 'creditos', 'type_matter_id' => 1, 'education_level_id' => 1, 'area_id' => 1, 'status_id' => 1],
+
+            ['mat_name' => 'Algebra lineal', 'mat_description' => NULL, 'mat_acronym' => 'ali', 'cod_matter_migration' => 'COD-MAT044', 'cod_old_migration' => 'COD-OLD-MAT044', 'mat_translate' => NULL, 'mat_payment_type' => 'horas', 'type_matter_id' => 6, 'education_level_id' => 2, 'area_id' => 1, 'status_id' => 1],
+            ['mat_name' => 'Matemática básica', 'mat_description' => NULL, 'mat_acronym' => 'mtb', 'cod_matter_migration' => 'COD-MAT045', 'cod_old_migration' => 'COD-OLD-MAT045', 'mat_translate' => NULL, 'mat_payment_type' => 'horas', 'type_matter_id' => 6, 'education_level_id' => 2, 'area_id' => 1, 'status_id' => 1],
+        ]);
+
+        DB::connection('tenant')->table('group_area_subjects')->insert([
+            ['group_nivelation_id' => 1, 'subject_id' => 44, 'status_id' => 1],
+            ['group_nivelation_id' => 1, 'subject_id' => 45, 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('curriculums')->insert([
             [
                 'mes_name' => 'Malla Curricular', 'mes_res_cas' => NULL, 'mes_res_ocas' => NULL, 'mes_cod_career' => 'QWERTY.Q1', 'mes_title' => 'Malla Titulo', 'mes_itinerary' => NULL,
                 'mes_number_matter' => 43, 'mes_number_period' => 8, 'mes_quantity_external_matter_homologate' => 1, 'mes_quantity_internal_matter_homologate' => 2,'mes_creation_date' => '1995-07-21', 'mes_acronym' => 'MS1', 'anio' => '2018',
-                'mes_modality_id' => 71, 'type_calification_id' => 2, 'level_edu_id' => 2, 'mes_description' => NULL, 'status_id' => 7
+                'mes_modality_id' => 71, 'type_calification_id' => 2, 'level_edu_id' => 2, 'mes_description' => NULL, 'status_id' => 9
             ],
+        ]);
+
+        DB::connection('tenant')->table('persons')->insert([
+            [
+                'pers_identification' => '1207118470',
+                'pers_firstname' => 'Carmen',
+                'pers_secondname' => '',
+                'pers_first_lastname' => 'Bastidas',
+                'pers_second_lastname' => '',
+                'pers_gender' => 'Femenino',
+                'pers_date_birth' => '1993-08-15',
+                'pers_direction' => 'Localhost',
+                'pers_phone_home' => '4273783',
+                'pers_cell' => '0978455123',
+                'pers_num_child' => 0,
+                'pers_profession' => 'N/A',
+                'pers_num_bedrooms' => 3,
+                'pers_study_reason' => 'Crear nuevas formas de generar ingreso',
+                'pers_num_taxpayers_household' => 4,
+                'pers_has_vehicle' => 0,
+                'pers_has_disability' => 0,
+                'vivienda_id' => 16,
+                'type_religion_id' => 35,
+                'status_marital_id' => 45,
+                'city_id' => 49,
+                'current_city_id' => 49,
+                'sector_id' => 54,
+                'ethnic_id' => 60,
+                'nationality_id' => 49,
+                'type_identification_id' => 67,
+            ]
+        ]);
+
+        DB::connection('tenant')->table('users')->insert([
+            [
+                'us_username' => 'cbastidas',
+                'email' => 'cbastidas@links.com.ec',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'person_id' => 3,
+                'status_id' => 1,
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+            ]
+        ]);
+
+        DB::connection('tenant')->table('user_profiles')->insert([
+            ['user_id' => 3, 'profile_id' => 4, 'email' => 'cbastidas@links.com.ec', 'status_id' => 1]
+        ]);
+
+        DB::connection('tenant')->table('model_has_roles')->insert([
+            ['role_id' => 17, 'model_type' => 'App\Models\UserProfile', 'model_id' => 4]
+        ]);
+
+        DB::connection('tenant')->table('positions')->insert([
+            [
+                'pos_name'          => 'Docente de tiempo completo',
+                'pos_description'   => '',
+                'pos_keyword'       => 'docente-tm-completo',
+                'role_id'           => 17,
+                'department_id'     => 1,
+                'status_id'         => 1
+            ],
+            [
+                'pos_name'          => 'Encargado de logística',
+                'pos_description'   => '',
+                'pos_keyword'       => 'encargado-logistica',
+                'role_id'           => 16,
+                'department_id'     => 1,
+                'status_id'         => 1
+            ],
+        ]);
+
+        DB::connection('tenant')->table('collaborators')->insert([
+            [
+                'coll_email' => 'cbastidas@mail.com',
+                'coll_type'  => 'D',
+                'coll_activity'  => 'DOCENCIA',
+                'coll_journey_description' => 'TC',
+                'coll_dependency'       => 1,
+                'coll_advice'           => 1,
+                'coll_journey_hours'    => 40,
+                'position_company_id'   => 1,
+                'coll_entering_date'    => '2020-02-15',
+                'coll_leaving_date'     => null,
+                'coll_membership_num'   => null,
+                'coll_contract_num'     => null,
+                'coll_has_nomination'   => null,
+                'coll_nomination_entering_date' =>  null,
+                'coll_nomination_leaving_date'  =>  null,
+                'education_level_principal_id'  =>  1,
+                'status_id'                     => 1,
+                'user_id'                       => 3
+            ]
+        ]);
+
+        DB::connection('tenant')->table('collaborator_campus')->insert([
+            [
+                'collaborator_id'       => 1,
+                'campus_id'             => 1,
+                'status_id'             => 1,
+            ],
+            [
+                'collaborator_id'       => 1,
+                'campus_id'             => 2,
+                'status_id'             => 1,
+            ]
+        ]);
+
+        DB::connection('tenant')->table('collaborator_hours')->insert([
+            [
+                'period_id'             => 1,
+                'education_level_id'    => 1,
+                'ch_working_time'       => 'TC',
+                'status_id'             => 1,
+            ]
+        ]);
+
+        DB::connection('tenant')->table('hours_summaries')->insert([
+            [
+                'collaborator_id'       => 1,
+                'hs_classes'            => 4,
+                'hs_classes_examns_preparation'     => 4,
+                'hs_tutoring'                       => 2,
+                'hs_bonding'                        => 3,
+                'hs_academic_management'            => 4,
+                'hs_research'                       => 2,
+                'hs_total'                          => 15,
+                'collaborator_hour_id'              => 1,
+                'status_id'                         => 1
+            ]
+        ]);
+
+        DB::connection('tenant')->table('parallels')->insert([
+            [
+                'par_name'          => 'A',
+                'par_description'   => '',
+                'par_acronym'       => 'A',
+                'status_id'         =>  1,
+            ],
+            [
+                'par_name'          => 'B',
+                'par_description'   => '',
+                'par_acronym'       => 'B',
+                'status_id'         =>  1,
+            ],
+            [
+                'par_name'          => 'C',
+                'par_description'   => '',
+                'par_acronym'       => 'C',
+                'status_id'         =>  1,
+            ],
+        ]);
+
+        DB::connection('tenant')->table('classrooms')->insert([
+            ['cl_name' => 'Aula01', 'cl_cap_max' => 40, 'cl_acronym' => 'A01', 'cl_description' => '', 'campus_id' => 1, 'classroom_type_id' => 1, 'status_id' => 1],
+            ['cl_name' => 'Aula02', 'cl_cap_max' => 45, 'cl_acronym' => 'A02', 'cl_description' => '', 'campus_id' => 1, 'classroom_type_id' => 1, 'status_id' => 1],
+            ['cl_name' => 'Aula03', 'cl_cap_max' => 35, 'cl_acronym' => 'A03', 'cl_description' => '', 'campus_id' => 1, 'classroom_type_id' => 1, 'status_id' => 1],
+            ['cl_name' => 'Aula04', 'cl_cap_max' => 45, 'cl_acronym' => 'A04', 'cl_description' => '', 'campus_id' => 2, 'classroom_type_id' => 2, 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('hourhands')->insert([
@@ -262,6 +494,109 @@ class DefaultExampleSeeder extends Seeder
             ['parent_matter_mesh_id' => 28, 'child_matter_mesh_id' => 42],
 
             ['parent_matter_mesh_id' => 34, 'child_matter_mesh_id' => 43],
+        ]);
+
+
+        /**
+         * Creación de cursos
+         */
+        DB::connection('tenant')->table('courses')->insert([
+            [
+                'max_capacity'      => 25,
+                'matter_id'         => 5,
+                'parallel_id'       => 1,
+                'classroom_id'      => 1,
+                'modality_id'       => 71,
+                'hourhand_id'       => 1,
+                'collaborator_id'   => 1,
+                'curriculum_id'     => 1,
+                'period_id'         => 1,
+                'status_id'         => 1,
+            ],
+            [
+                'max_capacity'      => 30,
+                'matter_id'         => 6,
+                'parallel_id'       => 2,
+                'classroom_id'      => 2,
+                'modality_id'       => 71,
+                'hourhand_id'       => 2,
+                'collaborator_id'   => 1,
+                'curriculum_id'     => 1,
+                'period_id'         => 1,
+                'status_id'         => 1,
+            ],
+        ]);
+
+        DB::connection('tenant')->table('collaborator_education_levels')->insert([
+            [
+                'collaborator_id'       => 1,
+                'education_level_id'    => 1,
+                'status_id'             => 1
+            ]
+        ]);
+
+        /**
+         * Componentes de aprendizaje
+         */
+        DB::connection('tenant')->table('components')->insert([
+            [
+                'com_acronym'       => 'ACD',
+                'com_name'          => 'Aprendizaje en contacto con el docente',
+                'status_id'             => 1
+            ],
+            [
+                'com_acronym'       => 'APE',
+                'com_name'          => 'Aprendizaje Práctico - Experimental',
+                'status_id'             => 1
+            ],
+            [
+                'com_acronym'       => 'AA',
+                'com_name'          => 'Aprendizaje Autónomo',
+                'status_id'             => 1
+            ],
+            [
+                'com_acronym'       => 'PP',
+                'com_name'          => 'Prácticas preprofesionales',
+                'status_id'             => 1
+            ],
+            [
+                'com_acronym'       => 'VS',
+                'com_name'          => 'Vinculación con la sociedad',
+                'status_id'             => 1
+            ],
+        ]);
+
+        DB::connection('tenant')->table('learning_components')->insert([
+            [
+                'mesh_id'               => 1,
+                'component_id'          => 1,
+                'lea_workload'          => 0,
+                'status_id'             => 1
+            ],
+            [
+                'mesh_id'               => 1,
+                'component_id'          => 2,
+                'lea_workload'          => 0,
+                'status_id'             => 1
+            ],
+            [
+                'mesh_id'               => 1,
+                'component_id'          => 3,
+                'lea_workload'          => 0,
+                'status_id'             => 1
+            ],
+            [
+                'mesh_id'               => 1,
+                'component_id'          => 4,
+                'lea_workload'          => 0,
+                'status_id'             => 1
+            ],
+            [
+                'mesh_id'               => 1,
+                'component_id'          => 5,
+                'lea_workload'          => 0,
+                'status_id'             => 1
+            ],
         ]);
 
         DB::connection('tenant')->table('type_applications')->insert([

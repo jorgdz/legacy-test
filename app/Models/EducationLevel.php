@@ -37,6 +37,7 @@ class EducationLevel extends Model implements AuditableContract
         'edu_order',
         'principal_id',
         'offer_id',
+        'group_area_id',
         'status_id',
 
     ];
@@ -87,6 +88,15 @@ class EducationLevel extends Model implements AuditableContract
      */
     public function offer() : BelongsTo {
         return $this->belongsTo(Offer::class, 'offer_id');
+    }
+
+    /**
+     * groupArea
+     *
+     * @return BelongsTo
+     */
+    public function groupArea() : BelongsTo {
+        return $this->belongsTo(AreaGroup::class, 'group_area_id');
     }
 
     /**

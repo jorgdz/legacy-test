@@ -15,11 +15,11 @@ class GroupArea extends Migration
     {
         Schema::create('group_areas', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('arg_name')->nullable();
             $table->string('arg_description')->nullable();
-            $table->string('arg_keywords', 20)->unique();
-            
+            $table->string('arg_keywords', 255)->unique();
+
             $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

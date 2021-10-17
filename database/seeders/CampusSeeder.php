@@ -14,9 +14,7 @@ class CampusSeeder extends Seeder
      */
     public function run()
     {
-        DB::connection('tenant')->table('campus')->insert(
-          
-
+        DB::connection('tenant')->table('campus')->insert([
             [
                 'cam_name' => 'Samborondón',
                 'cam_description' => 'Samborondón',
@@ -38,6 +36,6 @@ class CampusSeeder extends Seeder
                 'cam_initials' => 'cost',
                 'status_id' => 1
             ]
-        );
+        ]);
     }
 }

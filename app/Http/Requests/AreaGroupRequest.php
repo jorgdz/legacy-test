@@ -28,6 +28,8 @@ class AreaGroupRequest extends FormRequest
             'arg_description' => 'nullable|string',
             'arg_keywords'        => 'required|string|unique:tenant.group_areas,arg_keywords',
             'status_id'      => 'required|integer|exists:tenant.status,id',
+            "subjects"       => "nullable|array",
+            "subjects.*.subject_id" => "integer|exists:tenant.subjects,id|distinct",
         ];
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
             $rules['arg_name'] = [
@@ -35,7 +37,7 @@ class AreaGroupRequest extends FormRequest
                 'string',
                 'unique:tenant.group_areas,arg_name,' . $this->areaGroup->id
             ];
-            
+
             $rules['arg_keywords'] = [
                 'nullable',
                 'string',

@@ -4,18 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Cache\EducationLevelSubjectCache;
 use App\Exceptions\Custom\ConflictException;
-use App\Http\Controllers\Api\Contracts\IEducationLevelSubjectController;
+use App\Http\Controllers\Api\Contracts\IGroupAreaSubjectController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EducationLevelSubjectRequest;
-use App\Models\Catalog;
-use App\Models\EducationLevel;
-use App\Models\EducationLevelSubject;
+use App\Models\GroupAreaSubject;
 use App\Models\Subject;
 use App\Traits\RestResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
-class EducationLevelSubjectController extends Controller implements IEducationLevelSubjectController
+class GroupAreaSubjectController extends Controller implements IGroupAreaSubjectController
 {
     use RestResponse;
 
@@ -51,18 +48,11 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
     public function store(EducationLevelSubjectRequest $request)
     {
         $subject = Subject::findOrFail($request['subject_id']);
-        $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function($query) {
-            $query->where('status_id', 7);
-        })->first();
-
-        if(!$educationLevel)
-            throw new ConflictException(__('messages.career-not-found'));
 
         if($subject->typeMatter->tm_acronym == 'nv') {
-            $educationLevelSubject = new EducationLevelSubject($request->all());
+            $educationLevelSubject = new GroupAreaSubject($request->all());
 
-            $educationLevelFound = EducationLevelSubject::where('education_level_id', $educationLevel->id)
-                ->where('subject_id', $subject->id)
+            $educationLevelFound = GroupAreaSubject::where('subject_id', $subject->id)
                 ->where('group_nivelation_id', $educationLevelSubject->group_nivelation_id)->first();
 
             if($educationLevelFound)
@@ -93,33 +83,26 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
      * @param  \App\Models\EducationLevelSubject  $educationLevelSubject
      * @return \Illuminate\Http\Response
      */
-    public function update(EducationLevelSubjectRequest $request, EducationLevelSubject $educationLevelSubject)
+    public function update(EducationLevelSubjectRequest $request, GroupAreaSubject $groupAreaSubject)
     {
         $subject = Subject::findOrFail($request['subject_id']);
-        $educationLevel = EducationLevel::where('id', $request['education_level_id'])->whereRelation('meshs', function($query) {
-            $query->where('status_id', 7);
-        })->first();
-
-        if(!$educationLevel)
-            throw new ConflictException(__('messages.career-not-found'));
 
         if($subject->typeMatter->tm_acronym == 'nv') {
 
-            $educationLevelSubjectFound = EducationLevelSubject::where('id', '!=', $educationLevelSubject->id)
-                ->where('education_level_id', $educationLevel->id)
+            $educationLevelSubjectFound = GroupAreaSubject::where('id', '!=', $groupAreaSubject->id)
                 ->where('subject_id', $subject->id)
-                ->where('group_nivelation_id', $educationLevelSubject->group_nivelation_id)
+                ->where('group_nivelation_id', $groupAreaSubject->group_nivelation_id)
                 ->first();
 
             if($educationLevelSubjectFound)
                 throw new ConflictException(__('messages.subject-found-with-career'));
 
-            $educationLevelSubject->fill($request->all());
-            
-            if ($educationLevelSubject->isClean())
+            $groupAreaSubject->fill($request->all());
+
+            if ($groupAreaSubject->isClean())
                 return $this->information(__('messages.nochange'));
 
-            $this->educationLevelSubjectCache->save($educationLevelSubject);
+            $this->educationLevelSubjectCache->save($groupAreaSubject);
             return $this->information(__('messages.success'));
         }
 
@@ -132,8 +115,8 @@ class EducationLevelSubjectController extends Controller implements IEducationLe
      * @param  \App\Models\EducationLevelSubject  $educationLevelSubject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EducationLevelSubject $educationLevelSubject)
+    public function destroy(GroupAreaSubject $groupAreaSubject)
     {
-        return $this->success($this->educationLevelSubjectCache->destroy($educationLevelSubject));
+        return $this->success($this->educationLevelSubjectCache->destroy($groupAreaSubject));
     }
 }

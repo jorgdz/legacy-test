@@ -2,11 +2,10 @@
 
 namespace App\Cache;
 
-use App\Exceptions\Custom\BadRequestException;
-use App\Exceptions\Custom\ConflictException;
-use App\Models\EducationLevelSubject;
-use App\Repositories\AreaGroupRepository;
+use App\Models\AreaGroup;
 use Illuminate\Database\Eloquent\Model;
+use App\Repositories\AreaGroupRepository;
+use App\Exceptions\Custom\BadRequestException;
 
 class AreaGroupCache extends BaseCache
 {
@@ -69,37 +68,27 @@ class AreaGroupCache extends BaseCache
         $this->forgetCache('group-areas');
         return $this->repository->destroy($model);
     }
-    
+
     /**
      * assignEducationLevelSubjects
      *
      * @param  mixed $request
      * @return void
      */
-    public function assignEducationLevelSubjects ($request, $id) {
+    public function saveAreaGroupWithSubjects ($request) {
         $this->forgetCache('group-areas');
 
-        if (!isset($request->education_levels))
-            throw new BadRequestException(__('messages.carrer-required'));
-        
-        if (!isset($request->subjects))
+        if (!isset($request['subjects']))
             throw new BadRequestException(__('messages.subjects-required'));
- 
-        foreach($request->subjects as $subject) {
-            foreach ($request->education_levels as $elevel) {
-                $_elevel = EducationLevelSubject::where('group_nivelation_id', $id)
-                    ->where('subject_id', $subject)
-                    ->where('education_level_id', $elevel)->first();
-                
-                if ($_elevel)
-                    throw new ConflictException(__('messages.exist_education-level-subjects'));
 
-                $educationLevelSubject = new EducationLevelSubject();
-                $educationLevelSubject->group_nivelation_id = $id;
-                $educationLevelSubject->subject_id = $subject;
-                $educationLevelSubject->education_level_id = $elevel;
-                $educationLevelSubject->save();
-            }
-        }
+        $model = new AreaGroup();
+        $model->arg_name = $request['arg_name'];
+        $model->arg_description = $request['arg_description'];
+        $model->arg_keywords = $request['arg_keywords'];
+        $model->status_id = $request['status_id'];
+        $modelSave = $this->repository->save($model);
+        $modelSave->groupAreaSubjects()->createMany($request['subjects']);
+
+        return $modelSave;
     }
 }

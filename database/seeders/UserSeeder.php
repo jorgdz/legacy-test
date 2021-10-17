@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         DB::connection('tenant')->table('users')->insert([
             [
-                'us_username' => env('LEGACY_USERNAME', 'phoppe'),
+                'us_username' => env('LEGACY_USERNAME', 'sistemas'),
                 'email' => env('LEGACY_EMAIL', 'pepo@gmail.com'),
                 'password' => env('LEGACY_PASSWORD', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
                 'person_id' => 1,

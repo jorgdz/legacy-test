@@ -78,7 +78,7 @@ class CourseController extends Controller implements ICourseController
             $course = $this->courseCache->save($course);
             //return $this->success($course, Response::HTTP_CREATED);
             return $this->information(__('messages.success'));
-            
+
         }else{
             $collaborators = $this->courseCache->getCollaboratorsInCourse($request);
             if(empty($collaborators))
@@ -96,6 +96,7 @@ class CourseController extends Controller implements ICourseController
                     "modality_id"     => $request->modality_id,
                     "hourhand_id"     => $request->hourhand_id,
                     "collaborator_id" => $collaborator,
+                    "curriculum_id" =>   $request->curriculum_id,
                     "period_id"       => $request->period_id,
                     "status_id"       => $request->status_id,
                 ];
@@ -135,7 +136,7 @@ class CourseController extends Controller implements ICourseController
         if ($course->isClean())
             return $this->information(__('messages.nochange'));
 
-        $response = $this->courseCache->save($course); 
+        $response = $this->courseCache->save($course);
         return $this->success($response);
     }
 
@@ -150,8 +151,8 @@ class CourseController extends Controller implements ICourseController
         return $this->success($this->courseCache->destroy($course));
     }
 
-    
-    public function changeStatus(Request $request, $id) 
+
+    public function changeStatus(Request $request, $id)
     {
         return $this->success($this->courseCache->changeStatus($id,$request->status_id));
         //return true;

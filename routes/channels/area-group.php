@@ -10,4 +10,3 @@ Route::put('/group-areas/{areaGroup}', [AreaGroupController::class, 'update'])->
 Route::patch('/group-areas/{areaGroup}', [AreaGroupController::class, 'update'])->middleware(['auth:sanctum', 'permission:group-areas-actualizar-area']);
 Route::delete('/group-areas/{areaGroup}', [AreaGroupController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:group-areas-borrar-area']);
 
-Route::post('/group-areas/{id}/education-level-subjects', [AreaGroupController::class, 'assignEducationLevelSubjects'])->middleware(['auth:sanctum', 'permission:group-areas-asignar-carreras-materias']);

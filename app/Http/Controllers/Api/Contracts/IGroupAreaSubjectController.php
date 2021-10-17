@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Api\Contracts;
 
 use App\Http\Requests\EducationLevelSubjectRequest;
-use App\Models\EducationLevelSubject;
+use App\Models\GroupAreaSubject;
 use Illuminate\Http\Request;
 
-interface IEducationLevelSubjectController
+interface IGroupAreaSubjectController
 {
     /**
      * @OA\Get(
-     *   path="/api/education-level-subject",
-     *   tags={"Carreras y Materias de Nivelacion"},
+     *   path="/api/group-area-subjects",
+     *   tags={"Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Listar materias de tipo nivelacion de carreras",
-     *   description="Muestra todas los materias de tipo nivelacion de las carreras en formato JSON",
+     *   summary="Listar materias de tipo nivelacion",
+     *   description="Muestra todas los materias de tipo nivelacion en formato JSON",
      *   operationId="getAllEducationLevelSubject",
      *   @OA\Parameter(
      *     name="user_profile_id",
@@ -88,13 +88,13 @@ interface IEducationLevelSubjectController
 
     /**
      * @OA\Post(
-     *   path="/api/education-level-subject",
-     *   tags={"Carreras y Materias de Nivelacion"},
+     *   path="/api/group-area-subjects",
+     *   tags={"Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Asignar materias de tipo nivelacion a una carrera",
-     *   description="Asignar una nueva materia de tipo nivelacion a la carrera",
+     *   summary="Asignar materias de tipo nivelacion",
+     *   description="Asignar una nueva materia de tipo nivelacion",
      *   operationId="addEducationLevelSubject",
      *   @OA\RequestBody(
      *     required=true,
@@ -113,13 +113,13 @@ interface IEducationLevelSubjectController
      *           example="1"
      *         ),
      *         @OA\Property(
-     *           property="education_level_id",
-     *           description="Carrera para asociar materias",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="subject_id",
      *           description="Materia de tipo nivelacion",
+     *           type="integer",
+     *         ),
+     *        @OA\Property(
+     *           property="status_id",
+     *           description="Estado",
      *           type="integer",
      *         ),
      *       ),
@@ -130,8 +130,8 @@ interface IEducationLevelSubjectController
      *   @OA\JsonContent(
      *      example={
      *           "group_nivelation_id"        : "required|string|exists:tenant.group_areas,id",
-     *           "education_level_id"   : "integer|exists:tenant.education_levels,id",
      *           "subject_id"           : "integer|exists:tenant.subjects,id",
+     *           "status_id"           : "integer|exists:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -144,13 +144,13 @@ interface IEducationLevelSubjectController
 
     /**
      * @OA\Get(
-     *   path="/api/education-level-subject/{id}",
-     *   tags={"Carreras y Materias de Nivelacion"},
+     *   path="/api/group-area-subjects/{id}",
+     *   tags={"Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Obtener una carrera con materias de tipo nivelacion",
-     *   description="Muestra información específica de una carrera por Id.",
+     *   summary="Obtener una materia de tipo nivelacion en un grupo",
+     *   description="Muestra información específica de una materia nivelacion en un determiando grupo por Id.",
      *   operationId="getEducationLevelSubject",
      *   @OA\Parameter(
      *     name="user_profile_id",
@@ -164,7 +164,7 @@ interface IEducationLevelSubjectController
      *   ),
      *   @OA\Parameter(
      *     name="id",
-     *     description="Id del nivel education - materia nivelacion",
+     *     description="Id del grupo nivelacion - materia nivelacion",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -184,17 +184,17 @@ interface IEducationLevelSubjectController
 
     /**
      * @OA\Put(
-     *   path="/api/education-level-subject/{educationLevelSubject}",
-     *   tags={"Carreras y Materias de Nivelacion"},
+     *   path="/api/group-area-subjects/{groupAreaSubject}",
+     *   tags={"Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Actualizar carrera con materias de tipo nivelacion",
+     *   summary="Actualizar materias de tipo nivelacion en un grupo",
      *   description="Actualizar una carrera.",
      *   operationId="updateEducationLevelSubject",
      *   @OA\Parameter(
-     *     name="educationLevelSubject",
-     *     description="Id de la carrera",
+     *     name="groupAreaSubject",
+     *     description="Id del grupo materia",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -213,24 +213,19 @@ interface IEducationLevelSubjectController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="period_id",
-     *           description="Periodo a la que pertenece",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="group_nivelation_id",
      *           description="Grupo area",
      *           type="integer",
      *           example="1"
      *         ),
      *         @OA\Property(
-     *           property="education_level_id",
-     *           description="Carrera para asociar materias",
+     *           property="subject_id",
+     *           description="Materia de tipo nivelacion",
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="subject_id",
-     *           description="Materia de tipo nivelacion",
+     *           property="status_id",
+     *           description="Estado",
      *           type="integer",
      *         ),
      *       ),
@@ -241,8 +236,8 @@ interface IEducationLevelSubjectController
      *   @OA\JsonContent(
      *      example={
      *           "group_nivelation_id"        : "required|string|exists:tenant.group_areas,id",
-     *           "education_level_id"   : "integer|exists:tenant.education_levels,id",
-     *           "subject_id"           : "integer|exists:tenant.subjects,id",
+     *           "subject_id"                 : "integer|exists:tenant.subjects,id",
+     *           "status_id"                  : "integer|exists:tenant.status,id",
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -251,20 +246,20 @@ interface IEducationLevelSubjectController
      * )
      *
      */
-    public function update(EducationLevelSubjectRequest $request, EducationLevelSubject $educationLevelSubject);
+    public function update(EducationLevelSubjectRequest $request, GroupAreaSubject $groupAreaSubject);
 
     /**
      * @OA\Delete(
-     *   path="/api/education-level-subject/{educationLevelSubject}",
-     *   tags={"Carreras y Materias de Nivelacion"},
+     *   path="/api/group-area-subjects/{groupAreaSubject}",
+     *   tags={"Materias de Nivelacion"},
      *   security={
      *      {"api_key_security": {}},
      *   },
-     *   summary="Eliminar carrera",
-     *   description="Eliminar carrera por Id",
+     *   summary="Eliminar grupo materia de nivelación",
+     *   description="Eliminar grupo materia de nivelación por ID",
      *   operationId="deleteEducationLevelSubject",
      *   @OA\Parameter(
-     *     name="educationLevelSubject",
+     *     name="groupAreaSubject",
      *     in="path",
      *     required=true,
      *     @OA\Schema(
@@ -293,5 +288,5 @@ interface IEducationLevelSubjectController
      * )
      *
      */
-    public function destroy (EducationLevelSubject $educationLevelSubject);
+    public function destroy (GroupAreaSubject $groupAreaSubject);
 }

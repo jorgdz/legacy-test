@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEducationLevelSubjectTable extends Migration
+class CreateGroupAreaSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateEducationLevelSubjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('education_level_subject', function (Blueprint $table) {
+        Schema::create('group_area_subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->bigInteger('group_nivelation_id')->unsigned();
             $table->foreign('group_nivelation_id')->on('group_areas')->references('id');
 
-            $table->bigInteger('education_level_id')->unsigned();
-            $table->foreign('education_level_id')->on('education_levels')->references('id');
-
             $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->on('subjects')->references('id');
+
+            $table->bigInteger('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();
             $table->softDeletes();
@@ -37,6 +37,6 @@ class CreateEducationLevelSubjectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('education_level_subject');
+        Schema::dropIfExists('group_area_subjects');
     }
 }

@@ -2,9 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Models\EducationLevelSubject;
+use App\Models\GroupAreaSubject;
 use App\Repositories\Base\BaseRepository;
-use Illuminate\Database\Eloquent\Model;
 
 class EducationLevelSubjectRepository extends BaseRepository
 {
@@ -14,28 +13,28 @@ class EducationLevelSubjectRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['groupArea', 'educationLevel', 'subject'];
+    protected $relations = ['groupArea', 'subject', 'status'];
 
     /**
      * parents
      *
      * @var array
      */
-    protected $parents = ['catalogs', 'education_levels', 'subjects'];
+    protected $parents = ['group_areas', 'subjects', 'status'];
 
     /**
      * selfFieldsAndParents
      *
      * @var array
      */
-    protected $selfFieldsAndParents = ['cat_name','ga_name', 'per_name', 'edu_name', 'mat_name'];
+    protected $selfFieldsAndParents = ['arg_description','arg_name', 'mat_name', 'cod_matter_migration', 'cod_old_migration', 'mat_translate', 'mat_description', 'mat_payment_type'];
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct (EducationLevelSubject $educationLevelSubject) {
-        parent::__construct($educationLevelSubject);
+    public function __construct (GroupAreaSubject $groupAreaSubject) {
+        parent::__construct($groupAreaSubject);
     }
 }

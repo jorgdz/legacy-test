@@ -39,6 +39,7 @@ class PersonSeeder extends Seeder
                 'current_city_id' => 49,
                 'sector_id' => 54,
                 'ethnic_id' => 60,
+                'nationality_id' => 49,
                 'type_identification_id' => 67,
             ], [
                 'pers_identification' => '0888888888',
@@ -65,6 +66,7 @@ class PersonSeeder extends Seeder
                 'current_city_id' => 50,
                 'sector_id' => 55,
                 'ethnic_id' => 61,
+                'nationality_id' => 49,
                 'type_identification_id' => 67,
             ]
         ]);

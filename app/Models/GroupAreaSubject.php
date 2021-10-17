@@ -10,7 +10,7 @@ use OwenIt\Auditing\Auditable;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class EducationLevelSubject extends Model implements AuditableContract
+class GroupAreaSubject extends Model implements AuditableContract
 {
     use HasFactory, UsesTenantConnection, SoftDeletes, Auditable;
 
@@ -19,14 +19,14 @@ class EducationLevelSubject extends Model implements AuditableContract
      *
      * @var string
      */
-    protected $table = 'education_level_subject';
+    protected $table = 'group_area_subjects';
 
     /**
      * relations
      *
      * @var array
      */
-    protected $relations = ['group_nivelation_id', 'education_level_id', 'subject_id'];
+    protected $relations = ['group_nivelation_id', 'subject_id', 'status_id'];
 
     /**
      * dates
@@ -49,8 +49,8 @@ class EducationLevelSubject extends Model implements AuditableContract
      */
     protected $fillable = [
         'group_nivelation_id',
-        'education_level_id',
         'subject_id',
+        'status_id'
     ];
 
 
@@ -65,17 +65,6 @@ class EducationLevelSubject extends Model implements AuditableContract
     }
 
     /**
-     * educationLevel
-     *
-     * @return BelongsTo
-     */
-    public function educationLevel() : BelongsTo
-    {
-        return $this->belongsTo(EducationLevel::class, 'education_level_id');
-    }
-
-
-    /**
      * subject
      *
      * @return BelongsTo
@@ -83,5 +72,15 @@ class EducationLevelSubject extends Model implements AuditableContract
     public function subject() : BelongsTo
     {
         return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
+    /**
+     * status
+     *
+     * @return BelongsTo
+     */
+    public function status() : BelongsTo
+    {
+        return $this->belongsTo(Status::class, 'status_id');
     }
 }

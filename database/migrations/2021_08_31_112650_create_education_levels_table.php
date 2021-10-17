@@ -25,6 +25,8 @@ class CreateEducationLevelsTable extends Migration
             $table->bigInteger('offer_id')->unsigned();
             $table->foreign('offer_id')->references('id')->on('offers');
 
+            $table->bigInteger('group_area_id')->nullable();
+
             $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

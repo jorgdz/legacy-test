@@ -21,7 +21,7 @@ class AreaGroupController extends Controller implements IAreaGroupController
         $this->areaGroupCache = $areaGroupCache;
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -40,8 +40,9 @@ class AreaGroupController extends Controller implements IAreaGroupController
      */
     public function store(AreaGroupRequest $request)
     {
-        $areaGroup = new AreaGroup($request->all());
-        return $this->success($this->areaGroupCache->save($areaGroup), Response::HTTP_CREATED);
+        return $this->success($this->areaGroupCache
+                ->saveAreaGroupWithSubjects($request->all()),
+            Response::HTTP_CREATED);
     }
 
     /**
@@ -81,16 +82,5 @@ class AreaGroupController extends Controller implements IAreaGroupController
     public function destroy(AreaGroup $areaGroup)
     {
         return $this->success($this->areaGroupCache->destroy($areaGroup));
-    }
-    
-    /**
-     * assignEducationLevelSubjects
-     *
-     * @param  mixed $request
-     * @return void
-     */
-    public function assignEducationLevelSubjects (Request $request, $id) {
-        $this->areaGroupCache->assignEducationLevelSubjects($request, $id);
-        return $this->information(__('messages.assign-subjects-nivelation'));
     }
 }

@@ -110,7 +110,7 @@ interface IAreaGroupController
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
@@ -133,6 +133,22 @@ interface IAreaGroupController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="subjects",
+     *           description="Array de materias de nivelación",
+     *           type="array",
+     *          items={
+     *             "type" : "object",
+     *             "properties" : {
+     *                  "subject_id" : {
+     *                      "type" : "integer",
+     *                  },
+     *                  "status_id" : {
+     *                      "type" : "integer",
+     *                  },
+     *              },
+     *          },
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado",
      *           type="integer",
@@ -148,6 +164,8 @@ interface IAreaGroupController
      *              "arg_description": "nullable|string",
      *              "arg_keywords": "required|string|unique:tenant.group_areas,arg_keywords",
      *              "status_id": "required|integer|exists:tenant.status,id",
+     *              "subjects"        : "nullable|array",
+     *              "subjects.*.subject_id" : "integer|exists:tenant.subjects,id|distinct",
      *          },
      *      ),
      *   ),
@@ -312,66 +330,4 @@ interface IAreaGroupController
      *
      */
     public function destroy(AreaGroup $areaGroup);
-
-    /**
-     * @OA\Post(
-     *   path="/api/group-areas/{ïd}/education-level-subjects",
-     *   tags={"Grupo Areas"},
-     *   security={
-     *      {"api_key_security": {}},
-     *   },
-     *   summary="Asignar materias de nivelacion a una carrera en un grupo",
-     *   description="Asignar materias de nivelacion a una carrera en un grupo",
-     *   operationId="addMateriasNivEducationLevelGroupArea",
-     *   @OA\Parameter(
-     *     name="ïd",
-     *     in="path",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="integer",
-     *       example="1"
-     *     ),
-     *   ),
-     *   @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="application/json",
-     *       @OA\Schema(
-     *         @OA\Property(
-     *           property="education_levels",
-     *           type="array",
-     *           @OA\Items(
-     *             type="integer",
-     *             example="1,2"
-     *           ),
-     *           description="Asignar niveles educativos (carreras)",
-     *         ),
-     *         @OA\Property(
-     *           property="subjects",
-     *           type="array",
-     *           @OA\Items(
-     *             type="integer",
-     *             example="1,2"
-     *           ),
-     *           description="Asignar materias",
-     *         ),
-     *       ),
-     *     ),
-     *   ),
-     *   @OA\Response(response=201, description="Se ha creado correctamente"),
-     *   @OA\Response(response=400, description="No se cumple todos los requisitos",
-     *      @OA\JsonContent(
-     *          example={
-     *              "subjects": "required",
-     *              "education_levels": "required",
-     *          },
-     *      ),
-     *   ),
-     *   @OA\Response(response=401, description="No autenticado"),
-     *   @OA\Response(response=403, description="No autorizado"),
-     *   @OA\Response(response=500, description="Error interno del servidor")
-     * )
-     *
-     */
-    public function assignEducationLevelSubjects (Request $request, $id);
 }

@@ -23,14 +23,4 @@ class AreaGroupRepository extends BaseRepository
     public function __construct(AreaGroup $areaGroup) {
         parent::__construct($areaGroup);
     }
-    
-    /**
-     * assignEducationLevelSubjects
-     *
-     * @param  mixed $request
-     * @return void
-     */
-    public function assignEducationLevelSubjects ($request) {
-
-    }
 }
