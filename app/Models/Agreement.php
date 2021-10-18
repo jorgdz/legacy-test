@@ -32,7 +32,13 @@ class Agreement extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $fillable = ['agr_name', 'agr_num_matter_homologate', 'status_id'];
+    protected $fillable = [
+        'agr_name', 
+        'agr_num_matter_homologate', 
+        'agr_start_date',
+        'agr_end_date',
+        'status_id'
+    ];
 
     /**
      * hidden

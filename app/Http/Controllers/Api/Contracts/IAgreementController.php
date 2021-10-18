@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 interface IAgreementController
 {
-/**
+    /**
      * @OA\Get(
      *   path="/api/agreements",
      *   tags={"Convenios"},
@@ -126,6 +126,20 @@ interface IAgreementController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="agr_start_date",
+     *           description="fecha de inicio del convenio",
+     *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
+     *         ),
+     *         @OA\Property(
+     *           property="agr_end_date",
+     *           description="fecha de fin del convenio",
+     *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del convenio",
      *           type="integer",
@@ -139,6 +153,8 @@ interface IAgreementController
      *      example={
      *           "agr_name" : "required",
      *           "agr_num_matter_homologate" : "nullable|integer",
+     *           "agr_start_date" : "required|date",
+     *           "agr_end_date" : "required|date|after_or_equal:agr_start_date",
      *           "status_id" : "integer|exists:tenant.status,id",
      *      },
      *   )),
@@ -232,6 +248,20 @@ interface IAgreementController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="agr_start_date",
+     *           description="fecha de inicio del convenio",
+     *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
+     *         ),
+     *         @OA\Property(
+     *           property="agr_end_date",
+     *           description="fecha de fin del convenio",
+     *           type="string",
+     *           format="date",
+     *           example="YYYY-MM-DD"
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del convenio",
      *           type="integer",
@@ -245,6 +275,8 @@ interface IAgreementController
      *      example={
      *           "agr_name" : "required",
      *           "agr_num_matter_homologate" : "nullable|integer",
+     *           "agr_start_date" : "required|date",
+     *           "agr_end_date" : "required|date|after_or_equal:agr_start_date",
      *           "status_id" : "integer|exists:tenant.status,id",
      *      },
      *   )),

@@ -24,11 +24,13 @@ interface IAuthController
      *         @OA\Property(
      *           property="us_username",
      *           description="Nombre de usuario",
+     *           example="sistemas",
      *           type="string",
      *         ),
      *         @OA\Property(
      *           property="password",
      *           description="Contrasena del usuario",
+     *           example="password",
      *           type="string",
      *         ),
      *       ),

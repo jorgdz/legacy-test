@@ -869,6 +869,8 @@ return [
 		 */
 		'agr_name' => 'nombre del convenio',
 		'agr_num_matter_homologate' => 'cantidad de materias a homologar',
+		'agr_start_date' => 'fecha inicio del convenio',
+		'agr_end_date' => 'fecha fin del convenio',
 
 		/**
 		 * Departments

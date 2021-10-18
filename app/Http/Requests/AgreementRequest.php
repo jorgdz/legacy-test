@@ -26,6 +26,8 @@ class AgreementRequest extends FormRequest
         return [
             'agr_name' => 'required',
             'agr_num_matter_homologate' => 'nullable|integer',
+            'agr_start_date' => 'required|date',
+            'agr_end_date' => 'required|date|after_or_equal:agr_start_date',
             'status_id' => 'integer|exists:tenant.status,id'
         ];
     }

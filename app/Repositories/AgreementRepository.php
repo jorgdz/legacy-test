@@ -33,7 +33,7 @@ class AgreementRepository extends BaseRepository
      *
      * @var array
      */
-    protected $selfFieldsAndParents = ['agr_name', 'st_name'];
+    protected $selfFieldsAndParents = ['agr_name', 'st_name','agr_start_date','agr_end_date'];
 
     /**
      * __construct
