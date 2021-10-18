@@ -110,6 +110,7 @@ interface IApplicationController
      *           property="app_description",
      *           description="Descripcion de la solicitud",
      *           type="string",
+     *           example="prueba free"
      *         ),
      *         @OA\Property(
      *           property="app_register_date",
@@ -121,6 +122,7 @@ interface IApplicationController
      *           property="typ_app_acronym",
      *           description="Acronimo del tipo de solicitud",
      *           type="string",
+     *           example="CAMCAR-0000001"
      *         ),
      *         @OA\Property(
      *           property="details",
@@ -143,11 +145,6 @@ interface IApplicationController
      *         @OA\Property(
      *           property="role_id",
      *           description="Rol actual que el usuario esta usando",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="status_id",
-     *           description="Estado de la solicitud",
      *           type="integer",
      *         ),
      *       ),
@@ -257,14 +254,10 @@ interface IApplicationController
      *           format="date",
      *         ),
      *         @OA\Property(
-     *           property="typ_app_acronym",
-     *           description="Acronimo del tipo de solicitud (No debe cambiar)",
-     *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="status_id",
-     *           description="Estado de la solicitud",
+     *           property="status",
+     *           description="Id del estado",
      *           type="integer",
+     *           example="1"
      *         ),
      *       ),
      *     ),
@@ -275,10 +268,6 @@ interface IApplicationController
      *          example={
      *              "app_description": "nullable|string",
      *              "app_register_date": "nullable|date",
-     *              "typ_app_acronym": "required|string",
-     *              "details" : "required|array",
-     *              "details.*.config_type_application_id" : "required|integer|exists:tenant.config_type_applications,id",
-     *              "role_id" : "required|integer|exists:tenant.roles,id",
      *              "status_id": "required|integer|exists:tenant.status,id",
      *          },
      *      ),
@@ -457,11 +446,6 @@ interface IApplicationController
      *           description="Rol actual que el usuario esta usando",
      *           type="integer",
      *           example="1",
-     *         ),
-     *         @OA\Property(
-     *           property="status_id",
-     *           description="Estado de la solicitud",
-     *           type="integer",
      *         ),
      *       ),
      *     ),

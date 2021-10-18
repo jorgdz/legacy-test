@@ -66,6 +66,7 @@ return [
     'delete-application-error' => 'The request can only be deleted in the sent state',
     'no-pending-applications' => 'There are no pending requests.',
     'finished_application' => 'This request has ended or was rejected, no modifications are allowed',
-    'no-application-type-change' => 'The application Type cannot change'
+    'no-application-type-change' => 'The application Type cannot change',
+    'occuped-application-order' => 'The order of the request already exists, delete it if you want to change it'
 ];
 ?>

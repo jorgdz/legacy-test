@@ -629,19 +629,19 @@ class DefaultExampleSeeder extends Seeder
         DB::connection('tenant')->table('type_application_status')->insert([
             ['order' => 0, 'type_application_id' => 3, 'status_id' => 10],  //Rechazado
             ['order' => 1, 'type_application_id' => 3, 'status_id' => 11],  //Enviado
-            ['order' => 3, 'type_application_id' => 3, 'status_id' => 13],  //Aceptado
+            ['order' => 2, 'type_application_id' => 3, 'status_id' => 13],  //Aceptado
             ['order' => 0, 'type_application_id' => 4, 'status_id' => 10],  //Rechazado
             ['order' => 1, 'type_application_id' => 4, 'status_id' => 11],  //Enviado
             ['order' => 2, 'type_application_id' => 4, 'status_id' => 15],  //Finalizado
         ]);
 
         DB::connection('tenant')->table('type_application_status_roles')->insert([
-            ['role_id' => 1, 'type_application_status_id' => 1, 'status_id' => 1],
-            ['role_id' => 1, 'type_application_status_id' => 2, 'status_id' => 1],
-            ['role_id' => 1, 'type_application_status_id' => 3, 'status_id' => 1],
-            ['role_id' => 1, 'type_application_status_id' => 4, 'status_id' => 1],
-            ['role_id' => 1, 'type_application_status_id' => 5, 'status_id' => 1],
-            ['role_id' => 1, 'type_application_status_id' => 6, 'status_id' => 1],
+            ['role_id' => 1, 'type_application_status_id' => 1],
+            ['role_id' => 1, 'type_application_status_id' => 2],
+            ['role_id' => 1, 'type_application_status_id' => 3],
+            ['role_id' => 1, 'type_application_status_id' => 4],
+            ['role_id' => 1, 'type_application_status_id' => 5],
+            ['role_id' => 1, 'type_application_status_id' => 6],
         ]);
 
         DB::connection('tenant')->table('transac_type_application_status_roles')->insert([

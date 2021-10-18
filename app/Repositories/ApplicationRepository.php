@@ -85,6 +85,13 @@ class ApplicationRepository extends BaseRepository
     }
 
     public function changeApplicationStatus ($request) {
+        // Consulta el total de estados posibles en una solicitud.
+        $tas_count = TypeApplicationStatus::whereHas('typeApplication', fn ($query) => 
+            $query->whereHas('application', fn ($query) => 
+                $query->where('app_code', $request->app_code)
+                )
+            )->get();
+
         /* 
         *  Toma el estado de la ultima transaccion realizada a una solicitud especifica.
         *  A demas solo se tomara la transaccion en la que el usuario con el role proporcionado
@@ -93,27 +100,27 @@ class ApplicationRepository extends BaseRepository
         $trans_tas = TransacTypeApplicationStatusRoles::where('transac_secuencial', $request->app_code)->orderBy('id', 'desc')
                 ->whereHas('typeApplicationStatusRoles', fn ($query) => 
                     $query->where('role_id', $request->role_id)
-                )
-                ->first();
+                );
 
-        if (!$trans_tas
-            || $trans_tas->typeApplicationStatusRoles->typeApplicationStatus->status->st_name == 'Finalizado'
-            || $trans_tas->typeApplicationStatusRoles->typeApplicationStatus->status->st_name == 'Rechazado')
+        if (!$trans_tas->first()    //Issue menor al recibir un role sin el permiso (funciona correctamente pero muestra el msj equivocado).
+            || $trans_tas->first()->typeApplicationStatusRoles->typeApplicationStatus->status->st_name == 'Finalizado'
+            || $trans_tas->first()->typeApplicationStatusRoles->typeApplicationStatus->status->st_name == 'Rechazado'
+            || $trans_tas->count() >= $tas_count->count() - 1)              // Si el historia de la solicitud es mayor o igual al total de posibles estados de la solicitud
             return $this->information(__('messages.finished_application'));
 
-        // Si se rechaza la solicitud
-        if ($request->refused == 1) {
+        
+        if ($request->refused == 1) {           // Si se rechaza la solicitud
             // Consulta el orden valor 0 de estado que tomara la transaccion.
             $order = TypeApplicationStatus::where('order', 0)
-            ->where('type_application_id', $trans_tas->typeApplicationStatusRoles->typeApplicationStatus->type_application_id)
+            ->where('type_application_id', $trans_tas->first()->typeApplicationStatusRoles->typeApplicationStatus->type_application_id)
             ->first();
-
+            
             if (!$order)
                 return $this->information(__('messages.finished_application'));
         } else {
             // Consulta el siguiente orden de cambio de estado que tomara la transaccion.
-            $order = TypeApplicationStatus::where('order', $trans_tas->typeApplicationStatusRoles->typeApplicationStatus->order + 1)
-                    ->where('type_application_id', $trans_tas->typeApplicationStatusRoles->typeApplicationStatus->type_application_id)
+            $order = TypeApplicationStatus::where('order', $trans_tas->first()->typeApplicationStatusRoles->typeApplicationStatus->order + 1)
+                    ->where('type_application_id', $trans_tas->first()->typeApplicationStatusRoles->typeApplicationStatus->type_application_id)
                     ->first();
 
             if (!$order)
@@ -129,24 +136,24 @@ class ApplicationRepository extends BaseRepository
         // Si se rechaza la solicitud
         if ($request->refused == 1) {
             $transac = TransacTypeApplicationStatusRoles::create([
-                'transac_secuencial' => $trans_tas->transac_secuencial,
+                'transac_secuencial' => $trans_tas->first()->transac_secuencial,
                 'transac_register_date' =>  date("Y-m-d"),
                 'transac_comments' => $request->comment,
                 'user' => Auth::user()->us_username,
                 'type_application_status_roles_id' => $tasRole->id,
-                'status_id' => $trans_tas->status_id,
+                'status_id' => $trans_tas->first()->status_id,
             ]);
 
             return $this->success(new TransaccResource($transac));
         }
 
         $transac = TransacTypeApplicationStatusRoles::create([
-            'transac_secuencial' => $trans_tas->transac_secuencial,
+            'transac_secuencial' => $trans_tas->first()->transac_secuencial,
             'transac_register_date' =>  date("Y-m-d"),
             'transac_comments' => $request->comment,
             'user' => Auth::user()->us_username,
             'type_application_status_roles_id' => $tasRole->id,
-            'status_id' => $trans_tas->status_id,
+            'status_id' => $trans_tas->first()->status_id,
         ]);
         
         return $this->success(new TransaccResource($transac));

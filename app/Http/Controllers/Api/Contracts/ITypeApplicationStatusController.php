@@ -101,16 +101,11 @@ interface ITypeApplicationStatusController
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
      *           description="Id del perfil de usuario",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
-     *           property="order",
-     *           description="Orden de la configuracion de solicitud",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -124,9 +119,18 @@ interface ITypeApplicationStatusController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="role_id",
-     *           description="ID del Role que podra acceder a esta configuracion",
-     *           type="integer",
+     *           property="roles",
+     *           description="Array de objetos tipo role que se vincularan al estado",
+     *           type="array",
+     *           items={
+     *               "type" : "object",
+     *               "properties" : {
+     *                   "role_id" : {
+     *                       "type" : "integer",
+     *                       "example" : "1",
+     *                   },
+     *               }
+     *           },
      *         ),
      *       ),
      *     ),
@@ -220,11 +224,6 @@ interface ITypeApplicationStatusController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="order",
-     *           description="Orden de la configuracion de solicitud",
-     *           type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="type_application_id",
      *           description="ID del tipo solicitud",
      *           type="integer",
@@ -233,6 +232,20 @@ interface ITypeApplicationStatusController
      *           property="status_id",
      *           description="Estado de configuracion del tipo solicitud (Solo estados pertenecientes a la categoria Documentos)",
      *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="roles",
+     *           description="Array de objetos tipo role que se vincularan al estado",
+     *           type="array",
+     *           items={
+     *               "type" : "object",
+     *               "properties" : {
+     *                   "role_id" : {
+     *                       "type" : "integer",
+     *                       "example" : "1",
+     *                   },
+     *               }
+     *           },
      *         ),
      *       ),
      *     ),
@@ -244,6 +257,8 @@ interface ITypeApplicationStatusController
      *              "order" : "required|integer",
      *              "type_application_id" : "required|exists:tenant.type_applications,id",
      *              "status_id" : "required|exists:tenant.status,id",
+     *              "roles" : "required|array",
+     *              "roles.*.role_id" : "required|exists:tenant.roles,id"
      *          },
      *      ),
      *   ),

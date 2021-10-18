@@ -6,7 +6,7 @@ use App\Models\TypeApplicationStatus;
 use App\Repositories\Base\BaseRepository;
 
 /**
- * CampusRepository
+ * typeApplicationStatus repository
  */
 class TypeApplicationStatusRepository extends BaseRepository
 {
@@ -16,7 +16,7 @@ class TypeApplicationStatusRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['typeApplication', 'status'];
+    protected $relations = ['typeApplication', 'typeApplicationStatusRoles', 'status'];
 
     /**
      * parents

@@ -67,6 +67,7 @@ class ApplicationController extends Controller implements IApplicationController
         $application->app_code = $typeApp->typ_app_acronym . '-' . str_pad(Application::withTrashed()->count() + 1, 7, "0", STR_PAD_LEFT);
         $application->type_application_id = $typeApp->id;
         $application->user_id = Auth::user()->id;
+        $application->status_id = 1;
         $application->save();
 
         // Guarda los valores de los detalles de la solicitud

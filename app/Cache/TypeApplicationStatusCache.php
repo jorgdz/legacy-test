@@ -2,6 +2,8 @@
 
 namespace App\Cache;
 
+use App\Models\Status;
+use App\Models\TypeApplicationStatus;
 use App\Repositories\TypeApplicationStatusRepository;
 use Illuminate\Database\Eloquent\Model;
 
@@ -61,5 +63,29 @@ class TypeApplicationStatusCache extends BaseCache {
     public function destroy (Model $model) {
         $this->forgetCache('typeApplicationsStatus');
         return $this->repository->destroy($model);
+    }
+
+    public function validaStatus ($request) {
+        return TypeApplicationStatus::where('type_application_id', $request->type_application_id);
+    }
+
+    public function createDefaultStatus ($request) {
+        $tas = new TypeApplicationStatus();
+        $tas->order = 0;
+        $tas->type_application_id = $request->type_application_id;
+        $tas->status_id = Status::where('st_name', 'Rechazado')->first()->id;
+        $tas->save();
+
+        $tas->typeApplicationStatusRoles()->delete();
+
+        $tas2 = new TypeApplicationStatus();
+        $tas2->order = 1;
+        $tas2->type_application_id = $request->type_application_id;
+        $tas2->status_id = Status::where('st_name', 'Enviado')->first()->id;
+        $tas2->save();
+
+        // Se proporcionan los roles enviados al orden creado.
+        $tas->typeApplicationStatusRoles()->createMany($request->roles);
+        $tas2->typeApplicationStatusRoles()->createMany($request->roles);
     }
 }

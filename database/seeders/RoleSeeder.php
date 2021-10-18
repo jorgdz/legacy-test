@@ -3968,6 +3968,112 @@ class RoleSeeder extends Seeder
                 'parent_name_translated' => 'aulas',
                 'module_group' => 'academic'
             ],
+            /**
+             * Homologacion Externa 366-370
+             */
+            [
+                'name' => 'external-homologations-listar-homologacion-externa',
+                'alias' => 'Listar homologacion externa',
+                'description' => 'Listar todas las homologaciones externas',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'externalHomologation',
+                'parent_name_translated' => 'homologacion externa',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'external-homologations-obtener-homologacion-externa',
+                'alias' => 'Obtener homologacion externa',
+                'description' => 'Obtener una homologacion externa por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'externalHomologation',
+                'parent_name_translated' => 'homologacion externa',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'external-homologations-crear-homologacion-externa',
+                'alias' => 'Crear homologacion externa',
+                'description' => 'Agregar una homologacion externa',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'externalHomologation',
+                'parent_name_translated' => 'homologacion externa',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'external-homologations-actualizar-homologacion-externa',
+                'alias' => 'Actualizar homologacion externa',
+                'description' => 'Actualizar una homologacion externa por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'externalHomologation',
+                'parent_name_translated' => 'homologacion externa',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'external-homologations-borrar-homologacion-externa',
+                'alias' => 'Eliminar homologacion externa',
+                'description' => 'Eliminar homologacion externa por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'externalHomologation',
+                'parent_name_translated' => 'homologacion externa',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Materia Institucion 371-375
+             */
+            [
+                'name' => 'institution-subjects-listar-materias-institucion',
+                'alias' => 'Listar materia institucion',
+                'description' => 'Listar todas las materias de las instituciones',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutionSubject',
+                'parent_name_translated' => 'materia institucion',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'institution-subjects-obtener-materia-institucion',
+                'alias' => 'Obtener materia institucion',
+                'description' => 'Obtener una materia institucion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutionSubject',
+                'parent_name_translated' => 'materia institucion',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'institution-subjects-crear-materia-institucion',
+                'alias' => 'Crear materia institucion',
+                'description' => 'Agregar una materia institucion',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutionSubject',
+                'parent_name_translated' => 'materia institucion',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'institution-subjects-actualizar-materia-institucion',
+                'alias' => 'Actualizar materia institucion',
+                'description' => 'Actualizar una materia institucion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutionSubject',
+                'parent_name_translated' => 'materia institucion',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'institution-subjects-borrar-materia-institucion',
+                'alias' => 'Eliminar materia institucion',
+                'description' => 'Eliminar materia institucion por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'institutionSubject',
+                'parent_name_translated' => 'materia institucion',
+                'module_group' => 'academic'
+            ],
         ]);
 
         /**
@@ -4621,6 +4727,22 @@ class RoleSeeder extends Seeder
              * Aula 365
              */
             ['permission_id' => 365, 'role_id' => 1],
+            /**
+             * Homologacion Externa 366-370
+             */
+            ['permission_id' => 366, 'role_id' => 1],
+            ['permission_id' => 367, 'role_id' => 1],
+            ['permission_id' => 368, 'role_id' => 1],
+            ['permission_id' => 369, 'role_id' => 1],
+            ['permission_id' => 370, 'role_id' => 1],
+            /**
+             * Materia Institucion 371-375
+             */
+            ['permission_id' => 371, 'role_id' => 1],
+            ['permission_id' => 372, 'role_id' => 1],
+            ['permission_id' => 373, 'role_id' => 1],
+            ['permission_id' => 374, 'role_id' => 1],
+            ['permission_id' => 375, 'role_id' => 1],
         ]);
 
         /**
@@ -5248,6 +5370,22 @@ class RoleSeeder extends Seeder
              * Aula 365
              */
             ['permission_id' => 365, 'role_id' => 2],
+            /**
+             * Homologacion Externa 366-370
+             */
+            ['permission_id' => 366, 'role_id' => 2],
+            ['permission_id' => 367, 'role_id' => 2],
+            ['permission_id' => 368, 'role_id' => 2],
+            ['permission_id' => 369, 'role_id' => 2],
+            ['permission_id' => 370, 'role_id' => 2],
+            /**
+             * Materia Institucion 371-375
+             */
+            ['permission_id' => 371, 'role_id' => 2],
+            ['permission_id' => 372, 'role_id' => 2],
+            ['permission_id' => 373, 'role_id' => 2],
+            ['permission_id' => 374, 'role_id' => 2],
+            ['permission_id' => 375, 'role_id' => 2],
         ]);
 
         /**

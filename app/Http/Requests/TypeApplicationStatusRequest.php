@@ -24,10 +24,11 @@ class TypeApplicationStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            'order' => 'required|integer',
+            // 'order' => 'required|integer',
             'type_application_id' => 'required|exists:tenant.type_applications,id',
             'status_id' => 'required|exists:tenant.status,id',
-            'role_id' => 'required|exists:tenant.roles,id'
+            'roles' => 'required|array',
+            'roles.*.role_id' => 'required|exists:tenant.roles,id'
         ];
     }
 }

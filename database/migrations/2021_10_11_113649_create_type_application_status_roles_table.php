@@ -18,10 +18,9 @@ class CreateTypeApplicationStatusRolesTable extends Migration
 
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
+            
             $table->bigInteger('type_application_status_id')->unsigned();
             $table->foreign('type_application_status_id')->references('id')->on('type_application_status');
-            $table->bigInteger('status_id')->unsigned();
-            $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();
             $table->softDeletes();

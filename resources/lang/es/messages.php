@@ -68,5 +68,6 @@ return [
     'delete-application-error' => 'La solicitud solo se puede eliminar en estado de enviado',
     'no-pending-applications' => 'No hay solicitudes pendientes.',
     'finished_application' => 'Esta solicitud ha finalizado o fue rechazada, no se permiten modificaciones.',
-    'no-application-type-change' => 'El tipo de solicitud no puede cambiar'
+    'no-application-type-change' => 'El tipo de solicitud no puede cambiar',
+    'occuped-application-order' => 'El orden de la solicitud ya existe, elimínelo si desea cambiarlo'
 ];

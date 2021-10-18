@@ -40,7 +40,7 @@ class ApplicationRequest extends FormRequest
             "details"                               => "required|array",
             "details.*.config_type_application_id"  => "required|integer|exists:tenant.config_type_applications,id",
             "role_id"                               => "required|integer|exists:tenant.roles,id",
-            "status_id"                             => "required|integer|exists:tenant.status,id",
+            // "status_id"                             => "required|integer|exists:tenant.status,id",
         ];
 
         return $rules;

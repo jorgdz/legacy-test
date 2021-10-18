@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
@@ -20,19 +21,26 @@ class TypeApplicationStatusRoles extends Model implements AuditableContract
     protected $fillable = [
         'role_id',
         'type_application_status_id',
-        'status_id'
     ];
 
     protected $relations = [
         'type_application_status_id',
-        'role_id',
-        'status_id'
+        'role_id'
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $dates = ['deleted_at'];
-        
+    
+    /**
+     * transacTypeApplicationStatusRoles
+     *
+     * @return HasMany
+     */
+    public function transacTypeApplicationStatusRoles() : HasMany {
+        return $this->hasMany(TransacTypeApplicationStatusRoles::class);
+    }
+
     /**
      * typeApplicationStatus
      *
@@ -49,14 +57,5 @@ class TypeApplicationStatusRoles extends Model implements AuditableContract
      */
     public function roles(): BelongsTo {
         return $this->belongsTo(Role::class, 'role_id');
-    }
-
-    /**
-     * status
-     *
-     * @return BelongsTo
-     */
-    public function status(): BelongsTo {
-        return $this->belongsTo(Status::class, 'status_id');
     }
 }

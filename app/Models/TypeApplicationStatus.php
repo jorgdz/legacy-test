@@ -19,7 +19,7 @@ class TypeApplicationStatus extends Model implements AuditableContract
     protected $table = 'type_application_status';
 
     protected $fillable = [
-        'order',
+        // 'order',
         'type_application_id',
         'status_id'
     ];
