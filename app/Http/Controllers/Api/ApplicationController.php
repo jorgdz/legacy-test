@@ -38,7 +38,7 @@ class ApplicationController extends Controller implements IApplicationController
     {
         return $this->success($this->applicationCache->all($request));
     }
-    
+
     /**
      * store
      *
@@ -56,7 +56,7 @@ class ApplicationController extends Controller implements IApplicationController
         $tas = TypeApplicationStatus::whereHas('status', fn ($query) => $query->where('st_name', '=', 'Enviado'))->where('type_application_id', $typeApp->id)->first();
         if (!$tas)
             return $this->information(__('messages.status-not-available'));
-            
+
         // Comprueba que el usuario posea el rol para "enviar" una solicitud
         $tasRole = TypeApplicationStatusRoles::where('type_application_status_id', $tas->id)->where('role_id', $request->role_id)->first();
         if (!$tasRole)
@@ -84,7 +84,7 @@ class ApplicationController extends Controller implements IApplicationController
 
         return $this->success($application);
     }
-    
+
     /**
      * show
      *
@@ -95,7 +95,7 @@ class ApplicationController extends Controller implements IApplicationController
     {
         return $this->success($this->applicationCache->find($id));
     }
-        
+
     /**
      * update
      *
@@ -110,7 +110,7 @@ class ApplicationController extends Controller implements IApplicationController
 
         return $this->success($this->applicationCache->save($application->fill($request->all())));
     }
-    
+
     /**
      * destroy
      *
@@ -121,13 +121,13 @@ class ApplicationController extends Controller implements IApplicationController
     {
         //Se elimina la solicitud unicamente si esta en estado "enviado" actualmente
         $trans_tas = TransacTypeApplicationStatusRoles::where('transac_secuencial', $application->app_code)->orderBy('id', 'desc')->first();
-        
+
         if (!$trans_tas || $trans_tas->typeApplicationStatusRoles->typeApplicationStatus->status->st_name != 'Enviado')
             return $this->information(__('messages.delete-application-error'));
 
         return $this->success($this->applicationCache->destroy($application));
     }
-    
+
     /**
      * getAllApplicationStatus
      *
@@ -138,10 +138,11 @@ class ApplicationController extends Controller implements IApplicationController
      * @param  mixed $role
      * @return void
      */
-    public function getAllApplicationStatus($role) {
+    public function getAllApplicationStatus($role)
+    {
         return $this->success($this->applicationCache->getAllApplicationStatus($role));
     }
-    
+
     /**
      * showApplicationStatus
      *
@@ -150,10 +151,11 @@ class ApplicationController extends Controller implements IApplicationController
      * @param  mixed $id
      * @return void
      */
-    public function showApplicationStatus($code) {
+    public function showApplicationStatus($code)
+    {
         return $this->success($this->applicationCache->showApplicationStatus($code));
     }
-    
+
     /**
      * changeApplicationStatus
      *
@@ -164,7 +166,8 @@ class ApplicationController extends Controller implements IApplicationController
      * @param  mixed $request
      * @return void
      */
-    public function changeApplicationStatus(Request $request) {
+    public function changeApplicationStatus(Request $request)
+    {
         $request->validate([
             "app_code"  => "required|exists:tenant.applications,app_code",
             "role_id"   => "required|exists:tenant.roles,id",

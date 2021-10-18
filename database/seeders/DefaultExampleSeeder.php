@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 /*
  No agregar este seeder al DatabaseSeeder
 */
+
 class DefaultExampleSeeder extends Seeder
 {
     /**
@@ -173,7 +174,7 @@ class DefaultExampleSeeder extends Seeder
         DB::connection('tenant')->table('curriculums')->insert([
             [
                 'mes_name' => 'Malla Curricular', 'mes_res_cas' => NULL, 'mes_res_ocas' => NULL, 'mes_cod_career' => 'QWERTY.Q1', 'mes_title' => 'Malla Titulo', 'mes_itinerary' => NULL,
-                'mes_number_matter' => 43, 'mes_number_period' => 8, 'mes_quantity_external_matter_homologate' => 1, 'mes_quantity_internal_matter_homologate' => 2,'mes_creation_date' => '1995-07-21', 'mes_acronym' => 'MS1', 'anio' => '2018',
+                'mes_number_matter' => 43, 'mes_number_period' => 8, 'mes_quantity_external_matter_homologate' => 1, 'mes_quantity_internal_matter_homologate' => 2, 'mes_creation_date' => '1995-07-21', 'mes_acronym' => 'MS1', 'anio' => '2018',
                 'mes_modality_id' => 71, 'type_calification_id' => 2, 'level_edu_id' => 2, 'mes_description' => NULL, 'status_id' => 9
             ],
         ]);
@@ -337,7 +338,8 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('hourhands')->insert([
-            ['hour_monday' => 1, 'hour_tuesday' => 1, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 0, 'hour_sunday' => 0,
+            [
+                'hour_monday' => 1, 'hour_tuesday' => 1, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 0, 'hour_sunday' => 0,
                 'hour_start_time_monday' => '08:00:00', 'hour_end_time_monday' => '08:30:00',
                 'hour_start_time_tuesday' => '08:00:00', 'hour_end_time_tuesday' => '08:30:00',
                 'hour_start_time_wednesday' => '08:00:00', 'hour_end_time_wednesday' => '08:30:00',
@@ -345,9 +347,11 @@ class DefaultExampleSeeder extends Seeder
                 'hour_start_time_friday' => '08:00:00', 'hour_end_time_friday' => '08:30:00',
                 'hour_start_time_saturday' => NULL, 'hour_end_time_saturday' => NULL,
                 'hour_start_time_sunday' => NULL, 'hour_end_time_sunday' => NULL,
-                'hour_description' => 'horario 1', 'status_id' => 1],
+                'hour_description' => 'horario 1', 'status_id' => 1
+            ],
 
-            ['hour_monday' => 1, 'hour_tuesday' => 0, 'hour_wednesday' => 0, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 0,
+            [
+                'hour_monday' => 1, 'hour_tuesday' => 0, 'hour_wednesday' => 0, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 0,
                 'hour_start_time_monday' => '08:00:00', 'hour_end_time_monday' => '08:30:00',
                 'hour_start_time_tuesday' => NULL, 'hour_end_time_tuesday' => NULL,
                 'hour_start_time_wednesday' => NULL, 'hour_end_time_wednesday' => NULL,
@@ -355,9 +359,11 @@ class DefaultExampleSeeder extends Seeder
                 'hour_start_time_friday' => '08:00:00', 'hour_end_time_friday' => '08:30:00',
                 'hour_start_time_saturday' => '08:00:00', 'hour_end_time_saturday' => '08:30:00',
                 'hour_start_time_sunday' => NULL, 'hour_end_time_sunday' => NULL,
-                'hour_description' => 'horario 2', 'status_id' => 1],
+                'hour_description' => 'horario 2', 'status_id' => 1
+            ],
 
-            ['hour_monday' => 0, 'hour_tuesday' => 0, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 1,
+            [
+                'hour_monday' => 0, 'hour_tuesday' => 0, 'hour_wednesday' => 1, 'hour_thursday' => 1, 'hour_friday' => 1, 'hour_saturday' => 1, 'hour_sunday' => 1,
                 'hour_start_time_monday' => NULL, 'hour_end_time_monday' => NULL,
                 'hour_start_time_tuesday' => NULL, 'hour_end_time_tuesday' => NULL,
                 'hour_start_time_wednesday' => '08:00:00', 'hour_end_time_wednesday' => '08:30:00',
@@ -370,56 +376,56 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('subject_curriculum')->insert([
-            ['mesh_id' => 1, 'matter_id' => 1,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Matemática básica', 'group' => 1, 'order' => 1, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 2,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Lenguaje y comunicación', 'group' => 1, 'order' => 2, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 3,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Historia del Ecuador', 'group' => 1, 'order' => 3, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 4,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Cálculo diferencial integral 1', 'group' => 1, 'order' => 4, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 5,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Cálculo diferencial integral 2', 'group' => 1, 'order' => 5, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 6,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Cálculo diferencial integral 3', 'group' => 1, 'order' => 6, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 1,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Matemática básica', 'group' => 1, 'order' => 1, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 2,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Lenguaje y comunicación', 'group' => 1, 'order' => 2, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 3,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Historia del Ecuador', 'group' => 1, 'order' => 3, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 4,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Cálculo diferencial integral 1', 'group' => 1, 'order' => 4, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 5,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Cálculo diferencial integral 2', 'group' => 1, 'order' => 5, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 6,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Cálculo diferencial integral 3', 'group' => 1, 'order' => 6, 'status_id' => 1],
 
-            ['mesh_id' => 1, 'matter_id' => 7,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Constitucional General', 'group' => 2, 'order' => 7, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 8,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Civil de Personas', 'group' => 2, 'order' => 8, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 9,  'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Penal I', 'group' => 2, 'order' => 9, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 10, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Teoría General del Proceso', 'group' => 2, 'order' => 10, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 11, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Ética y Emprendimiento', 'group' => 2, 'order' => 11, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 12, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Sociología Criminal', 'group' => 2, 'order' => 12, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 7,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Constitucional General', 'group' => 2, 'order' => 7, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 8,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Civil de Personas', 'group' => 2, 'order' => 8, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 9,  'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Penal I', 'group' => 2, 'order' => 9, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 10, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Teoría General del Proceso', 'group' => 2, 'order' => 10, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 11, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Ética y Emprendimiento', 'group' => 2, 'order' => 11, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 12, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Sociología Criminal', 'group' => 2, 'order' => 12, 'status_id' => 1],
 
-            ['mesh_id' => 1, 'matter_id' => 13, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Administrativo', 'group' => 3, 'order' => 13, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 14, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Civil Bienes I', 'group' => 3, 'order' => 14, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 15, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho de Familia', 'group' => 3, 'order' => 15, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 16, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Penal II', 'group' => 3, 'order' => 16, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 17, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Internacional Público', 'group' => 3, 'order' => 17, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 18, 'simbology_id'=> 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Metodología de Investigación', 'group' => 3, 'order' => 18, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 13, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Administrativo', 'group' => 3, 'order' => 13, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 14, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Civil Bienes I', 'group' => 3, 'order' => 14, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 15, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho de Familia', 'group' => 3, 'order' => 15, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 16, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Penal II', 'group' => 3, 'order' => 16, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 17, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Internacional Público', 'group' => 3, 'order' => 17, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 18, 'simbology_id' => 1, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Metodología de Investigación', 'group' => 3, 'order' => 18, 'status_id' => 1],
 
-            ['mesh_id' => 1, 'matter_id' => 19, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Procesal Constitucional', 'group' => 4, 'order' => 19, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 20, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Civil Bienes II', 'group' => 4, 'order' => 20, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 21, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Procedimiento Penal', 'group' => 4, 'order' => 21, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 22, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Teoría General de los Actos Jurídicos', 'group' => 4, 'order' => 22, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 23, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Municipal y Gobiernos Locales', 'group' => 4, 'order' => 23, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 24, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Ambiental', 'group' => 4, 'order' => 24, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 19, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Procesal Constitucional', 'group' => 4, 'order' => 19, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 20, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Civil Bienes II', 'group' => 4, 'order' => 20, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 21, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Procedimiento Penal', 'group' => 4, 'order' => 21, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 22, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Teoría General de los Actos Jurídicos', 'group' => 4, 'order' => 22, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 23, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Municipal y Gobiernos Locales', 'group' => 4, 'order' => 23, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 24, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Ambiental', 'group' => 4, 'order' => 24, 'status_id' => 1],
 
-            ['mesh_id' => 1, 'matter_id' => 25, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derechos de las Obligaciones', 'group' => 5, 'order' => 25, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 26, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Procedimiento Civil I', 'group' => 5, 'order' => 26, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 27, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Mercantil', 'group' => 5, 'order' => 27, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 28, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Métodos Alternos de Solución de Conflictos', 'group' => 5, 'order' => 28, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 29, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Asignatura I del Itinerario', 'group' => 5, 'order' => 29, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 25, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derechos de las Obligaciones', 'group' => 5, 'order' => 25, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 26, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Procedimiento Civil I', 'group' => 5, 'order' => 26, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 27, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Mercantil', 'group' => 5, 'order' => 27, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 28, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Métodos Alternos de Solución de Conflictos', 'group' => 5, 'order' => 28, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 29, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Asignatura I del Itinerario', 'group' => 5, 'order' => 29, 'status_id' => 1],
 
-            ['mesh_id' => 1, 'matter_id' => 30, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho de Contratos I', 'group' => 6, 'order' => 30, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 31, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Procedimiento Civil II', 'group' => 6, 'order' => 31, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 32, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Societario', 'group' => 6, 'order' => 32, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 33, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Propiedad Intelectual', 'group' => 6, 'order' => 33, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 34, 'simbology_id'=> 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Asignatura II del Itinerario', 'group' => 6, 'order' => 34, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 30, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho de Contratos I', 'group' => 6, 'order' => 30, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 31, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Procedimiento Civil II', 'group' => 6, 'order' => 31, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 32, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Societario', 'group' => 6, 'order' => 32, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 33, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Propiedad Intelectual', 'group' => 6, 'order' => 33, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 34, 'simbology_id' => 2, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Asignatura II del Itinerario', 'group' => 6, 'order' => 34, 'status_id' => 1],
 
-            ['mesh_id' => 1, 'matter_id' => 35, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho de Contratos II', 'group' => 7, 'order' => 35, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 36, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Tributario', 'group' => 7, 'order' => 36, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 37, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Sucesiones', 'group' => 7, 'order' => 37, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 38, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho del Trabajo', 'group' => 7, 'order' => 38, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 35, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho de Contratos II', 'group' => 7, 'order' => 35, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 36, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Tributario', 'group' => 7, 'order' => 36, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 37, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Sucesiones', 'group' => 7, 'order' => 37, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 38, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho del Trabajo', 'group' => 7, 'order' => 38, 'status_id' => 1],
 
-            ['mesh_id' => 1, 'matter_id' => 39, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Práctica Civil', 'group' => 8, 'order' => 39, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 40, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Proyecto Integrador', 'group' => 8, 'order' => 40, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 41, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Internacional Privado', 'group' => 8, 'order' => 41, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 42, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho de Recursos no Renovables', 'group' => 8, 'order' => 42, 'status_id' => 1],
-            ['mesh_id' => 1, 'matter_id' => 43, 'simbology_id'=> 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Asignatura II del Itinerario', 'group' => 8, 'order' => 43, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 39, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Práctica Civil', 'group' => 8, 'order' => 39, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 40, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Proyecto Integrador', 'group' => 8, 'order' => 40, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 41, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho Internacional Privado', 'group' => 8, 'order' => 41, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 42, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Derecho de Recursos no Renovables', 'group' => 8, 'order' => 42, 'status_id' => 1],
+            ['mesh_id' => 1, 'matter_id' => 43, 'simbology_id' => 3, 'can_homologate' => 1, 'min_note' => 8, 'min_calification' => 7, 'max_calification' => 9, 'num_fouls' => 3, 'matter_rename' => 'Asignatura II del Itinerario', 'group' => 8, 'order' => 43, 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('subject_curriculum_dependencies')->insert([
@@ -608,13 +614,14 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('config_type_applications')->insert([
-            ['conf_typ_description' => 'Cambio de carrera - Json Data', 'conf_typ_data_type' => 'Json', 'conf_typ_object_name' => 'App\Models\Curriculum', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => '', 'type_application_id' => 3, 'status_id' => 1],
-            ['conf_typ_description' => 'Homologacion externa - id institucion proveniente', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Institute', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => '', 'type_application_id' => 4, 'status_id' => 1],
-            ['conf_typ_description' => 'Homologacion externa - id malla nueva', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Curriculum', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => '', 'type_application_id' => 4, 'status_id' => 1],
-            ['conf_typ_description' => 'Homologacion externa - Json Data', 'conf_typ_data_type' => 'Json', 'conf_typ_object_name' => 'App\Models\Curriculum', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => '', 'type_application_id' => 4, 'status_id' => 1],
+            ['conf_typ_description' => 'Cambio de Carrera - json', 'conf_typ_data_type' => 'json', 'conf_typ_object_name' => NULL, 'conf_typ_object_id' => NULL, 'conf_typ_file_path' => NULL, 'type_application_id' => 3, 'status_id' => 1],
+            ['conf_typ_description' => 'Homologacion externa - id institucion proveniente', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Institute', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => NULL, 'type_application_id' => 4, 'status_id' => 1],
+            ['conf_typ_description' => 'Homologacion externa - id malla destino', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Curriculum', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => NULL, 'type_application_id' => 4, 'status_id' => 1],
+            ['conf_typ_description' => 'Homologacion externa - id persona', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Person', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => NULL, 'type_application_id' => 4, 'status_id' => 1],
+            ['conf_typ_description' => 'Homologacion externa - json', 'conf_typ_data_type' => 'json', 'conf_typ_object_name' => NULL, 'conf_typ_object_id' => NULL, 'conf_typ_file_path' => NULL, 'type_application_id' => 4, 'status_id' => 1],
         ]);
 
-        DB::connection('tenant')->table('applications')->insert([
+        /* DB::connection('tenant')->table('applications')->insert([
             ['app_code' => 'CAMCAR-0000001', 'app_description' => 'Solicitud de cambio de carrera ejemplo', 'app_register_date' => '2021-10-11', 'user_id' => 1, 'type_application_id' => 3, 'status_id' => 1],
             ['app_code' => 'HOMEXT-0000002', 'app_description' => 'Solicitud de homologacion externa ejemplo', 'app_register_date' => '2021-10-11', 'user_id' => 1, 'type_application_id' => 4, 'status_id' => 1],
         ]);
@@ -624,7 +631,7 @@ class DefaultExampleSeeder extends Seeder
             ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 2],
             ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 3],
             ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 4],
-        ]);
+        ]); */
 
         DB::connection('tenant')->table('type_application_status')->insert([
             ['order' => 0, 'type_application_id' => 3, 'status_id' => 10],  //Rechazado
@@ -642,11 +649,14 @@ class DefaultExampleSeeder extends Seeder
             ['role_id' => 1, 'type_application_status_id' => 4],
             ['role_id' => 1, 'type_application_status_id' => 5],
             ['role_id' => 1, 'type_application_status_id' => 6],
+            ['role_id' => 19, 'type_application_status_id' => 4],
+            ['role_id' => 19, 'type_application_status_id' => 5],
+            ['role_id' => 19, 'type_application_status_id' => 6],
         ]);
 
-        DB::connection('tenant')->table('transac_type_application_status_roles')->insert([
+        /* DB::connection('tenant')->table('transac_type_application_status_roles')->insert([
             ['transac_secuencial' => 'CAMCAR-0000001', 'transac_register_date' => date('m-d-Y h:i:s a', time()), 'transac_comments' => 'Nueva solicitud cambio de carrera', 'user' => 'phoppe', 'type_application_status_roles_id' => 2, 'status_id' => 1],
             ['transac_secuencial' => 'HOMEXT-0000002', 'transac_register_date' => date('m-d-Y h:i:s a', time()), 'transac_comments' => 'Nueva solicitud homologacion externa', 'user' => 'phoppe', 'type_application_status_roles_id' => 5, 'status_id' => 1],
-        ]);
+        ]); */
     }
 }

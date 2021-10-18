@@ -33,6 +33,7 @@ class RoleSeeder extends Seeder
             ['name' => 'RECURSOS HUMANOS', 'keyword' => 'recursos-humanos', 'description' => 'Rol de Recursos Humanos', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'DOCENTES', 'keyword' => 'docente', 'description' => 'Rol de Docentes', 'guard_name' => 'api', 'status_id' => 1],
             ['name' => 'FINANZAS', 'keyword' => 'financiero', 'description' => 'Rol de Finanzas', 'guard_name' => 'api', 'status_id' => 1],
+            ['name' => 'COORDINADOR FACULTAD', 'keyword' => 'coordinador-facultad', 'description' => 'Rol de Coordinador de Facultad', 'guard_name' => 'api', 'status_id' => 1],
         ]);
 
         DB::connection('tenant')->table('permissions')->insert([
@@ -3216,8 +3217,6 @@ class RoleSeeder extends Seeder
                 'module_group' => 'academic'
             ],
         ]);
-   
-
 
         DB::connection('tenant')->table('permissions')->insert([
             /**
@@ -3417,94 +3416,94 @@ class RoleSeeder extends Seeder
                 'module_group' => 'academic'
             ],
             /**
-            * Colaboradores 315-317
-            */
+             * Colaboradores 315-317
+             */
             [
-               'name' => 'collaborators-listar-colaborador',
-               'alias' => 'Listar colaborador',
-               'description' => 'Listar todos los colaboradores',
-               'guard_name' => 'api',
-               'status_id' => 1,
-               'parent_name' => 'collaborator',
-               'parent_name_translated' => 'colaboradores',
-               'module_group' => 'academic'
+                'name' => 'collaborators-listar-colaborador',
+                'alias' => 'Listar colaborador',
+                'description' => 'Listar todos los colaboradores',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaborator',
+                'parent_name_translated' => 'colaboradores',
+                'module_group' => 'academic'
             ],
             [
-               'name' => 'collaborators-actualizar-colaborador',
-               'alias' => 'Actualizar colaborador',
-               'description' => 'Actualiza un colaborador',
-               'guard_name' => 'api',
-               'status_id' => 1,
-               'parent_name' => 'collaborator',
-               'parent_name_translated' => 'colaboradores',
-               'module_group' => 'academic'
+                'name' => 'collaborators-actualizar-colaborador',
+                'alias' => 'Actualizar colaborador',
+                'description' => 'Actualiza un colaborador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaborator',
+                'parent_name_translated' => 'colaboradores',
+                'module_group' => 'academic'
             ],
             [
-               'name' => 'collaborators-eliminar-colaborador',
-               'alias' => 'Eliminar colaborador',
-               'description' => 'Elimina un colaborador',
-               'guard_name' => 'api',
-               'status_id' => 1,
-               'parent_name' => 'collaborator',
-               'parent_name_translated' => 'colaboradores',
-               'module_group' => 'academic'
-            ],
-            /**
-            * Tipo Reportes 318-322
-            */
-            [
-               'name' => 'type-reports-listar-type-reports',
-               'alias' => 'Listar tipos de reportes',
-               'description' => 'Listar todos los departamentos',
-               'guard_name' => 'api',
-               'status_id' => 1,
-               'parent_name' => 'typeReport',
-               'parent_name_translated' => 'tipos de reportes',
-               'module_group' => 'academic'
-            ],
-            [
-               'name' => 'type-reports-obtener-type-report',
-               'alias' => 'Obtener tipo reporte',
-               'description' => 'Obtener un tipo reporte por su identificador',
-               'guard_name' => 'api',
-               'status_id' => 1,
-               'parent_name' => 'typeReport',
-               'parent_name_translated' => 'tipos de reportes',
-               'module_group' => 'academic'
-            ],
-            [
-               'name' => 'type-reports-crear-type-report',
-               'alias' => 'Crear tipo reporte',
-               'description' => 'Agregar un tipo reporte',
-               'guard_name' => 'api',
-               'status_id' => 1,
-               'parent_name' => 'typeReport',
-               'parent_name_translated' => 'tipos de reportes',
-               'module_group' => 'academic'
-            ],
-            [
-               'name' => 'type-reports-actualizar-type-report',
-               'alias' => 'Actualizar tipo reporte',
-               'description' => 'Actualizar un tipo reporte por su identificador',
-               'guard_name' => 'api',
-               'status_id' => 1,
-               'parent_name' => 'typeReport',
-               'parent_name_translated' => 'tipos de reportes',
-               'module_group' => 'academic'
-            ],
-            [
-               'name' => 'type-reports-borrar-type-report',
-               'alias' => 'Eliminar tipo reporte',
-               'description' => 'Eliminar tipo reporte por su identificador',
-               'guard_name' => 'api',
-               'status_id' => 1,
-               'parent_name' => 'typeReport',
-               'parent_name_translated' => 'tipos de reportes',
-               'module_group' => 'academic'
+                'name' => 'collaborators-eliminar-colaborador',
+                'alias' => 'Eliminar colaborador',
+                'description' => 'Elimina un colaborador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'collaborator',
+                'parent_name_translated' => 'colaboradores',
+                'module_group' => 'academic'
             ],
             /**
-            * Permisos 323
-            */
+             * Tipo Reportes 318-322
+             */
+            [
+                'name' => 'type-reports-listar-type-reports',
+                'alias' => 'Listar tipos de reportes',
+                'description' => 'Listar todos los departamentos',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeReport',
+                'parent_name_translated' => 'tipos de reportes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-reports-obtener-type-report',
+                'alias' => 'Obtener tipo reporte',
+                'description' => 'Obtener un tipo reporte por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeReport',
+                'parent_name_translated' => 'tipos de reportes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-reports-crear-type-report',
+                'alias' => 'Crear tipo reporte',
+                'description' => 'Agregar un tipo reporte',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeReport',
+                'parent_name_translated' => 'tipos de reportes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-reports-actualizar-type-report',
+                'alias' => 'Actualizar tipo reporte',
+                'description' => 'Actualizar un tipo reporte por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeReport',
+                'parent_name_translated' => 'tipos de reportes',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'type-reports-borrar-type-report',
+                'alias' => 'Eliminar tipo reporte',
+                'description' => 'Eliminar tipo reporte por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'typeReport',
+                'parent_name_translated' => 'tipos de reportes',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Permisos 323
+             */
             [
                 'name' => 'permissions-listar-permisos-traducidos',
                 'alias' => 'Listar permisos traducidos',
@@ -4635,22 +4634,22 @@ class RoleSeeder extends Seeder
             ['permission_id' => 313, 'role_id' => 1],
             ['permission_id' => 314, 'role_id' => 1],
             /**
-            * Colaboradores 315-317
-            */
+             * Colaboradores 315-317
+             */
             ['permission_id' => 315, 'role_id' => 1],
             ['permission_id' => 316, 'role_id' => 1],
             ['permission_id' => 317, 'role_id' => 1],
             /**
-            * Tipo Reportes 318-322
-            */
+             * Tipo Reportes 318-322
+             */
             ['permission_id' => 318, 'role_id' => 1],
             ['permission_id' => 319, 'role_id' => 1],
             ['permission_id' => 320, 'role_id' => 1],
             ['permission_id' => 321, 'role_id' => 1],
             ['permission_id' => 322, 'role_id' => 1],
             /**
-            * Permisos 323
-            */
+             * Permisos 323
+             */
             ['permission_id' => 323, 'role_id' => 1],
             /**
              * Cursos 324-328
@@ -5285,23 +5284,23 @@ class RoleSeeder extends Seeder
             ['permission_id' => 313, 'role_id' => 2],
             ['permission_id' => 314, 'role_id' => 2],
             /**
-            * Colaboradores 315-317
-            */
+             * Colaboradores 315-317
+             */
             ['permission_id' => 315, 'role_id' => 2],
             ['permission_id' => 316, 'role_id' => 2],
             ['permission_id' => 317, 'role_id' => 2],
             /**
-            * Tipo Reportes 318-322
-            */
+             * Tipo Reportes 318-322
+             */
             ['permission_id' => 318, 'role_id' => 2],
             ['permission_id' => 319, 'role_id' => 2],
             ['permission_id' => 320, 'role_id' => 2],
             ['permission_id' => 321, 'role_id' => 2],
             ['permission_id' => 322, 'role_id' => 2],
             /**
-            * Permisos 323
-            * (Solo listar y obtener)
-            */
+             * Permisos 323
+             * (Solo listar y obtener)
+             */
             ['permission_id' => 323, 'role_id' => 2],
             /**
              * Cursos 324-328

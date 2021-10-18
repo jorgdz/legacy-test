@@ -924,10 +924,11 @@ return [
 		'group_area_id' => 'area',
 
 		/**
-         * Course
-         */
+		 * Course
+		 */
 		'approval_reason_id' => 'Motivo aprobacion materia',
 		'approval_status' => 'Estado aprobacion materia',
+
 		/**
 		 * areas
 		 */
@@ -1162,7 +1163,6 @@ return [
 		'inst_subject_id' => 'materia del instituto',
 		'comments' => 'comentarios',
 		'relation_pct' => 'porcentaje',
-
 	],
 
 	/*
@@ -1183,5 +1183,6 @@ return [
 		'Catalog' => 'Catálogo',
 		'Subject' => 'Materias',
 		'SubjectCurriculum' => 'Materias Mallas',
+		'TypeApplication' => 'Tipo de solicitud',
 	],
 ];

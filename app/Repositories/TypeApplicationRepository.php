@@ -50,7 +50,8 @@ class TypeApplicationRepository extends BaseRepository
      *
      * @return void
      */
-    public function __construct (TypeApplication $typeapplication) {
+    public function __construct(TypeApplication $typeapplication)
+    {
         parent::__construct($typeapplication);
     }
 
@@ -60,7 +61,8 @@ class TypeApplicationRepository extends BaseRepository
      * @param  mixed $request
      * @return void
      */
-    public function all ($request) {
+    public function all($request)
+    {
         if (isset($request['data']) && $request->search) {
             return ($request['data'] === 'all') ?  $this->data
                 ->withOutPaginate($this->selected)
@@ -73,10 +75,27 @@ class TypeApplicationRepository extends BaseRepository
             ->withModelRelations($this->relations)
             ->searchWithColumnNames($request)
             ->searchWithConditions($request)
-            ->filter($request, $this->fields,
+            ->filter(
+                $request,
+                $this->fields,
                 $this->model->getRelations(),
                 $this->model->getKeyName(),
-                $this->model->getTable())
+                $this->model->getTable()
+            )
             ->paginated($request, $this->model->getTable());
+    }
+
+    /**
+     * findByConditionals
+     *
+     * @param  mixed $conditionals
+     * @return \Illuminate\Http\Response
+     */
+    public function findByConditionals($conditionals)
+    {
+        $query = $this->model->where($conditionals)->with(['configTypeApplication' => function ($query) {
+            $query->where('status_id', 1);
+        }])->first();
+        return $query;
     }
 }

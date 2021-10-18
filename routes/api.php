@@ -87,6 +87,7 @@ require __DIR__ . "/channels/institution-subjects.php";
 require __DIR__ . "/channels/external-homologations.php";
 require __DIR__ . "/channels/area-group.php";
 require __DIR__ . "/channels/config-type-application.php";
+require __DIR__ . "/channels/applications-external-homologations.php";
 
 
 /*
@@ -262,6 +263,7 @@ Route::delete('/periods/{period}/hourhands', [PeriodController::class, 'destroyH
 Route::get('/periods/{period}/classroom-education-levels', [PeriodController::class, 'showPeriodsByClasEduLev'])->middleware(['auth:sanctum', 'permission:periods-aulas-asociadas-a-facultades-por-periodos.']);
 Route::get('/periods/{id}/courses', [PeriodController::class, 'coursesByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-cursos-por-periodo']);
 Route::get('/periods/{period}/stages', [PeriodController::class, 'stagesByPeriod'])->middleware(['auth:sanctum', 'permission:periods-listar-etapas-por-periodo']);
+
 /**
  * MatterMesh
  */
