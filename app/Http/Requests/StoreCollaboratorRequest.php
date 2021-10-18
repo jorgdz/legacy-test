@@ -81,7 +81,7 @@ class StoreCollaboratorRequest extends FormRequest
             'coll_journey_description'       => 'required|string|max:3|'.Rule::in(['TC', 'MT','TP']),
             'coll_dependency'       => 'required_if:coll_journey_description,==,"MT"|nullable|digits_between:0,1',
             'coll_journey_hours'       => 'required_if:coll_journey_description,==,"TP"|nullable|integer',
-            'position_company_id'       => 'required|integer|exists:tenant.positions,id',
+            'position_company_id'       => 'nullable|integer|exists:tenant.positions,id',
             'coll_entering_date' => 'required|date',
             'coll_leaving_date' => 'nullable|date',
             'coll_membership_num'       => 'nullable|integer',
@@ -90,11 +90,11 @@ class StoreCollaboratorRequest extends FormRequest
             'coll_has_nomination'  => 'nullable|digits_between:0,1',
             'coll_nomination_entering_date' => 'nullable|date',
             'coll_nomination_leaving_date' => 'nullable|date',
-            'education_level_principal_id'=>'required|integer|exists:tenant.education_levels,id',
+            'education_level_principal_id'=>'nullable|integer|exists:tenant.education_levels,id',
 
             //Asociación de niveles de educacion para el colaborador
-            'education_levels'=>'required|array',
-            'education_levels.*'=>'required|integer|exists:tenant.education_levels,id',
+            'education_levels'=>'nullable|array',
+            'education_levels.*'=>'nullable|integer|exists:tenant.education_levels,id',
 
             //Asociación de campus para el colaborador
             'campus'=>'required|array',
