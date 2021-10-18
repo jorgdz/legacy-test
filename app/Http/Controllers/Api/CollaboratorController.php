@@ -79,7 +79,7 @@ class CollaboratorController extends Controller implements ICollaboratorControll
      */
     public function store(StoreCollaboratorRequest $request)
     {
-        $nacionality = Catalog::getKeyword($request['pers_nacionality_keyword'])->first();
+        $nacionality = Catalog::getKeyword($request['pers_nationality_keyword'])->first();
         $statusMarital = Catalog::getKeyword($request['status_marital_keyword'])->first();
         $typeIdentification = Catalog::getKeyword($request['type_identification_keyword'])->first();
         $typeReligion = Catalog::getKeyword($request['type_religion_keyword'])->first();

@@ -49,7 +49,7 @@ class PersonController extends Controller implements IPersonController
      */
     public function store(PersonRequest $request) {
 
-        $nacionality = Catalog::getKeyword($request['pers_nacionality_keyword'])->first();
+        $nacionality = Catalog::getKeyword($request['pers_nationality_keyword'])->first();
         $statusMarital = Catalog::getKeyword($request['status_marital_keyword'])->first();
         $typeIdentification = Catalog::getKeyword($request['type_identification_keyword'])->first();
         $typeReligion = Catalog::getKeyword($request['type_religion_keyword'])->first();
@@ -113,11 +113,40 @@ class PersonController extends Controller implements IPersonController
      * @return \Illuminate\Http\Response
      */
     public function update(PersonRequest $request, Person $person) {
-        $person->fill($request->all());
+        $nacionality = Catalog::getKeyword($request['pers_nationality_keyword'])->first();
+        $statusMarital = Catalog::getKeyword($request['status_marital_keyword'])->first();
+        $typeIdentification = Catalog::getKeyword($request['type_identification_keyword'])->first();
+        $typeReligion = Catalog::getKeyword($request['type_religion_keyword'])->first();
+        $livingPlace = Catalog::getKeyword($request['vivienda_keyword'])->first();
+        $city = Catalog::getKeyword($request['city_keyword'])->first();
+        $currentCity = Catalog::getKeyword($request['current_city_keyword'])->first();
+        $sector = Catalog::getKeyword($request['sector_keyword'])->first();
+        $ethnic = Catalog::getKeyword($request['ethnic_keyword'])->first();
+
+        $person->fill($request->except(
+            'pers_nationality_keyword',
+            'status_martital_keyword',
+            'type_identification_keyword',
+            'type_religion_keyword',
+            'vivienda_keyword',
+            'city_keyword',
+            'current_city_keyword',
+            'sector_keyword',
+            'ethnic_keyword',
+        ));
 
         if ($person->isClean())
             return $this->information(__('messages.nochange'));
 
+        $person->nationality_id = $nacionality->id;
+        $person->status_marital_id = $statusMarital->id;
+        $person->type_identification_id = $typeIdentification->id;
+        $person->type_religion_id = $typeReligion->id;
+        $person->vivienda_id = $livingPlace->id;
+        $person->city_id = $city->id;
+        $person->current_city_id = $currentCity->id;
+        $person->sector_id = $sector->id;
+        $person->ethnic_id = $ethnic->id;
         return $this->success($this->personCache->save($person));
     }
 

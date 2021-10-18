@@ -20,7 +20,7 @@ trait SavePerson
     ) {
         //Person
         $person = new Person($request->except(
-            'pers_nacionality_keyword',
+            'pers_nationality_keyword',
             'status_martital_keyword',
             'type_identification_keyword',
             'type_religion_keyword',
