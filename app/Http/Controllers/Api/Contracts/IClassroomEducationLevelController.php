@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Api\Contracts;
 use App\Http\Requests\ClassroomEducationLevelRequest;
 use App\Http\Requests\UpdateClassroomEducationLevelRequest;
 use App\Models\ClassroomEducationLevel;
+use App\Models\EducationLevel;
+use App\Models\Period;
 use Illuminate\Http\Request;
 
 interface IClassroomEducationLevelController
@@ -95,7 +97,7 @@ interface IClassroomEducationLevelController
      * )
      *
      */
-    public function index (Request $request);
+    public function index(Request $request);
 
     /**
      * @OA\Post(
@@ -204,7 +206,7 @@ interface IClassroomEducationLevelController
      */
     public function show($id);
 
-     /**
+    /**
      * @OA\Put(
      *   path="/api/classroom-education-levels/{classroomeducationlevel}",
      *   tags={"Asignacion aulas facultad"},
@@ -364,4 +366,108 @@ interface IClassroomEducationLevelController
      */
     public function changeStatus(Request $request, $id);
 
+    /**
+     * @OA\Get(
+     *   path="/api/classroom-education-levels/periods/{periods}/education_levels/{education_levels}",
+     *   tags={"Asignacion aulas facultad"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Buscar por {periods} y {education_levels} . Listar aulas asignadas a facultad ",
+     *   description="Muestra todas las aulas asignadas a facultad  en formato JSON",
+     *   operationId="getClassEduLvsByPeriodByEduLev",
+     *   @OA\Parameter(
+     *     name="periods",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="education_levels",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="size",
+     *     description="Numero de elementos por pagina",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="10"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="sort",
+     *     description="Ordenar por el campo",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="id"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_sort",
+     *     description="Tipo de orden",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="asc"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="data",
+     *     description="mostrar todos los datos sin paginacion (enviar all)",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function classEduLvsByPeriodByEduLev(Period $periods, EducationLevel $education_levels);
 }

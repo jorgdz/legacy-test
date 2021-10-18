@@ -34,9 +34,6 @@ class ClassRoomRepository extends BaseRepository
         'cl_cap_max',
         'cl_acronym',
         'cl_description',
-
-
-
     ];
 
     /**
@@ -66,32 +63,33 @@ class ClassRoomRepository extends BaseRepository
     {
 
         $id = $campus->id;
-        $query = ClassRoom::where('campus_id', $id)->with(['classroomType']);
-        $fields = $this->fields;
+        $condition = [
+            ['campus_id', $id]
+        ];
+
+        $query = $this->model;
 
         if (isset(request()->query()['data'])) {
-            return (request()->query()['data'] === 'all') ?  $query->get() : [];
-            /* return (request()->query()['data'] === 'all') ?  $this->data
-                // ->withOutPaginate($this->selected)
-                ->withModelRelations(['classroomType'])
-                //->filter(request()->query(), $this->fields, $this->model->getRelations(), $this->model->getKeyName(), $this->model->getTable())
-                ->getCollection() : []; */
+            $query =  $this->model->where('campus_id', $id)->with(['classroomType'])->get();
+            return (request()->query()['data'] === 'all') ? $query : [];
         }
 
-        if (isset(request()->query()['search'])) {
-
-            $query = $query->where(function ($query) use ($fields) {
-                for ($i = 0; $i < count($fields); $i++) {
-                    $query->orwhere($fields[$i], 'like',  '%' . strtolower(request()->query()['search']) . '%');
-                }
-            }); 
-        }
-
-        $sort = isset(request()->query()['sort']) ? request()->query()['sort'] : 'id';
-        $type_sort = isset(request()->query()['type_sort']) ? request()->query()['type_sort'] : 'desc';
-        $page = isset(request()->query()['size']) ? request()->query()['size'] : 100;
-        return $query->orderBy($sort, $type_sort)->paginate($page);
-
+        return $this->data
+            ->withModelRelations([
+                'classroomType'
+            ])
+            ->searchWithColumnNames(request())
+            ->searchWithConditions(['conditions' => $condition])
+            ->filter(
+                request(),
+                $this->fields,
+                $this->model->getRelations(),
+                $this->model->getKeyName(),
+                $this->model->getTable()
+            )
+            ->paginated(request(), $this->model->getTable());
+            
+        
        
     }
 
@@ -101,20 +99,34 @@ class ClassRoomRepository extends BaseRepository
      * @param  mixed $id
      * @return void
      */
-    public function findCoursesByClassroom ($id) {
+    public function findCoursesByClassroom($id)
+    {
         $courses = Course::with([
-            'parallel', 
-            'classroom', 
-            'modality', 'hourhand', 
-            'collaborator', 
-            'curriculum', 
-            'period', 
+            'parallel',
+            'classroom',
+            'modality', 'hourhand',
+            'collaborator',
+            'curriculum',
+            'period',
             'status'
         ])->where('classroom_id', $id);
-        
+
         if ($courses->count() == 0)
             throw new NotFoundException(__('messages.not-found'));
-        
+
         return $courses->get();
+    }
+
+
+    public function findByConditionals($conditionals)
+    {
+        $query = $this->model;
+        if (isset(request()->query()['search'])) {
+            if (!empty($this->relations)) {
+                $query = $query->with($this->relations);
+            }
+
+            return $query->where($conditionals)->get();
+        }
     }
 }

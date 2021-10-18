@@ -531,6 +531,7 @@ Route::post('/classroom-education-levels', [ClassroomEducationLevelController::c
 Route::put('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'update'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-actualizar-aula-niveleconomico']);
 Route::delete('/classroom-education-levels/{classroomeducationlevel}', [ClassroomEducationLevelController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-borrar-aula-niveleconomico']);
 Route::patch('/classroom-education-levels/{classroomeducationlevel}/changestatus', [ClassroomEducationLevelController::class, 'changeStatus'])->middleware(['auth:sanctum', 'permission:classroom_education_levels-actualizar-aula-niveleconomico']);
+Route::get('/classroom-education-levels/periods/{periods}/education_levels/{education_levels}', [ClassroomEducationLevelController::class, 'classEduLvsByPeriodByEduLev'])->middleware(['auth:sanctum',/*  'permission:classroom_education_levels-buscar-periods-and-education_levels-listar-aula-niveleconomico' */]);
 
 /**
  * Courses

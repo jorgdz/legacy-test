@@ -97,7 +97,16 @@ class CampusController extends Controller implements ICampusController
      * @return void
      */
     public function getClassromsByCampus (Campus $campus) {
-        return $this->success($this->classRoomCache->getClassromsByCampusCache($campus));
-       // return $this->success($this->campusCache->getClassromsByCampusCache($campus));
+        //$id = $campus->id;
+       /*  $conditionals = [
+            ['classroom_type_id',$id ]
+        ];
+      
+        return $this->success($this->classRoomCache->findByConditionals($conditionals)); */
+       //return $this->success($this->campusCache->getClassromsByCampusCache($campus));
+
+       
+       return $this->success($this->classRoomCache->getClassromsByCampusCache($campus));
+
     }
 }

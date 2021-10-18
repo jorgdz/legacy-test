@@ -14,7 +14,8 @@ class ClassroomEducationLevelCache extends BaseCache
      *
      * @return void
      */
-    public function __construct(ClassroomEducationLevelRepository $classroomEducationLevelRepository) {
+    public function __construct(ClassroomEducationLevelRepository $classroomEducationLevelRepository)
+    {
         parent::__construct($classroomEducationLevelRepository);
     }
 
@@ -56,7 +57,7 @@ class ClassroomEducationLevelCache extends BaseCache
         });
     }
 
-    public function destroy (Model $model)
+    public function destroy(Model $model)
     {
         $this->forgetCache('classroom-education-levels');
         return $this->repository->destroy($model);
@@ -73,11 +74,11 @@ class ClassroomEducationLevelCache extends BaseCache
         $this->forgetCache('classroom-education-levels');
         return $this->repository->validateRegister($request);
     }
-    
-    public function changeStatus($id,$status)
+
+    public function changeStatus($id, $status)
     {
         $this->forgetCache('classroom-education-levels');
-        return $this->repository->changeStatus($id,$status);
+        return $this->repository->changeStatus($id, $status);
     }
 
     public function getClassroomAssigned($request)
@@ -86,4 +87,11 @@ class ClassroomEducationLevelCache extends BaseCache
         return $this->repository->getClassroomAssigned($request);
     }
 
+    public function classEduLvsByPeriodByEduLevCache($conditionals)
+    {
+        
+        return $this->cache::remember($this->key, $this->ttl, function () use ($conditionals) {
+            return $this->repository->classEduLvsByPeriodByEduLevRepo($conditionals);
+        });
+    }
 }

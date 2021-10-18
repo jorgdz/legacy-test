@@ -15,6 +15,7 @@ use App\Traits\Auditor;
 use App\Http\Controllers\Api\Contracts\IClassroomEducationLevelController;
 use App\Models\EducationLevel;
 use App\Exceptions\Custom\ConflictException;
+use App\Models\Period;
 
 class ClassroomEducationLevelController extends Controller implements IClassroomEducationLevelController
 {
@@ -132,5 +133,16 @@ class ClassroomEducationLevelController extends Controller implements IClassroom
     public function changeStatus(Request $request, $id) 
     {
         return $this->success($this->classroomEducationLevelCache->changeStatus($id,$request->status_id));
+    }
+
+    public function classEduLvsByPeriodByEduLev( Period $periods,EducationLevel $education_levels){
+     
+        
+        $condition = [
+            ['period_id', $periods->id],
+            ['education_level_id', $education_levels->id]
+        ];
+        return $this->success($this->classroomEducationLevelCache->classEduLvsByPeriodByEduLevCache($condition));
+        
     }
 }

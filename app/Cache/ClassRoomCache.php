@@ -76,11 +76,15 @@ class ClassRoomCache extends BaseCache {
     }
 
     public function getClassromsByCampusCache ($campus) {
-
-
+       
+        
         return $this->cache::remember($this->key, $this->ttl, function () use ($campus) {
-           return $this->repository->getClassromsByCampusRepository($campus);
+            return $this->repository->getClassromsByCampusRepository($campus);
         });
 
+    }
+
+    public function findByConditionals($conditionals) {
+        return $this->repository->findByConditionals($conditionals);
     }
 }

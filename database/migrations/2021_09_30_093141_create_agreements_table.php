@@ -17,6 +17,10 @@ class CreateAgreementsTable extends Migration
             $table->bigIncrements('id');
             $table->string('agr_name');
             $table->bigInteger('agr_num_matter_homologate')->nullable();
+
+            $table->date('agr_start_date')->nullable();
+            $table->date('agr_end_date')->nullable();
+            
             $table->bigInteger('status_id')->unsigned();
 
             $table->foreign('status_id')->references('id')->on('status');
