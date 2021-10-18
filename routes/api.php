@@ -45,8 +45,11 @@ use App\Http\Controllers\Api\LearningComponentController;
 use App\Http\Controllers\Api\SimbologyController;
 use App\Http\Controllers\Api\ClassroomEducationLevelController;
 use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\CourseStudentController;
+use App\Http\Controllers\Api\EducationLevelSubjectController;
 use App\Http\Controllers\Api\GroupAreaSubjectController;
 use App\Http\Controllers\Api\TypeApplicationController;
+
 
 /* Import routes */
 
@@ -553,6 +556,17 @@ Route::put('/group-area-subjects/{groupAreaSubject}', [GroupAreaSubjectControlle
 Route::delete('/group-area-subjects/{groupAreaSubject}', [GroupAreaSubjectController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:education-level-subject-eliminar-materias-tipo-nivelacion-a-carrera']);
 
 /**
+ * Course Students
+ */
+Route::get('/course-students', [CourseStudentController::class, 'index'])->middleware(['auth:sanctum'/*, 'permission:coursestudent-listar-curso-estudiante'*/]);
+Route::get('/course-students/{coursestudent}', [CourseStudentController::class, 'show'])->middleware(['auth:sanctum'/*, 'permission:coursestudent-obtener-curso-estudiante'*/]);
+Route::post('/course-students', [CourseStudentController::class, 'store'])->middleware(['auth:sanctum'/*, 'permission:coursestudent-crear-curso-estudiante'*/]);
+Route::put('/course-students/{coursestudent}', [CourseStudentController::class, 'update'])->middleware(['auth:sanctum'/*, 'permission:coursestudent-actualizar-curso-estudiante'*/]);
+Route::delete('/course-students/{coursestudent}', [CourseStudentController::class, 'destroy'])->middleware(['auth:sanctum'/*, 'permission:courcoursestudentses-borrar-curso-estudiante'*/]);
+Route::get('/course-students/{subject}/subject-conditions', [CourseStudentController::class, 'checkSubjectConditions'])->middleware(['auth:sanctum'/*, 'permission:coursestudent-checkconditions-curso-estudiante'*/]);
+Route::get('/course-students/{student}/conditions', [CourseStudentController::class, 'checkConditionsGeneralByStudent'])->middleware(['auth:sanctum'/*, 'permission:coursestudent-checkconditions-curso-estudiante'*/]);
+/**
+ * GroupArea
  * Type Application
  */
 Route::get('/type-application', [TypeApplicationController::class, 'index'])->middleware(['auth:sanctum', 'permission:type-application-listar-tipo-solicitudes']);

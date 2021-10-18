@@ -48,4 +48,14 @@ class StudentRecordPeriod extends Model implements AuditableContract
     public function period(): BelongsTo {
         return $this->belongsTo(Period::class, 'periodo_id');
     }
+
+    
+    /**
+     * Student Record PeriodSubject
+     *
+     * @return void
+     */
+    public function studentRecordPeriodSubject () {
+        return $this->hasMany(StudentRecordPeriodSubject::class,'student_recods_period_id');
+    }
 }

@@ -17,6 +17,8 @@ class CreateTableConfiguration extends Migration
             $table->bigIncrements('id');
             $table->string('co_name', 255)->nullable();
             $table->string('co_description', 255)->nullable();
+            $table->string('co_value', 255)->nullable();
+            $table->string('co_keyword', 100)->unique();
 
             $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

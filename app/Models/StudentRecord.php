@@ -192,4 +192,13 @@ class StudentRecord extends Model implements AuditableContract
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+     /**
+     * Course Student  
+     *
+     * @return void
+     */
+    public function courseStudent () {
+        return $this->hasMany(CourseStudent::class,'student_record_id');
+    }
 }

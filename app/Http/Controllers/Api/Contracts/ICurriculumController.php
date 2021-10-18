@@ -172,6 +172,11 @@ interface ICurriculumController
      *           description="Descripcion de malla",
      *           type="string",
      *         ),
+     *          @OA\Property(
+     *           property="max_number_failed_subject",
+     *           description="Número veces que puede repetir una materia",
+     *           type="integer",
+     *         ),
      *         @OA\Property(
      *           property="mes_modality_id",
      *           description="Id de la modalidad de la malla (Catalogo)",
@@ -375,6 +380,11 @@ interface ICurriculumController
      *           property="mes_description",
      *           description="Descripcion de malla",
      *           type="string",
+     *         ),
+     *         @OA\Property(
+     *           property="max_number_failed_subject",
+     *           description="Número veces que puede repetir una materia",
+     *           type="integer",
      *         ),
      *         @OA\Property(
      *           property="mes_modality_id",

@@ -18,7 +18,7 @@ class CreateStagesTable extends Migration
 
             $table->string('stg_name', 255)->nullable();
             $table->string('stg_description', 255)->nullable();
-            $table->string('stg_acronym', 4)->nullable();
+            $table->string('stg_acronym', 6)->nullable();
 
             $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

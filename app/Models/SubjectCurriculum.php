@@ -160,6 +160,16 @@ class SubjectCurriculum extends Model implements AuditableContract
         return $this->belongsTo(CalificationModel::class, 'calification_models_id');
     }
 
+
+    /**
+     * Student Record PeriodSubject
+     *
+     * @return void
+     */
+    public function studentRecordPeriodSubject () {
+        return $this->hasMany(StudentRecordPeriodSubject::class,'subject_curriculum_id');
+    }
+    
     public function getMinNoteAttribute () {
         return (float) ($this->attributes['min_note']);
     }

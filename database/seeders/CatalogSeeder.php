@@ -397,11 +397,41 @@ class CatalogSeeder extends Seeder
             ['cat_name' => 'No registra', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'nivel-educativo-no-registra', 'parent_id' => 341, 'status_id' => 1],
         ]);
 
+
+        /* Motivos de Aprobacion */
+        DB::connection('tenant')->table('catalogs')->insert([
+            ['cat_name' => 'Motivos de aprobacion materias por cursos', 'cat_description' => NULL, 'cat_acronym' => 'MAMC', 'cat_keyword' => 'motivo-aprobacion', 'parent_id' => NULL, 'status_id' => 1],
+            ['cat_name' => 'Asignatura Aprobada', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-asignatura-aprobada', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Convalidada', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-convalidada', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Homologada', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-homologada', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Homologada - RA **', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-homologada-RA', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Reprobado por Calificación', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-reprobado-por-calificacion', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Reprobado por Falta', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-reprobado-falta', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Reprobado por Falta y Calificación', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-reprobado-falta-calificacion', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Trimestre Actual', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-trimestre-actual', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Aprobado Examen de Admisión', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-aprobado-examen-admision', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Reprobado Examen de Admisión', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-reprobado-examen-admision', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Retirado', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-retirado', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Retiro por fuerza mayor', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-retirado-fuerza-mayor', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Aprobado Examen de Suficiencia', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-aprobado-examen-suficiencia', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Reprobado Examen de Suficiencia', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-reprobado-examen-suficiencia', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Aprobado Examen de Ubicación', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-aprobado-examen-ubicacion', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Reprobado Examen de Ubicación', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-reprobado-examen-ubicacion', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Aprobado Examen de Ingreso', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-aprobado-examen-ingreso', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Validadas (Materias aprobadas en Instituto Ecomundo)', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-materias-aprobadas-ecomundo', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Actualización de conocimiento', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-actualizacion-conocimiento', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Validación Conocimientos Ecotec', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-validacion-conocimientos-ecotec', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Validación Conocimientos Otras Universidades', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-validacion-conocimientos-otras-universidades', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Aprobado intercambio estudiantil', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-aprobado-intercambio-estudiantil', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Aprobado Extemporáneo', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-aprobado-extemporaneo', 'parent_id' => 356, 'status_id' => 1],
+            ['cat_name' => 'Cursando Materia', 'cat_description' => NULL, 'cat_acronym' => NULL, 'cat_keyword' => 'motivo-aprobacion-cursando-materia', 'parent_id' => 356, 'status_id' => 1],
+        ]);
         /* Grupo de Nivelacion */
         DB::connection('tenant')->table('catalogs')->insert([
             [
                 'cat_name' => 'Sistemas', 'cat_description' => NULL, 'cat_acronym' => 'G1', 'cat_keyword' => 'G1', 'parent_id' => NULL, 'status_id' => 1,
             ]
+
         ]);
     }
 }

@@ -44,7 +44,7 @@ return [
         \Spatie\Multitenancy\Tasks\SwitchTenantDatabaseTask::class,
         \App\TenantTask\FileSystemTask::class,
         //\App\TenantTask\LogTask::class,
-        \App\TenantTask\EmailTask::class,
+        //\App\TenantTask\EmailTask::class,
         \App\TenantTask\DocumentationServiceTask::class,
         \Spatie\Multitenancy\Tasks\PrefixCacheTask::class,
     ],

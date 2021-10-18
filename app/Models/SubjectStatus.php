@@ -71,4 +71,23 @@ class SubjectStatus extends Model implements AuditableContract
     /* public function course_student() {
         return $this->hasMany(CourseStudent::class);
     } */
+
+    
+    /**
+     * Student Record PeriodSubject
+     *
+     * @return void
+     */
+    public function studentRecordPeriodSubject () {
+        return $this->hasMany(StudentRecordPeriodSubject::class,'subject_status_id');
+    }
+
+    /**
+     * Course Student  
+     *
+     * @return void
+     */
+    public function courseStudent () {
+        return $this->hasMany(CourseStudent::class,'matter_status_id');
+    }
 }

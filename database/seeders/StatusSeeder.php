@@ -25,12 +25,16 @@ class StatusSeeder extends Seeder
             ['st_name' => 'Vigente', 'category_status_id' => '5'],
             ['st_name' => 'No vigente', 'category_status_id' => '5'],
             ['st_name' => 'En espera', 'category_status_id' => '5'],
-            ['st_name' => 'Rechazado', 'category_status_id' => '6'],
-            ['st_name' => 'Enviado', 'category_status_id' => '6'],
-            ['st_name' => 'Revisado', 'category_status_id' => '6'],
-            ['st_name' => 'Aceptado', 'category_status_id' => '6'],
             ['st_name' => 'Aprobado', 'category_status_id' => '6'],
-            ['st_name' => 'Finalizado', 'category_status_id' => '6'],
+            ['st_name' => 'Reprobado', 'category_status_id' => '6'],
+            ['st_name' => 'Retirado', 'category_status_id' => '6'],
+            ['st_name' => 'Cursando', 'category_status_id' => '6'],
+            ['st_name' => 'Rechazado', 'category_status_id' => '7'],
+            ['st_name' => 'Enviado', 'category_status_id' => '7'],
+            ['st_name' => 'Revisado', 'category_status_id' => '7'],
+            ['st_name' => 'Aceptado', 'category_status_id' => '7'],
+            ['st_name' => 'Aprobado', 'category_status_id' => '7'],
+            ['st_name' => 'Finalizado', 'category_status_id' => '7'],
         ]);
     }
 }

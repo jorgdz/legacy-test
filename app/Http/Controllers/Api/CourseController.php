@@ -22,7 +22,7 @@ class CourseController extends Controller implements ICourseController
     use RestResponse, Auditor;
 
      /**
-     * subjectCurriculumCache
+     * courseCache
      *
      * @var mixed
      */

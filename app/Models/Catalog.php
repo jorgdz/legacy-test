@@ -89,4 +89,14 @@ class Catalog extends Model implements AuditableContract
     public function course(): HasMany {
         return $this->hasMany(Course::class,'modality_id');
     }
+
+    
+     /**
+     * Course Student  
+     *
+     * @return void
+     */
+    public function courseStudent () {
+        return $this->hasMany(CourseStudent::class,'approval_reason_id');
+    }
 }

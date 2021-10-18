@@ -922,6 +922,11 @@ return [
 		'group_area_id' => 'area',
 
 		/**
+         * Course
+         */
+		'approval_reason_id' => 'Motivo aprobacion materia',
+		'approval_status' => 'Estado aprobacion materia',
+		/**
 		 * areas
 		 */
 		'ar_name' => 'nombre del área',
@@ -1155,6 +1160,7 @@ return [
 		'inst_subject_id' => 'materia del instituto',
 		'comments' => 'comentarios',
 		'relation_pct' => 'porcentaje',
+
 	],
 
 	/*

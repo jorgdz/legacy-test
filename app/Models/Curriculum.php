@@ -53,6 +53,7 @@ class Curriculum extends Model implements AuditableContract
         'mes_acronym',
         'anio',
         'mes_description',
+        'max_number_failed_subject',
         'mes_modality_id',
         'type_calification_id',
         'level_edu_id',
@@ -128,7 +129,7 @@ class Curriculum extends Model implements AuditableContract
         return $this->belongsTo(TypeCalification::class, 'type_calification_id');
     }
 
-    /**
+     /**
      * Course
      *
      * @return void

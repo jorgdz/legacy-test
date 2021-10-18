@@ -30,6 +30,7 @@ class CreateCurriculumsTable extends Migration
             $table->bigInteger('anio')->nullable();
             $table->string('mes_description', 255)->nullable();
 
+            $table->integer('max_number_failed_subject')->default('3');
 
             $table->bigInteger('mes_modality_id')->unsigned();
             $table->foreign('mes_modality_id')->references('id')->on('catalogs');
