@@ -12,7 +12,7 @@ use App\Models\ClassroomEducationLevel;
  */
 class ClassroomEducationLevelRepository extends BaseRepository
 {
-    protected $relations = ['status', 'period', 'classRoom', 'educationLevel'];
+    protected $relations = ['status', 'period', 'classRoom', 'classRoom.classroomType', 'educationLevel'];
 
     protected $fields = [
         'el.edu_name',
