@@ -174,32 +174,20 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
         $subjectCurriculum->matterMeshPrerequisites()->sync($request['prerequisites']);
         $meshId = $subjectCurriculum->mesh->id;
 
-        $plucked = $subjectcurriculum->detailMatterMesh()->pluck('components_id');
         if(isset($request['components'])) {
-            $subjectcurriculum->detailMatterMesh()->delete();
-
             foreach($request['components'] as $learningComponent) {
-                DetailSubjectCurriculum::withTrashed()->where('matter_mesh_id', $subjectCurriculum->id)->where('components_id', $learningComponent['components_id'])->restore();
+                DetailSubjectCurriculum::where('matter_mesh_id', $subjectCurriculum->id)
+                    ->where('components_id', $learningComponent['components_id'])
+                    ->update([
+                        'components_id' => $learningComponent['components_id'],
+                        'dem_workload' => $learningComponent['lea_workload'],
+                        'status_id' => 1
+                    ]);
 
-                $subjectCurriculum->detailMatterMesh()->updateOrCreate([
-                    'components_id' => $learningComponent['components_id'],
-                    'dem_workload' => $learningComponent['lea_workload'],
-                    'status_id' => 1
-                ]);
-
-                $component_id[] = $learningComponent['components_id'];
                 $this->calculateMeshWorkLoad($meshId, $learningComponent['components_id']);
             }
-
-            $componentIdsWillBeDeleted = collect($plucked->diff($component_id)->values()->all());
-
-            if(count($componentIdsWillBeDeleted) > 0) {
-                foreach($componentIdsWillBeDeleted as $component) {
-                    DetailSubjectCurriculum::where('matter_mesh_id', $subjectCurriculum->id)->where('components_id', $component)->delete();
-                    $this->calculateMeshWorkLoad($meshId, $component);
-                }
-            }
         }
+
         return $this->success($subjectcurriculum);
     }
 
