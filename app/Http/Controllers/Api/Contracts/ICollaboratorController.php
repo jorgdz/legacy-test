@@ -78,6 +78,24 @@ interface ICollaboratorController
      *       type="string",
      *     ),
      *   ),
+     *   @OA\Parameter(
+     *     name="data",
+     *     description="mostrar todos los datos sin paginacion (enviar all)",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="coll_type",
+     *     description="Filtrar colaborador por tipo (A = Administrativo ó D = Docente)",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),
