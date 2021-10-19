@@ -68,5 +68,6 @@ return [
     'finished_application' => 'This request has ended or was rejected, no modifications are allowed',
     'no-application-type-change' => 'The application Type cannot change',
     'max-subjects-homologation' => 'The maximum number of subjects to be homologated are :max.',
-    'occuped-application-order' => 'The order of the request already exists, delete it if you want to change it'
+    'occuped-application-order' => 'The order of the request already exists, delete it if you want to change it',
+    'nochange-status' => ':model is already in force!',
 ];

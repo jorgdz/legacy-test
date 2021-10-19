@@ -1187,5 +1187,6 @@ return [
 		'Subject' => 'Materias',
 		'SubjectCurriculum' => 'Materias Mallas',
 		'TypeApplication' => 'Tipo de solicitud',
+		'Curriculum' => 'Malla',
 	],
 ];

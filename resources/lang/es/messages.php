@@ -80,5 +80,6 @@ return [
     'finished_application' => 'Esta solicitud ha finalizado o fue rechazada, no se permiten modificaciones.',
     'no-application-type-change' => 'El tipo de solicitud no puede cambiar',
     'max-subjects-homologation' => 'El número de máximo de materias a homologar son :max.',
-    'occuped-application-order' => 'El orden de la solicitud ya existe, elimínelo si desea cambiarlo'
+    'occuped-application-order' => 'El orden de la solicitud ya existe, elimínelo si desea cambiarlo',
+    'nochange-status' => ':model ya se encuentra vigente!',
 ];

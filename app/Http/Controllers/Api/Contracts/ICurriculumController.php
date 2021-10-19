@@ -646,4 +646,47 @@ interface ICurriculumController
      *
      */
     public function learningComponentByMesh(Curriculum $curriculum);
+
+    /**
+     * @OA\Put(
+     *   path="/api/curriculums/{curriculum}/status",
+     *   tags={"Mallas"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Actualizar estado malla a vigente",
+     *   description="Actualizar estado de una malla a vigente.",
+     *   operationId="updateCurriculumStatus",
+     *   @OA\Parameter(
+     *     name="curriculum",
+     *     description="Id de la malla",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="user_profile_id",
+     *           description="Id del perfil de usuario",
+     *           type="integer",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=201, description="Se ha creado correctamente"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updateCurriculumStatus(Request $request, Curriculum $curriculum);
 }

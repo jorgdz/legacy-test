@@ -14,16 +14,18 @@ use Illuminate\Http\Response;
 use App\Http\Requests\CurriculumRequest;
 use App\Http\Controllers\Api\Contracts\ICurriculumController;
 use App\Models\LearningComponent;
+use App\Traits\TranslateException;
 
 //class MeshsController extends Controller implements IMeshsController
 class CurriculumController extends Controller implements ICurriculumController
 {
-    use RestResponse;
+    use RestResponse ,TranslateException;
 
     private $curriculumCache;
     private $subjectCurriculumCache;
 
-    public function __construct(CurriculumCache $curriculumCache, SubjectCurriculumCache $subjectCurriculumCache) {
+    public function __construct(CurriculumCache $curriculumCache, SubjectCurriculumCache $subjectCurriculumCache)
+    {
         $this->curriculumCache = $curriculumCache;
         $this->subjectCurriculumCache = $subjectCurriculumCache;
     }
@@ -33,7 +35,8 @@ class CurriculumController extends Controller implements ICurriculumController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         return $this->success($this->curriculumCache->all($request));
     }
 
@@ -43,14 +46,15 @@ class CurriculumController extends Controller implements ICurriculumController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CurriculumRequest $request) {
+    public function store(CurriculumRequest $request)
+    {
         $curriculumFound = Curriculum::where('status_id', 7)->where('level_edu_id', $request['level_edu_id'])->first();
-        if($curriculumFound)
+        if ($curriculumFound)
             throw new ConflictException(__('messages.meshs-vigent'));
 
         $curriculum = new Curriculum($request->except('components'));
         $curriculum = $this->curriculumCache->save($curriculum);
-        if(isset($request['components']))
+        if (isset($request['components']))
             $curriculum->learningComponent()->createMany($request['components']);
 
         return $this->success($curriculum, Response::HTTP_CREATED);
@@ -62,9 +66,9 @@ class CurriculumController extends Controller implements ICurriculumController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id) {
+    public function show(Request $request, $id)
+    {
         return $this->success($this->curriculumCache->find($id));
-
     }
 
     /**
@@ -74,10 +78,11 @@ class CurriculumController extends Controller implements ICurriculumController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CurriculumRequest $request, Curriculum $curriculum) {
+    public function update(CurriculumRequest $request, Curriculum $curriculum)
+    {
         $curriculumFound = Curriculum::where('status_id', 7)->where('level_edu_id', $request['level_edu_id'])->first();
-        
-        if($curriculumFound)
+
+        if ($curriculumFound)
             throw new ConflictException(__('messages.meshs-vigent-edit'));
 
         $curriculum->fill($request->except('components'));
@@ -86,9 +91,9 @@ class CurriculumController extends Controller implements ICurriculumController
             return $this->information(__('messages.nochange'));
 
         $plucked = $curriculum->learningComponent()->pluck('component_id');
-        if(isset($request['components'])) {
+        if (isset($request['components'])) {
 
-            foreach($request['components'] as $learningComponent) {
+            foreach ($request['components'] as $learningComponent) {
                 LearningComponent::withTrashed()->where('mesh_id', $curriculum->id)->where('component_id', $learningComponent['component_id'])->restore();
                 $curriculum->learningComponent()->updateOrCreate([
                     'component_id' => $learningComponent['component_id']
@@ -96,12 +101,11 @@ class CurriculumController extends Controller implements ICurriculumController
                 $component_id[] = $learningComponent['component_id'];
             }
             $componentIdsWillBeDeleted = collect($plucked->diff($component_id)->values()->all());
-            if(count($componentIdsWillBeDeleted) > 0) {
-                foreach($componentIdsWillBeDeleted as $component) {
+            if (count($componentIdsWillBeDeleted) > 0) {
+                foreach ($componentIdsWillBeDeleted as $component) {
                     LearningComponent::where('mesh_id', $curriculum->id)->where('component_id', $component)->delete();
                 }
             }
-
         }
 
         $response = $this->curriculumCache->save($curriculum);
@@ -114,7 +118,8 @@ class CurriculumController extends Controller implements ICurriculumController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Curriculum $curriculum) {
+    public function destroy(Curriculum $curriculum)
+    {
         $response = $this->curriculumCache->destroy($curriculum);
         return $this->success($response);
     }
@@ -136,7 +141,29 @@ class CurriculumController extends Controller implements ICurriculumController
      * @param  int  $mesh
      * @return \Illuminate\Http\Response
      */
-    public function showMattersByMesh(Request $request, Curriculum $curriculum) {
-        return $this->success($this->subjectCurriculumCache->findMatersbyMesh($request,$curriculum->id));
+    public function showMattersByMesh(Request $request, Curriculum $curriculum)
+    {
+        return $this->success($this->subjectCurriculumCache->findMatersbyMesh($request, $curriculum->id));
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Catalog  $catalog
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCurriculumStatus(Request $request, Curriculum $curriculum)
+    {
+        $curriculum->fill($request->all());
+        
+        if($curriculum->status_id==7)
+            return $this->information(__('messages.nochange-status', ['model' => $this->translateNameModel(class_basename(Curriculum::class)) ]));
+
+        // 7 | Vigente 	(TB-status)		
+        $curriculum->status_id = 7;
+        return $this->success($this->curriculumCache->save($curriculum));
+        
     }
 }
