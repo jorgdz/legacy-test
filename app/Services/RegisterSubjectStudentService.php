@@ -77,8 +77,9 @@ class RegisterSubjectStudentService
     {
 
         $subjectPrerequisite =  SubjectCurriculum::where([
-                                    ['matter_id',$request->subject_id],
-                                    ['mesh_id',$request->curriculum_id]
+                                    //['matter_id',$request->subject_id],
+                                    //['mesh_id',$request->curriculum_id]
+                                    ['id',$request->subject_curriculum_id]
                                 ])
                                 ->with('matterMeshPrerequisites')
                                 ->first();

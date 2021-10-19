@@ -21,9 +21,9 @@ class CreateCourseStudentTable extends Migration
             $table->float('final_note', 8, 4);
             $table->string('observation', 255)->nullable();
             $table->bigInteger('num_fouls')->unsigned();
-            $table->bigInteger('subject_status_id')->unsigned();
-            $table->bigInteger('subject_id')->unsigned();
-            $table->bigInteger('period_id')->nullable()->unsigned();
+            $table->bigInteger('subject_status_id')->unsigned();           
+            $table->bigInteger('subject_id')->unsigned();      
+            $table->bigInteger('period_id')->unsigned();
             $table->bigInteger('approval_status')->unsigned();
             $table->bigInteger('approval_reason_id')->unsigned();
             $table->bigInteger('status_id')->unsigned();
@@ -32,7 +32,7 @@ class CreateCourseStudentTable extends Migration
             $table->foreign('approval_status')->references('id')->on('status');
             $table->foreign('student_record_id')->references('id')->on('student_records');
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('subject_status_id')->references('id')->on('subject_status');    
+            $table->foreign('subject_status_id')->references('id')->on('subject_status');        
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('approval_reason_id')->references('id')->on('catalogs');
             $table->foreign('period_id')->references('id')->on('periods');        

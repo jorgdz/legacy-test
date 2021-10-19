@@ -974,9 +974,8 @@ return [
 		 */
 		'course_id' => 'curso',
 		'final_note' => 'nota final',
-		'matter_status_id' => 'estado de la materia',
+		'subject_status_id' => 'estado de la materia',
 		'observation' => 'observación',
-
 		/**
 		 * disability_person
 		 */

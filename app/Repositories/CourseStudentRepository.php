@@ -13,6 +13,13 @@ use App\Models\CourseStudent;
 class CourseStudentRepository extends BaseRepository
 {
     /**
+     * relations
+     *
+     * @var array
+     */
+    protected $relations = ['studentRecord', 'subjectStatus', 'subject', 'SubjectCurriculum', 'curriculum','period', 'approvalReason','status'];
+
+    /**
      * __construct
      *
      * @return void

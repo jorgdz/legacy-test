@@ -32,6 +32,8 @@ class CourseStudentRequest extends FormRequest
             'subject_status_id'     => 'required|integer|exists:tenant.subject_status,id',
             'subject_id'            => 'required|integer|exists:tenant.subjects,id',
             'period_id'             => 'required|integer|exists:tenant.periods,id',
+            'subject_curriculum_id' => 'required|integer|exists:tenant.periods,id',
+            'curriculum_id'         => 'required|integer|exists:tenant.periods,id',
             'approval_status'       => 'required|integer|exists:tenant.status,id',
             'approval_reason_id'    => 'required|integer|exists:tenant.catalogs,id',
             'status_id'             => 'required|integer|exists:tenant.status,id',

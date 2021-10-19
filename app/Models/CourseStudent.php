@@ -53,6 +53,8 @@ class CourseStudent extends Model implements AuditableContract
         'observation',
         'num_fouls',
         'subject_status_id',
+        'subject_curriculum_id',
+        'curriculum_id',
         'subject_id',
         'period_id',
         'approval_status',
@@ -96,6 +98,24 @@ class CourseStudent extends Model implements AuditableContract
         return $this->belongsTo(Subject::class, 'subject_id');
     }
 
+    
+    /**
+     * SubjectCurriculum     
+     *
+     * @return void
+     */
+    public function SubjectCurriculum () {
+        return $this->belongsTo(SubjectCurriculum::class, 'subject_curriculum_id');
+    }
+
+     /**
+     * Curriculum     
+     *
+     * @return void
+     */
+    public function curriculum () {
+        return $this->belongsTo(Curriculum::class, 'curriculum_id');
+    }
     
     /**
      * Period     

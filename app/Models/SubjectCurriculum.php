@@ -163,6 +163,14 @@ class SubjectCurriculum extends Model implements AuditableContract
         return $this->belongsTo(CalificationModel::class, 'calification_models_id');
     }
 
+    /**
+     * Course Student
+     *
+     * @return void
+     */
+    public function courseStudent(): HasMany {
+        return $this->hasMany(CourseStudent::class,'subject_curriculum_id');
+    }
 
     /**
      * Student Record PeriodSubject
