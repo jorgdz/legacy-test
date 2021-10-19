@@ -29,6 +29,7 @@ class Course extends Model implements AuditableContract
      */
     protected $fillable = [
         'max_capacity',
+        'num_fouls',
         'matter_id',
         'parallel_id',
         'classroom_id',
@@ -37,6 +38,8 @@ class Course extends Model implements AuditableContract
         'collaborator_id',
         'curriculum_id',
         'period_id',
+        'start_date',
+        'end_date',
         'status_id',
     ];
 

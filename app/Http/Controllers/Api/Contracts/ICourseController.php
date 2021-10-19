@@ -122,6 +122,12 @@ interface ICourseController
      *           type="integer",
      *           example="30"
      *         ),
+     *          @OA\Property(
+     *           property="num_fouls",
+     *           description="Numero faltas del curso",
+     *           type="integer",
+     *           example="30"
+     *         ),
      *         @OA\Property(
      *           property="matter_id",
      *           description="ID Materia",
@@ -167,6 +173,18 @@ interface ICourseController
      *            description="ID Periodo",
      *            type="integer",
      *         ),
+     *          @OA\Property(
+     *           property="start_date",
+     *           description="Inicio clases del curso",
+     *           type="string",
+     *           format="date",
+     *         ),
+     *          @OA\Property(
+     *           property="end_date",
+     *           description="Fin clases del curso",
+     *           type="string",
+     *           format="date",
+     *         ),
      *         @OA\Property(
      *           property="status_id",
      *           description="Estado del componente",
@@ -181,6 +199,9 @@ interface ICourseController
      *      example={
      *       "matter_id"      : "required|integer|exists:tenant.subjects,id",
      *       "max_capacity"   : "required|integer",
+     *       "num_fouls"      : "nullable|integer",
+     *       "start_date"     : "nullable|date",
+     *       "end_date"       : "nullable|date",
      *       "parallel_id"    : "required|integer|exists:tenant.parallels,id",
      *       "classroom_id"   : "required|integer|exists:tenant.classrooms,id",
      *       "modality_id"    : "required|integer|exists:tenant.catalogs,id",
@@ -276,6 +297,12 @@ interface ICourseController
      *           type="integer",
      *           example="30"
      *         ),
+     *          @OA\Property(
+     *           property="num_fouls",
+     *           description="Numero faltas del curso",
+     *           type="integer",
+     *           example="30"
+     *         ),
      *         @OA\Property(
      *           property="matter_id",
      *           description="ID Materia",
@@ -316,6 +343,18 @@ interface ICourseController
      *            description="ID Periodo",
      *            type="integer",
      *         ),
+     *          @OA\Property(
+     *           property="start_date",
+     *           description="Inicio clases del curso",
+     *           type="string",
+     *           format="date",
+     *         ),
+     *          @OA\Property(
+     *           property="end_date",
+     *           description="Fin clases del curso",
+     *           type="string",
+     *           format="date",
+     *         ),
      *         @OA\Property(
      *           property="status_id",
      *           description="Estado del componente",
@@ -330,6 +369,9 @@ interface ICourseController
      *      example={
      *            "matter_id"    : "required|integer|exists:tenant.subjects,id",
      *            "max_capacity" : "required|integer",
+    *             "num_fouls"    : "nullable|integer",
+     *            "start_date"   : "nullable|date",
+     *            "end_date"     : "nullable|date",
      *            "parallel_id"  : "required|integer|exists:tenant.parallels,id",
      *            "classroom_id" : "required|integer|exists:tenant.classrooms,id",
      *            "modality_id"  : "required|integer|exists:tenant.catalogs,id",

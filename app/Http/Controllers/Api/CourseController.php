@@ -90,13 +90,16 @@ class CourseController extends Controller implements ICourseController
             {
                 $model = [
                     "max_capacity"    => $request->max_capacity,
+                    "num_fouls"       => $request->num_fouls,
+                    "start_date"      => $request->start_date,
+                    "end_date"        => $request->end_date,
                     "matter_id"       => $request->matter_id,
                     "parallel_id"     => $request->parallel_id,
                     "classroom_id"    => $request->classroom_id,
                     "modality_id"     => $request->modality_id,
                     "hourhand_id"     => $request->hourhand_id,
                     "collaborator_id" => $collaborator,
-                    "curriculum_id" =>   $request->curriculum_id,
+                    "curriculum_id"   => $request->curriculum_id,
                     "period_id"       => $request->period_id,
                     "status_id"       => $request->status_id,
                 ];
