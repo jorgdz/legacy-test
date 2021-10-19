@@ -72,7 +72,8 @@ class CurriculumRepository extends BaseRepository
      *
      * @return void
      */
-    public function __construct(Curriculum $curriculum) {
+    public function __construct(Curriculum $curriculum)
+    {
         parent::__construct($curriculum);
     }
 
@@ -82,7 +83,8 @@ class CurriculumRepository extends BaseRepository
      * @param  mixed $id
      * @return subjects by id mesh
      */
-    public function find ($id) {
+    public function find($id)
+    {
         $query = $this->model;
 
         $query = $query->with([
@@ -114,7 +116,8 @@ class CurriculumRepository extends BaseRepository
      * @param  mixed $conditionals
      * @return void
      */
-    public function findByConditionals($conditionals) {
+    public function findByConditionals($conditionals)
+    {
         $query = $this->model->with(['matterMesh'])->where($conditionals)->first();
         return json_decode(json_encode($query), true);
     }
@@ -125,9 +128,10 @@ class CurriculumRepository extends BaseRepository
      * @param  mixed $component
      * @return void
      */
-    public function checkComponentInMeshsPublished(Component $component) {
+    public function checkComponentInMeshsPublished(Component $component)
+    {
         return $this->model->where('status_id', 7)
-            ->whereHas('learningComponent', function ($query) use($component) {
+            ->whereHas('learningComponent', function ($query) use ($component) {
                 $query->where('component_id', '=', $component->id);
             })->first();
     }
@@ -138,7 +142,8 @@ class CurriculumRepository extends BaseRepository
      * @param  mixed $meshId
      * @return void
      */
-    public function checkMeshPublished(Curriculum $curriculum) {
+    public function checkMeshPublished(Curriculum $curriculum)
+    {
         return $curriculum->where('status_id', 7)->first();
     }
 
@@ -152,5 +157,47 @@ class CurriculumRepository extends BaseRepository
     {
         $query = $curriculum->learningComponent()->with('component');
         return $query->paginate(isset(request()->query()['size']) ? request()->query()['size'] : 100);
+    }
+
+
+
+    /**
+     * all
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function all($request)
+    {
+        // 7|Vigente|5
+        $condition = ['conditions' => [
+                ['status_id',7]
+            ]
+        ];
+
+        if (isset($request['data']) ) {
+            return ($request['data'] === 'all') ?  $this->data
+                ->searchWithConditions($condition)
+                ->filter(
+                    $request, 
+                    $this->fields, 
+                    $this->model->getRelations(), 
+                    $this->model->getKeyName(), 
+                    $this->model->getTable())
+                ->getCollection() : [];
+        }
+
+        return $this->data
+            ->withModelRelations($this->relations)
+            ->searchWithColumnNames($request)
+            ->searchWithConditions($request)
+            ->filter(
+                $request,
+                $this->fields,
+                $this->model->getRelations(),
+                $this->model->getKeyName(),
+                $this->model->getTable()
+            )
+            ->paginated($request, $this->model->getTable());
     }
 }

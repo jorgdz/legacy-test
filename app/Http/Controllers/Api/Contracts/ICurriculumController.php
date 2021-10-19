@@ -70,6 +70,15 @@ interface ICurriculumController
      *     ),
      *   ),
      *   @OA\Parameter(
+     *     name="data",
+     *     description="mostrar todos los datos sin paginacion (enviar all)",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="search",
      *     description="Filtrar registros",
      *     in="query",
