@@ -54,6 +54,7 @@ class Curriculum extends Model implements AuditableContract
         'anio',
         'mes_description',
         'max_number_failed_subject',
+        'cur_num_prof_pract',
         'mes_modality_id',
         'type_calification_id',
         'level_edu_id',

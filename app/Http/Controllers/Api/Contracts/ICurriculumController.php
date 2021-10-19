@@ -172,6 +172,11 @@ interface ICurriculumController
      *           description="Descripcion de malla",
      *           type="string",
      *         ),
+     *         @OA\Property(
+     *           property="cur_num_prof_pract",
+     *           description="número de materias aprobadas para practicas preprofesionales",
+     *           type="integer",
+     *         ),
      *          @OA\Property(
      *           property="max_number_failed_subject",
      *           description="Número veces que puede repetir una materia",
@@ -232,6 +237,7 @@ interface ICurriculumController
      *          "components.*.component_id" : "integer|exists:tenant.components,id|distinct",
      *          "anio": "required|integer",
      *          "mes_description": "nullable|string",
+     *          "cur_num_prof_pract": "required|integer",
      *          "mes_modality_id": "required|integer|exists:tenant.catalogs,id",
      *          "type_calification_id": "required|integer|exists:tenant.type_califications,id",
      *          "level_edu_id": "required|integer|exists:tenant.education_levels,id",
@@ -382,6 +388,11 @@ interface ICurriculumController
      *           type="string",
      *         ),
      *         @OA\Property(
+     *           property="cur_num_prof_pract",
+     *           description="número de materias aprobadas para practicas preprofesionales",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="max_number_failed_subject",
      *           description="Número veces que puede repetir una materia",
      *           type="integer",
@@ -441,6 +452,7 @@ interface ICurriculumController
      *          "components.*.component_id" : "integer|exists:tenant.components,id|distinct",
      *          "anio": "required|integer",
      *          "mes_description": "nullable|string",
+     *          "cur_num_prof_pract": "required|integer",
      *          "mes_modality_id": "required|integer|exists:tenant.catalogs,id",
      *          "type_calification_id": "required|integer|exists:tenant.type_califications,id",
      *          "level_edu_id": "required|integer|exists:tenant.education_levels,id",

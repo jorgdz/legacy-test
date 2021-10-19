@@ -425,6 +425,7 @@ return [
 		'mes_acronym' => 'acrónimo de malla',
 		'anio' => 'año',
 		'mes_description' => 'descriptición de malla',
+		'cur_num_prof_pract'=>'número de materias aprobadas para practicas preprofesionales',
 		'mes_modality_id' => 'modalidad',
 		'mes_modality_keyword' => 'modalidad',
 		'type_calification_id' => 'tipo de calificación',
@@ -1090,6 +1091,9 @@ return [
 		 */
 		'is_prerequisite' => 'prerequisto de materia malla',
 		'order' => 'orden de materias mallas',
+		'can_external_homologations'=> 'homologante externo de materia malla',
+		'can_internal_homologations'=> 'homologante interno de materia malla',
+		'sub_cur_integrative_type'=> 'materia de tipo integradora de materia malla',
 
 		/**
 		 * subject_curriculum_dependencies

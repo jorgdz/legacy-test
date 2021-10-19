@@ -71,7 +71,7 @@ class SubjectCurriculum extends Model implements AuditableContract
         'matter_id',
         'mesh_id',
         'simbology_id',
-        'can_homologate',
+       // 'can_homologate',borrrar
         'is_prerequisite',
         'min_note',
         'min_calification',
@@ -80,6 +80,9 @@ class SubjectCurriculum extends Model implements AuditableContract
         'matter_rename',
         'group',
         'order',
+        'can_external_homologations',
+        'can_internal_homologations',
+        'sub_cur_integrative_type',
         'calification_models_id',
         'status_id',
     ];

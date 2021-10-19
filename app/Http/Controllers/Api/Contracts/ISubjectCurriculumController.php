@@ -123,12 +123,6 @@ interface ISubjectCurriculumController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="can_homologate",
-     *           description="Se puede homologar",
-     *           type="boolean",
-     *           example="true"
-     *         ),
-     *         @OA\Property(
      *           property="is_prerequisite",
      *           description="Es prerequisto",
      *           type="boolean",
@@ -171,6 +165,24 @@ interface ISubjectCurriculumController
      *           description="Id modelo calificación",
      *           type="integer",
      *         ),
+     *          @OA\Property(
+     *           property="can_external_homologations",
+     *           description="homologante externo de materia malla",
+     *           type="boolean",
+     *           example="true",
+     *         ),
+     *          @OA\Property(
+     *           property="can_internal_homologations",
+     *           description="homologante interno de materia malla",
+     *           type="boolean",
+     *           example="true",
+     *         ),
+     *          @OA\Property(
+     *           property="sub_cur_integrative_type",
+     *           description="materia de tipo integradora de materia malla",
+     *           type="boolean",
+     *           example="true",
+     *         ),
      *         @OA\Property(
      *           property="prerequisites",
      *           description="Prerequisitos de la materia malla",
@@ -188,7 +200,7 @@ interface ISubjectCurriculumController
      *          items={
      *             "type" : "object",
      *             "properties" : {
-     *                  "component_id" : {
+     *                  "components_id" : {
      *                      "type" : "integer",
      *                  },
      *                  "lea_workload" : {
@@ -212,13 +224,15 @@ interface ISubjectCurriculumController
      *          "matter_id": "required|integer|exists:tenant.subjects,id",
      *          "mesh_id": "required|integer|exists:tenant.curriculums,id",
      *          "simbology_id": "integer|exists:tenant.simbologies,id",
-     *          "can_homologate": "required|boolean",
      *          "min_note": "required|numeric",
      *          "min_calification": "'required|numeric",
      *          "max_calification": "'required|numeric",
      *          "num_fouls": "required|integer",
      *          "matter_rename": "nullable|string",
      *          "group": "nullable|integer",
+     *          "can_external_homologations": "required|boolean",
+     *          "can_internal_homologations": "required|boolean",
+     *          "sub_cur_integrative_type": "required|boolean",
      *          "calification_models_id" : "required|integer|exists:tenant.calification_models,id",
      *          "prerequisites" :  "nullable|array",
      *          "prerequisites.*" :  "integer|exists:tenant.subject_curriculum,id|distinct",
@@ -421,12 +435,6 @@ interface ISubjectCurriculumController
      *           type="integer",
      *         ),
      *         @OA\Property(
-     *           property="can_homologate",
-     *           description="Se puede homologar",
-     *           type="boolean",
-     *           example="true",
-     *         ),
-     *         @OA\Property(
      *           property="is_prerequisite",
      *           description="Es prerequisto",
      *           type="boolean",
@@ -470,6 +478,24 @@ interface ISubjectCurriculumController
      *           type="integer",
      *         ),
      *         @OA\Property(
+     *           property="can_external_homologations",
+     *           description="homologante externo de materia malla",
+     *           type="boolean",
+     *           example="true",
+     *         ),
+     *          @OA\Property(
+     *           property="can_internal_homologations",
+     *           description="homologante interno de materia malla",
+     *           type="boolean",
+     *           example="true",
+     *         ),
+     *          @OA\Property(
+     *           property="sub_cur_integrative_type",
+     *           description="materia de tipo integradora de materia malla",
+     *           type="boolean",
+     *           example="true",
+     *         ),
+     *         @OA\Property(
      *           property="prerequisites",
      *           description="Prerequisitos de la materia malla",
      *           type="array",
@@ -486,7 +512,7 @@ interface ISubjectCurriculumController
      *          items={
      *             "type" : "object",
      *             "properties" : {
-     *                  "component_id" : {
+     *                  "components_id" : {
      *                      "type" : "integer",
      *                  },
      *                  "lea_workload" : {
@@ -510,13 +536,15 @@ interface ISubjectCurriculumController
      *          "matter_id": "required|integer|exists:tenant.subjects,id|unique:tenant.matter_mesh,matter_id,{$this->subjectcurriculum->id}",
      *          "mesh_id": "required|integer|exists:tenant.curriculums,id",
      *          "simbology_id": "integer|exists:tenant.simbologies,id",
-     *          "can_homologate": "required|boolean",
      *          "min_note": "required|numeric",
      *          "min_calification": "'required|numeric",
      *          "max_calification": "'required|numeric",
      *          "num_fouls": "required|integer",
      *          "matter_rename": "nullable|string",
      *          "group": "nullable|integer",
+     *          "can_external_homologations": "required|boolean",
+     *          "can_internal_homologations": "required|boolean",
+     *          "sub_cur_integrative_type": "required|boolean",
      *          "calification_models_id" : "required|integer|exists:tenant.calification_models,id",
      *          "prerequisites" :  "nullable|array",
      *          "prerequisites.*" :  "integer|exists:tenant.subject_curriculum,id|distinct",

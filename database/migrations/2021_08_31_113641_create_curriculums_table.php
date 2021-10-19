@@ -32,6 +32,8 @@ class CreateCurriculumsTable extends Migration
 
             $table->integer('max_number_failed_subject')->default('3');
 
+            $table->bigInteger('cur_num_prof_pract')->nullable();//Numero de materias aprobadas para practicas preprofesionales
+
             $table->bigInteger('mes_modality_id')->unsigned();
             $table->foreign('mes_modality_id')->references('id')->on('catalogs');
 
