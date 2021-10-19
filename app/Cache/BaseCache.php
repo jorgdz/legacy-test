@@ -88,4 +88,31 @@ abstract class BaseCache implements IBaseRepository
             if (count($splitKey) === 2) $this->cache::forget($splitKey[1]);
         }
     }
+
+    /**
+     * forgetCacheRoleEdit
+     *
+     * @param  mixed $resource
+     * @return void
+     */
+    public function forgetCacheRoleEdit($resource = NULL)
+    {
+        $tenant = CustomTenant::current();
+        $URL = Str::slug(config('app.name'), '_') . '_database_tenant_id_' . $tenant->id . ':';
+        $content = "{$tenant->domain}/api/middleware_permission?";
+        $keys = Redis::connection('cache')->keys("**{$content}**");
+        foreach ($keys as $k => $v) {
+            $splitKey = explode($URL, $keys[$k]);
+            if (count($splitKey) === 2) $this->cache::forget($splitKey[1]);
+        }
+        if (!$resource) $this->forgetToken($tenant);
+
+        $content = "{$tenant->domain}/api/whoami?";
+        $keys = Redis::connection('cache')->keys("**{$content}**");
+        foreach ($keys as $k => $v) {
+            $splitKey = explode($URL, $keys[$k]);
+            if (count($splitKey) === 2) $this->cache::forget($splitKey[1]);
+        }
+        if (!$resource) $this->forgetToken($tenant);
+    }
 }

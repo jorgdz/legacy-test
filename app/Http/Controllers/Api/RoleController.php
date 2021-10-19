@@ -84,6 +84,9 @@ class RoleController extends Controller implements IRoleController
         if (isset($request['del_permissions']))
             $role->revokePermissionTo($request['del_permissions']);
 
+        if (isset($request['add_permissions']) || isset($request['del_permissions']))
+            $this->roleCache->forgetCacheRoleEdit();
+            
         return $this->success($response);
     }
 
