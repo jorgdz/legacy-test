@@ -38,7 +38,7 @@ class SubjectCurriculumRequest extends FormRequest
             'can_external_homologations'=> 'required|boolean',
             'can_internal_homologations'=> 'required|boolean',
             'sub_cur_integrative_type'=> 'required|boolean',
-            'calification_models_id' => 'required|integer|exists:tenant.calification_models,id',
+            //'calification_models_id' => 'required|integer|exists:tenant.calification_models,id',
             'prerequisites' => 'nullable|array',
             'prerequisites.*' => 'integer|exists:tenant.subject_curriculum,id|distinct',
             'components' => 'nullable|array',

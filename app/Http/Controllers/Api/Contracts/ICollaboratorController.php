@@ -831,6 +831,55 @@ interface ICollaboratorController
      *       example="3"
      *     ),
      *   ),
+     *   @OA\Parameter(
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="size",
+     *     description="Numero de elementos por pagina",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="10"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="sort",
+     *     description="Ordenar por el campo",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="id"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_sort",
+     *     description="Tipo de orden",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="asc"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
      *   @OA\Response(response=403, description="No autorizado"),

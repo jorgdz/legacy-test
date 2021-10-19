@@ -17,12 +17,13 @@ use App\Models\SubjectCurriculum;
 use App\Repositories\CurriculumRepository;
 use App\Traits\Auditor;
 use App\Traits\RestResponse;
+use App\Traits\TranslateException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SubjectCurriculumController extends Controller implements ISubjectCurriculumController
 {
-    use RestResponse, Auditor;
+    use RestResponse, TranslateException, Auditor;
 
     /**
      * subjectCurriculumCache
@@ -97,7 +98,7 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
         $matterMeshFound = SubjectCurriculum::where('matter_id', $request->matter_id)->where('mesh_id', $request->mesh_id)->first();
 
         if($matterMeshFound)
-            throw new ConflictException(__('messages.exist-instance'));
+            throw new ConflictException(__('messages.exist-instance', ['model' => $this->translateNameModel(class_basename(SubjectCurriculum::class))]));
 
         $subjectCurriculum = new SubjectCurriculum($request->except('components'));
         $subjectCurriculum = $this->subjectCurriculumCache->save($subjectCurriculum);
@@ -175,6 +176,8 @@ class SubjectCurriculumController extends Controller implements ISubjectCurricul
 
         $plucked = $subjectcurriculum->detailMatterMesh()->pluck('components_id');
         if(isset($request['components'])) {
+            $subjectcurriculum->detailMatterMesh()->delete();
+
             foreach($request['components'] as $learningComponent) {
                 DetailSubjectCurriculum::withTrashed()->where('matter_mesh_id', $subjectCurriculum->id)->where('components_id', $learningComponent['components_id'])->restore();
 
