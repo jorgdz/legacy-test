@@ -62,4 +62,16 @@ class DepartmentCache extends BaseCache {
         /* $this->forgetCache('departments');
         return $this->repository->destroy($model); */
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Illuminate\Database\Eloquent\Model
+     */
+
+    public function allWithoutParents() {
+        return $this->cache::remember($this->key, $this->ttl, function () {
+            return $this->repository->allWithoutParents();
+        });
+    }
 }

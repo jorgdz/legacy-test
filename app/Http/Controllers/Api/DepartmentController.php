@@ -115,4 +115,14 @@ class DepartmentController extends Controller implements IDepartmentController
     {
         //
     } */
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
+    public function allWithoutParents()
+    {
+        return $this->success($this->departmentCache->allWithoutParents());
+    }
 }

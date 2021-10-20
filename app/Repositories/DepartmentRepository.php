@@ -76,4 +76,15 @@ class DepartmentRepository extends BaseRepository
             )
             ->paginated($request, $this->model->getTable());
     }
+    
+    /**
+     * allWithoutParents
+     *
+     * @return void
+     */
+    public function allWithoutParents()
+    {
+        $departaments = Department::with('status')->get();
+        return $departaments;
+    }
 }

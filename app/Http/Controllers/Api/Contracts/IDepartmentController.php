@@ -334,5 +334,25 @@ interface IDepartmentController
      */
     public function updateStatus(DeparmentFormRequest $request, Department $department);
 
+    
+    /**
+     * @OA\Get(
+     *   path="/api/departments/organizational",
+     *   tags={"Departamento"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Listar los departamentos sin relacion de padre",
+     *   description="Muestra todos los departamentos",
+     *   operationId="getAllDepartmentsWithoutParents",
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function allWithoutParents();
+    
     // public function destroy(Department $ecogroup);
 }
