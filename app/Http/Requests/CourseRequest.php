@@ -38,7 +38,6 @@ class CourseRequest extends FormRequest
             'collaborator_id'         => 'nullable|integer|exists:tenant.periods,id',
             'collaborators_support'   => 'array',
             'collaborators_support.*' => 'required|integer|exists:tenant.collaborators,id',
-            'curriculum_id'           => 'required|integer|exists:tenant.curriculums,id',
             'status_id'               => 'required|integer|exists:tenant.status,id'
         ];
 

@@ -17,8 +17,6 @@ class CourseRepository extends BaseRepository
     
     protected $fields = [
         'max_capacity',
-        's.mat_name',
-        //'s.mat_acronym',
         'p.per_name',
         'p.per_current_year',
         'c.cl_name',
@@ -57,8 +55,6 @@ class CourseRepository extends BaseRepository
         
         $query = Course::select(
                             'courses.*',
-                            's.mat_name',
-                            //'s.mat_acronym',
                             'p.per_name',
                             'p.per_current_year',
                             'c.cl_name',
@@ -72,7 +68,6 @@ class CourseRepository extends BaseRepository
                             //'pe.pers_second_lastname',
                             'pe.pers_identification'
                         )
-                        ->join('subjects as s','s.id','=','courses.matter_id')
                         ->join('periods as p','p.id','=','courses.period_id')
                         ->join('classrooms as c','c.id','=','courses.classroom_id')
                         ->join('parallels as pa','pa.id','=','courses.parallel_id')

@@ -82,7 +82,6 @@ class CourseController extends Controller implements ICourseController
                     "modality_id"     => $request->modality_id,
                     "hourhand_id"     => $request->hourhand_id,
                     "collaborator_id" => $collaborator,
-                    "curriculum_id"   => $request->curriculum_id,
                     "period_id"       => $request->period_id,
                     "status_id"       => $request->status_id,
                 ];

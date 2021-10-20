@@ -169,11 +169,6 @@ interface ICourseController
      *           uniqueItems=true
      *         ),
      *         @OA\Property(
-     *           property="curriculum_id",
-     *            description="ID Malla",
-     *            type="integer",
-     *         ),
-     *         @OA\Property(
      *           property="period_id",
      *            description="ID Periodo",
      *            type="integer",
@@ -215,7 +210,6 @@ interface ICourseController
      *       "collaborator_id"         : "nullable|integer|exists:tenant.periods,id",
      *       "collaborators_support"   : "array",
      *       "collaborators_support.*" : "required|integer|exists:tenant.collaborators,id",
-     *       "curriculum_id"           : "required|integer|exists:tenant.curriculums,id",
      *       "status_id"               : "required|integer|exists:tenant.status,id"
      *      },
      *   )),
@@ -339,11 +333,6 @@ interface ICourseController
      *            description="ID Colaborador",
      *            type="integer",
      *         ),
-     *        @OA\Property(
-     *           property="curriculum_id",
-     *            description="ID Malla",
-     *            type="integer",
-     *         ),
      *         @OA\Property(
      *           property="period_id",
      *            description="ID Periodo",
@@ -382,7 +371,6 @@ interface ICourseController
      *            "classroom_id" : "required|integer|exists:tenant.classrooms,id",
      *            "modality_id"  : "required|integer|exists:tenant.catalogs,id",
      *            "hourhand_id"  : "required|integer|exists:tenant.hourhands,id",
-     *            "curriculum_id": "required|integer|exists:tenant.curriculums,id",
      *            "period_id"    : "required|integer|exists:tenant.periods,id",
      *            "status_id"    : "required|integer|exists:tenant.status,id"
      *      },
