@@ -120,7 +120,6 @@ class PeriodRepository extends BaseRepository
             'hourhand',
             'collaborator',
             'period',
-            'curriculum',
             'status'
         ])->where('period_id', $id)->get();
 
