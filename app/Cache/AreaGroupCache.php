@@ -45,6 +45,19 @@ class AreaGroupCache extends BaseCache
             return $this->repository->find($id);
         });
     }
+    
+    /**
+     * findSubjectsByGroup
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     */
+    public function findSubjectsByGroup ($request, $id) {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($request, $id) {
+            return $this->repository->findSubjectsByGroup($request, $id);
+        });
+    }
 
     /**
      * save

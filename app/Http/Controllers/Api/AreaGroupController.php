@@ -44,6 +44,17 @@ class AreaGroupController extends Controller implements IAreaGroupController
                 ->saveAreaGroupWithSubjects($request->all()),
             Response::HTTP_CREATED);
     }
+    
+    /**
+     * findSubjectsByGroup
+     *
+     * @param  mixed $request
+     * @param  mixed $groupId
+     * @return void
+     */
+    public function findSubjectsByGroup (Request $request, $groupId) {
+        return $this->success($this->areaGroupCache->findSubjectsByGroup($request, $groupId));
+    }
 
     /**
      * Display the specified resource.
