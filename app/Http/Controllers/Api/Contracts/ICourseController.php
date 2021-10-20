@@ -153,9 +153,14 @@ interface ICourseController
      *            description="ID Horario",
      *            type="integer",
      *         ),
+     *         @OA\Property(
+     *           property="collaborator_id",
+     *            description="ID Colaborar Docente Principal",
+     *            type="integer",
+     *         ),
      *          @OA\Property(
-     *           property="collaborators",
-     *           description="Array de id de Colaboradores docentes",
+     *           property="collaborators_support",
+     *           description="Array de id de Colaboradores docentes auxiliares",
      *           type="array",
      *           @OA\Items(
      *              type="integer"
@@ -197,20 +202,21 @@ interface ICourseController
      *   @OA\Response(response=400, description="No se cumple todos los requisitos",
      *   @OA\JsonContent(
      *      example={
-     *       "matter_id"      : "required|integer|exists:tenant.subjects,id",
-     *       "max_capacity"   : "required|integer",
-     *       "num_fouls"      : "nullable|integer",
-     *       "start_date"     : "nullable|date",
-     *       "end_date"       : "nullable|date",
-     *       "parallel_id"    : "required|integer|exists:tenant.parallels,id",
-     *       "classroom_id"   : "required|integer|exists:tenant.classrooms,id",
-     *       "modality_id"    : "required|integer|exists:tenant.catalogs,id",
-     *       "hourhand_id"    : "required|integer|exists:tenant.hourhands,id",
-     *       "period_id"      : "required|integer|exists:tenant.periods,id",
-     *       "collaborators": "array",
-     *       "collaborators.*": "required|integer|exists:tenant.collaborators,id",
-     *       "curriculum_id" : "required|integer|exists:tenant.curriculums,id",
-     *       "status_id"      : "required|integer|exists:tenant.status,id"
+     *       "matter_id"               : "required|integer|exists:tenant.subjects,id",
+     *       "max_capacity"            : "required|integer",
+     *       "num_fouls"               : "nullable|integer",
+     *       "start_date"              : "nullable|date",
+     *       "end_date"                : "nullable|date",
+     *       "parallel_id"             : "required|integer|exists:tenant.parallels,id",
+     *       "classroom_id"            : "required|integer|exists:tenant.classrooms,id",
+     *       "modality_id"             : "required|integer|exists:tenant.catalogs,id",
+     *       "hourhand_id"             : "required|integer|exists:tenant.hourhands,id",
+     *       "period_id"               : "required|integer|exists:tenant.periods,id",
+     *       "collaborator_id"         : "nullable|integer|exists:tenant.periods,id",
+     *       "collaborators_support"   : "array",
+     *       "collaborators_support.*" : "required|integer|exists:tenant.collaborators,id",
+     *       "curriculum_id"           : "required|integer|exists:tenant.curriculums,id",
+     *       "status_id"               : "required|integer|exists:tenant.status,id"
      *      },
      *   )),
      *   @OA\Response(response=401, description="No autenticado"),

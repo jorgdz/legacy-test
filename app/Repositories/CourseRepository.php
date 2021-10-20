@@ -114,7 +114,7 @@ class CourseRepository extends BaseRepository
                             ->pluck('collaborator_id')
                             ->toArray();
 
-        $collaboratosToAsiggned = array_merge(array_diff($request->collaborators, $currentCollaboratos));
+        $collaboratosToAsiggned = array_merge(array_diff($request->collaborators_support, $currentCollaboratos));
         return $collaboratosToAsiggned;
     }
 

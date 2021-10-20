@@ -237,6 +237,11 @@ return [
 			'integer' => 'El valor del campo docente debe ser un entero.',
 			'distinct' => 'El valor del campo docente tiene un valor duplicado.'
 		],
+		'collaborators_support.*' => [
+			'exists' => 'El valor del campo colaborador auxilar es inválido.',
+			'integer' => 'El valor del campo colaborador auxilar debe ser un entero.',
+			'distinct' => 'El valor del campo colaborador auxilar tiene un valor duplicado.'
+		],
 		'signatures.*.sign_position' => [
 			'required' => 'El campo posicion es requerido.',
 			'string'   => 'El campo posicion debe ser una cadena.'
@@ -887,7 +892,6 @@ return [
 		'parallel_id' => 'paralelo',
 		'max_capacity' => 'capacidad maxima del curso',
 		'modality_id' => 'modalidad',
-
 		/**
 		 * Collaborator Hour
 		 */

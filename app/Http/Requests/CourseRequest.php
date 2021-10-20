@@ -25,20 +25,21 @@ class CourseRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'matter_id'       => 'required|integer|exists:tenant.subjects,id',
-            'num_fouls'       => 'nullable|integer',
-            'start_date'      => 'nullable|date',
-            'end_date'        => 'nullable|date',
-            'max_capacity'    => 'required|integer',
-            'parallel_id'     => 'required|integer|exists:tenant.parallels,id',
-            'classroom_id'    => 'required|integer|exists:tenant.classrooms,id',
-            'modality_id'     => 'required|integer|exists:tenant.catalogs,id',
-            'hourhand_id'     => 'required|integer|exists:tenant.hourhands,id',
-            'period_id'       => 'required|integer|exists:tenant.periods,id',
-            'collaborators'   => 'array',
-            'collaborators.*' => 'required|integer|exists:tenant.collaborators,id',
-            'curriculum_id'   => 'required|integer|exists:tenant.curriculums,id',
-            'status_id'       => 'required|integer|exists:tenant.status,id'
+            'matter_id'               => 'required|integer|exists:tenant.subjects,id',
+            'num_fouls'               => 'nullable|integer',
+            'start_date'              => 'nullable|date',
+            'end_date'                => 'nullable|date',
+            'max_capacity'            => 'required|integer',
+            'parallel_id'             => 'required|integer|exists:tenant.parallels,id',
+            'classroom_id'            => 'required|integer|exists:tenant.classrooms,id',
+            'modality_id'             => 'required|integer|exists:tenant.catalogs,id',
+            'hourhand_id'             => 'required|integer|exists:tenant.hourhands,id',
+            'period_id'               => 'required|integer|exists:tenant.periods,id',
+            'collaborator_id'         => 'nullable|integer|exists:tenant.periods,id',
+            'collaborators_support'   => 'array',
+            'collaborators_support.*' => 'required|integer|exists:tenant.collaborators,id',
+            'curriculum_id'           => 'required|integer|exists:tenant.curriculums,id',
+            'status_id'               => 'required|integer|exists:tenant.status,id'
         ];
 
         return $rules;

@@ -55,31 +55,14 @@ class CourseController extends Controller implements ICourseController
      */
     public function store(CourseRequest $request)
     {
-        //Refactor Metodo validateCourseUnique
-        // $collaborators = $this->courseCache->getCollaboratorsInCourse($request);
-        // if(empty($collaborators)){
-        //     dd('esta vacio');
-        //     //throw new NotFoundException(__('messages.courses-exists'));
-        // }else{
-        //     dd('no esta vacio');
-        // }
-        // return $collaborators ;
+        $exists = $this->courseCache->validateCourseUnique($request);
+        if(isset($exists))
+            throw new NotFoundException(__('messages.courses-exists'));
 
-        // $exists = $this->courseCache->validateCourseUnique($request);
-        // if(isset($exists))
-        //     throw new NotFoundException(__('messages.courses-exists'));
+        $course = new Course($request->all());
+        $course = $this->courseCache->save($course);
 
-        if(empty($request->collaborators)){
-            $exists = $this->courseCache->validateCourseUnique($request);
-            if(isset($exists))
-                throw new NotFoundException(__('messages.courses-exists'));
-
-            $course = new Course($request->all());
-            $course = $this->courseCache->save($course);
-            //return $this->success($course, Response::HTTP_CREATED);
-            return $this->information(__('messages.success'));
-
-        }else{
+        if(!empty($request->collaborators_support)){
             $collaborators = $this->courseCache->getCollaboratorsInCourse($request);
             if(empty($collaborators))
                 throw new NotFoundException(__('messages.courses-exists'));
@@ -106,8 +89,9 @@ class CourseController extends Controller implements ICourseController
                 array_push($courses,$model);
             }
             $course = $this->courseCache->saveMultiple($courses);
-            return $this->information(__('messages.success'));
+            //return $this->information(__('messages.success'));
         }
+        return $this->information(__('messages.success'));
     }
 
     /**
