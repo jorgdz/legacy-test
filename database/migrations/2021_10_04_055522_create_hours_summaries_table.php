@@ -34,9 +34,10 @@ class CreateHoursSummariesTable extends Migration
             $table->foreign('education_level_id')->references('id')->on('education_levels');
 
             $table->bigInteger('requisition_id')->nullable();
+            //al momento de la modificacion no existia aun levantado elproceso de requisicion
+            //falta la relacion
 
-            //  $table->bigInteger('collaborator_hour_id')->unsigned();
-            //  $table->foreign('collaborator_hour_id')->references('id')->on('collaborator_hours');
+      
 
             $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

@@ -28,6 +28,12 @@ class HourSummary extends Model implements AuditableContract
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
+    protected $relations = [
+        'collaborator_id',
+        'education_level_id',
+        'period_id', 
+        'status_id'
+    ];
     /**
      * The attributes that are mass assignable.
      *

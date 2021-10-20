@@ -19,12 +19,17 @@ class HourSummaryRepository extends BaseRepository
         'collaborator',
         'educationLevel',
         'period',
-        'status'
+        'status',
+        'collaborator.user',
+        'collaborator.user.person',
     ];
+
+
+
 
     /**
      * parents
-     *
+     * Name of rable relationals
      * @var array
      */
     protected $parents = [
@@ -34,32 +39,39 @@ class HourSummaryRepository extends BaseRepository
         'status'
     ];
 
-    
+
+
+    /**
+     * selfFieldsAndParents
+     *  Fields of table relationals 
+     * @var array
+     */
+    protected $selfFieldsAndParents = [
+
+        /* collaborator */
+        'coll_email', 'coll_type', 'coll_activity', 'coll_journey_hours', 'coll_journey_description',
+        /* education_level */
+        'edu_name', 'edu_alias',
+        /* period */
+        'per_name', 'per_reference', 'per_current_year', 'per_due_year',
+        /* status */
+        'st_name'
+    ];
+
+
+
     /**
      * fields
      *
      * @var array
      */
     protected $fields = [
-        'mes_name',
-        'mes_res_cas',
-        'mes_res_ocas',
-        'mes_cod_career',
-        'mes_title',
-        'mes_itinerary',
-        'mes_creation_date',
-        'mes_acronym',
-        'anio',
-    ];
-
-    /**
-     * selfFieldsAndParents
-     *
-     * @var array
-     */
-    protected $selfFieldsAndParents = [
-        'mes_name', 'mes_res_cas', 'mes_res_ocas', 'mes_cod_career', 'mes_title', 'mes_itinerary', 'mes_creation_date',
-        'mes_acronym', 'anio', 'cat_name', 'cat_acronym', 'tc_name', 'edu_name', 'edu_alias', 'edu_order', 'st_name'
+        'hs_classes',
+        'hs_classes_examns_preparation',
+        'hs_bonding',
+        'hs_tutoring',
+        'hs_research',
+        'hs_academic_management',
     ];
 
     /**
@@ -70,5 +82,56 @@ class HourSummaryRepository extends BaseRepository
     public function __construct(HourSummary $hourSummary)
     {
         parent::__construct($hourSummary);
+    }
+
+    /**
+     * all
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function all($request)
+    {
+        $request['conditions'] = [
+            ['period_id', $request['period_id']],
+            ['education_level_id', $request['education_level_id']]
+        ];
+
+        if (isset($request['data'])) {
+            return ($request['data'] === 'all') ?  $this->data
+                //->withOutPaginate($this->selected)
+                ->withModelRelations($this->relations)
+                ->filter($request, $this->fields, $this->model->getRelations(), $this->model->getKeyName(), $this->model->getTable())
+                ->getCollection() : [];
+        }
+
+        if (isset($request['period_id']) && isset($request['education_level_id'])) {
+            return ($request['period_id'] && $request['education_level_id']) ?
+                $this->data
+                ->withModelRelations($this->relations)
+                //->searchWithColumnNames($request)
+                ->searchWithConditions($request)
+                ->filter(
+                    $request,
+                    $this->fields,
+                    $this->model->getRelations(),
+                    $this->model->getKeyName(),
+                    $this->model->getTable()
+                )
+                ->paginated($request, $this->model->getTable()) : [];
+        }
+
+        return $this->data
+            ->withModelRelations($this->relations)
+            ->searchWithColumnNames($request)
+            ->searchWithConditions($request)
+            ->filter(
+                $request,
+                $this->fields,
+                $this->model->getRelations(),
+                $this->model->getKeyName(),
+                $this->model->getTable()
+            )
+            ->paginated($request, $this->model->getTable());
     }
 }

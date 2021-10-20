@@ -16,7 +16,7 @@ interface IHourSummaryController
     /**
      * @OA\Get(
      *   path="/api/hours-summaries",
-     *   tags={"Resúmenes de horas"},
+     *   tags={"Resúmenes de horas colaborador"},
      *   security={
      *      {"api_key_security": {}},
      *   },
@@ -91,6 +91,24 @@ interface IHourSummaryController
      *       type="string",
      *     ),
      *   ),
+     *  @OA\Parameter(
+     *     name="period_id",
+     *     description="Id periodo",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *  @OA\Parameter(
+     *     name="education_level_id",
+     *     description="Nivel Educativo",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=403, description="No autorizado"),
      *   @OA\Response(response=401, description="No autenticado"),
@@ -103,7 +121,7 @@ interface IHourSummaryController
     /**
      * @OA\Post(
      *   path="/api/hours-summaries",
-     *   tags={"Resúmenes de horas"},
+     *   tags={"Resúmenes de horas colaborador"},
      *   security={
      *      {"api_key_security": {}},
      *   },
@@ -206,7 +224,7 @@ interface IHourSummaryController
     /**
      * @OA\Get(
      *   path="/api/hours-summaries/{id}",
-     *   tags={"Resúmenes de horas"},
+     *   tags={"Resúmenes de horas colaborador"},
      *   security={
      *      {"api_key_security": {}},
      *   },
@@ -248,7 +266,7 @@ interface IHourSummaryController
     /**
      * @OA\Put(
      *   path="/api/hours-summaries/{hourSummary}",
-     *   tags={"Resúmenes de horas"},
+     *   tags={"Resúmenes de horas colaborador"},
      *   security={
      *      {"api_key_security": {}},
      *   },
@@ -362,7 +380,7 @@ interface IHourSummaryController
     /**
      * @OA\Delete(
      *   path="/api/hours-summaries/{hourSummary}",
-     *   tags={"Resúmenes de horas"},
+     *   tags={"Resúmenes de horas colaborador"},
      *   security={
      *      {"api_key_security": {}},
      *   },

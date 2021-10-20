@@ -285,14 +285,14 @@ class DefaultExampleSeeder extends Seeder
             ]
         ]);
 
-        DB::connection('tenant')->table('collaborator_hours')->insert([
+      /*   DB::connection('tenant')->table('collaborator_hours')->insert([
             [
                 'period_id'             => 1,
                 'education_level_id'    => 1,
                 'ch_working_time'       => 'TC',
                 'status_id'             => 1,
             ]
-        ]);
+        ]); */
 
         DB::connection('tenant')->table('hours_summaries')->insert([
             [
