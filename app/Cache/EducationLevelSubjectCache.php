@@ -49,6 +49,8 @@ class EducationLevelSubjectCache extends BaseCache
      */
     public function save(Model $model)
     {
+        $this->forgetCache('offers');
+        $this->forgetCache('education-levels');
         $this->forgetCache('group-area-subjects');
         return $this->repository->save($model);
     }
@@ -59,6 +61,8 @@ class EducationLevelSubjectCache extends BaseCache
      * @return void
      */
     public function destroy (Model $model) {
+        $this->forgetCache('offers');
+        $this->forgetCache('education-levels');
         $this->forgetCache('group-area-subjects');
         return $this->repository->destroy($model);
     }

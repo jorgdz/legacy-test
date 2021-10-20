@@ -52,6 +52,7 @@ class EducationLevelCache extends BaseCache
      */
     public function save(Model $model)
     {
+        $this->forgetCache('offers');
         $this->forgetCache('education-levels');
 
         $method = request()->method();
@@ -81,6 +82,7 @@ class EducationLevelCache extends BaseCache
      */
     public function destroy(Model $model)
     {
+        $this->forgetCache('offers');
         $this->forgetCache('education-levels');
         return $this->repository->destroy($model);
     }
