@@ -37,6 +37,7 @@ class SubjectCurriculumCache extends BaseCache
      * @return model
      */
     public function save(Model $model) {
+        $this->forgetCache('curriculums');
         $this->forgetCache('subject-curriculum');
 
         $method = request()->method();
@@ -93,6 +94,7 @@ class SubjectCurriculumCache extends BaseCache
      * @return void
      */
     public function destroy (Model $model) {
+        $this->forgetCache('curriculums');
         $this->forgetCache('subject-curriculum');
         return $this->repository->destroy($model);
     }
