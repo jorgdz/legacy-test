@@ -62,7 +62,7 @@ class Collaborator extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -72,7 +72,7 @@ class Collaborator extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function position() : BelongsTo
+    public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class, 'position_company_id');
     }
@@ -82,9 +82,9 @@ class Collaborator extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function EducationLevelPrincipal() : BelongsTo
+    public function EducationLevelPrincipal(): BelongsTo
     {
-        return $this->belongsTo(EducationLevel::class, 'education_level_principal_id','id');
+        return $this->belongsTo(EducationLevel::class, 'education_level_principal_id', 'id');
     }
 
     /**
@@ -92,7 +92,7 @@ class Collaborator extends Model implements AuditableContract
      *
      * @return HasOne
      */
-    public function educationLevels() : HasMany
+    public function educationLevels(): HasMany
     {
         return $this->hasMany(CollaboratorEducationLevel::class);
     }
@@ -101,7 +101,7 @@ class Collaborator extends Model implements AuditableContract
      *
      * @return HasOne
      */
-    public function campus() : HasMany
+    public function campus(): HasMany
     {
         return $this->hasMany(CollaboratorCampus::class);
     }
@@ -112,7 +112,8 @@ class Collaborator extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function status() : BelongsTo {
+    public function status(): BelongsTo
+    {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
@@ -121,8 +122,9 @@ class Collaborator extends Model implements AuditableContract
      *
      * @return void
      */
-    public function course(): HasMany {
-        return $this->hasMany(Course::class,'collaborator_id');
+    public function course(): HasMany
+    {
+        return $this->hasMany(Course::class, 'collaborator_id');
     }
 
     /**
@@ -130,8 +132,19 @@ class Collaborator extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function studentRecords() : HasMany
+    public function studentRecords(): HasMany
     {
         return $this->hasMany(StudentRecord::class, 'collaborator_id');
+    }
+
+
+    /**
+     * hourSummarys
+     *
+     * @return BelongsTo
+     */
+    public function hourSummarys(): HasMany
+    {
+        return $this->hasMany(HourSummary::class);
     }
 }

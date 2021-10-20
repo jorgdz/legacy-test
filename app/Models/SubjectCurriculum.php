@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use phpDocumentor\Reflection\Types\Boolean;
 use PhpParser\Node\Expr\Cast\Double;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
@@ -211,5 +212,18 @@ class SubjectCurriculum extends Model implements AuditableContract
 
     public function getStatusIdAttribute () {
         return (int) ($this->attributes['status_id']);
+    }
+
+  
+    public function getCanExternalHomologationsAttribute () {
+        return (Boolean) ($this->attributes['can_external_homologations']);
+    }
+
+    public function getCanInternalHomologationsAttribute () {
+        return (Boolean) ($this->attributes['can_internal_homologations']);
+    }
+
+    public function getSubCurIntegrativeTypeAttribute () {
+        return (Boolean) ($this->attributes['sub_cur_integrative_type']);
     }
 }

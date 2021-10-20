@@ -27,7 +27,7 @@ class HourSummaryFormRequest extends FormRequest
     {
 
         /**
-         * Validacion para los tipos de archivos permitidos
+         * Validacion saber si el colaborador esta activo
          */
         Validator::extend('validateActiveCollaborator', function ($attribute, $value, $parameters, $validator) {
 
@@ -56,7 +56,9 @@ class HourSummaryFormRequest extends FormRequest
             'hs_research'   => 'required|integer',
             //'hs_total'   => 'required|integer',
             'hs_academic_management'   => 'required|integer',
-            'collaborator_hour_id'   => 'required|integer|exists:tenant.collaborator_hours,id',
+            'period_id'   => 'required|integer|exists:tenant.periods,id',
+            'education_level_id'   => 'required|integer|exists:tenant.education_levels,id',
+            'requisition_id'=>'integer',
             'status_id'   => 'required|integer|exists:tenant.status,id',
         ];
         if (in_array($this->method(), ['PUT', 'PATCH'])) {

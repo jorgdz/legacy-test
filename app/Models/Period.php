@@ -48,7 +48,7 @@ class Period extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $relations = ['campus_id', 'type_period_id', 'status_id','classroomEducationLevel'];
+    protected $relations = ['campus_id', 'type_period_id', 'status_id', 'classroomEducationLevel'];
 
     /**
      * dates
@@ -62,7 +62,7 @@ class Period extends Model implements AuditableContract
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','deleted_at', 'pivot'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'pivot'];
 
     /**
      * softCascade
@@ -76,9 +76,9 @@ class Period extends Model implements AuditableContract
      *
      * @return BelongsToMany
      */
-    public function hourhands (): BelongsToMany
+    public function hourhands(): BelongsToMany
     {
-        return $this->belongsToMany(Hourhand::class, 'hourhand_period','period_id', 'hourhand_id');
+        return $this->belongsToMany(Hourhand::class, 'hourhand_period', 'period_id', 'hourhand_id');
     }
 
     /**
@@ -86,7 +86,7 @@ class Period extends Model implements AuditableContract
      *
      * @return BelongsToMany
      */
-    public function offers () : BelongsToMany
+    public function offers(): BelongsToMany
     {
         return $this->belongsToMany(Offer::class, 'offer_period', 'period_id', 'offer_id');
     }
@@ -96,7 +96,7 @@ class Period extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function periodStages () : HasMany
+    public function periodStages(): HasMany
     {
         return $this->hasMany(PeriodStage::class);
     }
@@ -126,7 +126,7 @@ class Period extends Model implements AuditableContract
      *
      * @return void
      */
-    public function campus ()
+    public function campus()
     {
         return $this->belongsTo(Campus::class, 'campus_id');
     }
@@ -136,7 +136,7 @@ class Period extends Model implements AuditableContract
      *
      * @return void
      */
-    public function typePeriod ()
+    public function typePeriod()
     {
         return $this->belongsTo(TypePeriod::class, 'type_period_id');
     }
@@ -146,35 +146,48 @@ class Period extends Model implements AuditableContract
      *
      * @return void
      */
-    public function status ()
+    public function status()
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-     /**
+    /**
      * Classroom Education Level
      *
      * @return void
      */
-    public function classroomEducationLevel(): HasMany {
-        return $this->hasMany(ClassroomEducationLevel::class,'period_id');
+    public function classroomEducationLevel(): HasMany
+    {
+        return $this->hasMany(ClassroomEducationLevel::class, 'period_id');
     }
 
-     /**
+    /**
      * Course
      *
      * @return void
      */
-    public function course(): HasMany {
-        return $this->hasMany(Course::class,'period_id');
+    public function course(): HasMany
+    {
+        return $this->hasMany(Course::class, 'period_id');
     }
 
-     /**
+    /**
      * Course Student  
      *
      * @return void
      */
-    public function courseStudent () {
-        return $this->hasMany(CourseStudent::class,'period_id');
+    public function courseStudent()
+    {
+        return $this->hasMany(CourseStudent::class, 'period_id');
+    }
+
+    /**
+     * hourSummarys
+     *
+     * @return BelongsTo
+     */
+    public function hourSummarys(): HasMany
+    {
+        return $this->hasMany(HourSummary::class);
     }
 }

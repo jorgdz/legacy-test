@@ -74,6 +74,15 @@ interface IHourSummaryController
      *     ),
      *   ),
      *   @OA\Parameter(
+     *     name="data",
+     *     description="mostrar todos los datos sin paginacion (enviar all)",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Parameter(
      *     name="search",
      *     description="Filtrar registros",
      *     in="query",
@@ -147,8 +156,18 @@ interface IHourSummaryController
      *           type="integer",
      *         ),
      *          @OA\Property(
-     *           property="collaborator_hour_id",
-     *           description="Id Horas colaborador",
+     *           property="period_id",
+     *           description="Id Periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="education_level_id",
+     *           description="Id Nivel educativo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="requisition_id",
+     *           description="Id requisito",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -170,7 +189,9 @@ interface IHourSummaryController
      *          "hs_tutoring"   : "required|integer",
      *          "hs_research"   : "required|integer",
      *          "hs_academic_management"   : "required|integer",
-     *          "collaborator_hour_id"   : "required|integer|exists:tenant.collaborator_hours,id",
+     *          "period_id"   : "required|integer|exists:tenant.periods,id",
+     *          "education_level_id"   : "required|integer|exists:tenant.education_levels,id",
+     *          "requisition_id":"integer",
      *          "status_id"   : "required|integer|exists:tenant.status,id",
      *      },
      *   )),
@@ -289,9 +310,19 @@ interface IHourSummaryController
      *           description="Horas de investigacion",
      *           type="integer",
      *         ),
-     *          @OA\Property(
-     *           property="collaborator_hour_id",
-     *           description="Id Horas colaborador",
+     *           @OA\Property(
+     *           property="period_id",
+     *           description="Id Periodo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="education_level_id",
+     *           description="Id Nivel educativo",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
+     *           property="requisition_id",
+     *           description="Id requisito",
      *           type="integer",
      *         ),
      *         @OA\Property(
@@ -313,7 +344,9 @@ interface IHourSummaryController
      *          "hs_tutoring"   : "required|integer",
      *          "hs_research"   : "required|integer",
      *          "hs_academic_management"   : "required|integer",
-     *          "collaborator_hour_id"   : "required|integer|exists:tenant.collaborator_hours,id",
+     *          "period_id"   : "required|integer|exists:tenant.periods,id",
+     *          "education_level_id"   : "required|integer|exists:tenant.education_levels,id",
+     *          "requisition_id":"integer",
      *          "status_id"   : "required|integer|exists:tenant.status,id",
      *      },
      *   )),

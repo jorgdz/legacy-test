@@ -10,6 +10,7 @@ use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HourSummary extends Model implements AuditableContract
 {
@@ -41,18 +42,41 @@ class HourSummary extends Model implements AuditableContract
         'hs_academic_management',
         'hs_research',
         'hs_total',
-        'collaborator_hour_id',
+        "period_id",
+        "education_level_id",
+        "requisition_id",
+        //'collaborator_hour_id',
         'status_id',
     ];
 
     /**
-     * collaboratorHour
+     * collaborators
      *
      * @return BelongsTo
      */
-    public function collaboratorHour(): BelongsTo
+    public function collaborator(): BelongsTo
     {
-        return $this->belongsTo(CollaboratorHour::class, 'collaborator_hour_id');
+        return $this->belongsTo(Collaborator::class, 'collaborator_id');
+    }
+
+    /**
+     * educationLevel
+     *
+     * @return BelongsTo
+     */
+    public function educationLevel(): BelongsTo
+    {
+        return $this->belongsTo(EducationLevel::class, 'education_level_id');
+    }
+
+    /**
+     * period
+     *
+     * @return BelongsTo
+     */
+    public function period(): BelongsTo
+    {
+        return $this->belongsTo(Period::class, 'period_id');
     }
 
 

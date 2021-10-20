@@ -68,7 +68,8 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function studentRecords(): HasMany {
+    public function studentRecords(): HasMany
+    {
         return $this->hasMany(StudentRecord::class);
     }
 
@@ -77,7 +78,8 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function meshs() :  HasMany{
+    public function meshs(): HasMany
+    {
         return $this->hasMany(Curriculum::class, 'level_edu_id');
     }
 
@@ -86,7 +88,8 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function offer() : BelongsTo {
+    public function offer(): BelongsTo
+    {
         return $this->belongsTo(Offer::class, 'offer_id');
     }
 
@@ -95,7 +98,8 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function groupArea() : BelongsTo {
+    public function groupArea(): BelongsTo
+    {
         return $this->belongsTo(AreaGroup::class, 'group_area_id');
     }
 
@@ -104,25 +108,29 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return BelongsTo
      */
-    public function status() : BelongsTo {
+    public function status(): BelongsTo
+    {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    public function children() {
-        return $this->hasMany(EducationLevel::class, 'principal_id')->with(['status', 'offer', 'meshs' => function($query) {
+    public function children()
+    {
+        return $this->hasMany(EducationLevel::class, 'principal_id')->with(['status', 'offer', 'meshs' => function ($query) {
             $query->where('status_id', 7);
-        }, 'children'])->where(function($query) {
+        }, 'children'])->where(function ($query) {
             if (isset(request()->query()['data'])) $query->where('status_id', 1);
         });
     }
 
-    public function child(): HasMany {
-        return $this->hasMany(EducationLevel::class, 'principal_id')->with('child')->where(function($query) {
+    public function child(): HasMany
+    {
+        return $this->hasMany(EducationLevel::class, 'principal_id')->with('child')->where(function ($query) {
             $query->where('status_id', 1);
         });
     }
 
-    public function matter() {
+    public function matter()
+    {
         return $this->hasMany(Subject::class, 'education_level_id');
     }
 
@@ -131,8 +139,9 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return void
      */
-    public function classroomEducationLevel(): HasMany {
-        return $this->hasMany(ClassroomEducationLevel::class,'education_level_id');
+    public function classroomEducationLevel(): HasMany
+    {
+        return $this->hasMany(ClassroomEducationLevel::class, 'education_level_id');
     }
 
     /**
@@ -140,8 +149,18 @@ class EducationLevel extends Model implements AuditableContract
      *
      * @return HasMany
      */
-    public function educationLevelSubject() : HasMany
+    public function educationLevelSubject(): HasMany
     {
         return $this->hasMany(EducationLevelSubject::class, 'education_level_id');
+    }
+
+    /**
+     * hourSummarys
+     *
+     * @return BelongsTo
+     */
+    public function hourSummarys(): HasMany
+    {
+        return $this->hasMany(HourSummary::class);
     }
 }
