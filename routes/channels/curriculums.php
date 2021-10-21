@@ -10,4 +10,4 @@ Route::post('/curriculums', [CurriculumController::class, 'store'])->middleware(
 Route::put('/curriculums/{curriculum}', [CurriculumController::class, 'update'])->middleware(['auth:sanctum', 'permission:meshs-actualizar-mallas']);
 Route::delete('/curriculums/{curriculum}', [CurriculumController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:meshs-borrar-malla']);
 Route::get('/curriculums/{curriculum}/components', [CurriculumController::class, 'learningComponentByMesh'])->middleware(['auth:sanctum', 'permission:learning_components-listar-componente-aprendizaje']);
-Route::put('/curriculums/{curriculum}/status', [CurriculumController::class, 'updateCurriculumStatus'])->middleware(['auth:sanctum', /* 'permission:meshs-actualizar-estado-mallas-vigente' */]);
+Route::put('/curriculums/{curriculum}/status', [CurriculumController::class, 'updateCurriculumStatus'])->middleware(['auth:sanctum', 'permission:meshs-actualizar-estado-mallas-vigente']);

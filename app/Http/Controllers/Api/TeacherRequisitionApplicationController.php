@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Cache\ApplicationCache;
 use App\Cache\CollaboratorCache;
 use App\Exceptions\Custom\ConflictException;
+use App\Http\Controllers\Api\Contracts\ITeacherRequisitionApplicationController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeacherRequisitionApplicationRequest;
 use App\Models\Application;
@@ -23,7 +24,7 @@ use App\Traits\TranslateException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TeacherRequisitionApplicationController extends Controller
+class TeacherRequisitionApplicationController extends Controller implements ITeacherRequisitionApplicationController
 {
     use RestResponse, TranslateException;
 

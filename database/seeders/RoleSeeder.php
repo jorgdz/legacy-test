@@ -1060,7 +1060,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las materias por malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh',
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'materias por malla',
                 'module_group' => 'academic'
             ],
@@ -1070,7 +1070,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener materias relacionadas con el identificador de una malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh',
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'materias por malla',
                 'module_group' => 'academic'
             ],
@@ -1080,7 +1080,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Agregar un registro relacional entre materia y malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh',
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'materias por malla',
                 'module_group' => 'academic'
             ],
@@ -1090,7 +1090,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Actualizar un registro relacional entre materia y malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh',
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'materias por malla',
                 'module_group' => 'academic'
             ],
@@ -1100,7 +1100,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Borrar un registro relacional entre materia y malla por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mattermesh',
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'materias por malla',
                 'module_group' => 'academic'
             ],
@@ -1883,7 +1883,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los periodos por oferta',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offerPeriod',
+                'parent_name' => 'offers',
                 'parent_name_translated' => 'período por oferta',
                 'module_group' => 'academic'
             ],
@@ -1893,7 +1893,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener un periodo oferta por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offerPeriod',
+                'parent_name' => 'offers',
                 'parent_name_translated' => 'período por oferta',
                 'module_group' => 'academic'
             ],
@@ -1906,7 +1906,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las ofertas por periodos',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodOffer',
+                'parent_name' => 'periods',
                 'parent_name_translated' => 'ofertas por período',
                 'module_group' => 'academic'
             ],
@@ -1916,7 +1916,7 @@ class RoleSeeder extends Seeder
                 'description' => 'borrar una oferta periodo por su identificador',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'periodOffer',
+                'parent_name' => 'periods',
                 'parent_name_translated' => 'ofertas por período',
                 'module_group' => 'academic'
             ],
@@ -2453,7 +2453,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Asignar dependecias de materias por mallas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterMesh',
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'materias por malla',
                 'module_group' => 'academic'
             ],
@@ -2463,7 +2463,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Lista todas las dependecias de materias por mallas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'matterMesh',
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'materias por malla',
                 'module_group' => 'academic'
             ],
@@ -2489,7 +2489,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Obtener todas las materias por el identificador de su malla',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'mesh',
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'mallas',
                 'module_group' => 'academic'
             ],
@@ -2555,7 +2555,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las simbologias por ofertas',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offer',
+                'parent_name' => 'offers',
                 'parent_name_translated' => 'ofertas académicas',
                 'module_group' => 'academic'
             ],
@@ -2565,7 +2565,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Asignacion masiva de simbologia a la oferta',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'offer',
+                'parent_name' => 'offers',
                 'parent_name_translated' => 'ofertas académicas',
                 'module_group' => 'academic'
             ],
@@ -3629,7 +3629,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las facultades por periodo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'period',
+                'parent_name' => 'periods',
                 'parent_name_translated' => 'periodos',
                 'module_group' => 'academic'
             ],
@@ -3940,7 +3940,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todas las etapas por periodo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'period',
+                'parent_name' => 'periods',
                 'parent_name_translated' => 'etapa periodo',
                 'module_group' => 'academic'
             ],
@@ -3950,7 +3950,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Listar todos los cursos por periodo',
                 'guard_name' => 'api',
                 'status_id' => 1,
-                'parent_name' => 'period',
+                'parent_name' => 'periods',
                 'parent_name_translated' => 'etapa periodo',
                 'module_group' => 'academic'
             ],
@@ -4146,6 +4146,19 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'api',
                 'status_id' => 1,
                 'parent_name' => 'classroomEducationLevel',
+                'parent_name_translated' => 'aula nivel educativo',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Malla 383
+             */
+            [
+                'name' => 'meshs-actualizar-estado-mallas-vigente',
+                'alias' => 'Actualizar estado malla',
+                'description' => 'Actualizar estado de la malla vigente',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'meshs',
                 'parent_name_translated' => 'aula nivel educativo',
                 'module_group' => 'academic'
             ],
@@ -4831,6 +4844,10 @@ class RoleSeeder extends Seeder
              * Aula Nivel Educativo 382
              */
             ['permission_id' => 382, 'role_id' => 1],
+            /**
+             * Malla 383
+             */
+            ['permission_id' => 383, 'role_id' => 1],
         ]);
 
         /**
@@ -5487,6 +5504,10 @@ class RoleSeeder extends Seeder
              * Aula Nivel Educativo 382
              */
             ['permission_id' => 382, 'role_id' => 2],
+            /**
+             * Malla 383
+             */
+            ['permission_id' => 383, 'role_id' => 2],
         ]);
 
         /**

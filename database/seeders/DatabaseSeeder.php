@@ -46,6 +46,7 @@ class DatabaseSeeder extends Seeder
                 PositionSeeder::class,
                 AreasSeeder::class,
                 TypeDocumentSeeder::class,
+                ConfigTypeApplicationSeeder::class,
             ]);
         }
     }

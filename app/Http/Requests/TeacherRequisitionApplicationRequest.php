@@ -25,7 +25,6 @@ class TeacherRequisitionApplicationRequest extends FormRequest
     {
         return [
             "app_description"               => "nullable|string",
-            "typ_app_acronym"               => "required|exists:tenant.type_applications,typ_app_acronym",
             "user_id"                       => "required|exists:tenant.users,id",
             "json"                          => "required|array",
             "json.0.user_id_requisition"    => "required|exists:tenant.users,id",
