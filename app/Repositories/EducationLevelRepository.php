@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\Custom\UnprocessableException;
 use App\Models\EducationLevel;
 use App\Models\Collaborator;
 use App\Repositories\Base\BaseRepository;
@@ -138,5 +139,25 @@ class EducationLevelRepository extends BaseRepository
 
         return $response->orderBy($sort, $type_sort)->paginate(isset(request()->query()['size']) ? request()->query()['size'] : 100);
 
+    }
+
+
+
+
+    public function getOnlyPrincipalRepository(){
+
+        $request['conditions'] = [
+            ['principal_id',NULL]
+        ];
+
+        
+        $query = $this->data
+        //->withModelRelations($this->relations)
+        //->searchWithColumnNames($request)
+        ->searchWithConditions($request)
+        ->getCollection();
+
+        return (count($query) >=1 )? $query : [];
+        
     }
 }

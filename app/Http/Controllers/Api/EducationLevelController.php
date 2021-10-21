@@ -137,4 +137,18 @@ class EducationLevelController extends Controller implements IEducationLevelCont
     {
         return $this->success($this->educationLevelCache->getCollaboratorsPerEducationLvl($educationlevel,$request));
     }
+
+
+     /**
+     * getChildren
+     *
+     * Devolvera niveles educativos Padres en un array.
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function getOnlyPrincipal()
+    {
+        return $this->success($this->educationLevelCache->getOnlyPrincipalCache());
+    }
 }

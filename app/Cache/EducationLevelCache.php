@@ -2,8 +2,9 @@
 
 namespace App\Cache;
 
-use App\Repositories\EducationLevelRepository;
+use App\Cache\BaseCache;
 use Illuminate\Database\Eloquent\Model;
+use App\Repositories\EducationLevelRepository;
 
 class EducationLevelCache extends BaseCache
 {
@@ -91,6 +92,14 @@ class EducationLevelCache extends BaseCache
     {
         return $this->cache::remember($this->key, $this->ttl, function () use ($educationlevel,$request) {
             return $this->repository->getCollaboratorsPerEducationLvl($educationlevel,$request);
+        });
+    }
+
+
+    public function getOnlyPrincipalCache ()
+    {
+        return $this->cache::remember($this->key, $this->ttl, function () {
+            return $this->repository->getOnlyPrincipalRepository();
         });
     }
 }

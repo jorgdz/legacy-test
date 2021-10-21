@@ -463,4 +463,34 @@ interface IEducationLevelController
      *
      */
     public function getCollaboratorsPerEducationLvl (EducationLevel $educationlevel, Request $request);
+
+    /**
+     * @OA\Get(
+     *   path="/api/education-levels/principal",
+     *   tags={"Niveles Educativos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener niveles educativos Padre ",
+     *   description="Muestra niveles educativos Exclusivamente padre (que contenga principal_id = null).",
+     *   operationId="getOnlyPrincipal",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=404, description="No encontrado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function getOnlyPrincipal();
 }

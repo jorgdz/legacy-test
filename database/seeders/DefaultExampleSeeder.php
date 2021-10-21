@@ -107,9 +107,9 @@ class DefaultExampleSeeder extends Seeder
         ]);
 
         DB::connection('tenant')->table('group_areas')->insert([
-            ['arg_name' => 'CIENCIAS EMPRESARIALES Y AFINES', 'arg_description' => '', 'arg_keywords' => 'ciencias-empresariales-fines', 'status_id' => 1],
-            ['arg_name' => 'CIENCIAS SOCIALES Y AFINES', 'arg_description' => '', 'arg_keywords' => 'ciencias-sociales-fines', 'status_id' => 1],
-            ['arg_name' => 'CIENCIAS DE LA SALUD Y DESARROLLO HUMANO', 'arg_description' => '', 'arg_keywords' => 'ciencias-salud-desarrollo-humano', 'status_id' => 1]
+            ['arg_name' => 'CIENCIAS EMPRESARIALES Y AFINES', 'arg_description' => NULL, 'arg_keywords' => 'ciencias-empresariales-fines', 'status_id' => 1],
+            ['arg_name' => 'CIENCIAS SOCIALES Y AFINES', 'arg_description' => NULL, 'arg_keywords' => 'ciencias-sociales-fines', 'status_id' => 1],
+            ['arg_name' => 'CIENCIAS DE LA SALUD Y DESARROLLO HUMANO', 'arg_description' => NULL, 'arg_keywords' => 'ciencias-salud-desarrollo-humano', 'status_id' => 1]
         ]);
 
         DB::connection('tenant')->table('education_levels')->insert([
@@ -185,7 +185,7 @@ class DefaultExampleSeeder extends Seeder
                 'pers_firstname' => 'Carmen',
                 'pers_secondname' => '',
                 'pers_first_lastname' => 'Bastidas',
-                'pers_second_lastname' => '',
+                'pers_second_lastname' => 'Flores',
                 'pers_gender' => 'Femenino',
                 'pers_date_birth' => '1993-08-15',
                 'pers_direction' => 'Localhost',
@@ -233,7 +233,7 @@ class DefaultExampleSeeder extends Seeder
         DB::connection('tenant')->table('positions')->insert([
             [
                 'pos_name'          => 'Docente de tiempo completo',
-                'pos_description'   => '',
+                'pos_description'   => NULL,
                 'pos_keyword'       => 'docente-tm-completo',
                 'role_id'           => 17,
                 'department_id'     => 1,
@@ -241,9 +241,17 @@ class DefaultExampleSeeder extends Seeder
             ],
             [
                 'pos_name'          => 'Encargado de logística',
-                'pos_description'   => '',
+                'pos_description'   => NULL,
                 'pos_keyword'       => 'encargado-logistica',
                 'role_id'           => 16,
+                'department_id'     => 1,
+                'status_id'         => 1
+            ],
+            [
+                'pos_name'          => 'Decano de facultad',
+                'pos_description'   => NULL,
+                'pos_keyword'       => 'decano-facultad',
+                'role_id'           => 12,
                 'department_id'     => 1,
                 'status_id'         => 1
             ],
@@ -285,7 +293,7 @@ class DefaultExampleSeeder extends Seeder
             ]
         ]);
 
-        /*   DB::connection('tenant')->table('collaborator_hours')->insert([
+        /* DB::connection('tenant')->table('collaborator_hours')->insert([
             [
                 'period_id'             => 1,
                 'education_level_id'    => 1,
@@ -294,7 +302,7 @@ class DefaultExampleSeeder extends Seeder
             ]
         ]); */
 
-        DB::connection('tenant')->table('hours_summaries')->insert([
+         DB::connection('tenant')->table('hours_summaries')->insert([
             [
                 'collaborator_id'       => 1,
                 'hs_classes'            => 4,
@@ -309,7 +317,7 @@ class DefaultExampleSeeder extends Seeder
                 "requisition_id"                    => 0,
                 'status_id'                         => 1
             ]
-        ]);
+        ]); 
 
         DB::connection('tenant')->table('parallels')->insert([
             [
@@ -604,62 +612,5 @@ class DefaultExampleSeeder extends Seeder
                 'status_id'             => 1
             ],
         ]);
-<<<<<<< HEAD
-
-        DB::connection('tenant')->table('type_applications')->insert([
-            ['typ_app_name' => 'Academicas', 'typ_app_description' => 'Solicitudes Academicas', 'typ_app_acronym' => 'ACAD', 'parent_id' => null, 'status_id' => 1],
-            ['typ_app_name' => 'Practicas Pre-profesionales', 'typ_app_description' => 'Solicitudes de practicas', 'typ_app_acronym' => 'PRACTP', 'parent_id' => null, 'status_id' => 1],
-            ['typ_app_name' => 'Cambio Carrera', 'typ_app_description' => 'Solicitudes de cambio de carrera o facultad', 'typ_app_acronym' => 'CAMCAR', 'parent_id' => 1, 'status_id' => 1],
-            ['typ_app_name' => 'Homologacion externa', 'typ_app_description' => 'Solicitudes de homologacion externa', 'typ_app_acronym' => 'HOMEXT', 'parent_id' => 1, 'status_id' => 1],
-            ['typ_app_name' => 'Ingreso de Practica Pre-profesional', 'typ_app_description' => 'Solicitudes de ingreso a practicas', 'typ_app_acronym' => 'INGPRA', 'parent_id' => 2, 'status_id' => 1],
-        ]);
-
-        DB::connection('tenant')->table('config_type_applications')->insert([
-            ['conf_typ_description' => 'Cambio de Carrera - json', 'conf_typ_data_type' => 'json', 'conf_typ_object_name' => NULL, 'conf_typ_object_id' => NULL, 'conf_typ_file_path' => NULL, 'type_application_id' => 3, 'conf_typ_object_hidden'=>false,'status_id' => 1],
-            ['conf_typ_description' => 'Homologacion externa - id institucion proveniente', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Institute', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => NULL, 'type_application_id' => 4,'conf_typ_object_hidden'=>false, 'status_id' => 1],
-            ['conf_typ_description' => 'Homologacion externa - id malla destino', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Curriculum', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => NULL, 'type_application_id' => 4, 'conf_typ_object_hidden'=>false,'status_id' => 1],
-            ['conf_typ_description' => 'Homologacion externa - id persona', 'conf_typ_data_type' => 'integer', 'conf_typ_object_name' => 'App\Models\Person', 'conf_typ_object_id' => 'id', 'conf_typ_file_path' => NULL, 'type_application_id' => 4, 'conf_typ_object_hidden'=>false,'status_id' => 1],
-            ['conf_typ_description' => 'Homologacion externa - json', 'conf_typ_data_type' => 'json', 'conf_typ_object_name' => NULL, 'conf_typ_object_id' => NULL, 'conf_typ_file_path' => NULL, 'type_application_id' => 4, 'conf_typ_object_hidden'=>false,'status_id' => 1],
-        ]);
-
-        /* DB::connection('tenant')->table('applications')->insert([
-            ['app_code' => 'CAMCAR-0000001', 'app_description' => 'Solicitud de cambio de carrera ejemplo', 'app_register_date' => '2021-10-11', 'user_id' => 1, 'type_application_id' => 3, 'status_id' => 1],
-            ['app_code' => 'HOMEXT-0000002', 'app_description' => 'Solicitud de homologacion externa ejemplo', 'app_register_date' => '2021-10-11', 'user_id' => 1, 'type_application_id' => 4, 'status_id' => 1],
-        ]);
-
-        DB::connection('tenant')->table('application_details')->insert([
-            ['value' => 1, 'application_id' => 1, 'config_type_application_id' => 1],
-            ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 2],
-            ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 3],
-            ['value' => 1, 'application_id' => 2, 'config_type_application_id' => 4],
-        ]); */
-
-        DB::connection('tenant')->table('type_application_status')->insert([
-            ['order' => 0, 'type_application_id' => 3, 'status_id' => 10],  //Rechazado
-            ['order' => 1, 'type_application_id' => 3, 'status_id' => 11],  //Enviado
-            ['order' => 2, 'type_application_id' => 3, 'status_id' => 13],  //Aceptado
-            ['order' => 0, 'type_application_id' => 4, 'status_id' => 10],  //Rechazado
-            ['order' => 1, 'type_application_id' => 4, 'status_id' => 11],  //Enviado
-            ['order' => 2, 'type_application_id' => 4, 'status_id' => 15],  //Finalizado
-        ]);
-
-        DB::connection('tenant')->table('type_application_status_roles')->insert([
-            ['role_id' => 1, 'type_application_status_id' => 1],
-            ['role_id' => 1, 'type_application_status_id' => 2],
-            ['role_id' => 1, 'type_application_status_id' => 3],
-            ['role_id' => 1, 'type_application_status_id' => 4],
-            ['role_id' => 1, 'type_application_status_id' => 5],
-            ['role_id' => 1, 'type_application_status_id' => 6],
-            ['role_id' => 19, 'type_application_status_id' => 4],
-            ['role_id' => 19, 'type_application_status_id' => 5],
-            ['role_id' => 19, 'type_application_status_id' => 6],
-        ]);
-
-        /* DB::connection('tenant')->table('transac_type_application_status_roles')->insert([
-            ['transac_secuencial' => 'CAMCAR-0000001', 'transac_register_date' => date('m-d-Y h:i:s a', time()), 'transac_comments' => 'Nueva solicitud cambio de carrera', 'user' => 'phoppe', 'type_application_status_roles_id' => 2, 'status_id' => 1],
-            ['transac_secuencial' => 'HOMEXT-0000002', 'transac_register_date' => date('m-d-Y h:i:s a', time()), 'transac_comments' => 'Nueva solicitud homologacion externa', 'user' => 'phoppe', 'type_application_status_roles_id' => 5, 'status_id' => 1],
-        ]); */
-=======
->>>>>>> 4bf94db0478e44a038162cca922363ec6634359c
     }
 }
