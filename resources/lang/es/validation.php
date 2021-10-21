@@ -943,6 +943,7 @@ return [
 		'hs_research' => 'horas de investigacion',
 		'hs_total' => 'total',
 		'collaborator_hour_id' => 'horas de colaborador',
+		'requisition_id'=>'requisición',
 
 		/**
 		 * Signatures

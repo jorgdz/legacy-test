@@ -42,8 +42,9 @@ class AgreementController extends Controller implements IAgreementController
      * @return \Illuminate\Http\Response
      */
     public function store(AgreementRequest $request)
-    {
+    {   
         $agreement = new Agreement($request->all());
+       
         return $this->success($this->agreementCache->save($agreement), Response::HTTP_CREATED);
     }
 

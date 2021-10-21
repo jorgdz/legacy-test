@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -94,5 +95,17 @@ class Institute extends Model implements AuditableContract
     public function economicGroup(): BelongsTo
     {
         return $this->belongsTo(EconomicGroup::class, 'economic_group_id');
+    }
+
+
+
+    /**
+     * agreements
+     *
+     * @return HasMany
+     */
+    public function agreements(): HasMany
+    {
+        return $this->hasMany(Agreement::class);
     }
 }

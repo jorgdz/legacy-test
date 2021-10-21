@@ -28,6 +28,7 @@ class AgreementRequest extends FormRequest
             'agr_num_matter_homologate' => 'nullable|integer',
             'agr_start_date' => 'required|date',
             'agr_end_date' => 'required|date|after_or_equal:agr_start_date',
+            'institute_id' => 'integer|exists:tenant.institutes,id',
             'status_id' => 'integer|exists:tenant.status,id'
         ];
     }

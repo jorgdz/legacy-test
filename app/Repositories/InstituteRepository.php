@@ -13,7 +13,7 @@ class InstituteRepository extends BaseRepository
      *
      * @var array
      */
-    protected $relations = ['status', 'province', 'typeInstitute', 'economicGroup'];
+    protected $relations = ['status', 'province', 'typeInstitute', 'economicGroup','agreements'];
 
     /**
      * parents

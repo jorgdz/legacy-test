@@ -140,6 +140,11 @@ interface IAgreementController
      *           example="YYYY-MM-DD"
      *         ),
      *         @OA\Property(
+     *           property="institute_id",
+     *           description="Id instituto",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del convenio",
      *           type="integer",
@@ -155,6 +160,7 @@ interface IAgreementController
      *           "agr_num_matter_homologate" : "nullable|integer",
      *           "agr_start_date" : "required|date",
      *           "agr_end_date" : "required|date|after_or_equal:agr_start_date",
+     *           "institute_id" : "integer|exists:tenant.institutes,id",
      *           "status_id" : "integer|exists:tenant.status,id",
      *      },
      *   )),
@@ -262,6 +268,11 @@ interface IAgreementController
      *           example="YYYY-MM-DD"
      *         ),
      *         @OA\Property(
+     *           property="institute_id",
+     *           description="Id instituto",
+     *           type="integer",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del convenio",
      *           type="integer",
@@ -277,6 +288,7 @@ interface IAgreementController
      *           "agr_num_matter_homologate" : "nullable|integer",
      *           "agr_start_date" : "required|date",
      *           "agr_end_date" : "required|date|after_or_equal:agr_start_date",
+     *           "institute_id" : "integer|exists:tenant.institutes,id",
      *           "status_id" : "integer|exists:tenant.status,id",
      *      },
      *   )),

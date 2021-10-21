@@ -21,6 +21,10 @@ class CreateAgreementsTable extends Migration
             $table->date('agr_start_date')->nullable();
             $table->date('agr_end_date')->nullable();
             
+            $table->bigInteger('institute_id')->unsigned();
+
+            $table->foreign('institute_id')->references('id')->on('institutes');
+
             $table->bigInteger('status_id')->unsigned();
 
             $table->foreign('status_id')->references('id')->on('status');
