@@ -390,7 +390,7 @@ interface IEducationLevelController
      *   @OA\Parameter(
      *     name="type_collaborator",
      *     in="path",
-     *     required=true,
+     *     required=false,
      *     @OA\Schema(
      *       type="string",
      *       example="D"

@@ -14,7 +14,7 @@ trait RestResponse
 	 * @param  mixed $code
 	 * @return void
 	 */
-	public function success ($data, $code = Response::HTTP_OK) {
+	public function success ($data = [], $code = Response::HTTP_OK) {
         return response()->json($data, $code);
 	}
 
