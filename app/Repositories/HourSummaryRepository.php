@@ -121,6 +121,8 @@ class HourSummaryRepository extends BaseRepository
                 ->paginated($request, $this->model->getTable()) : [];
         }
 
+        $request['conditions'] = NULL;
+      
         return $this->data
             ->withModelRelations($this->relations)
             ->searchWithColumnNames($request)

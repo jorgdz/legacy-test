@@ -99,7 +99,7 @@ interface IConfigTypeApplicationController
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
+     *       mediaType="application/json",
      *       @OA\Schema(
      *         @OA\Property(
      *           property="user_profile_id",
@@ -142,6 +142,12 @@ interface IConfigTypeApplicationController
      *           example="3",
      *         ),
      *         @OA\Property(
+     *           property="conf_typ_object_hidden",
+     *           description="Oculto(tipo de solicitud sera visible)",
+     *           type="boolean",
+     *           example="true",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del tipo solicitud",
      *           type="integer",
@@ -160,6 +166,7 @@ interface IConfigTypeApplicationController
      *              "conf_typ_object_id" : "nullable|string",
      *              "conf_typ_file_path" : "nullable|string",
      *              "type_application_id" : "required|exists:tenant.type_application,id",
+     *              "conf_typ_object_hidden" : "nullable|boolean",
      *              "status_id" : "required|exists:tenant.status,id"
      *          },
      *      ),
@@ -278,6 +285,12 @@ interface IConfigTypeApplicationController
      *           example="3"
      *         ),
      *         @OA\Property(
+     *           property="conf_typ_object_hidden",
+     *           description="Oculto(tipo de solicitud sera visible)",
+     *           type="boolean",
+     *           example="true",
+     *         ),
+     *         @OA\Property(
      *           property="status_id",
      *           description="Estado del tipo solicitud",
      *           type="integer",
@@ -296,6 +309,7 @@ interface IConfigTypeApplicationController
      *              "conf_typ_object_id" : "nullable|string",
      *              "conf_typ_file_path" : "nullable|string",
      *              "type_application_id" : "required|exists:tenant.type_application,id",
+     *              "conf_typ_object_hidden" : "nullable|boolean",
      *              "status_id" : "required|exists:tenant.status,id"
      *          },
      *      ),

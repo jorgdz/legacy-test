@@ -31,7 +31,7 @@ class ConfigTypeApplicationController extends Controller implements IConfigTypeA
     {
         return $this->success($this->configTypeApplicationCache->all($request));
     }
-    
+
     /**
      * store
      *
@@ -43,7 +43,7 @@ class ConfigTypeApplicationController extends Controller implements IConfigTypeA
         $configtypeapplication = new ConfigTypeApplication($request->all());
         return $this->success($this->configTypeApplicationCache->save($configtypeapplication));
     }
-    
+
     /**
      * show
      *
@@ -54,7 +54,7 @@ class ConfigTypeApplicationController extends Controller implements IConfigTypeA
     {
         return $this->success($this->configTypeApplicationCache->find($id));
     }
-            
+
     /**
      * update
      *
@@ -64,9 +64,19 @@ class ConfigTypeApplicationController extends Controller implements IConfigTypeA
      */
     public function update(ConfigTypeApplicationRequest $request, ConfigTypeApplication $configtypeapplication)
     {
-        return $this->success($this->configTypeApplicationCache->save($configtypeapplication->fill($request->all())));
-    }
+
+        $configtypeapplication->fill($request->all());
         
+        if ($configtypeapplication->isClean())
+            return $this->information(__('messages.nochange'));
+
+        $response = $this->configTypeApplicationCache->save($configtypeapplication);
+
+
+        return $this->success($response);
+      
+    }
+
     /**
      * destroy
      *
@@ -75,6 +85,8 @@ class ConfigTypeApplicationController extends Controller implements IConfigTypeA
      */
     public function destroy(ConfigTypeApplication $configtypeapplication)
     {
-        return $this->success($this->configTypeApplicationCache->destroy($configtypeapplication));
+        $reponse = $this->configTypeApplicationCache->destroy($configtypeapplication);
+
+        return $this->success($reponse);
     }
 }

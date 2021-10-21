@@ -1227,7 +1227,7 @@ return [
 		"details"                               => "detalles",
 		"details.*.config_type_application_id"  => "configuracion de la solicitud",
 		/**
-		 * Configuracion Solicitud
+		 * Configuracion Solicitud (config_type_applications)
 		 */
 		'conf_typ_description' => 'descripcion configuracion',
 		'conf_typ_data_type' => 'tipo de dato configuracion',
@@ -1235,7 +1235,9 @@ return [
 		'conf_typ_object_id' => 'identificador del tipo objeto de configuracion',
 		'conf_typ_file_path' => 'ruta archivo',
 		'type_application_id' => 'tipo solicitud',
-		'status_id' => 'estado'
+		'status_id' => 'estado',
+		'conf_typ_object_hidden'=>'Oculto(tipo de solicitud sera visible)',
+		
 	],
 
 	/*

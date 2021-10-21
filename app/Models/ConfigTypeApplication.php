@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class ConfigTypeApplication extends Model implements AuditableContract
 {
@@ -25,6 +26,7 @@ class ConfigTypeApplication extends Model implements AuditableContract
         'conf_typ_object_id',
         'conf_typ_file_path',
         'type_application_id',
+        'conf_typ_object_hidden',
         'status_id'
     ];
 
@@ -67,4 +69,18 @@ class ConfigTypeApplication extends Model implements AuditableContract
     public function status(): BelongsTo {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+    //Parseo
+    public function getConfTypObjectHiddenAttribute () {
+        return (Boolean) ($this->attributes['conf_typ_object_hidden']);
+    }
+    public function getStatusIdAttribute () {
+        return (int) ($this->attributes['status_id']);
+    }
+
+    public function getTypeApplicationIdAttribute () {
+        return (int) ($this->attributes['type_application_id']);
+    }
+    
+
 }

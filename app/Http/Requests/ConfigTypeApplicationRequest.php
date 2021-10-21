@@ -30,6 +30,7 @@ class ConfigTypeApplicationRequest extends FormRequest
             'conf_typ_object_id' => 'nullable|string',
             'conf_typ_file_path' => 'nullable|string',
             'type_application_id' => 'required|exists:tenant.type_applications,id',
+            'conf_typ_object_hidden' => 'nullable|boolean',
             'status_id' => 'required|exists:tenant.status,id'
         ];
     }

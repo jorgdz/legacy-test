@@ -23,6 +23,9 @@ class CreateConfigTypeApplicationTable extends Migration
  
             $table->bigInteger('type_application_id')->unsigned();
             $table->foreign('type_application_id')->references('id')->on('type_applications');
+
+            $table->boolean('conf_typ_object_hidden')->nullable();
+            
             $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');
 

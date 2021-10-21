@@ -15,13 +15,13 @@ class ConfigTypeApplicationSeeder extends Seeder
     public function run()
     {
         DB::connection('tenant')->table('type_applications')->insert([
-            ['typ_app_name' => 'Academicas', 'typ_app_description' => 'Solicitudes Academicas', 'typ_app_acronym' => 'ACAD', 'parent_id' => null, 'status_id' => 1],
-            ['typ_app_name' => 'Practicas Pre-profesionales', 'typ_app_description' => 'Solicitudes de practicas', 'typ_app_acronym' => 'PRACTP', 'parent_id' => null, 'status_id' => 1],
-            ['typ_app_name' => 'Recursos Humanos', 'typ_app_description' => 'Solicitudes de recursos humanos', 'typ_app_acronym' => 'RRHH', 'parent_id' => null, 'status_id' => 1],
-            ['typ_app_name' => 'Cambio Carrera', 'typ_app_description' => 'Solicitudes de cambio de carrera o facultad', 'typ_app_acronym' => 'CAMCAR', 'parent_id' => 1, 'status_id' => 1],
-            ['typ_app_name' => 'Homologacion externa', 'typ_app_description' => 'Solicitudes de homologacion externa', 'typ_app_acronym' => 'HOMEXT', 'parent_id' => 1, 'status_id' => 1],
-            ['typ_app_name' => 'Ingreso de Practica Pre-profesional', 'typ_app_description' => 'Solicitudes de ingreso a practicas', 'typ_app_acronym' => 'INGPRA', 'parent_id' => 2, 'status_id' => 1],
-            ['typ_app_name' => 'Requisicion de personal docente', 'typ_app_description' => 'Solicitudes de requisicion de personal docente', 'typ_app_acronym' => 'REQDOC', 'parent_id' => 3, 'status_id' => 1],
+            ['typ_app_name' => 'Academicas', 'typ_app_description' => 'Solicitudes Academicas', 'typ_app_acronym' => 'ACAD', 'parent_id' => null, 'conf_typ_object_hidden'=>false, 'status_id' => 1],
+            ['typ_app_name' => 'Practicas Pre-profesionales', 'typ_app_description' => 'Solicitudes de practicas', 'typ_app_acronym' => 'PRACTP', 'conf_typ_object_hidden'=>false, 'parent_id' => null, 'status_id' => 1],
+            ['typ_app_name' => 'Recursos Humanos', 'typ_app_description' => 'Solicitudes de recursos humanos', 'typ_app_acronym' => 'RRHH', 'parent_id' => null, 'conf_typ_object_hidden'=>false, 'status_id' => 1],
+            ['typ_app_name' => 'Cambio Carrera', 'typ_app_description' => 'Solicitudes de cambio de carrera o facultad', 'typ_app_acronym' => 'CAMCAR', 'parent_id' => 1, 'conf_typ_object_hidden'=>false, 'status_id' => 1],
+            ['typ_app_name' => 'Homologacion externa', 'typ_app_description' => 'Solicitudes de homologacion externa', 'typ_app_acronym' => 'HOMEXT', 'parent_id' => 1, 'conf_typ_object_hidden'=>false, 'status_id' => 1],
+            ['typ_app_name' => 'Ingreso de Practica Pre-profesional', 'typ_app_description' => 'Solicitudes de ingreso a practicas', 'typ_app_acronym' => 'INGPRA', 'parent_id' => 2, 'conf_typ_object_hidden'=>false, 'status_id' => 1],
+            ['typ_app_name' => 'Requisicion de personal docente', 'typ_app_description' => 'Solicitudes de requisicion de personal docente', 'typ_app_acronym' => 'REQDOC', 'parent_id' => 3, 'conf_typ_object_hidden'=>false, 'status_id' => 1],
         ]);
         
         DB::connection('tenant')->table('config_type_applications')->insert([
