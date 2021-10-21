@@ -40,11 +40,6 @@ class CollaboratorCache extends BaseCache
         });
     }
 
-    public function getCollaboratorsPerEducationLvl ($educationlevel) {
-        return $this->cache::remember($this->key, $this->ttl, function () use ($educationlevel) {
-            return $this->repository->getCollaboratorsPerEducationLvl($educationlevel);
-        });
-    }
 
     /**
      * save

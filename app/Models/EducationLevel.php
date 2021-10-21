@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use OwenIt\Auditing\Auditable;
@@ -162,5 +163,14 @@ class EducationLevel extends Model implements AuditableContract
     public function hourSummarys(): HasMany
     {
         return $this->hasMany(HourSummary::class);
+    }
+
+     /**
+     * Collaborator
+     *
+     * @return BelongsTo
+     */
+    public function collaborator() : HasOne {
+        return $this->hasOne(Collaborator::class, 'education_level_principal_id');
     }
 }

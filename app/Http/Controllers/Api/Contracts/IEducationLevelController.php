@@ -357,4 +357,110 @@ interface IEducationLevelController
      *
      */
     public function destroy(EducationLevel $educationLevel);
+
+        /**
+     * @OA\Get(
+     *   path="/api/education-levels/{educationlevel}/collaborators",
+     *   tags={"Niveles Educativos"},
+     *   security={
+     *      {"api_key_security": {}},
+     *   },
+     *   summary="Obtener colaboradores por nivel educativo",
+     *   description="Obtener todos los colaboradores por nivel educativo",
+     *   operationId="getCollaboratorPerEducationLvl",
+     *   @OA\Parameter(
+     *     name="user_profile_id",
+     *     description="Id del perfil de usuario",
+     *     in="query",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="educationlevel",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="3"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_collaborator",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="D"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="1"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="size",
+     *     description="Numero de elementos por pagina",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="10"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="sort",
+     *     description="Ordenar por el campo",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="id"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="data",
+     *     description="mostrar todos los datos sin paginacion (enviar all)",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="type_sort",
+     *     description="Tipo de orden",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *       example="asc"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="search",
+     *     description="Filtrar registros",
+     *     in="query",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string",
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=400, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=403, description="No autorizado"),
+     *   @OA\Response(response=401, description="No autenticado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function getCollaboratorsPerEducationLvl (EducationLevel $educationlevel, Request $request);
 }

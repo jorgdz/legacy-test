@@ -126,4 +126,15 @@ class EducationLevelController extends Controller implements IEducationLevelCont
             return $this->error(request()->path(), $ex, $ex->getMessage(), $ex->getCode());
         }
     }
+
+    /**
+     * getCollaboratorsPerEducationLvl
+     *
+     * @param  mixed $educationlevel
+     * @return void
+     */
+    public function getCollaboratorsPerEducationLvl (EducationLevel $educationlevel, Request $request)
+    {
+        return $this->success($this->educationLevelCache->getCollaboratorsPerEducationLvl($educationlevel,$request));
+    }
 }

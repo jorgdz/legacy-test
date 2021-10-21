@@ -9,3 +9,4 @@ Route::get('/education-levels/{id}', [EducationLevelController::class, 'show'])-
 Route::post('/education-levels', [EducationLevelController::class, 'store'])->middleware(['auth:sanctum', 'permission:education-levels-crear-nivel-educativo']);
 Route::put('/education-levels/{educationLevel}', [EducationLevelController::class, 'update'])->middleware(['auth:sanctum', 'permission:education-levels-actualizar-nivel-educativo']);
 Route::delete('/education-levels/{educationLevel}', [EducationLevelController::class, 'destroy'])->middleware(['auth:sanctum', 'permission:education-levels-borrar-nivel-educativo']);
+Route::get('/education-levels/{educationlevel}/collaborators', [EducationLevelController::class, 'getCollaboratorsPerEducationLvl'])->middleware(['auth:sanctum', 'permission:collaborators-obtener-colaborador']);

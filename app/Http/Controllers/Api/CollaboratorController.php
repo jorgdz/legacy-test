@@ -286,15 +286,6 @@ class CollaboratorController extends Controller implements ICollaboratorControll
         return $this->success($this->collaboratorCache->save($collaborator));
     }
 
-    /**
-     * getCollaboratorsPerEducationLvl
-     *
-     * @param  mixed $educationlevel
-     * @return void
-     */
-    public function getCollaboratorsPerEducationLvl ($educationlevel) {
-        return $this->success($this->collaboratorCache->getCollaboratorsPerEducationLvl($educationlevel));
-    }
 
     /**
      * destroy

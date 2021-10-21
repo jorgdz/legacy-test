@@ -86,4 +86,11 @@ class EducationLevelCache extends BaseCache
         $this->forgetCache('education-levels');
         return $this->repository->destroy($model);
     }
+
+    public function getCollaboratorsPerEducationLvl ($educationlevel,$request)
+    {
+        return $this->cache::remember($this->key, $this->ttl, function () use ($educationlevel,$request) {
+            return $this->repository->getCollaboratorsPerEducationLvl($educationlevel,$request);
+        });
+    }
 }
