@@ -282,6 +282,40 @@ return [
 			'integer' => 'El valor del campo materia malla debe ser un entero.',
 			'distinct' => 'El valor del campo materia malla tiene un valor duplicado.'
 		],
+		'json.0.user_id_requisition' => [
+			'required' => 'El campo user_id del colaborador es requerido.',
+			'exists' => 'El valor del campo user_id del colaborador seleccionado es inválido.',
+		],
+		'json.0.coll_email' => [
+			'required' => 'El campo email es requerido.',
+			'unique' => 'El valor del campo email debe ser unico en colaboradores.',
+			'string'   => 'El campo email debe ser una cadena.'
+		],
+		'json.0.offer_id' => [
+			'required' => 'El campo offer_id es requerido.',
+			'exists' => 'El valor del campo offer_id seleccionado es inválido.',
+		],
+		'json.0.hourhand_id' => [
+			'required' => 'El campo hourhand_id es requerido.',
+			'exists' => 'El valor del campo hourhand_id seleccionado es inválido.',
+		],
+		'json.0.period_id' => [
+			'required' => 'El campo period_id es requerido.',
+			'exists' => 'El valor del campo period_id seleccionado es inválido.',
+		],
+		'json.0.education_level_id' => [
+			'required' => 'El campo education_level_id es requerido.',
+			'exists' => 'El valor del campo education_level_id seleccionado es inválido.',
+		],
+		'json.1.tipo_vinculacion' => [
+			'required' => 'El campo tipo_vinculacion es requerido.',
+			'boolean' => 'El valor del campo tipo_vinculacion debe ser boolean.',
+		],
+		'json.1.tipo_dedicacion' => [
+			'required' => 'El campo tipo_dedicacion es requerido.',
+			'in' => 'El valor del campo tipo_dedicacion debe ser TC,MT,PA.',
+			'string'   => 'El campo dedicacion debe ser una cadena.'
+		],
 	],
 
 	/*
@@ -1170,6 +1204,37 @@ return [
 		'inst_subject_id' => 'materia del instituto',
 		'comments' => 'comentarios',
 		'relation_pct' => 'porcentaje',
+		/**
+		 * Solicitud Requisicion de Personal
+		 */
+		"app_description"               => "descripcion de la solicitud",
+		"typ_app_acronym"               => "acronimo de la solicitud",
+		"user_id"                       => "usuario",
+		"json"                          => "json",
+		"json.0.user_id_requisition"    => "usuario colaborador",
+		"json.0.coll_email"             => "email colaborador",
+		"json.0.offer_id"               => "oferta",
+		"json.0.hourhand_id"            => "horario",
+		"json.0.period_id"              => "periodo",
+		"json.0.education_level_id"     => "nivel educativo",
+		"json.1.tipo_vinculacion"       => "tipo vinculacion",
+		"json.1.tipo_dedicacion"        => "tipo dedicacion",
+		"role_id"                       => "role",
+		/**
+		 * Solicitud
+		 */
+		"details"                               => "detalles",
+		"details.*.config_type_application_id"  => "configuracion de la solicitud",
+		/**
+		 * Configuracion Solicitud
+		 */
+		'conf_typ_description' => 'descripcion configuracion',
+		'conf_typ_data_type' => 'tipo de dato configuracion',
+		'conf_typ_object_name' => 'tipo de objeto configuracion',
+		'conf_typ_object_id' => 'identificador del tipo objeto de configuracion',
+		'conf_typ_file_path' => 'ruta archivo',
+		'type_application_id' => 'tipo solicitud',
+		'status_id' => 'estado'
 	],
 
 	/*
@@ -1192,5 +1257,8 @@ return [
 		'SubjectCurriculum' => 'Materias Mallas',
 		'TypeApplication' => 'Tipo de solicitud',
 		'Curriculum' => 'Malla',
+		'ConfigTypeApplicationStatus' => 'Configuracion tipo de solicitud',
+		'Application' => 'Solicitud',
+		'TypeApplicationStatus' => 'Estado tipo de solicitud',
 	],
 ];

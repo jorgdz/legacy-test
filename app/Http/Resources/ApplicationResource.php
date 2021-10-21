@@ -20,6 +20,7 @@ class ApplicationResource extends JsonResource
             "app_description" => $this->app_description,
             "app_register_date" => $this-> app_register_date,
             "type_application" => $this->typeApplication->typ_app_name,
+            "applicationDetails" => $this->applicationDetail,
             "status_id" => $this->status_id,
         ];
     }

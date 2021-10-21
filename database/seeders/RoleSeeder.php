@@ -4073,6 +4073,82 @@ class RoleSeeder extends Seeder
                 'parent_name_translated' => 'materia institucion',
                 'module_group' => 'academic'
             ],
+            /**
+             * Cursos 376-381
+             */
+            [
+                'name' => 'coursestudent-listar-curso-estudiante',
+                'alias' => 'Listar curso estudiante',
+                'description' => 'Listar todos los cursos estudiantes',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'courseStudent',
+                'parent_name_translated' => 'curso estudiante',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'coursestudent-obtener-curso-estudiante',
+                'alias' => 'Obtener curso estudiante',
+                'description' => 'Obtener un curso estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'courseStudent',
+                'parent_name_translated' => 'curso estudiante',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'coursestudent-crear-curso-estudiante',
+                'alias' => 'Crear curso estudiante',
+                'description' => 'Agregar un curso estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'courseStudent',
+                'parent_name_translated' => 'curso estudiante',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'coursestudent-actualizar-curso-estudiante',
+                'alias' => 'Actualizar curso estudiante',
+                'description' => 'Actualizar un curso estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'courseStudent',
+                'parent_name_translated' => 'curso estudiante',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'courcoursestudentses-borrar-curso-estudiante',
+                'alias' => 'Eliminar curso estudiante',
+                'description' => 'Eliminar curso estudiante por su identificador',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'courseStudent',
+                'parent_name_translated' => 'curso estudiante',
+                'module_group' => 'academic'
+            ],
+            [
+                'name' => 'coursestudent-checkconditions-curso-estudiante',
+                'alias' => 'valida condiciones curso estudiante',
+                'description' => 'valida condiciones curso estudiante',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'courseStudent',
+                'parent_name_translated' => 'curso estudiante',
+                'module_group' => 'academic'
+            ],
+            /**
+             * Aula Nivel Educativo 382
+             */
+            [
+                'name' => 'classroom_education_levels-buscar-periods-and-education_levels-listar-aula-niveleconomico',
+                'alias' => 'listar aula nivel economico',
+                'description' => 'listar aulas por nivel economico',
+                'guard_name' => 'api',
+                'status_id' => 1,
+                'parent_name' => 'classroomEducationLevel',
+                'parent_name_translated' => 'aula nivel educativo',
+                'module_group' => 'academic'
+            ],
         ]);
 
         /**
@@ -4742,6 +4818,19 @@ class RoleSeeder extends Seeder
             ['permission_id' => 373, 'role_id' => 1],
             ['permission_id' => 374, 'role_id' => 1],
             ['permission_id' => 375, 'role_id' => 1],
+            /**
+             * Cursos 376-381
+             */
+            ['permission_id' => 376, 'role_id' => 1],
+            ['permission_id' => 377, 'role_id' => 1],
+            ['permission_id' => 378, 'role_id' => 1],
+            ['permission_id' => 379, 'role_id' => 1],
+            ['permission_id' => 380, 'role_id' => 1],
+            ['permission_id' => 381, 'role_id' => 1],
+            /**
+             * Aula Nivel Educativo 382
+             */
+            ['permission_id' => 382, 'role_id' => 1],
         ]);
 
         /**
@@ -5385,6 +5474,19 @@ class RoleSeeder extends Seeder
             ['permission_id' => 373, 'role_id' => 2],
             ['permission_id' => 374, 'role_id' => 2],
             ['permission_id' => 375, 'role_id' => 2],
+            /**
+             * Cursos 376-381
+             */
+            ['permission_id' => 376, 'role_id' => 2],
+            ['permission_id' => 377, 'role_id' => 2],
+            ['permission_id' => 378, 'role_id' => 2],
+            ['permission_id' => 379, 'role_id' => 2],
+            ['permission_id' => 380, 'role_id' => 2],
+            ['permission_id' => 381, 'role_id' => 2],
+            /**
+             * Aula Nivel Educativo 382
+             */
+            ['permission_id' => 382, 'role_id' => 2],
         ]);
 
         /**

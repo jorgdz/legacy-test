@@ -21,7 +21,7 @@ class TransaccResource extends JsonResource
             "register_date" => $this->transac_register_date,
             "comments" => $this->transac_comments,
             "user" => $this->user,
-            "last_revision_status" => $this->typeApplicationStatusRoles->typeApplicationStatus->status->st_name,
+            "current_status" => $this->typeApplicationStatusRoles->typeApplicationStatus->status->st_name,
             "status_id" => $this->status_id,
             "application" => new ApplicationResource(Application::where('app_code', $this->transac_secuencial)->first()),
         ];

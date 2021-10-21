@@ -40,7 +40,6 @@ class TypeApplicationStatusRoles extends Model implements AuditableContract
     public function transacTypeApplicationStatusRoles() : HasMany {
         return $this->hasMany(TransacTypeApplicationStatusRoles::class);
     }
-
     /**
      * typeApplicationStatus
      *

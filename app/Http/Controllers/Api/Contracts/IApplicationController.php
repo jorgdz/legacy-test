@@ -113,12 +113,6 @@ interface IApplicationController
      *           example="prueba free"
      *         ),
      *         @OA\Property(
-     *           property="app_register_date",
-     *           description="Fecha de registro de la solicitud",
-     *           type="string",
-     *           format="date",
-     *         ),
-     *         @OA\Property(
      *           property="typ_app_acronym",
      *           description="Acronimo del tipo de solicitud",
      *           type="string",
@@ -246,12 +240,6 @@ interface IApplicationController
      *           property="app_description",
      *           description="Descripcion de la solicitud",
      *           type="string",
-     *         ),
-     *         @OA\Property(
-     *           property="app_register_date",
-     *           description="Fecha de registro de la solicitud",
-     *           type="string",
-     *           format="date",
      *         ),
      *         @OA\Property(
      *           property="status",

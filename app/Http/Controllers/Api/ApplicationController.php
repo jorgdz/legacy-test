@@ -6,6 +6,7 @@ use App\Cache\ApplicationCache;
 use App\Http\Controllers\Api\Contracts\IApplicationController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplicationRequest;
+use App\Http\Resources\ApplicationResource;
 use App\Http\Resources\TransaccResource;
 use App\Models\Application;
 use App\Models\ApplicationDetail;
@@ -65,6 +66,7 @@ class ApplicationController extends Controller implements IApplicationController
         $application = new Application($request->all());
         // $application->app_code = str_pad($typeApp->id, 3, "0", STR_PAD_LEFT) . '-' . str_pad(Application::withTrashed()->count() + 1, 7, "0", STR_PAD_LEFT);
         $application->app_code = $typeApp->typ_app_acronym . '-' . str_pad(Application::withTrashed()->count() + 1, 7, "0", STR_PAD_LEFT);
+        $application->app_register_date = date("Y-m-d h:i:s a", time());
         $application->type_application_id = $typeApp->id;
         $application->user_id = Auth::user()->id;
         $application->status_id = 1;
@@ -76,13 +78,13 @@ class ApplicationController extends Controller implements IApplicationController
         $trans_tas = new TransacTypeApplicationStatusRoles();
         $trans_tas->transac_secuencial = $application->app_code;
         $trans_tas->transac_comments = 'Nueva solicitud enviada por un usuario';
-        $trans_tas->transac_register_date = date("Y-m-d");
+        $trans_tas->transac_register_date = date("Y-m-d h:i:s a", time());
         $trans_tas->user = Auth::user()->us_username;
         $trans_tas->type_application_status_roles_id = $tasRole->id;
         $trans_tas->status_id = 1;
         $trans_tas->save();
 
-        return $this->success($application);
+        return $this->success(new ApplicationResource($application));
     }
 
     /**
@@ -175,6 +177,18 @@ class ApplicationController extends Controller implements IApplicationController
             "refused"   => "nullable|boolean",
         ]);
 
-        return $this->success($this->applicationCache->changeApplicationStatus($request));
+        $resp = json_decode(json_encode($this->applicationCache->changeApplicationStatus($request)));
+        if (isset($resp->original->detail)) {
+            return [$resp->original, ['finished' => false]];
+        }
+
+        // Si el nuevo estado de la transaccion es igual al ultimo estado valido de la configuracion de la solicitud
+        // entonces se envia "finished" y se debera realizar el correspondiente proceso de la solicitud.
+        $valida = TypeApplicationStatus::whereHas('typeApplication', fn ($query) => $query->where('typ_app_name', $resp->original->application->type_application))->orderBy('order', 'desc')->first();
+        if ($resp->original->current_status == $valida->status->st_name) {
+            return [$resp->original, ['finished' => true]];
+        }
+
+        return [$resp->original, ['finished' => false]];
     }
 }

@@ -28,6 +28,8 @@ use App\Models\Role;
 use App\Models\UserProfile;
 use App\Services\MailService;
 use App\Traits\SavePerson;
+use Collator;
+
 class CollaboratorController extends Controller implements ICollaboratorController
 {
     use RestResponse, SavePerson;
