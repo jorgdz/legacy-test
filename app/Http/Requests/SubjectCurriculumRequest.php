@@ -42,7 +42,7 @@ class SubjectCurriculumRequest extends FormRequest
             'prerequisites' => 'nullable|array',
             'prerequisites.*' => 'integer|exists:tenant.subject_curriculum,id|distinct',
             'components' => 'nullable|array',
-            'components.*.component_id' => 'integer|exists:tenant.components,id|distinct',
+            'components.*.components_id' => 'integer|exists:tenant.components,id|distinct',
             'components.*.lea_workload' => 'integer',
             'status_id'         => 'required|integer|exists:tenant.status,id'
         ];
