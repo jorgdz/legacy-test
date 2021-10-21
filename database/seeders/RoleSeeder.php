@@ -1581,7 +1581,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'economicGroup',
                 'parent_name_translated' => 'grupos económicos',
-                'module_group' => 'academic'
+                'module_group' => 'financial'
             ],
             [
                 'name' => 'economic_group-obtener-grupo-economico',
@@ -1591,7 +1591,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'economicGroup',
                 'parent_name_translated' => 'grupos económicos',
-                'module_group' => 'academic'
+                'module_group' => 'financial'
             ],
             [
                 'name' => 'economic_group-crear-grupo-economico',
@@ -1601,7 +1601,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'economicGroup',
                 'parent_name_translated' => 'grupos económicos',
-                'module_group' => 'academic'
+                'module_group' => 'financial'
             ],
             [
                 'name' => 'economic_group-actualizar-grupo-economico',
@@ -1611,7 +1611,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'economicGroup',
                 'parent_name_translated' => 'grupos económicos',
-                'module_group' => 'academic'
+                'module_group' => 'financial'
             ],
             [
                 'name' => 'economic_group-eliminar-grupo-economico',
@@ -1621,7 +1621,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'economicGroup',
                 'parent_name_translated' => 'grupos económicos',
-                'module_group' => 'academic'
+                'module_group' => 'financial'
             ],
             /**
              * Tipos Discapacidad 150-151
@@ -2772,7 +2772,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'position',
                 'parent_name_translated' => 'cargos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'positions-obtener-cargo',
@@ -2782,7 +2782,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'position',
                 'parent_name_translated' => 'cargos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'positions-crear-cargo',
@@ -2792,7 +2792,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'position',
                 'parent_name_translated' => 'cargos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'positions-actualizar-cargo',
@@ -2802,7 +2802,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'position',
                 'parent_name_translated' => 'cargos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'positions-eliminar-cargo',
@@ -2812,7 +2812,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'position',
                 'parent_name_translated' => 'cargos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'users-listar-usuarios',
@@ -3174,7 +3174,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'department',
                 'parent_name_translated' => 'departamentos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'departments-obtener-departamento',
@@ -3184,7 +3184,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'department',
                 'parent_name_translated' => 'departamentos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'departments-crear-departamento',
@@ -3194,7 +3194,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'department',
                 'parent_name_translated' => 'departamentos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'departments-actualizar-departamento',
@@ -3204,7 +3204,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'department',
                 'parent_name_translated' => 'departamentos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'departments-actualizar-estado-departamento',
@@ -3214,7 +3214,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'department',
                 'parent_name_translated' => 'departamentos',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
         ]);
 
@@ -3230,7 +3230,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaborator',
                 'parent_name_translated' => 'colaboradores',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'collaborators-crear-colaborador',
@@ -3240,7 +3240,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaborator',
                 'parent_name_translated' => 'colaboradores',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             /**
              * Nivel Educativo Aula 299-303
@@ -3320,7 +3320,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaboratorHours',
                 'parent_name_translated' => 'horas de colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'collaborator-hours-obtener-hora-colaborador',
@@ -3330,7 +3330,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaboratorHours',
                 'parent_name_translated' => 'horas de colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'collaborator-hours-crear-hora-colaborador',
@@ -3340,7 +3340,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaboratorHours',
                 'parent_name_translated' => 'horas de colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'collaborator-hours-actualizar-hora-colaborador',
@@ -3350,7 +3350,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaboratorHours',
                 'parent_name_translated' => 'horas de colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'collaborator-hours-borrar-hora-colaborador',
@@ -3360,7 +3360,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaboratorHours',
                 'parent_name_translated' => 'horas de colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             /**
              * Resumen Horas 310-314
@@ -3373,7 +3373,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'hourSummary',
                 'parent_name_translated' => 'resumen de horas del colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'hours-summaries-obtener-resumen-horas-colaborador',
@@ -3383,7 +3383,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'hourSummary',
                 'parent_name_translated' => 'resumen de horas del colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'hours-summaries-crear-resumen-horas-colaborador',
@@ -3393,7 +3393,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'hourSummary',
                 'parent_name_translated' => 'resumen de horas del colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'hours-summaries-actualizar-resumen-horas-colaborador',
@@ -3403,7 +3403,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'hourSummary',
                 'parent_name_translated' => 'resumen de horas del colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'hours-summaries-borrar-resumen-horas-colaborador',
@@ -3413,7 +3413,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'hourSummary',
                 'parent_name_translated' => 'resumen de horas del colaborador',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             /**
              * Colaboradores 315-317
@@ -3426,7 +3426,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaborator',
                 'parent_name_translated' => 'colaboradores',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'collaborators-actualizar-colaborador',
@@ -3436,7 +3436,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaborator',
                 'parent_name_translated' => 'colaboradores',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             [
                 'name' => 'collaborators-eliminar-colaborador',
@@ -3446,7 +3446,7 @@ class RoleSeeder extends Seeder
                 'status_id' => 1,
                 'parent_name' => 'collaborator',
                 'parent_name_translated' => 'colaboradores',
-                'module_group' => 'academic'
+                'module_group' => 'rrhh'
             ],
             /**
              * Tipo Reportes 318-322
