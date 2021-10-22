@@ -20,7 +20,7 @@ class Permission extends PermissionPersonalized implements AuditableContract
      *
      * @var array
      */
-    protected $fillable = ['name', 'alias' ,'description', 'guard_name', 'parent_name','parent_name_translated', 'status_id'];
+    protected $fillable = ['name', 'alias' ,'description', 'guard_name', 'parent_name','parent_name_translated', 'module_group', 'status_id'];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 

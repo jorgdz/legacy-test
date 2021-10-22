@@ -19,7 +19,8 @@ class RoleResource extends JsonResource
             'name'        => $this->name ,
             'keyword'     => $this->keyword,
             'description' => $this->description ,
-            'permissions' => PermissionResource::collection($this->permissions)->where('status_id', 1)->groupBy('parent_name'),
+            //'permissions' => PermissionResource::collection($this->permissions)->where('status_id', 1)->groupBy('parent_name'))->groupBy('module_group'),
+            'permissions' => $this->permissions->where('status_id', 1)
         ];
     }
 }

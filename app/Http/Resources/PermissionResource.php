@@ -20,6 +20,8 @@ class PermissionResource extends JsonResource
             'alias'       => $this->alias ,
             'description' => $this->description ,
             'parent_name' => $this->parent_name ,
+            'parent_name_translated' => $this->parent_name_translated ,
+            'module_group' => $this->module_group ,
         ];
     }
 }
