@@ -105,7 +105,8 @@ class HourSummaryRepository extends BaseRepository
                 ->getCollection() : [];
         }
 
-        if (isset($request['period_id']) && isset($request['education_level_id'])) {
+        if (isset($request['period_id'], $request['education_level_id']) && !empty($request->period_id) && !empty($request->education_level_id)) {
+
             return ($request['period_id'] && $request['education_level_id']) ?
                 $this->data
                 ->withModelRelations($this->relations)
@@ -121,12 +122,14 @@ class HourSummaryRepository extends BaseRepository
                 ->paginated($request, $this->model->getTable()) : [];
         }
 
-        $request['conditions'] = NULL;
-      
-        return $this->data
+
+
+        $requestSearch = collect($request->all())->except(['conditions', 'period_id', 'education_level_id']);
+
+        $query =  $this->data
             ->withModelRelations($this->relations)
-            ->searchWithColumnNames($request)
-            ->searchWithConditions($request)
+            ->searchWithColumnNames($requestSearch)
+            ->searchWithConditions($requestSearch)
             ->filter(
                 $request,
                 $this->fields,
@@ -135,5 +138,7 @@ class HourSummaryRepository extends BaseRepository
                 $this->model->getTable()
             )
             ->paginated($request, $this->model->getTable());
+
+        return count($query) > 0 ? $query : [];
     }
 }
