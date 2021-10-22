@@ -25,7 +25,7 @@ class HourSummaryCache extends BaseCache
      * @return void
      */
     public function all($request)
-    {
+    {   //return $this->repository->all($request);
         return $this->cache::remember($this->key, $this->ttl, function () use ($request) {
             return $this->repository->all($request);
         });

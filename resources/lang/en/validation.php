@@ -182,6 +182,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'name',
+        'keyword'=>'keyword'
+    ],
 
 ];

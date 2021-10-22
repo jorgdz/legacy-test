@@ -92,7 +92,7 @@ class HourSummaryRepository extends BaseRepository
      */
     public function all($request)
     {
-        $request['conditions'] = [
+         $request['conditions'] = [
             ['period_id', $request['period_id']],
             ['education_level_id', $request['education_level_id']]
         ];
